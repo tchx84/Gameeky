@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "valley"
+description = ""
+version = "0.1.0"
+authors = [
+    {name = "Martín Abente Lahaye", email = "martin.abente.lahaye@gmail.com"},
+]
+dependencies = [
+    "PyGObject",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pyflakes",
+    "mypy",
+]
+
+[[tool.mypy.overrides]]
+module = "gi.repository.*"
+ignore_missing_imports = true
