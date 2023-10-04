@@ -19,7 +19,15 @@ dev = [
     "pyflakes",
     "mypy",
 ]
+test = [
+    "pytest",
+    "pytest-timeout",
+    "pytest-cov",
+]
 
 [[tool.mypy.overrides]]
 module = "gi.repository.*"
 ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report term-missing --cov-fail-under 80"
