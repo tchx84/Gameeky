@@ -6,12 +6,12 @@ from ..game.scene import Scene as SceneModel
 
 
 class Scene(Gtk.DrawingArea):
-    TILES_X: int = 17
-    TILES_Y: int = 13
-    TILES_SIZE: int = 32
+    TILES_X = 17
+    TILES_Y = 13
+    TILES_SIZE = 32
 
-    WIDTH: int = TILES_X * TILES_SIZE
-    HEIGHT: int = TILES_Y * TILES_SIZE
+    WIDTH = TILES_X * TILES_SIZE
+    HEIGHT = TILES_Y * TILES_SIZE
 
     def __init__(self, model: Optional[SceneModel] = None) -> None:
         super().__init__()
