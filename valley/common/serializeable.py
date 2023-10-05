@@ -1,20 +1,25 @@
-import json
-
 from typing import Any
+
+from gi.repository import GLib
 
 
 class Serializeable(object):
-    def serialize(self) -> bytes:
-        return json.dumps(
-            self, default=lambda o: Serializeable.filter(o.__dict__)
-        ).encode("UTF-8")
+    SIGNATURE = ""
 
-    @staticmethod
-    def filter(properties: dict) -> dict:
-        return {
-            name: properties[name] for name in properties if not name.startswith("_")
-        }
+    def to_variant(self) -> GLib.Variant:
+        raise NotImplementedError
+
+    @classmethod
+    def from_values(cls, values: Any) -> Any:
+        raise NotImplementedError
+
+    def serialize(self) -> bytes:
+        return self.to_variant().get_data_as_bytes().get_data()
 
     @classmethod
     def deserialize(cls, data: bytes) -> Any:
-        return cls(**json.loads(data.decode("UTF-8")))
+        values = GLib.Variant.new_from_bytes(
+            GLib.VariantType(cls.SIGNATURE), GLib.Bytes(data), True
+        ).unpack()
+
+        return cls.from_values(values)
