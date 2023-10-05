@@ -3,8 +3,7 @@ from gi.repository import GObject
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Client as UDPClient
 
-from ...common.scene import Scene
-from ...common.heartbeat import Heartbeat
+from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
 from ...common.message import Message
 
@@ -55,4 +54,4 @@ class Service(GObject.GObject):
         self._sequence += 1
 
     def request(self):
-        self._scene_manager.send(Heartbeat(self._session.id).serialize())
+        self._scene_manager.send(SceneRequest(self._session.id).serialize())

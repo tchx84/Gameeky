@@ -5,7 +5,7 @@ from .scene import Scene
 from ..network.tcp import Server as TCPServer
 from ..network.udp import Server as UDPServer
 
-from ...common.heartbeat import Heartbeat
+from ...common.scene import SceneRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
 
@@ -92,9 +92,9 @@ class Service(GObject.GObject):
         self.scene.qeueu(session.entity_id, message.action)
 
     def __on_scene_requested(self, manager, address, data):
-        heartbeat = Heartbeat.deserialize(data)
+        request = SceneRequest.deserialize(data)
 
-        if self._session_by_id.get(heartbeat.session_id) is None:
+        if self._session_by_id.get(request.session_id) is None:
             return
 
         # XXX prepare scene specifically for session.entities_ids

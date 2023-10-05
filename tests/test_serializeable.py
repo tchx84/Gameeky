@@ -1,8 +1,7 @@
 from valley.common.action import Action
 from valley.common.entity import Entity, Vector
-from valley.common.heartbeat import Heartbeat
 from valley.common.message import Message
-from valley.common.scene import Scene
+from valley.common.scene import Scene, SceneRequest
 from valley.common.session import Session, SessionRequest
 
 
@@ -24,13 +23,6 @@ def test_serialize_entity():
     assert serialized.action == original.action
 
 
-def test_serialize_heartbeat():
-    original = Heartbeat(session_id=90)
-    serialized = Heartbeat.deserialize(original.serialize())
-
-    assert serialized.session_id == original.session_id
-
-
 def test_serialize_message():
     original = Message(session_id=90, action=Action.MOVE, sequence=180)
     serialized = Message.deserialize(original.serialize())
@@ -45,6 +37,13 @@ def test_serialize_scene():
     serialized = Scene.deserialize(original.serialize())
 
     assert original.entities == serialized.entities
+
+
+def test_serialize_scene_request():
+    original = SceneRequest(session_id=90)
+    serialized = SceneRequest.deserialize(original.serialize())
+
+    assert serialized.session_id == original.session_id
 
 
 def test_serialize_session():
