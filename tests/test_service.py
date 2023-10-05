@@ -45,7 +45,7 @@ def test_server_create():
     update()
 
 
-def test_client_cretae():
+def test_client_create():
     global client
 
     client = Client(
