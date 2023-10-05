@@ -29,3 +29,6 @@ class Client(GObject.GObject):
 
     def send(self, data):
         self._output_stream.write(data)
+
+    def close(self):
+        self._connection.close()
