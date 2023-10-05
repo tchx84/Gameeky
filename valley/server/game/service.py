@@ -1,10 +1,11 @@
-from .game.scene import Scene
-from .network.tcp import Server as TCPServer
-from .network.udp import Server as UDPServer
+from .scene import Scene
 
-from ..common.heartbeat import Heartbeat
-from ..common.session import Session as CommonSession
-from ..common.message import Message
+from ..network.tcp import Server as TCPServer
+from ..network.udp import Server as UDPServer
+
+from ...common.heartbeat import Heartbeat
+from ...common.session import Session as CommonSession
+from ...common.message import Message
 
 
 class Session(CommonSession):

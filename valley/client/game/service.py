@@ -1,12 +1,12 @@
 from gi.repository import GObject
 
-from .network.tcp import Client as TCPClient
-from .network.udp import Client as UDPClient
+from ..network.tcp import Client as TCPClient
+from ..network.udp import Client as UDPClient
 
-from ..common.scene import Scene
-from ..common.heartbeat import Heartbeat
-from ..common.session import Session, SessionRequest
-from ..common.message import Message
+from ...common.scene import Scene
+from ...common.heartbeat import Heartbeat
+from ...common.session import Session, SessionRequest
+from ...common.message import Message
 
 
 class Service(GObject.GObject):

@@ -5,8 +5,8 @@ from unittest.mock import Mock
 from gi.repository import GLib
 
 from valley.common.action import Action
-from valley.server.service import Service as Server
-from valley.client.service import Service as Client
+from valley.server.game.service import Service as Server
+from valley.client.game.service import Service as Client
 
 CLIENTS = 1
 SESSION_PORT = 9996
