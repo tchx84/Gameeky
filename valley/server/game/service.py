@@ -58,6 +58,9 @@ class Service(GObject.GObject):
     def __on_session_disconnected(self, manager, client):
         session = self._session_by_client.get(client)
 
+        if session is None:
+            return
+
         self.scene.remove(session.entity_id)
 
         del self._session_by_client[client]
