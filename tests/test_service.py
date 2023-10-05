@@ -72,7 +72,13 @@ def test_client_register():
 
 @pytest.mark.timeout(5)
 def test_client_report():
+    mock = Mock()
+
+    server.scene.connect("ticked", mock)
     client.report(Action.MOVE)
+
+    while not mock.called:
+        update()
 
 
 @pytest.mark.timeout(5)
@@ -84,3 +90,7 @@ def test_client_request():
 
     while not mock.called:
         update()
+
+    # Confirm that it moved
+    scene = mock.call_args.args[-1]
+    assert scene.entities[-1].position.x == 1.0
