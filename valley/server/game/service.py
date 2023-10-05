@@ -11,23 +11,9 @@ from ...common.message import Message
 
 
 class Session(CommonSession):
-    def __init__(self, id, client, entity_id, sequence=-1):
-        super().__init__(id)
-        self._client = client
-        self._entity_id = entity_id
-        self._sequence = sequence
-
-    @property
-    def entity_id(self):
-        return self._entity_id
-
-    @property
-    def sequence(self):
-        return self._sequence
-
-    @sequence.setter
-    def sequence(self, sequence):
-        self._sequence = sequence
+    def __init__(self, id, entity_id, sequence=-1):
+        super().__init__(id, entity_id)
+        self.sequence = sequence
 
 
 class Service(GObject.GObject):
@@ -59,7 +45,7 @@ class Service(GObject.GObject):
 
     def __on_session_connected(self, manager, client, data):
         entity_id = self.scene.add()
-        session = Session(id=self._sessions, client=client, entity_id=entity_id)
+        session = Session(id=self._sessions, entity_id=entity_id)
 
         self._session_by_client[client] = session
         self._session_by_id[session.id] = session
