@@ -70,6 +70,10 @@ def test_client_register():
         update()
 
 
+def test_server_is_populated():
+    assert len(server.scene.entities) == 1
+
+
 @pytest.mark.timeout(5)
 def test_client_report():
     mock = Mock()
@@ -94,3 +98,18 @@ def test_client_request():
     # Confirm that it moved
     scene = mock.call_args.args[-1]
     assert scene.entities[-1].position.x == 1.0
+
+
+@pytest.mark.timeout(5)
+def test_client_unregister():
+    mock = Mock()
+
+    server.connect("unregistered", mock)
+    client.unregister()
+
+    while not mock.called:
+        update()
+
+
+def test_server_is_empty():
+    assert len(server.scene.entities) == 0
