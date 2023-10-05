@@ -33,7 +33,7 @@ class Service(object):
         self._session_by_client = {}
         self._session_by_id = {}
 
-        self._scene = Scene()
+        self.scene = Scene()
 
         self._session_manager = TCPServer(
             port=session_port, clients=clients, context=context
@@ -48,7 +48,7 @@ class Service(object):
         self._scene_manager.connect("received", self.__on_scene_requested)
 
     def __on_session_connected(self, manager, client, data):
-        entity_id = self._scene.add()
+        entity_id = self.scene.add()
         session = Session(id=self._sessions, client=client, entity_id=entity_id)
 
         self._session_by_client[client] = session
@@ -60,7 +60,7 @@ class Service(object):
     def __on_session_disconnected(self, manager, client):
         session = self._session_by_client.get(client)
 
-        self._scene.remove(session.entity_id)
+        self.scene.remove(session.entity_id)
 
         del self._session_by_client[client]
         del self._session_by_id[session.id]
@@ -75,7 +75,7 @@ class Service(object):
             return
 
         session.sequence = message.sequence
-        self._scene.qeueu(session.entity_id, message.action)
+        self.scene.qeueu(session.entity_id, message.action)
 
     def __on_scene_requested(self, manager, address, data):
         heartbeat = Heartbeat.deserialize(data)
@@ -84,4 +84,4 @@ class Service(object):
             return
 
         # XXX prepare scene specifically for session.entities_ids
-        self._scene_manager.send(address, self._scene.serialize())
+        self._scene_manager.send(address, self.scene.serialize())

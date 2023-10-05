@@ -1,4 +1,4 @@
-from gi.repository import GLib
+from gi.repository import GLib, GObject
 
 from .entity import Entity
 
@@ -6,11 +6,16 @@ from ...common.action import Action
 from ...common.scene import Scene as CommonScene
 
 
-class Scene(CommonScene):
+class Scene(CommonScene, GObject.GObject):
+    __gsignals__ = {
+        "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
     TICK = 100
 
     def __init__(self):
-        super().__init__()
+        CommonScene.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._entities = 0
         self._entity_by_id = {}
@@ -26,6 +31,7 @@ class Scene(CommonScene):
                 entity.move()
 
         self._actions_by_entity_id = {}
+        self.emit("ticked")
 
         return GLib.SOURCE_CONTINUE
 
