@@ -1,3 +1,5 @@
+from gi.repository import GObject
+
 from .scene import Scene
 
 from ..network.tcp import Server as TCPServer
@@ -28,8 +30,15 @@ class Session(CommonSession):
         self._sequence = sequence
 
 
-class Service(object):
+class Service(GObject.GObject):
+    __gsignals__ = {
+        "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "unregistered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+    }
+
     def __init__(self, clients, session_port, updates_port, scene_port, context):
+        super().__init__()
+
         self._sessions = 0
         self._session_by_client = {}
         self._session_by_id = {}
@@ -58,6 +67,8 @@ class Service(object):
 
         client.send(session.serialize())
 
+        self.emit("registered", session)
+
     def __on_session_disconnected(self, manager, client):
         session = self._session_by_client.get(client)
 
@@ -65,6 +76,8 @@ class Service(object):
 
         del self._session_by_client[client]
         del self._session_by_id[session.id]
+
+        self.emit("unregistered", session)
 
     def __on_message_received(self, manager, address, data):
         message = Message.deserialize(data)
