@@ -39,7 +39,8 @@ class Window(Gtk.ApplicationWindow):
         self._service.connect("registered", self.__on_registered)
         self._service.register()
 
-    def __on_registered(self, service):
+    def __on_registered(self, service, session):
+        self._model.anchor_id = session.entity_id
         self._model.connect("ticked", self.__on_ticked)
         self._service.connect("updated", self.__on_updated)
 

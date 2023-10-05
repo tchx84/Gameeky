@@ -27,10 +27,17 @@ class Scene(Gtk.DrawingArea):
         context.rectangle(0, 0, self.WIDTH, self.HEIGHT)
         context.fill()
 
+        anchor = self._model.anchor
+        half_tile = self.TILES_SIZE / 2
+        half_width = self.WIDTH / 2
+        half_height = self.HEIGHT / 2
+
         for entity in self._model.entities:
             context.set_source_rgba(1, 1, 1)
-            context.rectangle(
-                entity.position.x, entity.position.y, self.TILES_SIZE, self.TILES_SIZE
-            )
+
+            x = (entity.position.x - anchor.position.x) + half_width - half_tile
+            y = (entity.position.y - anchor.position.y) + half_height - half_tile
+
+            context.rectangle(x, y, self.TILES_SIZE, self.TILES_SIZE)
 
         context.fill()

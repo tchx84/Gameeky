@@ -10,7 +10,7 @@ from ...common.message import Message
 
 class Service(GObject.GObject):
     __gsignals__ = {
-        "registered": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
@@ -36,7 +36,7 @@ class Service(GObject.GObject):
 
     def __on_session_registered(self, client, data):
         self._session = Session.deserialize(data)
-        self.emit("registered")
+        self.emit("registered", self._session)
 
     def __on_scene_received(self, manager, address, data):
         self.emit("updated", Scene.deserialize(data))
