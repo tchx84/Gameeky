@@ -1,7 +1,5 @@
 from typing import Tuple
 
-from gi.repository import GLib
-
 from .serializeable import Serializeable
 
 
@@ -12,8 +10,8 @@ class Session(Serializeable):
         self.id = id
         self.entity_id = entity_id
 
-    def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(self.SIGNATURE, (self.id, self.entity_id))
+    def to_values(self):
+        return (self.id, self.entity_id)
 
     @classmethod
     def from_values(cls, values: Tuple[int, int]) -> "Session":
@@ -21,13 +19,11 @@ class Session(Serializeable):
 
 
 class SessionRequest(Serializeable):
-    SIGNATURE = "()"
-
     def __init__(self) -> None:
         pass
 
-    def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(self.SIGNATURE, ())
+    def to_values(self):
+        return ()
 
     @classmethod
     def from_values(cls, values: Tuple) -> "SessionRequest":

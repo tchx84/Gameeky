@@ -1,14 +1,10 @@
 from typing import Tuple
 
-from gi.repository import GLib
-
 from .action import Action
 from .serializeable import Serializeable
 
 
 class Message(Serializeable):
-    SIGNATURE = "(iidi)"
-
     def __init__(
         self,
         session_id: int,
@@ -21,10 +17,8 @@ class Message(Serializeable):
         self.value = value
         self.sequence = sequence
 
-    def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(
-            self.SIGNATURE, (self.session_id, self.action, self.value, self.sequence)
-        )
+    def to_values(self):
+        return (self.session_id, self.action, self.value, self.sequence)
 
     @classmethod
     def from_values(cls, values: Tuple[int, int, float, int]) -> "Message":

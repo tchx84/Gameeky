@@ -1,21 +1,17 @@
 from typing import Optional, Tuple
 
-from gi.repository import GLib
-
 from .action import Action
 from .direction import Direction
 from .serializeable import Serializeable
 
 
 class Vector(Serializeable):
-    SIGNATURE = "(dd)"
-
     def __init__(self, x: float = 0, y: float = 0) -> None:
         self.x = x
         self.y = y
 
-    def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(self.SIGNATURE, (self.x, self.y))
+    def to_values(self):
+        return (self.x, self.y)
 
     @classmethod
     def from_values(cls, values: Tuple[float, ...]) -> "Vector":
@@ -23,8 +19,6 @@ class Vector(Serializeable):
 
 
 class Entity(Serializeable):
-    SIGNATURE = "(ivddi)"
-
     def __init__(
         self,
         id: int,
@@ -39,16 +33,13 @@ class Entity(Serializeable):
         self.velocity = velocity
         self.action = action
 
-    def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(
-            self.SIGNATURE,
-            (
-                self.id,
-                self.position.to_variant(),
-                self.angle,
-                self.velocity,
-                self.action,
-            ),
+    def to_values(self):
+        return (
+            self.id,
+            self.position.to_values(),
+            self.angle,
+            self.velocity,
+            self.action,
         )
 
     @classmethod
