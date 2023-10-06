@@ -18,8 +18,6 @@ class Scene(Gtk.DrawingArea):
         context.rectangle(0, 0, screen_width, screen_height)
         context.fill()
 
-        anchor = self._model.anchor
-
         screen_tile_width = screen_width / self._model.width
         screen_tile_height = screen_height / self._model.height
 
@@ -29,8 +27,8 @@ class Scene(Gtk.DrawingArea):
         for entity in self._model.entities:
             context.set_source_rgba(1, 1, 1)
 
-            screen_x = (entity.position.x - anchor.position.x) * screen_tile_width
-            screen_y = (entity.position.y - anchor.position.y) * screen_tile_height
+            screen_x = (entity.position.x - self._model.anchor.x) * screen_tile_width
+            screen_y = (entity.position.y - self._model.anchor.y) * screen_tile_height
 
             x = screen_x + screen_offset_x
             y = screen_y + screen_offset_y

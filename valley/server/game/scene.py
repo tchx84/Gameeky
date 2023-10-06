@@ -55,3 +55,14 @@ class Scene(CommonScene, GObject.GObject):
             del self._actions_by_entity_id[entity_id]
 
         del self._entity_by_id[entity_id]
+
+    def prepare_for_entity_id(self, entity_id):
+        entity = self._entity_by_id.get(entity_id)
+
+        # XXX only include entities that the client can actually see
+        return CommonScene(
+            width=self.width,
+            height=self.height,
+            anchor=entity.position,
+            entities=self.entities,
+        )

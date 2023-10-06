@@ -83,9 +83,10 @@ class Service(GObject.GObject):
 
     def __on_scene_requested(self, manager, address, data):
         request = SceneRequest.deserialize(data)
+        session = self._session_by_id.get(request.session_id)
 
-        if self._session_by_id.get(request.session_id) is None:
+        if session is None:
             return
 
-        # XXX prepare scene specifically for session.entities_ids
-        self._scene_manager.send(address, self.scene.serialize())
+        scene = self.scene.prepare_for_entity_id(session.entity_id)
+        self._scene_manager.send(address, scene.serialize())
