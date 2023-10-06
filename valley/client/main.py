@@ -3,7 +3,7 @@
 import gi
 
 gi.require_version("Gtk", "4.0")
-from gi.repository import Gtk, GLib
+from gi.repository import Gio, Gtk, GLib
 
 from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
@@ -66,6 +66,9 @@ def on_activate(app):
     win.present()
 
 
-app = Gtk.Application(application_id="dev.tchx84.Valley")
+app = Gtk.Application(
+    application_id="dev.tchx84.Valley",
+    flags=Gio.ApplicationFlags.NON_UNIQUE,
+)
 app.connect("activate", on_activate)
 app.run(None)
