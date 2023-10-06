@@ -1,5 +1,7 @@
 from gi.repository import Gio, GObject
 
+from ...common.definitions import MAX_TCP_BYTES
+
 
 class Client(GObject.GObject):
     __gtype_name__ = "TCPClient"
@@ -7,8 +9,6 @@ class Client(GObject.GObject):
     __gsignals__ = {
         "received": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
-
-    MAX_BYTES = 2048
 
     def __init__(self, address, port, context):
         super().__init__()
@@ -24,7 +24,7 @@ class Client(GObject.GObject):
         self._input_source.attach(context)
 
     def __on_data_received_db(self, source):
-        raw = self._input_stream.read_bytes(self.MAX_BYTES, None)
+        raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
         self.emit("received", raw.get_data())
 
     def send(self, data):

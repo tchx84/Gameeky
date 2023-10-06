@@ -1,10 +1,10 @@
 from gi.repository import Gio, GLib, GObject
 
+from ...common.definitions import MAX_TCP_BYTES
+
 
 class Client(GObject.GObject):
     __gtype_name__ = "TCPServerClient"
-
-    MAX_BYTES = 2048
 
     def __init__(self, server, connection):
         super().__init__()
@@ -21,7 +21,7 @@ class Client(GObject.GObject):
     def run(self):
         while self._connection.is_connected():
             try:
-                raw = self._input_stream.read_bytes(self.MAX_BYTES, None)
+                raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
             except:
                 break
 

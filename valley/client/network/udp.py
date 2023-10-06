@@ -1,5 +1,7 @@
 from gi.repository import Gio, GLib, GObject
 
+from ...common.definitions import MAX_UDP_BYTES
+
 
 class Client(GObject.GObject):
     __gtype_name__ = "UDPClient"
@@ -7,8 +9,6 @@ class Client(GObject.GObject):
     __gsignals__ = {
         "received": (GObject.SignalFlags.RUN_LAST, None, (object, object)),
     }
-
-    MAX_BYTES = 2048
 
     def __init__(self, address, port, context):
         super().__init__()
@@ -31,7 +31,7 @@ class Client(GObject.GObject):
         size, address, messages, flags = self._socket.receive_message(
             [], Gio.SocketMsgFlags.PEEK, None
         )
-        raw = self._input_stream.read_bytes(self.MAX_BYTES, None)
+        raw = self._input_stream.read_bytes(MAX_UDP_BYTES, None)
 
         self.emit("received", address, raw.get_data())
 
