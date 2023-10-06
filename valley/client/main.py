@@ -8,6 +8,7 @@ from gi.repository import Gtk, GLib
 from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
 from valley.client.graphics.scene import Scene as SceneView
+from valley.client.input.keyboard import Keyboard as Input
 
 SESSION_PORT = 9998
 UPDATES_PORT = 9997
@@ -20,6 +21,11 @@ class Window(Gtk.ApplicationWindow):
         super().__init__(application=app)
         self._setup_game()
         self._setup_ui()
+        self._setup_input()
+
+    def _setup_input(self):
+        self._input = Input(self)
+        self._input.connect("enacted", self.__on_enacted)
 
     def _setup_ui(self):
         self.set_title("Valley")
@@ -50,6 +56,9 @@ class Window(Gtk.ApplicationWindow):
     def __on_updated(self, service, model):
         self._model.update(model)
         self._view.queue_draw()
+
+    def __on_enacted(self, input, action, value):
+        self._service.report(action, value)
 
 
 def on_activate(app):
