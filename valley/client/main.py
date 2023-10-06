@@ -20,14 +20,14 @@ class Window(Gtk.ApplicationWindow):
     def __init__(self, app):
         super().__init__(application=app)
         self._setup_game()
-        self._setup_ui()
+        self._setup_graphics()
         self._setup_input()
 
     def _setup_input(self):
         self._input = Input(self)
         self._input.connect("enacted", self.__on_enacted)
 
-    def _setup_ui(self):
+    def _setup_graphics(self):
         self.set_title("Valley")
         self._view = SceneView(model=self._model)
         self.set_child(self._view)
