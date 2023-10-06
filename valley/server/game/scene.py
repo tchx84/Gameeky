@@ -3,6 +3,7 @@ from gi.repository import GLib, GObject
 from .entity import Entity
 
 from ...common.action import Action
+from ...common.definitions import TICK
 from ...common.scene import Scene as CommonScene
 
 
@@ -10,8 +11,6 @@ class Scene(CommonScene, GObject.GObject):
     __gsignals__ = {
         "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
-
-    TICK = 100
 
     def __init__(self):
         CommonScene.__init__(self)
@@ -21,7 +20,7 @@ class Scene(CommonScene, GObject.GObject):
         self._entity_by_id = {}
         self._actions_by_entity_id = {}
 
-        GLib.timeout_add(self.TICK, self.__on_scene_ticked)
+        GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_scene_ticked(self):
         for entity_id, (action, value) in self._actions_by_entity_id.items():
