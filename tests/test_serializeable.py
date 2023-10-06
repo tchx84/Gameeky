@@ -24,10 +24,11 @@ def test_serialize_entity():
 
 
 def test_serialize_message():
-    original = Message(session_id=90, action=Action.MOVE, sequence=180)
+    original = Message(session_id=90, action=Action.MOVE, value=360, sequence=180)
     serialized = Message.deserialize(original.serialize())
 
     assert serialized.session_id == original.session_id
+    assert serialized.value == original.value
     assert serialized.action == original.action
     assert serialized.sequence == original.sequence
 

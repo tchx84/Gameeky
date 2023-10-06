@@ -79,7 +79,7 @@ def test_client_report():
     mock = Mock()
 
     server.scene.connect("ticked", mock)
-    client.report(Action.MOVE)
+    client.report(Action.MOVE, 0)
 
     while not mock.called:
         update()

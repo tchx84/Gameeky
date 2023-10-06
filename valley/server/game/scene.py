@@ -24,10 +24,11 @@ class Scene(CommonScene, GObject.GObject):
         GLib.timeout_add(self.TICK, self.__on_scene_ticked)
 
     def __on_scene_ticked(self):
-        for entity_id, actions in self._actions_by_entity_id.items():
+        for entity_id, (action, value) in self._actions_by_entity_id.items():
             entity = self._entity_by_id.get(entity_id)
 
-            if Action.MOVE in actions:
+            if action == Action.MOVE:
+                entity.angle = value
                 entity.move()
 
         self._actions_by_entity_id = {}
@@ -45,11 +46,8 @@ class Scene(CommonScene, GObject.GObject):
 
         return entity.id
 
-    def qeueu(self, entity_id, action):
-        if self._actions_by_entity_id.get(entity_id) is None:
-            self._actions_by_entity_id[entity_id] = []
-
-        self._actions_by_entity_id[entity_id].append(action)
+    def qeueu(self, entity_id, action, value):
+        self._actions_by_entity_id[entity_id] = (action, value)
 
     def remove(self, entity_id):
         self.entities.remove(self._entity_by_id.get(entity_id))

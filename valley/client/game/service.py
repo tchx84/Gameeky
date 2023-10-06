@@ -47,9 +47,9 @@ class Service(GObject.GObject):
     def unregister(self):
         self._session_manager.close()
 
-    def report(self, action):
+    def report(self, action, value):
         self._messages_manager.send(
-            Message(self._session.id, action, self._sequence).serialize()
+            Message(self._session.id, action, value, self._sequence).serialize()
         )
         self._sequence += 1
 
