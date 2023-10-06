@@ -20,11 +20,7 @@ class Scene(CommonScene, GObject.GObject):
         GLib.timeout_add(self.TICK, self.__on_ticked)
 
     def update(self, scene: CommonScene):
-        if self.anchor is None:
-            self.anchor = next(
-                (e for e in scene.entities if e.id == self.anchor_id), None
-            )
-
+        self.anchor = next((e for e in scene.entities if e.id == self.anchor_id), None)
         self.entities = scene.entities
 
     def __on_ticked(self):
