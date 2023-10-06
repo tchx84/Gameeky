@@ -9,8 +9,8 @@ class Scene(CommonScene, GObject.GObject):
         "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self):
-        CommonScene.__init__(self)
+    def __init__(self, width, height):
+        CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
 
         self.anchor_id = -1

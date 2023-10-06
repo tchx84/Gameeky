@@ -6,9 +6,6 @@ from ..game.scene import Scene as SceneModel
 
 
 class Scene(Gtk.DrawingArea):
-    TILES_X = 16
-    TILES_Y = 16
-
     def __init__(self, model: Optional[SceneModel] = None) -> None:
         super().__init__()
 
@@ -16,24 +13,28 @@ class Scene(Gtk.DrawingArea):
 
         self.set_draw_func(self._draw_func, None)
 
-    def _draw_func(self, widget, context, width, height, data=None):
+    def _draw_func(self, widget, context, screen_width, screen_height, data=None):
         context.set_source_rgba(0, 0, 0)
-        context.rectangle(0, 0, width, height)
+        context.rectangle(0, 0, screen_width, screen_height)
         context.fill()
 
         anchor = self._model.anchor
 
-        tile_width = width / self.TILES_X
-        tile_height = height / self.TILES_Y
-        offset_x = (width / 2) - (tile_width / 2)
-        offset_y = (height / 2) - (tile_height / 2)
+        screen_tile_width = screen_width / self._model.width
+        screen_tile_height = screen_height / self._model.height
+
+        screen_offset_x = (screen_width / 2) - (screen_tile_width / 2)
+        screen_offset_y = (screen_height / 2) - (screen_tile_height / 2)
 
         for entity in self._model.entities:
             context.set_source_rgba(1, 1, 1)
 
-            x = entity.position.x - anchor.position.x + offset_x
-            y = entity.position.y - anchor.position.y + offset_y
+            screen_x = (entity.position.x - anchor.position.x) * screen_tile_width
+            screen_y = (entity.position.y - anchor.position.y) * screen_tile_height
 
-            context.rectangle(x, y, tile_width, tile_height)
+            x = screen_x + screen_offset_x
+            y = screen_y + screen_offset_y
+
+            context.rectangle(x, y, screen_tile_width, screen_tile_height)
 
         context.fill()

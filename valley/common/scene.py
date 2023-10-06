@@ -7,20 +7,28 @@ from .serializeable import Serializeable
 
 
 class Scene(Serializeable):
-    SIGNATURE = "av"
+    SIGNATURE = "(iiav)"
 
-    def __init__(self, entities: Optional[List[Entity]] = None) -> None:
+    def __init__(
+        self, width: int, height: int, entities: Optional[List[Entity]] = None
+    ) -> None:
+        self.width = width
+        self.height = height
         self.entities = entities if entities is not None else []
 
     def to_variant(self) -> GLib.Variant:
-        return GLib.Variant(self.SIGNATURE, [e.to_variant() for e in self.entities])
+        return GLib.Variant(
+            self.SIGNATURE,
+            (self.width, self.height, [e.to_variant() for e in self.entities]),
+        )
 
     @classmethod
     def from_values(
         cls,
-        values: List[Tuple[int, Tuple[float, ...], float, float, int]],
+        values: Tuple[int, int, List[Tuple[int, Tuple[float, ...], float, float, int]]],
     ) -> "Scene":
-        return cls([Entity.from_values(e) for e in values])
+        width, height, entities = values
+        return cls(width, height, [Entity.from_values(e) for e in entities])
 
 
 class SceneRequest(Serializeable):

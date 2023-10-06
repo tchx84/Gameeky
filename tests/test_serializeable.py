@@ -34,7 +34,7 @@ def test_serialize_message():
 
 
 def test_serialize_scene():
-    original = Scene(entities=None)
+    original = Scene(width=16, height=16, entities=None)
     serialized = Scene.deserialize(original.serialize())
 
     assert original.entities == serialized.entities
