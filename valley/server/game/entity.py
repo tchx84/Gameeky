@@ -1,10 +1,14 @@
-import math
-
+from ...common.direction import Direction
 from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
     def move(self):
-        radian = math.radians(self.angle)
-        self.position.x += math.cos(radian) * self.velocity
-        self.position.y += math.sin(radian) * self.velocity
+        if self.angle == Direction.RIGHT:
+            self.position.x += self.velocity
+        elif self.angle == Direction.UP:
+            self.position.y -= self.velocity
+        elif self.angle == Direction.LEFT:
+            self.position.x -= self.velocity
+        elif self.angle == Direction.DOWN:
+            self.position.y += self.velocity

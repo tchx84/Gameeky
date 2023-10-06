@@ -1,6 +1,7 @@
 from gi.repository import GObject, Gdk, Gtk
 
 from ...common.action import Action
+from ...common.direction import Direction
 
 
 class Keyboard(Gtk.EventControllerKey):
@@ -9,10 +10,10 @@ class Keyboard(Gtk.EventControllerKey):
     }
 
     MAPPING = {
-        Gdk.KEY_Up: (Action.MOVE, 90),
-        Gdk.KEY_Left: (Action.MOVE, 0),
-        Gdk.KEY_Down: (Action.MOVE, 270),
-        Gdk.KEY_Right: (Action.MOVE, 180),
+        Gdk.KEY_Right: (Action.MOVE, Direction.RIGHT),
+        Gdk.KEY_Up: (Action.MOVE, Direction.UP),
+        Gdk.KEY_Left: (Action.MOVE, Direction.LEFT),
+        Gdk.KEY_Down: (Action.MOVE, Direction.DOWN),
     }
 
     def __init__(self, widget: Gtk.Widget) -> None:

@@ -3,6 +3,7 @@ from typing import Optional, Tuple
 from gi.repository import GLib
 
 from .action import Action
+from .direction import Direction
 from .serializeable import Serializeable
 
 
@@ -28,7 +29,7 @@ class Entity(Serializeable):
         self,
         id: int,
         position: Optional[Vector] = None,
-        angle: float = 0,
+        angle: float = Direction.RIGHT,
         velocity: float = 1.0,
         action: Action = Action.NOTHING,
     ) -> None:
