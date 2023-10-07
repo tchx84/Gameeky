@@ -5,6 +5,7 @@ from .scene import Scene
 from ..network.tcp import Server as TCPServer
 from ..network.udp import Server as UDPServer
 
+from ...common.logger import logger
 from ...common.scene import SceneRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
@@ -44,6 +45,8 @@ class Service(GObject.GObject):
         self._scene_manager = UDPServer(port=scene_port, context=context)
         self._scene_manager.connect("received", self.__on_scene_requested)
 
+        logger.info("Started")
+
     def __on_session_connected(self, manager, client, data):
         entity_id = self.scene.add()
         session = Session(id=self._sessions, entity_id=entity_id)
@@ -55,6 +58,8 @@ class Service(GObject.GObject):
         client.send(session.serialize())
 
         self.emit("registered", session)
+
+        logger.info("Registered %s", client)
 
     def __on_session_disconnected(self, manager, client):
         session = self._session_by_client.get(client)
@@ -68,6 +73,8 @@ class Service(GObject.GObject):
         del self._session_by_id[session.id]
 
         self.emit("unregistered", session)
+
+        logger.info("Unregistered %s", client)
 
     def __on_message_received(self, manager, address, data):
         message = Message.deserialize(data)

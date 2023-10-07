@@ -15,6 +15,9 @@ class Client(GObject.GObject):
         self._input_stream = connection.get_input_stream()
         self._output_stream = connection.get_output_stream()
 
+    def __str__(self):
+        return self._connection.get_remote_address().to_string()
+
     def send(self, data):
         self._output_stream.write(data)
 
