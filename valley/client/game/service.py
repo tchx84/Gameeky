@@ -14,7 +14,7 @@ class Service(GObject.GObject):
         "updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
-    def __init__(self, address, session_port, updates_port, scene_port, context):
+    def __init__(self, address, session_port, messages_port, scene_port, context):
         super().__init__()
 
         self._sequence = 0
@@ -26,7 +26,7 @@ class Service(GObject.GObject):
         self._session_manager.connect("received", self.__on_session_registered)
 
         self._messages_manager = UDPClient(
-            address=address, port=updates_port, context=context
+            address=address, port=messages_port, context=context
         )
 
         self._scene_manager = UDPClient(

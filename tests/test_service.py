@@ -10,7 +10,7 @@ from valley.client.game.service import Service as Client
 
 CLIENTS = 1
 SESSION_PORT = 9996
-UPDATES_PORT = 9997
+MESSAGES_PORT = 9997
 SCENE_PORT = 9999
 ADDRESS = "127.0.0.1"
 
@@ -37,7 +37,7 @@ def test_server_create():
     server = Server(
         clients=CLIENTS,
         session_port=SESSION_PORT,
-        updates_port=UPDATES_PORT,
+        messages_port=MESSAGES_PORT,
         scene_port=SCENE_PORT,
         context=context,
     )
@@ -51,7 +51,7 @@ def test_client_create():
     client = Client(
         address=ADDRESS,
         session_port=SESSION_PORT,
-        updates_port=UPDATES_PORT,
+        messages_port=MESSAGES_PORT,
         scene_port=SCENE_PORT,
         context=context,
     )

@@ -31,7 +31,7 @@ class Service(GObject.GObject):
         self,
         clients: int,
         session_port: int,
-        updates_port: int,
+        messages_port: int,
         scene_port: int,
         context: GLib.MainContext,
     ) -> None:
@@ -49,7 +49,7 @@ class Service(GObject.GObject):
         self._session_manager.connect("connected", self.__on_session_connected)
         self._session_manager.connect("disconnected", self.__on_session_disconnected)
 
-        self._messages_manager = UDPServer(port=updates_port, context=context)
+        self._messages_manager = UDPServer(port=messages_port, context=context)
         self._messages_manager.connect("received", self.__on_message_received)
 
         self._scene_manager = UDPServer(port=scene_port, context=context)

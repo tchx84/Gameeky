@@ -20,7 +20,7 @@ from valley.common.definitions import (
 from valley.common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_UPDATES_PORT,
+    DEFAULT_MESSAGES_PORT,
     DEFAULT_SCENE_PORT,
 )
 
@@ -58,7 +58,7 @@ class Application(Gtk.Application):
             None,
         )
         self.add_main_option(
-            Command.UPDATES_PORT,
+            Command.MESSAGES_PORT,
             ord("u"),
             GLib.OptionFlags.NONE,
             GLib.OptionArg.INT,
@@ -86,7 +86,7 @@ class Application(Gtk.Application):
         self._service = Service(
             address=self._address,
             session_port=self._session_port,
-            updates_port=self._updates_port,
+            messages_port=self._messages_port,
             scene_port=self._scene_port,
             context=GLib.MainContext.default(),
         )
@@ -115,7 +115,7 @@ class Application(Gtk.Application):
 
         self._address = options.get(Command.ADDRESS, DEFAULT_ADDRESS)
         self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
-        self._updates_port = options.get(Command.UPDATES_PORT, DEFAULT_UPDATES_PORT)
+        self._messages_port = options.get(Command.MESSAGES_PORT, DEFAULT_MESSAGES_PORT)
         self._scene_port = options.get(Command.SCENE_PORT, DEFAULT_SCENE_PORT)
 
         self.do_activate()
