@@ -12,7 +12,7 @@ class Scene(CommonScene, GObject.GObject):
         "updated": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self, width, height, service: Service) -> None:
+    def __init__(self, width: int, height: int, service: Service) -> None:
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
 
@@ -23,11 +23,11 @@ class Scene(CommonScene, GObject.GObject):
         self._service.connect("updated", self.__on_service_updated)
         GLib.timeout_add(TICK, self.__on_ticked)
 
-    def __on_service_updated(self, service, scene):
+    def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
         self.anchor = scene.anchor
         self.entities = scene.entities
         self.emit("updated")
 
-    def __on_ticked(self):
+    def __on_ticked(self) -> None:
         self._service.request()
         return GLib.SOURCE_CONTINUE

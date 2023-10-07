@@ -41,7 +41,7 @@ class Keyboard(Gtk.EventControllerKey):
         if self._is_pressed_by_key.get(key) is True:
             return
 
-        action, value = self.action_by_key.get(key, (None, None))
+        action, value = self.action_by_key.get(key, (None, 0))
         if action is None:
             return
 
