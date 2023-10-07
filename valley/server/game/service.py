@@ -37,7 +37,7 @@ class Service(GObject.GObject):
     ) -> None:
         super().__init__()
 
-        self._sessions = 0
+        self._index = 0
         self._session_by_client: Dict[TCPClient, Session] = {}
         self._session_by_id: Dict[int, Session] = {}
 
@@ -59,11 +59,11 @@ class Service(GObject.GObject):
 
     def __on_session_connected(self, manager, client, data):
         entity_id = self.scene.add()
-        session = Session(id=self._sessions, entity_id=entity_id)
+        session = Session(id=self._index, entity_id=entity_id)
 
+        self._index += 1
         self._session_by_client[client] = session
         self._session_by_id[session.id] = session
-        self._sessions += 1
 
         client.send(session.serialize())
 

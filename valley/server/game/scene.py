@@ -18,7 +18,7 @@ class Scene(CommonScene, GObject.GObject):
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
 
-        self._entities = 0
+        self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
 
         GLib.timeout_add(TICK, self.__on_scene_ticked)
@@ -33,9 +33,9 @@ class Scene(CommonScene, GObject.GObject):
         return GLib.SOURCE_CONTINUE
 
     def add(self) -> int:
-        entity = Entity(id=self._entities)
+        entity = Entity(id=self._index)
 
-        self._entities += 1
+        self._index += 1
         self._entity_by_id[entity.id] = entity
 
         self.entities.append(entity)
