@@ -1,3 +1,5 @@
+from typing import Any, Optional
+
 from gi.repository import Gio, GLib, GObject
 
 from ...common.definitions import MAX_UDP_BYTES
@@ -10,7 +12,7 @@ class Client(GObject.GObject):
         "received": (GObject.SignalFlags.RUN_LAST, None, (object, object)),
     }
 
-    def __init__(self, address, port, context):
+    def __init__(self, address: str, port: int, context: GLib.MainContext) -> None:
         super().__init__()
 
         self._address = Gio.InetSocketAddress.new_from_string(address, port)
@@ -26,7 +28,7 @@ class Client(GObject.GObject):
         self._source.set_callback(self.__received_data_cb)
         self._source.attach(context)
 
-    def __received_data_cb(self, source):
+    def __received_data_cb(self, data: Optional[Any] = None) -> int:
         # XXX replace with .receive_from() when fixed
         size, address, messages, flags = self._socket.receive_message(
             [], Gio.SocketMsgFlags.PEEK, None
@@ -37,5 +39,5 @@ class Client(GObject.GObject):
 
         return GLib.SOURCE_CONTINUE
 
-    def send(self, data):
+    def send(self, data: bytes) -> None:
         self._socket.send(data)

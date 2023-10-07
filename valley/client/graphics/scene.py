@@ -1,3 +1,6 @@
+from typing import Any, Optional
+
+from cairo import Context
 from gi.repository import Gtk
 
 from ..game.scene import Scene as SceneModel
@@ -12,7 +15,14 @@ class Scene(Gtk.DrawingArea):
 
         self.set_draw_func(self._draw_func, None)
 
-    def _draw_func(self, widget, context, screen_width, screen_height, data=None):
+    def _draw_func(
+        self,
+        area: Gtk.DrawingArea,
+        context: Context,
+        screen_width: int,
+        screen_height: int,
+        data: Optional[Any] = None,
+    ) -> None:
         context.set_source_rgba(0, 0, 0)
         context.rectangle(0, 0, screen_width, screen_height)
         context.fill()

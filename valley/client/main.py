@@ -110,7 +110,7 @@ class Application(Gtk.Application):
         self._setup_graphics()
         self._setup_input()
 
-    def do_command_line(self, command_line) -> int:
+    def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
         self._address = options.get(Command.ADDRESS, DEFAULT_ADDRESS)
