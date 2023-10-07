@@ -1,8 +1,11 @@
-from gi.repository import GObject
+from typing import Dict
+
+from gi.repository import GLib, GObject
 
 from .scene import Scene
 
 from ..network.tcp import Server as TCPServer
+from ..network.tcp import Client as TCPClient
 from ..network.udp import Server as UDPServer
 
 from ...common.logger import logger
@@ -13,7 +16,7 @@ from ...common.definitions import TILES_X, TILES_Y
 
 
 class Session(CommonSession):
-    def __init__(self, id, entity_id, sequence=-1):
+    def __init__(self, id, entity_id: int, sequence: int = -1) -> None:
         super().__init__(id, entity_id)
         self.sequence = sequence
 
@@ -24,12 +27,19 @@ class Service(GObject.GObject):
         "unregistered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
-    def __init__(self, clients, session_port, updates_port, scene_port, context):
+    def __init__(
+        self,
+        clients: int,
+        session_port: int,
+        updates_port: int,
+        scene_port: int,
+        context: GLib.MainContext,
+    ) -> None:
         super().__init__()
 
         self._sessions = 0
-        self._session_by_client = {}
-        self._session_by_id = {}
+        self._session_by_client: Dict[TCPClient, Session] = {}
+        self._session_by_id: Dict[int, Session] = {}
 
         self.scene = Scene(width=TILES_X, height=TILES_Y)
 

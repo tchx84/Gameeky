@@ -1,3 +1,5 @@
+from typing import Any, Optional
+
 from gi.repository import Gio, GLib, GObject
 
 from ...common.definitions import MAX_TCP_BYTES
@@ -6,7 +8,7 @@ from ...common.definitions import MAX_TCP_BYTES
 class Client(GObject.GObject):
     __gtype_name__ = "TCPServerClient"
 
-    def __init__(self, server, connection):
+    def __init__(self, server: "Server", connection: Gio.SocketConnection) -> None:
         super().__init__()
 
         self._acknowledged = False
@@ -15,13 +17,13 @@ class Client(GObject.GObject):
         self._input_stream = connection.get_input_stream()
         self._output_stream = connection.get_output_stream()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self._connection.get_remote_address().to_string()
 
-    def send(self, data):
+    def send(self, data: bytes) -> None:
         self._output_stream.write(data)
 
-    def run(self):
+    def run(self) -> None:
         while self._connection.is_connected():
             try:
                 raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
@@ -50,7 +52,7 @@ class Server(GObject.GObject):
         "disconnected": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
-    def __init__(self, port, clients, context):
+    def __init__(self, port: int, clients: int, context: GLib.MainContext) -> None:
         super().__init__()
 
         self._service = Gio.ThreadedSocketService.new(clients)
@@ -58,9 +60,14 @@ class Server(GObject.GObject):
         self._service.connect("run", self.__on_session_started_cb)
         self._service.start()
 
-    def __on_session_started_cb(self, service, connection, source=None):
+    def __on_session_started_cb(
+        self,
+        service: Gio.ThreadedSocketService,
+        connection: Gio.SocketConnection,
+        data: Optional[Any] = None,
+    ) -> None:
         client = Client(server=self, connection=connection)
         client.run()
 
-    def emit(self, *args):
+    def emit(self, *args) -> None:
         GLib.idle_add(GObject.GObject.emit, self, *args)

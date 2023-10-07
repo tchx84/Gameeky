@@ -3,7 +3,7 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
-    def move(self):
+    def move(self) -> None:
         if self.angle == Direction.RIGHT:
             self.position.x += self.velocity
         elif self.angle == Direction.UP:
