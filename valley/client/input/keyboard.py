@@ -1,16 +1,15 @@
 from typing import Dict
 
-from gi.repository import GObject, Gdk, Gtk
+from gi.repository import Gdk, Gtk
+
+from ..game.service import Service
 
 from ...common.action import Action
+from ...common.session import Session
 from ...common.direction import Direction
 
 
 class Keyboard(Gtk.EventControllerKey):
-    __gsignals__ = {
-        "performed": (GObject.SignalFlags.RUN_LAST, None, (int, float)),
-    }
-
     action_by_key = {
         Gdk.KEY_Right: (Action.MOVE, Direction.RIGHT),
         Gdk.KEY_Up: (Action.MOVE, Direction.UP),
@@ -18,13 +17,17 @@ class Keyboard(Gtk.EventControllerKey):
         Gdk.KEY_Down: (Action.MOVE, Direction.DOWN),
     }
 
-    def __init__(self, widget: Gtk.Widget) -> None:
+    def __init__(self, widget: Gtk.Widget, service: Service) -> None:
         super().__init__()
         self._is_pressed_by_key: Dict[int, bool] = {}
 
         self._widget = widget
         self._widget.add_controller(self)
 
+        self._service = service
+        self._service.connect("registered", self.__on_service_registered)
+
+    def __on_service_registered(self, service: Service, session: Session) -> None:
         self.connect("key-pressed", self.__on_key_pressed)
         self.connect("key-released", self.__on_key_released)
 
@@ -34,7 +37,7 @@ class Keyboard(Gtk.EventControllerKey):
         key: int,
         code: int,
         state: Gdk.ModifierType,
-    ):
+    ) -> None:
         if self._is_pressed_by_key.get(key) is True:
             return
 
@@ -43,7 +46,7 @@ class Keyboard(Gtk.EventControllerKey):
             return
 
         self._is_pressed_by_key[key] = True
-        self.emit("performed", action, value)
+        self._service.report(action, value)
 
     def __on_key_released(
         self,
@@ -51,7 +54,7 @@ class Keyboard(Gtk.EventControllerKey):
         key: int,
         code: int,
         state: Gdk.ModifierType,
-    ):
+    ) -> None:
         action, _ = self.action_by_key.get(key, (None, None))
         if action is None:
             return
@@ -61,4 +64,4 @@ class Keyboard(Gtk.EventControllerKey):
         if self._is_pressed_by_key.keys():
             return
 
-        self.emit("performed", Action.NOTHING, 0)
+        self._service.report(Action.NOTHING, 0)

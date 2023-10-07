@@ -1,15 +1,14 @@
-from typing import Optional
-
 from gi.repository import Gtk
 
 from ..game.scene import Scene as SceneModel
 
 
 class Scene(Gtk.DrawingArea):
-    def __init__(self, model: Optional[SceneModel] = None) -> None:
+    def __init__(self, model: SceneModel) -> None:
         super().__init__()
 
         self._model = model
+        self._model.connect("updated", self.__on_scene_updated)
 
         self.set_draw_func(self._draw_func, None)
 
@@ -36,3 +35,6 @@ class Scene(Gtk.DrawingArea):
             context.rectangle(x, y, screen_tile_width, screen_tile_height)
 
         context.fill()
+
+    def __on_scene_updated(self, model: SceneModel) -> None:
+        self.queue_draw()

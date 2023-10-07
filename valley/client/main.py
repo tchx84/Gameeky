@@ -1,81 +1,127 @@
 #!/usr/bin/python
 
+import sys
 import gi
 
 gi.require_version("Gtk", "4.0")
+
 from gi.repository import Gio, Gtk, GLib
 
 from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
 from valley.client.graphics.scene import Scene as SceneView
-from valley.client.input.keyboard import Keyboard as Input
-from valley.common.definitions import TILES_X, TILES_Y
+from valley.client.input.keyboard import Keyboard
 
-SESSION_PORT = 9998
-UPDATES_PORT = 9997
-SCENE_PORT = 9999
-ADDRESS = "127.0.0.1"
+from valley.common.command import Command
+from valley.common.definitions import (
+    TILES_X,
+    TILES_Y,
+)
+from valley.common.definitions import (
+    DEFAULT_ADDRESS,
+    DEFAULT_SESSION_PORT,
+    DEFAULT_UPDATES_PORT,
+    DEFAULT_SCENE_PORT,
+)
 
 
 class Window(Gtk.ApplicationWindow):
-    def __init__(self, app):
-        super().__init__(application=app)
-        self._setup_game()
-        self._setup_graphics()
-        self._setup_input()
+    def __init__(self, application: Gtk.Application, model: SceneModel) -> None:
+        super().__init__(application=application)
 
-    def _setup_input(self):
-        self._input = Input(self)
-        self._input.connect("performed", self.__on_performed)
-
-    def _setup_graphics(self):
         self.set_title("Valley")
 
         self._ratio = Gtk.AspectFrame()
         self._ratio.set_obey_child(False)
         self._ratio.set_ratio(TILES_X / TILES_Y)
 
-        self._view = SceneView(model=self._model)
+        self._view = SceneView(model=model)
 
         self._ratio.set_child(self._view)
         self.set_child(self._ratio)
 
-    def _setup_game(self):
-        self._model = SceneModel(width=TILES_X, height=TILES_Y)
 
+class Application(Gtk.Application):
+    def __init__(self) -> None:
+        super().__init__(
+            application_id="dev.tchx84.valley.Client",
+            flags=Gio.ApplicationFlags.NON_UNIQUE
+            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+        )
+
+        self.add_main_option(
+            Command.SESSION_PORT,
+            ord("s"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.INT,
+            "Port to connect to the session service",
+            None,
+        )
+        self.add_main_option(
+            Command.UPDATES_PORT,
+            ord("u"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.INT,
+            "Port to connect for the updates service",
+            None,
+        )
+        self.add_main_option(
+            Command.SCENE_PORT,
+            ord("e"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.INT,
+            "Port to connect for the scene service",
+            None,
+        )
+        self.add_main_option(
+            Command.ADDRESS,
+            ord("a"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The IPv4 address for the game server",
+            None,
+        )
+
+    def _setup_game(self) -> None:
         self._service = Service(
-            address=ADDRESS,
-            session_port=SESSION_PORT,
-            updates_port=UPDATES_PORT,
-            scene_port=SCENE_PORT,
+            address=self._address,
+            session_port=self._session_port,
+            updates_port=self._updates_port,
+            scene_port=self._scene_port,
             context=GLib.MainContext.default(),
         )
-        self._service.connect("registered", self.__on_registered)
         self._service.register()
 
-    def __on_registered(self, service, session):
-        self._model.connect("ticked", self.__on_ticked)
-        self._service.connect("updated", self.__on_updated)
+        self._model = SceneModel(
+            width=TILES_X,
+            height=TILES_Y,
+            service=self._service,
+        )
 
-    def __on_ticked(self, model):
-        self._service.request()
+    def _setup_graphics(self) -> None:
+        self._window = Window(application=self, model=self._model)
+        self._window.present()
 
-    def __on_updated(self, service, model):
-        self._model.update(model)
-        self._view.queue_draw()
+    def _setup_input(self) -> None:
+        self._input = Keyboard(widget=self._window, service=self._service)
 
-    def __on_performed(self, controller, action, value):
-        self._service.report(action, value)
+    def do_activate(self) -> None:
+        self._setup_game()
+        self._setup_graphics()
+        self._setup_input()
+
+    def do_command_line(self, command_line) -> int:
+        options = command_line.get_options_dict().end().unpack()
+
+        self._address = options.get(Command.ADDRESS, DEFAULT_ADDRESS)
+        self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
+        self._updates_port = options.get(Command.UPDATES_PORT, DEFAULT_UPDATES_PORT)
+        self._scene_port = options.get(Command.SCENE_PORT, DEFAULT_SCENE_PORT)
+
+        self.do_activate()
+        return 0
 
 
-def on_activate(app):
-    win = Window(app)
-    win.present()
-
-
-app = Gtk.Application(
-    application_id="dev.tchx84.Valley",
-    flags=Gio.ApplicationFlags.NON_UNIQUE,
-)
-app.connect("activate", on_activate)
-app.run(None)
+if __name__ == "__main__":
+    application = Application()
+    application.run(sys.argv)
