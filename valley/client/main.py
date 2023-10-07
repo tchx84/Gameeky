@@ -9,7 +9,7 @@ from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
 from valley.client.graphics.scene import Scene as SceneView
 from valley.client.input.keyboard import Keyboard as Input
-from valley.common.definitions import TILE_SIZE
+from valley.common.definitions import TILES_X, TILES_Y
 
 SESSION_PORT = 9998
 UPDATES_PORT = 9997
@@ -34,7 +34,7 @@ class Window(Gtk.ApplicationWindow):
         self.set_child(self._view)
 
     def _setup_game(self):
-        self._model = SceneModel(width=TILE_SIZE, height=TILE_SIZE)
+        self._model = SceneModel(width=TILES_X, height=TILES_Y)
 
         self._service = Service(
             address=ADDRESS,

@@ -8,7 +8,7 @@ from ..network.udp import Server as UDPServer
 from ...common.scene import SceneRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
-from ...common.definitions import TILE_SIZE
+from ...common.definitions import TILES_X, TILES_Y
 
 
 class Session(CommonSession):
@@ -30,7 +30,7 @@ class Service(GObject.GObject):
         self._session_by_client = {}
         self._session_by_id = {}
 
-        self.scene = Scene(width=TILE_SIZE, height=TILE_SIZE)
+        self.scene = Scene(width=TILES_X, height=TILES_Y)
 
         self._session_manager = TCPServer(
             port=session_port, clients=clients, context=context
