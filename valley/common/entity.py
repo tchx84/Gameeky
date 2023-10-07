@@ -24,7 +24,7 @@ class Entity(Serializeable):
         id: int,
         position: Optional[Vector] = None,
         angle: float = Direction.RIGHT,
-        velocity: float = 1.0,
+        velocity: float = 0.05,
         action: Action = Action.NOTHING,
     ) -> None:
         self.id = id

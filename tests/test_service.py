@@ -97,7 +97,7 @@ def test_client_request():
 
     # Confirm that it moved
     scene = mock.call_args.args[-1]
-    assert scene.entities[-1].position.x == 1.0
+    assert scene.entities[-1].position.x == 0.05
 
 
 @pytest.mark.timeout(5)
