@@ -79,7 +79,7 @@ class Service(GObject.GObject):
             return
 
         session.sequence = message.sequence
-        self.scene.qeueu(session.entity_id, message.action, message.value)
+        self.scene.update(session.entity_id, message.action, message.value)
 
     def __on_scene_requested(self, manager, address, data):
         request = SceneRequest.deserialize(data)

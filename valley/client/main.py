@@ -26,7 +26,7 @@ class Window(Gtk.ApplicationWindow):
 
     def _setup_input(self):
         self._input = Input(self)
-        self._input.connect("enacted", self.__on_enacted)
+        self._input.connect("performed", self.__on_performed)
 
     def _setup_graphics(self):
         self.set_title("Valley")
@@ -57,7 +57,7 @@ class Window(Gtk.ApplicationWindow):
         self._model.update(model)
         self._view.queue_draw()
 
-    def __on_enacted(self, input, action, value):
+    def __on_performed(self, controller, action, value):
         self._service.report(action, value)
 
 
