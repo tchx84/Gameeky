@@ -107,3 +107,8 @@ class Service(GObject.GObject):
 
         scene = self.scene.prepare_for_entity_id(session.entity_id)
         self._scene_manager.send(address, scene.serialize())
+
+    def stop(self) -> None:
+        self._session_manager.stop()
+        self._messages_manager.stop()
+        self._scene_manager.stop()

@@ -71,3 +71,6 @@ class Server(GObject.GObject):
 
     def emit(self, *args) -> None:
         GLib.idle_add(GObject.GObject.emit, self, *args)
+
+    def stop(self) -> None:
+        self._service.stop()
