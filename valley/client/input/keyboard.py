@@ -46,7 +46,7 @@ class Keyboard(Gtk.EventControllerKey):
             return
 
         self._is_pressed_by_key[key] = True
-        self._service.report(action, value)
+        self._service.message(action, value)
 
     def __on_key_released(
         self,
@@ -64,4 +64,4 @@ class Keyboard(Gtk.EventControllerKey):
         if self._is_pressed_by_key.keys():
             return
 
-        self._service.report(Action.NOTHING, 0)
+        self._service.message(Action.NOTHING, 0)

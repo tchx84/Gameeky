@@ -75,11 +75,11 @@ def test_server_is_populated():
 
 
 @pytest.mark.timeout(5)
-def test_client_report():
+def test_client_message():
     mock = Mock()
 
     server.scene.connect("ticked", mock)
-    client.report(Action.MOVE, 0)
+    client.message(Action.MOVE, 0)
 
     while not mock.called:
         update()
