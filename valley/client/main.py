@@ -121,6 +121,10 @@ class Application(Gtk.Application):
         self.do_activate()
         return 0
 
+    def do_shutdown(self) -> None:
+        self._service.unregister()
+        Gtk.Application.do_shutdown(self)
+
 
 if __name__ == "__main__":
     application = Application()
