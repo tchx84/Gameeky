@@ -32,5 +32,5 @@ class Client(GObject.GObject):
     def send(self, data: bytes) -> None:
         self._output_stream.write(data)
 
-    def close(self) -> None:
+    def shutdown(self) -> None:
         self._connection.close()

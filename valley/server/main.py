@@ -79,7 +79,7 @@ class Application(Gio.Application):
         return 0
 
     def do_shutdown(self) -> None:
-        self._service.stop()
+        self._service.shutdown()
         Gio.Application.do_shutdown(self)
 
 

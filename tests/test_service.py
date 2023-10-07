@@ -113,3 +113,7 @@ def test_client_unregister():
 
 def test_server_is_empty():
     assert len(server.scene.entities) == 0
+
+
+def test_server_shutdown():
+    server.shutdown()

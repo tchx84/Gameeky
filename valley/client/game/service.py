@@ -53,7 +53,7 @@ class Service(GObject.GObject):
         self._session_manager.send(SessionRequest().serialize())
 
     def unregister(self) -> None:
-        self._session_manager.close()
+        self._session_manager.shutdown()
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(

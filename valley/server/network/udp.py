@@ -46,5 +46,5 @@ class Server(GObject.GObject):
     def send(self, address: Gio.InetSocketAddress, data: bytes) -> None:
         self._socket.send_to(address, data)
 
-    def stop(self) -> None:
+    def shutdown(self) -> None:
         self._socket.close()
