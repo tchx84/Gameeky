@@ -7,12 +7,12 @@ from gi.repository import GLib
 from valley.common.action import Action
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
-
-CLIENTS = 1
-SESSION_PORT = 9996
-MESSAGES_PORT = 9997
-SCENE_PORT = 9999
-ADDRESS = "127.0.0.1"
+from valley.common.definitions import (
+    DEFAULT_ADDRESS,
+    DEFAULT_SESSION_PORT,
+    DEFAULT_MESSAGES_PORT,
+    DEFAULT_SCENE_PORT,
+)
 
 context = None
 server = None
@@ -35,10 +35,10 @@ def test_server_create():
     global server
 
     server = Server(
-        clients=CLIENTS,
-        session_port=SESSION_PORT,
-        messages_port=MESSAGES_PORT,
-        scene_port=SCENE_PORT,
+        clients=1,
+        session_port=DEFAULT_SESSION_PORT,
+        messages_port=DEFAULT_MESSAGES_PORT,
+        scene_port=DEFAULT_SCENE_PORT,
         context=context,
     )
 
@@ -49,10 +49,10 @@ def test_client_create():
     global client
 
     client = Client(
-        address=ADDRESS,
-        session_port=SESSION_PORT,
-        messages_port=MESSAGES_PORT,
-        scene_port=SCENE_PORT,
+        address=DEFAULT_ADDRESS,
+        session_port=DEFAULT_SESSION_PORT,
+        messages_port=DEFAULT_MESSAGES_PORT,
+        scene_port=DEFAULT_SCENE_PORT,
         context=context,
     )
 
