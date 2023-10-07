@@ -33,7 +33,7 @@ class Entity(Serializeable):
         self.velocity = velocity
         self.action = action
 
-    def to_values(self):
+    def to_values(self) -> Tuple[int, Tuple[float, ...], float, float, int]:
         return (
             self.id,
             self.position.to_values(),

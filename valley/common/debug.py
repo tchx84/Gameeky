@@ -1,9 +1,11 @@
+from typing import Any
+
 from gi.repository import GLib
 
 from .logger import logger
 
 
-def measure(func, *args, **kargs):
+def measure(func, *args, **kargs) -> Any:
     before = GLib.get_monotonic_time()
     result = func(*args, **kargs)
     after = GLib.get_monotonic_time()

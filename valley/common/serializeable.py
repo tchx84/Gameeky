@@ -13,7 +13,7 @@ class Serializeable(object):
     def from_values(cls, values: Any) -> Any:
         raise NotImplementedError
 
-    def serialize(self):
+    def serialize(self) -> bytes:
         return json.dumps(self.to_values()).encode("UTF-8")
 
     @classmethod

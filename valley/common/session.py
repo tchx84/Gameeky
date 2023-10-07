@@ -22,7 +22,7 @@ class SessionRequest(Serializeable):
     def __init__(self) -> None:
         pass
 
-    def to_values(self):
+    def to_values(self) -> Tuple:
         return ()
 
     @classmethod

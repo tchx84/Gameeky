@@ -17,7 +17,14 @@ class Scene(Serializeable):
         self.anchor = anchor if anchor is not None else Vector()
         self.entities = entities if entities is not None else []
 
-    def to_values(self):
+    def to_values(
+        self,
+    ) -> Tuple[
+        int,
+        int,
+        Tuple[float, float],
+        List[Tuple[int, Tuple[float, ...], float, float, int]],
+    ]:
         return (
             self.width,
             self.height,
@@ -48,7 +55,7 @@ class SceneRequest(Serializeable):
     def __init__(self, session_id: int) -> None:
         self.session_id = session_id
 
-    def to_values(self):
+    def to_values(self) -> Tuple[int]:
         return (self.session_id,)
 
     @classmethod

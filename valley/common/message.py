@@ -17,7 +17,7 @@ class Message(Serializeable):
         self.value = value
         self.sequence = sequence
 
-    def to_values(self):
+    def to_values(self) -> Tuple[int, int, float, int]:
         return (self.session_id, self.action, self.value, self.sequence)
 
     @classmethod
