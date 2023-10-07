@@ -30,8 +30,15 @@ class Window(Gtk.ApplicationWindow):
 
     def _setup_graphics(self):
         self.set_title("Valley")
+
+        self._ratio = Gtk.AspectFrame()
+        self._ratio.set_obey_child(False)
+        self._ratio.set_ratio(TILES_X / TILES_Y)
+
         self._view = SceneView(model=self._model)
-        self.set_child(self._view)
+
+        self._ratio.set_child(self._view)
+        self.set_child(self._ratio)
 
     def _setup_game(self):
         self._model = SceneModel(width=TILES_X, height=TILES_Y)
