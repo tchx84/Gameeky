@@ -17,7 +17,8 @@ from ...common.definitions import TILES_X, TILES_Y
 
 class Session(CommonSession):
     def __init__(self, id, entity_id: int, sequence: int = -1) -> None:
-        super().__init__(id, entity_id)
+        super().__init__(id=id)
+        self.entity_id = entity_id
         self.sequence = sequence
 
 

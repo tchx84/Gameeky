@@ -48,7 +48,7 @@ def test_serialize_scene_request():
 
 
 def test_serialize_session():
-    original = Session(id=360, entity_id=420)
+    original = Session(id=360)
     serialized = Session.deserialize(original.serialize())
 
     assert serialized.id == original.id
