@@ -19,7 +19,7 @@ class Scene(CommonScene, GObject.GObject):
 
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
-    def __on_scene_ticked(self) -> None:
+    def __on_scene_ticked(self) -> int:
         self.tick()
         return GLib.SOURCE_CONTINUE
 
