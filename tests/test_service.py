@@ -5,6 +5,7 @@ from unittest.mock import Mock
 from gi.repository import GLib
 
 from valley.common.action import Action
+from valley.common.direction import Direction
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
@@ -80,7 +81,7 @@ def test_client_message():
     mock = Mock()
 
     server.connect("updated", mock)
-    client.message(Action.MOVE, 0)
+    client.message(Action.MOVE, Direction.RIGHT)
 
     while not mock.called:
         update()
