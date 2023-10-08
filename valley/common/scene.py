@@ -5,6 +5,8 @@ from .serializeable import Serializeable
 
 
 class Scene(Serializeable):
+    Signature = Tuple[int, int, Vector.Signature, List[Entity.Signature]]
+
     def __init__(
         self,
         width: int,
@@ -17,14 +19,7 @@ class Scene(Serializeable):
         self.anchor = anchor if anchor is not None else Vector()
         self.entities = entities if entities is not None else []
 
-    def to_values(
-        self,
-    ) -> Tuple[
-        int,
-        int,
-        Tuple[float, float],
-        List[Tuple[int, Tuple[float, ...], float, float, int]],
-    ]:
+    def to_values(self) -> Signature:
         return (
             self.width,
             self.height,
@@ -33,15 +28,7 @@ class Scene(Serializeable):
         )
 
     @classmethod
-    def from_values(
-        cls,
-        values: Tuple[
-            int,
-            int,
-            Tuple[float, float],
-            List[Tuple[int, Tuple[float, ...], float, float, int]],
-        ],
-    ) -> "Scene":
+    def from_values(cls, values: Signature) -> "Scene":
         width, height, anchor, entities = values
         return cls(
             width,
@@ -52,12 +39,14 @@ class Scene(Serializeable):
 
 
 class SceneRequest(Serializeable):
+    Signature = Tuple[int]
+
     def __init__(self, session_id: int) -> None:
         self.session_id = session_id
 
-    def to_values(self) -> Tuple[int]:
+    def to_values(self) -> Signature:
         return (self.session_id,)
 
     @classmethod
-    def from_values(cls, values: Tuple[int]) -> "SceneRequest":
+    def from_values(cls, values: Signature) -> "SceneRequest":
         return cls(*values)

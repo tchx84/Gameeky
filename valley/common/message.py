@@ -5,6 +5,8 @@ from .serializeable import Serializeable
 
 
 class Message(Serializeable):
+    Signature = Tuple[int, int, float, int]
+
     def __init__(
         self,
         session_id: int,
@@ -17,10 +19,10 @@ class Message(Serializeable):
         self.value = value
         self.sequence = sequence
 
-    def to_values(self) -> Tuple[int, int, float, int]:
+    def to_values(self) -> Signature:
         return (self.session_id, self.action, self.value, self.sequence)
 
     @classmethod
-    def from_values(cls, values: Tuple[int, int, float, int]) -> "Message":
+    def from_values(cls, values: Signature) -> "Message":
         session_id, action, value, sequence = values
         return cls(session_id, Action(action), value, sequence)

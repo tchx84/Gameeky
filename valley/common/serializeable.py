@@ -4,7 +4,7 @@ from typing import Any
 
 
 class Serializeable(object):
-    SIGNATURE = ""
+    Signature = Any
 
     def to_values(self) -> Any:
         raise NotImplementedError

@@ -6,19 +6,23 @@ from .serializeable import Serializeable
 
 
 class Vector(Serializeable):
+    Signature = Tuple[float, float]
+
     def __init__(self, x: float = 0, y: float = 0) -> None:
         self.x = x
         self.y = y
 
-    def to_values(self):
+    def to_values(self) -> Signature:
         return (self.x, self.y)
 
     @classmethod
-    def from_values(cls, values: Tuple[float, ...]) -> "Vector":
+    def from_values(cls, values: Signature) -> "Vector":
         return cls(*values)
 
 
 class Entity(Serializeable):
+    Signature = Tuple[int, Vector.Signature, float, float, int]
+
     def __init__(
         self,
         id: int,
@@ -33,7 +37,7 @@ class Entity(Serializeable):
         self.velocity = velocity
         self.action = action
 
-    def to_values(self) -> Tuple[int, Tuple[float, ...], float, float, int]:
+    def to_values(self) -> Signature:
         return (
             self.id,
             self.position.to_values(),
@@ -43,9 +47,6 @@ class Entity(Serializeable):
         )
 
     @classmethod
-    def from_values(
-        cls,
-        values: Tuple[int, Tuple[float, ...], float, float, int],
-    ) -> "Entity":
+    def from_values(cls, values: Signature) -> "Entity":
         id, position, angle, velocity, action = values
         return cls(id, Vector.from_values(position), angle, velocity, Action(action))
