@@ -10,10 +10,6 @@ from ...common.scene import Scene as CommonScene
 
 
 class Scene(CommonScene, GObject.GObject):
-    __gsignals__ = {
-        "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
-    }
-
     def __init__(self, width: int, height: int) -> None:
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
@@ -24,13 +20,13 @@ class Scene(CommonScene, GObject.GObject):
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_scene_ticked(self) -> None:
+        self.tick()
+        return GLib.SOURCE_CONTINUE
+
+    def tick(self):
         for entity in self._entity_by_id.values():
             if entity.action == Action.MOVE:
                 entity.move()
-
-        self.emit("ticked")
-
-        return GLib.SOURCE_CONTINUE
 
     def add(self) -> int:
         entity = Entity(id=self._index)

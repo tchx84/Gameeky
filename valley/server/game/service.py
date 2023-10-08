@@ -24,6 +24,7 @@ class Session(CommonSession):
 class Service(GObject.GObject):
     __gsignals__ = {
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "updated": (GObject.SignalFlags.RUN_LAST, None, ()),
         "unregistered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
@@ -97,6 +98,7 @@ class Service(GObject.GObject):
 
         session.sequence = message.sequence
         self.scene.update(session.entity_id, message.action, message.value)
+        self.emit("updated")
 
     def __on_scene_requested(self, manager, address, data):
         request = SceneRequest.deserialize(data)

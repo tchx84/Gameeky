@@ -72,17 +72,23 @@ def test_client_register():
 
 def test_server_is_populated():
     assert len(server.scene.entities) == 1
+    assert server.scene.entities[0].position.x == 0
 
 
 @pytest.mark.timeout(5)
 def test_client_message():
     mock = Mock()
 
-    server.scene.connect("ticked", mock)
+    server.connect("updated", mock)
     client.message(Action.MOVE, 0)
 
     while not mock.called:
         update()
+
+    # Force the scene to process the message and don't depend on timing
+    server.scene.tick()
+
+    assert server.scene.entities[0].position.x > 0
 
 
 @pytest.mark.timeout(5)
@@ -97,7 +103,7 @@ def test_client_request():
 
     # Confirm that it moved
     scene = mock.call_args.args[-1]
-    assert scene.entities[-1].position.x == 0.05
+    assert scene.entities[-1].position.x > 0
 
 
 @pytest.mark.timeout(5)
