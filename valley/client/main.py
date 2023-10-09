@@ -36,6 +36,8 @@ class Window(Gtk.ApplicationWindow):
         self._ratio.set_ratio(TILES_X / TILES_Y)
 
         self._view = SceneView(model=model)
+        self._view.set_vexpand(True)
+        self._view.set_hexpand(True)
 
         self._ratio.set_child(self._view)
         self.set_child(self._ratio)

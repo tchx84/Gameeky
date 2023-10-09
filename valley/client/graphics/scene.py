@@ -1,31 +1,32 @@
-from typing import Any, Optional
-
-from cairo import Context
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk, Graphene
 
 from ..game.scene import Scene as SceneModel
 
 
-class Scene(Gtk.DrawingArea):
+class Scene(Gtk.Widget):
     def __init__(self, model: SceneModel) -> None:
         super().__init__()
 
         self._model = model
         self._model.connect("updated", self.__on_scene_updated)
 
-        self.set_draw_func(self._draw_func, None)
+    def __on_scene_updated(self, model: SceneModel) -> None:
+        self.queue_draw()
 
-    def _draw_func(
-        self,
-        area: Gtk.DrawingArea,
-        context: Context,
-        screen_width: int,
-        screen_height: int,
-        data: Optional[Any] = None,
-    ) -> None:
-        context.set_source_rgba(0, 0, 0)
-        context.rectangle(0, 0, screen_width, screen_height)
-        context.fill()
+    def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
+        screen_width = self.get_width()
+        screen_height = self.get_height()
+
+        black = Gdk.RGBA()
+        black.parse("#000000")
+
+        background_rect = Graphene.Rect()
+        background_rect.init(0, 0, screen_width, screen_height)
+
+        snapshot.append_color(black, background_rect)
+
+        white = Gdk.RGBA()
+        white.parse("#FFFFFF")
 
         screen_tile_width = screen_width / self._model.width
         screen_tile_height = screen_height / self._model.height
@@ -34,17 +35,13 @@ class Scene(Gtk.DrawingArea):
         screen_offset_y = (screen_height / 2) - (screen_tile_height / 2)
 
         for entity in self._model.entities:
-            context.set_source_rgba(1, 1, 1)
-
             screen_x = (entity.position.x - self._model.anchor.x) * screen_tile_width
             screen_y = (entity.position.y - self._model.anchor.y) * screen_tile_height
 
             x = screen_x + screen_offset_x
             y = screen_y + screen_offset_y
 
-            context.rectangle(x, y, screen_tile_width, screen_tile_height)
+            entity_rect = Graphene.Rect()
+            entity_rect.init(x, y, screen_tile_width, screen_tile_width)
 
-        context.fill()
-
-    def __on_scene_updated(self, model: SceneModel) -> None:
-        self.queue_draw()
+            snapshot.append_color(white, entity_rect)
