@@ -64,12 +64,14 @@ class EntityRegistry:
         for action, directions in vars(description.graphics.actions).items():
             for direction, info in vars(directions).items():
                 frames = [
-                    cls.load_texture_from_pixbuf(
-                        pixbuf=pixbuf,
-                        offset_x=info.offset_x,
-                        offset_y=info.offset_y,
-                        flip_x=info.flip_x,
-                        flip_y=info.flip_y,
+                    Gdk.Texture.new_for_pixbuf(
+                        cls.transform_pixbuf(
+                            pixbuf=pixbuf,
+                            crop_x=info.crop_x,
+                            crop_y=info.crop_y,
+                            flip_x=info.flip_x,
+                            flip_y=info.flip_y,
+                        )
                     )
                     for pixbuf in pixbufs[info.first_frame : info.last_frame + 1]
                 ]
@@ -83,34 +85,34 @@ class EntityRegistry:
         cls.__entities__[entity.type_id] = entity
 
     @classmethod
-    def load_texture_from_pixbuf(
+    def transform_pixbuf(
         cls,
         pixbuf: GdkPixbuf.Pixbuf,
-        offset_x: int = 0,
-        offset_y: int = 0,
+        crop_x: int = 0,
+        crop_y: int = 0,
         flip_x: bool = False,
         flip_y: bool = False,
-    ) -> Gdk.Texture:
+    ) -> GdkPixbuf.Pixbuf:
         if flip_x is True:
             pixbuf = pixbuf.flip(horizontal=True)
         if flip_y is True:
             pixbuf = pixbuf.flip(horizontal=False)
-        if offset_x > 0:
+        if crop_x > 0:
             pixbuf = pixbuf.new_subpixbuf(
-                offset_x,
+                crop_x,
                 0,
-                pixbuf.get_width() - offset_x,
+                pixbuf.get_width() - crop_x,
                 pixbuf.get_height(),
             )
-        if offset_x > 0:
+        if crop_x > 0:
             pixbuf = pixbuf.new_subpixbuf(
                 0,
-                offset_y,
+                crop_y,
                 pixbuf.get_width(),
-                pixbuf.get_height() - offset_y,
+                pixbuf.get_height() - crop_y,
             )
 
-        return Gdk.Texture.new_for_pixbuf(pixbuf)
+        return pixbuf
 
     @classmethod
     def load_pixbufs_from_image(
