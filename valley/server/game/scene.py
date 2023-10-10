@@ -40,8 +40,13 @@ class Scene(CommonScene, GObject.GObject):
 
     def update(self, entity_id: int, action: Action, value: float) -> None:
         entity = self._entity_by_id[entity_id]
+
+        if action == Action.NOTHING:
+            pass
+        if action == Action.MOVE:
+            entity.angle = value
+
         entity.action = action
-        entity.angle = value
 
     def remove(self, entity_id: int) -> None:
         self.entities.remove(self._entity_by_id[entity_id])
