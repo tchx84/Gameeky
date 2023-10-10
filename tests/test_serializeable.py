@@ -14,7 +14,14 @@ def test_serialize_vector():
 
 
 def test_serialize_entity():
-    original = Entity(id=1, position=None, angle=0, velocity=0, action=Action.MOVE)
+    original = Entity(
+        id=1,
+        type_id=0,
+        position=None,
+        angle=0,
+        velocity=0,
+        action=Action.MOVE,
+    )
     serialized = Entity.deserialize(original.serialize())
 
     assert serialized.id == original.id
