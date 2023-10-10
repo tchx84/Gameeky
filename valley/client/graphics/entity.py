@@ -59,27 +59,30 @@ class EntityRegistry:
             path=get_data_path(description.graphics.path),
         )
 
-        entity = Entity(type_id=description.type_id)
+        entity = Entity(type_id=description.id)
 
-        for action, directions in vars(description.graphics.actions).items():
-            for direction, info in vars(directions).items():
+        for action in description.graphics.actions:
+            for direction in action.directions:
                 frames = [
                     Gdk.Texture.new_for_pixbuf(
                         cls.transform_pixbuf(
                             pixbuf=pixbuf,
-                            crop_x=info.crop_x,
-                            crop_y=info.crop_y,
-                            flip_x=info.flip_x,
-                            flip_y=info.flip_y,
+                            crop_x=direction.animation.crop_x,
+                            crop_y=direction.animation.crop_y,
+                            flip_x=direction.animation.flip_x,
+                            flip_y=direction.animation.flip_y,
                         )
                     )
-                    for pixbuf in pixbufs[info.first_frame : info.last_frame + 1]
+                    for pixbuf in pixbufs[
+                        direction.animation.first_frame : direction.animation.last_frame
+                        + 1
+                    ]
                 ]
 
                 entity.add_animation(
-                    Action[action.upper()],
-                    Direction[direction.upper()],
-                    Animation(info.time_per_frame, frames),
+                    Action[action.name.upper()],
+                    Direction[direction.name.upper()],
+                    Animation(direction.animation.time_per_frame, frames),
                 )
 
         cls.__entities__[entity.type_id] = entity
