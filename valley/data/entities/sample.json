@@ -1,0 +1,72 @@
+{
+    "id": 0,
+    "graphics": {
+        "path": "sprites/player.png",
+        "columns": 6,
+        "rows": 10,
+        "default": {
+            "time_per_frame": 250,
+            "crop_x": 18,
+            "crop_y": 18,
+            "flip_x": false,
+            "flip_y": false,
+            "first_frame": 0,
+            "last_frame": 5
+        },
+        "actions": [
+            {
+                "name": "move",
+                "directions": [
+                    {
+                        "name": "down",
+                        "animation": {
+                            "time_per_frame": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 18,
+                            "last_frame": 23
+                        }
+                    },
+                    {
+                        "name": "right",
+                        "animation": {
+                            "time_per_frame": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 24,
+                            "last_frame": 29
+                        }
+                    },
+                    {
+                        "name": "up",
+                        "animation": {
+                            "time_per_frame": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 30,
+                            "last_frame": 35
+                        }
+                    },
+                    {
+                        "name": "left",
+                        "animation": {
+                            "time_per_frame": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": true,
+                            "flip_y": false,
+                            "first_frame": 24,
+                            "last_frame": 29
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
