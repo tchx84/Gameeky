@@ -10,6 +10,7 @@ from ..network.udp import Server as UDPServer
 
 from ...common.logger import logger
 from ...common.scene import SceneRequest
+from ...common.session import SessionRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
 from ...common.definitions import TILES_X, TILES_Y
@@ -60,7 +61,9 @@ class Service(GObject.GObject):
         logger.info("Started")
 
     def __on_session_connected(self, manager, client, data):
-        entity_id = self.scene.add()
+        request = SessionRequest.deserialize(data)
+
+        entity_id = self.scene.add(request.type_id)
         session = Session(id=self._index, entity_id=entity_id)
 
         self._index += 1

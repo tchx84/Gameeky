@@ -50,7 +50,7 @@ class Service(GObject.GObject):
         self.emit("updated", Scene.deserialize(data))
 
     def register(self) -> None:
-        self._session_manager.send(SessionRequest().serialize())
+        self._session_manager.send(SessionRequest(type_id=0).serialize())
 
     def unregister(self) -> None:
         self._session_manager.shutdown()

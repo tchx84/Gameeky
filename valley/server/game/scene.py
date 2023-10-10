@@ -28,8 +28,8 @@ class Scene(CommonScene, GObject.GObject):
             if entity.action == Action.MOVE:
                 entity.move()
 
-    def add(self) -> int:
-        entity = Entity(id=self._index)
+    def add(self, type_id: int) -> int:
+        entity = Entity(id=self._index, type_id=type_id)
 
         self._index += 1
         self._entity_by_id[entity.id] = entity

@@ -62,5 +62,7 @@ def test_serialize_session():
 
 
 def test_serialize_session_request():
-    original = SessionRequest()
-    SessionRequest.deserialize(original.serialize())
+    original = SessionRequest(type_id=0)
+    serialized = SessionRequest.deserialize(original.serialize())
+
+    assert original.type_id == serialized.type_id

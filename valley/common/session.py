@@ -18,14 +18,14 @@ class Session(Serializeable):
 
 
 class SessionRequest(Serializeable):
-    Signature = Tuple[()]
+    Signature = Tuple[int]
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, type_id: int) -> None:
+        self.type_id = type_id
 
     def to_values(self) -> Signature:
-        return ()
+        return (self.type_id,)
 
     @classmethod
     def from_values(cls, values: Signature) -> "SessionRequest":
-        return cls()
+        return cls(*values)
