@@ -1,0 +1,71 @@
+import json
+
+from typing import Any, Optional
+from types import SimpleNamespace
+
+from gi.repository import Gio, GLib, GObject
+
+
+class Description(SimpleNamespace):
+    @classmethod
+    def new_from_json(cls, path: str) -> "Description":
+        with open(path, "r") as file:
+            return json.load(file, object_hook=lambda d: cls(**d))
+
+
+class Scanner(GObject.GObject):
+    __gsignals__ = {
+        "found": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "done": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
+    def __init__(self, path: str) -> None:
+        super().__init__()
+        self._path = path
+
+    def scan(self) -> None:
+        directory = Gio.File.new_for_path(self._path)
+        directory.enumerate_children_async(
+            Gio.FILE_ATTRIBUTE_STANDARD_NAME,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            None,
+            self.__on_enumerate_children,
+            None,
+        )
+
+    def _request_file(self, enumerator: Gio.FileEnumerator) -> None:
+        enumerator.next_files_async(
+            1,
+            GLib.PRIORITY_DEFAULT,
+            None,
+            self.__on_next_files,
+            enumerator,
+        )
+
+    def __on_enumerate_children(
+        self,
+        source: GObject.GObject,
+        result: Gio.AsyncResult,
+        data: Optional[Any] = None,
+    ) -> None:
+        self._request_file(source.enumerate_children_finish(result))
+
+    def __on_next_files(
+        self,
+        source: GObject.GObject,
+        result: Gio.AsyncResult,
+        enumerator: Gio.FileEnumerator,
+    ) -> None:
+        infos = source.next_files_finish(result)
+
+        if not infos:
+            self.emit("done")
+            return
+
+        for info in infos:
+            path = enumerator.get_child(info).get_path()
+            description = Description.new_from_json(path)
+            self.emit("found", description)
+
+        self._request_file(enumerator)
