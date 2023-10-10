@@ -9,9 +9,12 @@ from gi.repository import Gio, Gtk, GLib
 
 from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
+from valley.client.graphics.entity import EntityRegistry
 from valley.client.graphics.scene import Scene as SceneView
 from valley.client.input.keyboard import Keyboard
 
+from valley.common.utils import get_data_path
+from valley.common.scanner import Scanner, Description
 from valley.common.command import Command
 from valley.common.definitions import (
     TILES_X,
@@ -92,13 +95,23 @@ class Application(Gtk.Application):
             scene_port=self._scene_port,
             context=GLib.MainContext.default(),
         )
-        self._service.register()
 
         self._model = SceneModel(
             width=TILES_X,
             height=TILES_Y,
             service=self._service,
         )
+
+        self._scanner = Scanner(path=get_data_path("entities"))
+        self._scanner.connect("found", self.__on_scanner_found)
+        self._scanner.connect("done", self.__on_scanner_done)
+        self._scanner.scan()
+
+    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
+        EntityRegistry.register(description)
+
+    def __on_scanner_done(self, scanner: Scanner) -> None:
+        self._service.register()
 
     def _setup_graphics(self) -> None:
         self._window = Window(application=self, model=self._model)
