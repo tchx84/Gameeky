@@ -54,8 +54,8 @@ class EntityRegistry:
     @classmethod
     def register(cls, description: Description) -> None:
         pixbufs = cls.load_pixbufs_from_image(
-            frames_x=description.graphics.frames_x,
-            frames_y=description.graphics.frames_y,
+            columns=description.graphics.columns,
+            rows=description.graphics.rows,
             path=get_data_path(description.graphics.path),
         )
 
@@ -115,23 +115,23 @@ class EntityRegistry:
     @classmethod
     def load_pixbufs_from_image(
         cls,
-        frames_x: int,
-        frames_y: int,
+        columns: int,
+        rows: int,
         path: str,
     ) -> List[GdkPixbuf.Pixbuf]:
         pixbufs = []
 
         src_pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
-        frame_width = int(src_pixbuf.get_width() / frames_x)
-        frame_height = int(src_pixbuf.get_height() / frames_y)
+        width = int(src_pixbuf.get_width() / columns)
+        height = int(src_pixbuf.get_height() / rows)
 
-        for frame_y in range(frames_y):
-            for frame_x in range(frames_x):
+        for row in range(rows):
+            for column in range(columns):
                 pixbuf = src_pixbuf.new_subpixbuf(
-                    frame_x * frame_width,
-                    frame_y * frame_height,
-                    frame_width,
-                    frame_height,
+                    column * width,
+                    row * height,
+                    width,
+                    height,
                 )
                 pixbufs.append(pixbuf)
 
