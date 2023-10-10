@@ -23,11 +23,17 @@ class Animation:
 
 
 class Entity:
-    def __init__(self, type_id: int) -> None:
+    def __init__(self, type_id: int, default: Animation) -> None:
         self.type_id = type_id
+        self._default = default
         self._animations: Dict[Action, Dict[Direction, Animation]] = {}
 
     def get_texture(self, action: Action, direction: Direction) -> Gdk.Texture:
+        if action not in self._animations:
+            return self._default.get_frame()
+        if direction not in self._animations[action]:
+            return self._default.get_frame()
+
         return self._animations[action][direction].get_frame()
 
     def add_animation(
@@ -59,33 +65,47 @@ class EntityRegistry:
             path=get_data_path(description.graphics.path),
         )
 
-        entity = Entity(type_id=description.id)
+        default = cls.create_animation_from_description(
+            pixbufs,
+            description.graphics.default,
+        )
+        entity = Entity(type_id=description.id, default=default)
 
         for action in description.graphics.actions:
             for direction in action.directions:
-                frames = [
-                    Gdk.Texture.new_for_pixbuf(
-                        cls.transform_pixbuf(
-                            pixbuf=pixbuf,
-                            crop_x=direction.animation.crop_x,
-                            crop_y=direction.animation.crop_y,
-                            flip_x=direction.animation.flip_x,
-                            flip_y=direction.animation.flip_y,
-                        )
-                    )
-                    for pixbuf in pixbufs[
-                        direction.animation.first_frame : direction.animation.last_frame
-                        + 1
-                    ]
-                ]
+                animation = cls.create_animation_from_description(
+                    pixbufs,
+                    direction.animation,
+                )
 
                 entity.add_animation(
                     Action[action.name.upper()],
                     Direction[direction.name.upper()],
-                    Animation(direction.animation.time_per_frame, frames),
+                    animation,
                 )
 
         cls.__entities__[entity.type_id] = entity
+
+    @classmethod
+    def create_animation_from_description(
+        cls,
+        pixbufs: List[GdkPixbuf.Pixbuf],
+        description: Description,
+    ) -> Animation:
+        frames = [
+            Gdk.Texture.new_for_pixbuf(
+                cls.transform_pixbuf(
+                    pixbuf=pixbuf,
+                    crop_x=description.crop_x,
+                    crop_y=description.crop_y,
+                    flip_x=description.flip_x,
+                    flip_y=description.flip_y,
+                )
+            )
+            for pixbuf in pixbufs[description.first_frame : description.last_frame + 1]
+        ]
+
+        return Animation(description.time_per_frame, frames)
 
     @classmethod
     def transform_pixbuf(
