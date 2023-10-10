@@ -10,26 +10,36 @@ from ...common.utils import get_monotonic_time_ms
 from ...common.utils import get_data_path
 
 
-class Entity:
-    def __init__(self, type_id: int, ms_per_frame: int) -> None:
-        self.type_id = type_id
-        self._ms_per_frame = ms_per_frame
-        self._frames: Dict[Action, Dict[Direction, List[Gdk.Texture]]] = {}
+class Animation:
+    def __init__(self, time_per_frame: int, frames: List[Gdk.Texture]) -> None:
+        self._time_per_frame = time_per_frame
+        self._frames = frames
 
-    def _get_texture(self, action: Action, direction: Direction) -> Gdk.Texture:
+    def get_frame(self) -> Gdk.Texture:
         index = int(
-            (get_monotonic_time_ms() / self._ms_per_frame)
-            % len(self._frames[action][direction])
+            (get_monotonic_time_ms() / self._time_per_frame) % len(self._frames)
         )
-        return self._frames[action][direction][index]
+        return self._frames[index]
 
-    def add_frames(
-        self, action: Action, direction: Direction, frames: List[Gdk.Texture]
+
+class Entity:
+    def __init__(self, type_id: int) -> None:
+        self.type_id = type_id
+        self._animations: Dict[Action, Dict[Direction, Animation]] = {}
+
+    def get_texture(self, action: Action, direction: Direction) -> Gdk.Texture:
+        return self._animations[action][direction].get_frame()
+
+    def add_animation(
+        self,
+        action: Action,
+        direction: Direction,
+        animation: Animation,
     ) -> None:
-        if action not in self._frames:
-            self._frames[action] = {}
+        if action not in self._animations:
+            self._animations[action] = {}
 
-        self._frames[action][direction] = frames
+        self._animations[action][direction] = animation
 
 
 class EntityRegistry:
@@ -37,7 +47,7 @@ class EntityRegistry:
 
     @classmethod
     def get_texture(cls, entity: CommonEntity) -> Gdk.Texture:
-        return cls.__entities__[entity.type_id]._get_texture(
+        return cls.__entities__[entity.type_id].get_texture(
             entity.action, Direction(entity.angle)
         )
 
@@ -49,10 +59,7 @@ class EntityRegistry:
             path=get_data_path(description.graphics.path),
         )
 
-        entity = Entity(
-            type_id=description.type_id,
-            ms_per_frame=description.graphics.ms_per_frame,
-        )
+        entity = Entity(type_id=description.type_id)
 
         for action, directions in vars(description.graphics.actions).items():
             for direction, info in vars(directions).items():
@@ -67,10 +74,10 @@ class EntityRegistry:
                     for pixbuf in pixbufs[info.first_frame : info.last_frame + 1]
                 ]
 
-                entity.add_frames(
+                entity.add_animation(
                     Action[action.upper()],
                     Direction[direction.upper()],
-                    frames,
+                    Animation(info.time_per_frame, frames),
                 )
 
         cls.__entities__[entity.type_id] = entity
