@@ -1,5 +1,6 @@
 from gi.repository import Gtk, Gdk, Graphene
 
+from .entity import EntityRegistry
 from ..game.scene import Scene as SceneModel
 
 
@@ -25,9 +26,6 @@ class Scene(Gtk.Widget):
 
         snapshot.append_color(black, background_rect)
 
-        white = Gdk.RGBA()
-        white.parse("#FFFFFF")
-
         screen_tile_width = screen_width / self._model.width
         screen_tile_height = screen_height / self._model.height
 
@@ -44,4 +42,4 @@ class Scene(Gtk.Widget):
             entity_rect = Graphene.Rect()
             entity_rect.init(x, y, screen_tile_width, screen_tile_width)
 
-            snapshot.append_color(white, entity_rect)
+            snapshot.append_texture(EntityRegistry.get_texture(entity), entity_rect)
