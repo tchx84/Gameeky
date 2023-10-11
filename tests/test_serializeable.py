@@ -17,7 +17,7 @@ def test_serialize_vector():
 def test_serialize_entity():
     original = Entity(
         id=1,
-        type_id=0,
+        type_id=1,
         position=None,
         direction=Direction.RIGHT,
         action=Action.MOVE,

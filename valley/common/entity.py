@@ -26,7 +26,7 @@ class Entity(Serializeable):
     def __init__(
         self,
         id: int,
-        type_id: int = 0,
+        type_id: int,
         position: Optional[Vector] = None,
         direction: Direction = Direction.RIGHT,
         action: Action = Action.NOTHING,
