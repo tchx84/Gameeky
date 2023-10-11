@@ -1,6 +1,6 @@
-from enum import IntEnum
+from enum import IntEnum, auto
 
 
 class Action(IntEnum):
-    NOTHING = 0
-    MOVE = 1
+    NOTHING = auto()
+    MOVE = auto()
