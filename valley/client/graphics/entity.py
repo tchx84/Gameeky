@@ -11,13 +11,13 @@ from ...common.utils import get_data_path
 
 
 class Animation:
-    def __init__(self, time_per_frame: int, frames: List[Gdk.Texture]) -> None:
-        self._time_per_frame = time_per_frame
+    def __init__(self, frame_duration: int, frames: List[Gdk.Texture]) -> None:
+        self._frame_duration = frame_duration
         self._frames = frames
 
     def get_frame(self) -> Gdk.Texture:
         index = int(
-            (get_monotonic_time_ms() / self._time_per_frame) % len(self._frames)
+            (get_monotonic_time_ms() / self._frame_duration) % len(self._frames)
         )
         return self._frames[index]
 
@@ -98,7 +98,7 @@ class EntityRegistry:
             for pixbuf in pixbufs[description.first_frame : description.last_frame + 1]
         ]
 
-        return Animation(description.time_per_frame, frames)
+        return Animation(description.frame_duration, frames)
 
     @classmethod
     def transform_pixbuf(
