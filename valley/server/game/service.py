@@ -8,12 +8,14 @@ from ..network.tcp import Server as TCPServer
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Server as UDPServer
 
+from ...common.entity import Vector
+from ...common.scanner import Description
+from ...common.utils import get_data_path
 from ...common.logger import logger
 from ...common.scene import SceneRequest
 from ...common.session import SessionRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
-from ...common.definitions import TILES_X, TILES_Y
 
 
 class Session(CommonSession):
@@ -44,7 +46,9 @@ class Service(GObject.GObject):
         self._session_by_client: Dict[TCPClient, Session] = {}
         self._session_by_id: Dict[int, Session] = {}
 
-        self.scene = Scene(width=TILES_X, height=TILES_Y)
+        self.scene = Scene.new_from_description(
+            Description.new_from_json(get_data_path("scene/sample.json"))
+        )
 
         self._session_manager = TCPServer(
             port=session_port, clients=clients, context=context
@@ -63,7 +67,7 @@ class Service(GObject.GObject):
     def __on_session_connected(self, manager, client, data):
         request = SessionRequest.deserialize(data)
 
-        entity_id = self.scene.add(request.type_id)
+        entity_id = self.scene.add(request.type_id, position=Vector())
         session = Session(id=self._index, entity_id=entity_id)
 
         self._index += 1

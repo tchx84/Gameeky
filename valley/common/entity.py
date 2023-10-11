@@ -1,3 +1,5 @@
+from enum import IntEnum
+
 from typing import Optional, Tuple
 
 from .action import Action
@@ -18,6 +20,10 @@ class Vector(Serializeable):
     @classmethod
     def from_values(cls, values: Signature) -> "Vector":
         return cls(*values)
+
+
+class EntityType(IntEnum):
+    EMPTY = 0
 
 
 class Entity(Serializeable):

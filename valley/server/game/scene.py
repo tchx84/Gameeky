@@ -5,6 +5,8 @@ from gi.repository import GLib, GObject
 from .entity import Entity, EntityRegistry
 
 from ...common.action import Action
+from ...common.entity import EntityType, Vector
+from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.definitions import TICK
 from ...common.scene import Scene as CommonScene
@@ -29,8 +31,12 @@ class Scene(CommonScene, GObject.GObject):
             if entity.action == Action.MOVE:
                 entity.move()
 
-    def add(self, type_id: int) -> int:
-        entity = EntityRegistry.create_entity(id=self._index, type_id=type_id)
+    def add(self, type_id: int, position: Vector) -> int:
+        entity = EntityRegistry.create_entity(
+            id=self._index,
+            type_id=type_id,
+            position=position,
+        )
 
         self._index += 1
         self._entity_by_id[entity.id] = entity
@@ -63,3 +69,20 @@ class Scene(CommonScene, GObject.GObject):
             anchor=entity.position,
             entities=self.entities,
         )
+
+    @classmethod
+    def new_from_description(cls, description: Description) -> "Scene":
+        scene = cls(width=description.width, height=description.height)
+
+        for layer in description.layers:
+            for index, type_id in enumerate(layer.entities):
+                if type_id == EntityType.EMPTY:
+                    continue
+
+                position = Vector()
+                position.x = index % scene.width
+                position.y = int(index / scene.width)
+
+                scene.add(type_id, position)
+
+        return scene
