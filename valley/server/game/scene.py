@@ -32,7 +32,7 @@ class Scene(CommonScene, GObject.GObject):
                 entity.move()
 
     def add(self, type_id: int, position: Vector) -> int:
-        entity = EntityRegistry.create_entity(
+        entity = EntityRegistry.new_from_values(
             id=self._index,
             type_id=type_id,
             position=position,

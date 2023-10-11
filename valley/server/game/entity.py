@@ -31,7 +31,7 @@ class EntityRegistry:
         cls.__entities__[description.id] = description
 
     @classmethod
-    def create_entity(cls, id: int, type_id: int, position: Vector) -> Entity:
+    def new_from_values(cls, id: int, type_id: int, position: Vector) -> Entity:
         description = cls.__entities__[type_id]
         return Entity(
             id=id,
