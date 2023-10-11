@@ -120,7 +120,7 @@ class EntityRegistry:
                 pixbuf.get_width() - crop_x,
                 pixbuf.get_height(),
             )
-        if crop_x > 0:
+        if crop_y > 0:
             pixbuf = pixbuf.new_subpixbuf(
                 0,
                 crop_y,
