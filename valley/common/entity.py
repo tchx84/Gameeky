@@ -21,7 +21,7 @@ class Vector(Serializeable):
 
 
 class Entity(Serializeable):
-    Signature = Tuple[int, int, Vector.Signature, int, float, int]
+    Signature = Tuple[int, int, Vector.Signature, int, int]
 
     def __init__(
         self,
@@ -29,14 +29,12 @@ class Entity(Serializeable):
         type_id: int = 0,
         position: Optional[Vector] = None,
         direction: Direction = Direction.RIGHT,
-        velocity: float = 0.05,
         action: Action = Action.NOTHING,
     ) -> None:
         self.id = id
         self.type_id = type_id
         self.position = position if position else Vector()
         self.direction = direction
-        self.velocity = velocity
         self.action = action
 
     def to_values(self) -> Signature:
@@ -45,18 +43,16 @@ class Entity(Serializeable):
             self.type_id,
             self.position.to_values(),
             self.direction,
-            self.velocity,
             self.action,
         )
 
     @classmethod
     def from_values(cls, values: Signature) -> "Entity":
-        id, type_id, position, direction, velocity, action = values
+        id, type_id, position, direction, action = values
         return cls(
             id,
             type_id,
             Vector.from_values(position),
             Direction(direction),
-            velocity,
             Action(action),
         )

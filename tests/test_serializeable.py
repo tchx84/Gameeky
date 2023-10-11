@@ -20,14 +20,12 @@ def test_serialize_entity():
         type_id=0,
         position=None,
         direction=Direction.RIGHT,
-        velocity=0,
         action=Action.MOVE,
     )
     serialized = Entity.deserialize(original.serialize())
 
     assert serialized.id == original.id
     assert serialized.direction == original.direction
-    assert serialized.velocity == original.velocity
     assert serialized.action == original.action
 
 
