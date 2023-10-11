@@ -2,7 +2,7 @@ from typing import Dict
 
 from gi.repository import GLib, GObject
 
-from .entity import Entity
+from .entity import Entity, EntityRegistry
 
 from ...common.action import Action
 from ...common.direction import Direction
@@ -30,7 +30,7 @@ class Scene(CommonScene, GObject.GObject):
                 entity.move()
 
     def add(self, type_id: int) -> int:
-        entity = Entity(id=self._index, type_id=type_id)
+        entity = EntityRegistry.create_entity(id=self._index, type_id=type_id)
 
         self._index += 1
         self._entity_by_id[entity.id] = entity

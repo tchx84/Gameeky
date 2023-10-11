@@ -5,7 +5,10 @@ import sys
 from gi.repository import Gio, GLib
 
 from valley.server.game.service import Service
+from valley.server.game.entity import EntityRegistry
+from valley.common.scanner import Scanner, Description
 from valley.common.command import Command
+from valley.common.utils import get_data_path
 from valley.common.definitions import (
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
@@ -54,7 +57,10 @@ class Application(Gio.Application):
             None,
         )
 
-    def do_activate(self) -> None:
+    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
+        EntityRegistry.register(description)
+
+    def __on_scanner_done(self, scanner: Scanner) -> None:
         self._service = Service(
             clients=self._clients,
             session_port=self._session_port,
@@ -62,6 +68,12 @@ class Application(Gio.Application):
             scene_port=self._scene_port,
             context=GLib.MainContext.default(),
         )
+
+    def do_activate(self) -> None:
+        self._scanner = Scanner(get_data_path("entities"))
+        self._scanner.connect("found", self.__on_scanner_found)
+        self._scanner.connect("done", self.__on_scanner_done)
+        self._scanner.scan()
 
         self.hold()
 

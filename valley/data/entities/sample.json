@@ -1,5 +1,12 @@
 {
     "id": 1,
+    "game": {
+        "default": {
+            "velocity": 0.05,
+            "direction": "down",
+            "action": "nothing"
+        }
+    },
     "graphics": {
         "default": {
             "path": "sprites/player.png",

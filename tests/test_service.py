@@ -6,6 +6,9 @@ from gi.repository import GLib
 
 from valley.common.action import Action
 from valley.common.direction import Direction
+from valley.common.utils import get_data_path
+from valley.common.scanner import Scanner
+from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
@@ -30,6 +33,19 @@ def setup_module():
 
     mainloop = GLib.MainLoop.new(None, True)
     context = mainloop.get_context()
+
+
+@pytest.mark.timeout(5)
+def test_scanner_register():
+    mock = Mock()
+
+    scanner = Scanner(get_data_path("entities"))
+    scanner.connect("found", lambda _, d: EntityRegistry.register(d))
+    scanner.connect("done", mock)
+    scanner.scan()
+
+    while not mock.called:
+        update()
 
 
 def test_server_create():

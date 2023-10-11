@@ -1,9 +1,13 @@
+from typing import Dict
+
+from ...common.action import Action
+from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
-    def __init__(self, velocity: float = 0.05, *args, **kargs) -> None:
+    def __init__(self, velocity: float, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self.velocity = velocity
 
@@ -16,3 +20,22 @@ class Entity(CommonEntity):
             self.position.x -= self.velocity
         elif self.direction == Direction.DOWN:
             self.position.y += self.velocity
+
+
+class EntityRegistry:
+    __entities__: Dict[int, Description] = {}
+
+    @classmethod
+    def register(cls, description: Description) -> None:
+        cls.__entities__[description.id] = description
+
+    @classmethod
+    def create_entity(cls, id: int, type_id: int) -> Entity:
+        description = cls.__entities__[type_id]
+        return Entity(
+            id=id,
+            type_id=type_id,
+            velocity=description.game.default.velocity,
+            direction=Direction[description.game.default.direction.upper()],
+            action=Action[description.game.default.action.upper()],
+        )
