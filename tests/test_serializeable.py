@@ -1,4 +1,5 @@
 from valley.common.action import Action
+from valley.common.direction import Direction
 from valley.common.entity import Entity, Vector
 from valley.common.message import Message
 from valley.common.scene import Scene, SceneRequest
@@ -18,14 +19,14 @@ def test_serialize_entity():
         id=1,
         type_id=0,
         position=None,
-        angle=0,
+        direction=Direction.RIGHT,
         velocity=0,
         action=Action.MOVE,
     )
     serialized = Entity.deserialize(original.serialize())
 
     assert serialized.id == original.id
-    assert serialized.angle == original.angle
+    assert serialized.direction == original.direction
     assert serialized.velocity == original.velocity
     assert serialized.action == original.action
 

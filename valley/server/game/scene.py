@@ -5,6 +5,7 @@ from gi.repository import GLib, GObject
 from .entity import Entity
 
 from ...common.action import Action
+from ...common.direction import Direction
 from ...common.definitions import TICK
 from ...common.scene import Scene as CommonScene
 
@@ -44,7 +45,7 @@ class Scene(CommonScene, GObject.GObject):
         if action == Action.NOTHING:
             pass
         if action == Action.MOVE:
-            entity.angle = value
+            entity.direction = Direction(int(value))
 
         entity.action = action
 

@@ -1,8 +1,8 @@
-from enum import Enum
+from enum import IntEnum, auto
 
 
-class Direction(float, Enum):
-    RIGHT = 0
-    UP = 90
-    LEFT = 180
-    DOWN = 270
+class Direction(IntEnum):
+    RIGHT = auto()
+    UP = auto()
+    LEFT = auto()
+    DOWN = auto()

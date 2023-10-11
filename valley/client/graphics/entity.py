@@ -54,7 +54,8 @@ class EntityRegistry:
     @classmethod
     def get_texture(cls, entity: CommonEntity) -> Gdk.Texture:
         return cls.__entities__[entity.type_id].get_texture(
-            entity.action, Direction(entity.angle)
+            entity.action,
+            entity.direction,
         )
 
     @classmethod

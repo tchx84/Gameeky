@@ -4,11 +4,11 @@ from ...common.entity import Entity as CommonEntity
 
 class Entity(CommonEntity):
     def move(self) -> None:
-        if self.angle == Direction.RIGHT:
+        if self.direction == Direction.RIGHT:
             self.position.x += self.velocity
-        elif self.angle == Direction.UP:
+        elif self.direction == Direction.UP:
             self.position.y -= self.velocity
-        elif self.angle == Direction.LEFT:
+        elif self.direction == Direction.LEFT:
             self.position.x -= self.velocity
-        elif self.angle == Direction.DOWN:
+        elif self.direction == Direction.DOWN:
             self.position.y += self.velocity
