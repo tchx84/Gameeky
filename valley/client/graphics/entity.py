@@ -60,25 +60,12 @@ class EntityRegistry:
 
     @classmethod
     def register(cls, description: Description) -> None:
-        pixbufs = cls.load_pixbufs_from_image(
-            columns=description.graphics.columns,
-            rows=description.graphics.rows,
-            path=get_data_path(description.graphics.path),
-        )
-
-        default = cls.create_animation_from_description(
-            pixbufs,
-            description.graphics.default,
-        )
+        default = cls.create_animation_from_description(description.graphics.default)
         entity = Entity(type_id=description.id, default=default)
 
         for action in description.graphics.actions:
             for direction in action.directions:
-                animation = cls.create_animation_from_description(
-                    pixbufs,
-                    direction.animation,
-                )
-
+                animation = cls.create_animation_from_description(direction.animation)
                 entity.add_animation(
                     Action[action.name.upper()],
                     Direction[direction.name.upper()],
@@ -90,9 +77,14 @@ class EntityRegistry:
     @classmethod
     def create_animation_from_description(
         cls,
-        pixbufs: List[GdkPixbuf.Pixbuf],
         description: Description,
     ) -> Animation:
+        pixbufs = cls.load_pixbufs_from_image(
+            columns=description.columns,
+            rows=description.rows,
+            path=get_data_path(description.path),
+        )
+
         frames = [
             Gdk.Texture.new_for_pixbuf(
                 cls.transform_pixbuf(

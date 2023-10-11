@@ -1,10 +1,10 @@
 {
     "id": 0,
     "graphics": {
-        "path": "sprites/player.png",
-        "columns": 6,
-        "rows": 10,
         "default": {
+            "path": "sprites/player.png",
+            "columns": 6,
+            "rows": 10,
             "time_per_frame": 250,
             "crop_x": 18,
             "crop_y": 18,
@@ -20,6 +20,9 @@
                     {
                         "name": "down",
                         "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
                             "time_per_frame": 100,
                             "crop_x": 18,
                             "crop_y": 18,
@@ -32,6 +35,9 @@
                     {
                         "name": "right",
                         "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
                             "time_per_frame": 100,
                             "crop_x": 18,
                             "crop_y": 18,
@@ -44,6 +50,9 @@
                     {
                         "name": "up",
                         "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
                             "time_per_frame": 100,
                             "crop_x": 18,
                             "crop_y": 18,
@@ -56,6 +65,9 @@
                     {
                         "name": "left",
                         "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
                             "time_per_frame": 100,
                             "crop_x": 18,
                             "crop_y": 18,
