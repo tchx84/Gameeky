@@ -30,7 +30,7 @@ class Space:
         if position not in self._entity_by_position:
             self._entity_by_position[position] = []
 
-        self._entity_by_position[position].insert(0, entity)
+        self._entity_by_position[position].append(entity)
 
     def remove(self, entity: CommonEntity) -> None:
         position = (
@@ -77,7 +77,7 @@ class Space:
         for y in range(from_range_y, to_range_y):
             for x in range(from_range_x, to_range_x):
                 for entity in self._entity_by_position.get((x, y), []):
-                    entities.insert(0, entity)
+                    entities.append(entity)
 
         return entities
 
