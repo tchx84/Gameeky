@@ -44,7 +44,9 @@ class Space:
             del self._entity_by_position[position]
 
     def find_by_direction(
-        self, this_entity: CommonEntity, direction: Direction
+        self,
+        this_entity: CommonEntity,
+        direction: Direction,
     ) -> List[CommonEntity]:
         x = round(this_entity.position.x)
         y = round(this_entity.position.y)
