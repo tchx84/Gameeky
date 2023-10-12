@@ -35,7 +35,7 @@ class Entity(Serializeable):
         type_id: int,
         position: Optional[Vector] = None,
         direction: Direction = Direction.RIGHT,
-        action: Action = Action.NOTHING,
+        action: Action = Action.IDLE,
     ) -> None:
         self.id = id
         self.type_id = type_id

@@ -4,7 +4,7 @@
         "default": {
             "velocity": 1.0,
             "direction": "down",
-            "action": "nothing"
+            "action": "idle"
         }
     },
     "graphics": {

@@ -28,7 +28,7 @@ class Scene(CommonScene, GObject.GObject):
 
     def tick(self):
         for entity in self._entity_by_id.values():
-            if entity.action == Action.NOTHING:
+            if entity.action == Action.IDLE:
                 entity.idle()
             if entity.action == Action.MOVE:
                 entity.move()
@@ -50,7 +50,7 @@ class Scene(CommonScene, GObject.GObject):
     def update(self, entity_id: int, action: Action, value: float) -> None:
         entity = self._entity_by_id[entity_id]
 
-        if action == Action.NOTHING:
+        if action == Action.IDLE:
             pass
         if action == Action.MOVE:
             entity.direction = Direction(int(value))

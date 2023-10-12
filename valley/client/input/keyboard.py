@@ -64,4 +64,4 @@ class Keyboard(Gtk.EventControllerKey):
         if self._is_pressed_by_key.keys():
             return
 
-        self._service.message(Action.NOTHING, 0)
+        self._service.message(Action.IDLE, 0)

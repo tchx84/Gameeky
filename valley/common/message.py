@@ -10,7 +10,7 @@ class Message(Serializeable):
     def __init__(
         self,
         session_id: int,
-        action: Action = Action.NOTHING,
+        action: Action = Action.IDLE,
         value: float = 0,
         sequence: int = 0,
     ) -> None:

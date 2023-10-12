@@ -2,5 +2,5 @@ from enum import IntEnum, auto
 
 
 class Action(IntEnum):
-    NOTHING = auto()
+    IDLE = auto()
     MOVE = auto()
