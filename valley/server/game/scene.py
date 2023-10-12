@@ -1,3 +1,5 @@
+import math
+
 from typing import Dict
 
 from gi.repository import GLib, GObject
@@ -8,7 +10,7 @@ from ...common.action import Action
 from ...common.entity import EntityType, Vector
 from ...common.scanner import Description
 from ...common.direction import Direction
-from ...common.definitions import TICK
+from ...common.definitions import TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
 
 
@@ -62,14 +64,26 @@ class Scene(CommonScene, GObject.GObject):
         del self._entity_by_id[entity_id]
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
-        entity = self._entity_by_id[entity_id]
+        this_entity = self._entity_by_id[entity_id]
 
-        # XXX only include entities that the client can actually see
+        entities = []
+        distance_x = math.ceil(TILES_X / 2)
+        distance_y = math.ceil(TILES_Y / 2)
+
+        # XXX Too expensive, preserve spatial matrix
+        for that_entity in self.entities:
+            if abs(this_entity.position.x - that_entity.position.x) > distance_x:
+                continue
+            if abs(this_entity.position.y - that_entity.position.y) > distance_y:
+                continue
+
+            entities.append(that_entity)
+
         return CommonScene(
-            width=self.width,
-            height=self.height,
-            anchor=entity.position,
-            entities=self.entities,
+            width=TILES_X,
+            height=TILES_Y,
+            anchor=this_entity.position,
+            entities=entities,
         )
 
     @classmethod
