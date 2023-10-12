@@ -15,7 +15,7 @@ from ...common.definitions import TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
 
 
-class Space:
+class SpatialPartition:
     def __init__(self, width: int, height: int) -> None:
         self.width = width
         self.height = height
@@ -91,7 +91,7 @@ class Scene(CommonScene, GObject.GObject):
 
         self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
-        self._space = Space(width=width, height=height)
+        self._partition = SpatialPartition(width=width, height=height)
 
         self.spawnpoint = spawnpoint
 
@@ -103,15 +103,15 @@ class Scene(CommonScene, GObject.GObject):
 
     def tick(self):
         for entity in self._entity_by_id.values():
-            self._space.remove(entity)
+            self._partition.remove(entity)
 
             if entity.action == Action.IDLE:
                 entity.idle()
             if entity.action == Action.MOVE:
-                obstacles = self._space.find_by_direction(entity, entity.direction)
+                obstacles = self._partition.find_by_direction(entity, entity.direction)
                 entity.move(obstacles)
 
-            self._space.add(entity)
+            self._partition.add(entity)
 
     def add(self, type_id: int, position: Vector) -> int:
         entity = EntityRegistry.new_from_values(
@@ -122,7 +122,7 @@ class Scene(CommonScene, GObject.GObject):
 
         self._index += 1
         self._entity_by_id[entity.id] = entity
-        self._space.add(entity)
+        self._partition.add(entity)
 
         self.entities.append(entity)
 
@@ -142,7 +142,7 @@ class Scene(CommonScene, GObject.GObject):
         entity = self._entity_by_id[entity_id]
 
         del self._entity_by_id[entity_id]
-        self._space.remove(entity)
+        self._partition.remove(entity)
         self.entities.remove(entity)
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
@@ -150,7 +150,7 @@ class Scene(CommonScene, GObject.GObject):
         distance_x = math.ceil(TILES_X / 2)
         distance_y = math.ceil(TILES_Y / 2)
 
-        entities = self._space.find_by_distance(
+        entities = self._partition.find_by_distance(
             target=entity,
             distance_x=distance_x,
             distance_y=distance_y,
