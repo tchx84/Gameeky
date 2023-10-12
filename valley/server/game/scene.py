@@ -173,7 +173,7 @@ class Scene(CommonScene, GObject.GObject):
             ),
         )
 
-        for z, layer in enumerate(description.layers):
+        for depth, layer in enumerate(description.layers):
             for index, type_id in enumerate(layer.entities):
                 if type_id == EntityType.EMPTY:
                     continue
@@ -181,7 +181,7 @@ class Scene(CommonScene, GObject.GObject):
                 position = Vector()
                 position.x = index % scene.width
                 position.y = int(index / scene.width)
-                position.z = z
+                position.z = depth
 
                 scene.add(type_id, position)
 
