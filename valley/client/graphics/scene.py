@@ -1,6 +1,6 @@
 import math
 
-from gi.repository import Gtk, Gdk, Graphene
+from gi.repository import Gtk, Graphene
 
 from .entity import EntityRegistry
 from ..game.scene import Scene as SceneModel
@@ -19,14 +19,6 @@ class Scene(Gtk.Widget):
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
         screen_width = self.get_width()
         screen_height = self.get_height()
-
-        black = Gdk.RGBA()
-        black.parse("#000000")
-
-        background_rect = Graphene.Rect()
-        background_rect.init(0, 0, screen_width, screen_height)
-
-        snapshot.append_color(black, background_rect)
 
         screen_tile_width = math.ceil(screen_width / self._model.width)
         screen_tile_height = math.ceil(screen_height / self._model.height)
