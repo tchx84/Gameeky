@@ -79,26 +79,26 @@ class EntityRegistry:
         cls,
         description: Description,
     ) -> Animation:
+        frames = []
+
         pixbufs = cls.load_pixbufs_from_image(
             columns=description.columns,
             rows=description.rows,
             path=get_data_path(description.path),
         )
 
-        frames = [
-            Gdk.Texture.new_for_pixbuf(
-                cls.transform_pixbuf(
-                    pixbuf=pixbuf,
-                    crop_x=description.crop_x,
-                    crop_y=description.crop_y,
-                    flip_x=description.flip_x,
-                    flip_y=description.flip_y,
-                )
+        for pixbuf in pixbufs[description.first_frame : description.last_frame + 1]:
+            pixbuf = cls.transform_pixbuf(
+                pixbuf=pixbuf,
+                crop_x=description.crop_x,
+                crop_y=description.crop_y,
+                flip_x=description.flip_x,
+                flip_y=description.flip_y,
             )
-            for pixbuf in pixbufs[description.first_frame : description.last_frame + 1]
-        ]
 
-        return Animation(description.frame_duration, frames)
+            frames.append(Gdk.Texture.new_for_pixbuf(pixbuf))
+
+        return Animation(frame_duration=description.frame_duration, frames=frames)
 
     @classmethod
     def transform_pixbuf(
