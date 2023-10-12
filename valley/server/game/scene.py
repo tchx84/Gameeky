@@ -83,13 +83,15 @@ class Space:
 
 
 class Scene(CommonScene, GObject.GObject):
-    def __init__(self, width: int, height: int) -> None:
+    def __init__(self, width: int, height: int, spawnpoint: Vector) -> None:
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
 
         self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
         self._space = Space(width=width, height=height)
+
+        self.spawnpoint = spawnpoint
 
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
@@ -161,9 +163,17 @@ class Scene(CommonScene, GObject.GObject):
 
     @classmethod
     def new_from_description(cls, description: Description) -> "Scene":
-        scene = cls(width=description.width, height=description.height)
+        scene = cls(
+            width=description.width,
+            height=description.height,
+            spawnpoint=Vector(
+                x=description.spawnpoint.x,
+                y=description.spawnpoint.y,
+                z=description.spawnpoint.z,
+            ),
+        )
 
-        for layer in description.layers:
+        for z, layer in enumerate(description.layers):
             for index, type_id in enumerate(layer.entities):
                 if type_id == EntityType.EMPTY:
                     continue
@@ -171,6 +181,7 @@ class Scene(CommonScene, GObject.GObject):
                 position = Vector()
                 position.x = index % scene.width
                 position.y = int(index / scene.width)
+                position.z = z
 
                 scene.add(type_id, position)
 

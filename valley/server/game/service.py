@@ -8,7 +8,6 @@ from ..network.tcp import Server as TCPServer
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Server as UDPServer
 
-from ...common.entity import Vector
 from ...common.scanner import Description
 from ...common.utils import get_data_path
 from ...common.logger import logger
@@ -67,7 +66,7 @@ class Service(GObject.GObject):
     def __on_session_connected(self, manager, client, data):
         request = SessionRequest.deserialize(data)
 
-        entity_id = self.scene.add(request.type_id, position=Vector())
+        entity_id = self.scene.add(request.type_id, position=self.scene.spawnpoint)
         session = Session(id=self._index, entity_id=entity_id)
 
         self._index += 1

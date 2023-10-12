@@ -25,7 +25,13 @@ class Scene(CommonScene, GObject.GObject):
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
         self.anchor = scene.anchor
-        self.entities = scene.entities
+
+        # Take z-depth into account
+        self.entities = sorted(
+            scene.entities,
+            key=lambda e: (e.position.z, e.position.y, e.position.x),
+        )
+
         self.emit("updated")
 
     def __on_scene_ticked(self) -> int:

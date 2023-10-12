@@ -1,6 +1,11 @@
 {
     "width": 15,
     "height": 11,
+    "spawnpoint": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    },
     "layers": [
         {
             "name": "static",

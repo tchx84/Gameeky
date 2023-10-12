@@ -8,14 +8,15 @@ from .serializeable import Serializeable
 
 
 class Vector(Serializeable):
-    Signature = Tuple[float, float]
+    Signature = Tuple[float, float, float]
 
-    def __init__(self, x: float = 0, y: float = 0) -> None:
+    def __init__(self, x: float = 0, y: float = 0, z: float = 0) -> None:
         self.x = x
         self.y = y
+        self.z = z
 
     def to_values(self) -> Signature:
-        return (self.x, self.y)
+        return (self.x, self.y, self.z)
 
     @classmethod
     def from_values(cls, values: Signature) -> "Vector":

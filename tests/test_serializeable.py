@@ -7,11 +7,12 @@ from valley.common.session import Session, SessionRequest
 
 
 def test_serialize_vector():
-    original = Vector(x=45, y=45)
+    original = Vector(x=45, y=45, z=45)
     serialized = Vector.deserialize(original.serialize())
 
     assert serialized.x == original.x
     assert serialized.y == original.y
+    assert serialized.z == original.z
 
 
 def test_serialize_entity():
