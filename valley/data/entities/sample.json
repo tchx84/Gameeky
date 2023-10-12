@@ -4,7 +4,8 @@
         "default": {
             "velocity": 1.0,
             "direction": "down",
-            "action": "idle"
+            "action": "idle",
+            "solid": true
         }
     },
     "graphics": {

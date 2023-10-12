@@ -43,6 +43,23 @@ class Space:
         if len(self._entity_by_position[position]) == 0:
             del self._entity_by_position[position]
 
+    def find_by_direction(
+        self, this_entity: CommonEntity, direction: Direction
+    ) -> List[CommonEntity]:
+        x = round(this_entity.position.x)
+        y = round(this_entity.position.y)
+
+        if direction == Direction.RIGHT:
+            x += 1
+        elif direction == Direction.UP:
+            y -= 1
+        elif direction == Direction.LEFT:
+            x -= 1
+        elif direction == Direction.DOWN:
+            y += 1
+
+        return self._entity_by_position.get((x, y), [])
+
     def find_by_distance(
         self,
         target: CommonEntity,
@@ -87,7 +104,8 @@ class Scene(CommonScene, GObject.GObject):
             if entity.action == Action.IDLE:
                 entity.idle()
             if entity.action == Action.MOVE:
-                entity.move()
+                obstacles = self._space.find_by_direction(entity, entity.direction)
+                entity.move(obstacles)
 
             self._space.add(entity)
 

@@ -1,4 +1,6 @@
-from typing import Dict
+import math
+
+from typing import Dict, List
 
 from ...common.action import Action
 from ...common.scanner import Description
@@ -9,9 +11,10 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
-    def __init__(self, velocity: float, *args, **kargs) -> None:
+    def __init__(self, velocity: float, solid: bool, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self.velocity = velocity
+        self.solid = solid
 
         self._last_action = None
         self._last_timestamp = None
@@ -31,17 +34,29 @@ class Entity(CommonEntity):
     def idle(self):
         self._get_elapsed_milliseconds()
 
-    def move(self) -> None:
+    def collides(self, obstacle: "Entity", distance: float = 0) -> bool:
+        delta_x = (self.position.x + distance) - obstacle.position.x
+        delta_y = (self.position.y + distance) - obstacle.position.y
+        delta = math.sqrt(delta_x**2 + delta_y**2)
+
+        return delta < 1.0
+
+    def move(self, obstacles: List["Entity"]) -> None:
         elapsed_seconds = self._get_elapsed_milliseconds() / 1000
+        distance = self.velocity * elapsed_seconds
+
+        for obstacle in obstacles:
+            if obstacle.solid is True and self.collides(obstacle, distance):
+                return
 
         if self.direction == Direction.RIGHT:
-            self.position.x += self.velocity * elapsed_seconds
+            self.position.x += distance
         elif self.direction == Direction.UP:
-            self.position.y -= self.velocity * elapsed_seconds
+            self.position.y -= distance
         elif self.direction == Direction.LEFT:
-            self.position.x -= self.velocity * elapsed_seconds
+            self.position.x -= distance
         elif self.direction == Direction.DOWN:
-            self.position.y += self.velocity * elapsed_seconds
+            self.position.y += distance
 
 
 class EntityRegistry:
@@ -59,6 +74,7 @@ class EntityRegistry:
             type_id=type_id,
             position=position,
             velocity=description.game.default.velocity,
+            solid=description.game.default.solid,
             direction=Direction[description.game.default.direction.upper()],
             action=Action[description.game.default.action.upper()],
         )
