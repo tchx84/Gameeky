@@ -12,6 +12,7 @@ from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
+    TICK,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
@@ -102,8 +103,16 @@ def test_client_message():
     while not mock.called:
         update()
 
-    # Force the scene to process the message and don't depend on timing
-    server.scene.tick()
+
+@pytest.mark.timeout(5)
+def test_server_tick():
+    mock = Mock()
+
+    # Wait for at least one tick to let the server process updates
+    GLib.timeout_add(TICK * 2, mock)
+
+    while not mock.called:
+        update()
 
     assert server.scene.entities[0].position.x > 0
 

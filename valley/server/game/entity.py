@@ -4,6 +4,7 @@ from ...common.action import Action
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
+from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
 
 
@@ -12,15 +13,35 @@ class Entity(CommonEntity):
         super().__init__(*args, **kargs)
         self.velocity = velocity
 
+        self._last_action = None
+        self._last_timestamp = None
+
+    def _get_elapsed_milliseconds(self):
+        if self.action != self._last_action:
+            self._last_timestamp = get_time_milliseconds()
+
+        timestamp = get_time_milliseconds()
+        elapsed = timestamp - self._last_timestamp
+
+        self._last_action = self.action
+        self._last_timestamp = timestamp
+
+        return elapsed
+
+    def idle(self):
+        self._get_elapsed_milliseconds()
+
     def move(self) -> None:
+        elapsed_seconds = self._get_elapsed_milliseconds() / 1000
+
         if self.direction == Direction.RIGHT:
-            self.position.x += self.velocity
+            self.position.x += self.velocity * elapsed_seconds
         elif self.direction == Direction.UP:
-            self.position.y -= self.velocity
+            self.position.y -= self.velocity * elapsed_seconds
         elif self.direction == Direction.LEFT:
-            self.position.x -= self.velocity
+            self.position.x -= self.velocity * elapsed_seconds
         elif self.direction == Direction.DOWN:
-            self.position.y += self.velocity
+            self.position.y += self.velocity * elapsed_seconds
 
 
 class EntityRegistry:

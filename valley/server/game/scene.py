@@ -28,6 +28,8 @@ class Scene(CommonScene, GObject.GObject):
 
     def tick(self):
         for entity in self._entity_by_id.values():
+            if entity.action == Action.NOTHING:
+                entity.idle()
             if entity.action == Action.MOVE:
                 entity.move()
 
