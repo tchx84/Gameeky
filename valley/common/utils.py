@@ -3,7 +3,7 @@ import os
 from gi.repository import GLib
 
 
-def get_monotonic_time_ms():
+def get_time_milliseconds():
     return int(GLib.get_monotonic_time() / 1000)
 
 

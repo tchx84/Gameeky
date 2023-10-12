@@ -6,7 +6,7 @@ from ...common.action import Action
 from ...common.direction import Direction
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
-from ...common.utils import get_monotonic_time_ms
+from ...common.utils import get_time_milliseconds
 from ...common.utils import get_data_path
 
 
@@ -17,7 +17,7 @@ class Animation:
 
     def get_frame(self) -> Gdk.Texture:
         index = int(
-            (get_monotonic_time_ms() / self._frame_duration) % len(self._frames)
+            (get_time_milliseconds() / self._frame_duration) % len(self._frames)
         )
         return self._frames[index]
 
