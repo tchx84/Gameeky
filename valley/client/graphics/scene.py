@@ -1,3 +1,5 @@
+import math
+
 from gi.repository import Gtk, Gdk, Graphene
 
 from .entity import EntityRegistry
@@ -26,11 +28,11 @@ class Scene(Gtk.Widget):
 
         snapshot.append_color(black, background_rect)
 
-        screen_tile_width = screen_width / self._model.width
-        screen_tile_height = screen_height / self._model.height
+        screen_tile_width = math.ceil(screen_width / self._model.width)
+        screen_tile_height = math.ceil(screen_height / self._model.height)
 
-        screen_offset_x = (screen_width / 2) - (screen_tile_width / 2)
-        screen_offset_y = (screen_height / 2) - (screen_tile_height / 2)
+        screen_offset_x = math.ceil((screen_width / 2) - (screen_tile_width / 2))
+        screen_offset_y = math.ceil((screen_height / 2) - (screen_tile_height / 2))
 
         for entity in self._model.entities:
             screen_x = (entity.position.x - self._model.anchor.x) * screen_tile_width
