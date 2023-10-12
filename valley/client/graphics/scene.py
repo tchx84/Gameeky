@@ -41,6 +41,11 @@ class Scene(Gtk.Widget):
             x = screen_x + screen_offset_x
             y = screen_y + screen_offset_y
 
+            if x + screen_tile_width < 0 or x > screen_width:
+                continue
+            if y + screen_tile_height < 0 or y > screen_height:
+                continue
+
             entity_rect = Graphene.Rect()
             entity_rect.init(x, y, screen_tile_width, screen_tile_width)
 
