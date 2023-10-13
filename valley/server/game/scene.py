@@ -45,11 +45,11 @@ class SpatialPartition:
 
     def find_by_direction(
         self,
-        this_entity: CommonEntity,
+        entity: CommonEntity,
         direction: Direction,
     ) -> List[CommonEntity]:
-        x = round(this_entity.position.x)
-        y = round(this_entity.position.y)
+        x = round(entity.position.x)
+        y = round(entity.position.y)
 
         if direction == Direction.RIGHT:
             x += 1
