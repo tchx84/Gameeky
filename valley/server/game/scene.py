@@ -65,7 +65,7 @@ class SpatialPartition:
         distance_x: int,
         distance_y: int,
     ) -> List[Entity]:
-        entities: List[Entity] = []
+        entities = []
 
         from_range_x = math.floor(max(target.position.x - distance_x, 0))
         to_range_x = math.floor(min(target.position.x + distance_x, self.width))
@@ -75,8 +75,7 @@ class SpatialPartition:
 
         for y in range(from_range_y, to_range_y):
             for x in range(from_range_x, to_range_x):
-                for entity in self._entity_by_position.get((x, y), []):
-                    entities.append(entity)
+                entities += self._entity_by_position.get((x, y), [])
 
         return entities
 
