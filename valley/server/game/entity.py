@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict
 
 from ...common.action import Action
 from ...common.scanner import Description
@@ -14,10 +14,10 @@ class Entity(CommonEntity):
         self.velocity = velocity
         self.solid = solid
 
-        self._last_action = None
-        self._last_timestamp = None
+        self._last_action = Action.IDLE
+        self._last_timestamp = get_time_milliseconds()
 
-    def _get_elapsed_milliseconds(self):
+    def tick(self) -> int:
         if self.action != self._last_action:
             self._last_timestamp = get_time_milliseconds()
 
@@ -29,26 +29,20 @@ class Entity(CommonEntity):
 
         return elapsed
 
-    def idle(self):
-        self._get_elapsed_milliseconds()
+    def idle(self) -> None:
+        self.tick()
 
-    def move(self, obstacles: List["Entity"]) -> None:
-        elapsed_seconds = self._get_elapsed_milliseconds() / 1000
-
-        for obstacle in obstacles:
-            if obstacle.solid is True:
-                return
-
-        distance = self.velocity * elapsed_seconds
+    def move(self) -> None:
+        elapsed_seconds = self.tick() / 1000
 
         if self.direction == Direction.RIGHT:
-            self.position.x += distance
+            self.position.x += self.velocity * elapsed_seconds
         elif self.direction == Direction.UP:
-            self.position.y -= distance
+            self.position.y -= self.velocity * elapsed_seconds
         elif self.direction == Direction.LEFT:
-            self.position.x -= distance
+            self.position.x -= self.velocity * elapsed_seconds
         elif self.direction == Direction.DOWN:
-            self.position.y += distance
+            self.position.y += self.velocity * elapsed_seconds
 
 
 class EntityRegistry:

@@ -1,14 +1,14 @@
 import math
 
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple, List, cast
 
-from gi.repository import GLib, GObject
+from gi.repository import GLib
 
 from .entity import Entity, EntityRegistry
 
 from ...common.action import Action
-from ...common.entity import EntityType, Vector
 from ...common.entity import Entity as CommonEntity
+from ...common.entity import EntityType, Vector
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.definitions import TICK, TILES_X, TILES_Y
@@ -19,9 +19,9 @@ class SpatialPartition:
     def __init__(self, width: int, height: int) -> None:
         self.width = width
         self.height = height
-        self._entity_by_position: Dict[Tuple[int, int], List[CommonEntity]] = {}
+        self._entity_by_position: Dict[Tuple[int, int], List[Entity]] = {}
 
-    def add(self, entity: CommonEntity) -> None:
+    def add(self, entity: Entity) -> None:
         position = (
             math.floor(entity.position.x),
             math.floor(entity.position.y),
@@ -32,7 +32,7 @@ class SpatialPartition:
 
         self._entity_by_position[position].append(entity)
 
-    def remove(self, entity: CommonEntity) -> None:
+    def remove(self, entity: Entity) -> None:
         position = (
             math.floor(entity.position.x),
             math.floor(entity.position.y),
@@ -43,36 +43,29 @@ class SpatialPartition:
         if len(self._entity_by_position[position]) == 0:
             del self._entity_by_position[position]
 
-    def find_by_direction(
-        self,
-        entity: CommonEntity,
-        direction: Direction,
-    ) -> List[CommonEntity]:
-        if direction == Direction.RIGHT:
-            func_x = math.ceil
-            func_y = round
-        elif direction == Direction.UP:
-            func_x = round
-            func_y = math.floor
-        elif direction == Direction.LEFT:
-            func_x = math.floor
-            func_y = round
-        elif direction == Direction.DOWN:
-            func_x = round
-            func_y = math.ceil
-
-        x = func_x(entity.position.x)
-        y = func_y(entity.position.y)
+    def find_by_direction(self, entity: Entity) -> List[Entity]:
+        if entity.direction == Direction.RIGHT:
+            x = math.ceil(entity.position.x)
+            y = round(entity.position.y)
+        elif entity.direction == Direction.UP:
+            x = round(entity.position.x)
+            y = math.floor(entity.position.y)
+        elif entity.direction == Direction.LEFT:
+            x = math.floor(entity.position.x)
+            y = round(entity.position.y)
+        elif entity.direction == Direction.DOWN:
+            x = round(entity.position.x)
+            y = math.ceil(entity.position.y)
 
         return self._entity_by_position.get((x, y), [])
 
     def find_by_distance(
         self,
-        target: CommonEntity,
+        target: Entity,
         distance_x: int,
         distance_y: int,
-    ) -> List[CommonEntity]:
-        entities: List[CommonEntity] = []
+    ) -> List[Entity]:
+        entities: List[Entity] = []
 
         from_range_x = math.floor(max(target.position.x - distance_x, 0))
         to_range_x = math.floor(min(target.position.x + distance_x, self.width))
@@ -88,15 +81,14 @@ class SpatialPartition:
         return entities
 
 
-class Scene(CommonScene, GObject.GObject):
+class Scene:
     def __init__(self, width: int, height: int, spawn: Vector) -> None:
-        CommonScene.__init__(self, width, height)
-        GObject.GObject.__init__(self)
-
         self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
 
+        self.width = width
+        self.height = height
         self.spawn = spawn
 
         GLib.timeout_add(TICK, self.__on_scene_ticked)
@@ -105,15 +97,20 @@ class Scene(CommonScene, GObject.GObject):
         self.tick()
         return GLib.SOURCE_CONTINUE
 
-    def tick(self):
+    def tick(self) -> None:
         for entity in self._entity_by_id.values():
             self._partition.remove(entity)
 
             if entity.action == Action.IDLE:
                 entity.idle()
-            if entity.action == Action.MOVE:
-                obstacles = self._partition.find_by_direction(entity, entity.direction)
-                entity.move(obstacles)
+            elif entity.action == Action.MOVE:
+                obstacles = self._partition.find_by_direction(entity)
+                solids = [o for o in obstacles if o.solid is True]
+
+                if not solids:
+                    entity.move()
+                else:
+                    entity.tick()
 
             self._partition.add(entity)
 
@@ -127,8 +124,6 @@ class Scene(CommonScene, GObject.GObject):
         self._index += 1
         self._entity_by_id[entity.id] = entity
         self._partition.add(entity)
-
-        self.entities.append(entity)
 
         return entity.id
 
@@ -147,7 +142,6 @@ class Scene(CommonScene, GObject.GObject):
 
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)
-        self.entities.remove(entity)
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
         entity = self._entity_by_id[entity_id]
@@ -164,8 +158,12 @@ class Scene(CommonScene, GObject.GObject):
             width=TILES_X,
             height=TILES_Y,
             anchor=entity.position,
-            entities=entities,
+            entities=cast(List[CommonEntity], entities),
         )
+
+    @property
+    def entities(self):
+        return list(self._entity_by_id.values())
 
     @classmethod
     def new_from_description(cls, description: Description) -> "Scene":
