@@ -1,5 +1,3 @@
-import math
-
 from typing import Dict, List
 
 from ...common.action import Action
@@ -34,20 +32,14 @@ class Entity(CommonEntity):
     def idle(self):
         self._get_elapsed_milliseconds()
 
-    def collides(self, obstacle: "Entity", distance: float = 0) -> bool:
-        delta_x = (self.position.x + distance) - obstacle.position.x
-        delta_y = (self.position.y + distance) - obstacle.position.y
-        delta = math.sqrt(delta_x**2 + delta_y**2)
-
-        return delta < 1.0
-
     def move(self, obstacles: List["Entity"]) -> None:
         elapsed_seconds = self._get_elapsed_milliseconds() / 1000
-        distance = self.velocity * elapsed_seconds
 
         for obstacle in obstacles:
-            if obstacle.solid is True and self.collides(obstacle, distance):
+            if obstacle.solid is True:
                 return
+
+        distance = self.velocity * elapsed_seconds
 
         if self.direction == Direction.RIGHT:
             self.position.x += distance

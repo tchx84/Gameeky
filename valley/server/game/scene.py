@@ -48,17 +48,21 @@ class SpatialPartition:
         entity: CommonEntity,
         direction: Direction,
     ) -> List[CommonEntity]:
-        x = round(entity.position.x)
-        y = round(entity.position.y)
-
         if direction == Direction.RIGHT:
-            x += 1
+            func_x = math.ceil
+            func_y = round
         elif direction == Direction.UP:
-            y -= 1
+            func_x = round
+            func_y = math.floor
         elif direction == Direction.LEFT:
-            x -= 1
+            func_x = math.floor
+            func_y = round
         elif direction == Direction.DOWN:
-            y += 1
+            func_x = round
+            func_y = math.ceil
+
+        x = func_x(entity.position.x)
+        y = func_y(entity.position.y)
 
         return self._entity_by_position.get((x, y), [])
 
