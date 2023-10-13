@@ -1,3 +1,5 @@
+import math
+
 from typing import Dict
 
 from ...common.action import Action
@@ -14,35 +16,90 @@ class Entity(CommonEntity):
         self.velocity = velocity
         self.solid = solid
 
-        self._last_action = Action.IDLE
+        self._busy = False
+        self._next_action = Action.IDLE
+        self._next_value = 0.0
+        self._target = Vector()
         self._last_timestamp = get_time_milliseconds()
 
-    def tick(self) -> int:
-        if self.action != self._last_action:
-            self._last_timestamp = get_time_milliseconds()
-
+    def _get_elapsed_milliseconds(self):
         timestamp = get_time_milliseconds()
         elapsed = timestamp - self._last_timestamp
-
-        self._last_action = self.action
         self._last_timestamp = timestamp
 
         return elapsed
 
-    def idle(self) -> None:
-        self.tick()
+    def _prepare_idle(self) -> None:
+        self._busy = True
 
-    def move(self) -> None:
-        elapsed_seconds = self.tick() / 1000
+    def _prepare_move(self) -> None:
+        self._target = Vector(
+            x=math.floor(self.position.x),
+            y=math.floor(self.position.y),
+        )
 
         if self.direction == Direction.RIGHT:
-            self.position.x += self.velocity * elapsed_seconds
+            self._target.x += 1
         elif self.direction == Direction.UP:
-            self.position.y -= self.velocity * elapsed_seconds
+            self._target.y -= 1
         elif self.direction == Direction.LEFT:
-            self.position.x -= self.velocity * elapsed_seconds
+            self._target.x -= 1
         elif self.direction == Direction.DOWN:
-            self.position.y += self.velocity * elapsed_seconds
+            self._target.y += 1
+
+        self._busy = True
+
+    def _prepare_next_tick(self):
+        if self._busy is True:
+            return
+
+        self.action = self._next_action
+
+        if self.action == Action.IDLE:
+            self._prepare_idle()
+        elif self.action == Action.MOVE:
+            self.direction = Direction(self._next_value)
+            self._prepare_move()
+            
+        self._last_timestamp = get_time_milliseconds()
+
+    def tick(self) -> None:
+        if self.action == Action.IDLE:
+            self.idle()
+        elif self.action == Action.MOVE:
+            self.move()
+
+        self._prepare_next_tick()
+
+    def idle(self) -> None:
+        self._busy = False
+
+    def move(self) -> None:
+        elapsed_seconds = self._get_elapsed_milliseconds() / 1000
+        distance = self.velocity * elapsed_seconds
+
+        direction_x = self._target.x - self.position.x
+        direction_y = self._target.y - self.position.y
+
+        distance_x = min(distance, abs(direction_x))
+        distance_y = min(distance, abs(direction_y))
+
+        direction_x = (direction_x / abs(direction_x)) if direction_x else 0
+        direction_y = (direction_y / abs(direction_y)) if direction_y else 0
+
+        self.position.x += distance_x * direction_x
+        self.position.y += distance_y * direction_y
+
+        if self.position.x != self._target.x:
+            return
+        if self.position.y != self._target.y:
+            return
+
+        self._busy = False
+
+    def perform(self, action: Action, value: float) -> None:
+        self._next_action = action
+        self._next_value = value
 
 
 class EntityRegistry:

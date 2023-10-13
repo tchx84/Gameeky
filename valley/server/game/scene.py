@@ -99,18 +99,7 @@ class Scene:
     def tick(self) -> None:
         for entity in self._entity_by_id.values():
             self._partition.remove(entity)
-
-            if entity.action == Action.IDLE:
-                entity.idle()
-            elif entity.action == Action.MOVE:
-                obstacles = self._partition.find_by_direction(entity)
-                solids = [o for o in obstacles if o.solid is True]
-
-                if not solids:
-                    entity.move()
-                else:
-                    entity.tick()
-
+            entity.tick()
             self._partition.add(entity)
 
     def add(self, type_id: int, position: Vector) -> int:
@@ -128,13 +117,7 @@ class Scene:
 
     def update(self, entity_id: int, action: Action, value: float) -> None:
         entity = self._entity_by_id[entity_id]
-
-        if action == Action.IDLE:
-            pass
-        if action == Action.MOVE:
-            entity.direction = Direction(int(value))
-
-        entity.action = action
+        entity.perform(action, value)
 
     def remove(self, entity_id: int) -> None:
         entity = self._entity_by_id[entity_id]
