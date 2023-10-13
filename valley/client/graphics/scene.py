@@ -1,5 +1,3 @@
-import math
-
 from gi.repository import Gtk, Graphene
 
 from .entity import EntityRegistry
@@ -20,20 +18,25 @@ class Scene(Gtk.Widget):
         screen_width = self.get_width()
         screen_height = self.get_height()
 
-        screen_tile_width = math.ceil(screen_width / self._model.width)
-        screen_tile_height = math.ceil(screen_height / self._model.height)
-
-        screen_offset_x = math.ceil((screen_width / 2) - (screen_tile_width / 2))
-        screen_offset_y = math.ceil((screen_height / 2) - (screen_tile_height / 2))
+        tile_width = screen_width / self._model.width
+        tile_height = screen_height / self._model.height
 
         for entity in self._model.entities:
-            screen_x = (entity.position.x - self._model.anchor.x) * screen_tile_width
-            screen_y = (entity.position.y - self._model.anchor.y) * screen_tile_height
+            graphic = EntityRegistry.get_entity(entity)
 
-            x = screen_x + screen_offset_x
-            y = screen_y + screen_offset_y
+            screen_x = (entity.position.x - self._model.anchor.x) * tile_width
+            screen_y = (entity.position.y - self._model.anchor.y) * tile_height
+
+            rect_width = tile_width * graphic.scale_x
+            rect_height = tile_height * graphic.scale_y
+
+            offset_x = (screen_width / 2) - (rect_width / 2)
+            offset_y = (screen_height / 2) - (rect_height / 2)
+
+            rect_x = screen_x + offset_x
+            rect_y = screen_y + offset_y
 
             entity_rect = Graphene.Rect()
-            entity_rect.init(x, y, screen_tile_width, screen_tile_width)
+            entity_rect.init(rect_x, rect_y, rect_width, rect_height)
 
-            snapshot.append_texture(EntityRegistry.get_texture(entity), entity_rect)
+            snapshot.append_texture(graphic.get_texture(entity), entity_rect)

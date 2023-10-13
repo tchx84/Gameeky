@@ -9,6 +9,8 @@
         }
     },
     "graphics": {
+        "scale_x": 1.5,
+        "scale_y": 1.5,
         "default": {
             "path": "sprites/player.png",
             "columns": 6,

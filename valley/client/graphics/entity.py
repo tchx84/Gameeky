@@ -23,18 +23,26 @@ class Animation:
 
 
 class Entity:
-    def __init__(self, type_id: int, default: Animation) -> None:
+    def __init__(
+        self,
+        type_id: int,
+        scale_x: float,
+        scale_y: float,
+        default: Animation,
+    ) -> None:
         self.type_id = type_id
+        self.scale_x = scale_x
+        self.scale_y = scale_y
         self._default = default
         self._animations: Dict[Action, Dict[Direction, Animation]] = {}
 
-    def get_texture(self, action: Action, direction: Direction) -> Gdk.Texture:
-        if action not in self._animations:
+    def get_texture(self, entity: CommonEntity) -> Gdk.Texture:
+        if entity.action not in self._animations:
             return self._default.get_frame()
-        if direction not in self._animations[action]:
+        if entity.direction not in self._animations[entity.action]:
             return self._default.get_frame()
 
-        return self._animations[action][direction].get_frame()
+        return self._animations[entity.action][entity.direction].get_frame()
 
     def add_animation(
         self,
@@ -52,16 +60,19 @@ class EntityRegistry:
     __entities__: Dict[int, Entity] = {}
 
     @classmethod
-    def get_texture(cls, entity: CommonEntity) -> Gdk.Texture:
-        return cls.__entities__[entity.type_id].get_texture(
-            entity.action,
-            entity.direction,
-        )
+    def get_entity(cls, entity: CommonEntity) -> Entity:
+        return cls.__entities__[entity.type_id]
 
     @classmethod
     def register(cls, description: Description) -> None:
         default = cls.create_animation_from_description(description.graphics.default)
-        entity = Entity(type_id=description.id, default=default)
+
+        entity = Entity(
+            type_id=description.id,
+            scale_x=description.graphics.scale_x,
+            scale_y=description.graphics.scale_y,
+            default=default,
+        )
 
         for action in description.graphics.actions:
             for direction in action.directions:
