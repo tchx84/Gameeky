@@ -1,7 +1,7 @@
 {
     "width": 15,
     "height": 11,
-    "spawnpoint": {
+    "spawn": {
         "x": 0,
         "y": 0,
         "z": 0

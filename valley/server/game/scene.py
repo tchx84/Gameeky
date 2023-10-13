@@ -85,7 +85,7 @@ class SpatialPartition:
 
 
 class Scene(CommonScene, GObject.GObject):
-    def __init__(self, width: int, height: int, spawnpoint: Vector) -> None:
+    def __init__(self, width: int, height: int, spawn: Vector) -> None:
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
 
@@ -93,7 +93,7 @@ class Scene(CommonScene, GObject.GObject):
         self._entity_by_id: Dict[int, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
 
-        self.spawnpoint = spawnpoint
+        self.spawn = spawn
 
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
@@ -168,10 +168,10 @@ class Scene(CommonScene, GObject.GObject):
         scene = cls(
             width=description.width,
             height=description.height,
-            spawnpoint=Vector(
-                x=description.spawnpoint.x,
-                y=description.spawnpoint.y,
-                z=description.spawnpoint.z,
+            spawn=Vector(
+                x=description.spawn.x,
+                y=description.spawn.y,
+                z=description.spawn.z,
             ),
         )
 

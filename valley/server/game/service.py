@@ -66,7 +66,7 @@ class Service(GObject.GObject):
     def __on_session_connected(self, manager, client, data):
         request = SessionRequest.deserialize(data)
 
-        entity_id = self.scene.add(request.type_id, position=self.scene.spawnpoint)
+        entity_id = self.scene.add(request.type_id, position=self.scene.spawn)
         session = Session(id=self._index, entity_id=entity_id)
 
         self._index += 1
