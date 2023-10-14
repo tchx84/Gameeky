@@ -31,21 +31,15 @@ class Entity(CommonEntity):
         self._next_value = 0.0
         self._target = Vector()
 
-        self._last_timestamp = get_time_milliseconds()
-        self._timestmap_since_prepare = get_time_milliseconds()
+        timestmap = get_time_milliseconds()
+        self._timestamp_since_tick = timestmap
+        self._timestmap_since_prepare = timestmap
 
-    def _get_elapsed_milliseconds(self):
-        timestamp = get_time_milliseconds()
-        elapsed = timestamp - self._last_timestamp
-        self._last_timestamp = timestamp
+    def _get_elapsed_seconds_since_tick(self):
+        return (get_time_milliseconds() - self._timestamp_since_tick) / 1000
 
-        return elapsed
-
-    def _get_elapsed_milliseconds_since_prepare(self):
-        timestamp = get_time_milliseconds()
-        elapsed = timestamp - self._timestmap_since_prepare
-
-        return elapsed
+    def _get_elapsed_seconds_since_prepare(self):
+        return (get_time_milliseconds() - self._timestmap_since_prepare) / 1000
 
     def _prepare_idle(self) -> None:
         self._busy = True
@@ -94,7 +88,6 @@ class Entity(CommonEntity):
         elif self.action == Action.USE:
             self._prepare_idle()
 
-        self._last_timestamp = get_time_milliseconds()
         self._timestmap_since_prepare = get_time_milliseconds()
 
     def tick(self) -> None:
@@ -107,11 +100,13 @@ class Entity(CommonEntity):
 
         self._prepare_next_tick()
 
+        self._timestamp_since_tick = get_time_milliseconds()
+
     def idle(self) -> None:
         self._busy = False
 
     def move(self) -> None:
-        elapsed_seconds = self._get_elapsed_milliseconds() / 1000
+        elapsed_seconds = self._get_elapsed_seconds_since_tick()
         distance = self.velocity * elapsed_seconds
 
         delta_x = self._target.x - self.position.x
@@ -138,7 +133,7 @@ class Entity(CommonEntity):
         self._busy = False
 
     def use(self) -> None:
-        elapsed_seconds = self._get_elapsed_milliseconds_since_prepare() / 1000
+        elapsed_seconds = self._get_elapsed_seconds_since_prepare()
         targets = self._partition.find_by_direction(self)
 
         # XXX It has no effect yet
