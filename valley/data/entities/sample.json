@@ -88,6 +88,71 @@
                         }
                     }
                 ]
+            },
+            {
+                "name": "use",
+                "directions": [
+                    {
+                        "name": "down",
+                        "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
+                            "frame_duration": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 18,
+                            "last_frame": 23
+                        }
+                    },
+                    {
+                        "name": "right",
+                        "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
+                            "frame_duration": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 24,
+                            "last_frame": 29
+                        }
+                    },
+                    {
+                        "name": "up",
+                        "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
+                            "frame_duration": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": false,
+                            "flip_y": false,
+                            "first_frame": 30,
+                            "last_frame": 35
+                        }
+                    },
+                    {
+                        "name": "left",
+                        "animation": {
+                            "path": "sprites/player.png",
+                            "columns": 6,
+                            "rows": 10,
+                            "frame_duration": 100,
+                            "crop_x": 18,
+                            "crop_y": 18,
+                            "flip_x": true,
+                            "flip_y": false,
+                            "first_frame": 24,
+                            "last_frame": 29
+                        }
+                    }
+                ]
             }
         ]
     }

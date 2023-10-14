@@ -15,6 +15,7 @@ class Keyboard(Gtk.EventControllerKey):
         Gdk.KEY_Up: (Action.MOVE, Direction.UP),
         Gdk.KEY_Left: (Action.MOVE, Direction.LEFT),
         Gdk.KEY_Down: (Action.MOVE, Direction.DOWN),
+        Gdk.KEY_x: (Action.USE, 0),
     }
 
     def __init__(self, widget: Gtk.Widget, service: Service) -> None:

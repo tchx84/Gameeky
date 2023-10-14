@@ -30,12 +30,20 @@ class Entity(CommonEntity):
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
+
         self._last_timestamp = get_time_milliseconds()
+        self._timestmap_since_prepare = get_time_milliseconds()
 
     def _get_elapsed_milliseconds(self):
         timestamp = get_time_milliseconds()
         elapsed = timestamp - self._last_timestamp
         self._last_timestamp = timestamp
+
+        return elapsed
+
+    def _get_elapsed_milliseconds_since_prepare(self):
+        timestamp = get_time_milliseconds()
+        elapsed = timestamp - self._timestmap_since_prepare
 
         return elapsed
 
@@ -69,6 +77,9 @@ class Entity(CommonEntity):
 
         self._busy = True
 
+    def _prepare_use(self):
+        self._busy = True
+
     def _prepare_next_tick(self):
         if self._busy is True:
             return
@@ -80,14 +91,19 @@ class Entity(CommonEntity):
         elif self.action == Action.MOVE:
             self.direction = Direction(self._next_value)
             self._prepare_move()
+        elif self.action == Action.USE:
+            self._prepare_idle()
 
         self._last_timestamp = get_time_milliseconds()
+        self._timestmap_since_prepare = get_time_milliseconds()
 
     def tick(self) -> None:
         if self.action == Action.IDLE:
             self.idle()
         elif self.action == Action.MOVE:
             self.move()
+        elif self.action == Action.USE:
+            self.use()
 
         self._prepare_next_tick()
 
@@ -117,6 +133,19 @@ class Entity(CommonEntity):
         if self.position.x != self._target.x:
             return
         if self.position.y != self._target.y:
+            return
+
+        self._busy = False
+
+    def use(self) -> None:
+        elapsed_seconds = self._get_elapsed_milliseconds_since_prepare() / 1000
+        targets = self._partition.find_by_direction(self)
+
+        # XXX It has no effect yet
+        for target in targets:
+            pass
+
+        if elapsed_seconds < 0.5:
             return
 
         self._busy = False
