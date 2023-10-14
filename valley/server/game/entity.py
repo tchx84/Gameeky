@@ -2,6 +2,8 @@ import math
 
 from typing import Dict
 
+from .partition import SpatialPartition
+
 from ...common.action import Action
 from ...common.scanner import Description
 from ...common.direction import Direction
@@ -11,11 +13,19 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
-    def __init__(self, velocity: float, solid: bool, *args, **kargs) -> None:
+    def __init__(
+        self,
+        velocity: float,
+        solid: bool,
+        partition: SpatialPartition,
+        *args,
+        **kargs,
+    ) -> None:
         super().__init__(*args, **kargs)
         self.velocity = velocity
         self.solid = solid
 
+        self._partition = partition
         self._busy = False
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -87,8 +97,12 @@ class Entity(CommonEntity):
         direction_x = (delta_x / abs(delta_x)) if delta_x else 0
         direction_y = (delta_y / abs(delta_y)) if delta_y else 0
 
+        self._partition.remove(self)
+
         self.position.x += distance_x * direction_x
         self.position.y += distance_y * direction_y
+
+        self._partition.add(self)
 
         if self.position.x != self._target.x:
             return
@@ -110,7 +124,13 @@ class EntityRegistry:
         cls.__entities__[description.id] = description
 
     @classmethod
-    def new_from_values(cls, id: int, type_id: int, position: Vector) -> Entity:
+    def new_from_values(
+        cls,
+        id: int,
+        type_id: int,
+        position: Vector,
+        partition: SpatialPartition,
+    ) -> Entity:
         description = cls.__entities__[type_id]
         return Entity(
             id=id,
@@ -120,4 +140,5 @@ class EntityRegistry:
             solid=description.game.default.solid,
             direction=Direction[description.game.default.direction.upper()],
             action=Action[description.game.default.action.upper()],
+            partition=partition,
         )

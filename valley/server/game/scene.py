@@ -1,83 +1,17 @@
 import math
 
-from typing import Dict, Tuple, List, cast
+from typing import Dict
 
 from gi.repository import GLib
 
+from .partition import SpatialPartition
 from .entity import Entity, EntityRegistry
 
 from ...common.action import Action
-from ...common.entity import Entity as CommonEntity
 from ...common.entity import EntityType, Vector
 from ...common.scanner import Description
-from ...common.direction import Direction
 from ...common.definitions import TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
-
-
-class SpatialPartition:
-    def __init__(self, width: int, height: int) -> None:
-        self.width = width
-        self.height = height
-        self._entity_by_position: Dict[Tuple[int, int], List[Entity]] = {}
-
-    def add(self, entity: Entity) -> None:
-        position = (
-            math.floor(entity.position.x),
-            math.floor(entity.position.y),
-        )
-
-        if position not in self._entity_by_position:
-            self._entity_by_position[position] = []
-
-        self._entity_by_position[position].append(entity)
-
-    def remove(self, entity: Entity) -> None:
-        position = (
-            math.floor(entity.position.x),
-            math.floor(entity.position.y),
-        )
-
-        self._entity_by_position[position].remove(entity)
-
-        if len(self._entity_by_position[position]) == 0:
-            del self._entity_by_position[position]
-
-    def find_by_direction(self, entity: Entity) -> List[Entity]:
-        if entity.direction == Direction.RIGHT:
-            x = math.ceil(entity.position.x)
-            y = round(entity.position.y)
-        elif entity.direction == Direction.UP:
-            x = round(entity.position.x)
-            y = math.floor(entity.position.y)
-        elif entity.direction == Direction.LEFT:
-            x = math.floor(entity.position.x)
-            y = round(entity.position.y)
-        elif entity.direction == Direction.DOWN:
-            x = round(entity.position.x)
-            y = math.ceil(entity.position.y)
-
-        return self._entity_by_position.get((x, y), [])
-
-    def find_by_distance(
-        self,
-        target: Entity,
-        distance_x: int,
-        distance_y: int,
-    ) -> List[Entity]:
-        entities = []
-
-        from_range_x = math.floor(max(target.position.x - distance_x, 0))
-        to_range_x = math.floor(min(target.position.x + distance_x, self.width))
-
-        from_range_y = math.floor(max(target.position.y - distance_y, 0))
-        to_range_y = math.floor(min(target.position.y + distance_y, self.height))
-
-        for y in range(from_range_y, to_range_y):
-            for x in range(from_range_x, to_range_x):
-                entities += self._entity_by_position.get((x, y), [])
-
-        return entities
 
 
 class Scene:
@@ -98,15 +32,14 @@ class Scene:
 
     def tick(self) -> None:
         for entity in self._entity_by_id.values():
-            self._partition.remove(entity)
             entity.tick()
-            self._partition.add(entity)
 
     def add(self, type_id: int, position: Vector) -> int:
         entity = EntityRegistry.new_from_values(
             id=self._index,
             type_id=type_id,
             position=position,
+            partition=self._partition,
         )
 
         self._index += 1
@@ -140,7 +73,7 @@ class Scene:
             width=TILES_X,
             height=TILES_Y,
             anchor=entity.position,
-            entities=cast(List[CommonEntity], entities),
+            entities=entities,
         )
 
     @property
