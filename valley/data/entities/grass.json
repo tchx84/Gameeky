@@ -17,7 +17,7 @@
             "rows": 1,
             "frame_duration": 250,
             "crop_x": 0,
-            "crop_y":0,
+            "crop_y": 0,
             "flip_x": false,
             "flip_y": false,
             "first_frame": 0,
