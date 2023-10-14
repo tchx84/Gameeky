@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict
+from typing import Dict, List, cast
 
 from .partition import SpatialPartition
 
@@ -43,6 +43,12 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_move(self) -> None:
+        obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
+
+        for obstacle in obstacles:
+            if obstacle.solid:
+                return
+
         self._target = Vector(
             x=math.floor(self.position.x),
             y=math.floor(self.position.y),
