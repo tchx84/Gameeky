@@ -1,0 +1,28 @@
+{
+    "id": 2,
+    "game": {
+        "default": {
+            "velocity": 0.0,
+            "direction": "down",
+            "action": "idle",
+            "solid": false
+        }
+    },
+    "graphics": {
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "default": {
+            "path": "sprites/grass.png",
+            "columns": 1,
+            "rows": 1,
+            "frame_duration": 250,
+            "crop_x": 0,
+            "crop_y":0,
+            "flip_x": false,
+            "flip_y": false,
+            "first_frame": 0,
+            "last_frame": 0
+        },
+        "actions": []
+    }
+}

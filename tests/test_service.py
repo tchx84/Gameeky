@@ -89,8 +89,9 @@ def test_client_register():
 
 
 def test_server_is_populated():
-    assert len(server.scene.entities) == 1
-    assert server.scene.entities[0].position.x == 0
+    # See data/scene/sample.json
+    assert len(server.scene.entities) == 2
+    assert server.scene.entities[1].position.x == 0
 
 
 @pytest.mark.timeout(5)
@@ -114,7 +115,7 @@ def test_server_tick():
     while not mock.called:
         update()
 
-    assert server.scene.entities[0].position.x > 0
+    assert server.scene.entities[1].position.x > 0
 
 
 @pytest.mark.timeout(5)
@@ -144,7 +145,8 @@ def test_client_unregister():
 
 
 def test_server_is_empty():
-    assert len(server.scene.entities) == 0
+    # See data/scene/sample.json
+    assert len(server.scene.entities) == 1
 
 
 def test_server_shutdown():

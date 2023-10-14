@@ -45,6 +45,10 @@ class Entity(CommonEntity):
     def _prepare_move(self) -> None:
         obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
 
+        # Don't allow walking in empty space
+        if not obstacles:
+            return
+
         for obstacle in obstacles:
             if obstacle.solid:
                 return
