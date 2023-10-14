@@ -60,7 +60,7 @@ class Entity(CommonEntity):
         elif self.action == Action.MOVE:
             self.direction = Direction(self._next_value)
             self._prepare_move()
-            
+
         self._last_timestamp = get_time_milliseconds()
 
     def tick(self) -> None:
@@ -78,14 +78,14 @@ class Entity(CommonEntity):
         elapsed_seconds = self._get_elapsed_milliseconds() / 1000
         distance = self.velocity * elapsed_seconds
 
-        direction_x = self._target.x - self.position.x
-        direction_y = self._target.y - self.position.y
+        delta_x = self._target.x - self.position.x
+        delta_y = self._target.y - self.position.y
 
-        distance_x = min(distance, abs(direction_x))
-        distance_y = min(distance, abs(direction_y))
+        distance_x = min(distance, abs(delta_x))
+        distance_y = min(distance, abs(delta_y))
 
-        direction_x = (direction_x / abs(direction_x)) if direction_x else 0
-        direction_y = (direction_y / abs(direction_y)) if direction_y else 0
+        direction_x = (delta_x / abs(delta_x)) if delta_x else 0
+        direction_y = (delta_y / abs(delta_y)) if delta_y else 0
 
         self.position.x += distance_x * direction_x
         self.position.y += distance_y * direction_y
