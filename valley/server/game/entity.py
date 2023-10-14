@@ -104,8 +104,8 @@ class Entity(CommonEntity):
         distance_x = min(distance, abs(delta_x))
         distance_y = min(distance, abs(delta_y))
 
-        direction_x = (delta_x / abs(delta_x)) if delta_x else 0
-        direction_y = (delta_y / abs(delta_y)) if delta_y else 0
+        direction_x = math.copysign(1, delta_x)
+        direction_y = math.copysign(1, delta_y)
 
         self._partition.remove(self)
 
