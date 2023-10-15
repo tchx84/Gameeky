@@ -14,14 +14,14 @@
         }
     },
     "graphics": {
-        "scale_x": 1.0,
-        "scale_y": 1.0,
         "default": {
             "path": "sprites/grass.png",
             "columns": 1,
             "rows": 1,
             "loop": false,
             "duration": 1,
+            "scale_x": 1.0,
+            "scale_y": 1.0,
             "crop_x": 0,
             "crop_y": 0,
             "flip_x": false,

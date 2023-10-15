@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from gi.repository import Gdk, GdkPixbuf
 
@@ -11,15 +11,25 @@ from ...common.utils import get_data_path
 
 
 class Animation:
-    def __init__(self, loop: bool, duration: float, frames: List[Gdk.Texture]) -> None:
+    def __init__(
+        self,
+        loop: bool,
+        duration: float,
+        scale_x: float,
+        scale_y: float,
+        frames: List[Gdk.Texture],
+    ) -> None:
         self._loop = loop
         self._frames = frames
         self._duration = duration * 1000
+        self._scale_x = scale_x
+        self._scale_y = scale_y
+
         self._frame_duration = self._duration / len(self._frames)
         self._timestamp_start = get_time_milliseconds()
         self._timestamp_tick = get_time_milliseconds()
 
-    def _get_index(self):
+    def _get_index(self) -> int:
         timestamp = get_time_milliseconds()
         elapsed_since_start = timestamp - self._timestamp_start
         elapsed_since_tick = timestamp - self._timestamp_tick
@@ -47,25 +57,21 @@ class Animation:
         self._timestamp_tick = timestamp
         return index
 
-    def get_frame(self):
-        return self._frames[self._get_index()]
+    def get_frame(self) -> Tuple[float, float, Gdk.Texture]:
+        return self._scale_x, self._scale_y, self._frames[self._get_index()]
 
 
 class Entity:
     def __init__(
         self,
         type_id: int,
-        scale_x: float,
-        scale_y: float,
         default: Animation,
     ) -> None:
         self.type_id = type_id
-        self.scale_x = scale_x
-        self.scale_y = scale_y
         self._default = default
         self._animations: Dict[Action, Dict[Direction, Animation]] = {}
 
-    def get_texture(self, entity: CommonEntity) -> Gdk.Texture:
+    def get_texture(self, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
         if entity.action not in self._animations:
             return self._default.get_frame()
         if entity.direction not in self._animations[entity.action]:
@@ -89,19 +95,14 @@ class EntityRegistry:
     __entities__: Dict[int, Entity] = {}
 
     @classmethod
-    def get_entity(cls, entity: CommonEntity) -> Entity:
-        return cls.__entities__[entity.type_id]
+    def get_texture(cls, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
+        return cls.__entities__[entity.type_id].get_texture(entity)
 
     @classmethod
     def register(cls, description: Description) -> None:
         default = cls.create_animation_from_description(description.graphics.default)
 
-        entity = Entity(
-            type_id=description.id,
-            scale_x=description.graphics.scale_x,
-            scale_y=description.graphics.scale_y,
-            default=default,
-        )
+        entity = Entity(type_id=description.id, default=default)
 
         for action in description.graphics.actions:
             for direction in action.directions:
@@ -141,6 +142,8 @@ class EntityRegistry:
         return Animation(
             loop=description.loop,
             duration=description.duration,
+            scale_x=description.scale_x,
+            scale_y=description.scale_y,
             frames=frames,
         )
 
