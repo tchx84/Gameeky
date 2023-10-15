@@ -9,7 +9,7 @@
             "duration": 1,
             "removable": false,
             "direction": "down",
-            "action": "idle",
+            "state": "idling",
             "solid": false
         }
     },
@@ -18,7 +18,6 @@
             "path": "sprites/grass.png",
             "columns": 1,
             "rows": 1,
-            "loop": false,
             "duration": 1,
             "scale_x": 1.0,
             "scale_y": 1.0,
@@ -29,6 +28,6 @@
             "first_frame": 0,
             "last_frame": 0
         },
-        "actions": []
+        "states": []
     }
 }

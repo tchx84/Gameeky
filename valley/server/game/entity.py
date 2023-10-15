@@ -5,6 +5,7 @@ from typing import Dict, List, cast
 from .partition import SpatialPartition
 
 from ...common.action import Action
+from ...common.state import State
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
@@ -36,6 +37,7 @@ class Entity(CommonEntity):
         self.solid = solid
 
         self._partition = partition
+        self._action = Action.IDLE
         self._busy = False
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -57,11 +59,11 @@ class Entity(CommonEntity):
         return (get_time_milliseconds() - self._timestamp_action) / 1000
 
     def _prepare_idle(self) -> None:
-        self.action = self._next_action
+        self._action = self._next_action
         self._busy = True
 
     def _prepare_move(self) -> None:
-        self.action = self._next_action
+        self._action = self._next_action
         self.direction = Direction(int(self._next_value))
 
         obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
@@ -97,11 +99,11 @@ class Entity(CommonEntity):
         if seconds_since_action < self.cooldown:
             return
 
-        self.action = self._next_action
+        self._action = self._next_action
         self._busy = True
 
     def _prepare_destroy(self):
-        self.action = self._next_action
+        self._action = self._next_action
         self._busy = True
 
     def _prepare_next_tick(self) -> None:
@@ -124,13 +126,13 @@ class Entity(CommonEntity):
             self.perform(Action.DESTROY, 0)
 
     def tick(self) -> None:
-        if self.action == Action.IDLE:
+        if self._action == Action.IDLE:
             self.idle()
-        elif self.action == Action.MOVE:
+        elif self._action == Action.MOVE:
             self.move()
-        elif self.action == Action.USE:
+        elif self._action == Action.USE:
             self.use()
-        elif self.action == Action.DESTROY:
+        elif self._action == Action.DESTROY:
             self.destroy()
 
         self._check_status()
@@ -139,9 +141,12 @@ class Entity(CommonEntity):
         self._timestamp_tick = get_time_milliseconds()
 
     def idle(self) -> None:
+        self.state = State.IDLING
         self._busy = False
 
     def move(self) -> None:
+        self.state = State.MOVING
+
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
         distance = self.velocity * seconds_since_tick
 
@@ -169,6 +174,8 @@ class Entity(CommonEntity):
         self._busy = False
 
     def use(self) -> None:
+        self.state = State.USING
+
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
@@ -182,12 +189,14 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration:
             return
 
-        self.action = Action.IDLE
+        self._action = Action.IDLE
 
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
     def destroy(self):
+        self.state = State.DESTROYING
+
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
         if seconds_since_prepare < self.duration:
@@ -237,6 +246,6 @@ class EntityRegistry:
             removable=description.game.default.removable,
             solid=description.game.default.solid,
             direction=Direction[description.game.default.direction.upper()],
-            action=Action[description.game.default.action.upper()],
+            state=State[description.game.default.state.upper()],
             partition=partition,
         )

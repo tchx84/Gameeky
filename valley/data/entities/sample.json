@@ -9,7 +9,7 @@
             "duration": 1,
             "removable": false,
             "direction": "down",
-            "action": "idle",
+            "state": "idling",
             "solid": true
         }
     },
@@ -18,7 +18,6 @@
             "path": "sprites/player.png",
             "columns": 6,
             "rows": 10,
-            "loop": true,
             "duration": 1,
             "scale_x": 1.5,
             "scale_y": 1.5,
@@ -29,9 +28,9 @@
             "first_frame": 0,
             "last_frame": 5
         },
-        "actions": [
+        "states": [
             {
-                "name": "move",
+                "name": "moving",
                 "directions": [
                     {
                         "name": "down",
@@ -104,7 +103,7 @@
                 ]
             },
             {
-                "name": "use",
+                "name": "using",
                 "directions": [
                     {
                         "name": "down",

@@ -2,7 +2,7 @@ from typing import Dict, List, Tuple
 
 from gi.repository import Gdk, GdkPixbuf
 
-from ...common.action import Action
+from ...common.state import State
 from ...common.direction import Direction
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
@@ -13,13 +13,11 @@ from ...common.utils import get_data_path
 class Animation:
     def __init__(
         self,
-        loop: bool,
         duration: float,
         scale_x: float,
         scale_y: float,
         frames: List[Gdk.Texture],
     ) -> None:
-        self._loop = loop
         self._frames = frames
         self._duration = duration * 1000
         self._scale_x = scale_x
@@ -27,38 +25,18 @@ class Animation:
 
         self._frame_duration = self._duration / len(self._frames)
         self._timestamp_start = get_time_milliseconds()
-        self._timestamp_tick = get_time_milliseconds()
 
-    def _get_index(self) -> int:
+    def get_frame(self) -> Tuple[float, float, Gdk.Texture]:
         timestamp = get_time_milliseconds()
         elapsed_since_start = timestamp - self._timestamp_start
-        elapsed_since_tick = timestamp - self._timestamp_tick
 
-        completed = elapsed_since_start > self._duration
-        inactive = elapsed_since_tick > self._duration * 2
+        if elapsed_since_start > self._duration:
+            self._timestamp_start = timestamp
+            index = 0
 
         index = int(elapsed_since_start / self._frame_duration) % len(self._frames)
 
-        # If animation has not been used lately, reset it
-        if inactive and self._loop is False:
-            self._timestamp_start = timestamp
-            completed = False
-            index = 0
-
-        # If animation has completed on non-loop mode, stick to last frame
-        if completed and self._loop is False:
-            index = len(self._frames) - 1
-
-        # If animation has completed on loop mode, reset it
-        if completed and self._loop is True:
-            self._timestamp_start = timestamp
-            index = 0
-
-        self._timestamp_tick = timestamp
-        return index
-
-    def get_frame(self) -> Tuple[float, float, Gdk.Texture]:
-        return self._scale_x, self._scale_y, self._frames[self._get_index()]
+        return self._scale_x, self._scale_y, self._frames[index]
 
 
 class Entity:
@@ -69,26 +47,26 @@ class Entity:
     ) -> None:
         self.type_id = type_id
         self._default = default
-        self._animations: Dict[Action, Dict[Direction, Animation]] = {}
+        self._animations: Dict[State, Dict[Direction, Animation]] = {}
 
     def get_texture(self, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
-        if entity.action not in self._animations:
+        if entity.state not in self._animations:
             return self._default.get_frame()
-        if entity.direction not in self._animations[entity.action]:
+        if entity.direction not in self._animations[entity.state]:
             return self._default.get_frame()
 
-        return self._animations[entity.action][entity.direction].get_frame()
+        return self._animations[entity.state][entity.direction].get_frame()
 
     def add_animation(
         self,
-        action: Action,
+        state: State,
         direction: Direction,
         animation: Animation,
     ) -> None:
-        if action not in self._animations:
-            self._animations[action] = {}
+        if state not in self._animations:
+            self._animations[state] = {}
 
-        self._animations[action][direction] = animation
+        self._animations[state][direction] = animation
 
 
 class EntityRegistry:
@@ -104,11 +82,11 @@ class EntityRegistry:
 
         entity = Entity(type_id=description.id, default=default)
 
-        for action in description.graphics.actions:
-            for direction in action.directions:
+        for state in description.graphics.states:
+            for direction in state.directions:
                 animation = cls.create_animation_from_description(direction.animation)
                 entity.add_animation(
-                    Action[action.name.upper()],
+                    State[state.name.upper()],
                     Direction[direction.name.upper()],
                     animation,
                 )
@@ -140,7 +118,6 @@ class EntityRegistry:
             frames.append(Gdk.Texture.new_for_pixbuf(pixbuf))
 
         return Animation(
-            loop=description.loop,
             duration=description.duration,
             scale_x=description.scale_x,
             scale_y=description.scale_y,
