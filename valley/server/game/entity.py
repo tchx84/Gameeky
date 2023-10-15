@@ -31,20 +31,28 @@ class Entity(CommonEntity):
         self._next_value = 0.0
         self._target = Vector()
 
-        timestmap = get_time_milliseconds()
-        self._timestamp_since_tick = timestmap
-        self._timestmap_since_prepare = timestmap
+        timestamp = get_time_milliseconds()
+        self._timestmap_since_prepare = timestamp
+        self._timestamp_since_tick = timestamp
+        self._timestamp_since_action = timestamp
 
-    def _get_elapsed_seconds_since_tick(self):
+    def _get_elapsed_seconds_since_tick(self) -> float:
         return (get_time_milliseconds() - self._timestamp_since_tick) / 1000
 
-    def _get_elapsed_seconds_since_prepare(self):
+    def _get_elapsed_seconds_since_prepare(self) -> float:
         return (get_time_milliseconds() - self._timestmap_since_prepare) / 1000
 
+    def _get_elapsed_seconds_since_action(self) -> float:
+        return (get_time_milliseconds() - self._timestamp_since_action) / 1000
+
     def _prepare_idle(self) -> None:
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_move(self) -> None:
+        self.action = self._next_action
+        self.direction = Direction(int(self._next_value))
+
         obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
 
         # Don't allow walking in empty space
@@ -71,22 +79,25 @@ class Entity(CommonEntity):
 
         self._busy = True
 
-    def _prepare_use(self):
-        self._busy = True
+    def _prepare_use(self) -> None:
+        elapsed_seconds = self._get_elapsed_seconds_since_action()
 
-    def _prepare_next_tick(self):
-        if self._busy is True:
+        if elapsed_seconds < 0.5:
             return
 
         self.action = self._next_action
+        self._busy = True
 
-        if self.action == Action.IDLE:
+    def _prepare_next_tick(self) -> None:
+        if self._busy is True:
+            return
+
+        if self._next_action == Action.IDLE:
             self._prepare_idle()
-        elif self.action == Action.MOVE:
-            self.direction = Direction(self._next_value)
+        elif self._next_action == Action.MOVE:
             self._prepare_move()
-        elif self.action == Action.USE:
-            self._prepare_idle()
+        elif self._next_action == Action.USE:
+            self._prepare_use()
 
         self._timestmap_since_prepare = get_time_milliseconds()
 
@@ -143,7 +154,10 @@ class Entity(CommonEntity):
         if elapsed_seconds < 0.5:
             return
 
+        self.action = Action.IDLE
+
         self._busy = False
+        self._timestamp_since_action = get_time_milliseconds()
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
