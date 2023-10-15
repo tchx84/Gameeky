@@ -20,6 +20,7 @@
             "path": "sprites/grass.png",
             "columns": 1,
             "rows": 1,
+            "loop": false,
             "duration": 1,
             "crop_x": 0,
             "crop_y": 0,

@@ -11,24 +11,44 @@ from ...common.utils import get_data_path
 
 
 class Animation:
-    def __init__(self, duration: float, frames: List[Gdk.Texture]) -> None:
+    def __init__(self, loop: bool, duration: float, frames: List[Gdk.Texture]) -> None:
+        self._loop = loop
         self._frames = frames
         self._duration = duration * 1000
-
         self._frame_duration = self._duration / len(self._frames)
-        self._start_timestamp = get_time_milliseconds()
+        self._timestamp_start = get_time_milliseconds()
+        self._timestamp_tick = get_time_milliseconds()
 
-    def get_frame(self) -> Gdk.Texture:
+    def _get_index(self):
         timestamp = get_time_milliseconds()
-        elapsed = timestamp - self._start_timestamp
+        elapsed_since_start = timestamp - self._timestamp_start
+        elapsed_since_tick = timestamp - self._timestamp_tick
 
-        # Reset animation after long pauses
-        if elapsed > self._duration:
-            self._start_timestamp = timestamp
-            elapsed = 0
+        completed = elapsed_since_start > self._duration
+        inactive = elapsed_since_tick > self._duration * 2
 
-        index = int(elapsed / self._frame_duration) % len(self._frames)
-        return self._frames[index]
+        index = int(elapsed_since_start / self._frame_duration) % len(self._frames)
+
+        # If animation has not been used lately, reset it
+        if inactive and self._loop is False:
+            self._timestamp_start = timestamp
+            completed = False
+            index = 0
+
+        # If animation has completed on non-loop mode, stick to last frame
+        if completed and self._loop is False:
+            index = len(self._frames) - 1
+
+        # If animation has completed on loop mode, reset it
+        if completed and self._loop is True:
+            self._timestamp_start = timestamp
+            index = 0
+
+        self._timestamp_tick = timestamp
+        return index
+
+    def get_frame(self):
+        return self._frames[self._get_index()]
 
 
 class Entity:
@@ -118,7 +138,11 @@ class EntityRegistry:
 
             frames.append(Gdk.Texture.new_for_pixbuf(pixbuf))
 
-        return Animation(duration=description.duration, frames=frames)
+        return Animation(
+            loop=description.loop,
+            duration=description.duration,
+            frames=frames,
+        )
 
     @classmethod
     def transform_pixbuf(

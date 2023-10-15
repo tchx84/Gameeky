@@ -20,6 +20,7 @@
             "path": "sprites/player.png",
             "columns": 6,
             "rows": 10,
+            "loop": true,
             "duration": 1,
             "crop_x": 18,
             "crop_y": 18,
