@@ -32,18 +32,18 @@ class Entity(CommonEntity):
         self._target = Vector()
 
         timestamp = get_time_milliseconds()
-        self._timestmap_since_prepare = timestamp
-        self._timestamp_since_tick = timestamp
-        self._timestamp_since_action = timestamp
+        self._timestmap_prepare = timestamp
+        self._timestamp_tick = timestamp
+        self._timestamp_action = timestamp
 
     def _get_elapsed_seconds_since_tick(self) -> float:
-        return (get_time_milliseconds() - self._timestamp_since_tick) / 1000
+        return (get_time_milliseconds() - self._timestamp_tick) / 1000
 
     def _get_elapsed_seconds_since_prepare(self) -> float:
-        return (get_time_milliseconds() - self._timestmap_since_prepare) / 1000
+        return (get_time_milliseconds() - self._timestmap_prepare) / 1000
 
     def _get_elapsed_seconds_since_action(self) -> float:
-        return (get_time_milliseconds() - self._timestamp_since_action) / 1000
+        return (get_time_milliseconds() - self._timestamp_action) / 1000
 
     def _prepare_idle(self) -> None:
         self.action = self._next_action
@@ -99,7 +99,7 @@ class Entity(CommonEntity):
         elif self._next_action == Action.USE:
             self._prepare_use()
 
-        self._timestmap_since_prepare = get_time_milliseconds()
+        self._timestmap_prepare = get_time_milliseconds()
 
     def tick(self) -> None:
         if self.action == Action.IDLE:
@@ -111,7 +111,7 @@ class Entity(CommonEntity):
 
         self._prepare_next_tick()
 
-        self._timestamp_since_tick = get_time_milliseconds()
+        self._timestamp_tick = get_time_milliseconds()
 
     def idle(self) -> None:
         self._busy = False
@@ -157,7 +157,7 @@ class Entity(CommonEntity):
         self.action = Action.IDLE
 
         self._busy = False
-        self._timestamp_since_action = get_time_milliseconds()
+        self._timestamp_action = get_time_milliseconds()
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
