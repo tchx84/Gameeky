@@ -91,10 +91,10 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_use(self) -> None:
-        elapsed_seconds = self._get_elapsed_seconds_since_action()
+        seconds_since_action = self._get_elapsed_seconds_since_action()
 
         # XXX Cooldown should depend on tool
-        if elapsed_seconds < self.cooldown:
+        if seconds_since_action < self.cooldown:
             return
 
         self.action = self._next_action
@@ -142,8 +142,8 @@ class Entity(CommonEntity):
         self._busy = False
 
     def move(self) -> None:
-        elapsed_seconds = self._get_elapsed_seconds_since_tick()
-        distance = self.velocity * elapsed_seconds
+        seconds_since_tick = self._get_elapsed_seconds_since_tick()
+        distance = self.velocity * seconds_since_tick
 
         delta_x = self._target.x - self.position.x
         delta_y = self._target.y - self.position.y
@@ -188,9 +188,9 @@ class Entity(CommonEntity):
         self._timestamp_action = get_time_milliseconds()
 
     def destroy(self):
-        elapsed_seconds = self._get_elapsed_seconds_since_prepare()
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        if elapsed_seconds < self.duration:
+        if seconds_since_prepare < self.duration:
             return
 
         if self.removable:
