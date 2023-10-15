@@ -125,7 +125,13 @@ class Entity(CommonEntity):
         if self.durability <= 0:
             self.perform(Action.DESTROY, 0)
 
+    def _check_in_final_state(self):
+        return self.state in [State.DESTROYED]
+
     def tick(self) -> None:
+        if self._check_in_final_state():
+            return
+
         if self._action == Action.IDLE:
             self.idle()
         elif self._action == Action.MOVE:
@@ -202,6 +208,7 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration:
             return
 
+        self.state = State.DESTROYED
         self.solid = False
         self.position.z -= 1
 

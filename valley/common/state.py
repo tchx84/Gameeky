@@ -6,3 +6,4 @@ class State(IntEnum):
     MOVING = auto()
     USING = auto()
     DESTROYING = auto()
+    DESTROYED = auto()
