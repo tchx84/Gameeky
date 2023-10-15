@@ -82,7 +82,8 @@ class Entity(CommonEntity):
     def _prepare_use(self) -> None:
         elapsed_seconds = self._get_elapsed_seconds_since_action()
 
-        if elapsed_seconds < 0.5:
+        # XXX Cooldown should depend on tool
+        if elapsed_seconds < 1.0:
             return
 
         self.action = self._next_action
@@ -151,7 +152,8 @@ class Entity(CommonEntity):
         for target in targets:
             pass
 
-        if elapsed_seconds < 0.5:
+        # XXX Usage time should depend on tool
+        if elapsed_seconds < 1.0:
             return
 
         self.action = Action.IDLE
