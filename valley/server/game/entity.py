@@ -193,6 +193,9 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration:
             return
 
+        self.solid = False
+        self.position.z -= 1
+
         if self.removable:
             self._removed = True
 
