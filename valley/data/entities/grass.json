@@ -15,7 +15,7 @@
             "path": "sprites/grass.png",
             "columns": 1,
             "rows": 1,
-            "frame_duration": 250,
+            "duration": 1,
             "crop_x": 0,
             "crop_y": 0,
             "flip_x": false,

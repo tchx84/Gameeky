@@ -11,14 +11,23 @@ from ...common.utils import get_data_path
 
 
 class Animation:
-    def __init__(self, frame_duration: int, frames: List[Gdk.Texture]) -> None:
-        self._frame_duration = frame_duration
+    def __init__(self, duration: float, frames: List[Gdk.Texture]) -> None:
         self._frames = frames
+        self._duration = duration * 1000
+
+        self._frame_duration = self._duration / len(self._frames)
+        self._start_timestamp = get_time_milliseconds()
 
     def get_frame(self) -> Gdk.Texture:
-        index = int(
-            (get_time_milliseconds() / self._frame_duration) % len(self._frames)
-        )
+        timestamp = get_time_milliseconds()
+        elapsed = timestamp - self._start_timestamp
+
+        # Reset animation after long pauses
+        if elapsed > self._duration:
+            self._start_timestamp = timestamp
+            elapsed = 0
+
+        index = int(elapsed / self._frame_duration) % len(self._frames)
         return self._frames[index]
 
 
@@ -109,7 +118,7 @@ class EntityRegistry:
 
             frames.append(Gdk.Texture.new_for_pixbuf(pixbuf))
 
-        return Animation(frame_duration=description.frame_duration, frames=frames)
+        return Animation(duration=description.duration, frames=frames)
 
     @classmethod
     def transform_pixbuf(
