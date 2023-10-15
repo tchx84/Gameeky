@@ -16,6 +16,11 @@ class Entity(CommonEntity):
     def __init__(
         self,
         velocity: float,
+        durability: float,
+        damage: float,
+        duration: float,
+        cooldown: float,
+        removable: float,
         solid: bool,
         partition: SpatialPartition,
         *args,
@@ -23,6 +28,11 @@ class Entity(CommonEntity):
     ) -> None:
         super().__init__(*args, **kargs)
         self.velocity = velocity
+        self.durability = durability
+        self.damage = damage
+        self.duration = duration
+        self.cooldown = cooldown
+        self.removable = removable
         self.solid = solid
 
         self._partition = partition
@@ -30,6 +40,7 @@ class Entity(CommonEntity):
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
+        self._removed = False
 
         timestamp = get_time_milliseconds()
         self._timestmap_prepare = timestamp
@@ -83,9 +94,13 @@ class Entity(CommonEntity):
         elapsed_seconds = self._get_elapsed_seconds_since_action()
 
         # XXX Cooldown should depend on tool
-        if elapsed_seconds < 1.0:
+        if elapsed_seconds < self.cooldown:
             return
 
+        self.action = self._next_action
+        self._busy = True
+
+    def _prepare_destroy(self):
         self.action = self._next_action
         self._busy = True
 
@@ -99,8 +114,14 @@ class Entity(CommonEntity):
             self._prepare_move()
         elif self._next_action == Action.USE:
             self._prepare_use()
+        elif self._next_action == Action.DESTROY:
+            self._prepare_destroy()
 
         self._timestmap_prepare = get_time_milliseconds()
+
+    def _check_status(self):
+        if self.durability <= 0:
+            self.perform(Action.DESTROY, 0)
 
     def tick(self) -> None:
         if self.action == Action.IDLE:
@@ -109,7 +130,10 @@ class Entity(CommonEntity):
             self.move()
         elif self.action == Action.USE:
             self.use()
+        elif self.action == Action.DESTROY:
+            self.destroy()
 
+        self._check_status()
         self._prepare_next_tick()
 
         self._timestamp_tick = get_time_milliseconds()
@@ -145,15 +169,17 @@ class Entity(CommonEntity):
         self._busy = False
 
     def use(self) -> None:
-        elapsed_seconds = self._get_elapsed_seconds_since_prepare()
-        targets = self._partition.find_by_direction(self)
+        seconds_since_tick = self._get_elapsed_seconds_since_tick()
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        # XXX It has no effect yet
+        targets = cast(List["Entity"], self._partition.find_by_direction(self))
+        damage = math.ceil(self.damage * seconds_since_tick)
+
         for target in targets:
-            pass
+            target.durability -= damage
 
         # XXX Usage time should depend on tool
-        if elapsed_seconds < 1.0:
+        if seconds_since_prepare < self.duration:
             return
 
         self.action = Action.IDLE
@@ -161,9 +187,23 @@ class Entity(CommonEntity):
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
+    def destroy(self):
+        elapsed_seconds = self._get_elapsed_seconds_since_prepare()
+
+        if elapsed_seconds < self.duration:
+            return
+
+        if self.removable:
+            self._removed = True
+
+        self._busy = False
+
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
         self._next_value = value
+
+    def removed(self):
+        return self._removed
 
 
 class EntityRegistry:
@@ -187,6 +227,11 @@ class EntityRegistry:
             type_id=type_id,
             position=position,
             velocity=description.game.default.velocity,
+            durability=description.game.default.durability,
+            damage=description.game.default.damage,
+            cooldown=description.game.default.cooldown,
+            duration=description.game.default.duration,
+            removable=description.game.default.removable,
             solid=description.game.default.solid,
             direction=Direction[description.game.default.direction.upper()],
             action=Action[description.game.default.action.upper()],

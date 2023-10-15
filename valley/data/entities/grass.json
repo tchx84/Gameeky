@@ -3,6 +3,11 @@
     "game": {
         "default": {
             "velocity": 0.0,
+            "durability": 100,
+            "damage": 10,
+            "cooldown": 1,
+            "duration": 1,
+            "removable": false,
             "direction": "down",
             "action": "idle",
             "solid": false

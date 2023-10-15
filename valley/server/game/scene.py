@@ -31,8 +31,16 @@ class Scene:
         return GLib.SOURCE_CONTINUE
 
     def tick(self) -> None:
+        removed = []
+
         for entity in self._entity_by_id.values():
             entity.tick()
+
+            if entity.removed():
+                removed.append(entity)
+
+        for entity in removed:
+            self.remove(entity.id)
 
     def add(self, type_id: int, position: Vector) -> int:
         entity = EntityRegistry.new_from_values(

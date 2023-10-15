@@ -5,3 +5,4 @@ class Action(IntEnum):
     IDLE = auto()
     MOVE = auto()
     USE = auto()
+    DESTROY = auto()
