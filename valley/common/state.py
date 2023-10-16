@@ -8,5 +8,6 @@ class State(IntEnum):
     TAKING = auto()
     DROPPING = auto()
     HELD = auto()
+    EXHAUSTED = auto()
     DESTROYING = auto()
     DESTROYED = auto()

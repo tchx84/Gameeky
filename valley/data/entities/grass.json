@@ -3,6 +3,7 @@
     "game": {
         "default": {
             "velocity": 0.0,
+            "stamina": 0,
             "durability": 100,
             "weight": 10,
             "strength": 0,

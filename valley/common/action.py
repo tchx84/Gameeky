@@ -7,4 +7,5 @@ class Action(IntEnum):
     USE = auto()
     TAKE = auto()
     DROP = auto()
+    EXHAUST = auto()
     DESTROY = auto()

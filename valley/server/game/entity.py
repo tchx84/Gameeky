@@ -14,9 +14,20 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
+    __stamina_percent_by_action__ = {
+        Action.IDLE: 0.1,
+        Action.MOVE: -0.1,
+        Action.USE: -0.2,
+        Action.TAKE: -0.1,
+        Action.DROP: 0,
+        Action.DESTROY: 0,
+        Action.EXHAUST: 0.1,
+    }
+
     def __init__(
         self,
         velocity: float,
+        stamina: float,
         durability: float,
         weight: float,
         strength: float,
@@ -31,6 +42,7 @@ class Entity(CommonEntity):
     ) -> None:
         super().__init__(*args, **kargs)
         self.velocity = velocity
+        self.stamina = stamina
         self.durability = durability
         self.weight = weight
         self.strength = strength
@@ -47,6 +59,7 @@ class Entity(CommonEntity):
         self._next_value = 0.0
         self._target = Vector()
         self._held: Optional["Entity"] = None
+        self._max_stamina = self.stamina
         self._removed = False
 
         timestamp = get_time_milliseconds()
@@ -140,6 +153,10 @@ class Entity(CommonEntity):
         self._action = self._next_action
         self._busy = True
 
+    def _prepare_exhaust(self):
+        self._action = self._next_action
+        self._busy = True
+
     def _prepare_next_tick(self) -> None:
         if self._busy is True:
             return
@@ -156,6 +173,8 @@ class Entity(CommonEntity):
             self._prepare_take()
         elif self._next_action == Action.DROP:
             self._prepare_drop()
+        elif self._next_action == Action.EXHAUST:
+            self._prepare_exhaust()
 
         self._timestmap_prepare = get_time_milliseconds()
 
@@ -189,6 +208,9 @@ class Entity(CommonEntity):
             return
         if self.position.y != self._target.y:
             return
+
+        self._action = Action.IDLE
+        self.state = State.IDLING
 
         self._busy = False
 
@@ -261,15 +283,38 @@ class Entity(CommonEntity):
 
         self._busy = False
 
-    def _check_status(self):
+    def _exhaust(self):
+        self.state = State.EXHAUSTED
+
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+
+        if seconds_since_prepare < self.duration * 5.0:
+            return
+
+        self._action = Action.IDLE
+        self.state = State.IDLING
+
+        self._busy = False
+
+    def _check_attributes(self):
         if self.durability <= 0:
             self.perform(Action.DESTROY, 0)
+        if self.stamina <= 0:
+            self.perform(Action.EXHAUST, self.direction)
 
     def _check_in_blocking_state(self):
         return self.state in [
             State.DESTROYED,
             State.HELD,
         ]
+
+    def _update_stamina(self) -> None:
+        seconds_since_tick = self._get_elapsed_seconds_since_tick()
+
+        percent = self.__stamina_percent_by_action__.get(self._action, 0)
+        modifier = (self._max_stamina * percent) * seconds_since_tick
+
+        self.stamina = max(min(self.stamina + modifier, self._max_stamina), 0)
 
     def _update_held(self):
         if self._held is None:
@@ -308,9 +353,12 @@ class Entity(CommonEntity):
             self._take()
         elif self._action == Action.DROP:
             self._drop()
+        elif self._action == Action.EXHAUST:
+            self._exhaust()
 
+        self._check_attributes()
+        self._update_stamina()
         self._update_held()
-        self._check_status()
         self._prepare_next_tick()
 
         self._timestamp_tick = get_time_milliseconds()
@@ -344,6 +392,7 @@ class EntityRegistry:
             type_id=type_id,
             position=position,
             velocity=description.game.default.velocity,
+            stamina=description.game.default.stamina,
             durability=description.game.default.durability,
             weight=description.game.default.weight,
             strength=description.game.default.strength,
