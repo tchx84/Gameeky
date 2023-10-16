@@ -108,6 +108,10 @@ class Entity(CommonEntity):
         elif self.direction == Direction.DOWN:
             self._target.y += 1
 
+        # Don't go outside'of the scene
+        self._target.x = min(max(self._target.x, 0), self._partition.width - 1)
+        self._target.y = min(max(self._target.y, 0), self._partition.height - 1)
+
         self._busy = True
 
     def _prepare_use(self) -> None:
