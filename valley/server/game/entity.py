@@ -222,7 +222,8 @@ class Entity(CommonEntity):
         damage = math.ceil(self.damage * seconds_since_tick)
 
         for target in targets:
-            target.durability -= damage
+            if target is not self._hold:
+                target.durability -= damage
 
         # XXX Usage time should depend on tool
         if seconds_since_prepare < self.duration:
