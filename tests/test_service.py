@@ -12,6 +12,7 @@ from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
+    FPS,
     TICK,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
@@ -95,7 +96,7 @@ def test_server_is_populated():
 
 
 @pytest.mark.timeout(5)
-def test_client_message():
+def test_client_message_move():
     mock = Mock()
 
     server.connect("updated", mock)
@@ -109,13 +110,13 @@ def test_client_message():
 def test_server_tick():
     mock = Mock()
 
-    # Wait for at least one tick to let the server process updates
-    GLib.timeout_add(TICK * 2, mock)
+    # Wait for 2 seconds to guarantee it moved to the next position on x
+    GLib.timeout_add(TICK * FPS * 2, mock)
 
     while not mock.called:
         update()
 
-    assert server.scene.entities[1].position.x > 0
+    assert server.scene.entities[1].position.x == 1
 
 
 @pytest.mark.timeout(5)
@@ -130,7 +131,7 @@ def test_client_request():
 
     # Confirm that it moved
     scene = mock.call_args.args[-1]
-    assert scene.entities[-1].position.x > 0
+    assert scene.entities[-1].position.x == 1
 
 
 @pytest.mark.timeout(5)
