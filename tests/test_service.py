@@ -12,8 +12,6 @@ from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
-    FPS,
-    TICK,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
@@ -23,6 +21,19 @@ from valley.common.definitions import (
 context = None
 server = None
 client = None
+
+
+def find_entity_by_id(entities, id):
+    return next((e for e in entities if e.id == id), None)
+
+
+def wait_for_seconds(seconds):
+    mock = Mock()
+
+    GLib.timeout_add_seconds(seconds, mock)
+
+    while not mock.called:
+        update()
 
 
 def update():
@@ -91,12 +102,15 @@ def test_client_register():
 
 def test_server_is_populated():
     # See data/scene/sample.json
-    assert len(server.scene.entities) == 2
-    assert server.scene.entities[1].position.x == 0
+    assert len(server.scene.entities) == 5
+
+    entity = find_entity_by_id(server.scene.entities, 4)
+
+    assert entity.position.x == 0
 
 
 @pytest.mark.timeout(5)
-def test_client_message_move():
+def test_client_message():
     mock = Mock()
 
     server.connect("updated", mock)
@@ -108,19 +122,15 @@ def test_client_message_move():
 
 @pytest.mark.timeout(5)
 def test_server_tick():
-    mock = Mock()
+    wait_for_seconds(2)
 
-    # Wait for 2 seconds to guarantee it moved to the next position on x
-    GLib.timeout_add(TICK * FPS * 2, mock)
+    entity = find_entity_by_id(server.scene.entities, 4)
 
-    while not mock.called:
-        update()
-
-    assert server.scene.entities[1].position.x == 1
+    assert entity.position.x == 1
 
 
 @pytest.mark.timeout(5)
-def test_client_request():
+def test_client_request_scene_update():
     mock = Mock()
 
     client.connect("updated", mock)
@@ -129,9 +139,95 @@ def test_client_request():
     while not mock.called:
         update()
 
-    # Confirm that it moved
     scene = mock.call_args.args[-1]
-    assert scene.entities[-1].position.x == 1
+    entity = find_entity_by_id(scene.entities, 4)
+
+    assert entity.position.x == 1
+
+
+@pytest.mark.timeout(5)
+def test_server_action_idle():
+    client.message(Action.IDLE, 0)
+    wait_for_seconds(2)
+
+    entity = find_entity_by_id(server.scene.entities, 4)
+
+    assert entity.position.x == 1
+
+
+@pytest.mark.timeout(10)
+def test_server_action_take():
+    entity_moving = find_entity_by_id(server.scene.entities, 4)
+    entity_moved = find_entity_by_id(server.scene.entities, 3)
+
+    assert entity_moved.position.x == 1
+
+    client.message(Action.MOVE, Direction.DOWN)
+    wait_for_seconds(2)
+
+    client.message(Action.TAKE, 0)
+    wait_for_seconds(2)
+
+    client.message(Action.MOVE, Direction.LEFT)
+    wait_for_seconds(2)
+
+    assert entity_moving.position.x == 0
+    assert entity_moved.position.x == -1
+
+
+@pytest.mark.timeout(5)
+def test_server_action_drop():
+    entity_moving = find_entity_by_id(server.scene.entities, 4)
+    entity_moved = find_entity_by_id(server.scene.entities, 3)
+
+    client.message(Action.DROP, 0)
+    wait_for_seconds(2)
+
+    client.message(Action.MOVE, Direction.RIGHT)
+    wait_for_seconds(2)
+
+    assert entity_moving.position.x == 1
+    assert entity_moved.position.x == -1
+
+
+@pytest.mark.timeout(10)
+def test_server_attribute_durability():
+    entity = find_entity_by_id(server.scene.entities, 2)
+
+    assert entity.durability == 100
+
+    client.message(Action.MOVE, Direction.LEFT)
+    wait_for_seconds(2)
+
+    client.message(Action.MOVE, Direction.DOWN)
+    wait_for_seconds(2)
+
+    client.message(Action.USE, 0)
+    wait_for_seconds(4)
+
+    entity = find_entity_by_id(server.scene.entities, 2)
+
+    assert entity is None
+
+
+@pytest.mark.timeout(10)
+def test_server_attribute_stamina():
+    entity = find_entity_by_id(server.scene.entities, 4)
+
+    # Wait to full restore
+    client.message(Action.IDLE, 0)
+    wait_for_seconds(6)
+
+    # See data/entities/sample.json
+    assert entity.stamina == 100
+
+    client.message(Action.MOVE, Direction.RIGHT)
+    wait_for_seconds(1)
+
+    client.message(Action.MOVE, Direction.LEFT)
+    wait_for_seconds(1)
+
+    assert entity.stamina < 100
 
 
 @pytest.mark.timeout(5)
@@ -147,7 +243,7 @@ def test_client_unregister():
 
 def test_server_is_empty():
     # See data/scene/sample.json
-    assert len(server.scene.entities) == 1
+    assert len(server.scene.entities) == 3
 
 
 def test_server_shutdown():

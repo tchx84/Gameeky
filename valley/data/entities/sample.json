@@ -7,10 +7,10 @@
             "durability": 100,
             "weight": 100,
             "strength": 100,
-            "damage": 10,
+            "damage": 100,
             "cooldown": 1,
             "duration": 1,
-            "removable": false,
+            "removable": true,
             "direction": "down",
             "state": "idling",
             "solid": true
