@@ -248,6 +248,10 @@ class Entity(CommonEntity):
         self.solid = False
         self.position.z -= 1
 
+        if self._held is not None:
+            self._held.dropped()
+            self._held = None
+
         if self.removable:
             self._removed = True
 
@@ -275,8 +279,7 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration * scale:
             return
 
-        self._held.state = State.IDLING
-        self._held.solid = True
+        self._held.dropped()
         self._held = None
 
         self.perform(Action.IDLE, self.direction)
@@ -366,6 +369,10 @@ class Entity(CommonEntity):
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
         self._next_value = value
+
+    def dropped(self):
+        self.solid = True
+        self.state = State.IDLING
 
     def removed(self):
         return self._removed
