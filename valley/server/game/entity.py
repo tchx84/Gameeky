@@ -16,9 +16,9 @@ from ...common.entity import Entity as CommonEntity
 class Entity(CommonEntity):
     __stamina_percent_by_action__ = {
         Action.IDLE: 0.1,
-        Action.MOVE: -0.1,
+        Action.MOVE: -0.05,
         Action.USE: -0.2,
-        Action.TAKE: -0.1,
+        Action.TAKE: -0.2,
         Action.DROP: 0,
         Action.DESTROY: 0,
         Action.EXHAUST: 0.1,
