@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict, List, cast
+from typing import Dict, List, Optional, cast
 
 from .partition import SpatialPartition
 
@@ -42,6 +42,7 @@ class Entity(CommonEntity):
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
+        self._hold: Optional["Entity"] = None
         self._removed = False
 
         timestamp = get_time_milliseconds()
@@ -106,6 +107,30 @@ class Entity(CommonEntity):
         self._action = self._next_action
         self._busy = True
 
+    def _prepare_take(self) -> None:
+        if self._hold is not None:
+            return
+
+        entities = cast(List["Entity"], self._partition.find_by_direction(self))
+        if not entities:
+            return
+
+        entity = entities[-1]
+        if entity.solid is False:
+            return
+
+        self._hold = entity
+        self._hold.solid = False
+        self._hold.state = State.HOLD
+
+    def _prepare_drop(self) -> None:
+        if self._hold is None:
+            return
+
+        self._hold.state = State.IDLING
+        self._hold.solid = True
+        self._hold = None
+
     def _prepare_next_tick(self) -> None:
         if self._busy is True:
             return
@@ -118,6 +143,10 @@ class Entity(CommonEntity):
             self._prepare_use()
         elif self._next_action == Action.DESTROY:
             self._prepare_destroy()
+        elif self._next_action == Action.TAKE:
+            self._prepare_take()
+        elif self._next_action == Action.DROP:
+            self._prepare_drop()
 
         self._timestmap_prepare = get_time_milliseconds()
 
@@ -128,6 +157,7 @@ class Entity(CommonEntity):
     def _check_in_final_state(self):
         return self.state in [
             State.DESTROYED,
+            State.HOLD,
         ]
 
     def tick(self) -> None:
@@ -143,6 +173,7 @@ class Entity(CommonEntity):
         elif self._action == Action.DESTROY:
             self.destroy()
 
+        self.take()
         self._check_status()
         self._prepare_next_tick()
 
@@ -218,6 +249,27 @@ class Entity(CommonEntity):
             self._removed = True
 
         self._busy = False
+
+    def take(self):
+        if self._hold is None:
+            return
+
+        self._partition.remove(self._hold)
+
+        self._hold.position.x = self.position.x
+        self._hold.position.y = self.position.y
+        self._hold.direction = self.direction
+
+        if self.direction == Direction.RIGHT:
+            self._hold.position.x += 1
+        if self.direction == Direction.DOWN:
+            self._hold.position.y += 1
+        if self.direction == Direction.LEFT:
+            self._hold.position.x -= 1
+        if self.direction == Direction.UP:
+            self._hold.position.y -= 1
+
+        self._partition.add(self._hold)
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
