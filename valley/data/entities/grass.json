@@ -4,6 +4,8 @@
         "default": {
             "velocity": 0.0,
             "durability": 100,
+            "weight": 10,
+            "strength": 0,
             "damage": 10,
             "cooldown": 1,
             "duration": 1,

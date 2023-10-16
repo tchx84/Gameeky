@@ -18,6 +18,8 @@ class Entity(CommonEntity):
         self,
         velocity: float,
         durability: float,
+        weight: float,
+        strength: float,
         damage: float,
         duration: float,
         cooldown: float,
@@ -30,6 +32,8 @@ class Entity(CommonEntity):
         super().__init__(*args, **kargs)
         self.velocity = velocity
         self.durability = durability
+        self.weight = weight
+        self.strength = strength
         self.damage = damage
         self.duration = duration
         self.cooldown = cooldown
@@ -119,6 +123,9 @@ class Entity(CommonEntity):
         if entity.solid is False:
             return
 
+        if entity.weight > self.strength:
+            return
+
         self._held = entity
         self._held.solid = False
         self._held.state = State.HELD
@@ -129,10 +136,6 @@ class Entity(CommonEntity):
     def _prepare_drop(self) -> None:
         if self._held is None:
             return
-
-        self._held.state = State.IDLING
-        self._held.solid = True
-        self._held = None
 
         self._action = self._next_action
         self._busy = True
@@ -286,12 +289,12 @@ class Entity(CommonEntity):
         self.state = State.TAKING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+        scale = self._held.weight / self.strength
 
-        # XXX duration can be a scaled by entity's weight'
-        if seconds_since_prepare < self.duration / 2:
+        if seconds_since_prepare < self.duration * scale:
             return
 
-        self.state = State.IDLING
+        self.perform(Action.IDLE, self.direction)
 
         self._busy = False
 
@@ -299,12 +302,16 @@ class Entity(CommonEntity):
         self.state = State.DROPPING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+        scale = self._held.weight / self.strength
 
-        # XXX duration can be a scaled by entity's weight'
-        if seconds_since_prepare < self.duration / 4:
+        if seconds_since_prepare < self.duration * scale:
             return
 
-        self.state = State.IDLING
+        self._held.state = State.IDLING
+        self._held.solid = True
+        self._held = None
+
+        self.perform(Action.IDLE, self.direction)
 
         self._busy = False
 
@@ -338,6 +345,8 @@ class EntityRegistry:
             position=position,
             velocity=description.game.default.velocity,
             durability=description.game.default.durability,
+            weight=description.game.default.weight,
+            strength=description.game.default.strength,
             damage=description.game.default.damage,
             cooldown=description.game.default.cooldown,
             duration=description.game.default.duration,
