@@ -159,65 +159,11 @@ class Entity(CommonEntity):
 
         self._timestmap_prepare = get_time_milliseconds()
 
-    def _check_status(self):
-        if self.durability <= 0:
-            self.perform(Action.DESTROY, 0)
-
-    def _check_in_final_state(self):
-        return self.state in [
-            State.DESTROYED,
-            State.HELD,
-        ]
-
-    def _update_held(self):
-        if self._held is None:
-            return
-
-        self._partition.remove(self._held)
-
-        self._held.position.x = self.position.x
-        self._held.position.y = self.position.y
-        self._held.direction = self.direction
-
-        if self.direction == Direction.RIGHT:
-            self._held.position.x += 1
-        if self.direction == Direction.DOWN:
-            self._held.position.y += 1
-        if self.direction == Direction.LEFT:
-            self._held.position.x -= 1
-        if self.direction == Direction.UP:
-            self._held.position.y -= 1
-
-        self._partition.add(self._held)
-
-    def tick(self) -> None:
-        if self._check_in_final_state():
-            return
-
-        if self._action == Action.IDLE:
-            self.idle()
-        elif self._action == Action.MOVE:
-            self.move()
-        elif self._action == Action.USE:
-            self.use()
-        elif self._action == Action.DESTROY:
-            self.destroy()
-        elif self._action == Action.TAKE:
-            self.take()
-        elif self._action == Action.DROP:
-            self.drop()
-
-        self._update_held()
-        self._check_status()
-        self._prepare_next_tick()
-
-        self._timestamp_tick = get_time_milliseconds()
-
-    def idle(self) -> None:
+    def _idle(self) -> None:
         self.state = State.IDLING
         self._busy = False
 
-    def move(self) -> None:
+    def _move(self) -> None:
         self.state = State.MOVING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -246,7 +192,7 @@ class Entity(CommonEntity):
 
         self._busy = False
 
-    def use(self) -> None:
+    def _use(self) -> None:
         self.state = State.USING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -268,7 +214,7 @@ class Entity(CommonEntity):
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
-    def destroy(self):
+    def _destroy(self):
         self.state = State.DESTROYING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -285,7 +231,7 @@ class Entity(CommonEntity):
 
         self._busy = False
 
-    def take(self):
+    def _take(self):
         self.state = State.TAKING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -298,7 +244,7 @@ class Entity(CommonEntity):
 
         self._busy = False
 
-    def drop(self):
+    def _drop(self):
         self.state = State.DROPPING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -314,6 +260,60 @@ class Entity(CommonEntity):
         self.perform(Action.IDLE, self.direction)
 
         self._busy = False
+
+    def _check_status(self):
+        if self.durability <= 0:
+            self.perform(Action.DESTROY, 0)
+
+    def _check_in_blocking_state(self):
+        return self.state in [
+            State.DESTROYED,
+            State.HELD,
+        ]
+
+    def _update_held(self):
+        if self._held is None:
+            return
+
+        self._partition.remove(self._held)
+
+        self._held.position.x = self.position.x
+        self._held.position.y = self.position.y
+        self._held.direction = self.direction
+
+        if self.direction == Direction.RIGHT:
+            self._held.position.x += 1
+        if self.direction == Direction.DOWN:
+            self._held.position.y += 1
+        if self.direction == Direction.LEFT:
+            self._held.position.x -= 1
+        if self.direction == Direction.UP:
+            self._held.position.y -= 1
+
+        self._partition.add(self._held)
+
+    def tick(self) -> None:
+        if self._check_in_blocking_state():
+            return
+
+        if self._action == Action.IDLE:
+            self._idle()
+        elif self._action == Action.MOVE:
+            self._move()
+        elif self._action == Action.USE:
+            self._use()
+        elif self._action == Action.DESTROY:
+            self._destroy()
+        elif self._action == Action.TAKE:
+            self._take()
+        elif self._action == Action.DROP:
+            self._drop()
+
+        self._update_held()
+        self._check_status()
+        self._prepare_next_tick()
+
+        self._timestamp_tick = get_time_milliseconds()
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
