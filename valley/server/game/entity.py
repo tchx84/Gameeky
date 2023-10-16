@@ -123,6 +123,9 @@ class Entity(CommonEntity):
         self._held.solid = False
         self._held.state = State.HELD
 
+        self._action = self._next_action
+        self._busy = True
+
     def _prepare_drop(self) -> None:
         if self._held is None:
             return
@@ -130,6 +133,9 @@ class Entity(CommonEntity):
         self._held.state = State.IDLING
         self._held.solid = True
         self._held = None
+
+        self._action = self._next_action
+        self._busy = True
 
     def _prepare_next_tick(self) -> None:
         if self._busy is True:
@@ -160,6 +166,27 @@ class Entity(CommonEntity):
             State.HELD,
         ]
 
+    def _update_held(self):
+        if self._held is None:
+            return
+
+        self._partition.remove(self._held)
+
+        self._held.position.x = self.position.x
+        self._held.position.y = self.position.y
+        self._held.direction = self.direction
+
+        if self.direction == Direction.RIGHT:
+            self._held.position.x += 1
+        if self.direction == Direction.DOWN:
+            self._held.position.y += 1
+        if self.direction == Direction.LEFT:
+            self._held.position.x -= 1
+        if self.direction == Direction.UP:
+            self._held.position.y -= 1
+
+        self._partition.add(self._held)
+
     def tick(self) -> None:
         if self._check_in_final_state():
             return
@@ -172,8 +199,12 @@ class Entity(CommonEntity):
             self.use()
         elif self._action == Action.DESTROY:
             self.destroy()
+        elif self._action == Action.TAKE:
+            self.take()
+        elif self._action == Action.DROP:
+            self.drop()
 
-        self.take()
+        self._update_held()
         self._check_status()
         self._prepare_next_tick()
 
@@ -252,25 +283,30 @@ class Entity(CommonEntity):
         self._busy = False
 
     def take(self):
-        if self._held is None:
+        self.state = State.TAKING
+
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+
+        # XXX duration can be a scaled by entity's weight'
+        if seconds_since_prepare < self.duration / 2:
             return
 
-        self._partition.remove(self._held)
+        self.state = State.IDLING
 
-        self._held.position.x = self.position.x
-        self._held.position.y = self.position.y
-        self._held.direction = self.direction
+        self._busy = False
 
-        if self.direction == Direction.RIGHT:
-            self._held.position.x += 1
-        if self.direction == Direction.DOWN:
-            self._held.position.y += 1
-        if self.direction == Direction.LEFT:
-            self._held.position.x -= 1
-        if self.direction == Direction.UP:
-            self._held.position.y -= 1
+    def drop(self):
+        self.state = State.DROPPING
 
-        self._partition.add(self._held)
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+
+        # XXX duration can be a scaled by entity's weight'
+        if seconds_since_prepare < self.duration / 4:
+            return
+
+        self.state = State.IDLING
+
+        self._busy = False
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
