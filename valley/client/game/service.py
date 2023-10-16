@@ -28,13 +28,19 @@ class Service(GObject.GObject):
         self._sequence = 0
 
         self._session_manager = TCPClient(
-            address=address, port=session_port, context=context
+            address=address,
+            port=session_port,
+            context=context,
         )
         self._messages_manager = UDPClient(
-            address=address, port=messages_port, context=context
+            address=address,
+            port=messages_port,
+            context=context,
         )
         self._scene_manager = UDPClient(
-            address=address, port=scene_port, context=context
+            address=address,
+            port=scene_port,
+            context=context,
         )
 
         self._session_manager.connect("received", self.__on_session_registered)
@@ -45,7 +51,10 @@ class Service(GObject.GObject):
         self.emit("registered", self._session)
 
     def __on_scene_received(
-        self, manager: UDPClient, address: Gio.InetSocketAddress, data: bytes
+        self,
+        manager: UDPClient,
+        address: Gio.InetSocketAddress,
+        data: bytes,
     ) -> None:
         self.emit("updated", Scene.deserialize(data))
 
@@ -57,7 +66,12 @@ class Service(GObject.GObject):
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(
-            Message(self._session.id, action, value, self._sequence).serialize()
+            Message(
+                self._session.id,
+                action,
+                value,
+                self._sequence,
+            ).serialize()
         )
         self._sequence += 1
 

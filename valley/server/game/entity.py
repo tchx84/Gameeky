@@ -37,8 +37,8 @@ class Entity(CommonEntity):
         self.solid = solid
 
         self._partition = partition
-        self._action = Action.IDLE
         self._busy = False
+        self._action = Action.IDLE
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
@@ -126,7 +126,9 @@ class Entity(CommonEntity):
             self.perform(Action.DESTROY, 0)
 
     def _check_in_final_state(self):
-        return self.state in [State.DESTROYED]
+        return self.state in [
+            State.DESTROYED,
+        ]
 
     def tick(self) -> None:
         if self._check_in_final_state():

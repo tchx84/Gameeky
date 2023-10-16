@@ -47,11 +47,15 @@ class Service(GObject.GObject):
         self._session_by_id: Dict[int, Session] = {}
 
         self.scene = Scene.new_from_description(
-            Description.new_from_json(get_data_path("scene/sample.json"))
+            Description.new_from_json(
+                get_data_path("scene/sample.json"),
+            )
         )
 
         self._session_manager = TCPServer(
-            port=session_port, clients=clients, context=context
+            port=session_port,
+            clients=clients,
+            context=context,
         )
         self._session_manager.connect("connected", self.__on_session_connected)
         self._session_manager.connect("disconnected", self.__on_session_disconnected)
