@@ -5,6 +5,6 @@ class State(IntEnum):
     IDLING = auto()
     MOVING = auto()
     USING = auto()
-    HOLD = auto()
+    HELD = auto()
     DESTROYING = auto()
     DESTROYED = auto()

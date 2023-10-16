@@ -42,7 +42,7 @@ class Entity(CommonEntity):
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
-        self._hold: Optional["Entity"] = None
+        self._held: Optional["Entity"] = None
         self._removed = False
 
         timestamp = get_time_milliseconds()
@@ -108,7 +108,7 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_take(self) -> None:
-        if self._hold is not None:
+        if self._held is not None:
             return
 
         entities = cast(List["Entity"], self._partition.find_by_direction(self))
@@ -119,17 +119,17 @@ class Entity(CommonEntity):
         if entity.solid is False:
             return
 
-        self._hold = entity
-        self._hold.solid = False
-        self._hold.state = State.HOLD
+        self._held = entity
+        self._held.solid = False
+        self._held.state = State.HELD
 
     def _prepare_drop(self) -> None:
-        if self._hold is None:
+        if self._held is None:
             return
 
-        self._hold.state = State.IDLING
-        self._hold.solid = True
-        self._hold = None
+        self._held.state = State.IDLING
+        self._held.solid = True
+        self._held = None
 
     def _prepare_next_tick(self) -> None:
         if self._busy is True:
@@ -157,7 +157,7 @@ class Entity(CommonEntity):
     def _check_in_final_state(self):
         return self.state in [
             State.DESTROYED,
-            State.HOLD,
+            State.HELD,
         ]
 
     def tick(self) -> None:
@@ -222,7 +222,7 @@ class Entity(CommonEntity):
         damage = math.ceil(self.damage * seconds_since_tick)
 
         for target in targets:
-            if target is not self._hold:
+            if target is not self._held:
                 target.durability -= damage
 
         # XXX Usage time should depend on tool
@@ -252,25 +252,25 @@ class Entity(CommonEntity):
         self._busy = False
 
     def take(self):
-        if self._hold is None:
+        if self._held is None:
             return
 
-        self._partition.remove(self._hold)
+        self._partition.remove(self._held)
 
-        self._hold.position.x = self.position.x
-        self._hold.position.y = self.position.y
-        self._hold.direction = self.direction
+        self._held.position.x = self.position.x
+        self._held.position.y = self.position.y
+        self._held.direction = self.direction
 
         if self.direction == Direction.RIGHT:
-            self._hold.position.x += 1
+            self._held.position.x += 1
         if self.direction == Direction.DOWN:
-            self._hold.position.y += 1
+            self._held.position.y += 1
         if self.direction == Direction.LEFT:
-            self._hold.position.x -= 1
+            self._held.position.x -= 1
         if self.direction == Direction.UP:
-            self._hold.position.y -= 1
+            self._held.position.y -= 1
 
-        self._partition.add(self._hold)
+        self._partition.add(self._held)
 
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
