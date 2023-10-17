@@ -9,3 +9,7 @@ def get_time_milliseconds() -> int:
 
 def get_data_path(*paths) -> str:
     return os.path.join(os.environ.get("DATA_DIR", ""), *paths)
+
+
+def clamp(maximum, minimum, value):
+    return min(max(minimum, value), maximum)

@@ -2,7 +2,7 @@ import math
 
 from typing import Dict, List, Optional, cast
 
-from .definitions import Density
+from .definitions import Density, Recovery, Penalty, Delay
 from .partition import SpatialPartition
 
 from ...common.action import Action
@@ -10,7 +10,7 @@ from ...common.state import State
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
-from ...common.utils import get_time_milliseconds
+from ...common.utils import get_time_milliseconds, clamp
 from ...common.entity import Entity as CommonEntity
 
 
@@ -31,7 +31,7 @@ class Entity(CommonEntity):
         durability: float,
         weight: float,
         strength: float,
-        duration: float,
+        recovery: float,
         removable: float,
         density: Density,
         partition: SpatialPartition,
@@ -43,7 +43,7 @@ class Entity(CommonEntity):
         self.durability = durability
         self.weight = weight
         self.strength = strength
-        self.duration = duration
+        self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
         self.density = density
 
@@ -56,6 +56,7 @@ class Entity(CommonEntity):
         self._held: Optional["Entity"] = None
         self._max_stamina = self.stamina
         self._removed = False
+        self._delay = clamp(Delay.MAX, Delay.MIN, 1.0 - self.recovery)
 
         timestamp = get_time_milliseconds()
         self._timestmap_prepare = timestamp
@@ -112,8 +113,7 @@ class Entity(CommonEntity):
     def _prepare_use(self) -> None:
         seconds_since_action = self._get_elapsed_seconds_since_action()
 
-        # XXX Cooldown should depend on tool
-        if seconds_since_action < self.duration:
+        if seconds_since_action < self._delay:
             return
 
         self._action = self._next_action
@@ -225,8 +225,7 @@ class Entity(CommonEntity):
             if target is not self._held:
                 target.durability -= wear
 
-        # XXX Usage time should depend on tool
-        if seconds_since_prepare < self.duration:
+        if seconds_since_prepare < self._delay:
             return
 
         self._action = Action.IDLE
@@ -238,7 +237,7 @@ class Entity(CommonEntity):
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        if seconds_since_prepare < self.duration:
+        if seconds_since_prepare < Delay.MAX:
             return
 
         self.state = State.DESTROYED
@@ -258,7 +257,7 @@ class Entity(CommonEntity):
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
         ratio = self._held.weight / self.strength
 
-        if seconds_since_prepare < self.duration * ratio:
+        if seconds_since_prepare < self._delay * ratio:
             return
 
         self._action = Action.IDLE
@@ -269,7 +268,7 @@ class Entity(CommonEntity):
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        if seconds_since_prepare < self.duration:
+        if seconds_since_prepare < self._delay:
             return
 
         self._drop()
@@ -282,7 +281,7 @@ class Entity(CommonEntity):
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        if seconds_since_prepare < self.duration * 5.0:
+        if seconds_since_prepare < self._delay * Penalty.MAX:
             return
 
         self._drop()
@@ -398,7 +397,7 @@ class EntityRegistry:
             durability=description.game.default.durability,
             weight=description.game.default.weight,
             strength=description.game.default.strength,
-            duration=description.game.default.duration,
+            recovery=description.game.default.recovery,
             removable=description.game.default.removable,
             density=description.game.default.density,
             direction=Direction[description.game.default.direction.upper()],

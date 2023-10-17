@@ -6,7 +6,7 @@
             "durability": 100,
             "weight": 100,
             "strength": 100,
-            "duration": 1,
+            "recovery": 1,
             "removable": true,
             "direction": "down",
             "state": "idling",
