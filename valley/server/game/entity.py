@@ -288,7 +288,8 @@ class Entity(CommonEntity):
 
         self._drop()
 
-        self._action = Action.IDLE
+        # Interrupt the action provided by the client
+        self.perform(Action.IDLE, 0)
         self._busy = False
 
     def _drop(self):
