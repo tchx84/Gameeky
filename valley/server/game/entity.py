@@ -31,7 +31,6 @@ class Entity(CommonEntity):
         durability: float,
         weight: float,
         strength: float,
-        damage: float,
         duration: float,
         removable: float,
         solid: bool,
@@ -45,7 +44,6 @@ class Entity(CommonEntity):
         self.durability = durability
         self.weight = weight
         self.strength = strength
-        self.damage = damage
         self.duration = duration
         self.removable = removable
         self.solid = solid
@@ -218,11 +216,11 @@ class Entity(CommonEntity):
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
         targets = cast(List["Entity"], self._partition.find_by_direction(self))
-        damage = math.ceil(self.damage * seconds_since_tick)
+        wear = math.ceil(self.strength * seconds_since_tick)
 
         for target in targets:
             if target is not self._held:
-                target.durability -= damage
+                target.durability -= wear
 
         # XXX Usage time should depend on tool
         if seconds_since_prepare < self.duration:
@@ -398,7 +396,6 @@ class EntityRegistry:
             durability=description.game.default.durability,
             weight=description.game.default.weight,
             strength=description.game.default.strength,
-            damage=description.game.default.damage,
             duration=description.game.default.duration,
             removable=description.game.default.removable,
             solid=description.game.default.solid,

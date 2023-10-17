@@ -7,7 +7,6 @@
             "durability": 100,
             "weight": 10,
             "strength": 0,
-            "damage": 10,
             "duration": 1,
             "removable": false,
             "direction": "down",
