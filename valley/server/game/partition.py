@@ -2,7 +2,7 @@ import math
 
 from typing import Dict, Tuple, List
 
-from ...common.entity import Entity
+from ...common.entity import Entity, Vector
 from ...common.direction import Direction
 
 
@@ -33,6 +33,12 @@ class SpatialPartition:
 
         if len(self._entity_by_position[position]) == 0:
             del self._entity_by_position[position]
+
+    def find_by_position(self, position: Vector) -> List[Entity]:
+        x = math.floor(position.x)
+        y = math.floor(position.y)
+
+        return self._entity_by_position.get((x, y), [])
 
     def find_by_direction(self, entity: Entity) -> List[Entity]:
         x = math.floor(entity.position.x)

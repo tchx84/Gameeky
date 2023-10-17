@@ -181,9 +181,12 @@ class Entity(CommonEntity):
     def _do_move(self) -> None:
         self.state = State.MOVING
 
+        surfaces = cast(List["Entity"], self._partition.find_by_position(self.position))
+        friction = 1.0 - surfaces[0].density
+
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
         weight = self.weight + self._held.weight if self._held else self.weight
-        distance = (self.strength / weight) * seconds_since_tick
+        distance = (self.strength / weight) * friction * seconds_since_tick
 
         delta_x = self._target.x - self.position.x
         delta_y = self._target.y - self.position.y
