@@ -214,8 +214,6 @@ class Entity(CommonEntity):
             return
 
         self._action = Action.IDLE
-        self.state = State.IDLING
-
         self._busy = False
 
     def _use(self) -> None:
@@ -236,7 +234,6 @@ class Entity(CommonEntity):
             return
 
         self._action = Action.IDLE
-
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
@@ -270,8 +267,7 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration * scale:
             return
 
-        self.perform(Action.IDLE, self.direction)
-
+        self._action = Action.IDLE
         self._busy = False
 
     def _drop(self):
@@ -286,8 +282,7 @@ class Entity(CommonEntity):
         self._held.dropped()
         self._held = None
 
-        self.perform(Action.IDLE, self.direction)
-
+        self._action = Action.IDLE
         self._busy = False
 
     def _exhaust(self):
@@ -299,8 +294,6 @@ class Entity(CommonEntity):
             return
 
         self._action = Action.IDLE
-        self.state = State.IDLING
-
         self._busy = False
 
     def _check_attributes(self):
