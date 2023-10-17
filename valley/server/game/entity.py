@@ -246,7 +246,7 @@ class Entity(CommonEntity):
         self.solid = False
         self.position.z -= 1
 
-        self.drop()
+        self._drop()
 
         if self.removable:
             self._removed = True
@@ -273,7 +273,7 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration:
             return
 
-        self.drop()
+        self._drop()
 
         self._action = Action.IDLE
         self._busy = False
@@ -286,10 +286,18 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self.duration * 5.0:
             return
 
-        self.drop()
+        self._drop()
 
         self._action = Action.IDLE
         self._busy = False
+
+    def _drop(self):
+        if self._held is None:
+            return
+
+        self._held.solid = True
+        self._held.state = State.IDLING
+        self._held = None
 
     def _check_attributes(self):
         if self.durability <= 0:
@@ -361,14 +369,6 @@ class Entity(CommonEntity):
     def perform(self, action: Action, value: float) -> None:
         self._next_action = action
         self._next_value = value
-
-    def drop(self):
-        if self._held is None:
-            return
-
-        self._held.solid = True
-        self._held.state = State.IDLING
-        self._held = None
 
     def removed(self):
         return self._removed
