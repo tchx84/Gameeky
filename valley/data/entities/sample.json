@@ -2,7 +2,6 @@
     "id": 1,
     "game": {
         "default": {
-            "velocity": 1.0,
             "stamina": 100,
             "durability": 100,
             "weight": 100,

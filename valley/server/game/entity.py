@@ -26,7 +26,6 @@ class Entity(CommonEntity):
 
     def __init__(
         self,
-        velocity: float,
         stamina: float,
         durability: float,
         weight: float,
@@ -39,7 +38,6 @@ class Entity(CommonEntity):
         **kargs,
     ) -> None:
         super().__init__(*args, **kargs)
-        self.velocity = velocity
         self.stamina = stamina
         self.durability = durability
         self.weight = weight
@@ -183,7 +181,8 @@ class Entity(CommonEntity):
         self.state = State.MOVING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
-        distance = self.velocity * seconds_since_tick
+        ratio = self.strength / self.weight
+        distance = ratio * seconds_since_tick
 
         delta_x = self._target.x - self.position.x
         delta_y = self._target.y - self.position.y
@@ -391,7 +390,6 @@ class EntityRegistry:
             id=id,
             type_id=type_id,
             position=position,
-            velocity=description.game.default.velocity,
             stamina=description.game.default.stamina,
             durability=description.game.default.durability,
             weight=description.game.default.weight,
