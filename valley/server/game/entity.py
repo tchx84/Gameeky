@@ -179,11 +179,11 @@ class Entity(CommonEntity):
 
         self._timestmap_prepare = get_time_milliseconds()
 
-    def _idle(self) -> None:
+    def _do_idle(self) -> None:
         self.state = State.IDLING
         self._busy = False
 
-    def _move(self) -> None:
+    def _do_move(self) -> None:
         self.state = State.MOVING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -213,7 +213,7 @@ class Entity(CommonEntity):
         self._action = Action.IDLE
         self._busy = False
 
-    def _use(self) -> None:
+    def _do_use(self) -> None:
         self.state = State.USING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -234,7 +234,7 @@ class Entity(CommonEntity):
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
-    def _destroy(self):
+    def _do_destroy(self):
         self.state = State.DESTROYING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -253,7 +253,7 @@ class Entity(CommonEntity):
 
         self._busy = False
 
-    def _take(self):
+    def _do_take(self):
         self.state = State.TAKING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -265,7 +265,7 @@ class Entity(CommonEntity):
         self._action = Action.IDLE
         self._busy = False
 
-    def _drop(self):
+    def _do_drop(self):
         self.state = State.DROPPING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -278,7 +278,7 @@ class Entity(CommonEntity):
         self._action = Action.IDLE
         self._busy = False
 
-    def _exhaust(self):
+    def _do_exhaust(self):
         self.state = State.EXHAUSTED
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
@@ -337,19 +337,19 @@ class Entity(CommonEntity):
             return
 
         if self._action == Action.IDLE:
-            self._idle()
+            self._do_idle()
         elif self._action == Action.MOVE:
-            self._move()
+            self._do_move()
         elif self._action == Action.USE:
-            self._use()
+            self._do_use()
         elif self._action == Action.DESTROY:
-            self._destroy()
+            self._do_destroy()
         elif self._action == Action.TAKE:
-            self._take()
+            self._do_take()
         elif self._action == Action.DROP:
-            self._drop()
+            self._do_drop()
         elif self._action == Action.EXHAUST:
-            self._exhaust()
+            self._do_exhaust()
 
         self._check_attributes()
         self._update_stamina()
