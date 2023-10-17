@@ -8,7 +8,6 @@
             "weight": 100,
             "strength": 100,
             "damage": 100,
-            "cooldown": 1,
             "duration": 1,
             "removable": true,
             "direction": "down",

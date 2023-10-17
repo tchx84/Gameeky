@@ -33,7 +33,6 @@ class Entity(CommonEntity):
         strength: float,
         damage: float,
         duration: float,
-        cooldown: float,
         removable: float,
         solid: bool,
         partition: SpatialPartition,
@@ -48,7 +47,6 @@ class Entity(CommonEntity):
         self.strength = strength
         self.damage = damage
         self.duration = duration
-        self.cooldown = cooldown
         self.removable = removable
         self.solid = solid
 
@@ -118,7 +116,7 @@ class Entity(CommonEntity):
         seconds_since_action = self._get_elapsed_seconds_since_action()
 
         # XXX Cooldown should depend on tool
-        if seconds_since_action < self.cooldown:
+        if seconds_since_action < self.duration:
             return
 
         self._action = self._next_action
@@ -401,7 +399,6 @@ class EntityRegistry:
             weight=description.game.default.weight,
             strength=description.game.default.strength,
             damage=description.game.default.damage,
-            cooldown=description.game.default.cooldown,
             duration=description.game.default.duration,
             removable=description.game.default.removable,
             solid=description.game.default.solid,
