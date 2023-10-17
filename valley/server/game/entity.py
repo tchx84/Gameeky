@@ -132,7 +132,7 @@ class Entity(CommonEntity):
             return
 
         entity = entities[-1]
-        if entity.density == Density.VOID:
+        if entity.density != Density.SOLID:
             return
 
         self._held = entity
