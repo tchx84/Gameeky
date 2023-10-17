@@ -140,9 +140,6 @@ class Entity(CommonEntity):
         if entity.solid is False:
             return
 
-        if entity.weight > self.strength:
-            return
-
         self._held = entity
         self._held.solid = False
         self._held.state = State.HELD
@@ -249,9 +246,7 @@ class Entity(CommonEntity):
         self.solid = False
         self.position.z -= 1
 
-        if self._held is not None:
-            self._held.dropped()
-            self._held = None
+        self.drop()
 
         if self.removable:
             self._removed = True
@@ -262,9 +257,9 @@ class Entity(CommonEntity):
         self.state = State.TAKING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-        scale = self._held.weight / self.strength
+        ratio = self._held.weight / self.strength
 
-        if seconds_since_prepare < self.duration * scale:
+        if seconds_since_prepare < self.duration * ratio:
             return
 
         self._action = Action.IDLE
@@ -274,13 +269,11 @@ class Entity(CommonEntity):
         self.state = State.DROPPING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-        scale = self._held.weight / self.strength
 
-        if seconds_since_prepare < self.duration * scale:
+        if seconds_since_prepare < self.duration:
             return
 
-        self._held.dropped()
-        self._held = None
+        self.drop()
 
         self._action = Action.IDLE
         self._busy = False
@@ -292,6 +285,8 @@ class Entity(CommonEntity):
 
         if seconds_since_prepare < self.duration * 5.0:
             return
+
+        self.drop()
 
         self._action = Action.IDLE
         self._busy = False
@@ -367,9 +362,13 @@ class Entity(CommonEntity):
         self._next_action = action
         self._next_value = value
 
-    def dropped(self):
-        self.solid = True
-        self.state = State.IDLING
+    def drop(self):
+        if self._held is None:
+            return
+
+        self._held.solid = True
+        self._held.state = State.IDLING
+        self._held = None
 
     def removed(self):
         return self._removed
