@@ -181,8 +181,8 @@ class Entity(CommonEntity):
         self.state = State.MOVING
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
-        ratio = self.strength / self.weight
-        distance = ratio * seconds_since_tick
+        weight = self.weight + self._held.weight if self._held else self.weight
+        distance = (self.strength / weight) * seconds_since_tick
 
         delta_x = self._target.x - self.position.x
         delta_y = self._target.y - self.position.y

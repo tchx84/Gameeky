@@ -163,13 +163,13 @@ def test_server_action_take():
     assert entity_moved.position.x == 1
 
     client.message(Action.MOVE, Direction.DOWN)
-    wait_for_seconds(2)
+    wait_for_seconds(3)
 
     client.message(Action.TAKE, 0)
-    wait_for_seconds(2)
+    wait_for_seconds(3)
 
     client.message(Action.MOVE, Direction.LEFT)
-    wait_for_seconds(2)
+    wait_for_seconds(3)
 
     assert entity_moving.position.x == 0
     assert entity_moved.position.x == -1

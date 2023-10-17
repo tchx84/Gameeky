@@ -3,8 +3,8 @@
     "game": {
         "default": {
             "stamina": 0,
-            "durability": 100,
-            "weight": 10,
+            "durability": 10,
+            "weight": 0,
             "strength": 0,
             "duration": 1,
             "removable": false,
