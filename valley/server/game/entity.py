@@ -2,6 +2,7 @@ import math
 
 from typing import Dict, List, Optional, cast
 
+from .definitions import Density
 from .partition import SpatialPartition
 
 from ...common.action import Action
@@ -32,7 +33,7 @@ class Entity(CommonEntity):
         strength: float,
         duration: float,
         removable: float,
-        solid: bool,
+        density: Density,
         partition: SpatialPartition,
         *args,
         **kargs,
@@ -44,7 +45,7 @@ class Entity(CommonEntity):
         self.strength = strength
         self.duration = duration
         self.removable = removable
-        self.solid = solid
+        self.density = density
 
         self._partition = partition
         self._busy = False
@@ -85,7 +86,7 @@ class Entity(CommonEntity):
             return
 
         for obstacle in obstacles:
-            if obstacle.solid:
+            if obstacle.density == Density.SOLID:
                 return
 
         self._target = Vector(
@@ -131,11 +132,11 @@ class Entity(CommonEntity):
             return
 
         entity = entities[-1]
-        if entity.solid is False:
+        if entity.density == Density.VOID:
             return
 
         self._held = entity
-        self._held.solid = False
+        self._held.density = Density.VOID
         self._held.state = State.HELD
 
         self._action = self._next_action
@@ -238,7 +239,7 @@ class Entity(CommonEntity):
             return
 
         self.state = State.DESTROYED
-        self.solid = False
+        self.density = Density.VOID
         self.position.z -= 1
 
         self._drop()
@@ -291,7 +292,7 @@ class Entity(CommonEntity):
         if self._held is None:
             return
 
-        self._held.solid = True
+        self._held.density = Density.SOLID
         self._held.state = State.IDLING
         self._held = None
 
@@ -396,7 +397,7 @@ class EntityRegistry:
             strength=description.game.default.strength,
             duration=description.game.default.duration,
             removable=description.game.default.removable,
-            solid=description.game.default.solid,
+            density=description.game.default.density,
             direction=Direction[description.game.default.direction.upper()],
             state=State[description.game.default.state.upper()],
             partition=partition,
