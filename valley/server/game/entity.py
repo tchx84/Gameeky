@@ -267,8 +267,9 @@ class Entity(CommonEntity):
         self.state = State.DROPPING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+        ratio = self._held.weight / self.strength
 
-        if seconds_since_prepare < self._delay:
+        if seconds_since_prepare < self._delay * ratio:
             return
 
         self._drop()
