@@ -181,7 +181,7 @@ class Entity(CommonEntity):
         self.state = State.MOVING
 
         surfaces = cast(List["Entity"], self._partition.find_by_position(self.position))
-        friction = 1.0 - surfaces[0].density
+        friction = Density.SOLID - surfaces[0].density
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
         weight = self.weight + self._held.weight if self._held else self.weight
