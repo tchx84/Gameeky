@@ -85,23 +85,12 @@ class Entity(CommonEntity):
             if obstacle.density == Density.SOLID:
                 return
 
-        self._target = Vector(
-            x=math.floor(self.position.x),
-            y=math.floor(self.position.y),
+        self._target = self._get_position_for_direction(
+            math.floor(self.position.x),
+            math.floor(self.position.y),
+            math.floor(self.position.z),
+            self.direction,
         )
-
-        if self.direction == Direction.RIGHT:
-            self._target.x += 1
-        elif self.direction == Direction.UP:
-            self._target.y -= 1
-        elif self.direction == Direction.LEFT:
-            self._target.x -= 1
-        elif self.direction == Direction.DOWN:
-            self._target.y += 1
-
-        # Don't go outside'of the scene
-        self._target.x = clamp(self._partition.width - 1, 0, self._target.x)
-        self._target.y = clamp(self._partition.height - 1, 0, self._target.y)
 
         self._busy = True
 
@@ -282,6 +271,30 @@ class Entity(CommonEntity):
         self.perform(Action.IDLE)
         self._busy = False
 
+    def _get_position_for_direction(
+        self,
+        x: float,
+        y: float,
+        z: float,
+        direction: Direction,
+    ) -> Vector:
+        position = Vector(x=x, y=y, z=z)
+
+        if direction == Direction.RIGHT:
+            position.x += 1
+        if direction == Direction.DOWN:
+            position.y += 1
+        if direction == Direction.LEFT:
+            position.x -= 1
+        if direction == Direction.UP:
+            position.y -= 1
+
+        # Don't go outside'of the scene
+        position.x = clamp(self._partition.width - 1, 0, position.x)
+        position.y = clamp(self._partition.height - 1, 0, position.y)
+
+        return position
+
     def _drop(self):
         if self._held is None:
             return
@@ -317,18 +330,15 @@ class Entity(CommonEntity):
 
         self._partition.remove(self._held)
 
-        self._held.position.x = self.position.x
-        self._held.position.y = self.position.y
-        self._held.direction = self.direction
+        position = self._get_position_for_direction(
+            self.position.x,
+            self.position.y,
+            self.position.z,
+            self.direction,
+        )
 
-        if self.direction == Direction.RIGHT:
-            self._held.position.x += 1
-        if self.direction == Direction.DOWN:
-            self._held.position.y += 1
-        if self.direction == Direction.LEFT:
-            self._held.position.x -= 1
-        if self.direction == Direction.UP:
-            self._held.position.y -= 1
+        self._held.position = position
+        self._held.direction = self.direction
 
         self._partition.add(self._held)
 
