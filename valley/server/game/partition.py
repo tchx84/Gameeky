@@ -2,6 +2,7 @@ import math
 
 from typing import Dict, Tuple, List
 
+from ...common.utils import clamp
 from ...common.entity import Entity, Vector
 from ...common.direction import Direction
 
@@ -33,6 +34,30 @@ class SpatialPartition:
 
         if len(self._entity_by_position[position]) == 0:
             del self._entity_by_position[position]
+
+    def get_position_for_direction(
+        self,
+        x: float,
+        y: float,
+        z: float,
+        direction: Direction,
+    ) -> Vector:
+        position = Vector(x=x, y=y, z=z)
+
+        if direction == Direction.RIGHT:
+            position.x += 1
+        if direction == Direction.DOWN:
+            position.y += 1
+        if direction == Direction.LEFT:
+            position.x -= 1
+        if direction == Direction.UP:
+            position.y -= 1
+
+        # Don't go outside'of the scene
+        position.x = clamp(self.width - 1, 0, position.x)
+        position.y = clamp(self.height - 1, 0, position.y)
+
+        return position
 
     def find_by_position(self, position: Vector) -> List[Entity]:
         x = math.floor(position.x)

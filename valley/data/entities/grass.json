@@ -11,7 +11,8 @@
             "direction": "down",
             "state": "idling",
             "density": 0,
-            "visible": true
+            "visible": true,
+            "spawns": 0
         }
     },
     "graphics": {

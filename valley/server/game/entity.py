@@ -11,6 +11,7 @@ from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
 from ...common.utils import get_time_milliseconds, clamp
+from ...common.entity import EntityType
 from ...common.entity import Entity as CommonEntity
 
 
@@ -30,6 +31,7 @@ class Entity(CommonEntity):
         recovery: float,
         removable: float,
         density: Density,
+        spawns: int,
         partition: SpatialPartition,
         *args,
         **kargs,
@@ -42,9 +44,11 @@ class Entity(CommonEntity):
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
         self.density = clamp(Density.SOLID, Density.VOID, density)
+        self.spawns = spawns
 
         self._partition = partition
         self._busy = False
+        self._spawns = EntityType.EMPTY
         self._action = Action.IDLE
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -85,7 +89,7 @@ class Entity(CommonEntity):
             if obstacle.density == Density.SOLID:
                 return
 
-        self._target = self._get_position_for_direction(
+        self._target = self._partition.get_position_for_direction(
             math.floor(self.position.x),
             math.floor(self.position.y),
             math.floor(self.position.z),
@@ -125,6 +129,9 @@ class Entity(CommonEntity):
         self._held = entity
         self._held.density = Density.VOID
         self._held.state = State.HELD
+
+        if self._is_holding_tool():
+            self._held.visible = False
 
         self._action = self._next_action
         self._busy = True
@@ -199,12 +206,8 @@ class Entity(CommonEntity):
         self._action = Action.IDLE
         self._busy = False
 
-    def _do_use(self) -> None:
-        self.state = State.USING
-
+    def _do_use_wear(self):
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-
         targets = cast(List["Entity"], self._partition.find_by_direction(self))
         wear = math.ceil(self.strength * seconds_since_tick)
 
@@ -212,8 +215,22 @@ class Entity(CommonEntity):
             if target is not self._held:
                 target.durability -= wear
 
+    def _do_use_spawn(self):
+        self._spawns = self._held.spawns
+
+    def _do_use(self) -> None:
+        self.state = State.USING
+
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
+
+        if not self._is_holding_tool():
+            self._do_use_wear()
+
         if seconds_since_prepare < self._delay:
             return
+
+        if self._is_holding_tool():
+            self._do_use_spawn()
 
         self._action = Action.IDLE
         self._busy = False
@@ -271,37 +288,21 @@ class Entity(CommonEntity):
         self.perform(Action.IDLE)
         self._busy = False
 
-    def _get_position_for_direction(
-        self,
-        x: float,
-        y: float,
-        z: float,
-        direction: Direction,
-    ) -> Vector:
-        position = Vector(x=x, y=y, z=z)
-
-        if direction == Direction.RIGHT:
-            position.x += 1
-        if direction == Direction.DOWN:
-            position.y += 1
-        if direction == Direction.LEFT:
-            position.x -= 1
-        if direction == Direction.UP:
-            position.y -= 1
-
-        # Don't go outside'of the scene
-        position.x = clamp(self._partition.width - 1, 0, position.x)
-        position.y = clamp(self._partition.height - 1, 0, position.y)
-
-        return position
+    def _is_holding_tool(self):
+        # XXX A better way to determine that this is a equippable tool
+        return self._held is not None and self._held.spawns != EntityType.EMPTY
 
     def _drop(self):
         if self._held is None:
             return
 
+        self._held.visible = True
         self._held.density = Density.SOLID
         self._held.state = State.IDLING
         self._held = None
+
+    def _reset_flags(self):
+        self._spawns = EntityType.EMPTY
 
     def _check_attributes(self):
         if self.durability <= 0:
@@ -330,7 +331,7 @@ class Entity(CommonEntity):
 
         self._partition.remove(self._held)
 
-        position = self._get_position_for_direction(
+        position = self._partition.get_position_for_direction(
             self.position.x,
             self.position.y,
             self.position.z,
@@ -345,6 +346,8 @@ class Entity(CommonEntity):
     def tick(self) -> None:
         if self._check_in_blocking_state():
             return
+
+        self._reset_flags()
 
         if self._action == Action.IDLE:
             self._do_idle()
@@ -375,6 +378,9 @@ class Entity(CommonEntity):
     def removed(self):
         return self.state == State.DESTROYED and self.removable is True
 
+    def spawned(self):
+        return self._spawns
+
 
 class EntityRegistry:
     __entities__: Dict[int, Description] = {}
@@ -403,6 +409,7 @@ class EntityRegistry:
             recovery=description.game.default.recovery,
             removable=description.game.default.removable,
             density=description.game.default.density,
+            spawns=description.game.default.spawns,
             direction=Direction[description.game.default.direction.upper()],
             state=State[description.game.default.state.upper()],
             partition=partition,

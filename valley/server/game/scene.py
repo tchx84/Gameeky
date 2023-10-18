@@ -31,6 +31,7 @@ class Scene:
         return GLib.SOURCE_CONTINUE
 
     def tick(self) -> None:
+        added = []
         removed = []
 
         for entity in self._entity_by_id.values():
@@ -38,9 +39,21 @@ class Scene:
 
             if entity.removed():
                 removed.append(entity)
+            if entity.spawned():
+                added.append(entity)
 
         for entity in removed:
             self.remove(entity.id)
+
+        for entity in added:
+            position = self._partition.get_position_for_direction(
+                entity.position.x,
+                entity.position.y,
+                entity.position.z,
+                entity.direction,
+            )
+
+            self.add(entity.spawned(), position)
 
     def add(self, type_id: int, position: Vector) -> int:
         entity = EntityRegistry.new_from_values(
