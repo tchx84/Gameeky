@@ -41,7 +41,7 @@ class Entity(CommonEntity):
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
-        self.density = density
+        self.density = clamp(Density.SOLID, Density.VOID, density)
 
         self._partition = partition
         self._busy = False
@@ -101,8 +101,8 @@ class Entity(CommonEntity):
             self._target.y += 1
 
         # Don't go outside'of the scene
-        self._target.x = min(max(self._target.x, 0), self._partition.width - 1)
-        self._target.y = min(max(self._target.y, 0), self._partition.height - 1)
+        self._target.x = clamp(self._partition.width - 1, 0, self._target.x)
+        self._target.y = clamp(self._partition.height - 1, 0, self._target.y)
 
         self._busy = True
 
