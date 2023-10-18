@@ -333,15 +333,13 @@ class Entity(CommonEntity):
 
         self._partition.remove(self._held)
 
-        position = self._partition.get_position_for_direction(
+        self._held.direction = self.direction
+        self._held.position = self._partition.get_position_for_direction(
             self.position.x,
             self.position.y,
             self.position.z,
             self.direction,
         )
-
-        self._held.position = position
-        self._held.direction = self.direction
 
         self._partition.add(self._held)
 
