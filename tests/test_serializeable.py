@@ -23,12 +23,14 @@ def test_serialize_entity():
         position=None,
         direction=Direction.RIGHT,
         state=State.MOVING,
+        visible=False,
     )
     serialized = Entity.deserialize(original.serialize())
 
     assert serialized.id == original.id
     assert serialized.direction == original.direction
     assert serialized.state == original.state
+    assert serialized.visible == original.visible
 
 
 def test_serialize_message():

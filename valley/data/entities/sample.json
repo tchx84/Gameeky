@@ -10,7 +10,8 @@
             "removable": true,
             "direction": "down",
             "state": "idling",
-            "density": 1
+            "density": 1,
+            "visible": true
         }
     },
     "graphics": {
