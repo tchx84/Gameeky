@@ -51,7 +51,6 @@ class Entity(CommonEntity):
         self._target = Vector()
         self._held: Optional["Entity"] = None
         self._max_stamina = self.stamina
-        self._removed = False
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
         timestamp = get_time_milliseconds()
@@ -242,9 +241,6 @@ class Entity(CommonEntity):
         self.state = State.DESTROYED
         self._drop()
 
-        if self.removable:
-            self._removed = True
-
         self._busy = False
 
     def _do_take(self):
@@ -367,7 +363,7 @@ class Entity(CommonEntity):
         self._next_value = value
 
     def removed(self):
-        return self._removed
+        return self.state == State.DESTROYED and self.removable is True
 
 
 class EntityRegistry:
