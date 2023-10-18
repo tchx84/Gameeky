@@ -125,6 +125,8 @@ class Entity(CommonEntity):
         entity = entities[-1]
         if entity.density != Density.SOLID:
             return
+        if entity.visible is False:
+            return
 
         self._held = entity
         self._held.density = Density.VOID
@@ -212,7 +214,7 @@ class Entity(CommonEntity):
         wear = math.ceil(self.strength * seconds_since_tick)
 
         for target in targets:
-            if target is not self._held:
+            if target.visible is True and target is not self._held:
                 target.durability -= wear
 
     def _do_use_spawn(self):
