@@ -221,10 +221,7 @@ def test_server_attribute_stamina():
     # See data/entities/sample.json
     assert entity.stamina == 100
 
-    client.message(Action.MOVE, Direction.RIGHT)
-    wait_for_seconds(1)
-
-    client.message(Action.MOVE, Direction.LEFT)
+    client.message(Action.USE, 0)
     wait_for_seconds(1)
 
     assert entity.stamina < 100

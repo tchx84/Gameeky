@@ -2,7 +2,7 @@ import math
 
 from typing import Dict, List, Optional, cast
 
-from .definitions import Density, Recovery, Penalty, Delay
+from .definitions import Density, Recovery, Penalty, Delay, Cost
 from .partition import SpatialPartition
 
 from ...common.action import Action
@@ -15,14 +15,10 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
-    __stamina_percent_by_action__ = {
-        Action.IDLE: 0.1,
-        Action.MOVE: -0.05,
-        Action.USE: -0.2,
-        Action.TAKE: -0.2,
-        Action.DROP: 0,
-        Action.DESTROY: 0,
-        Action.EXHAUST: 0.1,
+    __stamina_cost_by_action__ = {
+        Action.MOVE: Cost.MAX,
+        Action.USE: Cost.MAX * 4,
+        Action.TAKE: Cost.MAX * 4,
     }
 
     def __init__(
@@ -56,7 +52,7 @@ class Entity(CommonEntity):
         self._held: Optional["Entity"] = None
         self._max_stamina = self.stamina
         self._removed = False
-        self._delay = clamp(Delay.MAX, Delay.MIN, 1.0 - self.recovery)
+        self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
         timestamp = get_time_milliseconds()
         self._timestmap_prepare = timestamp
@@ -313,10 +309,11 @@ class Entity(CommonEntity):
     def _update_stamina(self) -> None:
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
 
-        percent = self.__stamina_percent_by_action__.get(self._action, 0)
-        modifier = (self._max_stamina * percent) * seconds_since_tick
+        cost = self.__stamina_cost_by_action__.get(self._action, Cost.MIN)
+        gain = abs(cost) * self.recovery
+        delta = (gain - (cost - Cost.MIN)) * seconds_since_tick
 
-        self.stamina = max(min(self.stamina + modifier, self._max_stamina), 0)
+        self.stamina = clamp(self._max_stamina, 0, self.stamina + delta)
 
     def _update_held(self):
         if self._held is None:

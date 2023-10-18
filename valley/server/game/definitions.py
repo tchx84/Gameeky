@@ -19,3 +19,8 @@ class Penalty(float, Enum):
 class Delay(float, Enum):
     MIN = 0.0
     MAX = 1.0
+
+
+class Cost(float, Enum):
+    MIN = 1.0
+    MAX = 2.5
