@@ -283,7 +283,7 @@ class Entity(CommonEntity):
         self._drop()
 
         # Interrupt the action provided by the client
-        self.perform(Action.IDLE, 0)
+        self.perform(Action.IDLE)
         self._busy = False
 
     def _drop(self):
@@ -296,9 +296,9 @@ class Entity(CommonEntity):
 
     def _check_attributes(self):
         if self.durability <= 0:
-            self.perform(Action.DESTROY, 0)
+            self.perform(Action.DESTROY)
         if self.stamina <= 0:
-            self.perform(Action.EXHAUST, self.direction)
+            self.perform(Action.EXHAUST)
 
     def _check_in_blocking_state(self):
         return self.state in [
@@ -362,7 +362,7 @@ class Entity(CommonEntity):
 
         self._timestamp_tick = get_time_milliseconds()
 
-    def perform(self, action: Action, value: float) -> None:
+    def perform(self, action: Action, value: float = 0) -> None:
         self._next_action = action
         self._next_value = value
 
