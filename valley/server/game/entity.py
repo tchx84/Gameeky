@@ -116,6 +116,9 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_destroy(self):
+        self.density = Density.VOID
+        self.position.z -= 1
+
         self._action = self._next_action
         self._busy = True
 
@@ -237,9 +240,6 @@ class Entity(CommonEntity):
             return
 
         self.state = State.DESTROYED
-        self.density = Density.VOID
-        self.position.z -= 1
-
         self._drop()
 
         if self.removable:
