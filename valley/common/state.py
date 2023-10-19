@@ -9,5 +9,6 @@ class State(IntEnum):
     DROPPING = auto()
     HELD = auto()
     EXHAUSTED = auto()
+    INTERACTING = auto()
     DESTROYING = auto()
     DESTROYED = auto()
