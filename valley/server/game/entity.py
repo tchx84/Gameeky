@@ -468,6 +468,21 @@ class Entity(CommonEntity):
 
         self._partition.add(self)
 
+    def surroundings(self):
+        surroundings = []
+
+        entities = self._partition.find_by_distance(
+            target=self,
+            distance_x=self.radius,
+            distance_y=self.radius,
+        )
+
+        for entity in entities:
+            if entity.density == Density.SOLID:
+                surroundings.append(entity)
+
+        return surroundings
+
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":
         entity = cls(*args, **kargs)
