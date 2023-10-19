@@ -26,18 +26,4 @@ class Actuator(BaseActuator):
             return
 
         for interactee in interactees:
-            self._partition.remove(interactee)
-
-            interactee.position.x = target.position.x
-            interactee.position.y = target.position.y
-            interactee.position.z = target.position.z
-
-            # Make sure it's inner target also gets updated
-            interactee._target = self._partition.get_position_for_direction(  # type: ignore
-                target.position.x,
-                target.position.y,
-                target.position.z,
-                interactee.direction,
-            )
-
-            self._partition.add(interactee)
+            interactee.teleport(target.position)  # type: ignore

@@ -12,13 +12,7 @@ class Actuator(BaseActuator):
         if target is None:
             return
 
-        self._partition.remove(self._interactee)
-
-        self._interactee.position.x = target.position.x
-        self._interactee.position.y = target.position.y
-        self._interactee.position.z = target.position.z
-
-        self._partition.add(self._interactee)
+        self._interactee.teleport(target.position)  # type: ignore
 
         self._interactee = None
         self._busy = False

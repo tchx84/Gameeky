@@ -452,6 +452,22 @@ class Entity(CommonEntity):
     def targets(self) -> Optional["Entity"]:
         return self.__entity_by_name__.get(self.target)
 
+    def teleport(self, position: Vector) -> None:
+        self._partition.remove(self)
+
+        self.position.x = position.x
+        self.position.y = position.y
+        self.position.z = position.z
+
+        self._target = self._partition.get_position_for_direction(
+            position.x,
+            position.y,
+            position.z,
+            self.direction,
+        )
+
+        self._partition.add(self)
+
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":
         entity = cls(*args, **kargs)
