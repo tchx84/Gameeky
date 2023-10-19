@@ -75,7 +75,7 @@ class Entity(CommonEntity):
 
         self._partition = partition
         self._busy = False
-        self._spawns = EntityType.EMPTY
+        self._spawned = EntityType.EMPTY
         self._action = Action.IDLE
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -269,7 +269,7 @@ class Entity(CommonEntity):
                 target.durability -= wear
 
     def _do_use_spawn(self):
-        self._spawns = self._held.spawns
+        self.spawn()
 
     def _do_use(self) -> None:
         self.state = State.USING
@@ -369,7 +369,7 @@ class Entity(CommonEntity):
         self._held = None
 
     def _reset_flags(self):
-        self._spawns = EntityType.EMPTY
+        self._spawned = EntityType.EMPTY
 
     def _check_attributes(self):
         if self.durability <= 0:
@@ -450,13 +450,19 @@ class Entity(CommonEntity):
     def removed(self):
         return self.state == State.DESTROYED and self.removable is True
 
+    def spawn(self):
+        self._spawned = self.spawns
+
+        if self._held is not None and self._held.spawns != EntityType.EMPTY:
+            self._spawned = self._held.spawns
+
     def spawned(self):
-        return self._spawns
+        return self._spawned
 
     def spawned_at(self):
         position = Vector.new_for_position(self.position)
 
-        if self._held is not None:
+        if self._held is not None and self._held.spawns != EntityType.EMPTY:
             position = Vector.new_for_position(self._held.position)
 
         return position

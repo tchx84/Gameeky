@@ -18,6 +18,6 @@ class Actuator(BaseActuator):
             return
 
         self._entity.state = State.DESTROYED  # type: ignore
-        self._entity._spawns = self._entity.spawns  # type: ignore
+        self._entity.spawn()  # type: ignore
 
         super().tick()
