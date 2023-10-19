@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict
+from typing import Dict, Optional
 
 from gi.repository import GLib
 
@@ -55,11 +55,17 @@ class Scene:
 
             self.add(entity.spawned(), position)
 
-    def add(self, type_id: int, position: Vector) -> int:
+    def add(
+        self,
+        type_id: int,
+        position: Vector,
+        overrides: Optional[Description] = None,
+    ) -> int:
         entity = EntityRegistry.new_from_values(
             id=self._index,
             type_id=type_id,
             position=position,
+            overrides=overrides,
             partition=self._partition,
         )
 
@@ -123,6 +129,10 @@ class Scene:
                 position.y = int(index / scene.width)
                 position.z = depth
 
-                scene.add(type_id, position)
+                # XXX Remove these hacks when format and classes are set
+                overrides = getattr(description.overrides, layer.name, Description())
+                overrides = getattr(overrides, f"{position.x}_{position.y}", None)
+
+                scene.add(type_id, position, overrides)
 
         return scene

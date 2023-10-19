@@ -1,9 +1,13 @@
 import math
 
+from copy import deepcopy
 from typing import Dict, List, Optional, cast
 
 from .definitions import Density, Recovery, Penalty, Delay, Cost
 from .partition import SpatialPartition
+
+from .actuators.base import Actuator
+from .actuators.portal import Actuator as PortalActuator
 
 from ...common.action import Action
 from ...common.state import State
@@ -16,10 +20,16 @@ from ...common.entity import Entity as CommonEntity
 
 
 class Entity(CommonEntity):
+    __entity_by_name__: Dict[str, "Entity"] = {}
+
     __stamina_cost_by_action__ = {
         Action.MOVE: Cost.MAX,
         Action.USE: Cost.MAX * 4,
         Action.TAKE: Cost.MAX * 4,
+    }
+
+    __actuator_by_name__ = {
+        PortalActuator.name: PortalActuator,
     }
 
     def __init__(
@@ -32,6 +42,9 @@ class Entity(CommonEntity):
         removable: float,
         density: Density,
         spawns: int,
+        name: str,
+        actuator: str,
+        target: str,
         partition: SpatialPartition,
         *args,
         **kargs,
@@ -45,6 +58,12 @@ class Entity(CommonEntity):
         self.removable = removable
         self.density = clamp(Density.SOLID, Density.VOID, density)
         self.spawns = spawns
+        self.name = name
+        self.actuator: Optional[Actuator] = None
+        self.target = target
+
+        if ActuatorClass := self.__actuator_by_name__.get(actuator):
+            self.actuator = ActuatorClass(self, partition)
 
         self._partition = partition
         self._busy = False
@@ -54,6 +73,7 @@ class Entity(CommonEntity):
         self._next_value = 0.0
         self._target = Vector()
         self._held: Optional["Entity"] = None
+        self._interactant: Optional["Entity"] = None
         self._max_stamina = self.stamina
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
@@ -149,6 +169,27 @@ class Entity(CommonEntity):
         self._action = self._next_action
         self._busy = True
 
+    def _prepare_interact(self):
+        if self._interactant is not None:
+            return
+
+        interactant = None
+        entities = cast(List["Entity"], self._partition.find_by_direction(self))
+
+        for entity in entities:
+            if entity.actuator is not None:
+                interactant = entity
+                break
+
+        if interactant is None:
+            return
+
+        self._interactant = interactant
+        self._interactant.actuator.prepare(interactee=self)
+
+        self._action = self._next_action
+        self._busy = True
+
     def _prepare_next_tick(self) -> None:
         if self._busy is True:
             return
@@ -167,6 +208,8 @@ class Entity(CommonEntity):
             self._prepare_drop()
         elif self._next_action == Action.EXHAUST:
             self._prepare_exhaust()
+        elif self._next_action == Action.INTERACT:
+            self._prepare_interact()
 
         self._timestmap_prepare = get_time_milliseconds()
 
@@ -291,6 +334,19 @@ class Entity(CommonEntity):
         self.perform(Action.IDLE)
         self._busy = False
 
+    def _do_interact(self):
+        if self._interactant is None:
+            return
+
+        self.state = State.INTERACTING
+
+        if self._interactant.actuator.finished() is False:
+            return
+
+        self.perform(Action.IDLE)
+        self._interactant = None
+        self._busy = False
+
     def _is_holding_tool(self):
         # XXX A better way to determine that this is a equippable tool
         return self._held is not None and self._held.spawns != EntityType.EMPTY
@@ -318,6 +374,10 @@ class Entity(CommonEntity):
             State.DESTROYED,
             State.HELD,
         ]
+
+    def _update_actuator(self) -> None:
+        if self.actuator is not None:
+            self.actuator.tick()
 
     def _update_stamina(self) -> None:
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -364,8 +424,11 @@ class Entity(CommonEntity):
             self._do_drop()
         elif self._action == Action.EXHAUST:
             self._do_exhaust()
+        elif self._action == Action.INTERACT:
+            self._do_interact()
 
         self._check_attributes()
+        self._update_actuator()
         self._update_stamina()
         self._update_held()
         self._prepare_next_tick()
@@ -382,6 +445,18 @@ class Entity(CommonEntity):
     def spawned(self):
         return self._spawns
 
+    def targets(self) -> Optional["Entity"]:
+        return self.__entity_by_name__.get(self.target)
+
+    @classmethod
+    def new_with_name(cls, *args, **kargs) -> "Entity":
+        entity = cls(*args, **kargs)
+
+        if entity.name:
+            cls.__entity_by_name__[entity.name] = entity
+
+        return entity
+
 
 class EntityRegistry:
     __entities__: Dict[int, Description] = {}
@@ -391,27 +466,51 @@ class EntityRegistry:
         cls.__entities__[description.id] = description
 
     @classmethod
+    def find_and_override(
+        cls,
+        type_id: int,
+        overrides: Optional[Description],
+    ) -> Description:
+        registry = cls.__entities__[type_id]
+        description = deepcopy(registry.game.default)
+
+        if overrides is not None:
+            for attribute in vars(overrides):
+                setattr(
+                    description,
+                    attribute,
+                    getattr(overrides, attribute),
+                )
+
+        return description
+
+    @classmethod
     def new_from_values(
         cls,
         id: int,
         type_id: int,
         position: Vector,
+        overrides: Optional[Description],
         partition: SpatialPartition,
     ) -> Entity:
-        description = cls.__entities__[type_id]
-        return Entity(
+        description = cls.find_and_override(type_id=type_id, overrides=overrides)
+        return Entity.new_with_name(
             id=id,
             type_id=type_id,
             position=position,
-            stamina=description.game.default.stamina,
-            durability=description.game.default.durability,
-            weight=description.game.default.weight,
-            strength=description.game.default.strength,
-            recovery=description.game.default.recovery,
-            removable=description.game.default.removable,
-            density=description.game.default.density,
-            spawns=description.game.default.spawns,
-            direction=Direction[description.game.default.direction.upper()],
-            state=State[description.game.default.state.upper()],
+            stamina=description.stamina,
+            durability=description.durability,
+            weight=description.weight,
+            strength=description.strength,
+            recovery=description.recovery,
+            removable=description.removable,
+            density=description.density,
+            visible=description.visible,
+            spawns=description.spawns,
+            name=description.name,
+            actuator=description.actuator,
+            target=description.target,
+            direction=Direction[description.direction.upper()],
+            state=State[description.state.upper()],
             partition=partition,
         )
