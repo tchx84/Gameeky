@@ -15,7 +15,8 @@
             "spawns": 0,
             "name": "",
             "actuator": "",
-            "target": ""
+            "target": "",
+            "radius": 0
         }
     },
     "graphics": {

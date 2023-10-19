@@ -8,6 +8,7 @@ from .partition import SpatialPartition
 
 from .actuators.base import Actuator
 from .actuators.portal import Actuator as PortalActuator
+from .actuators.portal_area import Actuator as PortalAreaActuator
 
 from ...common.action import Action
 from ...common.state import State
@@ -30,6 +31,7 @@ class Entity(CommonEntity):
 
     __actuator_by_name__ = {
         PortalActuator.name: PortalActuator,
+        PortalAreaActuator.name: PortalAreaActuator,
     }
 
     def __init__(
@@ -45,6 +47,7 @@ class Entity(CommonEntity):
         name: str,
         actuator: str,
         target: str,
+        radius: float,
         partition: SpatialPartition,
         *args,
         **kargs,
@@ -61,6 +64,7 @@ class Entity(CommonEntity):
         self.name = name
         self.actuator: Optional[Actuator] = None
         self.target = target
+        self.radius = radius
 
         if ActuatorClass := self.__actuator_by_name__.get(actuator):
             self.actuator = ActuatorClass(self, partition)
@@ -510,6 +514,7 @@ class EntityRegistry:
             name=description.name,
             actuator=description.actuator,
             target=description.target,
+            radius=description.radius,
             direction=Direction[description.direction.upper()],
             state=State[description.state.upper()],
             partition=partition,
