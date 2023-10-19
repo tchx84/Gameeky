@@ -89,10 +89,10 @@ class SpatialPartition:
         entities = []
 
         from_range_x = math.floor(max(target.position.x - distance_x, 0))
-        to_range_x = math.floor(min(target.position.x + distance_x, self.width))
+        to_range_x = math.floor(min(target.position.x + distance_x + 1, self.width))
 
         from_range_y = math.floor(max(target.position.y - distance_y, 0))
-        to_range_y = math.floor(min(target.position.y + distance_y, self.height))
+        to_range_y = math.floor(min(target.position.y + distance_y + 1, self.height))
 
         for y in range(from_range_y, to_range_y):
             for x in range(from_range_x, to_range_x):
