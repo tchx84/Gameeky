@@ -67,7 +67,7 @@ class Entity(CommonEntity):
         self.radius = radius
 
         if ActuatorClass := self.__actuator_by_name__.get(actuator):
-            self.actuator = ActuatorClass(self, partition)
+            self.actuator = ActuatorClass(self)
 
         self._partition = partition
         self._busy = False

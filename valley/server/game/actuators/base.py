@@ -1,16 +1,13 @@
 from typing import Optional
 
-from ..partition import SpatialPartition
-
 from ....common.entity import Entity
 
 
 class Actuator:
     name = "base"
 
-    def __init__(self, entity: Entity, partition: SpatialPartition) -> None:
+    def __init__(self, entity: Entity) -> None:
         self._entity = entity
-        self._partition = partition
         self._interactee: Optional[Entity] = None
         self._busy = False
 
