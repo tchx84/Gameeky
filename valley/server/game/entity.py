@@ -7,6 +7,7 @@ from .definitions import Density, Recovery, Penalty, Delay, Cost
 from .partition import SpatialPartition
 
 from .actuators.base import Actuator
+from .actuators.grower import Actuator as GrowerActuator
 from .actuators.portal import Actuator as PortalActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 
@@ -30,6 +31,7 @@ class Entity(CommonEntity):
     }
 
     __actuator_by_name__ = {
+        GrowerActuator.name: GrowerActuator,
         PortalActuator.name: PortalActuator,
         PortalAreaActuator.name: PortalAreaActuator,
     }
@@ -48,6 +50,7 @@ class Entity(CommonEntity):
         actuator: str,
         target: str,
         radius: float,
+        rate: float,
         partition: SpatialPartition,
         *args,
         **kargs,
@@ -65,6 +68,7 @@ class Entity(CommonEntity):
         self.actuator: Optional[Actuator] = None
         self.target = target
         self.radius = radius
+        self.rate = rate
 
         if ActuatorClass := self.__actuator_by_name__.get(actuator):
             self.actuator = ActuatorClass(self)
@@ -449,6 +453,14 @@ class Entity(CommonEntity):
     def spawned(self):
         return self._spawns
 
+    def spawned_at(self):
+        position = Vector.new_for_position(self.position)
+
+        if self._held is not None:
+            position = Vector.new_for_position(self._held.position)
+
+        return position
+
     def targets(self) -> Optional["Entity"]:
         return self.__entity_by_name__.get(self.target)
 
@@ -546,6 +558,7 @@ class EntityRegistry:
             actuator=description.actuator,
             target=description.target,
             radius=description.radius,
+            rate=description.rate,
             direction=Direction[description.direction.upper()],
             state=State[description.state.upper()],
             partition=partition,

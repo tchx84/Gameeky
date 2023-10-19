@@ -22,6 +22,10 @@ class Vector(Serializeable):
     def from_values(cls, values: Signature) -> "Vector":
         return cls(*values)
 
+    @classmethod
+    def new_for_position(cls, position: "Vector") -> "Vector":
+        return cls(*position.to_values())
+
 
 class EntityType(IntEnum):
     EMPTY = 0

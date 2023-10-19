@@ -16,7 +16,8 @@
             "name": "",
             "actuator": "",
             "target": "",
-            "radius": 0
+            "radius": 0,
+            "rate": 0
         }
     },
     "graphics": {

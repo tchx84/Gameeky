@@ -46,14 +46,7 @@ class Scene:
             self.remove(entity.id)
 
         for entity in added:
-            position = self._partition.get_position_for_direction(
-                entity.position.x,
-                entity.position.y,
-                entity.position.z,
-                entity.direction,
-            )
-
-            self.add(entity.spawned(), position)
+            self.add(entity.spawned(), entity.spawned_at())
 
     def add(
         self,
