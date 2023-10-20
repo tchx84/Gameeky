@@ -59,8 +59,6 @@ class Entity(CommonEntity):
         **kargs,
     ) -> None:
         super().__init__(*args, **kargs)
-        self.stamina = stamina
-        self.durability = durability
         self.weight = weight
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
@@ -74,9 +72,10 @@ class Entity(CommonEntity):
         self.radius = radius
         self.rate = rate
 
-        for actuator in actuators:
-            if ActuatorClass := self.__actuator_by_name__.get(actuator):
-                self.actuators.append(ActuatorClass(self))
+        self._durability = durability
+        self._stamina = stamina
+        self._max_durability = durability
+        self._max_stamina = stamina
 
         self._partition = partition
         self._busy = False
@@ -87,13 +86,16 @@ class Entity(CommonEntity):
         self._target = Vector()
         self._held: Optional["Entity"] = None
         self._actuating: List[Actuator] = []
-        self._max_stamina = self.stamina
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
         timestamp = get_time_milliseconds()
         self._timestmap_prepare = timestamp
         self._timestamp_tick = timestamp
         self._timestamp_action = timestamp
+
+        for actuator in actuators:
+            if ActuatorClass := self.__actuator_by_name__.get(actuator):
+                self.actuators.append(ActuatorClass(self))
 
     def _get_elapsed_seconds_since_tick(self) -> float:
         return (get_time_milliseconds() - self._timestamp_tick) / 1000
@@ -397,9 +399,8 @@ class Entity(CommonEntity):
 
         cost = self.__stamina_cost_by_action__.get(self._action, Cost.MIN)
         gain = abs(cost) * self.recovery
-        delta = (gain - (cost - Cost.MIN)) * seconds_since_tick
 
-        self.stamina = clamp(self._max_stamina, 0, self.stamina + delta)
+        self.stamina += (gain - (cost - Cost.MIN)) * seconds_since_tick
 
     def _update_held(self):
         if self._held is None:
@@ -505,6 +506,22 @@ class Entity(CommonEntity):
                 surroundings.append(entity)
 
         return surroundings
+
+    @property
+    def durability(self):
+        return self._durability
+
+    @durability.setter
+    def durability(self, durability):
+        self._durability = clamp(self._max_durability, 0, durability)
+
+    @property
+    def stamina(self):
+        return self._stamina
+
+    @stamina.setter
+    def stamina(self, stamina):
+        self._stamina = clamp(self._max_stamina, 0, stamina)
 
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":

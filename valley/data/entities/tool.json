@@ -3,7 +3,7 @@
     "game": {
         "default": {
             "stamina": 0,
-            "durability": 100,
+            "durability": 0,
             "weight": 0,
             "strength": 1000,
             "recovery": 0,
