@@ -8,6 +8,7 @@
             "strength": 100,
             "recovery": 0.75,
             "removable": true,
+            "equippable": false,
             "direction": "down",
             "state": "idling",
             "density": 1,

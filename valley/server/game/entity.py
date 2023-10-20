@@ -44,6 +44,7 @@ class Entity(CommonEntity):
         strength: float,
         recovery: float,
         removable: float,
+        equippable: bool,
         density: Density,
         spawns: int,
         name: str,
@@ -62,6 +63,7 @@ class Entity(CommonEntity):
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
+        self.equippable = equippable
         self.density = clamp(Density.SOLID, Density.VOID, density)
         self.spawns = spawns
         self.name = name
@@ -127,6 +129,9 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_use(self) -> None:
+        if self._held is None:
+            return
+
         seconds_since_action = self._get_elapsed_seconds_since_action()
 
         if seconds_since_action < self._delay:
@@ -159,9 +164,7 @@ class Entity(CommonEntity):
         self._held = entity
         self._held.density = Density.VOID
         self._held.state = State.HELD
-
-        if self._is_holding_tool():
-            self._held.visible = False
+        self._held.visible = not self._held.equippable
 
         self._action = self._next_action
         self._busy = True
@@ -259,31 +262,35 @@ class Entity(CommonEntity):
         self._action = Action.IDLE
         self._busy = False
 
-    def _do_use_wear(self):
-        seconds_since_tick = self._get_elapsed_seconds_since_tick()
+    def _do_use_tool(self):
+        if self._held.spawns != EntityType.EMPTY:
+            self.spawn()
+
+        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
         targets = cast(List["Entity"], self._partition.find_by_direction(self))
-        wear = math.ceil(self.strength * seconds_since_tick)
 
         for target in targets:
-            if target.visible is True and target is not self._held:
-                target.durability -= wear
+            if target.visible is False:
+                continue
+            if target is self._held:
+                continue
 
-    def _do_use_spawn(self):
-        self.spawn()
+            # Wear the target
+            target.durability -= self._held.strength * seconds_since_prepare
+
+            # Restore the target
+            target.durability += self._held.durability * seconds_since_prepare
+            target.stamina += self._held.stamina * seconds_since_prepare
 
     def _do_use(self) -> None:
         self.state = State.USING
 
         seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
-        if not self._is_holding_tool():
-            self._do_use_wear()
-
         if seconds_since_prepare < self._delay:
             return
 
-        if self._is_holding_tool():
-            self._do_use_spawn()
+        self._do_use_tool()
 
         self._action = Action.IDLE
         self._busy = False
@@ -354,10 +361,6 @@ class Entity(CommonEntity):
         self.perform(Action.IDLE)
         self._interactant = None
         self._busy = False
-
-    def _is_holding_tool(self):
-        # XXX A better way to determine that this is a equippable tool
-        return self._held is not None and self._held.spawns != EntityType.EMPTY
 
     def _drop(self):
         if self._held is None:
@@ -557,6 +560,7 @@ class EntityRegistry:
             strength=description.strength,
             recovery=description.recovery,
             removable=description.removable,
+            equippable=description.equippable,
             density=description.density,
             visible=description.visible,
             spawns=description.spawns,

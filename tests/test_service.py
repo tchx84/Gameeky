@@ -175,34 +175,19 @@ def test_server_action_take():
     assert entity_moved.position.x == 0
 
 
-@pytest.mark.timeout(5)
-def test_server_action_drop():
-    entity_moving = find_entity_by_id(server.scene.entities, 4)
-    entity_moved = find_entity_by_id(server.scene.entities, 3)
-
-    client.message(Action.DROP, 0)
-    wait_for_seconds(2)
-
-    client.message(Action.MOVE, Direction.RIGHT)
-    wait_for_seconds(2)
-
-    assert entity_moving.position.x == 1
-    assert entity_moved.position.x == 0
-
-
 @pytest.mark.timeout(10)
 def test_server_attribute_durability():
-    entity = find_entity_by_id(server.scene.entities, 3)
+    entity = find_entity_by_id(server.scene.entities, 2)
 
     assert entity.durability == 100
 
-    client.message(Action.MOVE, Direction.LEFT)
+    client.message(Action.MOVE, Direction.DOWN)
     wait_for_seconds(2)
 
     client.message(Action.USE, 0)
     wait_for_seconds(4)
 
-    entity = find_entity_by_id(server.scene.entities, 3)
+    entity = find_entity_by_id(server.scene.entities, 2)
 
     assert entity is None
 
@@ -222,6 +207,23 @@ def test_server_attribute_stamina():
     wait_for_seconds(1)
 
     assert entity.stamina < 100
+
+
+@pytest.mark.timeout(5)
+def test_server_action_drop():
+    entity_moving = find_entity_by_id(server.scene.entities, 4)
+    entity_moved = find_entity_by_id(server.scene.entities, 3)
+
+    assert entity_moving.position.x == 0
+
+    client.message(Action.DROP, 0)
+    wait_for_seconds(2)
+
+    client.message(Action.MOVE, Direction.RIGHT)
+    wait_for_seconds(2)
+
+    assert entity_moving.position.x == 1
+    assert entity_moved.position.x == 0
 
 
 @pytest.mark.timeout(5)

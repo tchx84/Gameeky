@@ -1,0 +1,24 @@
+{
+    "id": 3,
+    "game": {
+        "default": {
+            "stamina": 0,
+            "durability": 100,
+            "weight": 0,
+            "strength": 1000,
+            "recovery": 0,
+            "removable": true,
+            "equippable": true,
+            "direction": "down",
+            "state": "idling",
+            "density": 1,
+            "visible": true,
+            "spawns": 0,
+            "name": "",
+            "actuator": "",
+            "target": "",
+            "radius": 0,
+            "rate": 0
+        }
+    }
+}
