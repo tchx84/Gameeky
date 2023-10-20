@@ -10,6 +10,7 @@ from .actuators.base import Actuator
 from .actuators.grower import Actuator as GrowerActuator
 from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
+from .actuators.rot import Actuator as RotActuator
 
 from ...common.action import Action
 from ...common.state import State
@@ -34,6 +35,7 @@ class Entity(CommonEntity):
         GrowerActuator.name: GrowerActuator,
         PortalSwitchActuator.name: PortalSwitchActuator,
         PortalAreaActuator.name: PortalAreaActuator,
+        RotActuator.name: RotActuator,
     }
 
     def __init__(
@@ -48,7 +50,7 @@ class Entity(CommonEntity):
         density: Density,
         spawns: int,
         name: str,
-        actuator: str,
+        actuators: List[str],
         target: str,
         radius: float,
         rate: float,
@@ -67,13 +69,14 @@ class Entity(CommonEntity):
         self.density = clamp(Density.SOLID, Density.VOID, density)
         self.spawns = spawns
         self.name = name
-        self.actuator: Optional[Actuator] = None
+        self.actuators: List[Actuator] = []
         self.target = target
         self.radius = radius
         self.rate = rate
 
-        if ActuatorClass := self.__actuator_by_name__.get(actuator):
-            self.actuator = ActuatorClass(self)
+        for actuator in actuators:
+            if ActuatorClass := self.__actuator_by_name__.get(actuator):
+                self.actuators.append(ActuatorClass(self))
 
         self._partition = partition
         self._busy = False
@@ -83,7 +86,7 @@ class Entity(CommonEntity):
         self._next_value = 0.0
         self._target = Vector()
         self._held: Optional["Entity"] = None
-        self._interactant: Optional["Entity"] = None
+        self._actuating: List[Actuator] = []
         self._max_stamina = self.stamina
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
@@ -181,23 +184,21 @@ class Entity(CommonEntity):
         self._busy = True
 
     def _prepare_interact(self):
-        if self._interactant is not None:
+        if self._actuating:
             return
 
-        interactant = None
+        actuating = []
         entities = cast(List["Entity"], self._partition.find_by_direction(self))
 
         for entity in entities:
-            if entity.actuator is not None:
-                interactant = entity
-                break
+            for actuator in entity.actuators:
+                if actuator.prepare(interactee=self) is True:
+                    actuating.append(actuator)
 
-        if interactant is None:
+        if not actuating:
             return
 
-        self._interactant = interactant
-        self._interactant.actuator.prepare(interactee=self)
-
+        self._actuating = actuating
         self._action = self._next_action
         self._busy = True
 
@@ -350,16 +351,17 @@ class Entity(CommonEntity):
         self._busy = False
 
     def _do_interact(self):
-        if self._interactant is None:
+        if not self._actuating:
             return
 
         self.state = State.INTERACTING
 
-        if self._interactant.actuator.finished() is False:
-            return
+        for actuator in self._actuating:
+            if actuator.finished() is False:
+                return
 
         self.perform(Action.IDLE)
-        self._interactant = None
+        self._actuating = []
         self._busy = False
 
     def _drop(self):
@@ -387,8 +389,8 @@ class Entity(CommonEntity):
         ]
 
     def _update_actuator(self) -> None:
-        if self.actuator is not None:
-            self.actuator.tick()
+        for actuator in self.actuators:
+            actuator.tick()
 
     def _update_stamina(self) -> None:
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
@@ -565,7 +567,7 @@ class EntityRegistry:
             visible=description.visible,
             spawns=description.spawns,
             name=description.name,
-            actuator=description.actuator,
+            actuators=description.actuators,
             target=description.target,
             radius=description.radius,
             rate=description.rate,
