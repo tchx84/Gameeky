@@ -14,10 +14,10 @@ class Actuator(BaseActuator):
     def tick(self) -> None:
         timestamp = get_time_milliseconds()
 
-        if (timestamp - self._timestamp) / 1000 < self._entity.rate:  # type: ignore
+        if (timestamp - self._timestamp) / 1000 < self._entity.rate:
             return
 
-        self._entity.state = State.DESTROYED  # type: ignore
-        self._entity.spawn()  # type: ignore
+        self._entity.state = State.DESTROYED
+        self._entity.spawn()
 
         super().tick()

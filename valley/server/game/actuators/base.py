@@ -1,6 +1,9 @@
-from typing import Optional
+from __future__ import annotations
 
-from ....common.entity import Entity
+from typing import Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..entity import Entity
 
 
 class Actuator:

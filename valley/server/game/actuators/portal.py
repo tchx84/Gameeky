@@ -8,9 +8,9 @@ class Actuator(BaseActuator):
         if self._interactee is None:
             return
 
-        if (target := self._entity.targets()) is None:  # type: ignore
+        if (target := self._entity.targets()) is None:
             return
 
-        self._interactee.teleport(target.position)  # type: ignore
+        self._interactee.teleport(target.position)
 
         super().tick()
