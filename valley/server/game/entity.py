@@ -8,7 +8,7 @@ from .partition import SpatialPartition
 
 from .actuators.base import Actuator
 from .actuators.grower import Actuator as GrowerActuator
-from .actuators.portal import Actuator as PortalActuator
+from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 
 from ...common.action import Action
@@ -32,7 +32,7 @@ class Entity(CommonEntity):
 
     __actuator_by_name__ = {
         GrowerActuator.name: GrowerActuator,
-        PortalActuator.name: PortalActuator,
+        PortalSwitchActuator.name: PortalSwitchActuator,
         PortalAreaActuator.name: PortalAreaActuator,
     }
 
