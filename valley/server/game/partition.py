@@ -36,13 +36,9 @@ class SpatialPartition:
             del self._entity_by_position[position]
 
     def get_position_for_direction(
-        self,
-        x: float,
-        y: float,
-        z: float,
-        direction: Direction,
+        self, position: Vector, direction: Direction
     ) -> Vector:
-        position = Vector(x=x, y=y, z=z)
+        position = position.copy()
 
         if direction == Direction.RIGHT:
             position.x += 1

@@ -12,6 +12,7 @@ class Actuator(BaseActuator):
         if (target := self._entity.targets()) is None:
             return
 
-        self._interactee.teleport(target.position)
+        self._interactee.position = target.position
+        self._interactee.destination = target.position_at(self._interactee.direction)
 
         super().tick()

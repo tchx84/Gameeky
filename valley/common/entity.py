@@ -18,13 +18,12 @@ class Vector(Serializeable):
     def to_values(self) -> Signature:
         return (self.x, self.y, self.z)
 
+    def copy(self) -> "Vector":
+        return self.__class__(*self.to_values())
+
     @classmethod
     def from_values(cls, values: Signature) -> "Vector":
         return cls(*values)
-
-    @classmethod
-    def new_for_position(cls, position: "Vector") -> "Vector":
-        return cls(*position.to_values())
 
 
 class EntityType(IntEnum):
@@ -45,10 +44,20 @@ class Entity(Serializeable):
     ) -> None:
         self.id = id
         self.type_id = type_id
-        self.position = position if position else Vector()
         self.direction = direction
         self.state = state
         self.visible = visible
+
+        # Allow to extend on this property in sub-classes
+        self._position = position if position else Vector()
+
+    @property
+    def position(self) -> Vector:
+        return self._position
+
+    @position.setter
+    def position(self, position: Vector) -> None:
+        self._position = position
 
     def to_values(self) -> Signature:
         return (

@@ -10,4 +10,5 @@ class Actuator(BaseActuator):
             return
 
         for interactee in self._entity.surroundings():
-            interactee.teleport(target.position)
+            interactee.position = target.position
+            interactee.destination = target.position_at(interactee.direction)

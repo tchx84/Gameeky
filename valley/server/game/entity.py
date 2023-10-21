@@ -80,7 +80,7 @@ class Entity(CommonEntity):
         self.action = Action.IDLE
         self._next_action = Action.IDLE
         self._next_value = 0.0
-        self._target = Vector()
+        self._destination = Vector()
         self._held: Optional["Entity"] = None
         self._actuating: List[Actuator] = []
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
@@ -121,12 +121,7 @@ class Entity(CommonEntity):
             if obstacle.density == Density.SOLID:
                 return
 
-        self._target = self._partition.get_position_for_direction(
-            math.floor(self.position.x),
-            math.floor(self.position.y),
-            math.floor(self.position.z),
-            self.direction,
-        )
+        self.destination = self.position_at(self.direction)
 
         self._busy = True
 
@@ -237,8 +232,8 @@ class Entity(CommonEntity):
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
         distance = (self.strength / self.weight) * friction * seconds_since_tick
 
-        delta_x = self._target.x - self.position.x
-        delta_y = self._target.y - self.position.y
+        delta_x = self.destination.x - self.position.x
+        delta_y = self.destination.y - self.position.y
 
         distance_x = min(distance, abs(delta_x))
         distance_y = min(distance, abs(delta_y))
@@ -246,16 +241,15 @@ class Entity(CommonEntity):
         direction_x = math.copysign(1, delta_x)
         direction_y = math.copysign(1, delta_y)
 
-        self._partition.remove(self)
+        position = self.position.copy()
+        position.x += distance_x * direction_x
+        position.y += distance_y * direction_y
 
-        self.position.x += distance_x * direction_x
-        self.position.y += distance_y * direction_y
+        self.position = position
 
-        self._partition.add(self)
-
-        if self.position.x != self._target.x:
+        if self.position.x != self.destination.x:
             return
-        if self.position.y != self._target.y:
+        if self.position.y != self.destination.y:
             return
 
         self.action = Action.IDLE
@@ -394,17 +388,8 @@ class Entity(CommonEntity):
         if self._held is None:
             return
 
-        self._partition.remove(self._held)
-
         self._held.direction = self.direction
-        self._held.position = self._partition.get_position_for_direction(
-            self.position.x,
-            self.position.y,
-            self.position.z,
-            self.direction,
-        )
-
-        self._partition.add(self._held)
+        self._held.position = self.position_at(self.direction)
 
     def tick(self) -> None:
         self._update_flags()
@@ -453,31 +438,18 @@ class Entity(CommonEntity):
         return self._spawned
 
     def spawned_at(self):
-        position = Vector.new_for_position(self.position)
+        position = self.position.copy()
 
         if self._held is not None and self._held.spawns != EntityType.EMPTY:
-            position = Vector.new_for_position(self._held.position)
+            position = self._held.position.copy()
 
         return position
 
     def targets(self) -> Optional["Entity"]:
         return self.__entity_by_name__.get(self.target)
 
-    def teleport(self, position: Vector) -> None:
-        self._partition.remove(self)
-
-        self.position.x = position.x
-        self.position.y = position.y
-        self.position.z = position.z
-
-        self._target = self._partition.get_position_for_direction(
-            position.x,
-            position.y,
-            position.z,
-            self.direction,
-        )
-
-        self._partition.add(self)
+    def position_at(self, direction: Direction) -> Vector:
+        return self._partition.get_position_for_direction(self.position, direction)
 
     def surroundings(self):
         surroundings = []
@@ -502,6 +474,28 @@ class Entity(CommonEntity):
             weight += self._held.weight
 
         return weight
+
+    @property
+    def position(self) -> Vector:
+        return self._position
+
+    @position.setter
+    def position(self, position) -> None:
+        self._partition.remove(self)
+
+        self._position = position.copy()
+
+        self._partition.add(self)
+
+    @property
+    def destination(self) -> Vector:
+        return self._destination
+
+    @destination.setter
+    def destination(self, destination) -> None:
+        self._destination.x = math.floor(destination.x)
+        self._destination.y = math.floor(destination.y)
+        self._destination.z = math.floor(destination.z)
 
     @property
     def durability(self):
