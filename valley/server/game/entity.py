@@ -371,9 +371,6 @@ class Entity(CommonEntity):
         self._held.state = State.IDLING
         self._held = None
 
-    def _reset_flags(self):
-        self._spawned = EntityType.EMPTY
-
     def _check_attributes(self):
         if self.durability <= 0:
             self.perform(Action.DESTROY)
@@ -386,7 +383,10 @@ class Entity(CommonEntity):
             State.HELD,
         ]
 
-    def _update_actuator(self) -> None:
+    def _update_flags(self):
+        self._spawned = EntityType.EMPTY
+
+    def _update_actuators(self) -> None:
         for actuator in self.actuators:
             actuator.tick()
 
@@ -407,10 +407,13 @@ class Entity(CommonEntity):
         self._partition.add(self._held)
 
     def tick(self) -> None:
+        self._update_flags()
+        self._update_actuators()
+        self._update_held()
+        self._check_attributes()
+
         if self._check_in_blocking_state():
             return
-
-        self._reset_flags()
 
         if self.action == Action.IDLE:
             self._do_idle()
@@ -429,9 +432,6 @@ class Entity(CommonEntity):
         elif self.action == Action.INTERACT:
             self._do_interact()
 
-        self._check_attributes()
-        self._update_actuator()
-        self._update_held()
         self._prepare_next_tick()
 
         self._timestamp_tick = get_time_milliseconds()
