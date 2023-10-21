@@ -59,7 +59,6 @@ class Entity(CommonEntity):
         **kargs,
     ) -> None:
         super().__init__(*args, **kargs)
-        self.weight = weight
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
@@ -71,6 +70,8 @@ class Entity(CommonEntity):
         self.target = target
         self.radius = radius
         self.rate = rate
+
+        self._weight = weight
 
         self._durability = durability
         self._stamina = stamina
@@ -238,8 +239,7 @@ class Entity(CommonEntity):
         friction = Density.SOLID - surfaces[0].density
 
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
-        weight = self.weight + self._held.weight if self._held else self.weight
-        distance = (self.strength / weight) * friction * seconds_since_tick
+        distance = (self.strength / self.weight) * friction * seconds_since_tick
 
         delta_x = self._target.x - self.position.x
         delta_y = self._target.y - self.position.y
@@ -506,6 +506,15 @@ class Entity(CommonEntity):
                 surroundings.append(entity)
 
         return surroundings
+
+    @property
+    def weight(self):
+        weight = self._weight
+
+        if self._held is not None:
+            weight += self._held.weight
+
+        return weight
 
     @property
     def durability(self):
