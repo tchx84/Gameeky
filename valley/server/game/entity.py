@@ -3,7 +3,7 @@ import math
 from copy import deepcopy
 from typing import Dict, List, Optional, cast
 
-from .definitions import Density, Recovery, Penalty, Delay, Cost
+from .definitions import Density, Recovery, Penalty, Delay
 from .partition import SpatialPartition
 
 from .actuators.base import Actuator
@@ -11,6 +11,7 @@ from .actuators.grower import Actuator as GrowerActuator
 from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rot import Actuator as RotActuator
+from .actuators.stamina import Actuator as StaminaActuator
 
 from ...common.action import Action
 from ...common.state import State
@@ -25,17 +26,12 @@ from ...common.entity import Entity as CommonEntity
 class Entity(CommonEntity):
     __entity_by_name__: Dict[str, "Entity"] = {}
 
-    __stamina_cost_by_action__ = {
-        Action.MOVE: Cost.MAX,
-        Action.USE: Cost.MAX * 4,
-        Action.TAKE: Cost.MAX * 4,
-    }
-
     __actuator_by_name__ = {
         GrowerActuator.name: GrowerActuator,
         PortalSwitchActuator.name: PortalSwitchActuator,
         PortalAreaActuator.name: PortalAreaActuator,
         RotActuator.name: RotActuator,
+        StaminaActuator.name: StaminaActuator,
     }
 
     def __init__(
@@ -81,7 +77,7 @@ class Entity(CommonEntity):
         self._partition = partition
         self._busy = False
         self._spawned = EntityType.EMPTY
-        self._action = Action.IDLE
+        self.action = Action.IDLE
         self._next_action = Action.IDLE
         self._next_value = 0.0
         self._target = Vector()
@@ -108,11 +104,11 @@ class Entity(CommonEntity):
         return (get_time_milliseconds() - self._timestamp_action) / 1000
 
     def _prepare_idle(self) -> None:
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_move(self) -> None:
-        self._action = self._next_action
+        self.action = self._next_action
         self.direction = Direction(int(self._next_value))
 
         obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
@@ -143,14 +139,14 @@ class Entity(CommonEntity):
         if seconds_since_action < self._delay:
             return
 
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_destroy(self):
         self.density = Density.VOID
         self.position.z -= 1
 
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_take(self) -> None:
@@ -172,18 +168,18 @@ class Entity(CommonEntity):
         self._held.state = State.HELD
         self._held.visible = not self._held.equippable
 
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_drop(self) -> None:
         if self._held is None:
             return
 
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_exhaust(self):
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_interact(self):
@@ -202,7 +198,7 @@ class Entity(CommonEntity):
             return
 
         self._actuating = actuating
-        self._action = self._next_action
+        self.action = self._next_action
         self._busy = True
 
     def _prepare_next_tick(self) -> None:
@@ -262,7 +258,7 @@ class Entity(CommonEntity):
         if self.position.y != self._target.y:
             return
 
-        self._action = Action.IDLE
+        self.action = Action.IDLE
         self._busy = False
 
     def _do_use_tool(self):
@@ -295,7 +291,7 @@ class Entity(CommonEntity):
 
         self._do_use_tool()
 
-        self._action = Action.IDLE
+        self.action = Action.IDLE
         self._busy = False
         self._timestamp_action = get_time_milliseconds()
 
@@ -321,7 +317,7 @@ class Entity(CommonEntity):
         if seconds_since_prepare < self._delay * ratio:
             return
 
-        self._action = Action.IDLE
+        self.action = Action.IDLE
         self._busy = False
 
     def _do_drop(self):
@@ -335,7 +331,7 @@ class Entity(CommonEntity):
 
         self._drop()
 
-        self._action = Action.IDLE
+        self.action = Action.IDLE
         self._busy = False
 
     def _do_exhaust(self):
@@ -394,14 +390,6 @@ class Entity(CommonEntity):
         for actuator in self.actuators:
             actuator.tick()
 
-    def _update_stamina(self) -> None:
-        seconds_since_tick = self._get_elapsed_seconds_since_tick()
-
-        cost = self.__stamina_cost_by_action__.get(self._action, Cost.MIN)
-        gain = abs(cost) * self.recovery
-
-        self.stamina += (gain - (cost - Cost.MIN)) * seconds_since_tick
-
     def _update_held(self):
         if self._held is None:
             return
@@ -424,26 +412,25 @@ class Entity(CommonEntity):
 
         self._reset_flags()
 
-        if self._action == Action.IDLE:
+        if self.action == Action.IDLE:
             self._do_idle()
-        elif self._action == Action.MOVE:
+        elif self.action == Action.MOVE:
             self._do_move()
-        elif self._action == Action.USE:
+        elif self.action == Action.USE:
             self._do_use()
-        elif self._action == Action.DESTROY:
+        elif self.action == Action.DESTROY:
             self._do_destroy()
-        elif self._action == Action.TAKE:
+        elif self.action == Action.TAKE:
             self._do_take()
-        elif self._action == Action.DROP:
+        elif self.action == Action.DROP:
             self._do_drop()
-        elif self._action == Action.EXHAUST:
+        elif self.action == Action.EXHAUST:
             self._do_exhaust()
-        elif self._action == Action.INTERACT:
+        elif self.action == Action.INTERACT:
             self._do_interact()
 
         self._check_attributes()
         self._update_actuator()
-        self._update_stamina()
         self._update_held()
         self._prepare_next_tick()
 
