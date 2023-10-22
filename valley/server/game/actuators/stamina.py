@@ -28,4 +28,7 @@ class Actuator(BaseActuator):
         gain = abs(cost) * self._entity.recovery
         self._entity.stamina += (gain - (cost - Cost.MIN)) * seconds_since_tick
 
+        if self._entity.stamina <= 0:
+            self._entity.perform(Action.EXHAUST)
+
         self._timestamp_tick = timestamp

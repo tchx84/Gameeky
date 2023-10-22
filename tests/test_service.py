@@ -192,13 +192,13 @@ def test_server_attribute_durability():
     assert entity is None
 
 
-@pytest.mark.timeout(10)
+@pytest.mark.timeout(15)
 def test_server_attribute_stamina():
     entity = find_entity_by_id(server.scene.entities, 4)
 
     # Wait to full restore
     client.message(Action.IDLE, 0)
-    wait_for_seconds(6)
+    wait_for_seconds(10)
 
     # See data/entities/sample.json
     assert entity.stamina == 100

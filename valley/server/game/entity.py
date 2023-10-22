@@ -3,7 +3,7 @@ import math
 from copy import deepcopy
 from typing import Dict, List, Optional, cast
 
-from .definitions import Density, Recovery, Penalty, Delay
+from .definitions import Density, Recovery, Delay
 from .partition import SpatialPartition
 
 from .actuators.base import Actuator
@@ -12,13 +12,24 @@ from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rot import Actuator as RotActuator
 from .actuators.stamina import Actuator as StaminaActuator
+from .actuators.durability import Actuator as DurabilityActuator
+
+from .handlers.base import Handler
+from .handlers.destroy import Handler as DestroyHandler
+from .handlers.drop import Handler as DropHandler
+from .handlers.exhaust import Handler as ExhaustHandler
+from .handlers.idle import Handler as IdleHandler
+from .handlers.interact import Handler as InteractHandler
+from .handlers.move import Handler as MoveHandler
+from .handlers.take import Handler as TakeHandler
+from .handlers.use import Handler as UseHandler
 
 from ...common.action import Action
 from ...common.state import State
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
-from ...common.utils import get_time_milliseconds, clamp
+from ...common.utils import clamp
 from ...common.entity import EntityType
 from ...common.entity import Entity as CommonEntity
 
@@ -32,6 +43,7 @@ class Entity(CommonEntity):
         PortalAreaActuator.name: PortalAreaActuator,
         RotActuator.name: RotActuator,
         StaminaActuator.name: StaminaActuator,
+        DurabilityActuator.name: DurabilityActuator,
     }
 
     def __init__(
@@ -66,310 +78,51 @@ class Entity(CommonEntity):
         self.target = target
         self.radius = radius
         self.rate = rate
+        self.action = Action.IDLE
 
         self._weight = weight
-
         self._durability = durability
         self._stamina = stamina
         self._max_durability = durability
         self._max_stamina = stamina
 
         self._partition = partition
-        self._busy = False
-        self._spawned = EntityType.EMPTY
-        self.action = Action.IDLE
+
         self._next_action = Action.IDLE
         self._next_value = 0.0
+
+        self._spawned = EntityType.EMPTY
         self._destination = Vector()
         self._held: Optional["Entity"] = None
-        self._actuating: List[Actuator] = []
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
-
-        timestamp = get_time_milliseconds()
-        self._timestmap_prepare = timestamp
-        self._timestamp_tick = timestamp
-        self._timestamp_action = timestamp
 
         for actuator in actuators:
             if ActuatorClass := self.__actuator_by_name__.get(actuator):
                 self.actuators.append(ActuatorClass(self))
 
-    def _get_elapsed_seconds_since_tick(self) -> float:
-        return (get_time_milliseconds() - self._timestamp_tick) / 1000
+        self._handlers: Dict[Action, Handler] = {}
+        self._handlers[Action.DESTROY] = DestroyHandler(self)
+        self._handlers[Action.DROP] = DropHandler(self)
+        self._handlers[Action.EXHAUST] = ExhaustHandler(self)
+        self._handlers[Action.IDLE] = IdleHandler(self)
+        self._handlers[Action.INTERACT] = InteractHandler(self)
+        self._handlers[Action.MOVE] = MoveHandler(self)
+        self._handlers[Action.TAKE] = TakeHandler(self)
+        self._handlers[Action.USE] = UseHandler(self)
 
-    def _get_elapsed_seconds_since_prepare(self) -> float:
-        return (get_time_milliseconds() - self._timestmap_prepare) / 1000
+        self._handler = self._handlers[Action.IDLE]
 
-    def _get_elapsed_seconds_since_action(self) -> float:
-        return (get_time_milliseconds() - self._timestamp_action) / 1000
-
-    def _prepare_idle(self) -> None:
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_move(self) -> None:
-        self.action = self._next_action
-        self.direction = Direction(int(self._next_value))
-
-        obstacles = cast(List["Entity"], self._partition.find_by_direction(self))
-
-        # Don't allow walking in empty space
-        if not obstacles:
+    def _prepare(self) -> None:
+        if self._handler.busy is True:
             return
 
-        for obstacle in obstacles:
-            if obstacle.density == Density.SOLID:
-                return
+        handler = self._handlers[self._next_action]
 
-        self.destination = self.position_at(self.direction)
+        if handler.prepare(self._next_value) is False:
+            handler = self._handlers[Action.IDLE]
+            handler.prepare(self._next_value)
 
-        self._busy = True
-
-    def _prepare_use(self) -> None:
-        if self._held is None:
-            return
-
-        seconds_since_action = self._get_elapsed_seconds_since_action()
-
-        if seconds_since_action < self._delay:
-            return
-
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_destroy(self):
-        self.density = Density.VOID
-        self.position.z -= 1
-
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_take(self) -> None:
-        if self._held is not None:
-            return
-
-        entities = cast(List["Entity"], self._partition.find_by_direction(self))
-        if not entities:
-            return
-
-        entity = entities[-1]
-        if entity.density != Density.SOLID:
-            return
-        if entity.visible is False:
-            return
-
-        self._held = entity
-        self._held.density = Density.VOID
-        self._held.state = State.HELD
-        self._held.visible = not self._held.equippable
-
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_drop(self) -> None:
-        if self._held is None:
-            return
-
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_exhaust(self):
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_interact(self):
-        if self._actuating:
-            return
-
-        actuating = []
-        entities = cast(List["Entity"], self._partition.find_by_direction(self))
-
-        for entity in entities:
-            for actuator in entity.actuators:
-                if actuator.prepare(interactee=self) is True:
-                    actuating.append(actuator)
-
-        if not actuating:
-            return
-
-        self._actuating = actuating
-        self.action = self._next_action
-        self._busy = True
-
-    def _prepare_next_tick(self) -> None:
-        if self._busy is True:
-            return
-
-        if self._next_action == Action.IDLE:
-            self._prepare_idle()
-        elif self._next_action == Action.MOVE:
-            self._prepare_move()
-        elif self._next_action == Action.USE:
-            self._prepare_use()
-        elif self._next_action == Action.DESTROY:
-            self._prepare_destroy()
-        elif self._next_action == Action.TAKE:
-            self._prepare_take()
-        elif self._next_action == Action.DROP:
-            self._prepare_drop()
-        elif self._next_action == Action.EXHAUST:
-            self._prepare_exhaust()
-        elif self._next_action == Action.INTERACT:
-            self._prepare_interact()
-
-        self._timestmap_prepare = get_time_milliseconds()
-
-    def _do_idle(self) -> None:
-        self.state = State.IDLING
-        self._busy = False
-
-    def _do_move(self) -> None:
-        self.state = State.MOVING
-
-        surfaces = cast(List["Entity"], self._partition.find_by_position(self.position))
-        friction = Density.SOLID - surfaces[0].density
-
-        seconds_since_tick = self._get_elapsed_seconds_since_tick()
-        distance = (self.strength / self.weight) * friction * seconds_since_tick
-
-        delta_x = self.destination.x - self.position.x
-        delta_y = self.destination.y - self.position.y
-
-        distance_x = min(distance, abs(delta_x))
-        distance_y = min(distance, abs(delta_y))
-
-        direction_x = math.copysign(1, delta_x)
-        direction_y = math.copysign(1, delta_y)
-
-        position = self.position.copy()
-        position.x += distance_x * direction_x
-        position.y += distance_y * direction_y
-
-        self.position = position
-
-        if self.position.x != self.destination.x:
-            return
-        if self.position.y != self.destination.y:
-            return
-
-        self.action = Action.IDLE
-        self._busy = False
-
-    def _do_use_tool(self):
-        if self._held.spawns != EntityType.EMPTY:
-            self.spawn()
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-        targets = cast(List["Entity"], self._partition.find_by_direction(self))
-
-        for target in targets:
-            if target.visible is False:
-                continue
-            if target is self._held:
-                continue
-
-            # Wear the target
-            target.durability -= self._held.strength * seconds_since_prepare
-
-            # Restore the target
-            target.durability += self._held.durability * seconds_since_prepare
-            target.stamina += self._held.stamina * seconds_since_prepare
-
-    def _do_use(self) -> None:
-        self.state = State.USING
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-
-        if seconds_since_prepare < self._delay:
-            return
-
-        self._do_use_tool()
-
-        self.action = Action.IDLE
-        self._busy = False
-        self._timestamp_action = get_time_milliseconds()
-
-    def _do_destroy(self):
-        self.state = State.DESTROYING
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-
-        if seconds_since_prepare < Delay.MAX:
-            return
-
-        self.state = State.DESTROYED
-        self._drop()
-
-        self._busy = False
-
-    def _do_take(self):
-        self.state = State.TAKING
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-        ratio = self._held.weight / self.strength
-
-        if seconds_since_prepare < self._delay * ratio:
-            return
-
-        self.action = Action.IDLE
-        self._busy = False
-
-    def _do_drop(self):
-        self.state = State.DROPPING
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-        ratio = self._held.weight / self.strength
-
-        if seconds_since_prepare < self._delay * ratio:
-            return
-
-        self._drop()
-
-        self.action = Action.IDLE
-        self._busy = False
-
-    def _do_exhaust(self):
-        self.state = State.EXHAUSTED
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
-
-        if seconds_since_prepare < self._delay * Penalty.MAX:
-            return
-
-        self._drop()
-
-        # Interrupt the action provided by the client
-        self.perform(Action.IDLE)
-        self._busy = False
-
-    def _do_interact(self):
-        if not self._actuating:
-            return
-
-        self.state = State.INTERACTING
-
-        for actuator in self._actuating:
-            if actuator.finished() is False:
-                return
-
-        self.perform(Action.IDLE)
-        self._actuating = []
-        self._busy = False
-
-    def _drop(self):
-        if self._held is None:
-            return
-
-        self._held.visible = True
-        self._held.density = Density.SOLID
-        self._held.state = State.IDLING
-        self._held = None
-
-    def _check_attributes(self):
-        if self.durability <= 0:
-            self.perform(Action.DESTROY)
-        if self.stamina <= 0:
-            self.perform(Action.EXHAUST)
+        self._handler = handler
 
     def _check_in_blocking_state(self):
         return self.state in [
@@ -385,41 +138,22 @@ class Entity(CommonEntity):
             actuator.tick()
 
     def _update_held(self):
-        if self._held is None:
+        if self.held is None:
             return
 
-        self._held.direction = self.direction
-        self._held.position = self.position_at(self.direction)
+        self.held.direction = self.direction
+        self.held.position = self.position_at(self.direction)
 
     def tick(self) -> None:
         self._update_flags()
         self._update_actuators()
         self._update_held()
-        self._check_attributes()
 
         if self._check_in_blocking_state():
             return
 
-        if self.action == Action.IDLE:
-            self._do_idle()
-        elif self.action == Action.MOVE:
-            self._do_move()
-        elif self.action == Action.USE:
-            self._do_use()
-        elif self.action == Action.DESTROY:
-            self._do_destroy()
-        elif self.action == Action.TAKE:
-            self._do_take()
-        elif self.action == Action.DROP:
-            self._do_drop()
-        elif self.action == Action.EXHAUST:
-            self._do_exhaust()
-        elif self.action == Action.INTERACT:
-            self._do_interact()
-
-        self._prepare_next_tick()
-
-        self._timestamp_tick = get_time_milliseconds()
+        self._prepare()
+        self._handler.tick()
 
     def perform(self, action: Action, value: float = 0) -> None:
         self._next_action = action
@@ -428,11 +162,20 @@ class Entity(CommonEntity):
     def removed(self):
         return self.state == State.DESTROYED and self.removable is True
 
+    def drop(self):
+        if self.held is None:
+            return
+
+        self.held.visible = True
+        self.held.density = Density.SOLID
+        self.held.state = State.IDLING
+        self.held = None
+
     def spawn(self):
         self._spawned = self.spawns
 
-        if self._held is not None and self._held.spawns != EntityType.EMPTY:
-            self._spawned = self._held.spawns
+        if self.held is not None and self.held.spawns != EntityType.EMPTY:
+            self._spawned = self.held.spawns
 
     def spawned(self):
         return self._spawned
@@ -440,8 +183,8 @@ class Entity(CommonEntity):
     def spawned_at(self):
         position = self.position.copy()
 
-        if self._held is not None and self._held.spawns != EntityType.EMPTY:
-            position = self._held.position.copy()
+        if self.held is not None and self.held.spawns != EntityType.EMPTY:
+            position = self.held.position.copy()
 
         return position
 
@@ -467,11 +210,23 @@ class Entity(CommonEntity):
         return surroundings
 
     @property
+    def held(self) -> Optional["Entity"]:
+        return self._held
+
+    @held.setter
+    def held(self, held) -> None:
+        self._held = held
+
+    @property
+    def delay(self) -> float:
+        return self._delay
+
+    @property
     def weight(self):
         weight = self._weight
 
-        if self._held is not None:
-            weight += self._held.weight
+        if self.held is not None:
+            weight += self.held.weight
 
         return weight
 
@@ -512,6 +267,28 @@ class Entity(CommonEntity):
     @stamina.setter
     def stamina(self, stamina):
         self._stamina = clamp(self._max_stamina, 0, stamina)
+
+    @property
+    def obstacles(self) -> List["Entity"]:
+        return cast(List["Entity"], self._partition.find_by_direction(self))
+
+    @property
+    def obstacle(self) -> Optional["Entity"]:
+        obstacles = self.obstacles
+
+        if not obstacles:
+            return None
+
+        return obstacles[-1]
+
+    @property
+    def surface(self) -> Optional["Entity"]:
+        surfaces = cast(List["Entity"], self._partition.find_by_position(self.position))
+
+        if not surfaces:
+            return None
+
+        return surfaces[0]
 
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":

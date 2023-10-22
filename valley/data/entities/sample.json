@@ -15,7 +15,7 @@
             "visible": true,
             "spawns": 0,
             "name": "",
-            "actuators": ["stamina"],
+            "actuators": ["stamina", "durability"],
             "target": "",
             "radius": 0,
             "rate": 0
