@@ -5,7 +5,7 @@ set -e
 virtualenv env
 source env/bin/activate
 
-pip install .[dev,tests]
+pip install .[dev,test]
 
 export DATA_DIR=valley/data
 
