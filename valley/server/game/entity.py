@@ -53,14 +53,14 @@ class Entity(CommonEntity):
         weight: float,
         strength: float,
         recovery: float,
-        removable: float,
+        removable: bool,
         equippable: bool,
         density: Density,
-        spawns: int,
+        spawns: EntityType,
         name: str,
         actuators: List[str],
         target: str,
-        radius: float,
+        radius: int,
         rate: float,
         partition: SpatialPartition,
         *args,
@@ -124,20 +124,20 @@ class Entity(CommonEntity):
 
         self._handler = handler
 
-    def _check_in_blocking_state(self):
+    def _check_in_blocking_state(self) -> bool:
         return self.state in [
             State.DESTROYED,
             State.HELD,
         ]
 
-    def _update_flags(self):
+    def _update_flags(self) -> None:
         self._spawned = EntityType.EMPTY
 
     def _update_actuators(self) -> None:
         for actuator in self.actuators:
             actuator.tick()
 
-    def _update_held(self):
+    def _update_held(self) -> None:
         if self.held is None:
             return
 
@@ -159,10 +159,10 @@ class Entity(CommonEntity):
         self._next_action = action
         self._next_value = value
 
-    def removed(self):
+    def removed(self) -> bool:
         return self.state == State.DESTROYED and self.removable is True
 
-    def drop(self):
+    def drop(self) -> None:
         if self.held is None:
             return
 
@@ -171,16 +171,16 @@ class Entity(CommonEntity):
         self.held.state = State.IDLING
         self.held = None
 
-    def spawn(self):
+    def spawn(self) -> None:
         self._spawned = self.spawns
 
         if self.held is not None and self.held.spawns != EntityType.EMPTY:
             self._spawned = self.held.spawns
 
-    def spawned(self):
+    def spawned(self) -> EntityType:
         return self._spawned
 
-    def spawned_at(self):
+    def spawned_at(self) -> Vector:
         position = self.position.copy()
 
         if self.held is not None and self.held.spawns != EntityType.EMPTY:
@@ -194,13 +194,16 @@ class Entity(CommonEntity):
     def position_at(self, direction: Direction) -> Vector:
         return self._partition.get_position_for_direction(self.position, direction)
 
-    def surroundings(self):
+    def surroundings(self) -> List["Entity"]:
         surroundings = []
 
-        entities = self._partition.find_by_distance(
-            target=self,
-            distance_x=self.radius,
-            distance_y=self.radius,
+        entities = cast(
+            List["Entity"],
+            self._partition.find_by_distance(
+                target=self,
+                distance_x=self.radius,
+                distance_y=self.radius,
+            ),
         )
 
         for entity in entities:
@@ -222,7 +225,7 @@ class Entity(CommonEntity):
         return self._delay
 
     @property
-    def weight(self):
+    def weight(self) -> float:
         weight = self._weight
 
         if self.held is not None:
@@ -253,19 +256,19 @@ class Entity(CommonEntity):
         self._destination.z = math.floor(destination.z)
 
     @property
-    def durability(self):
+    def durability(self) -> float:
         return self._durability
 
     @durability.setter
-    def durability(self, durability):
+    def durability(self, durability) -> None:
         self._durability = clamp(self._max_durability, 0, durability)
 
     @property
-    def stamina(self):
+    def stamina(self) -> float:
         return self._stamina
 
     @stamina.setter
-    def stamina(self, stamina):
+    def stamina(self, stamina) -> None:
         self._stamina = clamp(self._max_stamina, 0, stamina)
 
     @property
