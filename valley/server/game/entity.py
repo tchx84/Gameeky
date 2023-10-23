@@ -13,6 +13,7 @@ from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rot import Actuator as RotActuator
 from .actuators.stamina import Actuator as StaminaActuator
 from .actuators.durability import Actuator as DurabilityActuator
+from .actuators.consumable import Actuator as ConsumableActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -44,6 +45,7 @@ class Entity(CommonEntity):
         RotActuator.name: RotActuator,
         StaminaActuator.name: StaminaActuator,
         DurabilityActuator.name: DurabilityActuator,
+        ConsumableActuator.name: ConsumableActuator,
     }
 
     def __init__(
