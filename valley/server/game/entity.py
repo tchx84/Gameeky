@@ -77,11 +77,11 @@ class Entity(CommonEntity):
         self.spawns = spawns
         self.name = name
         self.actuators: List[Actuator] = []
-        self.target = target
         self.radius = radius
         self.rate = rate
         self.action = Action.IDLE
 
+        self._target = target
         self._weight = weight
         self._durability = durability
         self._stamina = stamina
@@ -161,9 +161,6 @@ class Entity(CommonEntity):
         self._next_action = action
         self._next_value = value
 
-    def removed(self) -> bool:
-        return self.state == State.DESTROYED and self.removable is True
-
     def drop(self) -> None:
         if self.held is None:
             return
@@ -179,9 +176,18 @@ class Entity(CommonEntity):
         if self.held is not None and self.held.spawns != EntityType.EMPTY:
             self._spawned = self.held.spawns
 
+    def position_at(self, direction: Direction) -> Vector:
+        return self._partition.get_position_for_direction(self.position, direction)
+
+    @property
+    def removed(self) -> bool:
+        return self.state == State.DESTROYED and self.removable is True
+
+    @property
     def spawned(self) -> EntityType:
         return self._spawned
 
+    @property
     def spawned_at(self) -> Vector:
         position = self.position.copy()
 
@@ -190,29 +196,9 @@ class Entity(CommonEntity):
 
         return position
 
-    def targets(self) -> Optional["Entity"]:
-        return self.__entity_by_name__.get(self.target)
-
-    def position_at(self, direction: Direction) -> Vector:
-        return self._partition.get_position_for_direction(self.position, direction)
-
-    def surroundings(self) -> List["Entity"]:
-        surroundings = []
-
-        entities = cast(
-            List["Entity"],
-            self._partition.find_by_distance(
-                target=self,
-                distance_x=self.radius,
-                distance_y=self.radius,
-            ),
-        )
-
-        for entity in entities:
-            if entity.density == Density.SOLID:
-                surroundings.append(entity)
-
-        return surroundings
+    @property
+    def target(self) -> Optional["Entity"]:
+        return self.__entity_by_name__.get(self._target)
 
     @property
     def held(self) -> Optional["Entity"]:
@@ -294,6 +280,25 @@ class Entity(CommonEntity):
             return None
 
         return surfaces[0]
+
+    @property
+    def surroundings(self) -> List["Entity"]:
+        surroundings = []
+
+        entities = cast(
+            List["Entity"],
+            self._partition.find_by_distance(
+                target=self,
+                distance_x=self.radius,
+                distance_y=self.radius,
+            ),
+        )
+
+        for entity in entities:
+            if entity.density == Density.SOLID:
+                surroundings.append(entity)
+
+        return surroundings
 
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":

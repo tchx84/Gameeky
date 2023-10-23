@@ -9,7 +9,7 @@ class Actuator(BaseActuator):
         if self._interactee is None:
             return
 
-        if (target := self._entity.targets()) is None:
+        if (target := self._entity.target) is None:
             return
 
         self._interactee.position = target.position

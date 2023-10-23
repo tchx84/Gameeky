@@ -37,16 +37,16 @@ class Scene:
         for entity in self._entity_by_id.values():
             entity.tick()
 
-            if entity.removed():
+            if entity.removed:
                 removed.append(entity)
-            if entity.spawned():
+            if entity.spawned:
                 added.append(entity)
 
         for entity in removed:
             self.remove(entity.id)
 
         for entity in added:
-            self.add(entity.spawned(), entity.spawned_at())
+            self.add(entity.spawned, entity.spawned_at)
 
     def add(
         self,

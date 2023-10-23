@@ -6,9 +6,9 @@ class Actuator(BaseActuator):
     interactable = False
 
     def tick(self) -> None:
-        if (target := self._entity.targets()) is None:
+        if (target := self._entity.target) is None:
             return
 
-        for interactee in self._entity.surroundings():
+        for interactee in self._entity.surroundings:
             interactee.position = target.position
             interactee.destination = target.position_at(interactee.direction)
