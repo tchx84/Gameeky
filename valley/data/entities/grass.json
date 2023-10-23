@@ -21,6 +21,9 @@
             "rate": 0
         }
     },
+    "sound": {
+        "states": []
+    },
     "graphics": {
         "default": {
             "path": "sprites/grass.png",

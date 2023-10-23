@@ -21,6 +21,19 @@
             "rate": 0
         }
     },
+    "sound": {
+        "states": [
+            {
+                "name": "walking",
+                "data": {
+                    "paths": [
+                    	"sounds/footstep01.wav",
+                    	"sounds/footstep02.wav"
+                    ]
+                }
+            }
+        ]
+    },
     "graphics": {
         "default": {
             "path": "sprites/player.png",

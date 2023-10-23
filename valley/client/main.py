@@ -9,9 +9,11 @@ from gi.repository import Gio, Gtk, GLib
 
 from valley.client.game.service import Service
 from valley.client.game.scene import Scene as SceneModel
-from valley.client.graphics.entity import EntityRegistry
+from valley.client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from valley.client.graphics.scene import Scene as SceneView
 from valley.client.input.keyboard import Keyboard
+from valley.client.sound.entity import EntityRegistry as EntitySoundRegistry
+from valley.client.sound.scene import Scene as ScenePlayer
 
 from valley.common.utils import get_data_path
 from valley.common.scanner import Scanner, Description
@@ -108,7 +110,8 @@ class Application(Gtk.Application):
         self._scanner.scan()
 
     def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
-        EntityRegistry.register(description)
+        EntityGraphicsRegistry.register(description)
+        EntitySoundRegistry.register(description)
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
         self._service.register()
@@ -120,10 +123,14 @@ class Application(Gtk.Application):
     def _setup_input(self) -> None:
         self._input = Keyboard(widget=self._window, service=self._service)
 
+    def _setup_sound(self) -> None:
+        self._player = ScenePlayer(model=self._model)
+
     def do_activate(self) -> None:
         self._setup_game()
         self._setup_graphics()
         self._setup_input()
+        self._setup_sound()
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
