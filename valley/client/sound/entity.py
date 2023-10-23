@@ -7,6 +7,7 @@ gi.require_version("GSound", "1.0")
 from gi.repository import GLib, Gio, GSound, GObject
 
 from ...common.state import State
+from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
 from ...common.utils import get_data_path
@@ -17,13 +18,16 @@ class Sound(GObject.GObject):
         "finished": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self, path: str) -> None:
+    def __init__(self, path: str, delay: int) -> None:
         super().__init__()
 
         self._path = path
         self._cancellable = Gio.Cancellable()
         self._context = GSound.Context()
         self._context.init()
+
+        self._delay = delay
+        self._timestamp = get_time_milliseconds()
 
         self.playing = False
 
@@ -41,7 +45,14 @@ class Sound(GObject.GObject):
         if self.playing is True:
             return
 
+        timestamp = get_time_milliseconds()
+        seconds_since_play = (timestamp - self._timestamp) / 1000
+
+        if seconds_since_play <= self._delay:
+            return
+
         self.playing = True
+        self._timestamp = timestamp
         self._context.play_full(
             {GSound.ATTR_MEDIA_FILENAME: self._path},
             self._cancellable,
@@ -104,7 +115,7 @@ class EntityRegistry:
 
         for state in description.sound.states:
             for path in state.data.paths:
-                sound = Sound(get_data_path(path))
+                sound = Sound(get_data_path(path), state.data.delay)
                 entity.add(State[state.name.upper()], sound)
 
         cls.__entities__[entity.type_id] = entity
