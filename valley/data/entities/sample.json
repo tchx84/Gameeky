@@ -25,7 +25,7 @@
         "states": [
             {
                 "name": "walking",
-                "data": {
+                "sequence": {
                     "paths": [
                     	"sounds/footstep01.wav",
                     	"sounds/footstep02.wav"

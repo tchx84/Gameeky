@@ -114,8 +114,8 @@ class EntityRegistry:
         entity = Entity(description.id)
 
         for state in description.sound.states:
-            for path in state.data.paths:
-                sound = Sound(get_data_path(path), state.data.delay)
+            for path in state.sequence.paths:
+                sound = Sound(get_data_path(path), state.sequence.delay)
                 entity.add(State[state.name.upper()], sound)
 
         cls.__entities__[entity.type_id] = entity
