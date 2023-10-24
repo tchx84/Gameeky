@@ -8,6 +8,9 @@ from ....common.action import Action
 
 class Handler(BaseHandler):
     def prepare(self, value: float) -> bool:
+        if self._entity.held is not None:
+            return False
+
         entity = self._entity.obstacle
 
         if entity is None:
