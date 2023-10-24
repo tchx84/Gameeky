@@ -18,7 +18,6 @@ class Actuator(BaseActuator):
         delta_y = self._entity.target.position.y - self._entity.position.y
 
         if delta_x == 0 and delta_y == 0:
-            self._entity.target = self._entity.target.target
             return
 
         if delta_x > 0:

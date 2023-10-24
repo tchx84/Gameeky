@@ -15,6 +15,9 @@ from .actuators.stamina import Actuator as StaminaActuator
 from .actuators.durability import Actuator as DurabilityActuator
 from .actuators.consumable import Actuator as ConsumableActuator
 from .actuators.moves import Actuator as MovesActuator
+from .actuators.targets import Actuator as TargetsActuator
+from .actuators.uses import Actuator as UsesActuator
+from .actuators.takes import Actuator as TakesActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -48,6 +51,9 @@ class Entity(CommonEntity):
         DurabilityActuator.name: DurabilityActuator,
         ConsumableActuator.name: ConsumableActuator,
         MovesActuator.name: MovesActuator,
+        TargetsActuator.name: TargetsActuator,
+        UsesActuator.name: UsesActuator,
+        TakesActuator.name: TakesActuator,
     }
 
     def __init__(
@@ -204,8 +210,8 @@ class Entity(CommonEntity):
         return self.__entity_by_name__.get(self._target)
 
     @target.setter
-    def target(self, target: "Entity") -> None:
-        self._target = target.name
+    def target(self, target: Optional["Entity"]) -> None:
+        self._target = target.name if target is not None else ""
 
     @property
     def held(self) -> Optional["Entity"]:
@@ -272,12 +278,11 @@ class Entity(CommonEntity):
 
     @property
     def obstacle(self) -> Optional["Entity"]:
-        obstacles = self.obstacles
+        for entity in self.obstacles:
+            if entity.density == Density.SOLID:
+                return entity
 
-        if not obstacles:
-            return None
-
-        return obstacles[-1]
+        return None
 
     @property
     def surface(self) -> Optional["Entity"]:

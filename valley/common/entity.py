@@ -15,6 +15,12 @@ class Vector(Serializeable):
         self.y = y
         self.z = z
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Vector):
+            return NotImplemented
+
+        return self.x == other.x and self.y == other.y and self.z == other.z
+
     def to_values(self) -> Signature:
         return (self.x, self.y, self.z)
 
