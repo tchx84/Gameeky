@@ -14,6 +14,7 @@ from .actuators.rot import Actuator as RotActuator
 from .actuators.stamina import Actuator as StaminaActuator
 from .actuators.durability import Actuator as DurabilityActuator
 from .actuators.consumable import Actuator as ConsumableActuator
+from .actuators.moves import Actuator as MovesActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -46,6 +47,7 @@ class Entity(CommonEntity):
         StaminaActuator.name: StaminaActuator,
         DurabilityActuator.name: DurabilityActuator,
         ConsumableActuator.name: ConsumableActuator,
+        MovesActuator.name: MovesActuator,
     }
 
     def __init__(
@@ -126,12 +128,6 @@ class Entity(CommonEntity):
 
         self._handler = handler
 
-    def _check_in_blocking_state(self) -> bool:
-        return self.state in [
-            State.DESTROYED,
-            State.HELD,
-        ]
-
     def _update_flags(self) -> None:
         self._spawned = EntityType.EMPTY
 
@@ -151,7 +147,7 @@ class Entity(CommonEntity):
         self._update_actuators()
         self._update_held()
 
-        if self._check_in_blocking_state():
+        if self.blocked is True:
             return
 
         self._prepare()
@@ -180,6 +176,13 @@ class Entity(CommonEntity):
         return self._partition.get_position_for_direction(self.position, direction)
 
     @property
+    def blocked(self) -> bool:
+        return self.state in [
+            State.DESTROYED,
+            State.HELD,
+        ]
+
+    @property
     def removed(self) -> bool:
         return self.state == State.DESTROYED and self.removable is True
 
@@ -199,6 +202,10 @@ class Entity(CommonEntity):
     @property
     def target(self) -> Optional["Entity"]:
         return self.__entity_by_name__.get(self._target)
+
+    @target.setter
+    def target(self, target: "Entity") -> None:
+        self._target = target.name
 
     @property
     def held(self) -> Optional["Entity"]:
