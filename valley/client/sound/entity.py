@@ -6,6 +6,7 @@ gi.require_version("GSound", "1.0")
 
 from gi.repository import GLib, Gio, GSound, GObject
 
+from ...common.logger import logger
 from ...common.state import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
@@ -39,7 +40,12 @@ class Sound(GObject.GObject):
         result: Gio.AsyncResult,
         data: Optional[Any] = None,
     ) -> None:
-        self._context.play_full_finish(result)
+        try:
+            self._context.play_full_finish(result)
+        except GLib.GError as e:
+            if not e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
+                logger.error(e)
+
         self._stop_timeout()
         self.emit("finished")
         self.playing = False
@@ -77,6 +83,7 @@ class Sound(GObject.GObject):
             return
 
         self.playing = True
+        self._cancellable.reset()
         self._timestamp = timestamp
         self._context.play_full(
             {GSound.ATTR_MEDIA_FILENAME: self._path},
