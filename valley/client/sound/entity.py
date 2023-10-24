@@ -31,8 +31,7 @@ class Sound(GObject.GObject):
         self._timeout = timeout
         self._timeout_handler_id: Optional[int] = None
         self._timestamp = get_time_milliseconds()
-
-        self.playing = False
+        self._playing = False
 
     def __on_sound_finished(
         self,
@@ -46,9 +45,7 @@ class Sound(GObject.GObject):
             if not e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
                 logger.error(e)
 
-        self._stop_timeout()
-        self.emit("finished")
-        self.playing = False
+        self.stop()
 
     def __on_timeout(self) -> int:
         self.stop()
@@ -73,7 +70,7 @@ class Sound(GObject.GObject):
     def play(self) -> None:
         self._keep_alive()
 
-        if self.playing is True:
+        if self._playing is True:
             return
 
         timestamp = get_time_milliseconds()
@@ -82,7 +79,7 @@ class Sound(GObject.GObject):
         if seconds_since_play <= self._delay:
             return
 
-        self.playing = True
+        self._playing = True
         self._cancellable.reset()
         self._timestamp = timestamp
         self._context.play_full(
@@ -94,8 +91,8 @@ class Sound(GObject.GObject):
     def stop(self) -> None:
         self._stop_timeout()
         self._cancellable.cancel()
+        self._playing = False
         self.emit("finished")
-        self.playing = False
 
 
 class SoundSequence:
