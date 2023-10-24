@@ -30,7 +30,8 @@
                     	"sounds/footstep01.wav",
                     	"sounds/footstep02.wav"
                     ],
-                    "delay": 0
+                    "delay": 0,
+                    "timeout": 0
                 }
             }
         ]

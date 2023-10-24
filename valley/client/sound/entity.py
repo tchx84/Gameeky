@@ -18,7 +18,7 @@ class Sound(GObject.GObject):
         "finished": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self, path: str, delay: int) -> None:
+    def __init__(self, path: str, delay: int, timeout: int) -> None:
         super().__init__()
 
         self._path = path
@@ -27,6 +27,8 @@ class Sound(GObject.GObject):
         self._context.init()
 
         self._delay = delay
+        self._timeout = timeout
+        self._timeout_handler_id: Optional[int] = None
         self._timestamp = get_time_milliseconds()
 
         self.playing = False
@@ -38,10 +40,33 @@ class Sound(GObject.GObject):
         data: Optional[Any] = None,
     ) -> None:
         self._context.play_full_finish(result)
+        self._stop_timeout()
         self.emit("finished")
         self.playing = False
 
+    def __on_timeout(self) -> int:
+        self.stop()
+        return GLib.SOURCE_REMOVE
+
+    def _stop_timeout(self) -> None:
+        if self._timeout_handler_id is not None:
+            GLib.Source.remove(self._timeout_handler_id)
+
+        self._timeout_handler_id = None
+
+    def _keep_alive(self) -> None:
+        if self._timeout == 0:
+            return
+
+        self._stop_timeout()
+        self._timeout_handler_id = GLib.timeout_add_seconds(
+            self._timeout,
+            self.__on_timeout,
+        )
+
     def play(self) -> None:
+        self._keep_alive()
+
         if self.playing is True:
             return
 
@@ -60,6 +85,7 @@ class Sound(GObject.GObject):
         )
 
     def stop(self) -> None:
+        self._stop_timeout()
         self._cancellable.cancel()
         self.emit("finished")
         self.playing = False
@@ -115,7 +141,11 @@ class EntityRegistry:
 
         for state in description.sound.states:
             for path in state.sequence.paths:
-                sound = Sound(get_data_path(path), state.sequence.delay)
+                sound = Sound(
+                    get_data_path(path),
+                    state.sequence.delay,
+                    state.sequence.timeout,
+                )
                 entity.add(State[state.name.upper()], sound)
 
         cls.__entities__[entity.type_id] = entity
