@@ -16,6 +16,8 @@ class Handler(BaseHandler):
             return False
         if entity.visible is False:
             return False
+        if entity.state == State.MOVING:
+            return False
 
         self._entity.held = entity
         self._entity.held.density = Density.VOID
