@@ -2,8 +2,6 @@ from typing import Optional, TYPE_CHECKING
 
 from .base import Actuator as BaseActuator
 
-from ..definitions import Density
-
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -37,12 +35,8 @@ class Actuator(BaseActuator):
         target: Optional[Entity] = None
 
         for entity in self._entity.surroundings:
-            if entity.density != Density.SOLID:
-                continue
-            if not entity.name:
-                continue
-
-            target = entity
+            if entity.name:
+                target = entity
 
         if target is None:
             return
