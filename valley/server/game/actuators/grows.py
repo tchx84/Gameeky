@@ -5,7 +5,7 @@ from ....common.utils import get_time_milliseconds
 
 
 class Actuator(BaseActuator):
-    name = "grower"
+    name = "grows"
     interactable = False
 
     def __init__(self, *args, **kargs) -> None:

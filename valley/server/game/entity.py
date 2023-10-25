@@ -7,7 +7,7 @@ from .definitions import Density, Recovery, Delay
 from .partition import SpatialPartition
 
 from .actuators.base import Actuator
-from .actuators.grower import Actuator as GrowerActuator
+from .actuators.grows import Actuator as GrowsActuator
 from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rots import Actuator as RotsActuator
@@ -43,7 +43,7 @@ class Entity(CommonEntity):
     __entity_by_name__: Dict[str, "Entity"] = {}
 
     __actuator_by_name__ = {
-        GrowerActuator.name: GrowerActuator,
+        GrowsActuator.name: GrowsActuator,
         PortalSwitchActuator.name: PortalSwitchActuator,
         PortalAreaActuator.name: PortalAreaActuator,
         RotsActuator.name: RotsActuator,
