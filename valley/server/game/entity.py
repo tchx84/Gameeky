@@ -8,8 +8,8 @@ from .partition import SpatialPartition
 
 from .actuators.base import Actuator
 from .actuators.grows import Actuator as GrowsActuator
-from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.teleports import Actuator as TeleportsActuator
+from .actuators.teleports_i import Actuator as TeleportsIActuator
 from .actuators.rots import Actuator as RotsActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
@@ -44,8 +44,8 @@ class Entity(CommonEntity):
 
     __actuator_by_name__ = {
         GrowsActuator.name: GrowsActuator,
-        PortalSwitchActuator.name: PortalSwitchActuator,
         TeleportsActuator.name: TeleportsActuator,
+        TeleportsIActuator.name: TeleportsIActuator,
         RotsActuator.name: RotsActuator,
         ExhaustsActuator.name: ExhaustsActuator,
         DestroysActuator.name: DestroysActuator,

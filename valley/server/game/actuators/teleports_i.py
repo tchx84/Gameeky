@@ -2,7 +2,7 @@ from .base import Actuator as BaseActuator
 
 
 class Actuator(BaseActuator):
-    name = "portal_switch"
+    name = "teleports_i"
     interactable = True
 
     def tick(self) -> None:
