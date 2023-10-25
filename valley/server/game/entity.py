@@ -10,7 +10,7 @@ from .actuators.base import Actuator
 from .actuators.grows import Actuator as GrowsActuator
 from .actuators.teleports import Actuator as TeleportsActuator
 from .actuators.teleports_i import Actuator as TeleportsIActuator
-from .actuators.rots import Actuator as RotsActuator
+from .actuators.deteriorates import Actuator as DeterioratesActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
 from .actuators.restores_i import Actuator as RestoresIActuator
@@ -20,6 +20,7 @@ from .actuators.targets import Actuator as TargetsActuator
 from .actuators.uses import Actuator as UsesActuator
 from .actuators.takes import Actuator as TakesActuator
 from .actuators.interacts import Actuator as InteractsActuator
+from .actuators.spawns import Actuator as SpawnsActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -48,7 +49,7 @@ class Entity(CommonEntity):
         GrowsActuator.name: GrowsActuator,
         TeleportsActuator.name: TeleportsActuator,
         TeleportsIActuator.name: TeleportsIActuator,
-        RotsActuator.name: RotsActuator,
+        DeterioratesActuator.name: DeterioratesActuator,
         ExhaustsActuator.name: ExhaustsActuator,
         DestroysActuator.name: DestroysActuator,
         RestoresIActuator.name: RestoresIActuator,
@@ -58,6 +59,7 @@ class Entity(CommonEntity):
         UsesActuator.name: UsesActuator,
         TakesActuator.name: TakesActuator,
         InteractsActuator.name: InteractsActuator,
+        SpawnsActuator.name: SpawnsActuator,
     }
 
     def __init__(
