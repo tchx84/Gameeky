@@ -11,7 +11,7 @@ from .actuators.grower import Actuator as GrowerActuator
 from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rot import Actuator as RotActuator
-from .actuators.stamina import Actuator as StaminaActuator
+from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.durability import Actuator as DurabilityActuator
 from .actuators.consumable import Actuator as ConsumableActuator
 from .actuators.moves import Actuator as MovesActuator
@@ -47,7 +47,7 @@ class Entity(CommonEntity):
         PortalSwitchActuator.name: PortalSwitchActuator,
         PortalAreaActuator.name: PortalAreaActuator,
         RotActuator.name: RotActuator,
-        StaminaActuator.name: StaminaActuator,
+        ExhaustsActuator.name: ExhaustsActuator,
         DurabilityActuator.name: DurabilityActuator,
         ConsumableActuator.name: ConsumableActuator,
         MovesActuator.name: MovesActuator,

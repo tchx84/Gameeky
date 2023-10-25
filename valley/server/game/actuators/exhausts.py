@@ -13,7 +13,7 @@ class Actuator(BaseActuator):
         Action.TAKE: Cost.MAX * 4,
     }
 
-    name = "stamina"
+    name = "exhausts"
     interactable = False
 
     def __init__(self, *args, **kargs) -> None:
