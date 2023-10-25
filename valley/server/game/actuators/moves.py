@@ -22,12 +22,12 @@ class Actuator(BaseActuator):
             return
 
         if delta_x > 0:
-            direction = Direction.RIGHT
+            direction = Direction.EAST
         elif delta_x < 0:
-            direction = Direction.LEFT
+            direction = Direction.WEST
         elif delta_y > 0:
-            direction = Direction.DOWN
+            direction = Direction.SOUTH
         elif delta_y < 0:
-            direction = Direction.UP
+            direction = Direction.NORTH
 
         self._entity.perform(Action.MOVE, direction)

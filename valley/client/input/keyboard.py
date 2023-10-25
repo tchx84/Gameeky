@@ -11,10 +11,10 @@ from ...common.direction import Direction
 
 class Keyboard(Gtk.EventControllerKey):
     action_by_key = {
-        Gdk.KEY_Right: (Action.MOVE, Direction.RIGHT),
-        Gdk.KEY_Up: (Action.MOVE, Direction.UP),
-        Gdk.KEY_Left: (Action.MOVE, Direction.LEFT),
-        Gdk.KEY_Down: (Action.MOVE, Direction.DOWN),
+        Gdk.KEY_Right: (Action.MOVE, Direction.EAST),
+        Gdk.KEY_Up: (Action.MOVE, Direction.NORTH),
+        Gdk.KEY_Left: (Action.MOVE, Direction.WEST),
+        Gdk.KEY_Down: (Action.MOVE, Direction.SOUTH),
         Gdk.KEY_x: (Action.USE, 0),
         Gdk.KEY_c: (Action.TAKE, 0),
         Gdk.KEY_d: (Action.DROP, 0),

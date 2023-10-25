@@ -114,7 +114,7 @@ def test_client_message():
     mock = Mock()
 
     server.connect("updated", mock)
-    client.message(Action.MOVE, Direction.RIGHT)
+    client.message(Action.MOVE, Direction.EAST)
 
     while not mock.called:
         update()
@@ -162,13 +162,13 @@ def test_server_action_take():
 
     assert entity_moved.position.x == 1
 
-    client.message(Action.MOVE, Direction.DOWN)
+    client.message(Action.MOVE, Direction.SOUTH)
     wait_for_seconds(3)
 
     client.message(Action.TAKE, 0)
     wait_for_seconds(3)
 
-    client.message(Action.MOVE, Direction.LEFT)
+    client.message(Action.MOVE, Direction.WEST)
     wait_for_seconds(3)
 
     assert entity_moving.position.x == 0
@@ -181,7 +181,7 @@ def test_server_attribute_durability():
 
     assert entity.durability == 100
 
-    client.message(Action.MOVE, Direction.DOWN)
+    client.message(Action.MOVE, Direction.SOUTH)
     wait_for_seconds(2)
 
     client.message(Action.USE, 0)
@@ -219,7 +219,7 @@ def test_server_action_drop():
     client.message(Action.DROP, 0)
     wait_for_seconds(2)
 
-    client.message(Action.MOVE, Direction.RIGHT)
+    client.message(Action.MOVE, Direction.EAST)
     wait_for_seconds(2)
 
     assert entity_moving.position.x == 1

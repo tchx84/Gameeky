@@ -9,7 +9,7 @@
             "recovery": 0,
             "removable": true,
             "equippable": true,
-            "direction": "down",
+            "direction": "south",
             "state": "idling",
             "density": 1,
             "visible": true,

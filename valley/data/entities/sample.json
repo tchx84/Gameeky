@@ -9,7 +9,7 @@
             "recovery": 0.75,
             "removable": true,
             "equippable": false,
-            "direction": "down",
+            "direction": "south",
             "state": "idling",
             "density": 1,
             "visible": true,
@@ -56,7 +56,7 @@
                 "name": "moving",
                 "directions": [
                     {
-                        "name": "down",
+                        "name": "south",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -73,7 +73,7 @@
                         }
                     },
                     {
-                        "name": "right",
+                        "name": "east",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -90,7 +90,7 @@
                         }
                     },
                     {
-                        "name": "up",
+                        "name": "north",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -107,7 +107,7 @@
                         }
                     },
                     {
-                        "name": "left",
+                        "name": "west",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -129,7 +129,7 @@
                 "name": "using",
                 "directions": [
                     {
-                        "name": "down",
+                        "name": "south",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -146,7 +146,7 @@
                         }
                     },
                     {
-                        "name": "right",
+                        "name": "east",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -163,7 +163,7 @@
                         }
                     },
                     {
-                        "name": "up",
+                        "name": "north",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,
@@ -180,7 +180,7 @@
                         }
                     },
                     {
-                        "name": "left",
+                        "name": "west",
                         "animation": {
                             "path": "sprites/player.png",
                             "columns": 6,

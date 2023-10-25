@@ -21,7 +21,7 @@ def test_serialize_entity():
         id=1,
         type_id=1,
         position=None,
-        direction=Direction.RIGHT,
+        direction=Direction.EAST,
         state=State.MOVING,
         visible=False,
     )

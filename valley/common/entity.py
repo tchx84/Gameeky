@@ -44,7 +44,7 @@ class Entity(Serializeable):
         id: int,
         type_id: int,
         position: Optional[Vector] = None,
-        direction: Direction = Direction.RIGHT,
+        direction: Direction = Direction.EAST,
         state: State = State.IDLING,
         visible: bool = True,
     ) -> None:

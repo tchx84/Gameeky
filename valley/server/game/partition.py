@@ -40,13 +40,13 @@ class SpatialPartition:
     ) -> Vector:
         position = position.copy()
 
-        if direction == Direction.RIGHT:
+        if direction == Direction.EAST:
             position.x += 1
-        if direction == Direction.DOWN:
+        if direction == Direction.SOUTH:
             position.y += 1
-        if direction == Direction.LEFT:
+        if direction == Direction.WEST:
             position.x -= 1
-        if direction == Direction.UP:
+        if direction == Direction.NORTH:
             position.y -= 1
 
         # Don't go outside'of the scene
@@ -65,13 +65,13 @@ class SpatialPartition:
         x = math.floor(entity.position.x)
         y = math.floor(entity.position.y)
 
-        if entity.direction == Direction.RIGHT:
+        if entity.direction == Direction.EAST:
             x += 1
-        elif entity.direction == Direction.UP:
+        elif entity.direction == Direction.NORTH:
             y -= 1
-        elif entity.direction == Direction.LEFT:
+        elif entity.direction == Direction.WEST:
             x -= 1
-        elif entity.direction == Direction.DOWN:
+        elif entity.direction == Direction.SOUTH:
             y += 1
 
         return self._entity_by_position.get((x, y), [])
