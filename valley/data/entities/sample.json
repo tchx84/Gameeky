@@ -15,7 +15,7 @@
             "visible": true,
             "spawns": 0,
             "name": "",
-            "actuators": ["exhausts", "durability"],
+            "actuators": ["exhausts", "destroys"],
             "target": "",
             "radius": 0,
             "rate": 0

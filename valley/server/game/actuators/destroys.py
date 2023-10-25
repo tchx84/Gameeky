@@ -4,7 +4,7 @@ from ....common.action import Action
 
 
 class Actuator(BaseActuator):
-    name = "durability"
+    name = "destroys"
     interactable = False
 
     def tick(self) -> None:

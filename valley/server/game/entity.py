@@ -12,7 +12,7 @@ from .actuators.portal_switch import Actuator as PortalSwitchActuator
 from .actuators.portal_area import Actuator as PortalAreaActuator
 from .actuators.rot import Actuator as RotActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
-from .actuators.durability import Actuator as DurabilityActuator
+from .actuators.destroys import Actuator as DestroysActuator
 from .actuators.consumable import Actuator as ConsumableActuator
 from .actuators.moves import Actuator as MovesActuator
 from .actuators.targets import Actuator as TargetsActuator
@@ -48,7 +48,7 @@ class Entity(CommonEntity):
         PortalAreaActuator.name: PortalAreaActuator,
         RotActuator.name: RotActuator,
         ExhaustsActuator.name: ExhaustsActuator,
-        DurabilityActuator.name: DurabilityActuator,
+        DestroysActuator.name: DestroysActuator,
         ConsumableActuator.name: ConsumableActuator,
         MovesActuator.name: MovesActuator,
         TargetsActuator.name: TargetsActuator,
