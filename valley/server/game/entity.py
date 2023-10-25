@@ -21,6 +21,7 @@ from .actuators.uses import Actuator as UsesActuator
 from .actuators.takes import Actuator as TakesActuator
 from .actuators.interacts import Actuator as InteractsActuator
 from .actuators.spawns import Actuator as SpawnsActuator
+from .actuators.triggers import Actuator as TriggersActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -60,6 +61,7 @@ class Entity(CommonEntity):
         TakesActuator.name: TakesActuator,
         InteractsActuator.name: InteractsActuator,
         SpawnsActuator.name: SpawnsActuator,
+        TriggersActuator.name: TriggersActuator,
     }
 
     def __init__(
@@ -168,6 +170,11 @@ class Entity(CommonEntity):
     def perform(self, action: Action, value: float = 0) -> None:
         self._next_action = action
         self._next_value = value
+
+    def activate(self) -> None:
+        for actuator in self.actuators:
+            if actuator.activatable is True:
+                actuator.activate()
 
     def drop(self) -> None:
         if self.held is None:

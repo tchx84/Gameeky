@@ -4,6 +4,7 @@ from .base import Actuator as BaseActuator
 class Actuator(BaseActuator):
     name = "teleports"
     interactable = False
+    activatable = False
 
     def tick(self) -> None:
         if (target := self._entity.target) is None:

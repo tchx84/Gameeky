@@ -6,6 +6,7 @@ from ....common.action import Action
 class Actuator(BaseActuator):
     name = "takes"
     interactable = False
+    activatable = False
 
     def tick(self) -> None:
         if self._entity.held is not None:

@@ -6,6 +6,7 @@ from ....common.action import Action
 class Actuator(BaseActuator):
     name = "restores_i"
     interactable = True
+    activatable = False
 
     def tick(self) -> None:
         if self._interactee is None:

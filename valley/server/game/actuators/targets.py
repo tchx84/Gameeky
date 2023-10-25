@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class Actuator(BaseActuator):
     name = "targets"
     interactable = False
+    activatable = False
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)

@@ -3,7 +3,6 @@ from .base import Actuator as BaseActuator
 from ..definitions import Cost
 
 from ....common.action import Action
-from ....common.utils import get_time_milliseconds
 
 
 class Actuator(BaseActuator):
@@ -15,20 +14,16 @@ class Actuator(BaseActuator):
 
     name = "exhausts"
     interactable = False
-
-    def __init__(self, *args, **kargs) -> None:
-        super().__init__(*args, **kargs)
-        self._timestamp_tick = get_time_milliseconds()
+    activatable = True
 
     def tick(self) -> None:
-        timestamp = get_time_milliseconds()
-        seconds_since_tick = (timestamp - self._timestamp_tick) / 1000
+        seconds = self._seconds_since_activation()
 
         cost = self.__stamina_cost_by_action__.get(self._entity.action, Cost.MIN)
         gain = abs(cost) * self._entity.recovery
-        self._entity.stamina += (gain - (cost - Cost.MIN)) * seconds_since_tick
+        self._entity.stamina += (gain - (cost - Cost.MIN)) * seconds
 
-        if self._entity.stamina <= 0:
+        if self._entity.stamina <= 0 or self.activated is True:
             self._entity.perform(Action.EXHAUST)
 
-        self._timestamp_tick = timestamp
+        super().tick()

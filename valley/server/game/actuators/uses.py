@@ -8,6 +8,7 @@ from ....common.action import Action
 class Actuator(BaseActuator):
     name = "uses"
     interactable = False
+    activatable = False
 
     def tick(self) -> None:
         if (entity := self._entity.obstacle) is None:

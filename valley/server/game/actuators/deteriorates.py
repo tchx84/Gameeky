@@ -8,6 +8,7 @@ from ....common.utils import get_time_milliseconds
 class Actuator(BaseActuator):
     name = "deteriorates"
     interactable = False
+    activatable = False
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
