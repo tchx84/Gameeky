@@ -15,6 +15,7 @@ from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
 from .actuators.restores_i import Actuator as RestoresIActuator
 from .actuators.moves import Actuator as MovesActuator
+from .actuators.roams import Actuator as RoamsActuator
 from .actuators.targets import Actuator as TargetsActuator
 from .actuators.uses import Actuator as UsesActuator
 from .actuators.takes import Actuator as TakesActuator
@@ -52,6 +53,7 @@ class Entity(CommonEntity):
         DestroysActuator.name: DestroysActuator,
         RestoresIActuator.name: RestoresIActuator,
         MovesActuator.name: MovesActuator,
+        RoamsActuator.name: RoamsActuator,
         TargetsActuator.name: TargetsActuator,
         UsesActuator.name: UsesActuator,
         TakesActuator.name: TakesActuator,
