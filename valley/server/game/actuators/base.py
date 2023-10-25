@@ -47,5 +47,6 @@ class Actuator:
     def activated(self) -> bool:
         return self.activatable is True and self._activated is True
 
+    @property
     def finished(self) -> bool:
         return self._busy is False

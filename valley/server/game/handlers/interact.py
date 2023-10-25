@@ -33,7 +33,7 @@ class Handler(BaseHandler):
         self._entity.state = State.INTERACTING
 
         for actuator in self._actuating:
-            if actuator.finished() is False:
+            if actuator.finished is False:
                 return
 
         self.finish()
