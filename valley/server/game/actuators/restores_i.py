@@ -4,7 +4,7 @@ from ....common.action import Action
 
 
 class Actuator(BaseActuator):
-    name = "consumable"
+    name = "restores_i"
     interactable = True
 
     def tick(self) -> None:

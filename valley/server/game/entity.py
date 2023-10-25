@@ -13,7 +13,7 @@ from .actuators.teleports_i import Actuator as TeleportsIActuator
 from .actuators.rots import Actuator as RotsActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
-from .actuators.consumable import Actuator as ConsumableActuator
+from .actuators.restores_i import Actuator as RestoresIActuator
 from .actuators.moves import Actuator as MovesActuator
 from .actuators.targets import Actuator as TargetsActuator
 from .actuators.uses import Actuator as UsesActuator
@@ -49,7 +49,7 @@ class Entity(CommonEntity):
         RotsActuator.name: RotsActuator,
         ExhaustsActuator.name: ExhaustsActuator,
         DestroysActuator.name: DestroysActuator,
-        ConsumableActuator.name: ConsumableActuator,
+        RestoresIActuator.name: RestoresIActuator,
         MovesActuator.name: MovesActuator,
         TargetsActuator.name: TargetsActuator,
         UsesActuator.name: UsesActuator,
