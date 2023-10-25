@@ -18,6 +18,7 @@ from .actuators.moves import Actuator as MovesActuator
 from .actuators.targets import Actuator as TargetsActuator
 from .actuators.uses import Actuator as UsesActuator
 from .actuators.takes import Actuator as TakesActuator
+from .actuators.interacts import Actuator as InteractsActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -54,6 +55,7 @@ class Entity(CommonEntity):
         TargetsActuator.name: TargetsActuator,
         UsesActuator.name: UsesActuator,
         TakesActuator.name: TakesActuator,
+        InteractsActuator.name: InteractsActuator,
     }
 
     def __init__(
@@ -180,6 +182,14 @@ class Entity(CommonEntity):
 
     def position_at(self, direction: Direction) -> Vector:
         return self._partition.get_position_for_direction(self.position, direction)
+
+    @property
+    def interactable(self) -> bool:
+        for actuator in self.actuators:
+            if actuator.interactable is True:
+                return True
+
+        return False
 
     @property
     def blocked(self) -> bool:
