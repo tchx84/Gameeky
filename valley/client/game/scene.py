@@ -9,6 +9,7 @@ from ...common.scene import Scene as CommonScene
 
 class Scene(CommonScene, GObject.GObject):
     __gsignals__ = {
+        "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
         "updated": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -36,4 +37,5 @@ class Scene(CommonScene, GObject.GObject):
 
     def __on_scene_ticked(self) -> int:
         self._service.request()
+        self.emit("ticked")
         return GLib.SOURCE_CONTINUE

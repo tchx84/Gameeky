@@ -2,6 +2,7 @@ from typing import Any, Optional
 
 from gi.repository import Gio, GLib, GObject
 
+from ...common.logger import logger
 from ...common.definitions import MAX_UDP_BYTES
 
 
@@ -40,4 +41,8 @@ class Client(GObject.GObject):
         return GLib.SOURCE_CONTINUE
 
     def send(self, data: bytes) -> None:
-        self._socket.send(data)
+        # XXX raise specific errors to allow clients to gracefully handle it
+        try:
+            self._socket.send(data)
+        except Exception as e:
+            logger.error(e)

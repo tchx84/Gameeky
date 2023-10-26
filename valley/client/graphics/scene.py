@@ -9,6 +9,7 @@ class Scene(Gtk.Widget):
         super().__init__()
 
         self._model = model
+        self._model.connect("ticked", self.__on_scene_updated)
         self._model.connect("updated", self.__on_scene_updated)
 
     def __on_scene_updated(self, model: SceneModel) -> None:
