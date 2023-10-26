@@ -7,3 +7,4 @@ class Command(StrEnum):
     SCENE_PORT = auto()
     CLIENTS = auto()
     ADDRESS = auto()
+    SCENE = auto()

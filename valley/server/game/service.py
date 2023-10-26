@@ -34,6 +34,7 @@ class Service(GObject.GObject):
 
     def __init__(
         self,
+        scene: str,
         clients: int,
         session_port: int,
         messages_port: int,
@@ -48,7 +49,7 @@ class Service(GObject.GObject):
 
         self.scene = Scene.new_from_description(
             Description.new_from_json(
-                get_data_path("scene/sample.json"),
+                get_data_path(scene),
             )
         )
 

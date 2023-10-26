@@ -10,6 +10,7 @@ from valley.common.scanner import Scanner, Description
 from valley.common.command import Command
 from valley.common.utils import get_data_path
 from valley.common.definitions import (
+    DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
@@ -24,6 +25,14 @@ class Application(Gio.Application):
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
 
+        self.add_main_option(
+            Command.SCENE,
+            ord("n"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The relative path to the scene to be used",
+            None,
+        )
         self.add_main_option(
             Command.SESSION_PORT,
             ord("s"),
@@ -62,6 +71,7 @@ class Application(Gio.Application):
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
         self._service = Service(
+            scene=self._scene,
             clients=self._clients,
             session_port=self._session_port,
             messages_port=self._messages_port,
@@ -82,6 +92,7 @@ class Application(Gio.Application):
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
+        self._scene = options.get(Command.SCENE, DEFAULT_SCENE)
         self._clients = options.get(Command.CLIENTS, DEFAULT_CLIENTS)
         self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
         self._messages_port = options.get(Command.MESSAGES_PORT, DEFAULT_MESSAGES_PORT)

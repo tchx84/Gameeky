@@ -12,6 +12,7 @@ from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
+    DEFAULT_SCENE,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
@@ -65,6 +66,7 @@ def test_server_create():
     global server
 
     server = Server(
+        scene=DEFAULT_SCENE,
         clients=1,
         session_port=DEFAULT_SESSION_PORT,
         messages_port=DEFAULT_MESSAGES_PORT,
