@@ -13,3 +13,7 @@ def get_data_path(*paths) -> str:
 
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
+
+
+def division(dividend, divisor):
+    return dividend / divisor if divisor > 0 else 0

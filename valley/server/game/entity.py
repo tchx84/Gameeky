@@ -39,7 +39,7 @@ from ...common.state import State
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
-from ...common.utils import clamp
+from ...common.utils import clamp, division
 from ...common.entity import EntityType
 from ...common.entity import Entity as CommonEntity
 
@@ -290,10 +290,7 @@ class Entity(CommonEntity):
     @durability.setter
     def durability(self, durability) -> None:
         self._durability = clamp(self._max_durability, 0, durability)
-
-        self.status = 0
-        if self._max_durability > 0:
-            self.status = self._durability / self._max_durability
+        self.status = division(self._durability, self._max_durability)
 
     @property
     def stamina(self) -> float:
