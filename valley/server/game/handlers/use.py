@@ -1,5 +1,7 @@
 from .base import Handler as BaseHandler
 
+from ..definitions import Density
+
 from ....common.state import State
 from ....common.action import Action
 from ....common.entity import EntityType
@@ -33,6 +35,8 @@ class Handler(BaseHandler):
 
         for target in self._entity.obstacles:
             if target.visible is False:
+                continue
+            if target.density != Density.SOLID:
                 continue
             if target is self._entity.held:
                 continue
