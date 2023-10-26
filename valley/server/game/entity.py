@@ -309,11 +309,16 @@ class Entity(CommonEntity):
 
     @property
     def obstacle(self) -> Optional["Entity"]:
-        for entity in self.obstacles:
-            if entity.density == Density.SOLID:
-                return entity
+        obstacles = []
 
-        return None
+        for obstacle in self.obstacles:
+            if obstacle.density == Density.SOLID:
+                obstacles.append(obstacle)
+
+        if not obstacles:
+            return None
+
+        return obstacles[-1]
 
     @property
     def surface(self) -> Optional["Entity"]:
