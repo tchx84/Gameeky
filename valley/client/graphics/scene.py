@@ -1,6 +1,7 @@
 from gi.repository import Gtk, Graphene
 
 from .entity import EntityRegistry
+from .status import Status
 from ..game.scene import Scene as SceneModel
 
 
@@ -44,3 +45,14 @@ class Scene(Gtk.Widget):
             entity_rect.init(rect_x, rect_y, rect_width, rect_height)
 
             snapshot.append_texture(texture, entity_rect)
+
+            Status.draw(
+                snapshot,
+                entity,
+                rect_x,
+                rect_y,
+                rect_width,
+                rect_height,
+                tile_width,
+                tile_height,
+            )

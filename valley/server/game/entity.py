@@ -291,6 +291,10 @@ class Entity(CommonEntity):
     def durability(self, durability) -> None:
         self._durability = clamp(self._max_durability, 0, durability)
 
+        self.status = 0
+        if self._max_durability > 0:
+            self.status = self._durability / self._max_durability
+
     @property
     def stamina(self) -> float:
         return self._stamina

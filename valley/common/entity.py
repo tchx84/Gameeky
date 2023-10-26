@@ -37,7 +37,7 @@ class EntityType(IntEnum):
 
 
 class Entity(Serializeable):
-    Signature = Tuple[int, int, Vector.Signature, int, int, bool]
+    Signature = Tuple[int, int, Vector.Signature, int, int, bool, float]
 
     def __init__(
         self,
@@ -47,12 +47,14 @@ class Entity(Serializeable):
         direction: Direction = Direction.EAST,
         state: State = State.IDLING,
         visible: bool = True,
+        status: float = 1.0,
     ) -> None:
         self.id = id
         self.type_id = type_id
         self.direction = direction
         self.state = state
         self.visible = visible
+        self.status = status
 
         # Allow to extend on this property in sub-classes
         self._position = position if position else Vector()
@@ -73,11 +75,12 @@ class Entity(Serializeable):
             self.direction,
             self.state,
             self.visible,
+            self.status,
         )
 
     @classmethod
     def from_values(cls, values: Signature) -> "Entity":
-        id, type_id, position, direction, state, visible = values
+        id, type_id, position, direction, state, visible, status = values
         return cls(
             id,
             type_id,
@@ -85,4 +88,5 @@ class Entity(Serializeable):
             Direction(direction),
             State(state),
             visible,
+            status,
         )

@@ -24,6 +24,7 @@ def test_serialize_entity():
         direction=Direction.EAST,
         state=State.MOVING,
         visible=False,
+        status=0.5,
     )
     serialized = Entity.deserialize(original.serialize())
 
@@ -31,6 +32,7 @@ def test_serialize_entity():
     assert serialized.direction == original.direction
     assert serialized.state == original.state
     assert serialized.visible == original.visible
+    assert serialized.status == original.status
 
 
 def test_serialize_message():
