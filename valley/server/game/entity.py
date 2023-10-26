@@ -197,6 +197,10 @@ class Entity(CommonEntity):
         return self._partition.get_position_for_direction(self.position, direction)
 
     @property
+    def mutable(self) -> bool:
+        return len(self.actuators) > 0
+
+    @property
     def interactable(self) -> bool:
         for actuator in self.actuators:
             if actuator.interactable is True:

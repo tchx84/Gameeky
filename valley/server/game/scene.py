@@ -35,6 +35,9 @@ class Scene:
         removed = []
 
         for entity in self._entity_by_id.values():
+            if entity.mutable is False:
+                continue
+
             entity.tick()
 
             if entity.removed:
