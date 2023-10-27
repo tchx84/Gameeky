@@ -4,12 +4,12 @@ from ....common.state import State
 
 
 class Actuator(BaseActuator):
-    name = "grows"
+    name = "transmutes"
     interactable = False
-    activatable = False
+    activatable = True
 
     def tick(self) -> None:
-        if self._seconds_since_activation() <= self._entity.rate:
+        if self._seconds_since_activation() < self._entity.rate and not self.activated:
             return
 
         self._entity.state = State.DESTROYED
