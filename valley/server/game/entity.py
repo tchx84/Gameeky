@@ -24,6 +24,7 @@ from .actuators.spawns import Actuator as SpawnsActuator
 from .actuators.drops import Actuator as DropsActuator
 from .actuators.triggers import Actuator as TriggersActuator
 from .actuators.triggers_i import Actuator as TriggersIActuator
+from .actuators.requires import Actuator as RequiresActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -40,7 +41,7 @@ from ...common.state import State
 from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
-from ...common.utils import clamp, division
+from ...common.utils import clamp, division, element
 from ...common.entity import EntityType
 from ...common.entity import Entity as CommonEntity
 
@@ -66,6 +67,7 @@ class Entity(CommonEntity):
         DropsActuator.name: DropsActuator,
         TriggersActuator.name: TriggersActuator,
         TriggersIActuator.name: TriggersIActuator,
+        RequiresActuator.name: RequiresActuator,
     }
 
     def __init__(
@@ -320,13 +322,16 @@ class Entity(CommonEntity):
         return obstacles[-1]
 
     @property
+    def surfaces(self) -> List["Entity"]:
+        return cast(List["Entity"], self._partition.find_by_position(self.position))
+
+    @property
     def surface(self) -> Optional["Entity"]:
-        surfaces = cast(List["Entity"], self._partition.find_by_position(self.position))
+        return element(self.surfaces, 0)
 
-        if not surfaces:
-            return None
-
-        return surfaces[0]
+    @property
+    def overlay(self) -> Optional["Entity"]:
+        return element(self.surfaces, -1)
 
     @property
     def surroundings(self) -> List["Entity"]:

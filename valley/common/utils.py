@@ -17,3 +17,7 @@ def clamp(maximum, minimum, value):
 
 def division(dividend, divisor):
     return dividend / divisor if divisor > 0 else 0
+
+
+def element(array, index):
+    return array[index] if len(array) > 0 else None
