@@ -316,10 +316,7 @@ class Entity(CommonEntity):
             if obstacle.density == Density.SOLID:
                 obstacles.append(obstacle)
 
-        if not obstacles:
-            return None
-
-        return obstacles[-1]
+        return element(obstacles, -1)
 
     @property
     def surfaces(self) -> List["Entity"]:
