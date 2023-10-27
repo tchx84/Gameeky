@@ -51,6 +51,17 @@ from ...common.entity import Entity as CommonEntity
 class Entity(CommonEntity):
     __entity_by_name__: Dict[str, "Entity"] = {}
 
+    __handler_by_action__ = {
+        Action.DESTROY: DestroyHandler,
+        Action.DROP: DropHandler,
+        Action.EXHAUST: ExhaustHandler,
+        Action.IDLE: IdleHandler,
+        Action.INTERACT: InteractHandler,
+        Action.MOVE: MoveHandler,
+        Action.TAKE: TakeHandler,
+        Action.USE: UseHandler,
+    }
+
     __actuator_by_name__ = {
         TransmutesActuator.name: TransmutesActuator,
         TeleportsActuator.name: TeleportsActuator,
@@ -125,22 +136,16 @@ class Entity(CommonEntity):
         self._spawned = EntityType.EMPTY
         self._destination = Vector()
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
+        self._handlers: Dict[Action, Handler] = {}
+
+        for action, HandlerClass in self.__handler_by_action__.items():
+            self._handlers[action] = HandlerClass(self)
+
+        self._handler = self._handlers[Action.IDLE]
 
         for actuator in actuators:
             if ActuatorClass := self.__actuator_by_name__.get(actuator):
                 self.actuators.append(ActuatorClass(self))
-
-        self._handlers: Dict[Action, Handler] = {}
-        self._handlers[Action.DESTROY] = DestroyHandler(self)
-        self._handlers[Action.DROP] = DropHandler(self)
-        self._handlers[Action.EXHAUST] = ExhaustHandler(self)
-        self._handlers[Action.IDLE] = IdleHandler(self)
-        self._handlers[Action.INTERACT] = InteractHandler(self)
-        self._handlers[Action.MOVE] = MoveHandler(self)
-        self._handlers[Action.TAKE] = TakeHandler(self)
-        self._handlers[Action.USE] = UseHandler(self)
-
-        self._handler = self._handlers[Action.IDLE]
 
     def _prepare(self) -> None:
         if self._handler.busy is True:
