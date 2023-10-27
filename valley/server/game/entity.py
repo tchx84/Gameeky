@@ -208,9 +208,11 @@ class Entity(CommonEntity):
         return self._partition.get_position_for_direction(self.position, direction)
 
     def secure(self) -> None:
-        self.position.x = math.floor(self.position.x)
-        self.position.y = math.floor(self.position.y)
-        self.position.z = math.floor(self.position.z)
+        self.position = Vector(
+            math.floor(self.position.x),
+            math.floor(self.position.y),
+            math.floor(self.position.z),
+        )
 
     @property
     def mutable(self) -> bool:
