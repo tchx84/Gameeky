@@ -80,6 +80,7 @@ class Scene:
 
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)
+        Entity.unregister(entity)
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
         entity = self._entity_by_id[entity_id]

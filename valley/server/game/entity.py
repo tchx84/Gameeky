@@ -358,6 +358,11 @@ class Entity(CommonEntity):
 
         return entity
 
+    @classmethod
+    def unregister(cls, entity: "Entity") -> None:
+        if cls.__entity_by_name__.get(entity.name) == entity:
+            del cls.__entity_by_name__[entity.name]
+
 
 class EntityRegistry:
     __entities__: Dict[int, Description] = {}
