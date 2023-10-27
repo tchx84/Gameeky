@@ -25,6 +25,8 @@ from .actuators.drops import Actuator as DropsActuator
 from .actuators.triggers import Actuator as TriggersActuator
 from .actuators.triggers_i import Actuator as TriggersIActuator
 from .actuators.requires import Actuator as RequiresActuator
+from .actuators.activates import Actuator as ActivatesActuator
+from .actuators.activates_i import Actuator as ActivatesIActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -68,6 +70,8 @@ class Entity(CommonEntity):
         TriggersActuator.name: TriggersActuator,
         TriggersIActuator.name: TriggersIActuator,
         RequiresActuator.name: RequiresActuator,
+        ActivatesActuator.name: ActivatesActuator,
+        ActivatesIActuator.name: ActivatesIActuator,
     }
 
     def __init__(
