@@ -21,6 +21,7 @@ from .actuators.uses import Actuator as UsesActuator
 from .actuators.takes import Actuator as TakesActuator
 from .actuators.interacts import Actuator as InteractsActuator
 from .actuators.spawns import Actuator as SpawnsActuator
+from .actuators.drops import Actuator as DropsActuator
 from .actuators.triggers import Actuator as TriggersActuator
 from .actuators.triggers_i import Actuator as TriggersIActuator
 
@@ -62,6 +63,7 @@ class Entity(CommonEntity):
         TakesActuator.name: TakesActuator,
         InteractsActuator.name: InteractsActuator,
         SpawnsActuator.name: SpawnsActuator,
+        DropsActuator.name: DropsActuator,
         TriggersActuator.name: TriggersActuator,
         TriggersIActuator.name: TriggersIActuator,
     }
