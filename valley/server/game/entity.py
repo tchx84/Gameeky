@@ -257,12 +257,12 @@ class Entity(CommonEntity):
 
     @property
     def spawned_at(self) -> Vector:
-        position = self.position.copy()
+        position = self.position
 
         if self.held is not None and self.held.spawns != EntityType.EMPTY:
-            position = self.held.position.copy()
+            position = self.held.position
 
-        return position
+        return position.copy()
 
     @property
     def target(self) -> Optional["Entity"]:
