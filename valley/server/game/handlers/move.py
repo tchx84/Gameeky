@@ -65,6 +65,7 @@ class Handler(BaseHandler):
         self.finish()
 
     def finish(self):
+        self._entity.secure()
         self._entity.action = Action.IDLE
         self._entity.state = State.IDLING
 

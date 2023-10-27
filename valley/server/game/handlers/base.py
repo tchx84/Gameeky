@@ -41,3 +41,6 @@ class Handler:
     def finish(self) -> None:
         self.busy = False
         self._timestamp_finish = get_time_milliseconds()
+
+    def cancel(self) -> None:
+        self.finish()

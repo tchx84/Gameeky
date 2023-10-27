@@ -177,6 +177,9 @@ class Entity(CommonEntity):
         self._next_action = action
         self._next_value = value
 
+    def stop(self) -> None:
+        self._handler.cancel()
+
     def activate(self) -> None:
         for actuator in self.actuators:
             if actuator.activatable is True:
@@ -199,6 +202,11 @@ class Entity(CommonEntity):
 
     def position_at(self, direction: Direction) -> Vector:
         return self._partition.get_position_for_direction(self.position, direction)
+
+    def secure(self) -> None:
+        self.position.x = math.floor(self.position.x)
+        self.position.y = math.floor(self.position.y)
+        self.position.z = math.floor(self.position.z)
 
     @property
     def mutable(self) -> bool:

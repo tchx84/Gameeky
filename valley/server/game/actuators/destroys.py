@@ -10,6 +10,7 @@ class Actuator(BaseActuator):
 
     def tick(self) -> None:
         if self._entity.durability <= 0 or self.activated is True:
+            self._entity.stop()
             self._entity.perform(Action.DESTROY)
 
         super().tick()

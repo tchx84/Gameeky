@@ -27,3 +27,6 @@ class Handler(BaseHandler):
         self._entity.drop()
 
         super().finish()
+
+    def cancel(self) -> None:
+        pass
