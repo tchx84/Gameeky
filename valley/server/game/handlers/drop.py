@@ -29,7 +29,7 @@ class Handler(BaseHandler):
         self.finish()
 
     def finish(self) -> None:
-        self._entity.drop()
+        self._entity.drop(State.IDLING)
         self._entity.action = Action.IDLE
         self._entity.state = State.IDLING
 

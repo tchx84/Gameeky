@@ -25,6 +25,7 @@ class Handler(BaseHandler):
     def finish(self) -> None:
         self._entity.state = State.DESTROYED
         self._entity.drop()
+        self._entity.fall()
 
         super().finish()
 

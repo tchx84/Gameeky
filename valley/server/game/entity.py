@@ -119,9 +119,11 @@ class Entity(CommonEntity):
         self._next_action = Action.IDLE
         self._next_value = 0.0
 
+        self._held: Optional["Entity"] = None
+        self._held_by: Optional["Entity"] = None
+
         self._spawned = EntityType.EMPTY
         self._destination = Vector()
-        self._held: Optional["Entity"] = None
         self._delay = clamp(Delay.MAX, Delay.MIN, Delay.MAX - self.recovery)
 
         for actuator in actuators:
@@ -189,14 +191,21 @@ class Entity(CommonEntity):
             if actuator.activatable is True:
                 actuator.activate()
 
-    def drop(self) -> None:
+    def drop(self, state: Optional[State] = None) -> None:
         if self.held is None:
             return
 
+        if state is not None:
+            self.held.state = state
+
+        self.held.secure()
         self.held.visible = True
         self.held.density = Density.SOLID
-        self.held.state = State.IDLING
         self.held = None
+
+    def fall(self) -> None:
+        if self.held_by is not None:
+            self.held_by.drop()
 
     def spawn(self) -> None:
         self._spawned = self.spawns
@@ -263,8 +272,24 @@ class Entity(CommonEntity):
         return self._held
 
     @held.setter
-    def held(self, held) -> None:
+    def held(self, held: Optional["Entity"]) -> None:
+        # Unset reference from the previous held entity
+        if self._held is not None:
+            self._held.held_by = None
+
+        # Set reference to the new held entity
+        if held is not None:
+            held.held_by = self
+
         self._held = held
+
+    @property
+    def held_by(self) -> Optional["Entity"]:
+        return self._held_by
+
+    @held_by.setter
+    def held_by(self, held_by: Optional["Entity"]) -> None:
+        self._held_by = held_by
 
     @property
     def delay(self) -> float:
