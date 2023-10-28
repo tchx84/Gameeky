@@ -51,7 +51,11 @@ class Scene:
             self.remove(entity.id)
 
         for entity in added:
-            self.add(entity.spawned, entity.spawned_at)
+            self.add(
+                entity.spawned,
+                entity.spawned_at,
+                Description(direction=entity.direction.name),
+            )
 
         # A full day in one hour
         self._time = ((get_time_milliseconds() / 1000 / 3600)) % 24
