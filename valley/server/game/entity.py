@@ -229,6 +229,10 @@ class Entity(CommonEntity):
         )
 
     @property
+    def busy(self) -> bool:
+        return self._handler.busy
+
+    @property
     def mutable(self) -> bool:
         return len(self.actuators) > 0
 

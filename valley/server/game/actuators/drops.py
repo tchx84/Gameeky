@@ -7,5 +7,10 @@ class Actuator(BaseActuator):
     activatable = False
 
     def tick(self) -> None:
-        if self._entity.durability <= 0:
-            self._entity.spawn()
+        if self._entity.busy is True:
+            return
+
+        if self._entity.durability > 0:
+            return
+
+        self._entity.spawn()
