@@ -12,6 +12,9 @@ class Handler(BaseHandler):
         if self._entity.held is None:
             return False
 
+        if self._entity.held.equippable is False:
+            return False
+
         if self._get_elapsed_seconds_since_finish() < self._entity.delay:
             return False
 
