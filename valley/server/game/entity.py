@@ -29,6 +29,8 @@ from .actuators.activates import Actuator as ActivatesActuator
 from .actuators.activates_i import Actuator as ActivatesIActuator
 from .actuators.propulses import Actuator as PropulsesActuator
 from .actuators.damages import Actuator as DamagesActuator
+from .actuators.collapses import Actuator as CollapsesActuator
+from .actuators.collapses_t import Actuator as CollapsesTActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -87,6 +89,8 @@ class Entity(CommonEntity):
         ActivatesIActuator.name: ActivatesIActuator,
         PropulsesActuator.name: PropulsesActuator,
         DamagesActuator.name: DamagesActuator,
+        CollapsesActuator.name: CollapsesActuator,
+        CollapsesTActuator.name: CollapsesTActuator,
     }
 
     def __init__(
