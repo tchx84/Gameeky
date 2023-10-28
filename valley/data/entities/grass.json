@@ -18,7 +18,8 @@
             "actuators": [],
             "target": "",
             "radius": 0,
-            "rate": 0
+            "rate": 0,
+            "luminance": 0
         }
     },
     "sound": {

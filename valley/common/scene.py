@@ -5,17 +5,19 @@ from .serializeable import Serializeable
 
 
 class Scene(Serializeable):
-    Signature = Tuple[int, int, Vector.Signature, List[Entity.Signature]]
+    Signature = Tuple[int, int, float, Vector.Signature, List[Entity.Signature]]
 
     def __init__(
         self,
         width: int,
         height: int,
+        time: float = 0.0,
         anchor: Optional[Vector] = None,
         entities: Optional[List[Entity]] = None,
     ) -> None:
         self.width = width
         self.height = height
+        self.time = time
         self.anchor = anchor if anchor is not None else Vector()
         self.entities = entities if entities is not None else []
 
@@ -23,16 +25,18 @@ class Scene(Serializeable):
         return (
             self.width,
             self.height,
+            self.time,
             self.anchor.to_values(),
             [e.to_values() for e in self.entities],
         )
 
     @classmethod
     def from_values(cls, values: Signature) -> "Scene":
-        width, height, anchor, entities = values
+        width, height, time, anchor, entities = values
         return cls(
             width,
             height,
+            time,
             Vector.from_values(anchor),
             [Entity.from_values(e) for e in entities],
         )

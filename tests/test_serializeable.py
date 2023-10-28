@@ -25,6 +25,7 @@ def test_serialize_entity():
         state=State.MOVING,
         visible=False,
         status=0.5,
+        luminance=1.0,
     )
     serialized = Entity.deserialize(original.serialize())
 
@@ -33,6 +34,7 @@ def test_serialize_entity():
     assert serialized.state == original.state
     assert serialized.visible == original.visible
     assert serialized.status == original.status
+    assert serialized.luminance == original.luminance
 
 
 def test_serialize_message():
@@ -46,9 +48,16 @@ def test_serialize_message():
 
 
 def test_serialize_scene():
-    original = Scene(width=16, height=16, anchor=None, entities=None)
+    original = Scene(
+        width=16,
+        height=16,
+        time=12,
+        anchor=None,
+        entities=None,
+    )
     serialized = Scene.deserialize(original.serialize())
 
+    assert original.time == serialized.time
     assert original.entities == serialized.entities
 
 

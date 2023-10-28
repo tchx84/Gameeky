@@ -21,3 +21,8 @@ def division(dividend, divisor):
 
 def element(array, index):
     return array[index] if len(array) > 0 else None
+
+
+def oscillate(maximum, minimum, value):
+    range = maximum - minimum
+    return minimum + abs(((value + range) % (range * 2)) - range)

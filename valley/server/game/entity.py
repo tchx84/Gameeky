@@ -463,6 +463,7 @@ class EntityRegistry:
             target=description.target,
             radius=description.radius,
             rate=description.rate,
+            luminance=description.luminance,
             direction=Direction[description.direction.upper()],
             state=State[description.state.upper()],
             partition=partition,

@@ -12,10 +12,12 @@ from ...common.entity import EntityType, Vector
 from ...common.scanner import Description
 from ...common.definitions import TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
+from ...common.utils import get_time_milliseconds
 
 
 class Scene:
     def __init__(self, width: int, height: int, spawn: Vector) -> None:
+        self._time = 0.0
         self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
@@ -50,6 +52,9 @@ class Scene:
 
         for entity in added:
             self.add(entity.spawned, entity.spawned_at)
+
+        # A full day in one hour
+        self._time = ((get_time_milliseconds() / 1000 / 3600)) % 24
 
     def add(
         self,
@@ -94,6 +99,7 @@ class Scene:
         )
 
         return CommonScene(
+            time=self._time,
             width=TILES_X,
             height=TILES_Y,
             anchor=entity.position,

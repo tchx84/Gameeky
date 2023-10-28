@@ -25,6 +25,7 @@ class Scene(CommonScene, GObject.GObject):
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
+        self.time = scene.time
         self.anchor = scene.anchor
 
         # Take z-depth into account
