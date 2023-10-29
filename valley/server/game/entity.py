@@ -32,6 +32,7 @@ from .actuators.collapses import Actuator as CollapsesActuator
 from .actuators.collapses_t import Actuator as CollapsesTActuator
 from .actuators.affects import Actuator as AffectsActuator
 from .actuators.affects_i import Actuator as AffectsIActuator
+from .actuators.aggroes import Actuator as AggroesActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -90,6 +91,7 @@ class Entity(CommonEntity):
         CollapsesTActuator.name: CollapsesTActuator,
         AffectsActuator.name: AffectsActuator,
         AffectsIActuator.name: AffectsIActuator,
+        AggroesActuator.name: AggroesActuator,
     }
 
     def __init__(

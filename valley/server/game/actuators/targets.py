@@ -19,6 +19,7 @@ class Actuator(BaseActuator):
     def tick(self) -> None:
         if self._original_target is None:
             self._original_target = self._entity.target
+            return
 
         if self._entity.target is None:
             self._entity.target = self._original_target
@@ -28,18 +29,10 @@ class Actuator(BaseActuator):
             self._entity.target = self._original_target
             return
 
-        if self._entity.position == self._entity.target.position:
-            if self._entity.target.visible is False:
-                self._entity.target = self._entity.target.target
-                return
-
-        target: Optional[Entity] = None
-
-        for entity in self._entity.surroundings:
-            if entity.name:
-                target = entity
-
-        if target is None:
+        if self._entity.position != self._entity.target.position:
             return
 
-        self._entity.target = target
+        if self._entity.target.visible is True:
+            return
+
+        self._entity.target = self._entity.target.target
