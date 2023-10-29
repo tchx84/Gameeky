@@ -7,13 +7,12 @@ class Actuator(BaseActuator):
     activatable = False
 
     def tick(self) -> None:
-        if self._seconds_since_activation() <= self._entity.rate:
-            return
-
         if (surroundings := self._entity.surroundings) is None:
             return
 
+        seconds = self._seconds_since_activation()
+
         for entity in surroundings:
-            entity.durability -= self._entity.strength
+            entity.durability -= self._entity.strength * seconds
 
         super().tick()
