@@ -48,7 +48,7 @@ from ...common.scanner import Description
 from ...common.direction import Direction
 from ...common.entity import Vector
 from ...common.utils import clamp, division, element
-from ...common.entity import EntityType
+from ...common.definitions import EntityType
 from ...common.entity import Entity as CommonEntity
 
 

@@ -1,4 +1,4 @@
-from enum import StrEnum, auto
+from enum import IntEnum, StrEnum, auto
 
 MAX_UDP_BYTES = 32 * 1024
 MAX_TCP_BYTES = 32 * 1024
@@ -24,3 +24,7 @@ class Command(StrEnum):
     CLIENTS = auto()
     ADDRESS = auto()
     SCENE = auto()
+
+
+class EntityType(IntEnum):
+    EMPTY = 0
