@@ -1,10 +1,8 @@
 from .base import Actuator as BaseActuator
 
-from ....common.definitions import Action
-
 
 class Actuator(BaseActuator):
-    name = "restores_i"
+    name = "affects_i"
     interactable = True
     activatable = False
 
@@ -14,7 +12,6 @@ class Actuator(BaseActuator):
 
         self._interactee.stamina += self._entity.stamina
         self._interactee.durability += self._entity.durability
-
-        self._entity.perform(Action.DESTROY)
+        self._interactee.durability -= self._entity.strength
 
         super().tick()

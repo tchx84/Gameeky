@@ -2,7 +2,7 @@ from .base import Actuator as BaseActuator
 
 
 class Actuator(BaseActuator):
-    name = "damages"
+    name = "affects"
     interactable = False
     activatable = False
 
@@ -13,6 +13,8 @@ class Actuator(BaseActuator):
         seconds = self._seconds_since_activation()
 
         for entity in surroundings:
+            entity.stamina += self._entity.stamina * seconds
+            entity.durability += self._entity.durability * seconds
             entity.durability -= self._entity.strength * seconds
 
         super().tick()

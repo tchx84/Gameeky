@@ -13,7 +13,7 @@ from .actuators.teleports_i import Actuator as TeleportsIActuator
 from .actuators.deteriorates import Actuator as DeterioratesActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
-from .actuators.restores_i import Actuator as RestoresIActuator
+from .actuators.destroys_i import Actuator as DestroysIActuator
 from .actuators.moves import Actuator as MovesActuator
 from .actuators.roams import Actuator as RoamsActuator
 from .actuators.targets import Actuator as TargetsActuator
@@ -28,9 +28,10 @@ from .actuators.requires import Actuator as RequiresActuator
 from .actuators.activates import Actuator as ActivatesActuator
 from .actuators.activates_i import Actuator as ActivatesIActuator
 from .actuators.propulses import Actuator as PropulsesActuator
-from .actuators.damages import Actuator as DamagesActuator
 from .actuators.collapses import Actuator as CollapsesActuator
 from .actuators.collapses_t import Actuator as CollapsesTActuator
+from .actuators.affects import Actuator as AffectsActuator
+from .actuators.affects_i import Actuator as AffectsIActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -70,7 +71,7 @@ class Entity(CommonEntity):
         DeterioratesActuator.name: DeterioratesActuator,
         ExhaustsActuator.name: ExhaustsActuator,
         DestroysActuator.name: DestroysActuator,
-        RestoresIActuator.name: RestoresIActuator,
+        DestroysIActuator.name: DestroysIActuator,
         MovesActuator.name: MovesActuator,
         RoamsActuator.name: RoamsActuator,
         TargetsActuator.name: TargetsActuator,
@@ -85,9 +86,10 @@ class Entity(CommonEntity):
         ActivatesActuator.name: ActivatesActuator,
         ActivatesIActuator.name: ActivatesIActuator,
         PropulsesActuator.name: PropulsesActuator,
-        DamagesActuator.name: DamagesActuator,
         CollapsesActuator.name: CollapsesActuator,
         CollapsesTActuator.name: CollapsesTActuator,
+        AffectsActuator.name: AffectsActuator,
+        AffectsIActuator.name: AffectsIActuator,
     }
 
     def __init__(
