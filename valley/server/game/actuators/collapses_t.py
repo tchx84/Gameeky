@@ -1,6 +1,6 @@
 from .base import Actuator as BaseActuator
 
-from ....common.action import Action
+from ....common.definitions import Action
 from ....common.utils import get_time_milliseconds
 
 

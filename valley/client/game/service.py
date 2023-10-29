@@ -3,7 +3,7 @@ from gi.repository import Gio, GLib, GObject
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Client as UDPClient
 
-from ...common.action import Action
+from ...common.definitions import Action
 from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
 from ...common.message import Message

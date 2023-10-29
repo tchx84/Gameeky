@@ -4,13 +4,13 @@ from unittest.mock import Mock
 
 from gi.repository import GLib
 
-from valley.common.action import Action
 from valley.common.utils import get_data_path
 from valley.common.scanner import Scanner
 from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
 from valley.common.definitions import (
+    Action,
     Direction,
     DEFAULT_SCENE,
     DEFAULT_ADDRESS,

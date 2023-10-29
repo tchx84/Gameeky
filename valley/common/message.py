@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from .action import Action
+from .definitions import Action
 from .serializeable import Serializeable
 
 

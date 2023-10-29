@@ -4,9 +4,8 @@ from gi.repository import Gdk, Gtk
 
 from ..game.service import Service
 
-from ...common.action import Action
 from ...common.session import Session
-from ...common.definitions import Direction
+from ...common.definitions import Action, Direction
 
 
 class Keyboard(Gtk.EventControllerKey):

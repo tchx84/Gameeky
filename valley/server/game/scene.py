@@ -7,10 +7,9 @@ from gi.repository import GLib
 from .partition import SpatialPartition
 from .entity import Entity, EntityRegistry
 
-from ...common.action import Action
 from ...common.entity import Vector
 from ...common.scanner import Description
-from ...common.definitions import EntityType, TICK, TILES_X, TILES_Y
+from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
 from ...common.utils import get_time_milliseconds
 

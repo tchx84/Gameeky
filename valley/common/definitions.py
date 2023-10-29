@@ -17,6 +17,17 @@ DEFAULT_SCENE_PORT = 7773
 DEFAULT_SCENE = "scenes/default.json"
 
 
+class Action(IntEnum):
+    IDLE = auto()
+    MOVE = auto()
+    USE = auto()
+    TAKE = auto()
+    DROP = auto()
+    INTERACT = auto()
+    EXHAUST = auto()
+    DESTROY = auto()
+
+
 class Command(StrEnum):
     SESSION_PORT = auto()
     MESSAGES_PORT = auto()

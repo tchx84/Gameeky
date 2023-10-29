@@ -2,8 +2,7 @@ from .base import Handler as BaseHandler
 
 from ..definitions import Penalty
 
-from ....common.definitions import State
-from ....common.action import Action
+from ....common.definitions import Action, State
 
 
 class Handler(BaseHandler):

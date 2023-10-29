@@ -4,8 +4,7 @@ from .base import Handler as BaseHandler
 
 from ..definitions import Density
 
-from ....common.action import Action
-from ....common.definitions import Direction, State
+from ....common.definitions import Action, Direction, State
 
 
 class Handler(BaseHandler):
