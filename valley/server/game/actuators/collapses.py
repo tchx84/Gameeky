@@ -1,5 +1,7 @@
 from .base import Actuator as BaseActuator
 
+from ..definitions import Delay
+
 from ....common.definitions import Action
 
 
@@ -9,7 +11,7 @@ class Actuator(BaseActuator):
     activatable = False
 
     def tick(self) -> None:
-        if self._seconds_since_activation() <= self._entity.rate:
+        if self._seconds_since_activation() <= Delay.MAX:
             return
 
         if not self._entity.surroundings:
@@ -17,5 +19,3 @@ class Actuator(BaseActuator):
 
         self._entity.stop()
         self._entity.perform(Action.DESTROY)
-
-        super().tick()
