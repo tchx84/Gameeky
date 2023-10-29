@@ -1,6 +1,6 @@
 from .base import Handler as BaseHandler
 
-from ..definitions import Density
+from ..definitions import Density, Delay
 
 from ....common.state import State
 from ....common.action import Action
@@ -28,13 +28,11 @@ class Handler(BaseHandler):
 
         self._entity.state = State.USING
 
-        if self._get_elapsed_seconds_since_tick() <= self._entity.delay:
+        if self._get_elapsed_seconds_since_prepare() <= Delay.MAX:
             return
 
         if self._entity.held.spawns != EntityType.EMPTY:
             self._entity.spawn()
-
-        seconds_since_prepare = self._get_elapsed_seconds_since_prepare()
 
         for target in self._entity.obstacles:
             if target.visible is False:
@@ -45,11 +43,11 @@ class Handler(BaseHandler):
                 continue
 
             # Wear the target
-            target.durability -= self._entity.held.strength * seconds_since_prepare
+            target.durability -= self._entity.held.strength
 
             # Restore the target
-            target.durability += self._entity.held.durability * seconds_since_prepare
-            target.stamina += self._entity.held.stamina * seconds_since_prepare
+            target.durability += self._entity.held.durability
+            target.stamina += self._entity.held.stamina
 
         self.finish()
 
