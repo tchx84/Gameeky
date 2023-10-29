@@ -7,7 +7,7 @@ source env/bin/activate
 
 pip install .[dev,test]
 
-export DATA_DIR=valley/data
+export DATA_DIR=tests/data
 
 pyflakes valley tests
 black --check valley tests
