@@ -8,7 +8,7 @@ from ..network.tcp import Server as TCPServer
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Server as UDPServer
 
-from ...common.entity import Vector
+from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.utils import get_data_path
 from ...common.logger import logger

@@ -7,7 +7,7 @@ from gi.repository import GLib
 from .partition import SpatialPartition
 from .entity import Entity, EntityRegistry
 
-from ...common.entity import Vector
+from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene

@@ -1,6 +1,7 @@
 from typing import List, Optional, Tuple
 
-from .entity import Entity, Vector
+from .vector import Vector
+from .entity import Entity
 from .serializeable import Serializeable
 
 

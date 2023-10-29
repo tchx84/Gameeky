@@ -3,7 +3,8 @@ import math
 from typing import Dict, Tuple, List
 
 from ...common.utils import clamp
-from ...common.entity import Entity, Vector
+from ...common.vector import Vector
+from ...common.entity import Entity
 from ...common.definitions import Direction
 
 

@@ -43,7 +43,7 @@ from .handlers.take import Handler as TakeHandler
 from .handlers.use import Handler as UseHandler
 
 from ...common.scanner import Description
-from ...common.entity import Vector
+from ...common.vector import Vector
 from ...common.utils import clamp, division, element
 from ...common.definitions import Action, Direction, EntityType, State
 from ...common.entity import Entity as CommonEntity
