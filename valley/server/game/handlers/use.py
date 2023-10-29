@@ -2,9 +2,8 @@ from .base import Handler as BaseHandler
 
 from ..definitions import Density, Delay
 
-from ....common.state import State
 from ....common.action import Action
-from ....common.definitions import EntityType
+from ....common.definitions import EntityType, State
 
 
 class Handler(BaseHandler):

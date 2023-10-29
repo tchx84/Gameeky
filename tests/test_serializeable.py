@@ -1,6 +1,5 @@
 from valley.common.action import Action
-from valley.common.state import State
-from valley.common.definitions import Direction
+from valley.common.definitions import Direction, State
 from valley.common.entity import Entity, Vector
 from valley.common.message import Message
 from valley.common.scene import Scene, SceneRequest

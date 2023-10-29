@@ -1,6 +1,6 @@
 from .base import Actuator as BaseActuator
 
-from ....common.state import State
+from ....common.definitions import State
 
 
 class Actuator(BaseActuator):

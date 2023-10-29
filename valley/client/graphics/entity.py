@@ -2,8 +2,7 @@ from typing import Dict, List, Tuple
 
 from gi.repository import Gdk, GdkPixbuf
 
-from ...common.state import State
-from ...common.definitions import Direction
+from ...common.definitions import Direction, State
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
 from ...common.utils import get_time_milliseconds

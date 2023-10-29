@@ -1,7 +1,6 @@
 from typing import Optional, Tuple
 
-from .state import State
-from .definitions import Direction
+from .definitions import Direction, State
 from .serializeable import Serializeable
 
 

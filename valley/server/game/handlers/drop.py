@@ -1,6 +1,6 @@
 from .base import Handler as BaseHandler
 
-from ....common.state import State
+from ....common.definitions import State
 from ....common.action import Action
 
 

@@ -7,7 +7,7 @@ gi.require_version("GSound", "1.0")
 from gi.repository import GLib, Gio, GSound, GObject
 
 from ...common.logger import logger
-from ...common.state import State
+from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
