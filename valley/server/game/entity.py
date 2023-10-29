@@ -14,7 +14,7 @@ from .actuators.deteriorates import Actuator as DeterioratesActuator
 from .actuators.exhausts import Actuator as ExhaustsActuator
 from .actuators.destroys import Actuator as DestroysActuator
 from .actuators.destroys_i import Actuator as DestroysIActuator
-from .actuators.moves import Actuator as MovesActuator
+from .actuators.follows import Actuator as FollowsActuator
 from .actuators.roams import Actuator as RoamsActuator
 from .actuators.targets import Actuator as TargetsActuator
 from .actuators.uses import Actuator as UsesActuator
@@ -72,7 +72,7 @@ class Entity(CommonEntity):
         ExhaustsActuator.name: ExhaustsActuator,
         DestroysActuator.name: DestroysActuator,
         DestroysIActuator.name: DestroysIActuator,
-        MovesActuator.name: MovesActuator,
+        FollowsActuator.name: FollowsActuator,
         RoamsActuator.name: RoamsActuator,
         TargetsActuator.name: TargetsActuator,
         UsesActuator.name: UsesActuator,

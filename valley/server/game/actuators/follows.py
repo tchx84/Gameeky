@@ -4,7 +4,7 @@ from ....common.definitions import Action, Direction
 
 
 class Actuator(BaseActuator):
-    name = "moves"
+    name = "follows"
     interactable = False
     activatable = False
 
