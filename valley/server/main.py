@@ -7,9 +7,9 @@ from gi.repository import Gio, GLib
 from valley.server.game.service import Service
 from valley.server.game.entity import EntityRegistry
 from valley.common.scanner import Scanner, Description
-from valley.common.command import Command
 from valley.common.utils import get_data_path
 from valley.common.definitions import (
+    Command,
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,

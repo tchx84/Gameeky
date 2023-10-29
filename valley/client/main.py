@@ -17,8 +17,8 @@ from valley.client.sound.scene import Scene as ScenePlayer
 
 from valley.common.utils import get_data_path
 from valley.common.scanner import Scanner, Description
-from valley.common.command import Command
 from valley.common.definitions import (
+    Command,
     TILES_X,
     TILES_Y,
 )
