@@ -6,7 +6,7 @@ from ..definitions import Density
 
 from ....common.state import State
 from ....common.action import Action
-from ....common.direction import Direction
+from ....common.definitions import Direction
 
 
 class Handler(BaseHandler):

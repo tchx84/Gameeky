@@ -45,10 +45,9 @@ from .handlers.use import Handler as UseHandler
 from ...common.action import Action
 from ...common.state import State
 from ...common.scanner import Description
-from ...common.direction import Direction
 from ...common.entity import Vector
 from ...common.utils import clamp, division, element
-from ...common.definitions import EntityType
+from ...common.definitions import Direction, EntityType
 from ...common.entity import Entity as CommonEntity
 
 

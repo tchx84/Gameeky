@@ -6,7 +6,7 @@ from ..game.service import Service
 
 from ...common.action import Action
 from ...common.session import Session
-from ...common.direction import Direction
+from ...common.definitions import Direction
 
 
 class Keyboard(Gtk.EventControllerKey):

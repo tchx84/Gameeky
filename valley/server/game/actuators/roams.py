@@ -3,7 +3,7 @@ import random
 from .base import Actuator as BaseActuator
 
 from ....common.action import Action
-from ....common.direction import Direction
+from ....common.definitions import Direction
 
 
 class Actuator(BaseActuator):

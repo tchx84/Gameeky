@@ -28,3 +28,10 @@ class Command(StrEnum):
 
 class EntityType(IntEnum):
     EMPTY = 0
+
+
+class Direction(IntEnum):
+    EAST = auto()
+    NORTH = auto()
+    WEST = auto()
+    SOUTH = auto()

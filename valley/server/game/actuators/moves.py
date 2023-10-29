@@ -1,6 +1,6 @@
 from .base import Actuator as BaseActuator
 
-from ....common.direction import Direction
+from ....common.definitions import Direction
 from ....common.action import Action
 
 
