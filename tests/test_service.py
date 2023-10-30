@@ -17,6 +17,7 @@ from valley.common.definitions import (
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
     DEFAULT_SCENE_PORT,
+    DEFAULT_STATS_PORT,
 )
 
 context = None
@@ -71,6 +72,7 @@ def test_server_create():
         session_port=DEFAULT_SESSION_PORT,
         messages_port=DEFAULT_MESSAGES_PORT,
         scene_port=DEFAULT_SCENE_PORT,
+        stats_port=DEFAULT_STATS_PORT,
         context=context,
     )
 
@@ -85,6 +87,7 @@ def test_client_create():
         session_port=DEFAULT_SESSION_PORT,
         messages_port=DEFAULT_MESSAGES_PORT,
         scene_port=DEFAULT_SCENE_PORT,
+        stats_port=DEFAULT_STATS_PORT,
         context=context,
     )
 
@@ -135,8 +138,8 @@ def test_server_tick():
 def test_client_request_scene_update():
     mock = Mock()
 
-    client.connect("updated", mock)
-    client.request()
+    client.connect("scene-updated", mock)
+    client.request_scene()
 
     while not mock.called:
         update()

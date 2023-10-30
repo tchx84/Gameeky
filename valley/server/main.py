@@ -15,6 +15,7 @@ from valley.common.definitions import (
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
     DEFAULT_SCENE_PORT,
+    DEFAULT_STATS_PORT,
 )
 
 
@@ -58,6 +59,14 @@ class Application(Gio.Application):
             None,
         )
         self.add_main_option(
+            Command.STATS_PORT,
+            ord("t"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.INT,
+            "Port to be used for the stats service",
+            None,
+        )
+        self.add_main_option(
             Command.CLIENTS,
             ord("c"),
             GLib.OptionFlags.NONE,
@@ -76,6 +85,7 @@ class Application(Gio.Application):
             session_port=self._session_port,
             messages_port=self._messages_port,
             scene_port=self._scene_port,
+            stats_port=self._stats_port,
             context=GLib.MainContext.default(),
         )
 
@@ -97,6 +107,7 @@ class Application(Gio.Application):
         self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
         self._messages_port = options.get(Command.MESSAGES_PORT, DEFAULT_MESSAGES_PORT)
         self._scene_port = options.get(Command.SCENE_PORT, DEFAULT_SCENE_PORT)
+        self._stats_port = options.get(Command.STATS_PORT, DEFAULT_STATS_PORT)
 
         self.do_activate()
         return 0

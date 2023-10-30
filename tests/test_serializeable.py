@@ -3,6 +3,7 @@ from valley.common.vector import Vector
 from valley.common.entity import Entity
 from valley.common.message import Message
 from valley.common.scene import Scene, SceneRequest
+from valley.common.stats import Stats, StatsRequest
 from valley.common.session import Session, SessionRequest
 
 
@@ -79,3 +80,19 @@ def test_serialize_session_request():
     serialized = SessionRequest.deserialize(original.serialize())
 
     assert original.type_id == serialized.type_id
+
+
+def test_serialize_stats():
+    original = Stats(durability=1.0, stamina=1.0, held=2)
+    serialized = Stats.deserialize(original.serialize())
+
+    assert serialized.durability == original.durability
+    assert serialized.stamina == original.stamina
+    assert serialized.held == original.held
+
+
+def test_serialize_stats_request():
+    original = StatsRequest(session_id=1)
+    serialized = StatsRequest.deserialize(original.serialize())
+
+    assert original.session_id == serialized.session_id

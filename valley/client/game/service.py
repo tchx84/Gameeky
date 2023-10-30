@@ -6,13 +6,15 @@ from ..network.udp import Client as UDPClient
 from ...common.definitions import Action
 from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
+from ...common.stats import Stats, StatsRequest
 from ...common.message import Message
 
 
 class Service(GObject.GObject):
     __gsignals__ = {
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
-        "updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "scene-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "stats-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
     def __init__(
@@ -21,6 +23,7 @@ class Service(GObject.GObject):
         session_port: int,
         messages_port: int,
         scene_port: int,
+        stats_port: int,
         context: GLib.MainContext,
     ) -> None:
         super().__init__()
@@ -42,13 +45,27 @@ class Service(GObject.GObject):
             port=scene_port,
             context=context,
         )
+        self._stats_manager = UDPClient(
+            address=address,
+            port=stats_port,
+            context=context,
+        )
 
         self._session_manager.connect("received", self.__on_session_registered)
 
     def __on_session_registered(self, client: TCPClient, data: bytes) -> None:
         self._session = Session.deserialize(data)
         self._scene_manager.connect("received", self.__on_scene_received)
+        self._stats_manager.connect("received", self.__on_stats_received)
         self.emit("registered", self._session)
+
+    def __on_stats_received(
+        self,
+        manager: UDPClient,
+        address: Gio.InetSocketAddress,
+        data: bytes,
+    ) -> None:
+        self.emit("stats-updated", Stats.deserialize(data))
 
     def __on_scene_received(
         self,
@@ -56,7 +73,7 @@ class Service(GObject.GObject):
         address: Gio.InetSocketAddress,
         data: bytes,
     ) -> None:
-        self.emit("updated", Scene.deserialize(data))
+        self.emit("scene-updated", Scene.deserialize(data))
 
     def register(self) -> None:
         self._session_manager.send(SessionRequest(type_id=1).serialize())
@@ -75,5 +92,8 @@ class Service(GObject.GObject):
         )
         self._sequence += 1
 
-    def request(self) -> None:
+    def request_scene(self) -> None:
         self._scene_manager.send(SceneRequest(self._session.id).serialize())
+
+    def request_stats(self) -> None:
+        self._stats_manager.send(StatsRequest(self._session.id).serialize())

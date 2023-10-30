@@ -11,6 +11,7 @@ from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
+from ...common.stats import Stats as CommonStats
 from ...common.utils import get_time_milliseconds
 
 
@@ -108,6 +109,16 @@ class Scene:
             height=TILES_Y,
             anchor=entity.position,
             entities=entities,
+        )
+
+    def prepare_stats_for_entity_id(self, entity_id: int) -> CommonStats:
+        entity = self._entity_by_id[entity_id]
+        held = entity.held.type_id if entity.held is not None else EntityType.EMPTY
+
+        return CommonStats(
+            durability=entity.durability,
+            stamina=entity.stamina,
+            held=held,
         )
 
     @property

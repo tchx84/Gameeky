@@ -13,6 +13,7 @@ from ...common.scanner import Description
 from ...common.utils import get_data_path
 from ...common.logger import logger
 from ...common.scene import SceneRequest
+from ...common.stats import StatsRequest
 from ...common.session import SessionRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
@@ -39,6 +40,7 @@ class Service(GObject.GObject):
         session_port: int,
         messages_port: int,
         scene_port: int,
+        stats_port: int,
         context: GLib.MainContext,
     ) -> None:
         super().__init__()
@@ -66,6 +68,9 @@ class Service(GObject.GObject):
 
         self._scene_manager = UDPServer(port=scene_port, context=context)
         self._scene_manager.connect("received", self.__on_scene_requested)
+
+        self._stats_manager = UDPServer(port=stats_port, context=context)
+        self._stats_manager.connect("received", self.__on_stats_requested)
 
         logger.info("Started")
 
@@ -130,6 +135,16 @@ class Service(GObject.GObject):
 
         scene = self.scene.prepare_for_entity_id(session.entity_id)
         self._scene_manager.send(address, scene.serialize())
+
+    def __on_stats_requested(self, manager, address, data):
+        request = StatsRequest.deserialize(data)
+        session = self._session_by_id.get(request.session_id)
+
+        if session is None:
+            return
+
+        stats = self.scene.prepare_stats_for_entity_id(session.entity_id)
+        self._stats_manager.send(address, stats.serialize())
 
     def shutdown(self) -> None:
         self._session_manager.shutdown()

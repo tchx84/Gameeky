@@ -21,7 +21,7 @@ class Scene(CommonScene, GObject.GObject):
         self._service.connect("registered", self.__on_service_registered)
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self._service.connect("updated", self.__on_service_updated)
+        self._service.connect("scene-updated", self.__on_service_updated)
         GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
@@ -37,6 +37,6 @@ class Scene(CommonScene, GObject.GObject):
         self.emit("updated")
 
     def __on_scene_ticked(self) -> int:
-        self._service.request()
+        self._service.request_scene()
         self.emit("ticked")
         return GLib.SOURCE_CONTINUE
