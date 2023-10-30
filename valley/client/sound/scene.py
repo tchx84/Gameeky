@@ -11,7 +11,6 @@ class Scene:
 
         self._model = model
         self._model.connect("ticked", self.__on_scene_updated)
-        self._model.connect("updated", self.__on_scene_updated)
 
     def __on_scene_updated(self, model: SceneModel) -> None:
         if self._handler_id is None:
