@@ -3,6 +3,7 @@ from gi.repository import Gtk, Gdk, Gsk, Graphene
 from .entity import EntityRegistry
 from .status import Status
 from ..game.scene import Scene as SceneModel
+from ..definitions import Alpha
 
 from ...common.utils import oscillate
 
@@ -24,7 +25,7 @@ class Scene(Gtk.Widget):
         tile_width = screen_width / self._model.width
         tile_height = screen_height / self._model.height
 
-        alpha = oscillate(0.9, 0.1, self._model.time)
+        alpha = oscillate(Alpha.MAX, Alpha.MIN, self._model.time)
 
         black = Gdk.RGBA()
         black.parse(f"rgba(0,0,0,{alpha})")
