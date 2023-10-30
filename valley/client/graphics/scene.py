@@ -33,7 +33,7 @@ class Scene(Gtk.Widget):
         yellow = Gdk.RGBA()
         yellow.parse(f"rgba(255,200,200,{alpha})")
 
-        darkness = Graphene.Rect().init(0, 0, screen_width, screen_height)
+        darkness = Graphene.Rect().init(-1, -1, screen_width + 2, screen_height + 2)
         snapshot.append_color(black, darkness)
 
         snapshot.push_blur(tile_width * 1.5)
