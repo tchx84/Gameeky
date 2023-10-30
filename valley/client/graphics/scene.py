@@ -66,6 +66,11 @@ class Scene(Gtk.Widget):
         tile_width = screen_width / self._model.width
         tile_height = screen_height / self._model.height
 
+        clip = Graphene.Rect()
+        clip.init(0, 0, screen_width, screen_height)
+
+        snapshot.push_clip(clip)
+
         for entity in self._model.entities:
             if entity.visible is False:
                 continue
@@ -99,6 +104,8 @@ class Scene(Gtk.Widget):
                 tile_width,
                 tile_height,
             )
+
+        snapshot.pop()
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
         snapshot.push_blend(Gsk.BlendMode.MULTIPLY)
