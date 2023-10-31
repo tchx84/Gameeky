@@ -1,3 +1,5 @@
+from typing import Optional
+
 from gi.repository import Gdk, Gtk, Graphene
 
 
@@ -22,6 +24,7 @@ class Status:
         height: float,
         target_width: float,
         target_height: float,
+        color: Optional[Gdk.RGBA] = None,
     ) -> None:
         # Stroke
 
@@ -53,4 +56,4 @@ class Status:
 
         fill = Graphene.Rect()
         fill.init(rect_x, rect_y, rect_width, rect_height)
-        snapshot.append_color(cls.fill, fill)
+        snapshot.append_color(color if color is not None else cls.fill, fill)

@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gdk, Gtk
 
 from .status import Status
 from .entity import Entity
@@ -10,8 +10,11 @@ class Stats(Gtk.Box):
     def __init__(self, model: StatsModel) -> None:
         super().__init__()
 
+        color = Gdk.RGBA()
+        color.parse("#0072D6")
+
         self._durability = Status()
-        self._stamina = Status()
+        self._stamina = Status(color)
         self._held = Entity()
 
         self.append(self._durability)
