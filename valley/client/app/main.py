@@ -7,46 +7,27 @@ gi.require_version("Gtk", "4.0")
 
 from gi.repository import Gio, Gtk, GLib
 
-from valley.client.game.service import Service
-from valley.client.game.scene import Scene as SceneModel
-from valley.client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
-from valley.client.graphics.scene import Scene as SceneView
-from valley.client.input.keyboard import Keyboard
-from valley.client.sound.entity import EntityRegistry as EntitySoundRegistry
-from valley.client.sound.scene import Scene as ScenePlayer
+from .widgets.window import Window
 
-from valley.common.utils import get_data_path
-from valley.common.scanner import Scanner, Description
-from valley.common.definitions import (
+from ..game.service import Service
+from ..game.scene import Scene as SceneModel
+from ..graphics.entity import EntityRegistry as EntityGraphicsRegistry
+from ..input.keyboard import Keyboard
+from ..sound.entity import EntityRegistry as EntitySoundRegistry
+from ..sound.scene import Scene as ScenePlayer
+
+from ...common.utils import get_data_path
+from ...common.scanner import Scanner, Description
+from ...common.definitions import (
     Command,
     TILES_X,
     TILES_Y,
-)
-from valley.common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
     DEFAULT_SCENE_PORT,
     DEFAULT_STATS_PORT,
 )
-
-
-class Window(Gtk.ApplicationWindow):
-    def __init__(self, application: Gtk.Application, model: SceneModel) -> None:
-        super().__init__(application=application)
-
-        self.set_title("Valley")
-
-        self._ratio = Gtk.AspectFrame()
-        self._ratio.set_obey_child(False)
-        self._ratio.set_ratio(TILES_X / TILES_Y)
-
-        self._view = SceneView(model=model)
-        self._view.set_vexpand(True)
-        self._view.set_hexpand(True)
-
-        self._ratio.set_child(self._view)
-        self.set_child(self._ratio)
 
 
 class Application(Gtk.Application):
@@ -159,6 +140,6 @@ class Application(Gtk.Application):
         Gtk.Application.do_shutdown(self)
 
 
-if __name__ == "__main__":
+def main() -> None:
     application = Application()
     application.run(sys.argv)

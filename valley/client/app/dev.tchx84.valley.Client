@@ -1,0 +1,7 @@
+import sys
+
+
+if __name__ == "__main__":
+    from valley.client.app import main
+
+    sys.exit(main.main())
