@@ -351,7 +351,7 @@ class Entity(CommonEntity):
     @durability.setter
     def durability(self, durability) -> None:
         self._durability = clamp(self._max_durability, 0, durability)
-        self.status = division(self._durability, self._max_durability)
+        self.status = self.normalized_durability
 
     @property
     def stamina(self) -> float:
@@ -360,6 +360,14 @@ class Entity(CommonEntity):
     @stamina.setter
     def stamina(self, stamina) -> None:
         self._stamina = clamp(self._max_stamina, 0, stamina)
+
+    @property
+    def normalized_durability(self) -> float:
+        return division(self._durability, self._max_durability)
+
+    @property
+    def normalized_stamina(self) -> float:
+        return division(self._stamina, self._max_stamina)
 
     @property
     def obstacles(self) -> List["Entity"]:

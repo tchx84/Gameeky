@@ -116,8 +116,8 @@ class Scene:
         held = entity.held.type_id if entity.held is not None else EntityType.EMPTY
 
         return CommonStats(
-            durability=entity.durability,
-            stamina=entity.stamina,
+            durability=entity.normalized_durability,
+            stamina=entity.normalized_stamina,
             held=held,
         )
 
