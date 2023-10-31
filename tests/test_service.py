@@ -12,6 +12,7 @@ from valley.client.game.service import Service as Client
 from valley.common.definitions import (
     Action,
     Direction,
+    EntityType,
     DEFAULT_SCENE,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
@@ -148,6 +149,23 @@ def test_client_request_scene_update():
     entity = find_entity_by_id(scene.entities, 4)
 
     assert entity.position.x == 1
+
+
+@pytest.mark.timeout(5)
+def test_client_request_stats_update():
+    mock = Mock()
+
+    client.connect("stats-updated", mock)
+    client.request_stats()
+
+    while not mock.called:
+        update()
+
+    stats = mock.call_args.args[-1]
+
+    assert stats.durability == 1
+    assert stats.stamina == 1
+    assert stats.held == EntityType.EMPTY
 
 
 @pytest.mark.timeout(5)
