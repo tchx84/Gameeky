@@ -105,7 +105,7 @@ class Scene(Gtk.Widget):
                 rect_width,
                 rect_height,
                 tile_width,
-                tile_height,
+                tile_height * 0.2,
             )
 
         snapshot.pop()

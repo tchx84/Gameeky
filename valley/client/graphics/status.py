@@ -28,7 +28,7 @@ class Status:
         rect_x = x + (width / 2) - (target_width / 2)
         rect_y = y
         rect_width = target_width
-        rect_height = target_height * 0.2
+        rect_height = target_height
 
         stroke = Graphene.Rect()
         stroke.init(rect_x, rect_y, rect_width, rect_height)
