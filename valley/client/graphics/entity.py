@@ -50,11 +50,14 @@ class Entity:
 
     def get_texture(self, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
         if entity.state not in self._animations:
-            return self._default.get_frame()
+            return self.get_default_texture()
         if entity.direction not in self._animations[entity.state]:
-            return self._default.get_frame()
+            return self.get_default_texture()
 
         return self._animations[entity.state][entity.direction].get_frame()
+
+    def get_default_texture(self) -> Gdk.Texture:
+        return self._default.get_frame()
 
     def add_animation(
         self,
@@ -74,6 +77,10 @@ class EntityRegistry:
     @classmethod
     def get_texture(cls, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
         return cls.__entities__[entity.type_id].get_texture(entity)
+
+    @classmethod
+    def get_default_texture(cls, type_id: int) -> Gdk.Texture:
+        return cls.__entities__[type_id].get_default_texture()
 
     @classmethod
     def register(cls, description: Description) -> None:

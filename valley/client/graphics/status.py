@@ -1,7 +1,5 @@
 from gi.repository import Gdk, Gtk, Graphene
 
-from ...common.entity import Entity
-
 
 class Status:
     fill = Gdk.RGBA()
@@ -17,7 +15,7 @@ class Status:
     def draw(
         cls,
         snapshot: Gtk.Snapshot,
-        entity: Entity,
+        value: float,
         x: float,
         y: float,
         width: float,
@@ -25,9 +23,6 @@ class Status:
         target_width: float,
         target_height: float,
     ) -> None:
-        if entity.status == 1.0:
-            return
-
         # Stroke
 
         rect_x = x + (width / 2) - (target_width / 2)
@@ -54,7 +49,7 @@ class Status:
 
         ## Fill
 
-        rect_width *= entity.status
+        rect_width *= value
 
         fill = Graphene.Rect()
         fill.init(rect_x, rect_y, rect_width, rect_height)

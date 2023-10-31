@@ -11,6 +11,7 @@ from .widgets.window import Window
 
 from ..game.service import Service
 from ..game.scene import Scene as SceneModel
+from ..game.stats import Stats as StatsModel
 from ..graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from ..input.keyboard import Keyboard
 from ..sound.entity import EntityRegistry as EntitySoundRegistry
@@ -89,11 +90,13 @@ class Application(Gtk.Application):
             context=GLib.MainContext.default(),
         )
 
-        self._model = SceneModel(
+        self._scene_model = SceneModel(
             width=TILES_X,
             height=TILES_Y,
             service=self._service,
         )
+
+        self._stats_model = StatsModel(service=self._service)
 
         self._scanner = Scanner(path=get_data_path("entities"))
         self._scanner.connect("found", self.__on_scanner_found)
@@ -108,14 +111,18 @@ class Application(Gtk.Application):
         self._service.register()
 
     def _setup_graphics(self) -> None:
-        self._window = Window(application=self, model=self._model)
+        self._window = Window(
+            application=self,
+            scene_model=self._scene_model,
+            stats_model=self._stats_model,
+        )
         self._window.present()
 
     def _setup_input(self) -> None:
         self._input = Keyboard(widget=self._window, service=self._service)
 
     def _setup_sound(self) -> None:
-        self._player = ScenePlayer(model=self._model)
+        self._player = ScenePlayer(model=self._scene_model)
 
     def do_activate(self) -> None:
         self._setup_game()

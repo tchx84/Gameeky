@@ -6,7 +6,7 @@ from ...common.session import Session
 from ...common.stats import Stats as CommonStats
 
 
-class Scene(CommonStats, GObject.GObject):
+class Stats(CommonStats, GObject.GObject):
     __gsignals__ = {
         "updated": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
@@ -20,7 +20,11 @@ class Scene(CommonStats, GObject.GObject):
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
         self._service.connect("stats-updated", self.__on_service_updated)
-        GLib.timeout_add_seconds(1, self.__on_scene_ticked)
+        GLib.timeout_add_seconds(1, self.__on_stats_ticked)
+
+    def __on_stats_ticked(self) -> int:
+        self._service.request_stats()
+        return GLib.SOURCE_CONTINUE
 
     def __on_service_updated(self, service: Service, stats: CommonStats) -> None:
         self.durability = stats.durability

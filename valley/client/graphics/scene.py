@@ -3,7 +3,7 @@ from gi.repository import Gtk, Gdk, Gsk, Graphene
 from .entity import EntityRegistry
 from .status import Status
 from ..game.scene import Scene as SceneModel
-from ..definitions import Alpha
+from ..definitions import Alpha, Normalized
 
 from ...common.utils import oscillate
 
@@ -94,9 +94,12 @@ class Scene(Gtk.Widget):
 
             snapshot.append_texture(texture, entity_rect)
 
+            if entity.status == Normalized.MAX:
+                continue
+
             Status.draw(
                 snapshot,
-                entity,
+                entity.status,
                 rect_x,
                 rect_y,
                 rect_width,
