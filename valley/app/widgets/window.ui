@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="gio" version="2.0"/>
+  <requires lib="gtk" version="4.10"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="Window" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar">
+            <child>
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="popover">popover</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="GtkBox"/>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="label">Loading</property>
+                  </object>
+                </property>
+                <property name="name">loading</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="GtkBox" id="game_content"/>
+                </property>
+                <property name="name">game</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">512</property>
+    <property name="default-width">512</property>
+  </template>
+  <menu id="menu">
+    <item>
+      <attribute name="action">app.create</attribute>
+      <attribute name="label">Create Game</attribute>
+    </item>
+    <item>
+      <attribute name="action">app.join</attribute>
+      <attribute name="label">Join Game</attribute>
+    </item>
+  </menu>
+  <object class="GtkPopoverMenu" id="popover">
+    <property name="menu-model">menu</property>
+  </object>
+</interface>

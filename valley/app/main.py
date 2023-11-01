@@ -4,25 +4,19 @@ import sys
 import gi
 
 gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
 
 from gi.repository import Gio, Gtk, GLib
 
+from typing import Any, Optional
+
 from .widgets.window import Window
+from .models.session import Session
 
-from ..game.service import Service
-from ..game.scene import Scene as SceneModel
-from ..game.stats import Stats as StatsModel
-from ..graphics.entity import EntityRegistry as EntityGraphicsRegistry
-from ..input.keyboard import Keyboard
-from ..sound.entity import EntityRegistry as EntitySoundRegistry
-from ..sound.scene import Scene as ScenePlayer
-
-from ...common.utils import get_data_path
-from ...common.scanner import Scanner, Description
-from ...common.definitions import (
+from ..common.definitions import (
     Command,
-    TILES_X,
-    TILES_Y,
+    DEFAULT_SCENE,
+    DEFAULT_CLIENTS,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
@@ -39,6 +33,24 @@ class Application(Gtk.Application):
             | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
 
+        self._session: Optional[Session] = None
+
+        self.add_main_option(
+            Command.SCENE,
+            ord("n"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The relative path to the scene to be used",
+            None,
+        )
+        self.add_main_option(
+            Command.CLIENTS,
+            ord("c"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.INT,
+            "The number of clients that are allowed to join",
+            None,
+        )
         self.add_main_option(
             Command.SESSION_PORT,
             ord("s"),
@@ -80,59 +92,54 @@ class Application(Gtk.Application):
             None,
         )
 
-    def _setup_game(self) -> None:
-        self._service = Service(
+    def __on_create(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        self._setup_session(host=True)
+
+    def __on_join(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        self._setup_session(host=False)
+
+    def __on_session_initializing(self, session: Session) -> None:
+        self._window.switch_to_loading()
+
+    def __on_session_started(self, session: Session) -> None:
+        self._window.switch_to_game(session.scene, session.stats)
+
+    def _setup_session(self, host: bool) -> None:
+        self._session = Session(
+            scene=self._scene,
+            clients=self._clients,
             address=self._address,
             session_port=self._session_port,
             messages_port=self._messages_port,
             scene_port=self._scene_port,
             stats_port=self._stats_port,
-            context=GLib.MainContext.default(),
+            window=self._window,
+            host=host,
         )
-
-        self._scene_model = SceneModel(
-            width=TILES_X,
-            height=TILES_Y,
-            service=self._service,
-        )
-
-        self._stats_model = StatsModel(service=self._service)
-
-        self._scanner = Scanner(path=get_data_path("entities"))
-        self._scanner.connect("found", self.__on_scanner_found)
-        self._scanner.connect("done", self.__on_scanner_done)
-        self._scanner.scan()
-
-    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
-        EntityGraphicsRegistry.register(description)
-        EntitySoundRegistry.register(description)
-
-    def __on_scanner_done(self, scanner: Scanner) -> None:
-        self._service.register()
-
-    def _setup_graphics(self) -> None:
-        self._window = Window(
-            application=self,
-            scene_model=self._scene_model,
-            stats_model=self._stats_model,
-        )
-        self._window.present()
-
-    def _setup_input(self) -> None:
-        self._input = Keyboard(widget=self._window, service=self._service)
-
-    def _setup_sound(self) -> None:
-        self._player = ScenePlayer(model=self._scene_model)
+        self._session.connect("initializing", self.__on_session_initializing)
+        self._session.connect("started", self.__on_session_started)
+        self._session.create()
 
     def do_activate(self) -> None:
-        self._setup_game()
-        self._setup_graphics()
-        self._setup_input()
-        self._setup_sound()
+        self._window = Window(application=self)
+        self._window.present()
+
+    def do_startup(self) -> None:
+        Gtk.Application.do_startup(self)
+
+        create_action = Gio.SimpleAction.new("create", None)
+        create_action.connect("activate", self.__on_create)
+        self.add_action(create_action)
+
+        join_action = Gio.SimpleAction.new("join", None)
+        join_action.connect("activate", self.__on_join)
+        self.add_action(join_action)
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
+        self._scene = options.get(Command.SCENE, DEFAULT_SCENE)
+        self._clients = options.get(Command.CLIENTS, DEFAULT_CLIENTS)
         self._address = options.get(Command.ADDRESS, DEFAULT_ADDRESS)
         self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
         self._messages_port = options.get(Command.MESSAGES_PORT, DEFAULT_MESSAGES_PORT)
@@ -143,7 +150,9 @@ class Application(Gtk.Application):
         return 0
 
     def do_shutdown(self) -> None:
-        self._service.unregister()
+        if self._session is not None:
+            self._session.shutdown()
+
         Gtk.Application.do_shutdown(self)
 
 

@@ -13,6 +13,9 @@ dependencies = [
     "PyGObject",
 ]
 
+[tool.setuptools.package-data]
+"*" = ["*.*"]
+
 [project.optional-dependencies]
 dev = [
     "black",

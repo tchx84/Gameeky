@@ -1,9 +1,9 @@
 from gi.repository import Gtk
 
-from ...game.scene import Scene as SceneModel
-from ...graphics.scene import Scene as SceneGraphics
+from ...client.game.scene import Scene as SceneModel
+from ...client.graphics.scene import Scene as SceneGraphics
 
-from ....common.definitions import TILES_X, TILES_Y
+from ...common.definitions import TILES_X, TILES_Y
 
 
 class Scene(Gtk.AspectFrame):

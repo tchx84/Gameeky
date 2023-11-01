@@ -1,9 +1,9 @@
 from gi.repository import Gtk
 
-from ...game.stats import Stats as StatsModel
-from ...graphics.hud import Hud as HudGraphics
+from ...client.game.stats import Stats as StatsModel
+from ...client.graphics.hud import Hud as HudGraphics
 
-from ....common.definitions import TILES_X, TILES_Y
+from ...common.definitions import TILES_X, TILES_Y
 
 
 class Hud(Gtk.AspectFrame):
