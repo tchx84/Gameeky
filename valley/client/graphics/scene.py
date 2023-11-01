@@ -100,10 +100,8 @@ class Scene(Gtk.Widget):
             Status.draw(
                 snapshot,
                 entity.status,
-                rect_x,
+                rect_x + (rect_width / 2) - (tile_width / 2),
                 rect_y,
-                rect_width,
-                rect_height,
                 tile_width,
                 tile_height * 0.2,
             )

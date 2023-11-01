@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 
 from .scene import Scene as SceneWidget
-from .stats import Stats as StatsWidget
+from .hud import Hud as HudWidget
 
 from ...game.scene import Scene as SceneModel
 from ...game.stats import Stats as StatsModel
@@ -17,11 +17,11 @@ class Window(Gtk.ApplicationWindow):
         super().__init__(application=application)
 
         scene = SceneWidget(model=scene_model)
-        stats = StatsWidget(model=stats_model)
+        hud = HudWidget(model=stats_model)
 
-        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        box.append(scene)
-        box.append(stats)
+        box = Gtk.Overlay()
+        box.add_overlay(scene)
+        box.add_overlay(hud)
 
         self.set_title("Valley")
         self.set_child(box)

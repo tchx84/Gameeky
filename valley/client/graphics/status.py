@@ -2,17 +2,10 @@ from typing import Optional
 
 from gi.repository import Gdk, Gtk, Graphene
 
+from ...common import colors
+
 
 class Status:
-    fill = Gdk.RGBA()
-    fill.parse("#74D600")
-
-    background = Gdk.RGBA()
-    background.parse("#FFFFFF")
-
-    stroke = Gdk.RGBA()
-    stroke.parse("#000000")
-
     @classmethod
     def draw(
         cls,
@@ -22,20 +15,18 @@ class Status:
         y: float,
         width: float,
         height: float,
-        target_width: float,
-        target_height: float,
         color: Optional[Gdk.RGBA] = None,
     ) -> None:
         # Stroke
 
-        rect_x = x + (width / 2) - (target_width / 2)
+        rect_x = x
         rect_y = y
-        rect_width = target_width
-        rect_height = target_height
+        rect_width = width
+        rect_height = height
 
         stroke = Graphene.Rect()
         stroke.init(rect_x, rect_y, rect_width, rect_height)
-        snapshot.append_color(cls.stroke, stroke)
+        snapshot.append_color(colors.BLACK, stroke)
 
         # Background
 
@@ -48,7 +39,7 @@ class Status:
 
         background = Graphene.Rect()
         background.init(rect_x, rect_y, rect_width, rect_height)
-        snapshot.append_color(cls.background, background)
+        snapshot.append_color(colors.WHITE, background)
 
         ## Fill
 
@@ -56,4 +47,4 @@ class Status:
 
         fill = Graphene.Rect()
         fill.init(rect_x, rect_y, rect_width, rect_height)
-        snapshot.append_color(color if color is not None else cls.fill, fill)
+        snapshot.append_color(color if color is not None else colors.GREEN, fill)
