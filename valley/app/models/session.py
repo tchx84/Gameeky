@@ -134,6 +134,10 @@ class Session(GObject.GObject):
             self._client.unregister()
         if self._server is not None:
             self._server.shutdown()
+        if self._scene_model is not None:
+            self._scene_model.shutdown()
+        if self._stats_model is not None:
+            self._stats_model.shutdown()
 
     @property
     def scene(self) -> Optional[SceneModel]:
