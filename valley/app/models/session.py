@@ -6,7 +6,6 @@ from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
 from ...client.input.keyboard import Keyboard
 from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
-from ...client.sound.scene import Scene as SceneSound
 from ...client.sound.entity import EntityRegistry as EntitySoundRegistry
 
 from ...common.logger import logger
@@ -57,7 +56,6 @@ class Session(GObject.GObject):
         self._scene_model: Optional[SceneModel] = None
         self._stats_model: Optional[StatsModel] = None
         self._intput: Optional[Keyboard] = None
-        self._sound: Optional[SceneSound] = None
 
     def _setup_client(self) -> None:
         self._client = Client(
@@ -83,9 +81,6 @@ class Session(GObject.GObject):
             widget=self._window,
             service=self._client,
         )
-
-        self._sound = SceneSound()
-        self._sound.model = self._scene_model
 
         self._client.register()
 
@@ -139,8 +134,6 @@ class Session(GObject.GObject):
             self._client.unregister()
         if self._server is not None:
             self._server.shutdown()
-        if self._sound is not None:
-            self._sound.shutdown()
 
     @property
     def scene(self) -> Optional[SceneModel]:
