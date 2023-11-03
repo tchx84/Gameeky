@@ -24,5 +24,5 @@ class Hud(Gtk.AspectFrame):
         return self._view.model
 
     @model.setter
-    def model(self, model: StatsModel) -> None:
+    def model(self, model: Optional[StatsModel]) -> None:
         self._view.model = model

@@ -2,6 +2,7 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
+from typing import Optional
 from gi.repository import Gtk, Adw
 
 from .scene import Scene as SceneWidget
@@ -31,9 +32,11 @@ class Window(Adw.ApplicationWindow):
 
     def switch_to_game(
         self,
-        scene: SceneModel,
-        stats: StatsModel,
+        scene: Optional[SceneModel],
+        stats: Optional[StatsModel],
     ) -> None:
         self._scene.model = scene
         self._hud.model = stats
-        self.stack.set_visible_child_name("game")
+
+        if scene is not None and stats is not None:
+            self.stack.set_visible_child_name("game")

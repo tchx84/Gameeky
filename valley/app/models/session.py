@@ -9,6 +9,7 @@ from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from ...client.sound.scene import Scene as SceneSound
 from ...client.sound.entity import EntityRegistry as EntitySoundRegistry
 
+from ...common.logger import logger
 from ...common.utils import get_data_path
 from ...common.scanner import Scanner, Description
 from ...common.definitions import TILES_X, TILES_Y
@@ -21,6 +22,7 @@ class Session(GObject.GObject):
     __gsignals__ = {
         "initializing": (GObject.SignalFlags.RUN_LAST, None, ()),
         "started": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     def __init__(
@@ -49,8 +51,13 @@ class Session(GObject.GObject):
         self._window = window
 
         self._context = GLib.MainContext.default()
+
         self._server: Optional[Server] = None
         self._client: Optional[Client] = None
+        self._scene_model: Optional[SceneModel] = None
+        self._stats_model: Optional[StatsModel] = None
+        self._intput: Optional[Keyboard] = None
+        self._sound: Optional[SceneSound] = None
 
     def _setup_client(self) -> None:
         self._client = Client(
@@ -77,13 +84,15 @@ class Session(GObject.GObject):
             service=self._client,
         )
 
-        self._sound = SceneSound(
-            model=self._scene_model,
-        )
+        self._sound = SceneSound()
+        self._sound.model = self._scene_model
 
         self._client.register()
 
     def _setup_server(self) -> None:
+        if self._host is False:
+            return
+
         self._server = Server(
             scene=self._scene,
             clients=self._clients,
@@ -95,6 +104,10 @@ class Session(GObject.GObject):
         )
 
     def _setup_scanner(self) -> None:
+        EntityGraphicsRegistry.reset()
+        EntitySoundRegistry.reset()
+        EntityGameRegistry.reset()
+
         self._scanner = Scanner(path=get_data_path("entities"))
         self._scanner.connect("found", self.__on_scanner_found)
         self._scanner.connect("done", self.__on_scanner_done)
@@ -108,11 +121,14 @@ class Session(GObject.GObject):
             EntityGameRegistry.register(description)
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
-        if self._host is True:
+        try:
             self._setup_server()
-
-        self._setup_client()
-        self.emit("started")
+            self._setup_client()
+        except Exception as e:
+            logger.error(e)
+            self.emit("failed")
+        else:
+            self.emit("started")
 
     def create(self) -> None:
         self._setup_scanner()
@@ -123,11 +139,13 @@ class Session(GObject.GObject):
             self._client.unregister()
         if self._server is not None:
             self._server.shutdown()
+        if self._sound is not None:
+            self._sound.shutdown()
 
     @property
-    def scene(self) -> SceneModel:
+    def scene(self) -> Optional[SceneModel]:
         return self._scene_model
 
     @property
-    def stats(self) -> StatsModel:
+    def stats(self) -> Optional[StatsModel]:
         return self._stats_model

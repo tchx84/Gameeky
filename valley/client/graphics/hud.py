@@ -100,9 +100,11 @@ class Hud(Gtk.Widget):
         return self._model
 
     @model.setter
-    def model(self, model: StatsModel) -> None:
+    def model(self, model: Optional[StatsModel]) -> None:
         if self._model is not None:
             self._model.disconnect_by_func(self.__on_model_updated)
 
         self._model = model
-        self._model.connect("updated", self.__on_model_updated)
+
+        if self._model is not None:
+            self._model.connect("updated", self.__on_model_updated)

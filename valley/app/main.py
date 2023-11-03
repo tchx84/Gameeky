@@ -51,6 +51,7 @@ class Application(Adw.Application):
             "initializing", self.__on_session_model_initializing
         )
         self._session_model.connect("started", self.__on_session_model_started)
+        self._session_model.connect("failed", self.__on_session_model_failed)
         self._session_model.create()
 
     def __on_session_model_initializing(self, model: SessionModel) -> None:
@@ -58,6 +59,9 @@ class Application(Adw.Application):
 
     def __on_session_model_started(self, model: SessionModel) -> None:
         self._window.switch_to_game(model.scene, model.stats)
+
+    def __on_session_model_failed(self, model: SessionModel) -> None:
+        self._window.switch_to_game(None, None)
 
     def _shutdown_session(self) -> None:
         if self._session_model is not None:

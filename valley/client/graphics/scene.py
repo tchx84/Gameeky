@@ -130,9 +130,11 @@ class Scene(Gtk.Widget):
         return self._model
 
     @model.setter
-    def model(self, model: SceneModel) -> None:
+    def model(self, model: Optional[SceneModel]) -> None:
         if self._model is not None:
             self._model.disconnect_by_func(self.__on_model_updated)
 
         self._model = model
-        self._model.connect("ticked", self.__on_model_updated)
+
+        if self._model is not None:
+            self._model.connect("ticked", self.__on_model_updated)

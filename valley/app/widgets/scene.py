@@ -24,5 +24,5 @@ class Scene(Gtk.AspectFrame):
         return self._view.model
 
     @model.setter
-    def model(self, model: SceneModel) -> None:
+    def model(self, model: Optional[SceneModel]) -> None:
         self._view.model = model

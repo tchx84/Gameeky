@@ -433,6 +433,10 @@ class EntityRegistry:
     __entities__: Dict[int, Description] = {}
 
     @classmethod
+    def reset(cls) -> None:
+        cls.__entities__ = {}
+
+    @classmethod
     def register(cls, description: Description) -> None:
         cls.__entities__[description.id] = description
 

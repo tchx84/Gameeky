@@ -75,6 +75,10 @@ class EntityRegistry:
     __entities__: Dict[int, Entity] = {}
 
     @classmethod
+    def reset(cls) -> None:
+        cls.__entities__ = {}
+
+    @classmethod
     def get_texture(cls, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
         return cls.__entities__[entity.type_id].get_texture(entity)
 
