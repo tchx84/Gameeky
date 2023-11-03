@@ -16,11 +16,7 @@ class Window(Adw.ApplicationWindow):
     __gtype_name__ = "Window"
 
     stack = Gtk.Template.Child()
-    game_content = Gtk.Template.Child()
-
-    def __init__(self, application: Gtk.Application) -> None:
-        super().__init__(application=application)
-        self.set_title("Valley")
+    overlay = Gtk.Template.Child()
 
     def switch_to_loading(self) -> None:
         self.stack.set_visible_child_name("loading")
@@ -33,12 +29,7 @@ class Window(Adw.ApplicationWindow):
         scene = SceneWidget(model=scene)
         hud = HudWidget(model=stats)
 
-        overlay = Gtk.Overlay()
-        overlay.add_overlay(scene)
-        overlay.add_overlay(hud)
-        overlay.props.hexpand = True
-        overlay.props.vexpand = True
-
-        self.game_content.append(overlay)
+        self.overlay.add_overlay(scene)
+        self.overlay.add_overlay(hud)
 
         self.stack.set_visible_child_name("game")

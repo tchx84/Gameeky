@@ -3,15 +3,20 @@
 <interface>
   <!-- interface-name window.ui -->
   <requires lib="gio" version="2.0"/>
-  <requires lib="gtk" version="4.10"/>
-  <requires lib="libadwaita" version="1.0"/>
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
   <template class="Window" parent="AdwApplicationWindow">
     <property name="content">
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkHeaderBar">
-            <child>
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title">Valley</property>
+              </object>
+            </property>
+            <child type="end">
               <object class="GtkMenuButton">
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="popover">popover</property>
@@ -43,7 +48,10 @@
             <child>
               <object class="GtkStackPage">
                 <property name="child">
-                  <object class="GtkBox" id="game_content"/>
+                  <object class="GtkOverlay" id="overlay">
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                  </object>
                 </property>
                 <property name="name">game</property>
               </object>
