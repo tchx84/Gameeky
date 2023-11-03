@@ -112,8 +112,10 @@ class Session(GObject.GObject):
         EntityGraphicsRegistry.register(description)
         EntitySoundRegistry.register(description)
 
-        if self._host is True:
-            EntityGameRegistry.register(description)
+        if self._host is False:
+            return
+
+        EntityGameRegistry.register(description)
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
         try:
