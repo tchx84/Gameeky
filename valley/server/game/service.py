@@ -150,3 +150,4 @@ class Service(GObject.GObject):
         self._session_manager.shutdown()
         self._messages_manager.shutdown()
         self._scene_manager.shutdown()
+        self._stats_manager.shutdown()

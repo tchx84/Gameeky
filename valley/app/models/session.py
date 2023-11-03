@@ -1,3 +1,4 @@
+from typing import Optional
 from gi.repository import GObject, GLib, Gtk
 
 from ...client.game.service import Service as Client
@@ -48,6 +49,8 @@ class Session(GObject.GObject):
         self._window = window
 
         self._context = GLib.MainContext.default()
+        self._server: Optional[Server] = None
+        self._client: Optional[Client] = None
 
     def _setup_client(self) -> None:
         self._client = Client(
@@ -116,9 +119,9 @@ class Session(GObject.GObject):
         self.emit("initializing")
 
     def shutdown(self) -> None:
-        self._client.unregister()
-
-        if self._host is True:
+        if self._client is not None:
+            self._client.unregister()
+        if self._server is not None:
             self._server.shutdown()
 
     @property

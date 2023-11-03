@@ -31,12 +31,15 @@ class Client(GObject.GObject):
 
     def __received_data_cb(self, data: Optional[Any] = None) -> int:
         # XXX replace with .receive_from() when fixed
-        size, address, messages, flags = self._socket.receive_message(
-            [], Gio.SocketMsgFlags.PEEK, None
-        )
-        raw = self._input_stream.read_bytes(MAX_UDP_BYTES, None)
-
-        self.emit("received", address, raw.get_data())
+        try:
+            size, address, messages, flags = self._socket.receive_message(
+                [], Gio.SocketMsgFlags.PEEK, None
+            )
+            raw = self._input_stream.read_bytes(MAX_UDP_BYTES, None)
+        except Exception as e:
+            logger.error(e)
+        else:
+            self.emit("received", address, raw.get_data())
 
         return GLib.SOURCE_CONTINUE
 

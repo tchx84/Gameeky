@@ -2,6 +2,7 @@ from typing import Any, Optional
 
 from gi.repository import Gio, GLib, GObject
 
+from ...common.logger import logger
 from ...common.definitions import MAX_UDP_BYTES
 
 
@@ -34,17 +35,23 @@ class Server(GObject.GObject):
 
     def __received_data_cb(self, data: Optional[Any]) -> int:
         # XXX replace with .receive_from() when fixed
-        size, address, messages, flags = self._socket.receive_message(
-            [], Gio.SocketMsgFlags.PEEK, None
-        )
-        raw = self._input_stream.read_bytes(MAX_UDP_BYTES, None)
-
-        self.emit("received", address, raw.get_data())
+        try:
+            size, address, messages, flags = self._socket.receive_message(
+                [], Gio.SocketMsgFlags.PEEK, None
+            )
+            raw = self._input_stream.read_bytes(MAX_UDP_BYTES, None)
+        except Exception as e:
+            logger.error(e)
+        else:
+            self.emit("received", address, raw.get_data())
 
         return GLib.SOURCE_CONTINUE
 
     def send(self, address: Gio.InetSocketAddress, data: bytes) -> None:
-        self._socket.send_to(address, data)
+        try:
+            self._socket.send_to(address, data)
+        except Exception as e:
+            logger.error(e)
 
     def shutdown(self) -> None:
         self._socket.close()

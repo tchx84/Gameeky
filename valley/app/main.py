@@ -35,6 +35,7 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_session_dialog_done(self, dialog: SessionDialog) -> None:
+        self._shutdown_session()
         self._session_model = SessionModel(
             scene=dialog.scene,
             clients=dialog.clients,
@@ -58,6 +59,10 @@ class Application(Adw.Application):
     def __on_session_model_started(self, model: SessionModel) -> None:
         self._window.switch_to_game(model.scene, model.stats)
 
+    def _shutdown_session(self) -> None:
+        if self._session_model is not None:
+            self._session_model.shutdown()
+
     def do_activate(self) -> None:
         self._window = Window(application=self)
         self._window.present()
@@ -74,9 +79,7 @@ class Application(Adw.Application):
         self.add_action(join_action)
 
     def do_shutdown(self) -> None:
-        if self._session_model is not None:
-            self._session_model.shutdown()
-
+        self._shutdown_session()
         Adw.Application.do_shutdown(self)
 
 

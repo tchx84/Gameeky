@@ -74,3 +74,4 @@ class Server(GObject.GObject):
 
     def shutdown(self) -> None:
         self._service.stop()
+        self._service.close()

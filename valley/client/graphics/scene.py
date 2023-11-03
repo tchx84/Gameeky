@@ -1,3 +1,4 @@
+from typing import Optional
 from gi.repository import Gtk, Gdk, Gsk, Graphene
 
 from .entity import EntityRegistry
@@ -9,16 +10,17 @@ from ...common.utils import oscillate
 
 
 class Scene(Gtk.Widget):
-    def __init__(self, model: SceneModel) -> None:
+    def __init__(self) -> None:
         super().__init__()
+        self._model: Optional[SceneModel] = None
 
-        self._model = model
-        self._model.connect("ticked", self.__on_scene_updated)
-
-    def __on_scene_updated(self, model: SceneModel) -> None:
+    def __on_model_updated(self, model: SceneModel) -> None:
         self.queue_draw()
 
     def _do_snapshot_time(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         screen_width = self.get_width()
         screen_height = self.get_height()
 
@@ -60,6 +62,9 @@ class Scene(Gtk.Widget):
         snapshot.pop()
 
     def _do_snapshot_entities(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         screen_width = self.get_width()
         screen_height = self.get_height()
 
@@ -109,6 +114,9 @@ class Scene(Gtk.Widget):
         snapshot.pop()
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         snapshot.push_blend(Gsk.BlendMode.MULTIPLY)
 
         self._do_snapshot_time(snapshot)
@@ -116,3 +124,15 @@ class Scene(Gtk.Widget):
 
         self._do_snapshot_entities(snapshot)
         snapshot.pop()
+
+    @property
+    def model(self) -> Optional[SceneModel]:
+        return self._model
+
+    @model.setter
+    def model(self, model: SceneModel) -> None:
+        if self._model is not None:
+            self._model.disconnect_by_func(self.__on_model_updated)
+
+        self._model = model
+        self._model.connect("ticked", self.__on_model_updated)

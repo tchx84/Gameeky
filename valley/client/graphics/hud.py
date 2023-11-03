@@ -1,3 +1,4 @@
+from typing import Optional
 from gi.repository import Gtk, Graphene
 
 from .status import Status
@@ -10,16 +11,17 @@ from ...common.definitions import EntityType, TILES_X, TILES_Y
 
 
 class Hud(Gtk.Widget):
-    def __init__(self, model: StatsModel) -> None:
+    def __init__(self) -> None:
         super().__init__()
-
-        self._model = model
-        self._model.connect("updated", self.__on_model_updated)
+        self._model: Optional[StatsModel] = None
 
     def __on_model_updated(self, model: StatsModel) -> None:
         self.queue_draw()
 
     def _do_snapshot_entity(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         screen_width = self.get_width()
         screen_height = self.get_height()
 
@@ -44,6 +46,9 @@ class Hud(Gtk.Widget):
         snapshot.append_texture(texture, rect)
 
     def _do_snapshot_status(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         screen_width = self.get_width()
         screen_height = self.get_height()
 
@@ -70,6 +75,9 @@ class Hud(Gtk.Widget):
         )
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
+        if self._model is None:
+            return
+
         screen_width = self.get_width()
         screen_height = self.get_height()
 
@@ -86,3 +94,15 @@ class Hud(Gtk.Widget):
 
         self._do_snapshot_entity(snapshot)
         self._do_snapshot_status(snapshot)
+
+    @property
+    def model(self) -> Optional[StatsModel]:
+        return self._model
+
+    @model.setter
+    def model(self, model: StatsModel) -> None:
+        if self._model is not None:
+            self._model.disconnect_by_func(self.__on_model_updated)
+
+        self._model = model
+        self._model.connect("updated", self.__on_model_updated)
