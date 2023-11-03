@@ -30,6 +30,11 @@ class Window(Adw.ApplicationWindow):
     def switch_to_loading(self) -> None:
         self.stack.set_visible_child_name("loading")
 
+    def switch_to_failed(self) -> None:
+        self._scene.model = None
+        self._hud.model = None
+        self.stack.set_visible_child_name("failed")
+
     def switch_to_game(
         self,
         scene: Optional[SceneModel],
@@ -37,6 +42,4 @@ class Window(Adw.ApplicationWindow):
     ) -> None:
         self._scene.model = scene
         self._hud.model = stats
-
-        if scene is not None and stats is not None:
-            self.stack.set_visible_child_name("game")
+        self.stack.set_visible_child_name("game")

@@ -65,7 +65,7 @@ class Application(Adw.Application):
         self._sound_player.model = model.scene
 
     def __on_session_model_failed(self, model: SessionModel) -> None:
-        self._window.switch_to_game(None, None)
+        self._window.switch_to_failed()
         self._sound_player.model = None
 
     def _shutdown_session(self) -> None:

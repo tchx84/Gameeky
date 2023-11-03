@@ -127,8 +127,13 @@ class Session(GObject.GObject):
             self.emit("started")
 
     def create(self) -> None:
-        self._setup_scanner()
-        self.emit("initializing")
+        try:
+            self._setup_scanner()
+        except Exception as e:
+            logger.error(e)
+            self.emit("failed")
+        else:
+            self.emit("initializing")
 
     def shutdown(self) -> None:
         if self._client is not None:

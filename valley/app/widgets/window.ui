@@ -56,6 +56,16 @@
                 <property name="name">game</property>
               </object>
             </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="label">Failed</property>
+                  </object>
+                </property>
+                <property name="name">failed</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
