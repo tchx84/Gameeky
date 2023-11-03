@@ -6,7 +6,7 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gio, Gtk, GLib
+from gi.repository import Gio, Adw, GLib
 
 from typing import Any, Optional
 
@@ -25,7 +25,7 @@ from ..common.definitions import (
 )
 
 
-class Application(Gtk.Application):
+class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id="dev.tchx84.valley.Client",
@@ -125,7 +125,7 @@ class Application(Gtk.Application):
         self._window.present()
 
     def do_startup(self) -> None:
-        Gtk.Application.do_startup(self)
+        Adw.Application.do_startup(self)
 
         create_action = Gio.SimpleAction.new("create", None)
         create_action.connect("activate", self.__on_create)
@@ -153,7 +153,7 @@ class Application(Gtk.Application):
         if self._session is not None:
             self._session.shutdown()
 
-        Gtk.Application.do_shutdown(self)
+        Adw.Application.do_shutdown(self)
 
 
 def main() -> None:
