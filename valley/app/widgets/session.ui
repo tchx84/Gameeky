@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name session.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="Session" parent="AdwPreferencesWindow">
+    <property name="title">Create Session</property>
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="description">Specify the directory and files for the scene</property>
+            <property name="title">Scene</property>
+            <child>
+              <object class="AdwEntryRow" id="_data_dir">
+                <property name="title">Directory</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="_scene">
+                <property name="title">Scene</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="_clients">
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1.0</property>
+                    <property name="page-increment">1.0</property>
+                    <property name="page-size">1.0</property>
+                    <property name="step-increment">1.0</property>
+                    <property name="upper">5.0</property>
+                    <property name="value">1.0</property>
+                  </object>
+                </property>
+                <property name="title">Clients</property>
+                <property name="value">1.0</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="description">Specify the ports to be used by the server</property>
+            <property name="title">Server</property>
+            <child>
+              <object class="AdwEntryRow" id="_session_port">
+                <property name="input-purpose">number</property>
+                <property name="title">Session Port</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="_messages_port">
+                <property name="input-purpose">number</property>
+                <property name="title">Messages Port</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="_scene_port">
+                <property name="input-purpose">number</property>
+                <property name="title">Scene Port</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="_stats_port">
+                <property name="input-purpose">number</property>
+                <property name="title">Stats Port</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="GtkButton" id="_create">
+                <property name="label">Create</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="suggested-action"/>
+    </style>
+  </template>
+</interface>
