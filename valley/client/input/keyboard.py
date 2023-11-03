@@ -68,3 +68,11 @@ class Keyboard(Gtk.EventControllerKey):
             return
 
         self._service.message(Action.IDLE, 0)
+
+    def shutdown(self) -> None:
+        self._is_pressed_by_key = {}
+        self.disconnect_by_func(self.__on_key_pressed)
+        self.disconnect_by_func(self.__on_key_released)
+
+        self._widget.remove_controller(self)
+        self._service.disconnect_by_func(self.__on_service_registered)

@@ -48,14 +48,13 @@ class Session(GObject.GObject):
         self._host = host
 
         self._window = window
-
         self._context = GLib.MainContext.default()
 
         self._server: Optional[Server] = None
         self._client: Optional[Client] = None
         self._scene_model: Optional[SceneModel] = None
         self._stats_model: Optional[StatsModel] = None
-        self._intput: Optional[Keyboard] = None
+        self._input: Optional[Keyboard] = None
 
     def _setup_client(self) -> None:
         self._client = Client(
@@ -140,6 +139,8 @@ class Session(GObject.GObject):
             self._scene_model.shutdown()
         if self._stats_model is not None:
             self._stats_model.shutdown()
+        if self._input is not None:
+            self._input.shutdown()
 
     @property
     def scene(self) -> Optional[SceneModel]:
