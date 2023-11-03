@@ -10,7 +10,7 @@
       <object class="AdwPreferencesPage">
         <child>
           <object class="AdwPreferencesGroup" id="scene_group">
-            <property name="description">Specify the directory and files for the scene</property>
+            <property name="description">Specify where to find the scenario files</property>
             <property name="title">Scene</property>
             <child>
               <object class="AdwEntryRow" id="data_dir_entry">
@@ -42,7 +42,7 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="description">Specify the ports to be used by the server</property>
+            <property name="description">Specify the network properties for the session</property>
             <property name="title">Server</property>
             <child>
               <object class="AdwEntryRow" id="address_entry">
