@@ -4,6 +4,17 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from gi.repository import Gtk, Adw, GObject
 
+from ...common.utils import get_data_path
+from ...common.definitions import (
+    DEFAULT_SCENE,
+    DEFAULT_CLIENTS,
+    DEFAULT_ADDRESS,
+    DEFAULT_SESSION_PORT,
+    DEFAULT_MESSAGES_PORT,
+    DEFAULT_SCENE_PORT,
+    DEFAULT_STATS_PORT,
+)
+
 
 @Gtk.Template(filename=os.path.join(__dir__, "session.ui"))
 class Session(Adw.PreferencesWindow):
@@ -13,38 +24,33 @@ class Session(Adw.PreferencesWindow):
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    _data_dir = Gtk.Template.Child()
-    _scene = Gtk.Template.Child()
-    _clients = Gtk.Template.Child()
-    _session_port = Gtk.Template.Child()
-    _messages_port = Gtk.Template.Child()
-    _scene_port = Gtk.Template.Child()
-    _stats_port = Gtk.Template.Child()
-    _create = Gtk.Template.Child()
+    scene_group = Gtk.Template.Child()
+    data_dir_entry = Gtk.Template.Child()
+    scene_entry = Gtk.Template.Child()
+    clients_spin = Gtk.Template.Child()
+    address_entry = Gtk.Template.Child()
+    session_port_entry = Gtk.Template.Child()
+    messages_port_entry = Gtk.Template.Child()
+    scene_port_entry = Gtk.Template.Child()
+    stats_port_entry = Gtk.Template.Child()
+    create_button = Gtk.Template.Child()
 
-    def __init__(
-        self,
-        data_dir: str,
-        scene: str,
-        clients: int,
-        session_port: int,
-        messages_port: int,
-        scene_port: int,
-        stats_port: int,
-        *args,
-        **kargs,
-    ) -> None:
+    def __init__(self, host: bool, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        self._data_dir.props.text = data_dir
-        self._scene.props.text = scene
-        self._clients.props.value = clients
-        self._session_port.props.text = str(session_port)
-        self._messages_port.props.text = str(messages_port)
-        self._scene_port.props.text = str(scene_port)
-        self._stats_port.props.text = str(stats_port)
+        self._host = host
+        self.scene_group.props.visible = self._host
 
-        self._create.connect("clicked", self.__on_button_clicked)
+        self.data_dir_entry.props.text = get_data_path("")
+        self.scene_entry.props.text = DEFAULT_SCENE
+        self.clients_spin.props.value = DEFAULT_CLIENTS
+        self.address_entry.props.text = DEFAULT_ADDRESS
+        self.session_port_entry.props.text = str(DEFAULT_SESSION_PORT)
+        self.messages_port_entry.props.text = str(DEFAULT_MESSAGES_PORT)
+        self.scene_port_entry.props.text = str(DEFAULT_SCENE_PORT)
+        self.stats_port_entry.props.text = str(DEFAULT_STATS_PORT)
+
+        self.create_button.connect("clicked", self.__on_button_clicked)
 
     def __on_button_clicked(self, button: Gtk.Button) -> None:
         self.emit("done")
@@ -52,28 +58,36 @@ class Session(Adw.PreferencesWindow):
 
     @property
     def data_dir(self) -> str:
-        return self._data_dir.props.text
+        return self.data_dir_entry.props.text
 
     @property
     def scene(self) -> str:
-        return self._scene.props.text
+        return self.scene_entry.props.text
 
     @property
     def clients(self) -> int:
-        return self._clients.props.value
+        return self.clients_spin.props.value
+
+    @property
+    def address(self) -> str:
+        return self.address_entry.props.text
 
     @property
     def session_port(self) -> int:
-        return int(self._session_port.props.text)
+        return int(self.session_port_entry.props.text)
 
     @property
     def messages_port(self) -> int:
-        return int(self._messages_port.props.text)
+        return int(self.messages_port_entry.props.text)
 
     @property
     def scene_port(self) -> int:
-        return int(self._scene_port.props.text)
+        return int(self.scene_port_entry.props.text)
 
     @property
     def stats_port(self) -> int:
-        return int(self._stats_port.props.text)
+        return int(self.stats_port_entry.props.text)
+
+    @property
+    def host(self) -> bool:
+        return self._host

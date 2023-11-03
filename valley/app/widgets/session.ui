@@ -9,21 +9,21 @@
     <child>
       <object class="AdwPreferencesPage">
         <child>
-          <object class="AdwPreferencesGroup">
+          <object class="AdwPreferencesGroup" id="scene_group">
             <property name="description">Specify the directory and files for the scene</property>
             <property name="title">Scene</property>
             <child>
-              <object class="AdwEntryRow" id="_data_dir">
+              <object class="AdwEntryRow" id="data_dir_entry">
                 <property name="title">Directory</property>
               </object>
             </child>
             <child>
-              <object class="AdwEntryRow" id="_scene">
+              <object class="AdwEntryRow" id="scene_entry">
                 <property name="title">Scene</property>
               </object>
             </child>
             <child>
-              <object class="AdwSpinRow" id="_clients">
+              <object class="AdwSpinRow" id="clients_spin">
                 <property name="adjustment">
                   <object class="GtkAdjustment">
                     <property name="lower">1.0</property>
@@ -45,25 +45,30 @@
             <property name="description">Specify the ports to be used by the server</property>
             <property name="title">Server</property>
             <child>
-              <object class="AdwEntryRow" id="_session_port">
+              <object class="AdwEntryRow" id="address_entry">
+                <property name="title">Address</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="session_port_entry">
                 <property name="input-purpose">number</property>
                 <property name="title">Session Port</property>
               </object>
             </child>
             <child>
-              <object class="AdwEntryRow" id="_messages_port">
+              <object class="AdwEntryRow" id="messages_port_entry">
                 <property name="input-purpose">number</property>
                 <property name="title">Messages Port</property>
               </object>
             </child>
             <child>
-              <object class="AdwEntryRow" id="_scene_port">
+              <object class="AdwEntryRow" id="scene_port_entry">
                 <property name="input-purpose">number</property>
                 <property name="title">Scene Port</property>
               </object>
             </child>
             <child>
-              <object class="AdwEntryRow" id="_stats_port">
+              <object class="AdwEntryRow" id="stats_port_entry">
                 <property name="input-purpose">number</property>
                 <property name="title">Stats Port</property>
               </object>
@@ -73,7 +78,7 @@
         <child>
           <object class="AdwPreferencesGroup">
             <child>
-              <object class="GtkButton" id="_create">
+              <object class="GtkButton" id="create_button">
                 <property name="label">Create</property>
                 <style>
                   <class name="suggested-action"/>
