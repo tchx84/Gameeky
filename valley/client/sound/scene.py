@@ -33,6 +33,9 @@ class Scene:
         if self._model is not None:
             self._model.disconnect_by_func(self.__on_model_updated)
 
+        self._model = None
+        self._handler_id = None
+
     @property
     def model(self) -> Optional[SceneModel]:
         return self._model

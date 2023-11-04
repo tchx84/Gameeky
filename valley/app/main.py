@@ -14,8 +14,6 @@ from .widgets.window import Window
 from .widgets.session import Session as SessionDialog
 from .models.session import Session as SessionModel
 
-from ..client.sound.scene import Scene as SceneSound
-
 
 class Application(Adw.Application):
     def __init__(self) -> None:
@@ -23,9 +21,7 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.Client",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
-
         self._session_model: Optional[SessionModel] = None
-        self._sound_player = SceneSound()
 
     def __on_create(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionDialog(host=True, transient_for=self._window)
@@ -62,11 +58,9 @@ class Application(Adw.Application):
 
     def __on_session_model_started(self, model: SessionModel) -> None:
         self._window.switch_to_game(model.scene, model.stats)
-        self._sound_player.model = model.scene
 
     def __on_session_model_failed(self, model: SessionModel) -> None:
         self._window.switch_to_failed()
-        self._sound_player.model = None
 
     def _shutdown_session(self) -> None:
         if self._session_model is not None:
