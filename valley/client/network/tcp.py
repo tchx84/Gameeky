@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from gi.repository import GLib, Gio, GObject
 
-from ...common.definitions import MAX_TCP_BYTES
+from ...common.definitions import MAX_TCP_BYTES, DEFAULT_TIMEOUT
 
 
 class Client(GObject.GObject):
@@ -16,6 +16,7 @@ class Client(GObject.GObject):
         super().__init__()
 
         self._client = Gio.SocketClient.new()
+        self._client.set_timeout(DEFAULT_TIMEOUT)
         self._connection = self._client.connect_to_host(address, port, None)
 
         self._input_stream = self._connection.get_input_stream()
