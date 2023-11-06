@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name animation.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="Animation" parent="AdwPreferencesGroup">
+    <child>
+      <object class="AdwEntryRow" id="path">
+        <property name="title">Path</property>
+        <signal name="changed" handler="on_animation_changed"/>
+        <!-- Custom fragments -->
+        <child type="suffix">
+          <object class="GtkButton" id="path_button">
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+            <property name="icon-name">document-open-symbolic</property>
+            <signal name="clicked" handler="on_path_button_clicked"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="columns">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">128.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="title">Columns</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="rows">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">128.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="title">Rows</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="duration">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">0.1</property>
+            <property name="page-size">0.1</property>
+            <property name="step-increment">0.1</property>
+            <property name="upper">5.0</property>
+          </object>
+        </property>
+        <property name="climb-rate">0.1</property>
+        <property name="digits">1</property>
+        <property name="title">Duration</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="scale_x">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="page-increment">0.1</property>
+            <property name="page-size">0.1</property>
+            <property name="step-increment">0.1</property>
+            <property name="upper">5.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="climb-rate">0.1</property>
+        <property name="digits">1</property>
+        <property name="title">Scale X</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="scale_y">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="page-increment">0.1</property>
+            <property name="page-size">0.1</property>
+            <property name="step-increment">0.1</property>
+            <property name="upper">5.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="climb-rate">0.1</property>
+        <property name="digits">1</property>
+        <property name="title">Scale Y</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="crop_x">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">1024.0</property>
+          </object>
+        </property>
+        <property name="title">Crop X</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="crop_y">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">1024.0</property>
+          </object>
+        </property>
+        <property name="title">Crop Y</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSwitchRow" id="flip_x">
+        <property name="title">Flip X</property>
+        <signal name="activated" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSwitchRow" id="flip_y">
+        <property name="title">Flip Y</property>
+        <signal name="activated" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="first_frame">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">1024.0</property>
+          </object>
+        </property>
+        <property name="title">First Frame</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="last_frame">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">1.0</property>
+            <property name="page-size">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">1024.0</property>
+          </object>
+        </property>
+        <property name="title">Last Frame</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+  </template>
+</interface>
