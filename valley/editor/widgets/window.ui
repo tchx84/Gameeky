@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="Window" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar"/>
+        </child>
+        <child>
+          <object class="GtkBox" id="content"/>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
