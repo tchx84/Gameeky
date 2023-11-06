@@ -6,8 +6,8 @@ from ...common import colors
 from ...common.scanner import Description
 
 
-class Guide(Gtk.Widget):
-    __gtype_name__ = "Guide"
+class Tile(Gtk.Widget):
+    __gtype_name__ = "Tile"
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)

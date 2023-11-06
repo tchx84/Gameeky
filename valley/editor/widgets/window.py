@@ -5,7 +5,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 from gi.repository import Gtk, Adw
 
 from .animation import Animation
-from .guide import Guide
+from .tile import Tile
 from .entity import Entity
 
 
@@ -30,13 +30,13 @@ class Window(Adw.ApplicationWindow):
         self._entity.props.hexpand = True
         self._entity.props.vexpand = True
 
-        self._guide = Guide()
-        self._guide.props.hexpand = True
-        self._guide.props.vexpand = True
+        self._tile = Tile()
+        self._tile.props.hexpand = True
+        self._tile.props.vexpand = True
 
         container = Gtk.Box()
         container.props.orientation = Gtk.Orientation.VERTICAL
-        container.append(self._guide)
+        container.append(self._tile)
         container.append(self._entity)
 
         box = Gtk.Box()
@@ -47,4 +47,4 @@ class Window(Adw.ApplicationWindow):
 
     def __on_animation_changed(self, animation: Animation) -> None:
         self._entity.update(animation.description)
-        self._guide.update(animation.description)
+        self._tile.update(animation.description)
