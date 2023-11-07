@@ -10,13 +10,10 @@
       <object class="AdwSpinRow" id="delay">
         <property name="adjustment">
           <object class="GtkAdjustment">
-            <property name="page-increment">0.1</property>
-            <property name="page-size">0.1</property>
             <property name="step-increment">0.1</property>
             <property name="upper">60.0</property>
           </object>
         </property>
-        <property name="climb-rate">0.1</property>
         <property name="digits">1</property>
         <property name="title">Delay</property>
         <signal name="changed" handler="on_changed"/>
@@ -26,13 +23,10 @@
       <object class="AdwSpinRow" id="timeout">
         <property name="adjustment">
           <object class="GtkAdjustment">
-            <property name="page-increment">0.1</property>
-            <property name="page-size">0.1</property>
             <property name="step-increment">0.1</property>
             <property name="upper">60.0</property>
           </object>
         </property>
-        <property name="climb-rate">0.1</property>
         <property name="digits">1</property>
         <property name="title">Timeout</property>
         <signal name="changed" handler="on_changed"/>
