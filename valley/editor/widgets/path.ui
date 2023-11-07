@@ -34,5 +34,8 @@
         <signal name="clicked" handler="on_remove_button_clicked"/>
       </object>
     </child>
+    <style>
+      <class name="path"/>
+    </style>
   </template>
 </interface>

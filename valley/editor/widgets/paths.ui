@@ -26,6 +26,9 @@
     <child>
       <object class="GtkBox" id="entries">
         <property name="orientation">vertical</property>
+        <style>
+          <class name="paths"/>
+        </style>
       </object>
     </child>
   </template>
