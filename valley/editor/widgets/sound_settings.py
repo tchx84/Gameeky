@@ -51,7 +51,7 @@ class SoundSettings(Adw.PreferencesGroup):
     @property
     def description(self) -> Description:
         return Description(
-            delay=self.delay.props.value,
-            timeout=self.timeout.props.value,
+            delay=round(self.delay.props.value, 1),
+            timeout=round(self.timeout.props.value, 1),
             paths=self._paths.paths,
         )
