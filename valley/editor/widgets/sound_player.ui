@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name sound_player.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <template class="SoundPlayer" parent="GtkBox">
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <child>
+      <object class="GtkBox">
+        <property name="halign">center</property>
+        <property name="hexpand">True</property>
+        <property name="valign">center</property>
+        <property name="vexpand">True</property>
+        <child>
+          <object class="GtkButton" id="play_button">
+            <property name="child">
+              <object class="GtkImage">
+                <property name="icon-name">media-playback-start-symbolic</property>
+              </object>
+            </property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_play_button_clicked"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="stop_button">
+            <property name="child">
+              <object class="GtkImage">
+                <property name="icon-name">media-playback-stop-symbolic</property>
+              </object>
+            </property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="visible">False</property>
+            <signal name="clicked" handler="on_stop_button_clicked"/>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
