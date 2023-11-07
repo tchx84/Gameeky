@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name path.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <template class="Path" parent="GtkBox">
+    <child>
+      <object class="GtkEntry" id="entry">
+        <property name="hexpand">True</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton">
+        <property name="child">
+          <object class="GtkImage">
+            <property name="icon-name">document-open-symbolic</property>
+          </object>
+        </property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="on_open_button_clicked"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton">
+        <property name="child">
+          <object class="GtkImage">
+            <property name="icon-name">list-remove-symbolic</property>
+          </object>
+        </property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="on_remove_button_clicked"/>
+      </object>
+    </child>
+  </template>
+</interface>
