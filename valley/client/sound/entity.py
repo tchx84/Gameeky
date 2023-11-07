@@ -108,14 +108,23 @@ class SoundSequence:
         sound.connect("finished", self.__on_sound_finished)
 
     def play(self) -> None:
+        if self.sound is None:
+            return
+
         self.sound.play()
 
     def stop(self) -> None:
+        if self.sound is None:
+            return
+
         self.sound.stop()
         self._index = 0
 
     @property
-    def sound(self) -> Sound:
+    def sound(self) -> Optional[Sound]:
+        if len(self._sounds) == 0:
+            return None
+
         return self._sounds[self._index % len(self._sounds)]
 
     @classmethod
