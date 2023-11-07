@@ -118,6 +118,20 @@ class SoundSequence:
     def sound(self) -> Sound:
         return self._sounds[self._index % len(self._sounds)]
 
+    @classmethod
+    def new_from_description(cls, description: Description) -> "SoundSequence":
+        sequence = cls()
+
+        for path in description.paths:
+            sound = Sound(
+                get_data_path(path),
+                description.delay,
+                description.timeout,
+            )
+            sequence.add(sound)
+
+        return sequence
+
 
 class Entity:
     def __init__(self, type_id: int) -> None:
