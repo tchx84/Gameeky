@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name sound_row.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <template class="SoundRow" parent="GtkBox"/>
+</interface>
