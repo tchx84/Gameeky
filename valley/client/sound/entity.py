@@ -100,21 +100,23 @@ class SoundSequence:
         self._index = 0
         self._sounds: List[Sound] = []
 
-    def __on_sound_finished(self, sound) -> int:
-        self._index = (self._index + 1) % len(self._sounds)
-        return GLib.SOURCE_REMOVE
+    def __on_sound_finished(self, sound: Sound) -> None:
+        self._index += 1
 
     def add(self, sound: Sound) -> None:
         self._sounds.append(sound)
+        sound.connect("finished", self.__on_sound_finished)
 
     def play(self) -> None:
-        sound = self._sounds[self._index]
-        sound.connect("finished", self.__on_sound_finished)
-        sound.play()
+        self.sound.play()
 
     def stop(self) -> None:
-        sound = self._sounds[self._index]
-        sound.stop()
+        self.sound.stop()
+        self._index = 0
+
+    @property
+    def sound(self) -> Sound:
+        return self._sounds[self._index % len(self._sounds)]
 
 
 class Entity:
