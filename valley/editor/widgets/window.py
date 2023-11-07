@@ -4,9 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from gi.repository import Gtk, Adw
 
-from .animation import Animation
-from .tile import Tile
-from .entity import Entity
+from .animation_row import AnimationRow
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "window.ui"))
@@ -17,34 +15,5 @@ class Window(Adw.ApplicationWindow):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-
-        self._animation = Animation()
-        self._animation.props.hexpand = True
-        self._animation.props.vexpand = True
-        self._animation.connect("changed", self.__on_animation_changed)
-
-        scrollable = Gtk.ScrolledWindow()
-        scrollable.props.child = self._animation
-
-        self._entity = Entity()
-        self._entity.props.hexpand = True
-        self._entity.props.vexpand = True
-
-        self._tile = Tile()
-        self._tile.props.hexpand = True
-        self._tile.props.vexpand = True
-
-        container = Gtk.Box()
-        container.props.orientation = Gtk.Orientation.VERTICAL
-        container.append(self._tile)
-        container.append(self._entity)
-
-        box = Gtk.Box()
-        box.append(scrollable)
-        box.append(container)
-
-        self.content.append(box)
-
-    def __on_animation_changed(self, animation: Animation) -> None:
-        self._entity.update(animation.description)
-        self._tile.update(animation.description)
+        row = AnimationRow()
+        self.content.append(row)

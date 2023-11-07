@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name animation_row.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <template class="AnimationRow" parent="GtkBox">
+    <child>
+      <object class="GtkScrolledWindow" id="settings">
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="graphics">
+        <property name="orientation">vertical</property>
+      </object>
+    </child>
+  </template>
+</interface>
