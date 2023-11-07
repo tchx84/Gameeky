@@ -45,10 +45,13 @@ class Sound(GObject.GObject):
             if not e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
                 logger.error(e)
 
-        self.stop()
+        self._stop_timeout()
+        self._playing = False
+        self.emit("finished")
 
     def __on_timeout(self) -> int:
         self.stop()
+        self._timeout_handler_id = None
         return GLib.SOURCE_REMOVE
 
     def _stop_timeout(self) -> None:
@@ -62,8 +65,8 @@ class Sound(GObject.GObject):
             return
 
         self._stop_timeout()
-        self._timeout_handler_id = GLib.timeout_add_seconds(
-            self._timeout,
+        self._timeout_handler_id = GLib.timeout_add(
+            self._timeout * 1000,
             self.__on_timeout,
         )
 
@@ -89,10 +92,7 @@ class Sound(GObject.GObject):
         )
 
     def stop(self) -> None:
-        self._stop_timeout()
         self._cancellable.cancel()
-        self._playing = False
-        self.emit("finished")
 
 
 class SoundSequence:
