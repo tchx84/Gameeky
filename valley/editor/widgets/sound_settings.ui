@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name sound_settings.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="SoundSettings" parent="AdwPreferencesGroup">
+    <property name="hexpand">True</property>
+    <child>
+      <object class="AdwSpinRow" id="delay">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">0.1</property>
+            <property name="page-size">0.1</property>
+            <property name="step-increment">0.1</property>
+            <property name="upper">60.0</property>
+          </object>
+        </property>
+        <property name="climb-rate">0.1</property>
+        <property name="digits">1</property>
+        <property name="title">Delay</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="timeout">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="page-increment">0.1</property>
+            <property name="page-size">0.1</property>
+            <property name="step-increment">0.1</property>
+            <property name="upper">60.0</property>
+          </object>
+        </property>
+        <property name="climb-rate">0.1</property>
+        <property name="digits">1</property>
+        <property name="title">Timeout</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesRow">
+        <property name="child">
+          <object class="GtkBox" id="paths"/>
+        </property>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -1,0 +1,57 @@
+import os
+
+__dir__ = os.path.dirname(os.path.abspath(__file__))
+
+from typing import Optional
+
+from gi.repository import Adw, GLib, Gtk, GObject
+
+from .paths import Paths
+
+from ...common.scanner import Description
+from ...common.definitions import DEFAULT_TIMEOUT
+
+
+@Gtk.Template(filename=os.path.join(__dir__, "sound_settings.ui"))
+class SoundSettings(Adw.PreferencesGroup):
+    __gtype_name__ = "SoundSettings"
+
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
+    delay = Gtk.Template.Child()
+    timeout = Gtk.Template.Child()
+    paths = Gtk.Template.Child()
+
+    def __init__(self, *args, **kargs) -> None:
+        super().__init__(*args, **kargs)
+        self._handler_id: Optional[int] = None
+
+        self._paths = Paths()
+        self._paths.connect("changed", self.__on_changed)
+
+        self.paths.append(self._paths)
+
+    @Gtk.Template.Callback("on_changed")
+    def __on_changed(self, *args) -> None:
+        if self._handler_id is not None:
+            GLib.Source.remove(self._handler_id)
+
+        self._handler_id = GLib.timeout_add_seconds(
+            DEFAULT_TIMEOUT / 2,
+            self.__on_change_delayed,
+        )
+
+    def __on_change_delayed(self) -> int:
+        self.emit("changed")
+        self._handler_id = None
+        return GLib.SOURCE_REMOVE
+
+    @property
+    def description(self) -> Description:
+        return Description(
+            delay=self.delay.props.value,
+            timeout=self.timeout.props.value,
+            paths=self._paths.paths,
+        )
