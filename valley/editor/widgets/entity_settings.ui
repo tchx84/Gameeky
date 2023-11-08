@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name entity_settings.ui -->
+  <requires lib="gtk" version="4.10"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="EntitySettings" parent="AdwPreferencesGroup">
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <child>
+      <object class="AdwEntryRow" id="name">
+        <property name="title">Name</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwEntryRow" id="target">
+        <property name="title">Target</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="stamina">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Stamina</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="durability">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Durability</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="weight">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Weight</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="strength">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Strength</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="spawns">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Spawns</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="radius">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Radius</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="rate">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">1.0</property>
+            <property name="upper">10000.0</property>
+          </object>
+        </property>
+        <property name="title">Rate</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="recovery">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">0.05</property>
+            <property name="upper">1.0</property>
+          </object>
+        </property>
+        <property name="digits">2</property>
+        <property name="title">Recovery</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="density">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">0.05</property>
+            <property name="upper">1.0</property>
+          </object>
+        </property>
+        <property name="digits">2</property>
+        <property name="title">Density</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="luminance">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">0.05</property>
+            <property name="upper">1.0</property>
+          </object>
+        </property>
+        <property name="digits">2</property>
+        <property name="title">Luminance</property>
+        <signal name="changed" handler="on_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSwitchRow" id="removable">
+        <property name="title">Removable</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSwitchRow" id="equippable">
+        <property name="title">Equippable</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSwitchRow" id="visible">
+        <property name="title">Visible</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwComboRow" id="direction">
+        <property name="model">
+          <object class="GtkStringList">
+            <property name="strings">EAST
+NORTH
+WEST
+SOUTH</property>
+          </object>
+        </property>
+        <property name="selected">0</property>
+        <property name="title">Direction</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwComboRow" id="state">
+        <property name="model">
+          <object class="GtkStringList">
+            <property name="strings">IDLING
+MOVING
+USING
+TAKING
+DROPPING
+HELD
+EXHAUSTED
+INTERACTING
+DESTROYING
+DESTROYED</property>
+          </object>
+        </property>
+        <property name="selected">0</property>
+        <property name="title">State</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesRow" id="actuators"/>
+    </child>
+  </template>
+</interface>
