@@ -1,6 +1,7 @@
 .paths .path {
     margin: 0px 10px 10px 10px;
 }
+.actuator button,
 .paths .path button {
     margin-left: 10px;
 }
