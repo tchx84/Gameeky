@@ -7,6 +7,7 @@ from typing import Optional
 from gi.repository import Adw, GLib, Gtk, GObject
 
 from .actuators_row import ActuatorsRow
+from .utils import get_position_in_model
 
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_TIMEOUT
@@ -91,3 +92,28 @@ class EntitySettings(Adw.PreferencesGroup):
             state=self.state.props.selected_item.props.string,
             actuators=self._actuators.value,
         )
+
+    @description.setter
+    def description(self, description: Description) -> None:
+        self.name.props.text = description.name
+        self.target.props.text = description.target
+        self.stamina.props.value = description.stamina
+        self.durability.props.value = description.durability
+        self.weight.props.value = description.weight
+        self.strength.props.value = description.strength
+        self.spawns.props.value = description.spawns
+        self.radius.props.value = description.radius
+        self.rate.props.value = description.rate
+        self.recovery.props.value = description.recovery
+        self.density.props.value = description.density
+        self.luminance.props.value = description.luminance
+        self.removable.props.active = description.removable
+        self.equippable.props.active = description.equippable
+        self.visible.props.active = description.visible
+        self.direction.props.selected = get_position_in_model(
+            self.direction.props.model, description.direction
+        )
+        self.state.props.selected = get_position_in_model(
+            self.state.props.model, description.state
+        )
+        self._actuators.value = description.actuators
