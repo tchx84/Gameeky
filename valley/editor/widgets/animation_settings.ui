@@ -6,20 +6,29 @@
   <requires lib="libadwaita" version="1.4"/>
   <template class="AnimationSettings" parent="AdwPreferencesGroup">
     <child>
-      <object class="AdwExpanderRow">
-        <property name="title">Preview</property>
+      <object class="AdwPreferencesRow">
         <child>
           <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox" id="tile_box">
-                <property name="height-request">200</property>
-                <property name="width-request">350</property>
+              <object class="AdwActionRow">
+                <property name="title">Preview</property>
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="animation_box">
-                <property name="height-request">200</property>
-                <property name="width-request">50</property>
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkBox" id="tile_box">
+                    <property name="height-request">200</property>
+                    <property name="width-request">350</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="animation_box">
+                    <property name="height-request">200</property>
+                    <property name="width-request">50</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
