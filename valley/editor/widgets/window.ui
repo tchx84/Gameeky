@@ -47,6 +47,9 @@
                         </property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
+                        <style>
+                          <class name="graphics"/>
+                        </style>
                       </object>
                     </property>
                   </object>

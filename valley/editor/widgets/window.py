@@ -6,7 +6,7 @@ from gi.repository import Gtk, Adw
 
 from .global_settings import GlobalSettings
 from .entity_settings import EntitySettings
-from .animation_settings import AnimationSettings
+from .animations_settings import AnimationsSettings
 
 from ...common.scanner import Description
 
@@ -22,19 +22,17 @@ class Window(Adw.ApplicationWindow):
         super().__init__(*args, **kargs)
         self._global_settings = GlobalSettings()
         self._entity_settings = EntitySettings()
+        self._animations_settings = AnimationsSettings()
 
         self.game_box.append(self._global_settings)
         self.game_box.append(self._entity_settings)
-
-        self._animation_settings = AnimationSettings()
-
-        self.graphics_box.append(self._animation_settings)
+        self.graphics_box.append(self._animations_settings)
 
     @property
     def description(self) -> Description:
         description = self._global_settings.description
         description.game.default = self._entity_settings.description
-        description.graphics.default = self._animation_settings.description
+        description.graphics = self._animations_settings.description
 
         return description
 
@@ -42,4 +40,4 @@ class Window(Adw.ApplicationWindow):
     def description(self, description: Description) -> None:
         self._global_settings.description = description
         self._entity_settings.description = description.game.default
-        self._animation_settings.description = description.graphics.default
+        self._animations_settings.description = description.graphics

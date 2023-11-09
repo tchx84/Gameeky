@@ -5,8 +5,6 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="AnimationSettings" parent="AdwPreferencesGroup">
-    <property name="description">These values describe how to use a tileset in an animation</property>
-    <property name="title">Animation</property>
     <child>
       <object class="AdwExpanderRow">
         <property name="title">Preview</property>
