@@ -25,9 +25,9 @@ class ActuatorRow(Adw.ActionRow):
         # XXX Move to UI file
         self.dropdown.connect("notify::selected", self.__on_changed)
 
-    def _get_position(self, name: str) -> Optional[int]:
+    def _get_position(self, value: str) -> Optional[int]:
         for index, row in enumerate(list(self.model)):
-            if row.props.string == name:
+            if row.props.string == value:
                 return index
 
         return None
@@ -44,8 +44,8 @@ class ActuatorRow(Adw.ActionRow):
         return self.dropdown.props.selected_item.props.string
 
     @value.setter
-    def value(self, name: str) -> None:
-        position = self._get_position(name)
+    def value(self, value: str) -> None:
+        position = self._get_position(value)
 
         if position is None:
             return

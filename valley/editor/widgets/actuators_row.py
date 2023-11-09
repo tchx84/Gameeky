@@ -19,9 +19,9 @@ class ActuatorsRow(Gtk.Box):
 
     actuators = Gtk.Template.Child()
 
-    def _add(self, name: str) -> None:
+    def _add(self, value: str) -> None:
         row = ActuatorRow()
-        row.value = name
+        row.value = value
         row.connect("changed", self.__on_changed)
         row.connect("removed", self.__on_removed)
 
