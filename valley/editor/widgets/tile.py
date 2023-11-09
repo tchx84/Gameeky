@@ -3,6 +3,7 @@ from typing import Optional
 from gi.repository import Gsk, Gtk, Gdk, Graphene, Pango
 
 from ...common import colors
+from ...common.utils import get_data_path
 from ...common.scanner import Description
 
 
@@ -13,6 +14,8 @@ class Tile(Gtk.Widget):
         super().__init__(*args, **kargs)
         self._description: Optional[Description] = None
         self._texture: Optional[Gdk.Texture] = None
+        self.set_hexpand(True)
+        self.set_vexpand(True)
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
         if self._description is None:
@@ -83,5 +86,5 @@ class Tile(Gtk.Widget):
 
     def update(self, description: Description) -> None:
         self._description = description
-        self._texture = Gdk.Texture.new_from_filename(description.path)
+        self._texture = Gdk.Texture.new_from_filename(get_data_path(description.path))
         self.queue_draw()

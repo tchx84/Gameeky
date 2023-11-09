@@ -39,17 +39,16 @@
             <child>
               <object class="AdwViewStackPage">
                 <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">center</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="AdwClamp">
+                        <property name="child">
+                          <object class="GtkBox" id="graphics_box"/>
+                        </property>
                         <property name="hexpand">True</property>
-                        <property name="label">graphics</property>
-                        <property name="valign">center</property>
                         <property name="vexpand">True</property>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </property>
                 <property name="icon-name">applications-graphics-symbolic</property>

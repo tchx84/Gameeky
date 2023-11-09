@@ -20,6 +20,9 @@ class GlobalSettings(Adw.PreferencesGroup):
             game=Description(
                 default=None,
             ),
+            graphics=Description(
+                default=None,
+            ),
         )
 
     @description.setter
