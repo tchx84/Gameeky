@@ -15,14 +15,18 @@
                 <property name="child">
                   <object class="GtkScrolledWindow">
                     <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="AdwClamp" id="game">
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
+                      <object class="AdwClamp">
+                        <property name="child">
+                          <object class="GtkBox" id="game_box">
+                            <property name="css-name">game_box</property>
+                            <property name="orientation">vertical</property>
                           </object>
-                        </child>
+                        </property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <style>
+                          <class name="game"/>
+                        </style>
                       </object>
                     </property>
                   </object>
@@ -95,6 +99,8 @@
         </child>
       </object>
     </property>
+    <property name="default-height">800</property>
+    <property name="default-width">600</property>
   </template>
   <menu id="menu">
     <item>

@@ -5,7 +5,9 @@
   <requires lib="gtk" version="4.10"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="EntitySettings" parent="AdwPreferencesGroup">
+    <property name="description">These values determine how this particular entity will behave</property>
     <property name="hexpand">True</property>
+    <property name="title">Entity</property>
     <property name="vexpand">True</property>
     <child>
       <object class="AdwEntryRow" id="name">

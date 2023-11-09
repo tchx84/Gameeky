@@ -1,7 +1,16 @@
+/* paths and actuators */
 .paths .path {
     margin: 0px 10px 10px 10px;
 }
 .actuator button,
 .paths .path button {
     margin-left: 10px;
+}
+
+/* window */
+.game {
+   margin: 25px;
+}
+.game preferencesgroup {
+   margin: 15px;
 }
