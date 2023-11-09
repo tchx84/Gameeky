@@ -16,6 +16,7 @@ from gi.repository import Gio, Adw, Gdk, Gtk
 from .widgets.window import Window
 
 from ..common.logger import logger
+from ..common.scanner import Description
 
 
 class Application(Adw.Application):
@@ -42,8 +43,9 @@ class Application(Adw.Application):
             file = dialog.open_finish(result)
         except Exception as e:
             logger.error(e)
-        else:
-            self._window.open(file.get_path())
+            return
+
+        self._window.description = Description.new_from_json(file.get_path())
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         json_filter = Gtk.FileFilter()
@@ -62,8 +64,16 @@ class Application(Adw.Application):
             file = dialog.save_finish(result)
         except Exception as e:
             logger.error(e)
-        else:
-            self._window.save(file.get_path())
+            return
+
+        file = Gio.File.new_for_path(file.get_path())
+        file.replace_contents(
+            contents=self._window.description.to_json().encode("UTF-8"),
+            etag=None,
+            make_backup=False,
+            flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
+            cancellable=None,
+        )
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()

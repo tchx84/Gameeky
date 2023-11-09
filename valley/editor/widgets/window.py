@@ -2,7 +2,7 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
-from gi.repository import Gtk, Gio, Adw
+from gi.repository import Gtk, Adw
 
 from .global_settings import GlobalSettings
 from .entity_settings import EntitySettings
@@ -24,20 +24,14 @@ class Window(Adw.ApplicationWindow):
         self.game_box.append(self._global_settings)
         self.game_box.append(self._entity_settings)
 
-    def open(self, path: str) -> None:
-        description = Description.new_from_json(path)
-        self._global_settings.description = description
-        self._entity_settings.description = description.game.default
-
-    def save(self, path: str) -> None:
+    @property
+    def description(self) -> Description:
         description = self._global_settings.description
         description.game.default = self._entity_settings.description
 
-        file = Gio.File.new_for_path(path)
-        file.replace_contents(
-            contents=description.to_json().encode("UTF-8"),
-            etag=None,
-            make_backup=False,
-            flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
-            cancellable=None,
-        )
+        return description
+
+    @description.setter
+    def description(self, description: Description) -> None:
+        self._global_settings.description = description
+        self._entity_settings.description = description.game.default
