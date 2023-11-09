@@ -22,10 +22,10 @@ class AnimationRenderer(Gtk.Widget):
         if self._animation is None:
             return
 
-        scale_x, scale_y, texture = self._animation.get_frame()
+        _, _, texture = self._animation.get_frame()
 
         rect = Graphene.Rect()
-        rect.init(0, 0, self.get_width() * scale_x, self.get_height() * scale_y)
+        rect.init(0, 0, self.get_width(), self.get_height())
 
         snapshot.append_scaled_texture(texture, Gsk.ScalingFilter.TRILINEAR, rect)
 
