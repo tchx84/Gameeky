@@ -2,19 +2,111 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name window.ui -->
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
+  <requires lib="gio" version="2.0"/>
+  <requires lib="gtk" version="4.6"/>
+  <requires lib="libadwaita" version="1.4"/>
   <template class="Window" parent="AdwApplicationWindow">
     <property name="content">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwHeaderBar"/>
-        </child>
-        <child>
-          <object class="GtkBox" id="content"/>
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="AdwViewStack" id="stack">
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="child">
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="AdwClamp" id="game">
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+                <property name="icon-name">applications-games-symbolic</property>
+                <property name="name">game</property>
+                <property name="title">game</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="label">graphics</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="icon-name">applications-graphics-symbolic</property>
+                <property name="name">graphics</property>
+                <property name="title">graphics</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="label">sounds</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="icon-name">audio-volume-high-symbolic</property>
+                <property name="name">sounds</property>
+                <property name="title">sounds</property>
+              </object>
+            </child>
+          </object>
+        </property>
+        <!-- Custom fragments -->
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar">
+            <property name="title-widget">
+              <object class="AdwViewSwitcher">
+                <property name="stack">stack</property>
+                <property name="policy">wide</property>
+              </object>
+            </property>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="popover">popover</property>
+              </object>
+            </child>
+          </object>
         </child>
       </object>
     </property>
   </template>
+  <menu id="menu">
+    <item>
+      <attribute name="action">app.open</attribute>
+      <attribute name="label">Open</attribute>
+    </item>
+    <item>
+      <attribute name="action">app.save</attribute>
+      <attribute name="label">Save</attribute>
+    </item>
+  </menu>
+  <object class="GtkPopoverMenu" id="popover">
+    <property name="menu-model">menu</property>
+  </object>
 </interface>
