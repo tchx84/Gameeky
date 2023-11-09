@@ -10,6 +10,7 @@ from .tile import Tile
 from .animation import Animation
 
 from ...common.logger import logger
+from ...common.utils import get_relative_path
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_TIMEOUT
 
@@ -86,7 +87,7 @@ class AnimationSettings(Adw.PreferencesGroup):
     @property
     def description(self) -> Description:
         return Description(
-            path=self.path.props.text,
+            path=get_relative_path(self.path.props.text),
             columns=int(self.columns.props.value),
             rows=int(self.rows.props.value),
             duration=round(self.duration.props.value, 1),

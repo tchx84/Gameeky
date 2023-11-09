@@ -11,6 +11,13 @@ def get_data_path(*paths) -> str:
     return os.path.join(os.environ.get("DATA_DIR", ""), *paths)
 
 
+def get_relative_path(path: str) -> str:
+    if not os.path.isabs(path):
+        return path
+
+    return os.path.relpath(path, os.environ.get("DATA_DIR", ""))
+
+
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
 
