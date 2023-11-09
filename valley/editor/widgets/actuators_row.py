@@ -52,7 +52,7 @@ class ActuatorsRow(Gtk.Box):
     @value.setter
     def value(self, values: List[str]) -> None:
         for actuator in list(self.actuators):
-            self.actuators.append(actuator)
+            self._remove(actuator)
 
         for value in values:
             self._add(value)
