@@ -2,9 +2,9 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
-from typing import Optional
-
 from gi.repository import Gtk, Adw, GObject
+
+from .utils import get_position_in_model
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "actuator_row.ui"))
@@ -25,13 +25,6 @@ class ActuatorRow(Adw.ActionRow):
         # XXX Move to UI file
         self.dropdown.connect("notify::selected", self.__on_changed)
 
-    def _get_position(self, value: str) -> Optional[int]:
-        for index, row in enumerate(list(self.model)):
-            if row.props.string == value:
-                return index
-
-        return None
-
     def __on_changed(self, entry: Gtk.DropDown, value: int) -> None:
         self.emit("changed")
 
@@ -45,7 +38,7 @@ class ActuatorRow(Adw.ActionRow):
 
     @value.setter
     def value(self, value: str) -> None:
-        position = self._get_position(value)
+        position = get_position_in_model(self.model, value)
 
         if position is None:
             return
