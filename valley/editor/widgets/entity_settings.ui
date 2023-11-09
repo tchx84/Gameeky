@@ -161,10 +161,10 @@
       <object class="AdwComboRow" id="direction">
         <property name="model">
           <object class="GtkStringList">
-            <property name="strings">EAST
-NORTH
-WEST
-SOUTH</property>
+            <property name="strings">east
+north
+west
+south</property>
           </object>
         </property>
         <property name="selected">0</property>
@@ -175,16 +175,16 @@ SOUTH</property>
       <object class="AdwComboRow" id="state">
         <property name="model">
           <object class="GtkStringList">
-            <property name="strings">IDLING
-MOVING
-USING
-TAKING
-DROPPING
-HELD
-EXHAUSTED
-INTERACTING
-DESTROYING
-DESTROYED</property>
+            <property name="strings">idling
+moving
+using
+taking
+dropping
+held
+exhausted
+interacting
+destroying
+destroyed</property>
           </object>
         </property>
         <property name="selected">0</property>
