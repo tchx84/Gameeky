@@ -6,7 +6,17 @@ from types import SimpleNamespace
 from gi.repository import Gio, GLib, GObject
 
 
+class DescriptionEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Description):
+            return obj.__dict__
+        return json.JSONEncoder.default(self, obj)
+
+
 class Description(SimpleNamespace):
+    def to_json(self) -> str:
+        return json.dumps(self, cls=DescriptionEncoder, sort_keys=True, indent=4)
+
     @classmethod
     def new_from_json(cls, path: str) -> "Description":
         with open(path, "r") as file:
