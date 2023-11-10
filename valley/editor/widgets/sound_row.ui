@@ -22,16 +22,16 @@
       <object class="AdwComboRow" id="state_combo">
         <property name="model">
           <object class="GtkStringList">
-            <property name="strings">idling
-moving
-using
-taking
-dropping
-held
-exhausted
-interacting
+            <property name="strings">destroyed
 destroying
-destroyed</property>
+dropping
+exhausted
+held
+idling
+interacting
+moving
+taking
+using</property>
           </object>
         </property>
         <property name="title">State</property>

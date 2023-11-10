@@ -23,16 +23,16 @@
         <property name="model">
           <object class="GtkStringList">
             <property name="strings">default
-idling
-moving
-using
-taking
-dropping
-held
-exhausted
-interacting
+destroyed
 destroying
-destroyed</property>
+dropping
+exhausted
+held
+idling
+interacting
+moving
+taking
+using</property>
           </object>
         </property>
         <property name="title">State</property>
@@ -42,11 +42,11 @@ destroyed</property>
       <object class="AdwComboRow" id="direction_combo">
         <property name="model">
           <object class="GtkStringList">
-            <property name="strings">none
+            <property name="strings">any
 east
 north
-west
-south</property>
+south
+west</property>
           </object>
         </property>
         <property name="title">Direction</property>

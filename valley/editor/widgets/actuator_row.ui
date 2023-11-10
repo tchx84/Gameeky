@@ -12,32 +12,32 @@
           <object class="GtkDropDown" id="dropdown">
             <property name="model">
               <object class="GtkStringList" id="model">
-                <property name="strings">transmutes
-teleports
-teleports_i
-deteriorates
-exhausts
-destroys
-destroys_i
-follows
-roams
-targets
-uses
-takes
-interacts
-spawns
-drops
-triggers
-triggers_i
-requires
-activates
+                <property name="strings">activates
 activates_i
-propulses
-collapses
-collapses_t
 affects
 affects_i
-aggroes</property>
+aggroes
+collapses
+collapses_t
+destroys
+destroys_i
+deteriorates
+drops
+exhausts
+follows
+interacts
+propulses
+requires
+roams
+spawns
+takes
+targets
+teleports
+teleports_i
+transmutes
+triggers
+triggers_i
+uses</property>
               </object>
             </property>
             <property name="selected">0</property>
