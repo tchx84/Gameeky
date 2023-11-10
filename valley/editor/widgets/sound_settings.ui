@@ -7,6 +7,17 @@
   <template class="SoundSettings" parent="AdwPreferencesGroup">
     <property name="hexpand">True</property>
     <child>
+      <object class="AdwActionRow">
+        <property name="title">Preview</property>
+        <child>
+          <object class="GtkBox" id="preview">
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="AdwSpinRow" id="delay">
         <property name="adjustment">
           <object class="GtkAdjustment">

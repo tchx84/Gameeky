@@ -2,6 +2,50 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name sound_row.ui -->
-  <requires lib="gtk" version="4.0"/>
-  <template class="SoundRow" parent="GtkBox"/>
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="SoundRow" parent="AdwPreferencesGroup">
+    <property name="description">By default</property>
+    <property name="header-suffix">
+      <object class="GtkButton" id="button">
+        <property name="child">
+          <object class="GtkImage">
+            <property name="icon-name">list-remove-symbolic</property>
+          </object>
+        </property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="on_clicked"/>
+      </object>
+    </property>
+    <property name="title">Sound</property>
+    <child>
+      <object class="AdwComboRow" id="state_combo">
+        <property name="model">
+          <object class="GtkStringList">
+            <property name="strings">default
+idling
+moving
+using
+taking
+dropping
+held
+exhausted
+interacting
+destroying
+destroyed</property>
+          </object>
+        </property>
+        <property name="title">State</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwExpanderRow">
+        <property name="title">Details</property>
+        <child>
+          <object class="GtkBox" id="sound_box"/>
+        </child>
+      </object>
+    </child>
+  </template>
 </interface>

@@ -7,6 +7,7 @@ from typing import Optional
 from gi.repository import Adw, GLib, Gtk, GObject
 
 from .paths import Paths
+from .sound_player import SoundPlayer
 
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_TIMEOUT
@@ -20,6 +21,7 @@ class SoundSettings(Adw.PreferencesGroup):
         "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
+    preview = Gtk.Template.Child()
     delay = Gtk.Template.Child()
     timeout = Gtk.Template.Child()
     paths = Gtk.Template.Child()
@@ -30,8 +32,10 @@ class SoundSettings(Adw.PreferencesGroup):
 
         self._paths = Paths()
         self._paths.connect("changed", self.__on_changed)
-
         self.paths.append(self._paths)
+
+        self._preview = SoundPlayer()
+        self.preview.append(self._preview)
 
     @Gtk.Template.Callback("on_changed")
     def __on_changed(self, *args) -> None:
@@ -44,6 +48,8 @@ class SoundSettings(Adw.PreferencesGroup):
         )
 
     def __on_change_delayed(self) -> int:
+        self._preview.update(self.description)
+
         self.emit("changed")
         self._handler_id = None
         return GLib.SOURCE_REMOVE
@@ -55,3 +61,12 @@ class SoundSettings(Adw.PreferencesGroup):
             timeout=round(self.timeout.props.value, 1),
             paths=self._paths.paths,
         )
+
+    @description.setter
+    def description(self, description: Description) -> None:
+        self.delay.props.value = description.delay
+        self.timeout.props.value = description.timeout
+        self._paths.paths = description.paths
+
+    def shutdown(self) -> None:
+        self._preview.shutdown()

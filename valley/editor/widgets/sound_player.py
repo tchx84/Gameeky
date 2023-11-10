@@ -66,3 +66,5 @@ class SoundPlayer(Gtk.Box):
     def shutdown(self) -> None:
         if self._handler_id is not None:
             GLib.Source.remove(self._handler_id)
+
+        self._stop()
