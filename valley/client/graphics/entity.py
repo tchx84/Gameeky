@@ -5,7 +5,7 @@ from gi.repository import Gdk, GdkPixbuf
 from ...common.definitions import Direction, State
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
-from ...common.utils import get_time_milliseconds
+from ...common.utils import get_time_milliseconds, division
 from ...common.utils import get_data_path
 
 
@@ -22,10 +22,16 @@ class Animation:
         self._scale_x = scale_x
         self._scale_y = scale_y
 
-        self._frame_duration = self._duration / len(self._frames)
+        self._frame_duration = division(self._duration, len(self._frames))
         self._timestamp_start = get_time_milliseconds()
 
     def get_frame(self) -> Tuple[float, float, Gdk.Texture]:
+        if not self._frames:
+            return -1, -1, None
+
+        if not self._frame_duration:
+            return self._scale_x, self._scale_y, self._frames[0]
+
         timestamp = get_time_milliseconds()
         elapsed_since_start = timestamp - self._timestamp_start
 

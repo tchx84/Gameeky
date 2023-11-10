@@ -24,6 +24,9 @@ class AnimationRenderer(Gtk.Widget):
 
         _, _, texture = self._animation.get_frame()
 
+        if texture is None:
+            return
+
         rect = Graphene.Rect()
         rect.init(0, 0, self.get_width(), self.get_height())
 

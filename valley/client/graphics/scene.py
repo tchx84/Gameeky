@@ -82,6 +82,9 @@ class Scene(Gtk.Widget):
 
             scale_x, scale_y, texture = EntityRegistry.get_texture(entity)
 
+            if texture is None:
+                continue
+
             screen_x = (entity.position.x - self._model.anchor.x) * tile_width
             screen_y = (entity.position.y - self._model.anchor.y) * tile_height
 
