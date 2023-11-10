@@ -8,7 +8,7 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">Add animations for different state and direction combination</property>
+        <property name="description">Add animations for different states and directions combinations</property>
         <property name="header-suffix">
           <object class="GtkButton" id="button">
             <property name="child">
