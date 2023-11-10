@@ -60,3 +60,6 @@ class SoundRow(Adw.PreferencesGroup):
     @description.setter
     def description(self, description: Description) -> None:
         self._sound_settings.description = description
+
+    def shutdown(self) -> None:
+        self._sound_settings.shutdown()
