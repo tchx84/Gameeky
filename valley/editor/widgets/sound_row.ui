@@ -7,7 +7,7 @@
   <template class="SoundRow" parent="AdwPreferencesGroup">
     <property name="description">By default</property>
     <property name="header-suffix">
-      <object class="GtkButton" id="button">
+      <object class="GtkButton">
         <property name="child">
           <object class="GtkImage">
             <property name="icon-name">list-remove-symbolic</property>
@@ -47,5 +47,8 @@ destroyed</property>
         </child>
       </object>
     </child>
+    <style>
+      <class name="sound_row"/>
+    </style>
   </template>
 </interface>
