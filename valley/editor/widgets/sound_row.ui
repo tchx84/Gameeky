@@ -5,7 +5,6 @@
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="SoundRow" parent="AdwPreferencesGroup">
-    <property name="description">By default</property>
     <property name="header-suffix">
       <object class="GtkButton">
         <property name="child">
@@ -23,8 +22,7 @@
       <object class="AdwComboRow" id="state_combo">
         <property name="model">
           <object class="GtkStringList">
-            <property name="strings">default
-idling
+            <property name="strings">idling
 moving
 using
 taking
