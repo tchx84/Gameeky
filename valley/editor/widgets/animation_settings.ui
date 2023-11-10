@@ -117,7 +117,7 @@
           </object>
         </property>
         <property name="digits">1</property>
-        <property name="subtitle">Number of seconds the animation should last</property>
+        <property name="subtitle">Number of seconds the complete animation should last</property>
         <property name="title">Duration</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
