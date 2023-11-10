@@ -82,7 +82,8 @@ class AnimationsSettings(Gtk.Box):
         for row in list(self.animations_box):
             self._remove(row)
 
-        self._add("default", None, description.default)
+        if description.default is not None:
+            self._add("default", None, description.default)
 
         for state in description.states:
             for direction in state.directions:
