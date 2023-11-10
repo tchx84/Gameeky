@@ -37,11 +37,14 @@ class AnimationRow(Adw.PreferencesGroup):
         self._update_description()
 
     def _update_description(self) -> None:
-        self.props.description = (
-            "By default"
-            if self.state == "default"
-            else f"While {self.state} {self.direction}"
-        )
+        description = f"While {self.state}"
+
+        if self.direction != "any":
+            description += f" {self.direction}"
+        if self.state == "default":
+            description = "By default"
+
+        self.props.description = description
 
     def __on_changed(self, *args) -> None:
         self._update_description()
