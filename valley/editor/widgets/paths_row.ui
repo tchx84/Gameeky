@@ -9,7 +9,8 @@
     <child>
       <object class="AdwActionRow">
         <property name="hexpand">True</property>
-        <property name="title">Paths</property>
+        <property name="subtitle">Sound files to be played in sequence</property>
+        <property name="title">Files</property>
         <child>
           <object class="GtkButton" id="button">
             <property name="child">
