@@ -23,6 +23,7 @@ class AnimationsSettings(Gtk.Box):
         state: Optional[str],
         direction: Optional[str],
         description: Optional[Description],
+        prepend: bool = False,
     ) -> None:
         row = AnimationRow()
         row.connect("removed", self.__on_removed)
@@ -34,7 +35,10 @@ class AnimationsSettings(Gtk.Box):
         if description is not None:
             row.description = description
 
-        self.animations_box.append(row)
+        if prepend is True:
+            self.animations_box.prepend(row)
+        else:
+            self.animations_box.append(row)
 
     def _remove(self, row: AnimationRow) -> None:
         row.disconnect_by_func(self.__on_removed)
@@ -46,7 +50,7 @@ class AnimationsSettings(Gtk.Box):
 
     @Gtk.Template.Callback("on_clicked")
     def __on_clicked(self, button: Gtk.Button) -> None:
-        self._add(state=None, direction=None, description=None)
+        self._add(state=None, direction=None, description=None, prepend=True)
 
     @property
     def description(self) -> Description:
