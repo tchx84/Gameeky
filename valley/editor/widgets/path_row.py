@@ -4,6 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from gi.repository import Gio, Gtk, GObject
 
+from ...common.utils import get_relative_path
 from ...common.logger import logger
 
 
@@ -49,4 +50,4 @@ class PathRow(Gtk.Box):
 
     @path.setter
     def path(self, path: str) -> None:
-        self.entry.props.text = path
+        self.entry.props.text = get_relative_path(path)
