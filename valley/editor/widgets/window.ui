@@ -62,17 +62,17 @@
             <child>
               <object class="AdwViewStackPage">
                 <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">center</property>
-                        <property name="hexpand">True</property>
-                        <property name="label">sounds</property>
-                        <property name="valign">center</property>
-                        <property name="vexpand">True</property>
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="AdwClamp">
+                        <property name="child">
+                          <object class="GtkBox" id="sound_box"/>
+                        </property>
+                        <style>
+                          <class name="sound"/>
+                        </style>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </property>
                 <property name="icon-name">audio-volume-high-symbolic</property>

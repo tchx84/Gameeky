@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name sounds_settings.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.1"/>
+  <template class="SoundsSettings" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="description">Add sounds for different states</property>
+        <property name="header-suffix">
+          <object class="GtkButton">
+            <property name="child">
+              <object class="GtkImage">
+                <property name="icon-name">list-add-symbolic</property>
+              </object>
+            </property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_clicked"/>
+          </object>
+        </property>
+        <property name="title">Sounds</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="sounds_box">
+        <property name="orientation">vertical</property>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -23,6 +23,7 @@ class GlobalSettings(Adw.PreferencesGroup):
             graphics=Description(
                 default=None,
             ),
+            sound=None,
         )
 
     @description.setter
