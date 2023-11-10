@@ -27,16 +27,20 @@ class Paths(Gtk.Box):
         entry.connect("removed", self.__on_removed)
 
         self.entries.append(entry)
+        self.emit("changed")
 
     def _remove(self, entry: Path) -> None:
+        entry.disconnect_by_func(self.__on_changed)
+        entry.disconnect_by_func(self.__on_removed)
+
         self.entries.remove(entry)
+        self.emit("changed")
 
     def __on_changed(self, entry: Path) -> None:
         self.emit("changed")
 
     def __on_removed(self, entry: Path) -> None:
         self._remove(entry)
-        self.emit("changed")
 
     @Gtk.Template.Callback("on_button_clicked")
     def __on_button_clicked(self, button: Gtk.Button) -> None:
