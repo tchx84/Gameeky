@@ -174,13 +174,11 @@
     <child>
       <object class="AdwSwitchRow" id="flip_x">
         <property name="title">Flip X</property>
-        <signal name="activated" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
       <object class="AdwSwitchRow" id="flip_y">
         <property name="title">Flip Y</property>
-        <signal name="activated" handler="on_animation_changed"/>
       </object>
     </child>
   </template>

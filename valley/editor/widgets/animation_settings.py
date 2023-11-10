@@ -49,6 +49,10 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.tile_box.append(self._tile)
         self.animation_box.append(self._animation)
 
+        # XXX Move the UI file somehow
+        self.flip_x.connect("notify::active", self.__on_animation_changed)
+        self.flip_y.connect("notify::active", self.__on_animation_changed)
+
     @Gtk.Template.Callback("on_path_button_clicked")
     def __on_path_button_clicked(self, button: Gtk.Button) -> None:
         dialog = Gtk.FileDialog()
