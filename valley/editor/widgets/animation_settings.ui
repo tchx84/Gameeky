@@ -37,7 +37,7 @@
     </child>
     <child>
       <object class="AdwEntryRow" id="path">
-        <property name="title">Path</property>
+        <property name="title">Tileset File</property>
         <signal name="changed" handler="on_animation_changed"/>
         <child type="suffix">
           <object class="GtkButton" id="path_button">
