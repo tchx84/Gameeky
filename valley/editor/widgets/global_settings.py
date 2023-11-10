@@ -20,9 +20,7 @@ class GlobalSettings(Adw.PreferencesGroup):
             game=Description(
                 default=None,
             ),
-            graphics=Description(
-                default=None,
-            ),
+            graphics=None,
             sound=None,
         )
 
