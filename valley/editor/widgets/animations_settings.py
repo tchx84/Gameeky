@@ -54,13 +54,12 @@ class AnimationsSettings(Gtk.Box):
 
     @property
     def description(self) -> Description:
-        description = Description(default=None, states=[])
-        default: Optional[AnimationRow] = None
+        default: Optional[Description] = None
         states: Dict[str, Description] = {}
 
         for row in list(self.animations_box):
             if row.state == "default":
-                default = row
+                default = row.description
                 continue
 
             if row.state not in states:
@@ -73,10 +72,10 @@ class AnimationsSettings(Gtk.Box):
                 )
             )
 
-        description.default = default.description if default is not None else None
-        description.states = list(states.values())
-
-        return description
+        return Description(
+            default=default,
+            states=list(states.values()),
+        )
 
     @description.setter
     def description(self, description: Description) -> None:
