@@ -6,8 +6,8 @@ from typing import Optional
 
 from gi.repository import Gtk, Gio, Adw, GObject, GLib
 
-from .tile import Tile
 from .animation import Animation
+from .tileset_window import TilesetWindow
 
 from ...common.logger import logger
 from ...common.utils import get_relative_path
@@ -23,7 +23,6 @@ class AnimationSettings(Adw.PreferencesGroup):
         "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    tile_box = Gtk.Template.Child()
     animation_box = Gtk.Template.Child()
     path = Gtk.Template.Child()
     path_button = Gtk.Template.Child()
@@ -42,16 +41,40 @@ class AnimationSettings(Adw.PreferencesGroup):
     def __init__(self) -> None:
         super().__init__()
         self._handler_id: Optional[int] = None
+        self._tileset: Optional[TilesetWindow] = None
 
-        self._tile = Tile()
         self._animation = Animation()
-
-        self.tile_box.append(self._tile)
         self.animation_box.append(self._animation)
 
         # XXX Move the UI file somehow
         self.flip_x.connect("notify::active", self.__on_animation_changed)
         self.flip_y.connect("notify::active", self.__on_animation_changed)
+
+    def _update_tileset(self) -> None:
+        if self._tileset is None:
+            return
+
+        description = self.description
+
+        self._tileset.rows = description.rows
+        self._tileset.columns = description.columns
+        self._tileset.path = description.path
+
+    def __on_close_tileset(self, tileset: TilesetWindow) -> None:
+        if self._tileset is None:
+            return
+
+        self._tileset.disconnect_by_func(self.__on_close_tileset)
+        self._tileset.destroy()
+        self._tileset = None
+
+    @Gtk.Template.Callback("on_view_button_clicked")
+    def __on_view_button_clicked(self, button: Gtk.Button) -> None:
+        self._tileset = TilesetWindow()
+        self._tileset.connect("close-request", self.__on_close_tileset)
+        self._tileset.present()
+
+        self._update_tileset()
 
     @Gtk.Template.Callback("on_path_button_clicked")
     def __on_path_button_clicked(self, button: Gtk.Button) -> None:
@@ -81,8 +104,8 @@ class AnimationSettings(Adw.PreferencesGroup):
         )
 
     def __on_animation_change_delayed(self) -> int:
-        self._tile.update(self.description)
         self._animation.update(self.description)
+        self._update_tileset()
 
         self.emit("changed")
         self._handler_id = None

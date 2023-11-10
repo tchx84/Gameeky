@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name tileset_window.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="TilesetWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar">
+            <child>
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="icon-name">zoom-in-symbolic</property>
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="on_zoom_in"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="icon-name">zoom-out-symbolic</property>
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="on_zoom_out"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+              <object class="GtkBox" id="tile_box"/>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+    <property name="title">Tileset</property>
+  </template>
+</interface>

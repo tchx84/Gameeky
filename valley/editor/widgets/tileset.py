@@ -1,25 +1,26 @@
-from typing import Optional
+from typing import Optional, Tuple
 
 from gi.repository import Gsk, Gtk, Gdk, Graphene, Pango
 
 from ...common import colors
-from ...common.utils import get_data_path
-from ...common.scanner import Description
+from ...common.utils import get_data_path, clamp
 
 
-class Tile(Gtk.Widget):
-    __gtype_name__ = "Tile"
-
+class Tileset(Gtk.Widget):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._description: Optional[Description] = None
+        self._rows = 1
+        self._columns = 1
+        self._scale = 1.0
+        self._path = ""
         self._texture: Optional[Gdk.Texture] = None
-        self.set_hexpand(True)
-        self.set_vexpand(True)
+
+        self.props.hexpand = True
+        self.props.vexpand = True
+        self.props.halign = Gtk.Align.CENTER
+        self.props.valign = Gtk.Align.CENTER
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
-        if self._description is None:
-            return
         if self._texture is None:
             return
 
@@ -39,16 +40,16 @@ class Tile(Gtk.Widget):
         layout = Pango.Layout(context)
         layout.set_font_description(font)
 
-        rect_width = width / self._description.columns
-        rect_height = height / self._description.rows
+        rect_width = width / self._columns
+        rect_height = height / self._rows
 
         border_size = Graphene.Size()
         border_size.init(1, 1)
 
         index = 0
 
-        for row in range(0, self._description.rows):
-            for column in range(0, self._description.columns):
+        for row in range(0, self._rows):
+            for column in range(0, self._columns):
                 snapshot.save()
 
                 x = column * rect_width
@@ -84,7 +85,57 @@ class Tile(Gtk.Widget):
 
                 snapshot.restore()
 
-    def update(self, description: Description) -> None:
-        self._description = description
-        self._texture = Gdk.Texture.new_from_filename(get_data_path(description.path))
+    def do_get_request_mode(self):
+        return Gtk.SizeRequestMode.CONSTANT_SIZE
+
+    def do_measure(
+        self,
+        orientation: Gtk.Orientation,
+        for_size: int,
+    ) -> Tuple[float, ...]:
+        if self._texture is None:
+            return (0, 0, -1, -1)
+
+        if orientation == Gtk.Orientation.HORIZONTAL:
+            width = self._texture.get_intrinsic_width() * self.scale
+            return (width, width, -1, -1)
+        else:
+            height = self._texture.get_intrinsic_height() * self.scale
+            return (height, height, -1, -1)
+
+    @property
+    def rows(self) -> int:
+        return self._rows
+
+    @rows.setter
+    def rows(self, rows: int) -> None:
+        self._rows = rows
         self.queue_draw()
+
+    @property
+    def columns(self) -> int:
+        return self._columns
+
+    @columns.setter
+    def columns(self, columns: int) -> None:
+        self._columns = columns
+        self.queue_draw()
+
+    @property
+    def path(self) -> str:
+        return self._path
+
+    @path.setter
+    def path(self, path: str) -> None:
+        self._path = path
+        self._texture = Gdk.Texture.new_from_filename(get_data_path(self._path))
+        self.queue_draw()
+
+    @property
+    def scale(self) -> float:
+        return self._scale
+
+    @scale.setter
+    def scale(self, scale: float) -> None:
+        self._scale = clamp(10, 1.0, scale)
+        self.queue_resize()

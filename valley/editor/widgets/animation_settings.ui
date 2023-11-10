@@ -16,19 +16,14 @@
               </object>
             </child>
             <child>
-              <object class="GtkBox">
-                <child>
-                  <object class="GtkBox" id="tile_box">
-                    <property name="height-request">200</property>
-                    <property name="width-request">350</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="animation_box">
-                    <property name="height-request">200</property>
-                    <property name="width-request">50</property>
-                  </object>
-                </child>
+              <object class="GtkBox" id="animation_box">
+                <property name="halign">center</property>
+                <property name="height-request">200</property>
+                <property name="valign">center</property>
+                <property name="width-request">200</property>
+                <style>
+                  <class name="preview"/>
+                </style>
               </object>
             </child>
           </object>
@@ -39,15 +34,32 @@
       <object class="AdwEntryRow" id="path">
         <property name="title">Tileset File</property>
         <signal name="changed" handler="on_animation_changed"/>
-        <child type="suffix">
-          <object class="GtkButton" id="path_button">
+        <child>
+          <object class="GtkBox">
             <property name="halign">end</property>
-            <property name="icon-name">document-open-symbolic</property>
             <property name="valign">center</property>
-            <signal name="clicked" handler="on_path_button_clicked"/>
-            <style>
-              <class name="flat"/>
-            </style>
+            <child>
+              <object class="GtkButton" id="path_button">
+                <property name="halign">end</property>
+                <property name="icon-name">document-open-symbolic</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_path_button_clicked"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="view_button">
+                <property name="halign">end</property>
+                <property name="icon-name">view-reveal-symbolic</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_view_button_clicked"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
       </object>
