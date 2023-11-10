@@ -142,3 +142,6 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.flip_y.props.active = description.flip_y
         self.first_frame.props.value = description.first_frame
         self.last_frame.props.value = description.last_frame
+
+    def shutdown(self) -> None:
+        self._animation.shutdown()

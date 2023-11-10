@@ -80,3 +80,6 @@ class AnimationRow(Adw.PreferencesGroup):
     @description.setter
     def description(self, description: Description) -> None:
         self._animation_settings.description = description
+
+    def shutdown(self) -> None:
+        self._animation_settings.shutdown()

@@ -32,6 +32,9 @@ class AnimationRenderer(Gtk.Widget):
     def update(self, description: Description) -> None:
         self._animation = EntityRegistry.create_animation_from_description(description)
 
+    def shutdown(self) -> None:
+        GLib.Source.remove(self._handler_id)
+
 
 class Animation(Gtk.AspectFrame):
     def __init__(self) -> None:
@@ -47,3 +50,6 @@ class Animation(Gtk.AspectFrame):
 
     def update(self, description: Description) -> None:
         return self._renderer.update(description)
+
+    def shutdown(self) -> None:
+        self._renderer.shutdown()

@@ -41,6 +41,7 @@ class AnimationsSettings(Gtk.Box):
             self.animations_box.append(row)
 
     def _remove(self, row: AnimationRow) -> None:
+        row.shutdown()
         row.disconnect_by_func(self.__on_removed)
 
         self.animations_box.remove(row)
