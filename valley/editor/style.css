@@ -18,14 +18,6 @@
 .graphics {
     margin: 40px;
 }
-.graphics .top_header .title {
-    font-size: large;
-    font-weight: bold;
-}
-.graphics .top_header .subtitle {
-    font-size: small;
-    color: @insensitive_fg_color;
-}
 .graphics .animation_row {
     margin: 15px 0px;
 }

@@ -3,42 +3,13 @@
 <interface>
   <!-- interface-name animations_settings.ui -->
   <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.1"/>
   <template class="AnimationsSettings" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkBox">
-        <child>
-          <object class="GtkBox">
-            <property name="hexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="halign">start</property>
-                <property name="label">Animations</property>
-                <property name="valign">end</property>
-                <property name="xalign">0.0</property>
-                <style>
-                  <class name="title"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="halign">start</property>
-                <property name="label">Apply animations for each state and direction combination</property>
-                <property name="valign">start</property>
-                <property name="xalign">0.0</property>
-                <style>
-                  <class name="subtitle"/>
-                </style>
-              </object>
-            </child>
-            <style>
-              <class name="top_header"/>
-            </style>
-          </object>
-        </child>
-        <child>
+      <object class="AdwPreferencesGroup">
+        <property name="description">Add animations for different state and direction combination</property>
+        <property name="header-suffix">
           <object class="GtkButton" id="button">
             <property name="child">
               <object class="GtkImage">
@@ -49,7 +20,8 @@
             <property name="valign">center</property>
             <signal name="clicked" handler="on_clicked"/>
           </object>
-        </child>
+        </property>
+        <property name="title">Animations</property>
       </object>
     </child>
     <child>

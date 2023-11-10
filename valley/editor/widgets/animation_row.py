@@ -26,7 +26,25 @@ class AnimationRow(Adw.PreferencesGroup):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._animation_settings = AnimationSettings()
+
+        # XXX Move these to UI file somehow
+        self._animation_settings.connect("changed", self.__on_changed)
+        self.state_combo.connect("notify::selected-item", self.__on_changed)
+        self.direction_combo.connect("notify::selected-item", self.__on_changed)
+
         self.animation_box.append(self._animation_settings)
+
+        self._update_description()
+
+    def _update_description(self) -> None:
+        self.props.description = (
+            "By default"
+            if self.state == "default"
+            else f"While {self.state} {self.direction}"
+        )
+
+    def __on_changed(self, *args) -> None:
+        self._update_description()
 
     @Gtk.Template.Callback("on_clicked")
     def __on_removed(self, button: Gtk.Button) -> None:
