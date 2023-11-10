@@ -6,7 +6,7 @@ from typing import Optional
 
 from gi.repository import Adw, GLib, Gtk, GObject
 
-from .paths import Paths
+from .paths_row import PathsRow
 from .sound_player import SoundPlayer
 
 from ...common.scanner import Description
@@ -30,7 +30,7 @@ class SoundSettings(Adw.PreferencesGroup):
         super().__init__(*args, **kargs)
         self._handler_id: Optional[int] = None
 
-        self._paths = Paths()
+        self._paths = PathsRow()
         self._paths.connect("changed", self.__on_changed)
         self.paths.append(self._paths)
 

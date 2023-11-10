@@ -3,7 +3,7 @@
 <interface>
   <!-- interface-name path.ui -->
   <requires lib="gtk" version="4.12"/>
-  <template class="Path" parent="GtkBox">
+  <template class="PathRow" parent="GtkBox">
     <child>
       <object class="GtkEntry" id="entry">
         <property name="hexpand">True</property>

@@ -7,9 +7,9 @@ from gi.repository import Gio, Gtk, GObject
 from ...common.logger import logger
 
 
-@Gtk.Template(filename=os.path.join(__dir__, "path.ui"))
-class Path(Gtk.Box):
-    __gtype_name__ = "Path"
+@Gtk.Template(filename=os.path.join(__dir__, "path_row.ui"))
+class PathRow(Gtk.Box):
+    __gtype_name__ = "PathRow"
 
     __gsignals__ = {
         "changed": (GObject.SignalFlags.RUN_LAST, None, ()),

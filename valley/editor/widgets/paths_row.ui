@@ -4,7 +4,7 @@
   <!-- interface-name paths.ui -->
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.2"/>
-  <template class="Paths" parent="GtkBox">
+  <template class="PathsRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
       <object class="AdwActionRow">
@@ -24,7 +24,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="entries">
+      <object class="GtkBox" id="rows">
         <property name="orientation">vertical</property>
         <style>
           <class name="paths"/>
