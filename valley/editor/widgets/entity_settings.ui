@@ -57,7 +57,7 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">The amount of weight or damage this entity can lift or apply</property>
+            <property name="subtitle">How much weight or damage this entity can lift or apply</property>
             <property name="title">Strength</property>
             <signal name="changed" handler="on_changed"/>
           </object>
