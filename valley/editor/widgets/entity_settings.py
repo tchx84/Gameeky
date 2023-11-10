@@ -4,7 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from typing import Optional
 
-from gi.repository import Adw, GLib, Gtk, GObject
+from gi.repository import GLib, Gtk, GObject
 
 from .actuators_row import ActuatorsRow
 from .utils import get_position_in_model
@@ -14,7 +14,7 @@ from ...common.definitions import DEFAULT_TIMEOUT
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "entity_settings.ui"))
-class EntitySettings(Adw.PreferencesGroup):
+class EntitySettings(Gtk.Box):
     __gtype_name__ = "EntitySettings"
 
     __gsignals__ = {

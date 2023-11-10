@@ -4,180 +4,189 @@
   <!-- interface-name entity_settings.ui -->
   <requires lib="gtk" version="4.10"/>
   <requires lib="libadwaita" version="1.4"/>
-  <template class="EntitySettings" parent="AdwPreferencesGroup">
-    <property name="description">These values determine how this particular entity will behave</property>
-    <property name="hexpand">True</property>
-    <property name="title">Entity</property>
-    <property name="vexpand">True</property>
+  <template class="EntitySettings" parent="GtkBox">
+    <property name="orientation">vertical</property>
     <child>
-      <object class="AdwEntryRow" id="name">
-        <property name="title">Name</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwEntryRow" id="target">
-        <property name="title">Target</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="stamina">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+      <object class="AdwPreferencesGroup">
+        <property name="description">These values are the basic statistics of this entity</property>
+        <property name="title">Stats</property>
+        <child>
+          <object class="AdwSpinRow" id="stamina">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">How much action this entity can perform</property>
+            <property name="title">Stamina</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Stamina</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="durability">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="durability">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">How much wear or damage this entity can sustain</property>
+            <property name="title">Durability</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Durability</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="weight">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="weight">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">How heavy this entity is</property>
+            <property name="title">Weight</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Weight</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="strength">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="strength">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">The amount of weight or damage this entity can lift or apply</property>
+            <property name="title">Strength</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Strength</property>
-        <signal name="changed" handler="on_changed"/>
+        </child>
       </object>
     </child>
     <child>
-      <object class="AdwSpinRow" id="spawns">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+      <object class="AdwPreferencesGroup">
+        <property name="description">These values modify basics statistics</property>
+        <property name="title">Modifiers</property>
+        <child>
+          <object class="AdwSpinRow" id="recovery">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">0.05</property>
+                <property name="upper">1.0</property>
+              </object>
+            </property>
+            <property name="digits">2</property>
+            <property name="subtitle">Affects recovery times, cool downs and delays</property>
+            <property name="title">Recovery</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Spawns</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="radius">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="density">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">0.05</property>
+                <property name="upper">1.0</property>
+              </object>
+            </property>
+            <property name="digits">2</property>
+            <property name="subtitle">Affects the speed of other entities traversing through this entity</property>
+            <property name="title">Density</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Radius</property>
-        <signal name="changed" handler="on_changed"/>
+        </child>
       </object>
     </child>
     <child>
-      <object class="AdwSpinRow" id="rate">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">1.0</property>
-            <property name="upper">10000.0</property>
+      <object class="AdwPreferencesGroup">
+        <property name="description">These values determine how this entity behaves</property>
+        <property name="title">Behaviors</property>
+        <child>
+          <object class="AdwEntryRow" id="name">
+            <property name="title">Name</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="title">Rate</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="recovery">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">0.05</property>
-            <property name="upper">1.0</property>
+        </child>
+        <child>
+          <object class="AdwEntryRow" id="target">
+            <property name="title">Target</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="digits">2</property>
-        <property name="title">Recovery</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="density">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">0.05</property>
-            <property name="upper">1.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="spawns">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">The identifier of another entity to be spawned by an actuator</property>
+            <property name="title">Spawns</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="digits">2</property>
-        <property name="title">Density</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSpinRow" id="luminance">
-        <property name="adjustment">
-          <object class="GtkAdjustment">
-            <property name="step-increment">0.05</property>
-            <property name="upper">1.0</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="radius">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">The maximum area that an actuator can have an effect</property>
+            <property name="title">Radius</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="digits">2</property>
-        <property name="title">Luminance</property>
-        <signal name="changed" handler="on_changed"/>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSwitchRow" id="removable">
-        <property name="title">Removable</property>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSwitchRow" id="equippable">
-        <property name="title">Equippable</property>
-      </object>
-    </child>
-    <child>
-      <object class="AdwSwitchRow" id="visible">
-        <property name="title">Visible</property>
-      </object>
-    </child>
-    <child>
-      <object class="AdwComboRow" id="direction">
-        <property name="model">
-          <object class="GtkStringList">
-            <property name="strings">east
-north
-south
-west</property>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="rate">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">1.0</property>
+                <property name="upper">10000.0</property>
+              </object>
+            </property>
+            <property name="subtitle">How often an actuator can be triggered</property>
+            <property name="title">Rate</property>
+            <signal name="changed" handler="on_changed"/>
           </object>
-        </property>
-        <property name="selected">0</property>
-        <property name="title">Direction</property>
+        </child>
+        <child>
+          <object class="AdwPreferencesRow" id="actuators"/>
+        </child>
       </object>
     </child>
     <child>
-      <object class="AdwComboRow" id="state">
-        <property name="model">
-          <object class="GtkStringList">
-            <property name="strings">destroyed
+      <object class="AdwPreferencesGroup">
+        <property name="description">These values affect how the entity looks on screen</property>
+        <property name="title">Visibility</property>
+        <child>
+          <object class="AdwSwitchRow" id="visible">
+            <property name="subtitle">Whether this entity is visible at all</property>
+            <property name="title">Visible</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwSpinRow" id="luminance">
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="step-increment">0.05</property>
+                <property name="upper">1.0</property>
+              </object>
+            </property>
+            <property name="digits">2</property>
+            <property name="subtitle">The amount of light this entity can emit</property>
+            <property name="title">Luminance</property>
+            <signal name="changed" handler="on_changed"/>
+          </object>
+        </child>
+        <child>
+          <object class="AdwComboRow" id="state">
+            <property name="model">
+              <object class="GtkStringList">
+                <property name="strings">destroyed
 destroying
 dropping
 exhausted
@@ -187,14 +196,47 @@ interacting
 moving
 taking
 using</property>
+              </object>
+            </property>
+            <property name="selected">0</property>
+            <property name="subtitle">The initial state</property>
+            <property name="title">State</property>
           </object>
-        </property>
-        <property name="selected">0</property>
-        <property name="title">State</property>
+        </child>
+        <child>
+          <object class="AdwComboRow" id="direction">
+            <property name="model">
+              <object class="GtkStringList">
+                <property name="strings">east
+north
+south
+west</property>
+              </object>
+            </property>
+            <property name="selected">0</property>
+            <property name="subtitle">The initial direction</property>
+            <property name="title">Direction</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
-      <object class="AdwPreferencesRow" id="actuators"/>
+      <object class="AdwPreferencesGroup">
+        <property name="description">These values are used to determine specific conditions</property>
+        <property name="title">Conditions</property>
+        <child>
+          <object class="AdwSwitchRow" id="removable">
+            <property name="subtitle">Whether this entity can be removed from the scene</property>
+            <property name="title">Removable</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwSwitchRow" id="equippable">
+            <property name="subtitle">Whether this entity can be used as tool</property>
+            <property name="title">Equippable</property>
+          </object>
+        </child>
+      </object>
     </child>
   </template>
 </interface>

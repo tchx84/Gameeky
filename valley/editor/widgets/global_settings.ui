@@ -17,6 +17,7 @@
             <property name="value">1.0</property>
           </object>
         </property>
+        <property name="subtitle">Unique identifier for this entity</property>
         <property name="title">Identifier</property>
       </object>
     </child>
