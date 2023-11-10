@@ -62,6 +62,7 @@
             <property name="value">1.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of tile columns</property>
         <property name="title">Columns</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -76,6 +77,7 @@
             <property name="value">1.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of tile rows</property>
         <property name="title">Rows</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -88,6 +90,7 @@
             <property name="upper">1024.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of the first frame to include in the animation</property>
         <property name="title">First Frame</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -100,6 +103,7 @@
             <property name="upper">1024.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of the last frame to include in the animation</property>
         <property name="title">Last Frame</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -113,6 +117,7 @@
           </object>
         </property>
         <property name="digits">1</property>
+        <property name="subtitle">Number of seconds the animation should last</property>
         <property name="title">Duration</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -128,6 +133,7 @@
           </object>
         </property>
         <property name="digits">1</property>
+        <property name="subtitle">How many times larger this image should be on the x-axis</property>
         <property name="title">Scale X</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -143,6 +149,7 @@
           </object>
         </property>
         <property name="digits">1</property>
+        <property name="subtitle">How many times larger this image should be on the y-axis</property>
         <property name="title">Scale Y</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -155,6 +162,7 @@
             <property name="upper">1024.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of pixels to remove on the x-axis</property>
         <property name="title">Crop X</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
@@ -167,17 +175,20 @@
             <property name="upper">1024.0</property>
           </object>
         </property>
+        <property name="subtitle">Number of pixels to remove on the y-axis</property>
         <property name="title">Crop Y</property>
         <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
       <object class="AdwSwitchRow" id="flip_x">
+        <property name="subtitle">Whether to flip the image on the x-axis</property>
         <property name="title">Flip X</property>
       </object>
     </child>
     <child>
       <object class="AdwSwitchRow" id="flip_y">
+        <property name="subtitle">Whether to flip the image on the y-axis</property>
         <property name="title">Flip Y</property>
       </object>
     </child>
