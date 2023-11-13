@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name scene_window.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="SceneWindow" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="AdwOverlaySplitView" id="overlay">
+        <property name="content">
+          <object class="AdwNavigationPage">
+            <property name="child">
+              <object class="AdwToolbarView">
+                <!-- Custom fragments -->
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <property name="hexpand">True</property>
+                    <child type="end">
+                      <object class="GtkToggleButton" id="show_sidebar_button">
+                        <property name="icon-name">sidebar-show-symbolic</property>
+                        <property name="active" bind-source="overlay" bind-property="show-sidebar" bind-flags="sync-create|bidirectional"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <property name="title">Scene</property>
+          </object>
+        </property>
+        <property name="sidebar">
+          <object class="AdwNavigationPage">
+            <property name="child">
+              <object class="AdwToolbarView">
+                <!-- Custom fragments -->
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <property name="title">Entities</property>
+          </object>
+        </property>
+      </object>
+    </property>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+    <property name="height-request">200</property>
+    <property name="width-request">360</property>
+    <!-- Custom fragments -->
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 400sp</condition>
+        <setter object="overlay" property="collapsed">true</setter>
+      </object>
+    </child>
+  </template>
+</interface>
