@@ -2,7 +2,7 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name entity_row.ui -->
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.6"/>
   <template class="EntityRow" parent="GtkBox">
     <property name="height-request">50</property>
     <property name="orientation">vertical</property>
@@ -12,7 +12,10 @@
     </child>
     <child>
       <object class="GtkLabel" id="label">
+        <property name="ellipsize">end</property>
         <property name="halign">center</property>
+        <property name="lines">1</property>
+        <property name="max-width-chars">12</property>
         <property name="valign">end</property>
       </object>
     </child>
