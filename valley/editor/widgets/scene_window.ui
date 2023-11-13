@@ -15,12 +15,6 @@
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
-                    <child type="end">
-                      <object class="GtkToggleButton" id="show_sidebar_button">
-                        <property name="icon-name">sidebar-show-symbolic</property>
-                        <property name="active" bind-source="overlay" bind-property="show-sidebar" bind-flags="sync-create|bidirectional"/>
-                      </object>
-                    </child>
                   </object>
                 </child>
               </object>
@@ -32,6 +26,16 @@
           <object class="AdwNavigationPage">
             <property name="child">
               <object class="AdwToolbarView">
+                <property name="content">
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="GtkFlowBox" id="entities">
+                        <property name="max-children-per-line">3</property>
+                        <property name="min-children-per-line">1</property>
+                      </object>
+                    </property>
+                  </object>
+                </property>
                 <!-- Custom fragments -->
                 <child type="top">
                   <object class="AdwHeaderBar">
@@ -50,11 +54,5 @@
     <property name="height-request">200</property>
     <property name="width-request">360</property>
     <!-- Custom fragments -->
-    <child>
-      <object class="AdwBreakpoint">
-        <condition>max-width: 400sp</condition>
-        <setter object="overlay" property="collapsed">true</setter>
-      </object>
-    </child>
   </template>
 </interface>
