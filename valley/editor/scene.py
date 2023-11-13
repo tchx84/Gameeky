@@ -12,6 +12,9 @@ gi.require_version("Adw", "1")
 from gi.repository import Gio, Adw
 
 from .widgets.scene_window import SceneWindow
+from .models.entity import Entity as EntityModel
+
+from ..common.scanner import Description
 
 
 class Application(Adw.Application):
@@ -21,9 +24,18 @@ class Application(Adw.Application):
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
 
+    def __on_model_registered(
+        self, model: EntityModel, description: Description
+    ) -> None:
+        self._window.register(description)
+
     def do_activate(self) -> None:
         self._window = SceneWindow(application=self)
         self._window.present()
+
+        self._entity_model = EntityModel()
+        self._entity_model.connect("registered", self.__on_model_registered)
+        self._entity_model.scan()
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
