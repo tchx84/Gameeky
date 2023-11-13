@@ -12,9 +12,9 @@ from .sounds_settings import SoundsSettings
 from ...common.scanner import Description
 
 
-@Gtk.Template(filename=os.path.join(__dir__, "window.ui"))
-class Window(Adw.ApplicationWindow):
-    __gtype_name__ = "Window"
+@Gtk.Template(filename=os.path.join(__dir__, "entity_window.ui"))
+class EntityWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "EntityWindow"
 
     game_box = Gtk.Template.Child()
     graphics_box = Gtk.Template.Child()

@@ -13,7 +13,7 @@ from typing import Any, Optional
 
 from gi.repository import Gio, Adw, Gdk, Gtk
 
-from .widgets.window import Window
+from .widgets.entity_window import EntityWindow
 
 from ..common.logger import logger
 from ..common.scanner import Description
@@ -22,7 +22,7 @@ from ..common.scanner import Description
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.valley.Editor",
+            application_id="dev.tchx84.valley.editor.Entity",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
 
@@ -84,7 +84,7 @@ class Application(Adw.Application):
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
-        self._window = Window(application=self)
+        self._window = EntityWindow(application=self)
         self._window.present()
 
     def do_startup(self) -> None:
