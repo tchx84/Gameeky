@@ -30,6 +30,7 @@
                   <object class="GtkScrolledWindow">
                     <property name="child">
                       <object class="GtkFlowBox" id="entities">
+                        <property name="homogeneous">True</property>
                         <property name="max-children-per-line">3</property>
                         <property name="min-children-per-line">1</property>
                       </object>

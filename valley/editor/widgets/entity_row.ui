@@ -15,7 +15,7 @@
         <property name="ellipsize">end</property>
         <property name="halign">center</property>
         <property name="lines">1</property>
-        <property name="max-width-chars">12</property>
+        <property name="max-width-chars">8</property>
         <property name="valign">end</property>
       </object>
     </child>
