@@ -36,7 +36,21 @@
                   </object>
                 </child>
                 <child type="bottom">
-                  <object class="GtkActionBar"/>
+                  <object class="GtkActionBar">
+                    <child>
+                      <object class="GtkBox">
+                        <child>
+                          <object class="GtkToggleButton" id="eraser">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">edit-delete-symbolic</property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
             </property>

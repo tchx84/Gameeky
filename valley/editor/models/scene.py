@@ -1,5 +1,7 @@
 import math
 
+from typing import Optional
+
 from gi.repository import GObject
 
 from ...common.entity import Entity as CommonEntity
@@ -37,6 +39,24 @@ class Scene(CommonScene, GObject.GObject):
         self.entities.append(entity)
         self._index += 1
 
+        self.emit("ticked")
+
+    def find(self, x: int, y: int, z: int) -> Optional[CommonEntity]:
+        target = Vector(x, y, z)
+
+        for entity in reversed(self.entities):
+            if entity.position == target:
+                return entity
+
+        return None
+
+    def remove(self, x: int, y: int, z: int) -> None:
+        entity = self.find(x, y, z)
+
+        if entity is None:
+            return
+
+        self.entities.remove(entity)
         self.emit("ticked")
 
     @property
