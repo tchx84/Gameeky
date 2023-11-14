@@ -58,7 +58,7 @@ class Scene(CommonScene, GObject.GObject):
             for _x in range(from_range_x, to_range_x):
                 self._add(type_id, _x, _y, z)
 
-        self.emit("ticked")
+        self.refresh()
 
     def find(self, x: int, y: int, z: int) -> Optional[CommonEntity]:
         target = Vector(x, y, z)
@@ -80,6 +80,9 @@ class Scene(CommonScene, GObject.GObject):
             for _x in range(from_range_x, to_range_x):
                 self._remove(_x, _y, z)
 
+        self.refresh()
+
+    def refresh(self) -> None:
         self.emit("ticked")
 
     @property

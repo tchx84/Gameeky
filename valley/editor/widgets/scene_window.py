@@ -23,6 +23,7 @@ class SceneWindow(Adw.ApplicationWindow):
     eraser = Gtk.Template.Child()
     layer = Gtk.Template.Child()
     area = Gtk.Template.Child()
+    time = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -34,6 +35,13 @@ class SceneWindow(Adw.ApplicationWindow):
 
         self.overlay.props.child = self._scene_view
         self.overlay.add_overlay(self._grid_view)
+
+        # XXX Move the UI file somehow
+        self.time.connect("notify::selected-item", self.__on_time_changed)
+
+    def __on_time_changed(self, *args) -> None:
+        self._scene_model.time = float(self.time.props.selected_item.props.string)
+        self._scene_model.refresh()
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         layer = self.layer.props.selected
