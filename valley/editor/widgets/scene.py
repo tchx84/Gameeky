@@ -40,5 +40,5 @@ class Scene(SceneGraphics):
 
     @scale.setter
     def scale(self, scale: float) -> None:
-        self._scale = clamp(10, 1.0, scale)
+        self._scale = clamp(10.0, 1.0, scale)
         self.queue_resize()

@@ -24,6 +24,7 @@ class SceneWindow(Adw.ApplicationWindow):
     layer = Gtk.Template.Child()
     area = Gtk.Template.Child()
     time = Gtk.Template.Child()
+    scale = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -38,10 +39,16 @@ class SceneWindow(Adw.ApplicationWindow):
 
         # XXX Move the UI file somehow
         self.time.connect("notify::selected-item", self.__on_time_changed)
+        self.scale.connect("notify::selected-item", self.__on_scale_changed)
 
     def __on_time_changed(self, *args) -> None:
         self._scene_model.time = float(self.time.props.selected_item.props.string)
         self._scene_model.refresh()
+
+    def __on_scale_changed(self, *args) -> None:
+        scale = float(self.scale.props.selected_item.props.string)
+        self._scene_view.scale = scale
+        self._grid_view.scale = scale
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         layer = self.layer.props.selected
@@ -65,6 +72,10 @@ class SceneWindow(Adw.ApplicationWindow):
         entity = EntityRow()
         entity.description = description
         self.entities.append(entity)
+
+    @Gtk.Template.Callback("on_grid_changed")
+    def __on_grid_changed(self, button: Gtk.Button) -> None:
+        self._grid_view.props.visible = button.props.active
 
     @property
     def description(self) -> Description:
