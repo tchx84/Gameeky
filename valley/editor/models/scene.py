@@ -23,7 +23,7 @@ class Scene(CommonScene, GObject.GObject):
         GObject.GObject.__init__(self)
         self._index = 0
 
-    def add(self, type_id: int, x: int, y: int, z: int) -> None:
+    def _add(self, type_id: int, x: int, y: int, z: int) -> None:
         default = EntityRegistry.find(type_id).game.default
 
         entity = CommonEntity(
@@ -39,6 +39,25 @@ class Scene(CommonScene, GObject.GObject):
         self.entities.append(entity)
         self._index += 1
 
+    def _remove(self, x: int, y: int, z: int) -> None:
+        entity = self.find(x, y, z)
+
+        if entity is None:
+            return
+
+        self.entities.remove(entity)
+
+    def add(self, type_id: int, x: int, y: int, z: int, area: int) -> None:
+        from_range_x = math.floor(max(x - area, 0))
+        to_range_x = math.floor(min(x + area + 1, self.width))
+
+        from_range_y = math.floor(max(y - area, 0))
+        to_range_y = math.floor(min(y + area + 1, self.height))
+
+        for _y in range(from_range_y, to_range_y):
+            for _x in range(from_range_x, to_range_x):
+                self._add(type_id, _x, _y, z)
+
         self.emit("ticked")
 
     def find(self, x: int, y: int, z: int) -> Optional[CommonEntity]:
@@ -50,13 +69,17 @@ class Scene(CommonScene, GObject.GObject):
 
         return None
 
-    def remove(self, x: int, y: int, z: int) -> None:
-        entity = self.find(x, y, z)
+    def remove(self, x: int, y: int, z: int, area: int) -> None:
+        from_range_x = math.floor(max(x - area, 0))
+        to_range_x = math.floor(min(x + area + 1, self.width))
 
-        if entity is None:
-            return
+        from_range_y = math.floor(max(y - area, 0))
+        to_range_y = math.floor(min(y + area + 1, self.height))
 
-        self.entities.remove(entity)
+        for _y in range(from_range_y, to_range_y):
+            for _x in range(from_range_x, to_range_x):
+                self._remove(_x, _y, z)
+
         self.emit("ticked")
 
     @property
@@ -88,4 +111,4 @@ class Scene(CommonScene, GObject.GObject):
                 y = int(index / self.width)
                 z = depth
 
-                self.add(type_id, x, y, z)
+                self.add(type_id, x, y, z, 0)

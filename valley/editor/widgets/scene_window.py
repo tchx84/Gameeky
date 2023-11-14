@@ -22,6 +22,7 @@ class SceneWindow(Adw.ApplicationWindow):
     overlay = Gtk.Template.Child()
     eraser = Gtk.Template.Child()
     layer = Gtk.Template.Child()
+    area = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -36,9 +37,10 @@ class SceneWindow(Adw.ApplicationWindow):
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         layer = self.layer.props.selected
+        area = int(self.area.props.selected_item.props.string)
 
         if self.eraser.props.active is True:
-            self._scene_model.remove(x, y, layer)
+            self._scene_model.remove(x, y, layer, area)
             return
 
         selected = self.entities.get_selected_children()
@@ -49,7 +51,7 @@ class SceneWindow(Adw.ApplicationWindow):
         if not child.type_id:
             return
 
-        self._scene_model.add(child.type_id, x, y, layer)
+        self._scene_model.add(child.type_id, x, y, layer, area)
 
     def register(self, description: Description) -> None:
         entity = EntityRow()

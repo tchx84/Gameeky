@@ -42,6 +42,20 @@
                         <property name="halign">end</property>
                         <property name="hexpand">True</property>
                         <child>
+                          <object class="GtkDropDown" id="area">
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <property name="strings">0
+1
+2
+4
+8</property>
+                              </object>
+                            </property>
+                            <property name="selected">0</property>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkDropDown" id="layer">
                             <property name="model">
                               <object class="GtkStringList">
