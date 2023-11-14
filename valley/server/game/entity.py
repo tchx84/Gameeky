@@ -441,6 +441,10 @@ class EntityRegistry:
         cls.__entities__[description.id] = description
 
     @classmethod
+    def find(cls, type_id: int) -> Description:
+        return cls.__entities__[type_id]
+
+    @classmethod
     def find_and_override(
         cls,
         type_id: int,
