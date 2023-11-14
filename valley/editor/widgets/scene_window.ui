@@ -6,16 +6,37 @@
   <requires lib="libadwaita" version="1.4"/>
   <template class="SceneWindow" parent="AdwApplicationWindow">
     <property name="content">
-      <object class="AdwOverlaySplitView" id="overlay">
+      <object class="AdwOverlaySplitView">
         <property name="content">
           <object class="AdwNavigationPage">
             <property name="child">
               <object class="AdwToolbarView">
-                <!-- Custom fragments -->
+                <property name="content">
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="child">
+                          <object class="GtkAspectFrame" id="aspect">
+                            <property name="child">
+                              <object class="GtkOverlay" id="overlay"/>
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
                   </object>
+                </child>
+                <child type="bottom">
+                  <object class="GtkActionBar"/>
                 </child>
               </object>
             </property>
@@ -37,7 +58,6 @@
                     </property>
                   </object>
                 </property>
-                <!-- Custom fragments -->
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
@@ -54,6 +74,5 @@
     <property name="default-width">800</property>
     <property name="height-request">200</property>
     <property name="width-request">360</property>
-    <!-- Custom fragments -->
   </template>
 </interface>
