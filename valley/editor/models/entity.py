@@ -5,7 +5,8 @@ from gi.repository import GObject
 from ...common.utils import get_data_path
 from ...common.scanner import Scanner, Description
 
-from ...client.graphics.entity import EntityRegistry
+from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
+from ...server.game.entity import EntityRegistry as EntityGameRegistry
 
 
 class Entity(GObject.GObject):
@@ -20,7 +21,8 @@ class Entity(GObject.GObject):
         self._scanner: Optional[Scanner] = None
 
     def scan(self) -> None:
-        EntityRegistry.reset()
+        EntityGraphicsRegistry.reset()
+        EntityGameRegistry.reset()
 
         self._scanner = Scanner(path=get_data_path("entities"))
         self._scanner.connect("found", self.__on_scanner_found)
@@ -30,7 +32,8 @@ class Entity(GObject.GObject):
         self.emit("started")
 
     def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
-        EntityRegistry.register(description)
+        EntityGraphicsRegistry.register(description)
+        EntityGameRegistry.register(description)
         self.emit("registered", description)
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
