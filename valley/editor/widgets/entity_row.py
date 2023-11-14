@@ -26,6 +26,10 @@ class EntityRow(Gtk.Box):
         self.entity.props.child = self._entity
 
     @property
+    def type_id(self) -> Optional[int]:
+        return self._entity.type_id
+
+    @property
     def description(self) -> Optional[Description]:
         return self._description
 
