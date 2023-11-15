@@ -86,6 +86,29 @@
                           </object>
                         </child>
                         <child>
+                          <object class="GtkBox">
+                            <child>
+                              <object class="GtkToggleButton" id="adder">
+                                <property name="child">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">list-add-symbolic</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton" id="eraser">
+                                <property name="child">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">list-remove-symbolic</property>
+                                  </object>
+                                </property>
+                                <property name="group">adder</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkToggleButton" id="grid">
                             <property name="active">True</property>
                             <property name="child">
@@ -105,15 +128,6 @@ night</property>
                               </object>
                             </property>
                             <property name="selected">0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkToggleButton" id="eraser">
-                            <property name="child">
-                              <object class="GtkImage">
-                                <property name="icon-name">edit-delete-symbolic</property>
-                              </object>
-                            </property>
                           </object>
                         </child>
                       </object>
