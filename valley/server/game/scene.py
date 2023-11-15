@@ -58,7 +58,7 @@ class Scene:
             )
 
         # A full day in one hour
-        self._time = ((get_time_milliseconds() / 1000 / 3600)) % 24
+        self._time = get_time_milliseconds() / 1000 / 60 / 60
 
     def add(
         self,
