@@ -48,6 +48,8 @@ class Application(Adw.Application):
         Adw.Application.do_startup(self)
 
     def do_shutdown(self) -> None:
+        print(self._window.description.to_json())
+
         Adw.Application.do_shutdown(self)
 
 

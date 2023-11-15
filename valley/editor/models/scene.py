@@ -1,6 +1,6 @@
 import math
 
-from typing import Optional, List, cast
+from typing import Dict, Optional, List, cast
 
 from gi.repository import GObject
 
@@ -158,7 +158,34 @@ class Scene(CommonScene, GObject.GObject):
 
     @property
     def description(self) -> Description:
-        return Description()
+        description = Description(
+            width=self.width,
+            height=self.height,
+            spawn=Description(
+                x=0,
+                y=0,
+                z=0,
+            ),
+            layers=[],
+            overrides=Description(
+                objects=Description(),
+            ),
+        )
+
+        layers: Dict[str, Description] = {}
+
+        for entity in self.entities:
+            name = str(entity.position.z)
+
+            layer = layers.get(name, Description(name=name, entities=[]))
+            layer.entities.append(entity.type_id)
+
+            layers[layer.name] = layer
+
+        for layer in layers.values():
+            description.layers.append(layer)
+
+        return description
 
     @description.setter
     def description(self, description: Description) -> None:

@@ -114,7 +114,7 @@ class SceneWindow(Adw.ApplicationWindow):
 
     @property
     def description(self) -> Description:
-        return Description()
+        return self._scene_model.description
 
     @description.setter
     def description(self, description: Description) -> None:
