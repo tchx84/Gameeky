@@ -41,7 +41,7 @@ class SceneWindow(Adw.ApplicationWindow):
         self.scale.connect("notify::selected-item", self.__on_scale_changed)
 
     def __on_time_changed(self, *args) -> None:
-        self._scene_model.time = float(self.time.props.selected_item.props.string)
+        self._scene_model.time = float(self.time.props.selected)
         self._scene_model.refresh()
 
     def __on_scale_changed(self, *args) -> None:

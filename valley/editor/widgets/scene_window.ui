@@ -69,12 +69,8 @@
                           <object class="GtkDropDown" id="time">
                             <property name="model">
                               <object class="GtkStringList">
-                                <property name="strings">0
-4
-8
-12
-16
-20</property>
+                                <property name="strings">day
+night</property>
                               </object>
                             </property>
                             <property name="selected">0</property>
