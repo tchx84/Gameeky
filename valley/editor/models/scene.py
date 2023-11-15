@@ -198,7 +198,7 @@ class Scene(CommonScene, GObject.GObject):
                 z=0,
             ),
             layers=[],
-            overrides=None,
+            overrides=Description(),
         )
 
         if self._partition is None:
@@ -206,10 +206,10 @@ class Scene(CommonScene, GObject.GObject):
 
         layers: Dict[str, Description] = {}
         overrides: Dict[str, Description] = {}
-        max_depth = int(max([e.position.z for e in self.entities]))
+        depth = 0 if not self.entities else max([e.position.z for e in self.entities])
 
         # Fill all layers with zeroes
-        for depth in range(0, max_depth + 1):
+        for depth in range(0, int(depth) + 1):
             for row in range(0, self.height):
                 for column in range(0, self.width):
                     name = str(depth)
@@ -217,7 +217,7 @@ class Scene(CommonScene, GObject.GObject):
                     layer.entities.append(EntityType.EMPTY)
                     layers[name] = layer
 
-        # Replace populated cells with entities
+        # Replace empty cells with existing entities
         for entity in self.entities:
             name = str(entity.position.z)
             index = (entity.position.y * self.width) + entity.position.x
@@ -225,6 +225,7 @@ class Scene(CommonScene, GObject.GObject):
             layer = layers.get(name, Description(name=name, entities=[]))
             layer.entities[index] = entity.type_id
 
+            # Detect overrides
             delta = cast(Entity, entity).delta
 
             if not delta:
