@@ -44,20 +44,15 @@
                         <child>
                           <object class="GtkBox">
                             <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">edit-find-replace-symbolic</property>
+                              <object class="GtkButton" id="zoom_in">
+                                <property name="icon-name">zoom-in-symbolic</property>
+                                <signal name="clicked" handler="on_zoom_in"/>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkDropDown" id="scale">
-                                <property name="model">
-                                  <object class="GtkStringList">
-                                    <property name="strings">1
-6
-10</property>
-                                  </object>
-                                </property>
-                                <property name="selected">0</property>
+                              <object class="GtkButton" id="zoom_out">
+                                <property name="icon-name">zoom-out-symbolic</property>
+                                <signal name="clicked" handler="on_zoom_out"/>
                               </object>
                             </child>
                           </object>
