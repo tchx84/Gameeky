@@ -1,6 +1,6 @@
 import math
 
-from typing import Optional
+from typing import Optional, List, cast
 
 from gi.repository import GObject
 
@@ -12,6 +12,38 @@ from ...common.definitions import EntityType, Direction, State
 
 from ...server.game.partition import SpatialPartition
 from ...server.game.entity import EntityRegistry
+
+
+class Entity(CommonEntity, GObject.GObject):
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
+    def __init__(self, *args, **kargs) -> None:
+        CommonEntity.__init__(self, *args, **kargs)
+        GObject.GObject.__init__(self)
+        self._overrides: Optional[Description] = None
+
+    @property
+    def description(self) -> Description:
+        if self._overrides is not None:
+            return self._overrides
+
+        return EntityRegistry.find(self.type_id).game.default
+
+    @property
+    def overrides(self) -> Optional[Description]:
+        return self._overrides
+
+    @overrides.setter
+    def overrides(self, overrides: Description) -> None:
+        self.visible = overrides.visible
+        self.luminance = overrides.luminance
+        self.state = State[overrides.state.upper()]
+        self.direction = Direction[overrides.direction.upper()]
+
+        self._overrides = overrides
+        self.emit("changed")
 
 
 class Scene(CommonScene, GObject.GObject):
@@ -30,7 +62,7 @@ class Scene(CommonScene, GObject.GObject):
             return
 
         position = Vector(x, y)
-        entities = self._partition.find_by_position(position)
+        entities = cast(List[Entity], self._partition.find_by_position(position))
 
         # Don't stack the same entity on the same position
         if type_id in [e.type_id for e in entities]:
@@ -40,7 +72,7 @@ class Scene(CommonScene, GObject.GObject):
         position.z = z if z is not None else len(entities)
 
         default = EntityRegistry.find(type_id).game.default
-        entity = CommonEntity(
+        entity = Entity(
             id=self._index,
             type_id=type_id,
             position=position,
@@ -49,6 +81,8 @@ class Scene(CommonScene, GObject.GObject):
             direction=Direction[default.direction.upper()],
             state=State[default.state.upper()],
         )
+
+        entity.connect("changed", self.refresh)
 
         self.entities.append(entity)
         self._partition.add(entity)
@@ -62,6 +96,8 @@ class Scene(CommonScene, GObject.GObject):
 
         if entity is None:
             return
+
+        entity.disconnect_by_func(self.refresh)
 
         self.entities.remove(entity)
         self._partition.remove(entity)
@@ -79,12 +115,12 @@ class Scene(CommonScene, GObject.GObject):
 
         self.refresh()
 
-    def find(self, x: int, y: int) -> Optional[CommonEntity]:
+    def find(self, x: int, y: int) -> Optional[Entity]:
         if self._partition is None:
             return None
 
         position = Vector(x, y)
-        entities = self._partition.find_by_position(position)
+        entities = cast(List[Entity], self._partition.find_by_position(position))
 
         if not entities:
             return None
@@ -104,7 +140,7 @@ class Scene(CommonScene, GObject.GObject):
 
         self.refresh()
 
-    def refresh(self) -> None:
+    def refresh(self, *args) -> None:
         self.emit("ticked")
 
     @property
