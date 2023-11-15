@@ -63,6 +63,29 @@
                           </object>
                         </child>
                         <child>
+                          <object class="GtkBox">
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">view-app-grid-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkDropDown" id="area">
+                                <property name="model">
+                                  <object class="GtkStringList">
+                                    <property name="strings">0
+1
+2
+4
+8</property>
+                                  </object>
+                                </property>
+                                <property name="selected">0</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkToggleButton" id="grid">
                             <property name="active">True</property>
                             <property name="child">
@@ -79,20 +102,6 @@
                               <object class="GtkStringList">
                                 <property name="strings">day
 night</property>
-                              </object>
-                            </property>
-                            <property name="selected">0</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkDropDown" id="area">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <property name="strings">0
-1
-2
-4
-8</property>
                               </object>
                             </property>
                             <property name="selected">0</property>
