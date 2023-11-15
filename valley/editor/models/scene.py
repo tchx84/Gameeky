@@ -29,14 +29,17 @@ class Scene(CommonScene, GObject.GObject):
         if self._partition is None:
             return
 
-        default = EntityRegistry.find(type_id).game.default
         position = Vector(x, y)
+        entities = self._partition.find_by_position(position)
+
+        # Don't stack the same entity on the same position
+        if type_id in [e.type_id for e in entities]:
+            return
 
         # If not specified then calculate depth value
-        position.z = (
-            z if z is not None else len(self._partition.find_by_position(position))
-        )
+        position.z = z if z is not None else len(entities)
 
+        default = EntityRegistry.find(type_id).game.default
         entity = CommonEntity(
             id=self._index,
             type_id=type_id,
