@@ -45,7 +45,7 @@ class SceneWindow(Adw.ApplicationWindow):
         self._scene_model.refresh()
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
-        area = int(self.area.props.selected_item.props.string)
+        area = int(self.area.props.selected)
 
         if self.eraser.props.active is True:
             self._scene_model.remove(x, y, area)

@@ -42,6 +42,20 @@
                         <property name="halign">end</property>
                         <property name="hexpand">True</property>
                         <child>
+                          <object class="GtkDropDown" id="area">
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <property name="strings">1x1
+3x3
+5x5
+7x7
+9x9</property>
+                              </object>
+                            </property>
+                            <property name="selected">0</property>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkBox">
                             <child>
                               <object class="GtkButton" id="zoom_in">
@@ -53,29 +67,6 @@
                               <object class="GtkButton" id="zoom_out">
                                 <property name="icon-name">zoom-out-symbolic</property>
                                 <signal name="clicked" handler="on_zoom_out"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox">
-                            <child>
-                              <object class="GtkImage">
-                                <property name="icon-name">view-app-grid-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkDropDown" id="area">
-                                <property name="model">
-                                  <object class="GtkStringList">
-                                    <property name="strings">0
-1
-2
-4
-8</property>
-                                  </object>
-                                </property>
-                                <property name="selected">0</property>
                               </object>
                             </child>
                           </object>
