@@ -120,6 +120,12 @@ night</property>
                                 <property name="icon-name">list-remove-symbolic</property>
                               </object>
                             </child>
+                            <child>
+                              <object class="GtkToggleButton" id="editor">
+                                <property name="group">adder</property>
+                                <property name="icon-name">document-edit-symbolic</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
