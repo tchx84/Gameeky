@@ -4,6 +4,7 @@
   <!-- interface-name scene_window.ui -->
   <requires lib="gtk" version="4.6"/>
   <requires lib="libadwaita" version="1.4"/>
+  <requires lib="gio" version="2.0"/>
   <template class="SceneWindow" parent="AdwApplicationWindow">
     <property name="content">
       <object class="AdwOverlaySplitView">
@@ -33,6 +34,13 @@
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
+                    <!-- Custom fragments -->
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="popover">popover</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child type="bottom">
@@ -177,4 +185,17 @@ night</property>
     <property name="height-request">200</property>
     <property name="width-request">360</property>
   </template>
+  <menu id="menu">
+    <item>
+      <attribute name="action">app.open</attribute>
+      <attribute name="label">Open</attribute>
+    </item>
+    <item>
+      <attribute name="action">app.save</attribute>
+      <attribute name="label">Save</attribute>
+    </item>
+  </menu>
+  <object class="GtkPopoverMenu" id="popover">
+    <property name="menu-model">menu</property>
+  </object>
 </interface>
