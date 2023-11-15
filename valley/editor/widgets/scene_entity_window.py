@@ -27,4 +27,4 @@ class SceneEntityWindow(Adw.Window):
         self.content.props.child = self._entity_settings
 
     def __on_changed(self, button: Gtk.Button) -> None:
-        self._entity.overrides = self._entity_settings.description
+        self._entity.description = self._entity_settings.description

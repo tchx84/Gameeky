@@ -22,37 +22,62 @@ class Entity(CommonEntity, GObject.GObject):
     def __init__(self, *args, **kargs) -> None:
         CommonEntity.__init__(self, *args, **kargs)
         GObject.GObject.__init__(self)
-        self._overrides: Optional[Description] = None
+        self._description = Description()
+
+    def reset(self) -> None:
+        self.description = self.defaults
 
     def rotate(self) -> None:
         directions = list(Direction)
         index = directions.index(self.direction)
         direction = directions[(index + 1) % len(directions)]
 
-        description = self.description
-        description.direction = direction.name.lower()
-        self.overrides = description
+        self.direction = direction
+        self._description.direction = direction.name.lower()
+        self.emit("changed")
 
     @property
-    def description(self) -> Description:
-        if self._overrides is not None:
-            return self._overrides
-
+    def defaults(self) -> Description:
         return EntityRegistry.find(self.type_id).game.default
 
     @property
-    def overrides(self) -> Optional[Description]:
-        return self._overrides
+    def description(self) -> Description:
+        return self._description
 
-    @overrides.setter
-    def overrides(self, overrides: Description) -> None:
-        self.visible = overrides.visible
-        self.luminance = overrides.luminance
-        self.state = State[overrides.state.upper()]
-        self.direction = Direction[overrides.direction.upper()]
+    @description.setter
+    def description(self, description: Description) -> None:
+        _description = description.__dict__
 
-        self._overrides = overrides
+        for key in _description:
+            setattr(self._description, key, _description[key])
+
+        for key in self.__dict__:
+            if key not in _description:
+                continue
+
+            value = _description[key]
+
+            if key == "state":
+                value = State[value.upper()]
+            elif key == "direction":
+                value = Direction[value.upper()]
+
+            setattr(self, key, value)
+
         self.emit("changed")
+
+    @property
+    def delta(self) -> Optional[Description]:
+        description = self.description.__dict__
+        defaults = self.defaults.__dict__
+        delta = {
+            k: description[k] for k in description if description[k] != defaults[k]
+        }
+
+        if not delta:
+            return None
+
+        return Description(**delta)
 
 
 class Scene(CommonScene, GObject.GObject):
@@ -66,7 +91,14 @@ class Scene(CommonScene, GObject.GObject):
         self._index = 0
         self._partition: Optional[SpatialPartition] = None
 
-    def _add(self, type_id: int, x: int, y: int, z: Optional[int]) -> None:
+    def _add(
+        self,
+        type_id: int,
+        x: int,
+        y: int,
+        z: Optional[int],
+        overrides: Optional[Description] = None,
+    ) -> None:
         if self._partition is None:
             return
 
@@ -80,16 +112,15 @@ class Scene(CommonScene, GObject.GObject):
         # If not specified then calculate depth value
         position.z = z if z is not None else len(entities)
 
-        default = EntityRegistry.find(type_id).game.default
         entity = Entity(
             id=self._index,
             type_id=type_id,
             position=position,
-            visible=default.visible,
-            luminance=default.luminance,
-            direction=Direction[default.direction.upper()],
-            state=State[default.state.upper()],
         )
+        entity.reset()
+
+        if overrides is not None:
+            entity.description = overrides
 
         entity.connect("changed", self.refresh)
 
@@ -167,23 +198,49 @@ class Scene(CommonScene, GObject.GObject):
                 z=0,
             ),
             layers=[],
-            overrides=Description(
-                objects=Description(),
-            ),
+            overrides=None,
         )
 
-        layers: Dict[str, Description] = {}
+        if self._partition is None:
+            return description
 
+        layers: Dict[str, Description] = {}
+        overrides: Dict[str, Description] = {}
+        max_depth = int(max([e.position.z for e in self.entities]))
+
+        # Fill all layers with zeroes
+        for depth in range(0, max_depth + 1):
+            for row in range(0, self.height):
+                for column in range(0, self.width):
+                    name = str(depth)
+                    layer = layers.get(name, Description(name=name, entities=[]))
+                    layer.entities.append(EntityType.EMPTY)
+                    layers[name] = layer
+
+        # Replace populated cells with entities
         for entity in self.entities:
             name = str(entity.position.z)
+            index = (entity.position.y * self.width) + entity.position.x
 
             layer = layers.get(name, Description(name=name, entities=[]))
-            layer.entities.append(entity.type_id)
+            layer.entities[index] = entity.type_id
 
-            layers[layer.name] = layer
+            delta = cast(Entity, entity).delta
+
+            if not delta:
+                continue
+
+            override = overrides.get(name, Description())
+
+            key = f"{entity.position.x}_{entity.position.y}"
+            setattr(override, key, delta)
+
+            overrides[name] = override
 
         for layer in layers.values():
             description.layers.append(layer)
+
+        description.overrides = Description(**overrides)
 
         return description
 
@@ -209,4 +266,7 @@ class Scene(CommonScene, GObject.GObject):
                 y = int(index / self.width)
                 z = depth
 
-                self.add(type_id, x, y, z, 0)
+                overrides = getattr(description.overrides, str(depth), Description())
+                overrides = getattr(overrides, f"{x}_{y}", None)
+
+                self._add(type_id, x, y, z, overrides)
