@@ -84,21 +84,14 @@
                           <object class="GtkBox">
                             <child>
                               <object class="GtkToggleButton" id="adder">
-                                <property name="child">
-                                  <object class="GtkImage">
-                                    <property name="icon-name">list-add-symbolic</property>
-                                  </object>
-                                </property>
+                                <property name="active">True</property>
+                                <property name="icon-name">list-add-symbolic</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="eraser">
-                                <property name="child">
-                                  <object class="GtkImage">
-                                    <property name="icon-name">list-remove-symbolic</property>
-                                  </object>
-                                </property>
                                 <property name="group">adder</property>
+                                <property name="icon-name">list-remove-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -106,11 +99,7 @@
                         <child>
                           <object class="GtkToggleButton" id="grid">
                             <property name="active">True</property>
-                            <property name="child">
-                              <object class="GtkImage">
-                                <property name="icon-name">view-grid-symbolic</property>
-                              </object>
-                            </property>
+                            <property name="icon-name">view-grid-symbolic</property>
                             <signal name="toggled" handler="on_grid_changed"/>
                           </object>
                         </child>
