@@ -42,16 +42,24 @@
                         <property name="halign">end</property>
                         <property name="hexpand">True</property>
                         <child>
-                          <object class="GtkDropDown" id="scale">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <property name="strings">1
-3
+                          <object class="GtkBox">
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">edit-find-replace-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkDropDown" id="scale">
+                                <property name="model">
+                                  <object class="GtkStringList">
+                                    <property name="strings">1
 6
 10</property>
+                                  </object>
+                                </property>
+                                <property name="selected">0</property>
                               </object>
-                            </property>
-                            <property name="selected">0</property>
+                            </child>
                           </object>
                         </child>
                         <child>
