@@ -27,6 +27,7 @@ class SceneWindow(Adw.ApplicationWindow):
     zoom_in = Gtk.Template.Child()
     zoom_out = Gtk.Template.Child()
     editor = Gtk.Template.Child()
+    rotate = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -49,6 +50,10 @@ class SceneWindow(Adw.ApplicationWindow):
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         area = int(self.area.props.selected)
 
+        if self.rotate.props.active is True:
+            self._rotate_entity(x, y)
+            return
+
         if self.editor.props.active is True:
             self._edit_entity(x, y)
             return
@@ -66,6 +71,14 @@ class SceneWindow(Adw.ApplicationWindow):
             return
 
         self._scene_model.add(child.type_id, x, y, None, area)
+
+    def _rotate_entity(self, x: int, y: int) -> None:
+        entity = self._scene_model.find(x, y)
+
+        if entity is None:
+            return
+
+        entity.rotate()
 
     def _edit_entity(self, x: int, y: int) -> None:
         entity = self._scene_model.find(x, y)

@@ -121,6 +121,12 @@ night</property>
                               </object>
                             </child>
                             <child>
+                              <object class="GtkToggleButton" id="rotate">
+                                <property name="group">adder</property>
+                                <property name="icon-name">rotation-allowed-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
                               <object class="GtkToggleButton" id="editor">
                                 <property name="group">adder</property>
                                 <property name="icon-name">document-edit-symbolic</property>

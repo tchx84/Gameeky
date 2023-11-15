@@ -24,6 +24,15 @@ class Entity(CommonEntity, GObject.GObject):
         GObject.GObject.__init__(self)
         self._overrides: Optional[Description] = None
 
+    def rotate(self) -> None:
+        directions = list(Direction)
+        index = directions.index(self.direction)
+        direction = directions[(index + 1) % len(directions)]
+
+        description = self.description
+        description.direction = direction.name.lower()
+        self.overrides = description
+
     @property
     def description(self) -> Description:
         if self._overrides is not None:
