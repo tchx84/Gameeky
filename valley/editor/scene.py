@@ -6,7 +6,7 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
-gi.require_version('Gdk', '4.0')
+gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
