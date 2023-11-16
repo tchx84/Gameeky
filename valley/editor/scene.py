@@ -6,12 +6,13 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
+gi.require_version('Gdk', '4.0')
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 from typing import Any, Optional
 
-from gi.repository import Gio, Gtk, Adw
+from gi.repository import Gdk, Gio, Gtk, Adw
 
 from .widgets.scene_window import SceneWindow
 from .widgets.scene_creation_window import SceneCreationWindow
@@ -95,6 +96,14 @@ class Application(Adw.Application):
         )
 
     def do_activate(self) -> None:
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path(os.path.join(__dir__, "style.css"))
+        Gtk.StyleContext.add_provider_for_display(
+            Gdk.Display.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        )
+
         self._window = SceneWindow(application=self)
         self._window.present()
 

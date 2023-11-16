@@ -68,5 +68,8 @@
     <property name="default-height">600</property>
     <property name="default-width">800</property>
     <property name="title">Open</property>
+    <style>
+      <class name="dialog"/>
+    </style>
   </template>
 </interface>

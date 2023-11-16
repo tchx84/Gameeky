@@ -1,3 +1,5 @@
+/* Common */
+
 /* paths and actuators */
 .paths .path {
     margin: 0px 10px 10px 10px;
@@ -6,6 +8,8 @@
 .paths .path button {
     margin-left: 10px;
 }
+
+/* Entity */
 
 /* window */
 .game {
@@ -31,4 +35,10 @@
 
 .preview {
    margin-bottom: 30px;
+}
+
+/* Scene */
+
+.dialog preferencesgroup {
+    margin: 15px 0px;
 }
