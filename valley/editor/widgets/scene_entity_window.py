@@ -22,9 +22,14 @@ class SceneEntityWindow(Adw.Window):
 
         self._entity_settings = EntitySettings()
         self._entity_settings.description = self._entity.description
-        self._entity_settings.connect("changed", self.__on_changed)
 
         self.content.props.child = self._entity_settings
 
-    def __on_changed(self, button: Gtk.Button) -> None:
+    @Gtk.Template.Callback("on_cancel_clicked")
+    def __on_cancel_clicked(self, button: Gtk.Button) -> None:
+        self.destroy()
+
+    @Gtk.Template.Callback("on_save_clicked")
+    def __on_save_clicked(self, button: Gtk.Button) -> None:
         self._entity.description = self._entity_settings.description
+        self.destroy()
