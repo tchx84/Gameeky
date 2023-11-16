@@ -208,10 +208,9 @@ class Scene(CommonScene, GObject.GObject):
         )
         self._partition = SpatialPartition(self.width, self.height)
 
-        # XXX figure out where the 0.5 offset is coming from
         self.anchor = Vector(
-            x=math.floor(self.width / 2) - 0.5,
-            y=math.floor(self.height / 2),
+            x=math.floor(self.width / 2) - (0 if self.width % 2 else 0.5),
+            y=math.floor(self.height / 2) - (0 if self.height % 2 else 0.5),
         )
 
         for depth, layer in enumerate(description.layers):
