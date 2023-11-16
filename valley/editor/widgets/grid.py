@@ -2,7 +2,7 @@ import math
 
 from typing import Tuple
 
-from gi.repository import Gsk, Gtk, Graphene, GObject
+from gi.repository import Gtk, Graphene, GObject
 
 from ...common import colors
 from ...common.vector import Vector
@@ -56,39 +56,29 @@ class Grid(Gtk.Widget):
         rect_width = width / self._columns
         rect_height = height / self._rows
 
-        border_size = Graphene.Size()
-        border_size.init(1, 1)
+        x = self.highlight.x * rect_width
+        y = self.highlight.y * rect_height
 
-        for row in range(0, self._rows):
-            for column in range(0, self._columns):
-                x = column * rect_width
-                y = row * rect_height
+        highlight_rect = Graphene.Rect()
+        highlight_rect.init(x, y, rect_width, rect_height)
 
-                border_rect = Graphene.Rect()
-                border_rect.init(x, y, rect_width, rect_height)
+        snapshot.append_color(colors.GREEN, highlight_rect)
 
-                border = Gsk.RoundedRect()
-                border.init(
-                    border_rect,
-                    border_size,
-                    border_size,
-                    border_size,
-                    border_size,
-                )
+        for column in range(0, self._columns + 1):
+            x = column * rect_width
 
-                snapshot.append_border(
-                    border,
-                    [1.0, 1.0, 1.0, 1.0],
-                    [colors.GREEN, colors.GREEN, colors.GREEN, colors.GREEN],
-                )
+            line = Graphene.Rect()
+            line.init(x, 0, 1, height)
 
-                if column != self._highlight.x or row != self._highlight.y:
-                    continue
+            snapshot.append_color(colors.GREEN, line)
 
-                highlight_rect = Graphene.Rect()
-                highlight_rect.init(x, y, rect_width, rect_height)
+        for row in range(0, self._rows + 1):
+            y = row * rect_height
 
-                snapshot.append_color(colors.GREEN, highlight_rect)
+            line = Graphene.Rect()
+            line.init(0, y, width, 1)
+
+            snapshot.append_color(colors.GREEN, line)
 
     def do_get_request_mode(self):
         return Gtk.SizeRequestMode.CONSTANT_SIZE
