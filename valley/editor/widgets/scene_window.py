@@ -22,7 +22,9 @@ class SceneWindow(Adw.ApplicationWindow):
     entities = Gtk.Template.Child()
     aspect = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
+    adder = Gtk.Template.Child()
     eraser = Gtk.Template.Child()
+    grid = Gtk.Template.Child()
     area = Gtk.Template.Child()
     time = Gtk.Template.Child()
     zoom_in = Gtk.Template.Child()
@@ -113,6 +115,11 @@ class SceneWindow(Adw.ApplicationWindow):
         self.entities.append(entity)
 
     def reset(self) -> None:
+        self.adder.props.active = True
+        self.grid.props.active = True
+        self.area.props.selected = 0
+        self.time.props.selected = 0
+
         for entity in list(self.entities):
             self.entities.remove(entity)
 
