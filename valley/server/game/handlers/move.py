@@ -22,7 +22,8 @@ class Handler(BaseHandler):
                 return False
 
         self._entity.action = Action.MOVE
-        self._entity.destination = self._entity.position_at(self._entity.direction)
+        self._entity.destination = obstacles[-1].position.copy()
+        self._entity.destination.z += 1
 
         return super().prepare(value)
 
@@ -50,6 +51,7 @@ class Handler(BaseHandler):
         position = self._entity.position.copy()
         position.x += distance_x * direction_x
         position.y += distance_y * direction_y
+        position.z = self._entity.destination.z
 
         self._entity.position = position
 
