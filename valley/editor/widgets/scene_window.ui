@@ -193,6 +193,10 @@ night</property>
   </template>
   <menu id="menu">
     <item>
+      <attribute name="action">app.new</attribute>
+      <attribute name="label">New</attribute>
+    </item>
+    <item>
       <attribute name="action">app.open</attribute>
       <attribute name="label">Open</attribute>
     </item>

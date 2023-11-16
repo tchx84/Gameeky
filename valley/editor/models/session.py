@@ -13,7 +13,7 @@ class Session(GObject.GObject):
     __gsignals__ = {
         "started": (GObject.SignalFlags.RUN_LAST, None, ()),
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
-        "finished": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "ready": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     def __init__(self) -> None:
@@ -37,4 +37,4 @@ class Session(GObject.GObject):
         self.emit("registered", description)
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
-        self.emit("finished")
+        self.emit("ready")

@@ -7,6 +7,10 @@ def get_time_milliseconds() -> int:
     return int(GLib.get_monotonic_time() / 1000)
 
 
+def set_data_path(path) -> None:
+    os.environ["DATA_DIR"] = path
+
+
 def get_data_path(*paths) -> str:
     return os.path.join(os.environ.get("DATA_DIR", ""), *paths)
 
