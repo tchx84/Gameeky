@@ -9,7 +9,7 @@ from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from ...server.game.entity import EntityRegistry as EntityGameRegistry
 
 
-class Entity(GObject.GObject):
+class Session(GObject.GObject):
     __gsignals__ = {
         "started": (GObject.SignalFlags.RUN_LAST, None, ()),
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),

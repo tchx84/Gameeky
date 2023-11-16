@@ -14,7 +14,7 @@ from typing import Any, Optional
 from gi.repository import Gio, Gtk, Adw
 
 from .widgets.scene_window import SceneWindow
-from .models.entity import Entity as EntityModel
+from .models.session import Session as SessionModel
 
 from ..common.logger import logger
 from ..common.scanner import Description
@@ -28,7 +28,7 @@ class Application(Adw.Application):
         )
 
     def __on_model_registered(
-        self, model: EntityModel, description: Description
+        self, model: SessionModel, description: Description
     ) -> None:
         self._window.register(description)
 
@@ -85,9 +85,9 @@ class Application(Adw.Application):
         self._window = SceneWindow(application=self)
         self._window.present()
 
-        self._entity_model = EntityModel()
-        self._entity_model.connect("registered", self.__on_model_registered)
-        self._entity_model.scan()
+        self._session_model = SessionModel()
+        self._session_model.connect("registered", self.__on_model_registered)
+        self._session_model.scan()
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
