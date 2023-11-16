@@ -11,6 +11,7 @@ from .scene_entity_window import SceneEntityWindow
 
 from ..models.scene import Scene as SceneModel
 
+from ...common.vector import Vector
 from ...common.scanner import Description
 
 
@@ -28,6 +29,7 @@ class SceneWindow(Adw.ApplicationWindow):
     zoom_out = Gtk.Template.Child()
     editor = Gtk.Template.Child()
     rotate = Gtk.Template.Child()
+    spawner = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -50,6 +52,10 @@ class SceneWindow(Adw.ApplicationWindow):
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         area = int(self.area.props.selected)
 
+        if self.spawner.props.active is True:
+            self._set_spawn_point(x, y)
+            return
+
         if self.rotate.props.active is True:
             self._rotate_entity(x, y)
             return
@@ -71,6 +77,14 @@ class SceneWindow(Adw.ApplicationWindow):
             return
 
         self._scene_model.add(child.type_id, x, y, None, area)
+
+    def _set_spawn_point(self, x: int, y: int) -> None:
+        entities = self._scene_model.find_all(x, y)
+        depth = 0 if not entities else len(entities)
+        position = Vector(x, y, z=depth)
+
+        self._grid_view.highlight = position
+        self._scene_model.spawn = position
 
     def _rotate_entity(self, x: int, y: int) -> None:
         entity = self._scene_model.find(x, y)
@@ -124,6 +138,7 @@ class SceneWindow(Adw.ApplicationWindow):
 
         self._grid_view.columns = self._scene_model.width
         self._grid_view.rows = self._scene_model.height
+        self._grid_view.highlight = self._scene_model.spawn
         self._grid_view.scale = 1.0
 
         self._scene_view.model = self._scene_model

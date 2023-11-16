@@ -90,6 +90,7 @@ class Scene(CommonScene, GObject.GObject):
         GObject.GObject.__init__(self)
         self._index = 0
         self._partition: Optional[SpatialPartition] = None
+        self.spawn = Vector()
 
     def _add(
         self,
@@ -155,12 +156,15 @@ class Scene(CommonScene, GObject.GObject):
 
         self.refresh()
 
-    def find(self, x: int, y: int) -> Optional[Entity]:
+    def find_all(self, x: int, y: int) -> List[Entity]:
         if self._partition is None:
-            return None
+            return []
 
         position = Vector(x, y)
-        entities = cast(List[Entity], self._partition.find_by_position(position))
+        return cast(List[Entity], self._partition.find_by_position(position))
+
+    def find(self, x: int, y: int) -> Optional[Entity]:
+        entities = self.find_all(x, y)
 
         if not entities:
             return None
@@ -193,9 +197,9 @@ class Scene(CommonScene, GObject.GObject):
             width=self.width,
             height=self.height,
             spawn=Description(
-                x=0,
-                y=0,
-                z=0,
+                x=self.spawn.x,
+                y=self.spawn.y,
+                z=self.spawn.z,
             ),
             layers=[],
             overrides=Description(),
@@ -250,6 +254,11 @@ class Scene(CommonScene, GObject.GObject):
         self.time = 0.0
         self.width = description.width
         self.height = description.height
+        self.spawn = Vector(
+            x=description.spawn.x,
+            y=description.spawn.y,
+            z=description.spawn.z,
+        )
         self._partition = SpatialPartition(self.width, self.height)
 
         # XXX figure out where the 0.5 offset is coming from

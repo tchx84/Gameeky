@@ -5,6 +5,7 @@ from typing import Tuple
 from gi.repository import Gsk, Gtk, Graphene, GObject
 
 from ...common import colors
+from ...common.vector import Vector
 from ...common.utils import clamp
 
 
@@ -20,6 +21,7 @@ class Grid(Gtk.Widget):
         self._rows = 1
         self._columns = 1
         self._scale = 1.0
+        self._highlight = Vector()
 
         self._controller = Gtk.GestureClick()
         self._controller.connect("pressed", self.__on_clicked)
@@ -74,6 +76,14 @@ class Grid(Gtk.Widget):
                     [colors.GREEN, colors.GREEN, colors.GREEN, colors.GREEN],
                 )
 
+                if column != self._highlight.x or row != self._highlight.y:
+                    continue
+
+                highlight_rect = Graphene.Rect()
+                highlight_rect.init(x, y, rect_width, rect_height)
+
+                snapshot.append_color(colors.GREEN, highlight_rect)
+
     def do_get_request_mode(self):
         return Gtk.SizeRequestMode.CONSTANT_SIZE
 
@@ -88,6 +98,15 @@ class Grid(Gtk.Widget):
         else:
             height = self._rows * self.TILE_SIZE * self.scale
             return (height, height, -1, -1)
+
+    @property
+    def highlight(self) -> Vector:
+        return self._highlight
+
+    @highlight.setter
+    def highlight(self, highlight: Vector) -> None:
+        self._highlight = highlight
+        self.queue_draw()
 
     @property
     def rows(self) -> int:

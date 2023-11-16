@@ -140,6 +140,12 @@ night</property>
                                 <property name="icon-name">document-edit-symbolic</property>
                               </object>
                             </child>
+                            <child>
+                              <object class="GtkToggleButton" id="spawner">
+                                <property name="group">adder</property>
+                                <property name="icon-name">find-location-symbolic</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
