@@ -19,7 +19,11 @@
                         <property name="child">
                           <object class="GtkAspectFrame" id="aspect">
                             <property name="child">
-                              <object class="GtkOverlay" id="overlay"/>
+                              <object class="GtkOverlay" id="overlay">
+                                <style>
+                                  <class name="scene"/>
+                                </style>
+                              </object>
                             </property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
@@ -54,12 +58,14 @@
                             <child>
                               <object class="GtkButton" id="zoom_in">
                                 <property name="icon-name">zoom-in-symbolic</property>
+                                <property name="tooltip-text">Zoom in</property>
                                 <signal name="clicked" handler="on_zoom_in"/>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton" id="zoom_out">
                                 <property name="icon-name">zoom-out-symbolic</property>
+                                <property name="tooltip-text">Zoom out</property>
                                 <signal name="clicked" handler="on_zoom_out"/>
                               </object>
                             </child>
@@ -74,8 +80,12 @@ night</property>
                               </object>
                             </property>
                             <property name="selected">0</property>
+                            <property name="tooltip-text">Set time of the day</property>
                           </object>
                         </child>
+                        <style>
+                          <class name="tool"/>
+                        </style>
                       </object>
                     </child>
                   </object>
@@ -119,35 +129,43 @@ night</property>
                             <child>
                               <object class="GtkToggleButton" id="adder">
                                 <property name="active">True</property>
-                                <property name="icon-name">list-add-symbolic</property>
+                                <property name="icon-name">contact-new-symbolic</property>
+                                <property name="tooltip-text">Add</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="eraser">
                                 <property name="group">adder</property>
-                                <property name="icon-name">list-remove-symbolic</property>
+                                <property name="icon-name">user-trash-symbolic</property>
+                                <property name="tooltip-text">Remove</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="rotate">
                                 <property name="group">adder</property>
                                 <property name="icon-name">rotation-allowed-symbolic</property>
+                                <property name="tooltip-text">Rotate</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="editor">
                                 <property name="group">adder</property>
                                 <property name="icon-name">document-edit-symbolic</property>
+                                <property name="tooltip-text">Edit</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="spawner">
                                 <property name="group">adder</property>
                                 <property name="icon-name">find-location-symbolic</property>
+                                <property name="tooltip-text">Set starting location</property>
                               </object>
                             </child>
                           </object>
                         </child>
+                        <style>
+                          <class name="tool"/>
+                        </style>
                       </object>
                     </child>
                     <child>
@@ -158,6 +176,7 @@ night</property>
                           <object class="GtkToggleButton" id="grid">
                             <property name="active">True</property>
                             <property name="icon-name">view-grid-symbolic</property>
+                            <property name="tooltip-text">Show grid</property>
                             <signal name="toggled" handler="on_grid_changed"/>
                           </object>
                         </child>
@@ -173,8 +192,12 @@ night</property>
                               </object>
                             </property>
                             <property name="selected">0</property>
+                            <property name="tooltip-text">Set drawing area</property>
                           </object>
                         </child>
+                        <style>
+                          <class name="tool"/>
+                        </style>
                       </object>
                     </child>
                   </object>
