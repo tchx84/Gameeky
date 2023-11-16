@@ -27,6 +27,10 @@ class SceneOpenWindow(Adw.Window):
         self._description: Optional[Description] = None
         self.path.props.text = get_data_path("")
 
+    @Gtk.Template.Callback("on_cancel_clicked")
+    def __on_cancel_clicked(self, button: Gtk.Button) -> None:
+        self.destroy()
+
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
         self.emit("done")

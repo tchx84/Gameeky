@@ -8,68 +8,80 @@
     <property name="content">
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="AdwClamp">
+          <object class="GtkScrolledWindow">
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="AdwPreferencesGroup">
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="valign">center</property>
                     <child>
-                      <object class="AdwEntryRow" id="path">
-                        <property name="hexpand">True</property>
-                        <property name="title">Data Path</property>
+                      <object class="AdwPreferencesGroup">
                         <child>
-                          <object class="GtkButton">
-                            <property name="halign">center</property>
-                            <property name="icon-name">folder-open-symbolic</property>
-                            <property name="valign">center</property>
-                            <signal name="clicked" handler="on_path_open_clicked"/>
+                          <object class="AdwEntryRow" id="path">
+                            <property name="hexpand">True</property>
+                            <property name="title">Data Path</property>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="halign">center</property>
+                                <property name="icon-name">folder-open-symbolic</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_path_open_clicked"/>
+                              </object>
+                            </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwEntryRow" id="scene">
-                        <property name="hexpand">True</property>
-                        <property name="title">Scene</property>
                         <child>
-                          <object class="GtkButton">
-                            <property name="halign">center</property>
-                            <property name="icon-name">document-open-symbolic</property>
-                            <property name="valign">center</property>
-                            <signal name="clicked" handler="on_scene_open_clicked"/>
+                          <object class="AdwEntryRow" id="scene">
+                            <property name="hexpand">True</property>
+                            <property name="title">Scene</property>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="halign">center</property>
+                                <property name="icon-name">document-open-symbolic</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_scene_open_clicked"/>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                   </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="label">Open</property>
-                    <signal name="clicked" handler="on_open_clicked"/>
-                    <style>
-                      <class name="suggested-action"/>
-                    </style>
-                  </object>
-                </child>
+                </property>
               </object>
             </property>
-            <property name="valign">center</property>
           </object>
         </property>
-        <!-- Custom fragments -->
         <child type="top">
           <object class="AdwHeaderBar">
-</object>
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Cancel</property>
+                <signal name="clicked" handler="on_cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label">Open</property>
+                <signal name="clicked" handler="on_open_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
         </child>
+        <style>
+          <class name="dialog"/>
+        </style>
       </object>
     </property>
-    <property name="default-height">600</property>
-    <property name="default-width">800</property>
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="modal">True</property>
     <property name="title">Open</property>
-    <style>
-      <class name="dialog"/>
-    </style>
   </template>
 </interface>
