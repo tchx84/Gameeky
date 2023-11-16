@@ -13,6 +13,7 @@ class Scene(Gtk.Widget):
     def __init__(self) -> None:
         super().__init__()
         self._model: Optional[SceneModel] = None
+        self.editing = False
 
     def __on_model_updated(self, model: SceneModel) -> None:
         self.queue_draw()
@@ -77,7 +78,7 @@ class Scene(Gtk.Widget):
         snapshot.push_clip(clip)
 
         for entity in self._model.entities:
-            if entity.visible is False:
+            if self.editing is False and entity.visible is False:
                 continue
 
             scale_x, scale_y, texture = EntityRegistry.get_texture(entity)

@@ -13,6 +13,7 @@ class Scene(SceneGraphics):
         super().__init__(*args, **kargs)
         self._scale = 1.0
 
+        self.editing = True
         self.props.hexpand = True
         self.props.vexpand = True
 

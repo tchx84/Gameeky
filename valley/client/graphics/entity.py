@@ -94,9 +94,6 @@ class EntityRegistry:
 
     @classmethod
     def register(cls, description: Description) -> None:
-        if description.game.default.visible is False:
-            return
-
         default = cls.create_animation_from_description(description.graphics.default)
 
         entity = Entity(type_id=description.id, default=default)

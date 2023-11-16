@@ -15,8 +15,6 @@ class Entity(Gtk.Widget):
         self.props.vexpand = True
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
-        if self.visible is False:
-            return
         if self._type_id is None:
             return
 
