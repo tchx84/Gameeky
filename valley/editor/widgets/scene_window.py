@@ -137,6 +137,11 @@ class SceneWindow(Adw.ApplicationWindow):
     def __on_grid_changed(self, button: Gtk.Button) -> None:
         self._grid_view.props.visible = button.props.active
 
+    @Gtk.Template.Callback("on_entity_selected")
+    def __on_entity_selected(self, *args) -> None:
+        self.adder.props.active = True
+        self.area.props.selected = 0
+
     @property
     def description(self) -> Description:
         return self._scene_model.description

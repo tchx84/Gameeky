@@ -106,6 +106,7 @@ night</property>
                         <property name="homogeneous">True</property>
                         <property name="max-children-per-line">3</property>
                         <property name="min-children-per-line">1</property>
+                        <signal name="child-activated" handler="on_entity_selected"/>
                       </object>
                     </property>
                   </object>
