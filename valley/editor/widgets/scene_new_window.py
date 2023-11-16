@@ -9,9 +9,9 @@ from ...common.utils import get_data_path
 from ...common.scanner import Description
 
 
-@Gtk.Template(filename=os.path.join(__dir__, "scene_creation_window.ui"))
-class SceneCreationWindow(Adw.Window):
-    __gtype_name__ = "SceneCreationWindow"
+@Gtk.Template(filename=os.path.join(__dir__, "scene_new_window.ui"))
+class SceneNewWindow(Adw.Window):
+    __gtype_name__ = "SceneNewWindow"
 
     __gsignals__ = {
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),

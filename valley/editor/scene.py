@@ -15,7 +15,7 @@ from typing import Any, Optional
 from gi.repository import Gdk, Gio, Gtk, Adw
 
 from .widgets.scene_window import SceneWindow
-from .widgets.scene_creation_window import SceneCreationWindow
+from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
 from .models.session import Session as SessionModel
 
@@ -32,7 +32,7 @@ class Application(Adw.Application):
         )
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        dialog = SceneCreationWindow(transient_for=self._window)
+        dialog = SceneNewWindow(transient_for=self._window)
         dialog.connect("done", self.__on_done)
         dialog.present()
 
@@ -41,7 +41,7 @@ class Application(Adw.Application):
         dialog.connect("done", self.__on_done)
         dialog.present()
 
-    def __on_done(self, dialog: SceneCreationWindow) -> None:
+    def __on_done(self, dialog: SceneNewWindow) -> None:
         if (description := dialog.description) is None:
             return
 

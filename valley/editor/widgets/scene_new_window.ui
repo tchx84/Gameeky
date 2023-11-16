@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
-  <!-- interface-name scene_creation_window.ui -->
+  <!-- interface-name scene_new_window.ui -->
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
-  <template class="SceneCreationWindow" parent="AdwWindow">
+  <template class="SceneNewWindow" parent="AdwWindow">
     <property name="content">
       <object class="AdwToolbarView">
         <property name="content">
