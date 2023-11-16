@@ -129,6 +129,15 @@ class Scene(CommonScene, GObject.GObject):
         self._partition.add(entity)
         self._index += 1
 
+    def _remove_entity(self, entity: Entity) -> None:
+        if self._partition is None:
+            return
+
+        entity.disconnect_by_func(self.refresh)
+
+        self.entities.remove(entity)
+        self._partition.remove(entity)
+
     def _remove(self, x: int, y: int) -> None:
         if self._partition is None:
             return
@@ -138,10 +147,7 @@ class Scene(CommonScene, GObject.GObject):
         if entity is None:
             return
 
-        entity.disconnect_by_func(self.refresh)
-
-        self.entities.remove(entity)
-        self._partition.remove(entity)
+        self._remove_entity(entity)
 
     def add(self, type_id: int, x: int, y: int, z: Optional[int], area: int) -> None:
         from_range_x = math.floor(max(x - area, 0))
@@ -186,6 +192,12 @@ class Scene(CommonScene, GObject.GObject):
 
     def refresh(self, *args) -> None:
         self.emit("ticked")
+
+    def reset(self) -> None:
+        self._index = 0
+
+        for entity in cast(List[Entity], list(self.entities)):
+            self._remove_entity(entity)
 
     @property
     def ratio(self) -> float:
@@ -251,6 +263,7 @@ class Scene(CommonScene, GObject.GObject):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self.reset()
         self.time = 0.0
         self.width = description.width
         self.height = description.height
