@@ -8,88 +8,97 @@
     <property name="content">
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="AdwClamp">
+          <object class="GtkScrolledWindow">
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="valign">center</property>
-                <child>
-                  <object class="AdwPreferencesGroup">
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="valign">center</property>
                     <child>
-                      <object class="AdwEntryRow" id="path">
-                        <property name="title">Data Path</property>
+                      <object class="AdwPreferencesGroup">
                         <child>
-                          <object class="GtkBox">
+                          <object class="AdwEntryRow" id="path">
+                            <property name="title">Data Path</property>
                             <child>
-                              <object class="GtkButton">
-                                <property name="halign">end</property>
-                                <property name="icon-name">folder-open-symbolic</property>
-                                <property name="valign">center</property>
-                                <signal name="clicked" handler="on_open_clicked"/>
+                              <object class="GtkBox">
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="halign">end</property>
+                                    <property name="icon-name">folder-open-symbolic</property>
+                                    <property name="valign">center</property>
+                                    <signal name="clicked" handler="on_open_clicked"/>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSpinRow" id="width">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="lower">1.0</property>
-                            <property name="step-increment">1.0</property>
-                            <property name="upper">256.0</property>
-                            <property name="value">30.0</property>
+                        <child>
+                          <object class="AdwSpinRow" id="width">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">1.0</property>
+                                <property name="step-increment">1.0</property>
+                                <property name="upper">256.0</property>
+                                <property name="value">30.0</property>
+                              </object>
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="subtitle">The number of horizontal tiles</property>
+                            <property name="title">Width</property>
                           </object>
-                        </property>
-                        <property name="hexpand">True</property>
-                        <property name="subtitle">The number of horizontal tiles</property>
-                        <property name="title">Width</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwSpinRow" id="height">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="lower">1.0</property>
-                            <property name="step-increment">1.0</property>
-                            <property name="upper">256.0</property>
-                            <property name="value">22.0</property>
+                        </child>
+                        <child>
+                          <object class="AdwSpinRow" id="height">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment">
+                                <property name="lower">1.0</property>
+                                <property name="step-increment">1.0</property>
+                                <property name="upper">256.0</property>
+                                <property name="value">22.0</property>
+                              </object>
+                            </property>
+                            <property name="subtitle">The number of vertical tiles</property>
+                            <property name="title">Height</property>
                           </object>
-                        </property>
-                        <property name="subtitle">The number of vertical tiles</property>
-                        <property name="title">Height</property>
+                        </child>
                       </object>
                     </child>
                   </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="label">Create</property>
-                    <signal name="clicked" handler="on_create_clicked"/>
-                    <style>
-                      <class name="suggested-action"/>
-                    </style>
-                  </object>
-                </child>
+                </property>
               </object>
             </property>
-            <property name="hexpand">True</property>
           </object>
         </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Cancel</property>
+                <signal name="clicked" handler="on_cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label">Create</property>
+                <signal name="clicked" handler="on_create_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
         <style>
           <class name="dialog"/>
         </style>
-        <!-- Custom fragments -->
-        <child type="top">
-          <object class="AdwHeaderBar">
-</object>
-        </child>
       </object>
     </property>
-    <property name="default-height">600</property>
-    <property name="default-width">800</property>
-    <property name="title">New Scene</property>
-    <!-- Custom fragments -->
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="modal">True</property>
+    <property name="title">New</property>
   </template>
 </interface>

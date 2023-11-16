@@ -25,6 +25,10 @@ class SceneCreationWindow(Adw.Window):
         super().__init__(*args, **kargs)
         self.path.props.text = get_data_path("")
 
+    @Gtk.Template.Callback("on_cancel_clicked")
+    def __on_cancel_clicked(self, button: Gtk.Button) -> None:
+        self.destroy()
+
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
         self.emit("done")
