@@ -18,8 +18,8 @@ class Grid(Gtk.Widget):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._rows = 1
-        self._columns = 1
+        self._rows = 0
+        self._columns = 0
         self._scale = 1.0
         self._highlight = Vector()
 
@@ -37,6 +37,9 @@ class Grid(Gtk.Widget):
         x: float,
         y: float,
     ) -> None:
+        if not self.ready:
+            return
+
         self.emit(
             "clicked",
             math.floor(x / (self.get_width() / self._columns)),
@@ -44,6 +47,9 @@ class Grid(Gtk.Widget):
         )
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
+        if not self.ready:
+            return
+
         width = self.get_width()
         height = self.get_height()
 
@@ -98,6 +104,10 @@ class Grid(Gtk.Widget):
         else:
             height = self._rows * self.TILE_SIZE * self.scale
             return (height, height, -1, -1)
+
+    @property
+    def ready(self) -> bool:
+        return self._rows > 0 and self._columns > 0
 
     @property
     def highlight(self) -> Vector:
