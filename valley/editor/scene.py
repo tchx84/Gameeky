@@ -15,6 +15,7 @@ from gi.repository import Gio, Gtk, Adw
 
 from .widgets.scene_window import SceneWindow
 from .widgets.scene_creation_window import SceneCreationWindow
+from .widgets.scene_open_window import SceneOpenWindow
 from .models.session import Session as SessionModel
 
 from ..common.logger import logger
@@ -31,10 +32,15 @@ class Application(Adw.Application):
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SceneCreationWindow(transient_for=self._window)
-        dialog.connect("done", self.__on_new_done)
+        dialog.connect("done", self.__on_done)
         dialog.present()
 
-    def __on_new_done(self, dialog: SceneCreationWindow) -> None:
+    def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = SceneOpenWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_done)
+        dialog.present()
+
+    def __on_done(self, dialog: SceneCreationWindow) -> None:
         set_data_path(dialog.data_path)
 
         self._window.reset()
@@ -59,27 +65,6 @@ class Application(Adw.Application):
         description: Description,
     ) -> None:
         self._window.description = description
-
-    def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
-
-        dialog = Gtk.FileDialog()
-        dialog.props.default_filter = json_filter
-        dialog.open(callback=self.__on_open_finished)
-
-    def __on_open_finished(
-        self,
-        dialog: Gtk.FileDialog,
-        result: Gio.AsyncResult,
-    ) -> None:
-        try:
-            file = dialog.open_finish(result)
-        except Exception as e:
-            logger.error(e)
-            return
-
-        self._window.description = Description.new_from_json(file.get_path())
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         json_filter = Gtk.FileFilter()
