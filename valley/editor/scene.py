@@ -42,15 +42,16 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_done(self, dialog: SceneCreationWindow) -> None:
+        if (description := dialog.description) is None:
+            return
+
         set_data_path(dialog.data_path)
 
         self._window.reset()
 
         self._session_model = SessionModel()
         self._session_model.connect("registered", self.__on_session_registered)
-        self._session_model.connect(
-            "ready", self.__on_session_ready, dialog.description
-        )
+        self._session_model.connect("ready", self.__on_session_ready, description)
         self._session_model.scan()
 
     def __on_session_registered(
