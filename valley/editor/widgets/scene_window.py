@@ -146,9 +146,7 @@ class SceneWindow(Adw.ApplicationWindow):
         self.area.props.selected = 0
         self.time.props.selected = 0
 
-        # XXX Come on...
-        for _ in list(self.model):
-            self.model.remove(0)
+        self._model.remove_all()
 
     @Gtk.Template.Callback("on_zoom_in")
     def __on_zoom_in(self, *args) -> None:
