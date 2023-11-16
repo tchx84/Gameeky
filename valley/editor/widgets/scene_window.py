@@ -112,6 +112,10 @@ class SceneWindow(Adw.ApplicationWindow):
         entity.description = description
         self.entities.append(entity)
 
+    def reset(self) -> None:
+        for entity in list(self.entities):
+            self.entities.remove(entity)
+
     @Gtk.Template.Callback("on_zoom_in")
     def __on_zoom_in(self, *args) -> None:
         self._scene_view.scale += 1

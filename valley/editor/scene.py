@@ -37,6 +37,8 @@ class Application(Adw.Application):
     def __on_new_done(self, dialog: SceneCreationWindow) -> None:
         set_data_path(dialog.data_path)
 
+        self._window.reset()
+
         self._session_model = SessionModel()
         self._session_model.connect("registered", self.__on_session_registered)
         self._session_model.connect(
