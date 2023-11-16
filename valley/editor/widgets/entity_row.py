@@ -8,8 +8,6 @@ from gi.repository import Gtk
 
 from .entity import Entity
 
-from ...common.scanner import Description
-
 
 @Gtk.Template(filename=os.path.join(__dir__, "entity_row.ui"))
 class EntityRow(Gtk.Box):
@@ -20,7 +18,6 @@ class EntityRow(Gtk.Box):
 
     def __init__(self) -> None:
         super().__init__()
-        self._description: Optional[Description] = None
 
         self._entity = Entity()
         self.entity.props.child = self._entity
@@ -29,13 +26,14 @@ class EntityRow(Gtk.Box):
     def type_id(self) -> Optional[int]:
         return self._entity.type_id
 
-    @property
-    def description(self) -> Optional[Description]:
-        return self._description
+    @type_id.setter
+    def type_id(self, type_id: int) -> None:
+        self._entity.type_id = type_id
 
-    @description.setter
-    def description(self, description: Description) -> None:
-        self._entity.type_id = description.id
-        self._entity.visible = description.game.default.visible
-        self.label.props.label = description.game.default.name
-        self._description = description
+    @property
+    def name(self) -> str:
+        return self.label.props.label
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self.label.props.label = name

@@ -2,13 +2,14 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gio, Gtk, Adw
 
 from .scene import Scene as SceneView
 from .grid import Grid as GridView
 from .entity_row import EntityRow
 from .scene_entity_window import SceneEntityWindow
 
+from ..models.entity_row import EntityRow as EntityRowModel
 from ..models.scene import Scene as SceneModel
 
 from ...common.vector import Vector
@@ -19,7 +20,6 @@ from ...common.scanner import Description
 class SceneWindow(Adw.ApplicationWindow):
     __gtype_name__ = "SceneWindow"
 
-    entities = Gtk.Template.Child()
     aspect = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
     adder = Gtk.Template.Child()
@@ -32,6 +32,9 @@ class SceneWindow(Adw.ApplicationWindow):
     editor = Gtk.Template.Child()
     rotate = Gtk.Template.Child()
     spawner = Gtk.Template.Child()
+    selection = Gtk.Template.Child()
+    model = Gtk.Template.Child()
+    factory = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -46,6 +49,31 @@ class SceneWindow(Adw.ApplicationWindow):
 
         # XXX Move the UI file somehow
         self.time.connect("notify::selected-item", self.__on_time_changed)
+
+        # XXX Move to the UI file somehow
+        self._model = Gio.ListStore()
+        self.model.props.model = self._model
+        self.factory.connect("setup", self.__on_factory_setup)
+        self.factory.connect("bind", self.__on_factory_bind)
+
+    def __on_factory_setup(
+        self,
+        factory: Gtk.SignalListItemFactory,
+        item: Gtk.ListItem,
+    ) -> None:
+        entity = EntityRow()
+        item.set_child(entity)
+
+    def __on_factory_bind(
+        self,
+        factory: Gtk.SignalListItemFactory,
+        item: Gtk.ListItem,
+    ) -> None:
+        model = item.get_item()
+
+        view = item.get_child()
+        view.type_id = model.props.type_id
+        view.name = model.props.name
 
     def __on_time_changed(self, *args) -> None:
         self._scene_model.time = float(self.time.props.selected)
@@ -70,15 +98,10 @@ class SceneWindow(Adw.ApplicationWindow):
             self._scene_model.remove(x, y, area)
             return
 
-        selected = self.entities.get_selected_children()
-        if not selected:
+        if (item := self.selection.get_selected_item()) is None:
             return
 
-        child = selected[0].get_child()
-        if not child.type_id:
-            return
-
-        self._scene_model.add(child.type_id, x, y, None, area)
+        self._scene_model.add(item.props.type_id, x, y, None, area)
 
     def _set_spawn_point(self, x: int, y: int) -> None:
         entities = self._scene_model.find_all(x, y)
@@ -110,9 +133,12 @@ class SceneWindow(Adw.ApplicationWindow):
         editor.present()
 
     def register(self, description: Description) -> None:
-        entity = EntityRow()
-        entity.description = description
-        self.entities.append(entity)
+        self._model.append(
+            EntityRowModel(
+                type_id=description.id,
+                name=description.game.default.name,
+            )
+        )
 
     def reset(self) -> None:
         self.adder.props.active = True
@@ -120,8 +146,9 @@ class SceneWindow(Adw.ApplicationWindow):
         self.area.props.selected = 0
         self.time.props.selected = 0
 
-        for entity in list(self.entities):
-            self.entities.remove(entity)
+        # XXX Come on...
+        for _ in list(self.model):
+            self.model.remove(0)
 
     @Gtk.Template.Callback("on_zoom_in")
     def __on_zoom_in(self, *args) -> None:

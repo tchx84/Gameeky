@@ -2,9 +2,9 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name scene_window.ui -->
+  <requires lib="gio" version="2.0"/>
   <requires lib="gtk" version="4.6"/>
   <requires lib="libadwaita" version="1.4"/>
-  <requires lib="gio" version="2.0"/>
   <template class="SceneWindow" parent="AdwApplicationWindow">
     <property name="content">
       <object class="AdwOverlaySplitView">
@@ -38,7 +38,6 @@
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
-                    <!-- Custom fragments -->
                     <child type="end">
                       <object class="GtkMenuButton">
                         <property name="icon-name">open-menu-symbolic</property>
@@ -102,11 +101,45 @@ night</property>
                 <property name="content">
                   <object class="GtkScrolledWindow">
                     <property name="child">
-                      <object class="GtkFlowBox" id="entities">
-                        <property name="homogeneous">True</property>
-                        <property name="max-children-per-line">3</property>
-                        <property name="min-children-per-line">1</property>
-                        <signal name="child-activated" handler="on_entity_selected"/>
+                      <object class="GtkGridView">
+                        <property name="factory">
+                          <object class="GtkSignalListItemFactory" id="factory"/>
+                        </property>
+                        <property name="max-columns">3</property>
+                        <property name="model">
+                          <object class="GtkSingleSelection" id="selection">
+                            <property name="model">
+                              <object class="GtkSortListModel">
+                                <property name="model">
+                                  <object class="GtkFilterListModel" id="model">
+                                    <property name="filter">
+                                      <object class="GtkStringFilter">
+                                        <property name="search" bind-source="search_entry" bind-property="text"/>
+                                        <!-- Custom fragments -->
+                                        <property name="expression">
+                                          <lookup name="name" type="EntityRowModel"/>
+                                        </property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </property>
+                                <property name="sorter">
+                                  <object class="GtkStringSorter">
+                                    <!-- Custom fragments -->
+                                    <property name="expression">
+                                      <lookup name="name" type="EntityRowModel"/>
+                                    </property>
+                                  </object>
+                                </property>
+                              </object>
+                            </property>
+                            <property name="selected">0</property>
+                            <signal name="selection-changed" handler="on_entity_selected"/>
+                          </object>
+                        </property>
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
                       </object>
                     </property>
                   </object>
@@ -114,6 +147,21 @@ night</property>
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="active" bind-source="search_bar" bind-property="search-mode-enabled" bind-flags="bidirectional | sync-create">False</property>
+                        <property name="icon-name">system-search-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="top">
+                  <object class="GtkSearchBar" id="search_bar">
+                    <child>
+                      <object class="GtkSearchEntry" id="search_entry">
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child type="bottom">
