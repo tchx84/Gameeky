@@ -15,7 +15,7 @@ class Vector(Serializeable):
         if not isinstance(other, Vector):
             return NotImplemented
 
-        return self.x == other.x and self.y == other.y and self.z == other.z
+        return self.x == other.x and self.y == other.y
 
     def to_values(self) -> Signature:
         return (self.x, self.y, self.z)
