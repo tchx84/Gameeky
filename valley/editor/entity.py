@@ -14,9 +14,10 @@ from typing import Any, Optional
 from gi.repository import Gio, Adw, Gdk, Gtk
 
 from .widgets.entity_window import EntityWindow
+from .widgets.entity_open_window import EntityOpenWindow
 
 from ..common.logger import logger
-from ..common.scanner import Description
+from ..common.utils import set_data_path
 
 
 class Application(Adw.Application):
@@ -27,25 +28,16 @@ class Application(Adw.Application):
         )
 
     def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
+        dialog = EntityOpenWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_open_done)
+        dialog.present()
 
-        dialog = Gtk.FileDialog()
-        dialog.props.default_filter = json_filter
-        dialog.open(callback=self.__on_open_finished)
-
-    def __on_open_finished(
-        self,
-        dialog: Gtk.FileDialog,
-        result: Gio.AsyncResult,
-    ) -> None:
-        try:
-            file = dialog.open_finish(result)
-        except Exception as e:
-            logger.error(e)
+    def __on_open_done(self, dialog: EntityOpenWindow) -> None:
+        if (description := dialog.description) is None:
             return
 
-        self._window.description = Description.new_from_json(file.get_path())
+        set_data_path(dialog.data_path)
+        self._window.description = description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         json_filter = Gtk.FileFilter()
