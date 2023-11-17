@@ -164,6 +164,7 @@
         <property name="title">Visibility</property>
         <child>
           <object class="AdwSwitchRow" id="visible">
+            <property name="active">True</property>
             <property name="subtitle">Whether this entity is visible at all</property>
             <property name="title">Visible</property>
           </object>
