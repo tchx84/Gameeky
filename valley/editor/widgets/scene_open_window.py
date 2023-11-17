@@ -55,7 +55,11 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_scene_open_clicked")
     def __on_scene_open_clicked(self, button: Gtk.Button) -> None:
+        json_filter = Gtk.FileFilter()
+        json_filter.add_pattern("*.json")
+
         dialog = Gtk.FileDialog()
+        dialog.props.default_filter = json_filter
         dialog.open(callback=self.__on_scene_open_finish)
 
     def __on_scene_open_finish(
