@@ -82,13 +82,12 @@
             </child>
           </object>
         </property>
-        <!-- Custom fragments -->
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar">
             <property name="title-widget">
               <object class="AdwViewSwitcher">
-                <property name="stack">stack</property>
                 <property name="policy">wide</property>
+                <property name="stack">stack</property>
               </object>
             </property>
             <child type="end">
@@ -105,6 +104,10 @@
     <property name="default-width">600</property>
   </template>
   <menu id="menu">
+    <item>
+      <attribute name="action">app.new</attribute>
+      <attribute name="label">New</attribute>
+    </item>
     <item>
       <attribute name="action">app.open</attribute>
       <attribute name="label">Open</attribute>

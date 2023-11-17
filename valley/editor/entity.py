@@ -14,6 +14,7 @@ from typing import Any, Optional
 from gi.repository import Gio, Adw, Gdk, Gtk
 
 from .widgets.entity_window import EntityWindow
+from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
 
 from ..common.logger import logger
@@ -27,12 +28,17 @@ class Application(Adw.Application):
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
 
-    def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        dialog = EntityOpenWindow(transient_for=self._window)
-        dialog.connect("done", self.__on_open_done)
+    def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = EntityNewWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_done)
         dialog.present()
 
-    def __on_open_done(self, dialog: EntityOpenWindow) -> None:
+    def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = EntityOpenWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_done)
+        dialog.present()
+
+    def __on_done(self, dialog: EntityOpenWindow) -> None:
         if (description := dialog.description) is None:
             return
 
@@ -81,6 +87,10 @@ class Application(Adw.Application):
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
+
+        new_action = Gio.SimpleAction.new("new", None)
+        new_action.connect("activate", self.__on_new)
+        self.add_action(new_action)
 
         open_action = Gio.SimpleAction.new("open", None)
         open_action.connect("activate", self.__on_open)

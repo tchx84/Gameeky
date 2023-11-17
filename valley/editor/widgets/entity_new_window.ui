@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name entity_new_window.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="EntityNewWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="GtkScrolledWindow">
+            <property name="child">
+              <object class="AdwClamp">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="valign">center</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <child>
+                          <object class="AdwEntryRow" id="path">
+                            <property name="hexpand">True</property>
+                            <property name="title">Data Path</property>
+                            <child>
+                              <object class="GtkBox">
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="halign">end</property>
+                                    <property name="icon-name">folder-open-symbolic</property>
+                                    <property name="valign">center</property>
+                                    <signal name="clicked" handler="on_open_clicked"/>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </property>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Cancel</property>
+                <signal name="clicked" handler="on_cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label">Create</property>
+                <signal name="clicked" handler="on_create_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="dialog"/>
+        </style>
+      </object>
+    </property>
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="modal">True</property>
+    <property name="title">New</property>
+  </template>
+</interface>
