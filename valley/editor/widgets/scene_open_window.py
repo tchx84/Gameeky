@@ -39,7 +39,7 @@ class SceneOpenWindow(Adw.Window):
     @Gtk.Template.Callback("on_path_open_clicked")
     def __on_path_open_clicked(self, button: Gtk.Button) -> None:
         dialog = Gtk.FileDialog()
-        dialog.open(callback=self.__on_path_open_finish)
+        dialog.select_folder(callback=self.__on_path_open_finish)
 
     def __on_path_open_finish(
         self,
@@ -47,7 +47,7 @@ class SceneOpenWindow(Adw.Window):
         result: Gio.AsyncResult,
     ) -> None:
         try:
-            file = dialog.open_finish(result)
+            file = dialog.select_folder_finish(result)
         except Exception as e:
             logger.error(e)
         else:
