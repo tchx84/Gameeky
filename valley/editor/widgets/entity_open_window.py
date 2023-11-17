@@ -55,10 +55,13 @@ class EntityOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_entity_open_clicked")
     def __on_entity_open_clicked(self, button: Gtk.Button) -> None:
+        folder = Gio.File.new_for_path(self.data_path)
+
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern("*.json")
 
         dialog = Gtk.FileDialog()
+        dialog.props.initial_folder = folder
         dialog.props.default_filter = json_filter
         dialog.open(callback=self.__on_entity_open_finish)
 
