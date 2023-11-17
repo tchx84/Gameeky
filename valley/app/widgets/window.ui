@@ -3,31 +3,15 @@
 <interface>
   <!-- interface-name window.ui -->
   <requires lib="gio" version="2.0"/>
-  <requires lib="gtk" version="4.12"/>
+  <requires lib="gtk" version="4.6"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="Window" parent="AdwApplicationWindow">
-    <property name="content">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title">Valley</property>
-              </object>
-            </property>
-            <child type="end">
-              <object class="GtkMenuButton">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="popover">popover</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+    <child>
+      <object class="AdwToolbarView">
+        <property name="content">
           <object class="GtkStack" id="stack">
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <child>
               <object class="GtkStackPage">
                 <property name="child">
@@ -38,8 +22,16 @@
             <child>
               <object class="GtkStackPage">
                 <property name="child">
-                  <object class="GtkLabel">
-                    <property name="label">Loading</property>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="label">Loading</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
                 <property name="name">loading</property>
@@ -48,9 +40,13 @@
             <child>
               <object class="GtkStackPage">
                 <property name="child">
-                  <object class="GtkOverlay" id="overlay">
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkOverlay" id="overlay">
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
                 <property name="name">game</property>
@@ -59,28 +55,47 @@
             <child>
               <object class="GtkStackPage">
                 <property name="child">
-                  <object class="GtkLabel">
-                    <property name="label">Failed</property>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="label">Failed</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
                 <property name="name">failed</property>
               </object>
             </child>
           </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle"/>
+            </property>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="popover">popover</property>
+              </object>
+            </child>
+          </object>
         </child>
       </object>
-    </property>
-    <property name="default-height">512</property>
-    <property name="default-width">512</property>
+    </child>
   </template>
   <menu id="menu">
     <item>
-      <attribute name="action">app.create</attribute>
-      <attribute name="label">Create Game</attribute>
+      <attribute name="action">app.new</attribute>
+      <attribute name="label">New</attribute>
     </item>
     <item>
       <attribute name="action">app.join</attribute>
-      <attribute name="label">Join Game</attribute>
+      <attribute name="label">Join</attribute>
     </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">

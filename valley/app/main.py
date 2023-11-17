@@ -23,7 +23,7 @@ class Application(Adw.Application):
         )
         self._session_model: Optional[SessionModel] = None
 
-    def __on_create(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+    def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionDialog(host=True, transient_for=self._window)
         dialog.connect("done", self.__on_session_dialog_done)
         dialog.present()
@@ -73,9 +73,9 @@ class Application(Adw.Application):
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
 
-        create_action = Gio.SimpleAction.new("create", None)
-        create_action.connect("activate", self.__on_create)
-        self.add_action(create_action)
+        new_action = Gio.SimpleAction.new("new", None)
+        new_action.connect("activate", self.__on_new)
+        self.add_action(new_action)
 
         join_action = Gio.SimpleAction.new("join", None)
         join_action.connect("activate", self.__on_join)
