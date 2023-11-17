@@ -1,45 +1,45 @@
 {
-    "id": 2,
     "game": {
         "default": {
-            "stamina": 0,
-            "durability": 10,
-            "weight": 0,
-            "strength": 0,
-            "recovery": 1,
-            "removable": false,
-            "equippable": false,
-            "direction": "south",
-            "state": "idling",
-            "density": 0,
-            "visible": true,
-            "spawns": 0,
-            "name": "",
             "actuators": [],
-            "target": "",
+            "density": 0.0,
+            "direction": "south",
+            "durability": 10,
+            "equippable": false,
+            "luminance": 0.0,
+            "name": "grass",
             "radius": 0,
             "rate": 0,
-            "luminance": 0
+            "recovery": 1.0,
+            "removable": false,
+            "spawns": 0,
+            "stamina": 0,
+            "state": "idling",
+            "strength": 0,
+            "target": "",
+            "visible": true,
+            "weight": 0
         }
-    },
-    "sound": {
-        "states": []
     },
     "graphics": {
         "default": {
-            "path": "sprites/grass.png",
             "columns": 1,
-            "rows": 1,
-            "duration": 1,
-            "scale_x": 1.0,
-            "scale_y": 1.0,
             "crop_x": 0,
             "crop_y": 0,
+            "duration": 0.0,
+            "first_frame": 0,
             "flip_x": false,
             "flip_y": false,
-            "first_frame": 0,
-            "last_frame": 0
+            "last_frame": 0,
+            "path": "sprites/sprite.png",
+            "rows": 1,
+            "scale_x": 1.0,
+            "scale_y": 1.0
         },
+        "states": []
+    },
+    "id": 2,
+    "sound": {
         "states": []
     }
 }

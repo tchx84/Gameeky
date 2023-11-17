@@ -1,204 +1,48 @@
 {
-    "id": 1,
     "game": {
         "default": {
-            "stamina": 100,
-            "durability": 100,
-            "weight": 100,
-            "strength": 100,
-            "recovery": 0.75,
-            "removable": true,
-            "equippable": false,
+            "actuators": [
+                "exhausts",
+                "destroys"
+            ],
+            "density": 1.0,
             "direction": "south",
-            "state": "idling",
-            "density": 1,
-            "visible": true,
-            "spawns": 0,
-            "name": "",
-            "actuators": ["exhausts", "destroys"],
-            "target": "",
+            "durability": 100,
+            "equippable": false,
+            "luminance": 0.0,
+            "name": "default",
             "radius": 0,
             "rate": 0,
-            "luminance": 0
+            "recovery": 0.75,
+            "removable": true,
+            "spawns": 0,
+            "stamina": 100,
+            "state": "idling",
+            "strength": 100,
+            "target": "",
+            "visible": true,
+            "weight": 100
         }
-    },
-    "sound": {
-        "states": [
-            {
-                "name": "walking",
-                "sequence": {
-                    "paths": [
-                    	"sounds/footstep01.wav",
-                    	"sounds/footstep02.wav"
-                    ],
-                    "delay": 0,
-                    "timeout": 0
-                }
-            }
-        ]
     },
     "graphics": {
         "default": {
-            "path": "sprites/player.png",
-            "columns": 6,
-            "rows": 10,
-            "duration": 1,
-            "scale_x": 1.5,
-            "scale_y": 1.5,
-            "crop_x": 18,
-            "crop_y": 18,
+            "columns": 1,
+            "crop_x": 0,
+            "crop_y": 0,
+            "duration": 0.0,
+            "first_frame": 0,
             "flip_x": false,
             "flip_y": false,
-            "first_frame": 0,
-            "last_frame": 5
+            "last_frame": 0,
+            "path": "sprites/sprite.png",
+            "rows": 1,
+            "scale_x": 1.0,
+            "scale_y": 1.0
         },
-        "states": [
-            {
-                "name": "moving",
-                "directions": [
-                    {
-                        "name": "south",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 18,
-                            "last_frame": 23
-                        }
-                    },
-                    {
-                        "name": "east",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 24,
-                            "last_frame": 29
-                        }
-                    },
-                    {
-                        "name": "north",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 30,
-                            "last_frame": 35
-                        }
-                    },
-                    {
-                        "name": "west",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": true,
-                            "flip_y": false,
-                            "first_frame": 24,
-                            "last_frame": 29
-                        }
-                    }
-                ]
-            },
-            {
-                "name": "using",
-                "directions": [
-                    {
-                        "name": "south",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 18,
-                            "last_frame": 23
-                        }
-                    },
-                    {
-                        "name": "east",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 24,
-                            "last_frame": 29
-                        }
-                    },
-                    {
-                        "name": "north",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": false,
-                            "flip_y": false,
-                            "first_frame": 30,
-                            "last_frame": 35
-                        }
-                    },
-                    {
-                        "name": "west",
-                        "animation": {
-                            "path": "sprites/player.png",
-                            "columns": 6,
-                            "rows": 10,
-                            "duration": 1,
-                            "scale_x": 1.5,
-                            "scale_y": 1.5,
-                            "crop_x": 18,
-                            "crop_y": 18,
-                            "flip_x": true,
-                            "flip_y": false,
-                            "first_frame": 24,
-                            "last_frame": 29
-                        }
-                    }
-                ]
-            }
-        ]
+        "states": []
+    },
+    "id": 1,
+    "sound": {
+        "states": []
     }
 }
