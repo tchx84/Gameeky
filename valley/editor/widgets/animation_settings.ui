@@ -149,6 +149,36 @@
       </object>
     </child>
     <child>
+      <object class="AdwSpinRow" id="tiles_x">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">128.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="subtitle">Number of tiles to include on the x-axis</property>
+        <property name="title">Tiles X</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
+      <object class="AdwSpinRow" id="tiles_y">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">1.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">128.0</property>
+            <property name="value">1.0</property>
+          </object>
+        </property>
+        <property name="subtitle">Number of tiles to include on the y-axis</property>
+        <property name="title">Tiles Y</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
       <object class="AdwSpinRow" id="scale_x">
         <property name="adjustment">
           <object class="GtkAdjustment">

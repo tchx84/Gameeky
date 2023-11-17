@@ -6,7 +6,7 @@ from ...common.definitions import Direction, State
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
 from ...common.utils import get_time_milliseconds, division
-from ...common.utils import get_data_path
+from ...common.utils import get_data_path, clamp
 
 
 class Animation:
@@ -119,6 +119,8 @@ class EntityRegistry:
         pixbufs = cls.load_pixbufs_from_image(
             columns=description.columns,
             rows=description.rows,
+            tiles_x=description.tiles_x,
+            tiles_y=description.tiles_y,
             path=get_data_path(description.path),
         )
 
@@ -179,21 +181,36 @@ class EntityRegistry:
         cls,
         columns: int,
         rows: int,
+        tiles_x: int,
+        tiles_y: int,
         path: str,
     ) -> List[GdkPixbuf.Pixbuf]:
         pixbufs = []
 
         src_pixbuf = GdkPixbuf.Pixbuf.new_from_file(path)
-        width = int(src_pixbuf.get_width() / columns)
-        height = int(src_pixbuf.get_height() / rows)
+
+        tileset_width = src_pixbuf.get_width()
+        tileset_height = src_pixbuf.get_height()
+
+        width = int(tileset_width / columns)
+        height = int(tileset_height / rows)
 
         for row in range(rows):
             for column in range(columns):
+                rect_x = column * width
+                rect_y = row * height
+
+                available_width = tileset_width - rect_x
+                available_height = tileset_height - rect_y
+
+                rect_width = clamp(available_width, width, width * tiles_x)
+                rect_height = clamp(available_height, height, height * tiles_y)
+
                 pixbuf = src_pixbuf.new_subpixbuf(
-                    column * width,
-                    row * height,
-                    width,
-                    height,
+                    rect_x,
+                    rect_y,
+                    rect_width,
+                    rect_height,
                 )
                 pixbufs.append(pixbuf)
 

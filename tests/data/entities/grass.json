@@ -35,7 +35,9 @@
             "rotate": 0.0,
             "rows": 1,
             "scale_x": 1.0,
-            "scale_y": 1.0
+            "scale_y": 1.0,
+            "tiles_x": 1,
+            "tiles_y": 1
         },
         "states": []
     },

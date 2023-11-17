@@ -38,6 +38,8 @@ class AnimationSettings(Adw.PreferencesGroup):
     first_frame = Gtk.Template.Child()
     last_frame = Gtk.Template.Child()
     rotate = Gtk.Template.Child()
+    tiles_x = Gtk.Template.Child()
+    tiles_y = Gtk.Template.Child()
 
     def __init__(self) -> None:
         super().__init__()
@@ -128,6 +130,8 @@ class AnimationSettings(Adw.PreferencesGroup):
             first_frame=int(self.first_frame.props.value),
             last_frame=int(self.last_frame.props.value),
             rotate=float(self.rotate.props.value),
+            tiles_x=int(self.tiles_x.props.value),
+            tiles_y=int(self.tiles_y.props.value),
         )
 
     @description.setter
@@ -145,6 +149,8 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.first_frame.props.value = description.first_frame
         self.last_frame.props.value = description.last_frame
         self.rotate.props.value = description.rotate
+        self.tiles_x.props.value = description.tiles_x
+        self.tiles_y.props.value = description.tiles_y
 
     def shutdown(self) -> None:
         self._animation.shutdown()
