@@ -37,6 +37,7 @@ class AnimationSettings(Adw.PreferencesGroup):
     flip_y = Gtk.Template.Child()
     first_frame = Gtk.Template.Child()
     last_frame = Gtk.Template.Child()
+    rotate = Gtk.Template.Child()
 
     def __init__(self) -> None:
         super().__init__()
@@ -126,6 +127,7 @@ class AnimationSettings(Adw.PreferencesGroup):
             flip_y=self.flip_y.props.active,
             first_frame=int(self.first_frame.props.value),
             last_frame=int(self.last_frame.props.value),
+            rotate=float(self.rotate.props.value),
         )
 
     @description.setter
@@ -142,6 +144,7 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.flip_y.props.active = description.flip_y
         self.first_frame.props.value = description.first_frame
         self.last_frame.props.value = description.last_frame
+        self.rotate.props.value = description.rotate
 
     def shutdown(self) -> None:
         self._animation.shutdown()

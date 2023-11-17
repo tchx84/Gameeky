@@ -129,6 +129,7 @@ class EntityRegistry:
                 crop_y=description.crop_y,
                 flip_x=description.flip_x,
                 flip_y=description.flip_y,
+                rotate=description.rotate,
             )
 
             frames.append(Gdk.Texture.new_for_pixbuf(pixbuf))
@@ -148,6 +149,7 @@ class EntityRegistry:
         crop_y: int = 0,
         flip_x: bool = False,
         flip_y: bool = False,
+        rotate: float = 0.0,
     ) -> GdkPixbuf.Pixbuf:
         if flip_x is True:
             pixbuf = pixbuf.flip(horizontal=True)
@@ -167,6 +169,8 @@ class EntityRegistry:
                 pixbuf.get_width(),
                 pixbuf.get_height() - crop_y,
             )
+        if rotate > 0.0:
+            pixbuf = pixbuf.rotate_simple(rotate)
 
         return pixbuf
 

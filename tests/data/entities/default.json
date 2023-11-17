@@ -35,6 +35,7 @@
             "flip_y": false,
             "last_frame": 0,
             "path": "sprites/sprite.png",
+            "rotate": 0.0,
             "rows": 1,
             "scale_x": 1.0,
             "scale_y": 1.0

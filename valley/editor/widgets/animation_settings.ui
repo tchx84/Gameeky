@@ -135,6 +135,20 @@
       </object>
     </child>
     <child>
+      <object class="AdwSpinRow" id="rotate">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="step-increment">90.0</property>
+            <property name="upper">270.0</property>
+          </object>
+        </property>
+        <property name="subtitle">Angle to rotate the image</property>
+        <property name="title">Rotate</property>
+        <property name="wrap">True</property>
+        <signal name="changed" handler="on_animation_changed"/>
+      </object>
+    </child>
+    <child>
       <object class="AdwSpinRow" id="scale_x">
         <property name="adjustment">
           <object class="GtkAdjustment">
