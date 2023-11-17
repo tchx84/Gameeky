@@ -5,7 +5,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path
+from ...common.utils import get_data_path, valid_directory
 from ...common.scanner import Description
 from ...common.definitions import Direction, State
 
@@ -18,11 +18,19 @@ class EntityNewWindow(Adw.Window):
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
+    toast = Gtk.Template.Child()
     path = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self.path.props.text = get_data_path("")
+
+    def _notify(self, title) -> None:
+        toast = Adw.Toast()
+        toast.props.title = title
+        toast.props.timeout = 3
+
+        self.toast.add_toast(toast)
 
     @Gtk.Template.Callback("on_cancel_clicked")
     def __on_cancel_clicked(self, button: Gtk.Button) -> None:
@@ -30,6 +38,10 @@ class EntityNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
+        if not valid_directory(self.data_path):
+            self._notify("A valid data directory must be provided")
+            return
+
         self.emit("done")
         self.close()
 

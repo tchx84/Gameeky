@@ -22,6 +22,24 @@ def get_relative_path(path: str) -> str:
     return os.path.relpath(path, os.environ.get("DATA_DIR", ""))
 
 
+def valid_file(path) -> bool:
+    if GLib.file_test(path, GLib.FileTest.EXISTS) is False:
+        return False
+    if GLib.file_test(path, GLib.FileTest.IS_REGULAR) is False:
+        return False
+
+    return True
+
+
+def valid_directory(path) -> bool:
+    if GLib.file_test(path, GLib.FileTest.EXISTS) is False:
+        return False
+    if GLib.file_test(path, GLib.FileTest.IS_DIR) is False:
+        return False
+
+    return True
+
+
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
 

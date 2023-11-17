@@ -7,7 +7,7 @@ from typing import Optional
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path
+from ...common.utils import get_data_path, valid_file, valid_directory
 from ...common.scanner import Description
 
 
@@ -19,6 +19,7 @@ class SceneOpenWindow(Adw.Window):
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
+    toast = Gtk.Template.Child()
     path = Gtk.Template.Child()
     scene = Gtk.Template.Child()
 
@@ -27,12 +28,27 @@ class SceneOpenWindow(Adw.Window):
         self._description: Optional[Description] = None
         self.path.props.text = get_data_path("")
 
+    def _notify(self, title) -> None:
+        toast = Adw.Toast()
+        toast.props.title = title
+        toast.props.timeout = 3
+
+        self.toast.add_toast(toast)
+
     @Gtk.Template.Callback("on_cancel_clicked")
     def __on_cancel_clicked(self, button: Gtk.Button) -> None:
         self.destroy()
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
+        if not valid_directory(self.data_path):
+            self._notify("A valid data directory must be provided")
+            return
+
+        if not valid_file(self.scene_path):
+            self._notify("A valid scene file must be provided")
+            return
+
         self.emit("done")
         self.close()
 
@@ -78,6 +94,10 @@ class SceneOpenWindow(Adw.Window):
             path = file.get_path()
             self.scene.props.text = path
             self._description = Description.new_from_json(path)
+
+    @property
+    def scene_path(self) -> str:
+        return self.scene.props.text
 
     @property
     def data_path(self) -> None:

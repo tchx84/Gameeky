@@ -8,36 +8,44 @@
     <property name="content">
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="GtkScrolledWindow">
+          <object class="AdwToastOverlay" id="toast">
             <property name="child">
-              <object class="AdwClamp">
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="valign">center</property>
-                    <child>
-                      <object class="AdwPreferencesGroup">
-                        <child>
-                          <object class="AdwEntryRow" id="path">
-                            <property name="hexpand">True</property>
-                            <property name="title">Data Path</property>
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="AdwClamp">
+                        <property name="child">
+                          <object class="GtkBox">
+                            <property name="valign">center</property>
                             <child>
-                              <object class="GtkBox">
+                              <object class="AdwPreferencesGroup">
                                 <child>
-                                  <object class="GtkButton">
-                                    <property name="halign">end</property>
-                                    <property name="icon-name">folder-open-symbolic</property>
-                                    <property name="valign">center</property>
-                                    <signal name="clicked" handler="on_open_clicked"/>
+                                  <object class="AdwEntryRow" id="path">
+                                    <property name="hexpand">True</property>
+                                    <property name="title">Data Path</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <child>
+                                          <object class="GtkButton">
+                                            <property name="halign">end</property>
+                                            <property name="icon-name">folder-open-symbolic</property>
+                                            <property name="valign">center</property>
+                                            <signal name="clicked" handler="on_open_clicked"/>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
                                   </object>
                                 </child>
                               </object>
                             </child>
                           </object>
-                        </child>
+                        </property>
                       </object>
-                    </child>
+                    </property>
                   </object>
-                </property>
+                </child>
               </object>
             </property>
           </object>
