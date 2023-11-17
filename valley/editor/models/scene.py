@@ -23,7 +23,7 @@ class Scene(CommonScene, GObject.GObject):
         GObject.GObject.__init__(self)
         self._index = 0
         self._partition: Optional[SpatialPartition] = None
-        self.name = ""
+        self._name = ""
         self.spawn = Vector()
 
     def _add(
@@ -133,6 +133,14 @@ class Scene(CommonScene, GObject.GObject):
 
         for entity in cast(List[Entity], list(self.entities)):
             self._remove_entity(entity)
+
+    @property
+    def name(self) -> str:
+        return self._name if self._name else "Untitled"
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     @property
     def ratio(self) -> float:

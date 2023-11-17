@@ -18,6 +18,7 @@
                       <object class="AdwPreferencesGroup">
                         <child>
                           <object class="AdwEntryRow" id="name">
+                            <property name="text">Untitled</property>
                             <property name="title">Name</property>
                           </object>
                         </child>
