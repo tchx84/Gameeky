@@ -16,12 +16,13 @@ from ...common.utils import get_time_milliseconds
 
 
 class Scene:
-    def __init__(self, width: int, height: int, spawn: Vector) -> None:
+    def __init__(self, name: str, width: int, height: int, spawn: Vector) -> None:
         self._time = 0.0
         self._index = 0
         self._entity_by_id: Dict[int, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
 
+        self.name = name
         self.width = width
         self.height = height
         self.spawn = spawn
@@ -128,6 +129,7 @@ class Scene:
     @classmethod
     def new_from_description(cls, description: Description) -> "Scene":
         scene = cls(
+            name=description.name,
             width=description.width,
             height=description.height,
             spawn=Vector(

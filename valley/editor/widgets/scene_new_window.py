@@ -17,6 +17,7 @@ class SceneNewWindow(Adw.Window):
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
+    name = Gtk.Template.Child()
     path = Gtk.Template.Child()
     width = Gtk.Template.Child()
     height = Gtk.Template.Child()
@@ -58,6 +59,7 @@ class SceneNewWindow(Adw.Window):
     @property
     def description(self) -> Description:
         return Description(
+            name=self.name.props.text,
             width=int(self.width.props.value),
             height=int(self.height.props.value),
             spawn=Description(

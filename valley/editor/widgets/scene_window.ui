@@ -9,7 +9,7 @@
     <property name="content">
       <object class="AdwOverlaySplitView" id="split_view">
         <property name="content">
-          <object class="AdwNavigationPage">
+          <object class="AdwNavigationPage" id="scene_page">
             <property name="child">
               <object class="AdwToolbarView">
                 <property name="content">

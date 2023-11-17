@@ -23,6 +23,7 @@ class Scene(CommonScene, GObject.GObject):
         GObject.GObject.__init__(self)
         self._index = 0
         self._partition: Optional[SpatialPartition] = None
+        self.name = ""
         self.spawn = Vector()
 
     def _add(
@@ -140,6 +141,7 @@ class Scene(CommonScene, GObject.GObject):
     @property
     def description(self) -> Description:
         return Description(
+            name=self.name,
             width=self.width,
             height=self.height,
             spawn=Description(
@@ -156,6 +158,7 @@ class Scene(CommonScene, GObject.GObject):
 
         self._partition = SpatialPartition(description.width, description.height)
 
+        self.name = description.name
         self.width = description.width
         self.height = description.height
 

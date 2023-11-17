@@ -17,6 +17,11 @@
                     <child>
                       <object class="AdwPreferencesGroup">
                         <child>
+                          <object class="AdwEntryRow" id="name">
+                            <property name="title">Name</property>
+                          </object>
+                        </child>
+                        <child>
                           <object class="AdwEntryRow" id="path">
                             <property name="title">Data Path</property>
                             <child>

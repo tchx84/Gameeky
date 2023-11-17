@@ -42,6 +42,7 @@
         }
     ],
     "height": 2,
+    "name": "default",
     "spawn": {
         "x": 0,
         "y": 0,

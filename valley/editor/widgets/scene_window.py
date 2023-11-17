@@ -35,6 +35,7 @@ class SceneWindow(Adw.ApplicationWindow):
     selection = Gtk.Template.Child()
     model = Gtk.Template.Child()
     factory = Gtk.Template.Child()
+    scene_page = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -184,3 +185,5 @@ class SceneWindow(Adw.ApplicationWindow):
 
         self._scene_view.model = self._scene_model
         self._scene_view.scale = 1.0
+
+        self.scene_page.props.title = self._scene_model.name
