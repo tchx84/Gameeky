@@ -3,7 +3,7 @@ from gi.repository import Gio, GLib, GObject
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Client as UDPClient
 
-from ...common.definitions import Action
+from ...common.definitions import Action, EntityType
 from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
 from ...common.stats import Stats, StatsRequest
@@ -76,7 +76,11 @@ class Service(GObject.GObject):
         self.emit("scene-updated", Scene.deserialize(data))
 
     def register(self) -> None:
-        self._session_manager.send(SessionRequest(type_id=1).serialize())
+        self._session_manager.send(
+            SessionRequest(
+                type_id=EntityType.PLAYER,
+            ).serialize()
+        )
 
     def unregister(self) -> None:
         self._session_manager.shutdown()

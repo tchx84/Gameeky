@@ -243,7 +243,7 @@ class Entity(CommonEntity):
 
     @property
     def mutable(self) -> bool:
-        return len(self.actuators) > 0
+        return len(self.actuators) > 0 or self.type_id == EntityType.PLAYER
 
     @property
     def interactable(self) -> bool:

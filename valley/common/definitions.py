@@ -42,6 +42,7 @@ class Command(StrEnum):
 
 class EntityType(IntEnum):
     EMPTY = 0
+    PLAYER = 1
 
 
 class Direction(IntEnum):
