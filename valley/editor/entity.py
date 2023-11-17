@@ -50,6 +50,7 @@ class Application(Adw.Application):
         json_filter.add_pattern("*.json")
 
         dialog = Gtk.FileDialog()
+        dialog.props.initial_name = self._window.suggested_name
         dialog.props.default_filter = json_filter
         dialog.save(callback=self.__on_save_finished)
 

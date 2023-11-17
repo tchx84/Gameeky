@@ -169,6 +169,10 @@ class SceneWindow(Adw.ApplicationWindow):
         self.area.props.selected = 0
 
     @property
+    def suggested_name(self) -> str:
+        return f"{self._scene_model.name.lower()}.json"
+
+    @property
     def description(self) -> Description:
         return self._scene_model.description
 

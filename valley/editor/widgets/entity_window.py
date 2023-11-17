@@ -33,6 +33,13 @@ class EntityWindow(Adw.ApplicationWindow):
         self.sound_box.append(self._sounds_settings)
 
     @property
+    def suggested_name(self) -> str:
+        prefix = f"{self._global_settings.description.id:04d}"
+        suffix = f"{self._entity_settings.description.name.lower()}"
+
+        return f"{prefix}_{suffix}.json"
+
+    @property
     def description(self) -> Description:
         description = self._global_settings.description
         description.game.default = self._entity_settings.description
