@@ -72,3 +72,15 @@ class Entity(CommonEntity, GObject.GObject):
             return None
 
         return Description(**delta)
+
+    @property
+    def summary(self) -> Description:
+        return Description(
+            type_id=self.type_id,
+            position=Description(
+                x=self.position.x,
+                y=self.position.y,
+                z=self.position.z,
+            ),
+            overrides=self.delta,
+        )

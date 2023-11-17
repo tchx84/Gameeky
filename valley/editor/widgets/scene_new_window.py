@@ -65,6 +65,5 @@ class SceneNewWindow(Adw.Window):
                 y=0,
                 z=0,
             ),
-            layers=[],
-            overrides=Description(),
+            entities=[],
         )

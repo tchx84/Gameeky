@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict, Optional, List, cast
+from typing import Optional, List, cast
 
 from gi.repository import GObject
 
@@ -9,7 +9,6 @@ from .entity import Entity
 from ...common.scene import Scene as CommonScene
 from ...common.scanner import Description
 from ...common.vector import Vector
-from ...common.definitions import EntityType
 
 from ...server.game.partition import SpatialPartition
 
@@ -129,6 +128,7 @@ class Scene(CommonScene, GObject.GObject):
 
     def reset(self) -> None:
         self._index = 0
+        self.time = 0.0
 
         for entity in cast(List[Entity], list(self.entities)):
             self._remove_entity(entity)
@@ -139,7 +139,7 @@ class Scene(CommonScene, GObject.GObject):
 
     @property
     def description(self) -> Description:
-        description = Description(
+        return Description(
             width=self.width,
             height=self.height,
             spawn=Description(
@@ -147,82 +147,34 @@ class Scene(CommonScene, GObject.GObject):
                 y=self.spawn.y,
                 z=self.spawn.z,
             ),
-            layers=[],
-            overrides=Description(),
+            entities=[cast(Entity, e).summary for e in self.entities],
         )
-
-        if self._partition is None:
-            return description
-
-        layers: Dict[str, Description] = {}
-        overrides: Dict[str, Description] = {}
-        depth = 0 if not self.entities else max([e.position.z for e in self.entities])
-
-        # Fill all layers with zeroes
-        for depth in range(0, int(depth) + 1):
-            for row in range(0, self.height):
-                for column in range(0, self.width):
-                    name = str(depth)
-                    layer = layers.get(name, Description(name=name, entities=[]))
-                    layer.entities.append(EntityType.EMPTY)
-                    layers[name] = layer
-
-        # Replace empty cells with existing entities
-        for entity in self.entities:
-            name = str(entity.position.z)
-            index = (entity.position.y * self.width) + entity.position.x
-
-            layer = layers.get(name, Description(name=name, entities=[]))
-            layer.entities[index] = entity.type_id
-
-            # Detect overrides
-            delta = cast(Entity, entity).delta
-
-            if not delta:
-                continue
-
-            override = overrides.get(name, Description())
-
-            key = f"{entity.position.x}_{entity.position.y}"
-            setattr(override, key, delta)
-
-            overrides[name] = override
-
-        for layer in layers.values():
-            description.layers.append(layer)
-
-        description.overrides = Description(**overrides)
-
-        return description
 
     @description.setter
     def description(self, description: Description) -> None:
         self.reset()
-        self.time = 0.0
+
+        self._partition = SpatialPartition(description.width, description.height)
+
         self.width = description.width
         self.height = description.height
+
         self.spawn = Vector(
             x=description.spawn.x,
             y=description.spawn.y,
             z=description.spawn.z,
         )
-        self._partition = SpatialPartition(self.width, self.height)
+
+        for entity in description.entities:
+            self._add(
+                entity.type_id,
+                entity.position.x,
+                entity.position.y,
+                entity.position.z,
+                entity.overrides,
+            )
 
         self.anchor = Vector(
             x=math.floor(self.width / 2) - (0 if self.width % 2 else 0.5),
             y=math.floor(self.height / 2) - (0 if self.height % 2 else 0.5),
         )
-
-        for depth, layer in enumerate(description.layers):
-            for index, type_id in enumerate(layer.entities):
-                if type_id == EntityType.EMPTY:
-                    continue
-
-                x = index % self.width
-                y = int(index / self.width)
-                z = depth
-
-                overrides = getattr(description.overrides, str(depth), Description())
-                overrides = getattr(overrides, f"{x}_{y}", None)
-
-                self._add(type_id, x, y, z, overrides)

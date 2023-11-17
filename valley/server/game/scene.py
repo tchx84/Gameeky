@@ -137,20 +137,15 @@ class Scene:
             ),
         )
 
-        for depth, layer in enumerate(description.layers):
-            for index, type_id in enumerate(layer.entities):
-                if type_id == EntityType.EMPTY:
-                    continue
-
-                position = Vector()
-                position.x = index % scene.width
-                position.y = int(index / scene.width)
-                position.z = depth
-
-                # XXX Remove these hacks when format and classes are set
-                overrides = getattr(description.overrides, layer.name, Description())
-                overrides = getattr(overrides, f"{position.x}_{position.y}", None)
-
-                scene.add(type_id, position, overrides)
+        for entity in description.entities:
+            scene.add(
+                type_id=entity.type_id,
+                position=Vector(
+                    x=entity.position.x,
+                    y=entity.position.y,
+                    z=entity.position.z,
+                ),
+                overrides=entity.overrides,
+            )
 
         return scene
