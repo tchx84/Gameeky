@@ -86,7 +86,7 @@ class EntityNewWindow(Adw.Window):
                     luminance=0,
                     removable=False,
                     equippable=False,
-                    visible=False,
+                    visible=True,
                     direction=Direction.SOUTH.name.lower(),
                     state=State.IDLING.name.lower(),
                     actuators=[],

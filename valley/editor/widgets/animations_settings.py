@@ -26,6 +26,7 @@ class AnimationsSettings(Gtk.Box):
         prepend: bool = False,
     ) -> None:
         row = AnimationRow()
+        row.connect("cloned", self.__on_cloned)
         row.connect("removed", self.__on_removed)
 
         if state is not None:
@@ -42,12 +43,16 @@ class AnimationsSettings(Gtk.Box):
 
     def _remove(self, row: AnimationRow) -> None:
         row.shutdown()
+        row.disconnect_by_func(self.__on_cloned)
         row.disconnect_by_func(self.__on_removed)
 
         self.animations_box.remove(row)
 
     def __on_removed(self, row: AnimationRow) -> None:
         self._remove(row)
+
+    def __on_cloned(self, row: AnimationRow) -> None:
+        self._add(row.state, row.direction, row.description, prepend=True)
 
     @Gtk.Template.Callback("on_clicked")
     def __on_clicked(self, button: Gtk.Button) -> None:

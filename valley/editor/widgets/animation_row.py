@@ -15,10 +15,10 @@ class AnimationRow(Adw.PreferencesGroup):
     __gtype_name__ = "AnimationRow"
 
     __gsignals__ = {
+        "cloned": (GObject.SignalFlags.RUN_LAST, None, ()),
         "removed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    button = Gtk.Template.Child()
     state_combo = Gtk.Template.Child()
     direction_combo = Gtk.Template.Child()
     animation_box = Gtk.Template.Child()
@@ -49,9 +49,13 @@ class AnimationRow(Adw.PreferencesGroup):
     def __on_changed(self, *args) -> None:
         self._update_description()
 
-    @Gtk.Template.Callback("on_clicked")
-    def __on_removed(self, button: Gtk.Button) -> None:
+    @Gtk.Template.Callback("on_remove_clicked")
+    def __on_remove_clicked(self, button: Gtk.Button) -> None:
         self.emit("removed")
+
+    @Gtk.Template.Callback("on_clone_clicked")
+    def __on_clone_clicked(self, button: Gtk.Button) -> None:
+        self.emit("cloned")
 
     @property
     def state(self) -> str:
