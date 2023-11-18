@@ -9,7 +9,6 @@ class Handler(BaseHandler):
     def prepare(self, value: float) -> bool:
         self._entity.action = Action.DESTROY
         self._entity.density = Density.VOID
-        self._entity.position.z -= 1
 
         return super().prepare(value)
 

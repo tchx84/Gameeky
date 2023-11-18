@@ -23,6 +23,9 @@ class SpatialPartition:
         if position not in self._entity_by_position:
             self._entity_by_position[position] = []
 
+        # Depth should only be modified here
+        entity.position.z = len(self._entity_by_position[position])
+
         self._entity_by_position[position].append(entity)
 
     def remove(self, entity: Entity) -> None:

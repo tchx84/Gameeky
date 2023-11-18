@@ -1,3 +1,5 @@
+import math
+
 from typing import Optional
 from gi.repository import GObject, GLib
 
@@ -33,7 +35,11 @@ class Scene(CommonScene, GObject.GObject):
         # Take z-depth into account
         self.entities = sorted(
             scene.entities,
-            key=lambda e: (e.position.z, e.position.y, e.position.x),
+            key=lambda e: (
+                math.ceil(e.position.y),
+                e.position.z,
+                math.ceil(e.position.x),
+            ),
         )
 
         self.emit("updated")
