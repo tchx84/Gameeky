@@ -21,9 +21,9 @@
                             <child>
                               <object class="AdwPreferencesGroup">
                                 <child>
-                                  <object class="AdwEntryRow" id="path">
+                                  <object class="AdwEntryRow" id="project">
                                     <property name="hexpand">True</property>
-                                    <property name="title">Data Path</property>
+                                    <property name="title">Project</property>
                                     <child>
                                       <object class="GtkBox">
                                         <child>

@@ -27,8 +27,8 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="AdwEntryRow" id="path">
-                                    <property name="title">Data Path</property>
+                                  <object class="AdwEntryRow" id="project">
+                                    <property name="title">Project</property>
                                     <child>
                                       <object class="GtkBox">
                                         <child>

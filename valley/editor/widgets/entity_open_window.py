@@ -20,13 +20,13 @@ class EntityOpenWindow(Adw.Window):
     }
 
     toast = Gtk.Template.Child()
-    path = Gtk.Template.Child()
+    project = Gtk.Template.Child()
     entity = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._description: Optional[Description] = None
-        self.path.props.text = get_data_path("")
+        self.project.props.text = get_data_path("")
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -42,11 +42,11 @@ class EntityOpenWindow(Adw.Window):
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
         if not valid_directory(self.data_path):
-            self._notify("A valid data directory must be provided")
+            self._notify("A valid project must be provided")
             return
 
         if not valid_file(self.entity_path):
-            self._notify("A valid entity file must be provided")
+            self._notify("A valid entity must be provided")
             return
 
         self.emit("done")
@@ -67,7 +67,7 @@ class EntityOpenWindow(Adw.Window):
         except Exception as e:
             logger.error(e)
         else:
-            self.path.props.text = file.get_path()
+            self.project.props.text = file.get_path()
 
     @Gtk.Template.Callback("on_entity_open_clicked")
     def __on_entity_open_clicked(self, button: Gtk.Button) -> None:
@@ -101,7 +101,7 @@ class EntityOpenWindow(Adw.Window):
 
     @property
     def data_path(self) -> None:
-        return self.path.props.text
+        return self.project.props.text
 
     @property
     def description(self) -> Optional[Description]:

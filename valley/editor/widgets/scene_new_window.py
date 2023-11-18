@@ -19,13 +19,13 @@ class SceneNewWindow(Adw.Window):
 
     toast = Gtk.Template.Child()
     name = Gtk.Template.Child()
-    path = Gtk.Template.Child()
+    project = Gtk.Template.Child()
     width = Gtk.Template.Child()
     height = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self.path.props.text = get_data_path("")
+        self.project.props.text = get_data_path("")
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -45,7 +45,7 @@ class SceneNewWindow(Adw.Window):
             return
 
         if not valid_directory(self.data_path):
-            self._notify("A valid data directory must be provided")
+            self._notify("A valid project must be provided")
             return
 
         self.emit("done")
@@ -66,7 +66,7 @@ class SceneNewWindow(Adw.Window):
         except Exception as e:
             logger.error(e)
         else:
-            self.path.props.text = file.get_path()
+            self.project.props.text = file.get_path()
 
     @property
     def title(self) -> str:
@@ -74,7 +74,7 @@ class SceneNewWindow(Adw.Window):
 
     @property
     def data_path(self) -> None:
-        return self.path.props.text
+        return self.project.props.text
 
     @property
     def description(self) -> Description:
