@@ -24,6 +24,7 @@ class SoundsSettings(Gtk.Box):
         prepend: bool = False,
     ) -> None:
         row = SoundRow()
+        row.connect("cloned", self.__on_cloned)
         row.connect("removed", self.__on_removed)
 
         if state is not None:
@@ -38,12 +39,16 @@ class SoundsSettings(Gtk.Box):
 
     def _remove(self, row: SoundRow) -> None:
         row.shutdown()
+        row.disconnect_by_func(self.__on_cloned)
         row.disconnect_by_func(self.__on_removed)
 
         self.sounds_box.remove(row)
 
     def __on_removed(self, row: SoundRow) -> None:
         self._remove(row)
+
+    def __on_cloned(self, row: SoundRow) -> None:
+        self._add(row.state, row.description, prepend=True)
 
     @Gtk.Template.Callback("on_clicked")
     def __on_clicked(self, button: Gtk.Button) -> None:
