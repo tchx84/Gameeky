@@ -10,7 +10,7 @@ from ...client.sound.entity import EntityRegistry as EntitySoundRegistry
 from ...client.sound.scene import Scene as SceneSound
 
 from ...common.logger import logger
-from ...common.utils import get_data_path
+from ...common.utils import get_data_path, set_data_path
 from ...common.scanner import Scanner, Description
 from ...common.definitions import TILES_X, TILES_Y
 
@@ -27,8 +27,9 @@ class Session(GObject.GObject):
 
     def __init__(
         self,
-        scene: str,
-        clients: int,
+        data_path: str,
+        scene: Optional[str],
+        clients: Optional[int],
         address: str,
         session_port: int,
         messages_port: int,
@@ -39,6 +40,7 @@ class Session(GObject.GObject):
     ) -> None:
         super().__init__()
 
+        self._data_path = data_path
         self._scene = scene
         self._clients = clients
         self._address = address
@@ -91,6 +93,10 @@ class Session(GObject.GObject):
     def _setup_server(self) -> None:
         if self._host is False:
             return
+        if self._scene is None:
+            return
+        if self._clients is None:
+            return
 
         self._server = Server(
             scene=self._scene,
@@ -132,6 +138,8 @@ class Session(GObject.GObject):
             self.emit("started")
 
     def create(self) -> None:
+        set_data_path(self._data_path)
+
         try:
             self._setup_scanner()
         except Exception as e:
