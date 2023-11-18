@@ -85,6 +85,10 @@ class Application(Adw.Application):
         self._session_model.connect("failed", self.__on_session_failed)
         self._session_model.create()
 
+    def _shutdown_session(self) -> None:
+        if self._session_model is not None:
+            self._session_model.shutdown()
+
     def __on_session_initializing(self, model: SessionModel) -> None:
         self._window.switch_to_loading()
 
@@ -93,10 +97,6 @@ class Application(Adw.Application):
 
     def __on_session_failed(self, model: SessionModel) -> None:
         self._window.switch_to_failed()
-
-    def _shutdown_session(self) -> None:
-        if self._session_model is not None:
-            self._session_model.shutdown()
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
