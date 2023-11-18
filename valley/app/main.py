@@ -1,12 +1,16 @@
 #!/usr/bin/python
 
+import os
 import sys
 import gi
 
+__dir__ = os.path.dirname(os.path.abspath(__file__))
+
+gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gio, Adw
+from gi.repository import Gdk, Gtk, Gio, Adw
 
 from typing import Any, Optional
 
@@ -95,6 +99,14 @@ class Application(Adw.Application):
             self._session_model.shutdown()
 
     def do_activate(self) -> None:
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path(os.path.join(__dir__, "style.css"))
+        Gtk.StyleContext.add_provider_for_display(
+            Gdk.Display.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        )
+
         self._window = Window(application=self)
         self._window.present()
 

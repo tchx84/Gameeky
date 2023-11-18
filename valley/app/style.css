@@ -1,0 +1,4 @@
+.logo {
+    color: @accent_color;
+    margin-bottom: 10px;
+}
