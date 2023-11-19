@@ -1,6 +1,8 @@
 from typing import Optional
 
-from gi.repository import Gsk, Gtk, GLib, Graphene
+from gi.repository import Gtk, GLib
+
+from .entity import Entity
 
 from ...common.scanner import Description
 from ...common.definitions import TICK
@@ -8,7 +10,7 @@ from ...common.definitions import TICK
 from ...client.graphics.entity import Animation as AnimationGraphics, EntityRegistry
 
 
-class AnimationRenderer(Gtk.Widget):
+class AnimationRenderer(Entity):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._animation: Optional[AnimationGraphics] = None
@@ -22,15 +24,8 @@ class AnimationRenderer(Gtk.Widget):
         if self._animation is None:
             return
 
-        _, _, texture = self._animation.get_frame()
-
-        if texture is None:
-            return
-
-        rect = Graphene.Rect()
-        rect.init(0, 0, self.get_width(), self.get_height())
-
-        snapshot.append_scaled_texture(texture, Gsk.ScalingFilter.TRILINEAR, rect)
+        scale_x, scale_y, texture = self._animation.get_frame()
+        self.do_snapshot_entity(snapshot, scale_x, scale_y, texture)
 
     def update(self, description: Description) -> None:
         self._animation = EntityRegistry.create_animation_from_description(description)
