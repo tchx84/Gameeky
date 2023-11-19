@@ -17,6 +17,7 @@ from ..definitions import Layer
 
 from ...common.vector import Vector
 from ...common.scanner import Description
+from ...common.definitions import Format
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "scene_window.ui"))
@@ -188,7 +189,7 @@ class SceneWindow(Adw.ApplicationWindow):
 
     @property
     def suggested_name(self) -> str:
-        return f"{self._scene_model.name.lower()}.json"
+        return f"{self._scene_model.name.lower()}.{Format.SCENE}"
 
     @property
     def description(self) -> Description:

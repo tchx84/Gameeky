@@ -10,6 +10,7 @@ from .animations_settings import AnimationsSettings
 from .sounds_settings import SoundsSettings
 
 from ...common.scanner import Description
+from ...common.definitions import Format
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "entity_window.ui"))
@@ -37,7 +38,7 @@ class EntityWindow(Adw.ApplicationWindow):
         prefix = f"{self._global_settings.description.id:04d}"
         suffix = f"{self._entity_settings.description.name.lower()}"
 
-        return f"{prefix}_{suffix}.json"
+        return f"{prefix}_{suffix}.{Format.ENTITY}"
 
     @property
     def description(self) -> Description:

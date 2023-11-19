@@ -12,6 +12,7 @@ from ...common.utils import (
     valid_file,
 )
 from ...common.definitions import (
+    Format,
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
@@ -78,7 +79,7 @@ class SessionNewWindow(Adw.Window):
         folder = Gio.File.new_for_path(self.project_path)
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
+        json_filter.add_pattern(f"*.{Format.SCENE}")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder

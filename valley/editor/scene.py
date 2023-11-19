@@ -22,6 +22,7 @@ from .models.session import Session as SessionModel
 from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
 from ..common.scanner import Description
+from ..common.definitions import Format
 
 
 class Application(Adw.Application):
@@ -72,7 +73,7 @@ class Application(Adw.Application):
         folder = get_data_folder("scenes")
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
+        json_filter.add_pattern(f"*.{Format.SCENE}")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder

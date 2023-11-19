@@ -16,7 +16,14 @@ DEFAULT_MESSAGES_PORT = 7772
 DEFAULT_SCENE_PORT = 7773
 DEFAULT_STATS_PORT = 7774
 DEFAULT_TIMEOUT = 1
-DEFAULT_SCENE = "scenes/default.json"
+
+
+class Format(StrEnum):
+    ENTITY = "entity"
+    SCENE = "scene"
+
+
+DEFAULT_SCENE = f"scenes/default.{Format.SCENE}"
 
 
 class Action(IntEnum):

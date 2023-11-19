@@ -19,6 +19,7 @@ from .widgets.entity_open_window import EntityOpenWindow
 
 from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
+from ..common.definitions import Format
 
 
 class Application(Adw.Application):
@@ -49,7 +50,7 @@ class Application(Adw.Application):
         folder = get_data_folder("entities")
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
+        json_filter.add_pattern(f"*.{Format.ENTITY}")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder

@@ -9,6 +9,7 @@ from gi.repository import Gio, Gtk, Adw, GObject
 from ...common.logger import logger
 from ...common.utils import get_data_path, get_data_folder, valid_file, valid_directory
 from ...common.scanner import Description
+from ...common.definitions import Format
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "scene_open_window.ui"))
@@ -77,7 +78,7 @@ class SceneOpenWindow(Adw.Window):
         folder = get_data_folder(os.path.join(self.data_path, "scenes"))
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.json")
+        json_filter.add_pattern(f"*.{Format.SCENE}")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
