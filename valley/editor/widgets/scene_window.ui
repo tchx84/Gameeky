@@ -63,14 +63,14 @@
                           <object class="GtkDropDown" id="layer">
                             <property name="model">
                               <object class="GtkStringList">
-                                <property name="strings">layer 1
+                                <property name="strings">layer 0
+layer 1
 layer 2
 layer 3
 layer 4
 layer 5
 layer 6
 layer 7
-layer 8
 all layers</property>
                               </object>
                             </property>
