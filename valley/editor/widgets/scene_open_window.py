@@ -7,7 +7,7 @@ from typing import Optional
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, valid_file, valid_directory
+from ...common.utils import get_data_path, get_data_folder, valid_file, valid_directory
 from ...common.scanner import Description
 
 
@@ -54,7 +54,10 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_path_open_clicked")
     def __on_path_open_clicked(self, button: Gtk.Button) -> None:
+        folder = get_data_folder("")
+
         dialog = Gtk.FileDialog()
+        dialog.props.initial_folder = folder
         dialog.select_folder(callback=self.__on_path_open_finish)
 
     def __on_path_open_finish(
@@ -71,7 +74,7 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_scene_open_clicked")
     def __on_scene_open_clicked(self, button: Gtk.Button) -> None:
-        folder = Gio.File.new_for_path(self.data_path)
+        folder = get_data_folder(os.path.join(self.data_path, "scenes"))
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern("*.json")
@@ -100,7 +103,7 @@ class SceneOpenWindow(Adw.Window):
         return self.scene.props.text
 
     @property
-    def data_path(self) -> None:
+    def data_path(self) -> str:
         return self.project.props.text
 
     @property

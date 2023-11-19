@@ -1,6 +1,6 @@
 import os
 
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
 
 def get_time_milliseconds() -> int:
@@ -12,7 +12,11 @@ def set_data_path(path) -> None:
 
 
 def get_data_path(*paths) -> str:
-    return os.path.join(os.environ.get("DATA_DIR", ""), *paths)
+    return os.path.join(os.environ.get("DATA_DIR", os.path.expanduser("~")), *paths)
+
+
+def get_data_folder(*paths):
+    return Gio.File.new_for_path(os.path.join(get_data_path(""), *paths))
 
 
 def get_relative_path(path: str) -> str:
