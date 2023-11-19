@@ -180,6 +180,10 @@ class Entity(CommonEntity):
             return
 
         self.held.direction = self.direction
+
+        if self.obstacle is not None:
+            return
+
         self.held.position = self.position_at(self.direction)
 
     def tick(self) -> None:
