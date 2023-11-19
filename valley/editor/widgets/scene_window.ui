@@ -57,6 +57,30 @@
                   <object class="GtkActionBar">
                     <child>
                       <object class="GtkBox">
+                        <property name="halign">start</property>
+                        <property name="hexpand">True</property>
+                        <child>
+                          <object class="GtkDropDown" id="layer">
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <property name="strings">layer 1
+layer 2
+layer 3
+layer 4
+layer 5
+layer 6
+layer 7
+layer 8
+all layers</property>
+                              </object>
+                            </property>
+                            <property name="selected">8</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
                         <property name="halign">end</property>
                         <property name="hexpand">True</property>
                         <child>

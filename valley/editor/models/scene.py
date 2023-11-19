@@ -25,6 +25,7 @@ class Scene(CommonScene, GObject.GObject):
         self._partition: Optional[SpatialPartition] = None
         self._name = ""
         self.spawn = Vector()
+        self.layer: Optional[int] = None
 
     def _add(
         self,
@@ -39,10 +40,20 @@ class Scene(CommonScene, GObject.GObject):
 
         position = Vector(x, y)
         entities = cast(List[Entity], self._partition.find_by_position(position))
+        index = len(self.entities)
 
         # Don't stack the same entity on the same position
         if type_id in [e.type_id for e in entities]:
             return
+
+        # Force layer if specified
+        if self.layer is not None:
+            z = self.layer
+
+        # Force removal of entity at layer if specified
+        if self.layer is not None and (replaced := self.find(x, y)):
+            index = self.entities.index(replaced)
+            self._remove_entity(replaced)
 
         # If not specified then calculate depth value
         position.z = z if z is not None else len(entities)
@@ -59,8 +70,8 @@ class Scene(CommonScene, GObject.GObject):
 
         entity.connect("changed", self.refresh)
 
-        self.entities.append(entity)
-        self._partition.add(entity)
+        self.entities.insert(index, entity)
+        self._partition.add(entity, self.layer)
         self._index += 1
 
     def _remove_entity(self, entity: Entity) -> None:
@@ -107,6 +118,15 @@ class Scene(CommonScene, GObject.GObject):
         entities = self.find_all(x, y)
 
         if not entities:
+            return None
+
+        # If specified loo for an entity at this layer
+        for entity in entities:
+            if entity.position.z == self.layer:
+                return entity
+
+        # If specified it should have returned already so don't return the wrong one
+        if self.layer is not None:
             return None
 
         return entities[-1]

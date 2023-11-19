@@ -2,6 +2,8 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
+from typing import Optional
+
 from gi.repository import Gio, Gtk, Adw
 
 from .scene import Scene as SceneView
@@ -11,6 +13,7 @@ from .scene_entity_window import SceneEntityWindow
 
 from ..models.entity_row import EntityRow as EntityRowModel
 from ..models.scene import Scene as SceneModel
+from ..definitions import Layer
 
 from ...common.vector import Vector
 from ...common.scanner import Description
@@ -36,6 +39,7 @@ class SceneWindow(Adw.ApplicationWindow):
     model = Gtk.Template.Child()
     factory = Gtk.Template.Child()
     scene_page = Gtk.Template.Child()
+    layer = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -50,6 +54,7 @@ class SceneWindow(Adw.ApplicationWindow):
 
         # XXX Move the UI file somehow
         self.time.connect("notify::selected-item", self.__on_time_changed)
+        self.layer.connect("notify::selected-item", self.__on_layer_changed)
 
         # XXX Move to the UI file somehow
         self._model = Gio.ListStore()
@@ -79,6 +84,14 @@ class SceneWindow(Adw.ApplicationWindow):
     def __on_time_changed(self, *args) -> None:
         self._scene_model.time = float(self.time.props.selected)
         self._scene_model.refresh()
+
+    def __on_layer_changed(self, *args) -> None:
+        layer: Optional[int] = (
+            self.layer_value if self.layer_value < Layer.MAX else None
+        )
+
+        self._scene_model.layer = layer
+        self._scene_view.layer = layer
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
         area = int(self.area.props.selected)
@@ -146,6 +159,7 @@ class SceneWindow(Adw.ApplicationWindow):
         self.grid.props.active = True
         self.area.props.selected = 0
         self.time.props.selected = 0
+        self.layer.props.selected = Layer.MAX
 
         self._model.remove_all()
 
@@ -167,6 +181,10 @@ class SceneWindow(Adw.ApplicationWindow):
     def __on_entity_selected(self, *args) -> None:
         self.adder.props.active = True
         self.area.props.selected = 0
+
+    @property
+    def layer_value(self) -> int:
+        return int(self.layer.props.selected)
 
     @property
     def suggested_name(self) -> str:

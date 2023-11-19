@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple, List, Optional
 
 from ...common.utils import clamp
 from ...common.vector import Vector
@@ -14,7 +14,7 @@ class SpatialPartition:
         self.height = height
         self._entity_by_position: Dict[Tuple[int, int], List[Entity]] = {}
 
-    def add(self, entity: Entity) -> None:
+    def add(self, entity: Entity, z: Optional[int] = None) -> None:
         position = (
             math.floor(entity.position.x),
             math.floor(entity.position.y),
@@ -24,7 +24,9 @@ class SpatialPartition:
             self._entity_by_position[position] = []
 
         # Depth should only be modified here
-        entity.position.z = len(self._entity_by_position[position])
+        entity.position.z = (
+            z if z is not None else len(self._entity_by_position[position])
+        )
 
         self._entity_by_position[position].append(entity)
 

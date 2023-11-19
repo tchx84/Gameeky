@@ -13,6 +13,7 @@ class Scene(Gtk.Widget):
     def __init__(self) -> None:
         super().__init__()
         self._model: Optional[SceneModel] = None
+        self._layer: Optional[int] = None
         self.editing = False
 
     def __on_model_updated(self, model: SceneModel) -> None:
@@ -80,6 +81,8 @@ class Scene(Gtk.Widget):
         for entity in self._model.entities:
             if self.editing is False and entity.visible is False:
                 continue
+            if self.layer is not None and entity.position.z != self.layer:
+                continue
 
             scale_x, scale_y, texture = EntityRegistry.get_texture(entity)
 
@@ -128,6 +131,15 @@ class Scene(Gtk.Widget):
 
         self._do_snapshot_entities(snapshot)
         snapshot.pop()
+
+    @property
+    def layer(self) -> Optional[int]:
+        return self._layer
+
+    @layer.setter
+    def layer(self, layer: Optional[int]) -> None:
+        self._layer = layer
+        self.queue_draw()
 
     @property
     def model(self) -> Optional[SceneModel]:
