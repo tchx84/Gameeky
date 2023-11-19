@@ -1,6 +1,6 @@
 import math
 
-from typing import Dict, Optional
+from typing import List, Dict, Optional
 
 from gi.repository import GLib
 
@@ -19,6 +19,7 @@ class Scene:
     def __init__(self, name: str, width: int, height: int, spawn: Vector) -> None:
         self._time = 0.0
         self._index = 0
+        self._mutable_entities: List[Entity] = []
         self._entity_by_id: Dict[int, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
 
@@ -37,10 +38,7 @@ class Scene:
         added = []
         removed = []
 
-        for entity in self._entity_by_id.values():
-            if entity.mutable is False:
-                continue
-
+        for entity in self._mutable_entities:
             entity.tick()
 
             if entity.removed:
@@ -79,6 +77,9 @@ class Scene:
         self._entity_by_id[entity.id] = entity
         self._partition.add(entity)
 
+        if entity.mutable is True:
+            self._mutable_entities.append(entity)
+
         return entity.id
 
     def update(self, entity_id: int, action: Action, value: float) -> None:
@@ -92,6 +93,9 @@ class Scene:
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)
         Entity.unregister(entity)
+
+        if entity.mutable is True:
+            self._mutable_entities.remove(entity)
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
         entity = self._entity_by_id[entity_id]
