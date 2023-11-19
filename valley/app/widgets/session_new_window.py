@@ -7,7 +7,7 @@ from gi.repository import Gio, Gtk, Adw, GObject
 from ...common.logger import logger
 from ...common.utils import (
     get_data_path,
-    get_relative_path,
+    get_data_folder,
     valid_directory,
     valid_file,
 )
@@ -59,7 +59,10 @@ class SessionNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_project_clicked")
     def __on_project_clicked(self, button: Gtk.Button) -> None:
+        folder = get_data_folder("")
+
         dialog = Gtk.FileDialog()
+        dialog.props.initial_folder = folder
         dialog.select_folder(callback=self.on_project_finished)
 
     def on_project_finished(
@@ -76,7 +79,7 @@ class SessionNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_scene_clicked")
     def __on_scene_clicked(self, button: Gtk.Button) -> None:
-        folder = Gio.File.new_for_path(self.project_path)
+        folder = get_data_folder(os.path.join(self.project_path, "scenes"))
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.SCENE}")
@@ -96,8 +99,7 @@ class SessionNewWindow(Adw.Window):
         except Exception as e:
             logger.error(e)
         else:
-            path = file.get_path()
-            self.scene.props.text = get_relative_path(path)
+            self.scene.props.text = file.get_path()
 
     @Gtk.Template.Callback("on_cancel_clicked")
     def __on_cancel_clicked(self, button: Gtk.Button) -> None:
