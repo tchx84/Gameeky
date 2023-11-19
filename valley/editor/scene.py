@@ -20,7 +20,7 @@ from .widgets.scene_open_window import SceneOpenWindow
 from .models.session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import set_data_path
+from ..common.utils import set_data_path, get_data_folder
 from ..common.scanner import Description
 
 
@@ -69,10 +69,13 @@ class Application(Adw.Application):
         self._window.description = description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        folder = get_data_folder("scenes")
+
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern("*.json")
 
         dialog = Gtk.FileDialog()
+        dialog.props.initial_folder = folder
         dialog.props.initial_name = self._window.suggested_name
         dialog.props.default_filter = json_filter
         dialog.save(callback=self.__on_save_finished)
