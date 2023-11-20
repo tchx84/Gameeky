@@ -34,6 +34,9 @@ class Server(GObject.GObject):
         self._source.attach(context)
 
     def __received_data_cb(self, data: Optional[Any]) -> int:
+        if self.shut is True:
+            return GLib.SOURCE_REMOVE
+
         # XXX replace with .receive_from() when fixed
         try:
             size, address, messages, flags = self._socket.receive_message(
@@ -48,6 +51,9 @@ class Server(GObject.GObject):
         return GLib.SOURCE_CONTINUE
 
     def send(self, address: Gio.InetSocketAddress, data: bytes) -> None:
+        if self.shut is True:
+            return
+
         try:
             self._socket.send_to(address, data)
         except Exception as e:
@@ -55,3 +61,7 @@ class Server(GObject.GObject):
 
     def shutdown(self) -> None:
         self._socket.close()
+
+    @property
+    def shut(self) -> bool:
+        return self._socket.is_closed()

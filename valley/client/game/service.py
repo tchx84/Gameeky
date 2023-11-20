@@ -84,6 +84,9 @@ class Service(GObject.GObject):
 
     def unregister(self) -> None:
         self._session_manager.shutdown()
+        self._messages_manager.shutdown()
+        self._scene_manager.shutdown()
+        self._stats_manager.shutdown()
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(

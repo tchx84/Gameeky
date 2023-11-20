@@ -30,6 +30,9 @@ class Client(GObject.GObject):
         self._source.attach(context)
 
     def __received_data_cb(self, data: Optional[Any] = None) -> int:
+        if self.shut is True:
+            return GLib.SOURCE_REMOVE
+
         # XXX replace with .receive_from() when fixed
         try:
             size, address, messages, flags = self._socket.receive_message(
@@ -44,8 +47,18 @@ class Client(GObject.GObject):
         return GLib.SOURCE_CONTINUE
 
     def send(self, data: bytes) -> None:
+        if self.shut is True:
+            return
+
         # XXX raise specific errors to allow clients to gracefully handle it
         try:
             self._socket.send(data)
         except Exception as e:
             logger.error(e)
+
+    def shutdown(self) -> None:
+        self._socket.close()
+
+    @property
+    def shut(self) -> bool:
+        return self._socket.is_closed()
