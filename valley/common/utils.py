@@ -44,6 +44,22 @@ def valid_directory(path) -> bool:
     return True
 
 
+def wait(milliseconds: int) -> None:
+    called = False
+    context = GLib.MainContext.default()
+
+    def callback() -> int:
+        nonlocal called
+        called = True
+        return GLib.SOURCE_REMOVE
+
+    GLib.timeout_add(milliseconds, callback)
+
+    while not called:
+        while context.pending():
+            context.iteration(True)
+
+
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
 

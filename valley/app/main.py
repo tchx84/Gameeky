@@ -20,6 +20,7 @@ from .widgets.session_join_window import SessionJoinWindow
 from .models.session_host import SessionHost
 from .models.session_guest import SessionGuest
 
+from ..common.utils import wait
 from ..common.logger import logger
 from ..common.scanner import Description
 
@@ -55,6 +56,10 @@ class Application(Adw.Application):
     def _shutdown_guest(self) -> None:
         if self._session_guest is not None:
             self._session_guest.shutdown()
+
+            # XXX Switch to an asynchronous solution to prevent race condition
+            # between the guest shutting down and the host shutting down...
+            wait(milliseconds=250)
 
     def _shutdown_host(self) -> None:
         if self._session_host is not None:
