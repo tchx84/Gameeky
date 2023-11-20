@@ -99,8 +99,12 @@ class Scene:
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
         entity = self._entity_by_id[entity_id]
-        distance_x = math.floor(TILES_X / 2)
-        distance_y = math.floor(TILES_Y / 2)
+
+        x = TILES_X / 2
+        y = TILES_Y / 2
+
+        distance_x = math.ceil(x) if entity.horizontally else math.floor(x)
+        distance_y = math.ceil(y) if entity.vertically else math.floor(y)
 
         entities = self._partition.find_by_distance(
             target=entity,

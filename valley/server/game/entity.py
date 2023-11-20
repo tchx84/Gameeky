@@ -242,6 +242,14 @@ class Entity(CommonEntity):
         )
 
     @property
+    def horizontally(self) -> bool:
+        return self.direction in [Direction.EAST, Direction.WEST]
+
+    @property
+    def vertically(self) -> bool:
+        return self.direction in [Direction.SOUTH, Direction.NORTH]
+
+    @property
     def busy(self) -> bool:
         return self._handler.busy
 
