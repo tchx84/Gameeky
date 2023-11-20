@@ -2,6 +2,7 @@ from typing import Any, Optional
 
 from gi.repository import GLib, Gio, GObject
 
+from ...common.logger import logger
 from ...common.definitions import MAX_TCP_BYTES, DEFAULT_TIMEOUT
 
 
@@ -44,6 +45,8 @@ class Client(GObject.GObject):
     def shutdown(self) -> None:
         self._connection.close()
         self._shut = True
+
+        logger.info("Client.TCP.shut")
 
     @property
     def shut(self) -> bool:

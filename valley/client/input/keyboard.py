@@ -4,6 +4,7 @@ from gi.repository import Gdk, Gtk
 
 from ..game.service import Service
 
+from ...common.logger import logger
 from ...common.session import Session
 from ...common.definitions import Action, Direction
 
@@ -76,3 +77,5 @@ class Keyboard(Gtk.EventControllerKey):
 
         self._widget.remove_controller(self)
         self._service.disconnect_by_func(self.__on_service_registered)
+
+        logger.info("Client.Keyboard.shut")

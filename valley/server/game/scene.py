@@ -7,6 +7,7 @@ from gi.repository import GLib
 from .partition import SpatialPartition
 from .entity import Entity, EntityRegistry
 
+from ...common.logger import logger
 from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
@@ -135,6 +136,8 @@ class Scene:
             GLib.Source.remove(self._timeout_handler_id)
 
         self._timeout_handler_id = None
+
+        logger.info("Server.Scene.shut")
 
     @property
     def entities(self):

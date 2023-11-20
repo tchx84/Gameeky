@@ -152,3 +152,5 @@ class Service(GObject.GObject):
         self._messages_manager.shutdown()
         self._scene_manager.shutdown()
         self._stats_manager.shutdown()
+
+        logger.info("Server.Service.shut")

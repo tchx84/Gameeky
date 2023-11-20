@@ -2,6 +2,7 @@ from typing import Any, Optional
 
 from gi.repository import Gio, GLib, GObject
 
+from ...common.logger import logger
 from ...common.definitions import MAX_TCP_BYTES
 
 
@@ -81,6 +82,8 @@ class Server(GObject.GObject):
         self._service.stop()
         self._service.close()
         self._shut = True
+
+        logger.info("Server.TCP.shut")
 
     @property
     def shut(self) -> bool:

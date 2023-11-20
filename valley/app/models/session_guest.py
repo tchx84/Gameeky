@@ -69,7 +69,7 @@ class SessionGuest(GObject.GObject):
             service=self._service,
         )
 
-        self._keyboard = Keyboard(
+        self._input = Keyboard(
             widget=self._widget,
             service=self._service,
         )
@@ -123,6 +123,8 @@ class SessionGuest(GObject.GObject):
             self._input.shutdown()
         if self._sound is not None:
             self._sound.shutdown()
+
+        logger.info("Client.Session.shut")
 
     @property
     def scene(self) -> Optional[SceneModel]:

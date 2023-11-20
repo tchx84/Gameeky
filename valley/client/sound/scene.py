@@ -5,6 +5,8 @@ from .entity import EntityRegistry
 
 from ..game.scene import Scene as SceneModel
 
+from ...common.logger import logger
+
 
 class Scene:
     def __init__(self) -> None:
@@ -27,7 +29,7 @@ class Scene:
 
         return self._reset_play()
 
-    def shutdown(self) -> None:
+    def _reset(self) -> None:
         if self._handler_id is not None:
             self._reset_play()
         if self._model is not None:
@@ -36,13 +38,18 @@ class Scene:
         self._model = None
         self._handler_id = None
 
+    def shutdown(self) -> None:
+        self._reset()
+
+        logger.info("Client.Sound.shut")
+
     @property
     def model(self) -> Optional[SceneModel]:
         return self._model
 
     @model.setter
     def model(self, model: Optional[SceneModel]) -> None:
-        self.shutdown()
+        self._reset()
 
         self._model = model
 

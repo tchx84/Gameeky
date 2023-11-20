@@ -3,6 +3,7 @@ from gi.repository import Gio, GLib, GObject
 from ..network.tcp import Client as TCPClient
 from ..network.udp import Client as UDPClient
 
+from ...common.logger import logger
 from ...common.definitions import Action, EntityType
 from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
@@ -87,6 +88,8 @@ class Service(GObject.GObject):
         self._messages_manager.shutdown()
         self._scene_manager.shutdown()
         self._stats_manager.shutdown()
+
+        logger.info("Client.Service.shut")
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(

@@ -3,6 +3,7 @@ from gi.repository import GObject, GLib
 
 from .service import Service
 
+from ...common.logger import logger
 from ...common.session import Session
 from ...common.stats import Stats as CommonStats
 
@@ -46,3 +47,5 @@ class Stats(CommonStats, GObject.GObject):
         self.shutdown_timeout()
         self._service.disconnect_by_func(self.__on_service_updated)
         self._service.disconnect_by_func(self.__on_service_registered)
+
+        logger.info("Client.Stats.shut")

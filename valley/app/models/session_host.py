@@ -83,3 +83,5 @@ class SessionHost(GObject.GObject):
     def shutdown(self) -> None:
         if self._service is not None:
             self._service.shutdown()
+
+        logger.info("Server.Session.shut")

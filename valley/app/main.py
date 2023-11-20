@@ -20,6 +20,7 @@ from .widgets.session_join_window import SessionJoinWindow
 from .models.session_host import SessionHost
 from .models.session_guest import SessionGuest
 
+from ..common.logger import logger
 from ..common.scanner import Description
 
 
@@ -130,6 +131,8 @@ class Application(Adw.Application):
         self._shutdown_guest()
         self._shutdown_host()
         Adw.Application.do_shutdown(self)
+
+        logger.info("Client.Application.shut")
 
 
 def main() -> None:

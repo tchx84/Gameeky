@@ -5,6 +5,7 @@ from gi.repository import GObject, GLib
 
 from .service import Service
 
+from ...common.logger import logger
 from ...common.definitions import TICK
 from ...common.session import Session
 from ...common.scene import Scene as CommonScene
@@ -60,3 +61,5 @@ class Scene(CommonScene, GObject.GObject):
         self.shutdown_timeout()
         self._service.disconnect_by_func(self.__on_service_updated)
         self._service.disconnect_by_func(self.__on_service_registered)
+
+        logger.info("Client.Scene.shut")
