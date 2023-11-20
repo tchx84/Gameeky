@@ -21,10 +21,13 @@ class Client(GObject.GObject):
         return self._connection.get_remote_address().to_string()
 
     def send(self, data: bytes) -> None:
+        if self._server.shut is True:
+            return
+
         self._output_stream.write(data)
 
     def run(self) -> None:
-        while self._connection.is_connected():
+        while self._server.shut is False and self._connection.is_connected():
             try:
                 raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
             except:
@@ -60,6 +63,8 @@ class Server(GObject.GObject):
         self._service.connect("run", self.__on_session_started_cb)
         self._service.start()
 
+        self._shut = False
+
     def __on_session_started_cb(
         self,
         service: Gio.ThreadedSocketService,
@@ -75,3 +80,8 @@ class Server(GObject.GObject):
     def shutdown(self) -> None:
         self._service.stop()
         self._service.close()
+        self._shut = True
+
+    @property
+    def shut(self) -> bool:
+        return self._shut

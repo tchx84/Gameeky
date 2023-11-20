@@ -26,12 +26,25 @@ class Client(GObject.GObject):
         self._input_source.set_callback(self.__on_data_received_db)
         self._input_source.attach(context)
 
+        self._shut = False
+
     def __on_data_received_db(self, data: Optional[Any] = None) -> None:
+        if self.shut is True:
+            return
+
         raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
         self.emit("received", raw.get_data())
 
     def send(self, data: bytes) -> None:
+        if self.shut is True:
+            return
+
         self._output_stream.write(data)
 
     def shutdown(self) -> None:
         self._connection.close()
+        self._shut = True
+
+    @property
+    def shut(self) -> bool:
+        return self._shut
