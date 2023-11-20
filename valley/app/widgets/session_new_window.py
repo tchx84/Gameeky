@@ -4,6 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from gi.repository import Gio, Gtk, Adw, GObject
 
+from ...common.scanner import Description
 from ...common.logger import logger
 from ...common.utils import (
     get_data_path,
@@ -13,6 +14,7 @@ from ...common.utils import (
 )
 from ...common.definitions import (
     Format,
+    DEFAULT_ADDRESS,
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
@@ -127,21 +129,14 @@ class SessionNewWindow(Adw.Window):
         return os.path.join(self.project_path, self.scene.props.text)
 
     @property
-    def players_value(self) -> int:
-        return int(self.players.props.value)
-
-    @property
-    def session_port_value(self) -> int:
-        return int(self.session_port.props.value)
-
-    @property
-    def messages_port_value(self) -> int:
-        return int(self.messages_port.props.value)
-
-    @property
-    def scene_port_value(self) -> int:
-        return int(self.scene_port.props.value)
-
-    @property
-    def stats_port_value(self) -> int:
-        return int(self.stats_port.props.value)
+    def description(self) -> Description:
+        return Description(
+            address=DEFAULT_ADDRESS,
+            data_path=self.project_path,
+            scene_path=self.scene_path,
+            clients=int(self.players.props.value),
+            session_port=int(self.session_port.props.value),
+            messages_port=int(self.messages_port.props.value),
+            scene_port=int(self.scene_port.props.value),
+            stats_port=int(self.stats_port.props.value),
+        )

@@ -17,9 +17,10 @@ from typing import Any, Optional
 from .widgets.window import Window
 from .widgets.session_new_window import SessionNewWindow
 from .widgets.session_join_window import SessionJoinWindow
-from .models.session import Session as SessionModel
+from .models.session_host import SessionHost
+from .models.session_guest import SessionGuest
 
-from ..common.definitions import DEFAULT_ADDRESS
+from ..common.scanner import Description
 
 
 class Application(Adw.Application):
@@ -28,7 +29,8 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.Client",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
-        self._session_model: Optional[SessionModel] = None
+        self._session_host: Optional[SessionHost] = None
+        self._session_guest: Optional[SessionGuest] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionNewWindow(transient_for=self._window)
@@ -36,22 +38,9 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_new_done(self, dialog: SessionNewWindow) -> None:
-        self._shutdown_session()
-
-        self._session_model = SessionModel(
-            data_path=dialog.project_path,
-            scene=dialog.scene_path,
-            clients=dialog.players_value,
-            address=DEFAULT_ADDRESS,
-            session_port=dialog.session_port_value,
-            messages_port=dialog.messages_port_value,
-            scene_port=dialog.scene_port_value,
-            stats_port=dialog.stats_port_value,
-            host=True,
-            window=self._window,
-        )
-
-        self._start_session()
+        self._shutdown_guest()
+        self._shutdown_host()
+        self._start_host(dialog.description)
 
     def __on_join(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionJoinWindow(transient_for=self._window)
@@ -59,43 +48,59 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_join_done(self, dialog: SessionNewWindow) -> None:
-        self._shutdown_session()
+        self._shutdown_guest()
+        self._start_guest(dialog.description)
 
-        self._session_model = SessionModel(
-            data_path=dialog.project_path,
-            scene=None,
-            clients=None,
-            address=dialog.address_value,
-            session_port=dialog.session_port_value,
-            messages_port=dialog.messages_port_value,
-            scene_port=dialog.scene_port_value,
-            stats_port=dialog.stats_port_value,
-            host=False,
-            window=self._window,
+    def _shutdown_guest(self) -> None:
+        if self._session_guest is not None:
+            self._session_guest.shutdown()
+
+    def _shutdown_host(self) -> None:
+        if self._session_host is not None:
+            self._session_host.shutdown()
+
+    def _start_host(self, description: Description) -> None:
+        self._session_host = SessionHost(
+            data_path=description.data_path,
+            scene=description.scene_path,
+            clients=description.clients,
+            session_port=description.session_port,
+            messages_port=description.messages_port,
+            scene_port=description.scene_port,
+            stats_port=description.stats_port,
         )
 
-        self._start_session()
+        self._session_host.connect("started", self.__on_host_started, description)
+        self._session_host.connect("initializing", self.__on_session_initializing)
+        self._session_host.connect("failed", self.__on_session_failed)
+        self._session_host.create()
 
-    def _start_session(self) -> None:
-        if self._session_model is None:
-            return
+    def __on_host_started(self, session: SessionHost, description: Description) -> None:
+        self._start_guest(description)
 
-        self._session_model.connect("initializing", self.__on_session_initializing)
-        self._session_model.connect("started", self.__on_session_started)
-        self._session_model.connect("failed", self.__on_session_failed)
-        self._session_model.create()
+    def _start_guest(self, description: Description) -> None:
+        self._session_guest = SessionGuest(
+            data_path=description.data_path,
+            address=description.address,
+            session_port=description.session_port,
+            messages_port=description.messages_port,
+            scene_port=description.scene_port,
+            stats_port=description.stats_port,
+            widget=self._window,
+        )
 
-    def _shutdown_session(self) -> None:
-        if self._session_model is not None:
-            self._session_model.shutdown()
+        self._session_guest.connect("started", self.__on_guest_started)
+        self._session_guest.connect("initializing", self.__on_session_initializing)
+        self._session_guest.connect("failed", self.__on_session_failed)
+        self._session_guest.create()
 
-    def __on_session_initializing(self, model: SessionModel) -> None:
+    def __on_guest_started(self, session: SessionGuest) -> None:
+        self._window.switch_to_game(session.scene, session.stats)
+
+    def __on_session_initializing(self, *args) -> None:
         self._window.switch_to_loading()
 
-    def __on_session_started(self, model: SessionModel) -> None:
-        self._window.switch_to_game(model.scene, model.stats)
-
-    def __on_session_failed(self, model: SessionModel) -> None:
+    def __on_session_failed(self, *args) -> None:
         self._window.switch_to_failed()
 
     def do_activate(self) -> None:
@@ -122,7 +127,8 @@ class Application(Adw.Application):
         self.add_action(join_action)
 
     def do_shutdown(self) -> None:
-        self._shutdown_session()
+        self._shutdown_guest()
+        self._shutdown_host()
         Adw.Application.do_shutdown(self)
 
 

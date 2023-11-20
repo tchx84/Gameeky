@@ -4,6 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from gi.repository import Gio, Gtk, Adw, GObject
 
+from ...common.scanner import Description
 from ...common.logger import logger
 from ...common.utils import (
     get_data_path,
@@ -78,7 +79,7 @@ class SessionJoinWindow(Adw.Window):
             self._notify("A valid project must be provided")
             return
 
-        if not self.address_value:
+        if not self.network_address:
             self._notify("A valid address must be provided")
             return
 
@@ -90,21 +91,16 @@ class SessionJoinWindow(Adw.Window):
         return self.project.props.text
 
     @property
-    def address_value(self) -> str:
+    def network_address(self) -> str:
         return self.address.props.text
 
     @property
-    def session_port_value(self) -> int:
-        return int(self.session_port.props.value)
-
-    @property
-    def messages_port_value(self) -> int:
-        return int(self.messages_port.props.value)
-
-    @property
-    def scene_port_value(self) -> int:
-        return int(self.scene_port.props.value)
-
-    @property
-    def stats_port_value(self) -> int:
-        return int(self.stats_port.props.value)
+    def description(self) -> Description:
+        return Description(
+            data_path=self.project_path,
+            address=self.network_address,
+            session_port=int(self.session_port.props.value),
+            messages_port=int(self.messages_port.props.value),
+            scene_port=int(self.scene_port.props.value),
+            stats_port=int(self.stats_port.props.value),
+        )
