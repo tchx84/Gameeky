@@ -113,8 +113,6 @@ class SessionGuest(GObject.GObject):
             self.emit("initializing")
 
     def shutdown(self) -> None:
-        if self._service is not None:
-            self._service.unregister()
         if self._scene_model is not None:
             self._scene_model.shutdown()
         if self._stats_model is not None:
@@ -123,6 +121,8 @@ class SessionGuest(GObject.GObject):
             self._input.shutdown()
         if self._sound is not None:
             self._sound.shutdown()
+        if self._service is not None:
+            self._service.unregister()
 
         logger.info("Client.Session.shut")
 
