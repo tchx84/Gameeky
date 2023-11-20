@@ -28,7 +28,7 @@ class Scene:
         self.height = height
         self.spawn = spawn
 
-        GLib.timeout_add(TICK, self.__on_scene_ticked)
+        self._timeout_handler_id = GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_scene_ticked(self) -> int:
         self.tick()
@@ -129,6 +129,12 @@ class Scene:
             stamina=entity.normalized_stamina,
             held=held,
         )
+
+    def shutdown(self) -> None:
+        if self._timeout_handler_id is not None:
+            GLib.Source.remove(self._timeout_handler_id)
+
+        self._timeout_handler_id = None
 
     @property
     def entities(self):

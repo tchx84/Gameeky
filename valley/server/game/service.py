@@ -147,6 +147,7 @@ class Service(GObject.GObject):
         self._stats_manager.send(address, stats.serialize())
 
     def shutdown(self) -> None:
+        self.scene.shutdown()
         self._session_manager.shutdown()
         self._messages_manager.shutdown()
         self._scene_manager.shutdown()
