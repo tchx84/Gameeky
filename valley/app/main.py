@@ -51,6 +51,7 @@ class Application(Adw.Application):
 
     def __on_join_done(self, dialog: SessionNewWindow) -> None:
         self._shutdown_guest()
+        self._shutdown_host()
         self._start_guest(dialog.description)
 
     def _shutdown_guest(self) -> None:
