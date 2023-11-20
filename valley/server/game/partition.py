@@ -68,19 +68,20 @@ class SpatialPartition:
         return self._entity_by_position.get((x, y), [])
 
     def find_by_direction(self, entity: Entity) -> List[Entity]:
-        x = math.floor(entity.position.x)
-        y = math.floor(entity.position.y)
+        x = entity.position.x
+        y = entity.position.y
 
         # XXX Everything should probably account for direction
+        x = math.ceil(x) if entity.direction == Direction.EAST else math.floor(x)
+        y = math.ceil(y) if entity.direction == Direction.SOUTH else math.floor(y)
+
         if entity.direction == Direction.EAST:
-            x = math.ceil(entity.position.x)
             x += 1
         elif entity.direction == Direction.NORTH:
             y -= 1
         elif entity.direction == Direction.WEST:
             x -= 1
         elif entity.direction == Direction.SOUTH:
-            y = math.ceil(entity.position.y)
             y += 1
 
         return self._entity_by_position.get((x, y), [])
