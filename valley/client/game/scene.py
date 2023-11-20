@@ -22,10 +22,10 @@ class Scene(CommonScene, GObject.GObject):
         self._timeout_handler_id: Optional[int] = None
 
         self._service = service
+        self._service.connect("scene-updated", self.__on_service_updated)
         self._service.connect("registered", self.__on_service_registered)
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self._service.connect("scene-updated", self.__on_service_updated)
         self._timeout_handler_id = GLib.timeout_add(TICK, self.__on_scene_ticked)
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:

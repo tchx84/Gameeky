@@ -18,10 +18,10 @@ class Stats(CommonStats, GObject.GObject):
         self._timeout_handler_id: Optional[int] = None
 
         self._service = service
+        self._service.connect("stats-updated", self.__on_service_updated)
         self._service.connect("registered", self.__on_service_registered)
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self._service.connect("stats-updated", self.__on_service_updated)
         self._timeout_handler_id = GLib.timeout_add_seconds(1, self.__on_stats_ticked)
 
     def __on_stats_ticked(self) -> int:
