@@ -21,7 +21,7 @@ class Vector(Serializeable):
         return (self.x, self.y, self.z)
 
     def copy(self) -> "Vector":
-        return self.__class__(*self.to_values())
+        return self.__class__(self.x, self.y, self.z)
 
     @classmethod
     def from_values(cls, values: Signature) -> "Vector":
