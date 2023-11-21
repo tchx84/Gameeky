@@ -1,5 +1,6 @@
 import os
 
+from typing import Callable, Optional
 from gi.repository import GLib, Gio
 
 
@@ -42,6 +43,42 @@ def valid_directory(path) -> bool:
         return False
 
     return True
+
+
+def find_context() -> GLib.MainContext:
+    if (context := GLib.MainContext.get_thread_default()) is None:
+        context = GLib.MainContext.default()
+
+    return context
+
+
+def add_timeout_source(interval: float, callback: Callable) -> int:
+    context = find_context()
+
+    source = GLib.timeout_source_new(interval)
+    source.set_priority(GLib.PRIORITY_DEFAULT)
+    source.set_callback(callback)
+    source.attach(context)
+
+    return source.get_id()
+
+
+def add_idle_source(
+    callback: Callable,
+    context: Optional[GLib.MainContext] = None,
+) -> int:
+    context = find_context() if context is None else context
+
+    source = GLib.idle_source_new()
+    source.set_callback(callback)
+    source.attach(context)
+
+    return source.get_id()
+
+
+def remove_source_id(source_id: int) -> None:
+    context = find_context()
+    context.find_source_by_id(source_id).destroy()
 
 
 def wait(milliseconds: int) -> None:
