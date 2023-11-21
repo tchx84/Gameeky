@@ -41,11 +41,8 @@ class Scene(CommonScene, GObject.GObject):
         )
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
-        self.time = scene.time
-        self.anchor = scene.anchor
-
         # Take z-depth into account
-        self.entities = sorted(
+        scene.entities = sorted(
             scene.entities,
             key=lambda e: (
                 math.ceil(e.position.y),
@@ -53,6 +50,13 @@ class Scene(CommonScene, GObject.GObject):
                 math.ceil(e.position.x),
             ),
         )
+
+        GLib.idle_add(self._update_on_main_thread, scene)
+
+    def _update_on_main_thread(self, scene: CommonScene) -> None:
+        self.time = scene.time
+        self.anchor = scene.anchor
+        self.entities = scene.entities
 
         self.emit("updated")
 

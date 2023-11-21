@@ -41,6 +41,9 @@ class Stats(CommonStats, GObject.GObject):
         return GLib.SOURCE_CONTINUE
 
     def __on_service_updated(self, service: Service, stats: CommonStats) -> None:
+        GLib.idle_add(self._update_on_main_thread, stats)
+
+    def _update_on_main_thread(self, stats: CommonStats) -> None:
         self.durability = stats.durability
         self.stamina = stats.stamina
         self.held = stats.held
