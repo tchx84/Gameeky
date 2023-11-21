@@ -80,7 +80,7 @@ class Application(Adw.Application):
         self._session_host.connect("started", self.__on_host_started, description)
         self._session_host.connect("initializing", self.__on_session_initializing)
         self._session_host.connect("failed", self.__on_session_failed)
-        self._session_host.create()
+        self._session_host.start()
 
     def __on_host_started(self, session: SessionHost, description: Description) -> None:
         self._start_guest(description)

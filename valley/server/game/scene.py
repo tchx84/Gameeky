@@ -13,7 +13,7 @@ from ...common.scanner import Description
 from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
 from ...common.stats import Stats as CommonStats
-from ...common.utils import get_time_milliseconds
+from ...common.utils import get_time_milliseconds, add_timeout_source, remove_source_id
 
 
 class Scene:
@@ -29,9 +29,12 @@ class Scene:
         self.height = height
         self.spawn = spawn
 
-        self._timeout_handler_id = GLib.timeout_add(TICK, self.__on_scene_ticked)
+        self._timeout_source_id: Optional[int] = add_timeout_source(
+            TICK,
+            self.__on_scene_ticked,
+        )
 
-    def __on_scene_ticked(self) -> int:
+    def __on_scene_ticked(self, *args) -> int:
         self.tick()
         return GLib.SOURCE_CONTINUE
 
@@ -132,10 +135,10 @@ class Scene:
         )
 
     def shutdown(self) -> None:
-        if self._timeout_handler_id is not None:
-            GLib.Source.remove(self._timeout_handler_id)
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
 
-        self._timeout_handler_id = None
+        self._timeout_source_id = None
 
         logger.info("Server.Scene.shut")
 

@@ -1,15 +1,16 @@
 from typing import Optional
-from gi.repository import GObject, GLib
+from gi.repository import GObject
 
 from ...common.logger import logger
 from ...common.utils import get_data_path, set_data_path
 from ...common.scanner import Scanner, Description
+from ...common.threaded import Threaded
 
 from ...server.game.service import Service
 from ...server.game.entity import EntityRegistry as EntityGameRegistry
 
 
-class SessionHost(GObject.GObject):
+class SessionHost(Threaded):
     __gsignals__ = {
         "initializing": (GObject.SignalFlags.RUN_LAST, None, ()),
         "started": (GObject.SignalFlags.RUN_LAST, None, ()),
@@ -46,7 +47,7 @@ class SessionHost(GObject.GObject):
             messages_port=self._messages_port,
             scene_port=self._scene_port,
             stats_port=self._stats_port,
-            context=GLib.MainContext.default(),
+            context=self.context,
         )
 
     def _scan(self) -> None:
@@ -69,7 +70,7 @@ class SessionHost(GObject.GObject):
         else:
             self.emit("started")
 
-    def create(self) -> None:
+    def do_run(self) -> None:
         set_data_path(self._data_path)
 
         try:
@@ -80,7 +81,7 @@ class SessionHost(GObject.GObject):
         else:
             self.emit("initializing")
 
-    def shutdown(self) -> None:
+    def do_shutdown(self, *args) -> None:
         if self._service is not None:
             self._service.shutdown()
 
