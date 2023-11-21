@@ -11,7 +11,7 @@ from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
-from ...common.utils import get_data_path
+from ...common.utils import get_data_path, add_timeout_source, remove_source_id
 
 
 class Sound(GObject.GObject):
@@ -29,7 +29,7 @@ class Sound(GObject.GObject):
 
         self._delay = delay
         self._timeout = timeout
-        self._timeout_handler_id: Optional[int] = None
+        self._timeout_source_id: Optional[int] = None
         self._timestamp = get_time_milliseconds()
         self._playing = False
 
@@ -49,23 +49,23 @@ class Sound(GObject.GObject):
         self._playing = False
         self.emit("finished")
 
-    def __on_timeout(self) -> int:
+    def __on_timeout(self, *args) -> int:
         self.stop()
-        self._timeout_handler_id = None
+        self._timeout_source_id = None
         return GLib.SOURCE_REMOVE
 
     def _stop_timeout(self) -> None:
-        if self._timeout_handler_id is not None:
-            GLib.Source.remove(self._timeout_handler_id)
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
 
-        self._timeout_handler_id = None
+        self._timeout_source_id = None
 
     def _keep_alive(self) -> None:
         if self._timeout == 0:
             return
 
         self._stop_timeout()
-        self._timeout_handler_id = GLib.timeout_add(
+        self._timeout_source_id = add_timeout_source(
             self._timeout * 1000,
             self.__on_timeout,
         )

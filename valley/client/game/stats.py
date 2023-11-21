@@ -6,6 +6,7 @@ from .service import Service
 from ...common.logger import logger
 from ...common.session import Session
 from ...common.stats import Stats as CommonStats
+from ...common.utils import add_timeout_source, remove_source_id
 
 
 class Stats(CommonStats, GObject.GObject):
@@ -16,16 +17,26 @@ class Stats(CommonStats, GObject.GObject):
     def __init__(self, service: Service) -> None:
         CommonStats.__init__(self)
         GObject.GObject.__init__(self)
-        self._timeout_handler_id: Optional[int] = None
-
         self._service = service
-        self._service.connect("stats-updated", self.__on_service_updated)
-        self._service.connect("registered", self.__on_service_registered)
+
+        self._timeout_source_id: Optional[int] = None
+        self._updated_source_id: Optional[int] = None
+        self._registered_source_id: Optional[int] = self._service.connect(
+            "registered",
+            self.__on_service_registered,
+        )
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self._timeout_handler_id = GLib.timeout_add_seconds(1, self.__on_stats_ticked)
+        self._updated_source_id = self._service.connect(
+            "stats-updated",
+            self.__on_service_updated,
+        )
+        self._timeout_source_id = add_timeout_source(
+            1000,
+            self.__on_stats_ticked,
+        )
 
-    def __on_stats_ticked(self) -> int:
+    def __on_stats_ticked(self, *args) -> int:
         self._service.request_stats()
         return GLib.SOURCE_CONTINUE
 
@@ -36,16 +47,18 @@ class Stats(CommonStats, GObject.GObject):
 
         self.emit("updated")
 
-    def shutdown_timeout(self) -> None:
-        if self._timeout_handler_id is None:
-            return
-
-        GLib.Source.remove(self._timeout_handler_id)
-        self._timeout_handler_id = None
-
     def shutdown(self) -> None:
-        self.shutdown_timeout()
-        self._service.disconnect_by_func(self.__on_service_updated)
-        self._service.disconnect_by_func(self.__on_service_registered)
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
+
+        if self._updated_source_id is not None:
+            self._service.disconnect(self._updated_source_id)
+
+        if self._registered_source_id is not None:
+            self._service.disconnect(self._registered_source_id)
+
+        self._timeout_source_id = None
+        self._updated_source_id = None
+        self._registered_source_id = None
 
         logger.info("Client.Stats.shut")

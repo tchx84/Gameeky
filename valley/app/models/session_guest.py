@@ -1,5 +1,5 @@
 from typing import Optional
-from gi.repository import GObject, GLib, Gtk
+from gi.repository import GObject, Gtk
 
 from ...client.game.service import Service
 from ...client.game.scene import Scene as SceneModel
@@ -13,9 +13,10 @@ from ...common.logger import logger
 from ...common.utils import get_data_path, set_data_path
 from ...common.scanner import Scanner, Description
 from ...common.definitions import TILES_X, TILES_Y
+from ...common.threaded import Threaded
 
 
-class SessionGuest(GObject.GObject):
+class SessionGuest(Threaded):
     __gsignals__ = {
         "initializing": (GObject.SignalFlags.RUN_LAST, None, ()),
         "started": (GObject.SignalFlags.RUN_LAST, None, ()),
@@ -56,7 +57,7 @@ class SessionGuest(GObject.GObject):
             messages_port=self._messages_port,
             scene_port=self._scene_port,
             stats_port=self._stats_port,
-            context=GLib.MainContext.default(),
+            context=self._context,
         )
 
         self._scene_model = SceneModel(
@@ -101,7 +102,7 @@ class SessionGuest(GObject.GObject):
         else:
             self.emit("started")
 
-    def create(self) -> None:
+    def do_run(self) -> None:
         set_data_path(self._data_path)
 
         try:
@@ -112,7 +113,7 @@ class SessionGuest(GObject.GObject):
         else:
             self.emit("initializing")
 
-    def shutdown(self) -> None:
+    def do_shutdown(self, *args) -> None:
         if self._scene_model is not None:
             self._scene_model.shutdown()
         if self._stats_model is not None:

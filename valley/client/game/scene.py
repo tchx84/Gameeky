@@ -9,6 +9,7 @@ from ...common.logger import logger
 from ...common.definitions import TICK
 from ...common.session import Session
 from ...common.scene import Scene as CommonScene
+from ...common.utils import add_timeout_source, remove_source_id
 
 
 class Scene(CommonScene, GObject.GObject):
@@ -20,14 +21,24 @@ class Scene(CommonScene, GObject.GObject):
     def __init__(self, width: int, height: int, service: Service) -> None:
         CommonScene.__init__(self, width, height)
         GObject.GObject.__init__(self)
-        self._timeout_handler_id: Optional[int] = None
-
         self._service = service
-        self._service.connect("scene-updated", self.__on_service_updated)
-        self._service.connect("registered", self.__on_service_registered)
+
+        self._timeout_source_id: Optional[int] = None
+        self._updated_source_id: Optional[int] = None
+        self._registered_source_id: Optional[int] = self._service.connect(
+            "registered",
+            self.__on_service_registered,
+        )
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self._timeout_handler_id = GLib.timeout_add(TICK, self.__on_scene_ticked)
+        self._updated_source_id = self._service.connect(
+            "scene-updated",
+            self.__on_service_updated,
+        )
+        self._timeout_source_id = add_timeout_source(
+            TICK,
+            self.__on_scene_ticked,
+        )
 
     def __on_service_updated(self, service: Service, scene: CommonScene) -> None:
         self.time = scene.time
@@ -45,21 +56,23 @@ class Scene(CommonScene, GObject.GObject):
 
         self.emit("updated")
 
-    def __on_scene_ticked(self) -> int:
+    def __on_scene_ticked(self, *args) -> int:
         self._service.request_scene()
         self.emit("ticked")
         return GLib.SOURCE_CONTINUE
 
-    def shutdown_timeout(self) -> None:
-        if self._timeout_handler_id is None:
-            return
-
-        GLib.Source.remove(self._timeout_handler_id)
-        self._timeout_handler_id = None
-
     def shutdown(self) -> None:
-        self.shutdown_timeout()
-        self._service.disconnect_by_func(self.__on_service_updated)
-        self._service.disconnect_by_func(self.__on_service_registered)
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
+
+        if self._updated_source_id is not None:
+            self._service.disconnect(self._updated_source_id)
+
+        if self._registered_source_id is not None:
+            self._service.disconnect(self._registered_source_id)
+
+        self._timeout_source_id = None
+        self._updated_source_id = None
+        self._registered_source_id = None
 
         logger.info("Client.Scene.shut")

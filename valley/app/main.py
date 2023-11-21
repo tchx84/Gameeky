@@ -99,7 +99,7 @@ class Application(Adw.Application):
         self._session_guest.connect("started", self.__on_guest_started)
         self._session_guest.connect("initializing", self.__on_session_initializing)
         self._session_guest.connect("failed", self.__on_session_failed)
-        self._session_guest.create()
+        self._session_guest.start()
 
     def __on_guest_started(self, session: SessionGuest) -> None:
         self._window.switch_to_game(session.scene, session.stats)

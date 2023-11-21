@@ -6,37 +6,44 @@ from .entity import EntityRegistry
 from ..game.scene import Scene as SceneModel
 
 from ...common.logger import logger
+from ...common.utils import add_idle_source, remove_source_id
 
 
 class Scene:
     def __init__(self) -> None:
-        self._handler_id: Optional[int] = None
+        self._idle_source_id: Optional[int] = None
+        self._updated_source_id: Optional[int] = None
         self._model: Optional[SceneModel] = None
 
     def __on_model_updated(self, model: SceneModel) -> None:
-        if self._handler_id is None:
-            self._handler_id = GLib.idle_add(self._play)
+        if self._idle_source_id is None:
+            self._idle_source_id = add_idle_source(self._play)
 
-    def _reset_play(self) -> int:
-        GLib.Source.remove(self._handler_id)
-        self._handler_id = None
-        return GLib.SOURCE_REMOVE
-
-    def _play(self) -> int:
+    def _play(self, *args) -> int:
         if self._model is not None:
             for entity in self._model.entities:
                 EntityRegistry.play(entity)
 
-        return self._reset_play()
+        if self._idle_source_id is not None:
+            remove_source_id(self._idle_source_id)
+
+        self._idle_source_id = None
+
+        return GLib.SOURCE_REMOVE
 
     def _reset(self) -> None:
-        if self._handler_id is not None:
-            self._reset_play()
-        if self._model is not None:
-            self._model.disconnect_by_func(self.__on_model_updated)
+        if self._model is None:
+            return
+
+        if self._idle_source_id is not None:
+            remove_source_id(self._idle_source_id)
+
+        if self._updated_source_id is not None:
+            self._model.disconnect(self._updated_source_id)
 
         self._model = None
-        self._handler_id = None
+        self._idle_source_id = None
+        self._updated_source_id = None
 
     def shutdown(self) -> None:
         self._reset()
@@ -53,5 +60,10 @@ class Scene:
 
         self._model = model
 
-        if self._model is not None:
-            self._model.connect("ticked", self.__on_model_updated)
+        if self._model is None:
+            return
+
+        self._updated_source_id = self._model.connect(
+            "ticked",
+            self.__on_model_updated,
+        )
