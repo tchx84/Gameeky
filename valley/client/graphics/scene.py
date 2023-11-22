@@ -1,3 +1,7 @@
+import os
+
+__dir__ = os.path.dirname(os.path.abspath(__file__))
+
 from typing import Optional
 from gi.repository import Gtk, GLib, Gdk, Gsk, Graphene
 
@@ -6,6 +10,7 @@ from .status import Status
 from ..game.scene import Scene as SceneModel
 from ..definitions import Alpha, Normalized
 
+from ...common import colors
 from ...common.utils import oscillate
 from ...common.definitions import TICK
 
@@ -16,6 +21,9 @@ class Scene(Gtk.Widget):
         self._model: Optional[SceneModel] = None
         self._layer: Optional[int] = None
         self.editing = False
+        self._lightmap = Gdk.Texture.new_from_filename(
+            os.path.join(__dir__, "lightmap.png")
+        )
 
         GLib.timeout_add(TICK, self.__on_tick)
 
@@ -35,23 +43,17 @@ class Scene(Gtk.Widget):
 
         alpha = oscillate(Alpha.MAX, Alpha.MIN, self._model.time)
 
-        black = Gdk.RGBA()
-        black.parse(f"rgba(0,0,0,{alpha})")
-
-        yellow = Gdk.RGBA()
-        yellow.parse(f"rgba(255,200,200,{alpha})")
+        snapshot.push_opacity(alpha)
 
         darkness = Graphene.Rect().init(-1, -1, screen_width + 2, screen_height + 2)
-        snapshot.append_color(black, darkness)
-
-        snapshot.push_blur(tile_width * 1.5)
+        snapshot.append_color(colors.BLACK, darkness)
 
         for entity in self._model.entities:
             if entity.luminance == 0:
                 continue
 
-            rect_width = tile_width * 4 * entity.luminance
-            rect_height = tile_height * 4 * entity.luminance
+            rect_width = tile_width * 8 * entity.luminance
+            rect_height = tile_height * 8 * entity.luminance
 
             screen_x = (entity.position.x - self._model.anchor.x) * tile_width
             screen_y = (entity.position.y - self._model.anchor.y) * tile_height
@@ -63,7 +65,7 @@ class Scene(Gtk.Widget):
             rect_y = screen_y + offset_y
 
             light = Graphene.Rect().init(rect_x, rect_y, rect_width, rect_height)
-            snapshot.append_color(yellow, light)
+            snapshot.append_texture(self._lightmap, light)
 
         snapshot.pop()
 
