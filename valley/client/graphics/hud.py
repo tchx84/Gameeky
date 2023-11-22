@@ -1,5 +1,5 @@
 from typing import Optional
-from gi.repository import Gtk, Graphene
+from gi.repository import Gtk, GLib, Graphene
 
 from .status import Status
 from .entity import EntityRegistry
@@ -7,7 +7,7 @@ from .entity import EntityRegistry
 from ..game.stats import Stats as StatsModel
 
 from ...common import colors
-from ...common.definitions import EntityType, TILES_X, TILES_Y
+from ...common.definitions import EntityType, TILES_X, TILES_Y, TICK
 
 
 class Hud(Gtk.Widget):
@@ -15,8 +15,11 @@ class Hud(Gtk.Widget):
         super().__init__()
         self._model: Optional[StatsModel] = None
 
-    def __on_model_updated(self, model: StatsModel) -> None:
+        GLib.timeout_add(TICK, self.__on_tick)
+
+    def __on_tick(self) -> int:
         self.queue_draw()
+        return GLib.SOURCE_CONTINUE
 
     def _do_snapshot_entity(self, snapshot: Gtk.Snapshot) -> None:
         if self._model is None:
@@ -101,10 +104,5 @@ class Hud(Gtk.Widget):
 
     @model.setter
     def model(self, model: Optional[StatsModel]) -> None:
-        if self._model is not None:
-            self._model.disconnect_by_func(self.__on_model_updated)
-
         self._model = model
-
-        if self._model is not None:
-            self._model.connect("updated", self.__on_model_updated)
+        self.queue_draw()

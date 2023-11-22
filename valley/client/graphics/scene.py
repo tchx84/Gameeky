@@ -1,5 +1,5 @@
 from typing import Optional
-from gi.repository import Gtk, Gdk, Gsk, Graphene
+from gi.repository import Gtk, GLib, Gdk, Gsk, Graphene
 
 from .entity import EntityRegistry
 from .status import Status
@@ -7,6 +7,7 @@ from ..game.scene import Scene as SceneModel
 from ..definitions import Alpha, Normalized
 
 from ...common.utils import oscillate
+from ...common.definitions import TICK
 
 
 class Scene(Gtk.Widget):
@@ -16,8 +17,11 @@ class Scene(Gtk.Widget):
         self._layer: Optional[int] = None
         self.editing = False
 
-    def __on_model_updated(self, model: SceneModel) -> None:
+        GLib.timeout_add(TICK, self.__on_tick)
+
+    def __on_tick(self) -> int:
         self.queue_draw()
+        return GLib.SOURCE_CONTINUE
 
     def _do_snapshot_time(self, snapshot: Gtk.Snapshot) -> None:
         if self._model is None:
@@ -147,10 +151,5 @@ class Scene(Gtk.Widget):
 
     @model.setter
     def model(self, model: Optional[SceneModel]) -> None:
-        if self._model is not None:
-            self._model.disconnect_by_func(self.__on_model_updated)
-
         self._model = model
-
-        if self._model is not None:
-            self._model.connect("ticked", self.__on_model_updated)
+        self.queue_draw()
