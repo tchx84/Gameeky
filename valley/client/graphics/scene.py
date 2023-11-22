@@ -16,18 +16,19 @@ from ...common.definitions import TICK
 
 
 class Scene(Gtk.Widget):
-    def __init__(self) -> None:
+    def __init__(self, editing: Optional[bool] = False) -> None:
         super().__init__()
         self._model: Optional[SceneModel] = None
         self._layer: Optional[int] = None
-        self.editing = False
+        self._editing = editing
         self._lightmap = Gdk.Texture.new_from_filename(
             os.path.join(__dir__, "lightmap.png")
         )
 
-        GLib.timeout_add(TICK, self.__on_tick)
+        self._updated_source_id: Optional[int] = None
+        self._timeout_source_id: Optional[int] = None
 
-    def __on_tick(self) -> int:
+    def __on_updated(self, *args) -> int:
         self.queue_draw()
         return GLib.SOURCE_CONTINUE
 
@@ -80,7 +81,7 @@ class Scene(Gtk.Widget):
         tile_height = screen_height / self._model.height
 
         for entity in self._model.entities:
-            if self.editing is False and entity.visible is False:
+            if self._editing is False and entity.visible is False:
                 continue
             if self.layer is not None and entity.position.z != self.layer:
                 continue
@@ -156,5 +157,19 @@ class Scene(Gtk.Widget):
 
     @model.setter
     def model(self, model: Optional[SceneModel]) -> None:
+        if self._timeout_source_id is not None:
+            GLib.Source.remove(self._timeout_source_id)
+
+        if self._updated_source_id is not None and self._model is not None:
+            self._model.disconnect(self._updated_source_id)
+
+        self._timeout_source_id = None
+        self._updated_source_id = None
+
+        if self._editing is False and model is not None:
+            self._timeout_source_id = GLib.timeout_add(TICK, self.__on_updated)
+
+        if self._editing is True and model is not None:
+            self._updated_source_id = model.connect("updated", self.__on_updated)
+
         self._model = model
-        self.queue_draw()

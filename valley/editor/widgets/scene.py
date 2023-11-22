@@ -9,11 +9,10 @@ from ...client.graphics.scene import Scene as SceneGraphics
 class Scene(SceneGraphics):
     TILE_SIZE = 10
 
-    def __init__(self, *args, **kargs) -> None:
-        super().__init__(*args, **kargs)
+    def __init__(self) -> None:
+        super().__init__(editing=True)
         self._scale = 1.0
 
-        self.editing = True
         self.props.hexpand = True
         self.props.vexpand = True
 

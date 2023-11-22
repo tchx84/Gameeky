@@ -15,7 +15,7 @@ from ...server.game.partition import SpatialPartition
 
 class Scene(CommonScene, GObject.GObject):
     __gsignals__ = {
-        "ticked": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "updated": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     def __init__(self) -> None:
@@ -145,7 +145,7 @@ class Scene(CommonScene, GObject.GObject):
         self.refresh()
 
     def refresh(self, *args) -> None:
-        self.emit("ticked")
+        self.emit("updated")
 
     def reset(self) -> None:
         self._index = 0
