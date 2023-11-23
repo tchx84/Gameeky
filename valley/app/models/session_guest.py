@@ -77,7 +77,7 @@ class SessionGuest(Threaded):
         )
 
         self._cursor = Cursor(
-            widget=self._widget.canvas,
+            widget=self._widget,
             model=self._scene_model,
             service=self._service,
         )
