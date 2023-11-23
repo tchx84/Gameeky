@@ -5,6 +5,7 @@ from ...client.game.service import Service
 from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
 from ...client.input.keyboard import Keyboard
+from ...client.input.cursor import Cursor
 from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from ...client.sound.entity import EntityRegistry as EntitySoundRegistry
 from ...client.sound.scene import Scene as SceneSound
@@ -75,6 +76,12 @@ class SessionGuest(Threaded):
             service=self._service,
         )
 
+        self._cursor = Cursor(
+            widget=self._widget.canvas,
+            model=self._scene_model,
+            service=self._service,
+        )
+
         self._sound = SceneSound()
         self._sound.model = self._scene_model
 
@@ -120,6 +127,8 @@ class SessionGuest(Threaded):
             self._stats_model.shutdown()
         if self._keyboard is not None:
             self._keyboard.shutdown()
+        if self._cursor is not None:
+            self._cursor.shutdown()
         if self._sound is not None:
             self._sound.shutdown()
         if self._service is not None:

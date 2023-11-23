@@ -20,6 +20,10 @@ class Hud(Gtk.AspectFrame):
         self.set_child(self._view)
 
     @property
+    def canvas(self) -> Gtk.Widget:
+        return self._view
+
+    @property
     def model(self) -> Optional[StatsModel]:
         return self._view.model
 

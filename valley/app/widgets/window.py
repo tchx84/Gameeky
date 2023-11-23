@@ -43,3 +43,7 @@ class Window(Adw.ApplicationWindow):
         self._scene.model = scene
         self._hud.model = stats
         self.stack.set_visible_child_name("game")
+
+    @property
+    def canvas(self) -> Gtk.Widget:
+        return self._hud.canvas
