@@ -2,3 +2,7 @@
     color: @accent_color;
     margin-bottom: 10px;
 }
+
+.actions button {
+    font-weight: normal;
+}
