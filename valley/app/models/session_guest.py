@@ -47,7 +47,7 @@ class SessionGuest(Threaded):
         self._service: Optional[Service] = None
         self._scene_model: Optional[SceneModel] = None
         self._stats_model: Optional[StatsModel] = None
-        self._input: Optional[Keyboard] = None
+        self._keyboard: Optional[Keyboard] = None
         self._sound: Optional[SceneSound] = None
 
     def _setup(self) -> None:
@@ -70,7 +70,7 @@ class SessionGuest(Threaded):
             service=self._service,
         )
 
-        self._input = Keyboard(
+        self._keyboard = Keyboard(
             widget=self._widget,
             service=self._service,
         )
@@ -118,8 +118,8 @@ class SessionGuest(Threaded):
             self._scene_model.shutdown()
         if self._stats_model is not None:
             self._stats_model.shutdown()
-        if self._input is not None:
-            self._input.shutdown()
+        if self._keyboard is not None:
+            self._keyboard.shutdown()
         if self._sound is not None:
             self._sound.shutdown()
         if self._service is not None:
