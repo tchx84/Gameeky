@@ -108,6 +108,8 @@ class Scene(Gtk.Widget):
 
             snapshot.append_texture(texture, entity_rect)
 
+            if entity.status == Normalized.MIN:
+                continue
             if entity.status == Normalized.MAX:
                 continue
 
