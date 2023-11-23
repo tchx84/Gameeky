@@ -7,6 +7,7 @@ from gi.repository import Gtk, Adw
 
 from .scene import Scene as SceneWidget
 from .hud import Hud as HudWidget
+from .highlight import Highlight as HighlightWidget
 
 from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
@@ -23,9 +24,11 @@ class Window(Adw.ApplicationWindow):
         super().__init__(*args, **kargs)
         self._scene = SceneWidget()
         self._hud = HudWidget()
+        self._highlight = HighlightWidget()
 
         self.overlay.add_overlay(self._scene)
         self.overlay.add_overlay(self._hud)
+        self.overlay.add_overlay(self._highlight)
 
     def switch_to_loading(self) -> None:
         self.stack.set_visible_child_name("loading")
@@ -46,4 +49,4 @@ class Window(Adw.ApplicationWindow):
 
     @property
     def canvas(self) -> Gtk.Widget:
-        return self._hud.canvas
+        return self._highlight.canvas
