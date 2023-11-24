@@ -14,7 +14,7 @@ class Handler(BaseHandler):
 
         if entity is None:
             return False
-        if entity.density != Density.SOLID:
+        if entity.takeable is False:
             return False
         if entity.visible is False:
             return False

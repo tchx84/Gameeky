@@ -34,6 +34,7 @@ class EntitySettings(Gtk.Box):
     density = Gtk.Template.Child()
     luminance = Gtk.Template.Child()
     removable = Gtk.Template.Child()
+    takeable = Gtk.Template.Child()
     usable = Gtk.Template.Child()
     visible = Gtk.Template.Child()
     direction = Gtk.Template.Child()
@@ -50,6 +51,7 @@ class EntitySettings(Gtk.Box):
 
         # XXX Move these to UI file somehow
         self.removable.connect("notify::active", self.__on_changed)
+        self.takeable.connect("notify::active", self.__on_changed)
         self.usable.connect("notify::active", self.__on_changed)
         self.visible.connect("notify::active", self.__on_changed)
         self.direction.connect("notify::selected-item", self.__on_changed)
@@ -86,6 +88,7 @@ class EntitySettings(Gtk.Box):
             density=round(self.density.props.value, 2),
             luminance=round(self.luminance.props.value, 2),
             removable=self.removable.props.active,
+            takeable=self.takeable.props.active,
             usable=self.usable.props.active,
             visible=self.visible.props.active,
             direction=self.direction.props.selected_item.props.string,
@@ -108,6 +111,7 @@ class EntitySettings(Gtk.Box):
         self.density.props.value = description.density
         self.luminance.props.value = description.luminance
         self.removable.props.active = description.removable
+        self.takeable.props.active = description.takeable
         self.usable.props.active = description.usable
         self.visible.props.active = description.visible
         self.direction.props.selected = get_position_in_model(

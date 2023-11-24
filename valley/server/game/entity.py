@@ -102,6 +102,7 @@ class Entity(CommonEntity):
         strength: float,
         recovery: float,
         removable: bool,
+        takeable: bool,
         usable: bool,
         density: Density,
         spawns: EntityType,
@@ -118,6 +119,7 @@ class Entity(CommonEntity):
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
+        self.takeable = takeable
         self.usable = usable
         self.density = clamp(Density.SOLID, Density.VOID, density)
         self.spawns = spawns
@@ -133,6 +135,8 @@ class Entity(CommonEntity):
         self._stamina = stamina
         self._max_durability = durability
         self._max_stamina = stamina
+        self._default_density = density
+        self._default_visible = self.visible
 
         self._partition = partition
 
@@ -217,8 +221,7 @@ class Entity(CommonEntity):
             self.held.state = state
 
         self.held.secure()
-        self.held.visible = True
-        self.held.density = Density.SOLID
+        self.held.restore()
         self.held = None
 
     def fall(self) -> None:
@@ -240,6 +243,10 @@ class Entity(CommonEntity):
             math.floor(self.position.y),
             math.floor(self.position.z),
         )
+
+    def restore(self) -> None:
+        self.visible = self._default_visible
+        self.density = self._default_density
 
     @property
     def horizontally(self) -> bool:
@@ -495,6 +502,7 @@ class EntityRegistry:
             strength=description.strength,
             recovery=description.recovery,
             removable=description.removable,
+            takeable=description.takeable,
             usable=description.usable,
             density=description.density,
             visible=description.visible,

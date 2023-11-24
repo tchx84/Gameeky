@@ -232,6 +232,12 @@ west</property>
           </object>
         </child>
         <child>
+          <object class="AdwSwitchRow" id="takeable">
+            <property name="subtitle">Whether this entity can be taken and moved by another entity</property>
+            <property name="title">Takeable</property>
+          </object>
+        </child>
+        <child>
           <object class="AdwSwitchRow" id="usable">
             <property name="subtitle">Whether this entity can be used as tool</property>
             <property name="title">Usable</property>

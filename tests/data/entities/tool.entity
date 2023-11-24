@@ -16,6 +16,7 @@
             "stamina": 0,
             "state": "idling",
             "strength": 1000,
+            "takeable": true,
             "target": "",
             "visible": true,
             "weight": 0
