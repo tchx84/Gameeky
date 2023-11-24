@@ -23,7 +23,7 @@ class Handler(BaseHandler):
         self._entity.held.stop()
         self._entity.held.density = Density.VOID
         self._entity.held.state = State.HELD
-        self._entity.held.visible = not self._entity.held.equippable
+        self._entity.held.visible = not self._entity.held.usable
 
         self._entity.action = Action.TAKE
 

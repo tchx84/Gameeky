@@ -5,7 +5,7 @@
             "density": 1.0,
             "direction": "south",
             "durability": 0,
-            "equippable": true,
+            "usable": true,
             "luminance": 0.0,
             "name": "tool",
             "radius": 0,

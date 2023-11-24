@@ -102,7 +102,7 @@ class Entity(CommonEntity):
         strength: float,
         recovery: float,
         removable: bool,
-        equippable: bool,
+        usable: bool,
         density: Density,
         spawns: EntityType,
         name: str,
@@ -118,7 +118,7 @@ class Entity(CommonEntity):
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
-        self.equippable = equippable
+        self.usable = usable
         self.density = clamp(Density.SOLID, Density.VOID, density)
         self.spawns = spawns
         self.name = name
@@ -495,7 +495,7 @@ class EntityRegistry:
             strength=description.strength,
             recovery=description.recovery,
             removable=description.removable,
-            equippable=description.equippable,
+            usable=description.usable,
             density=description.density,
             visible=description.visible,
             spawns=description.spawns,

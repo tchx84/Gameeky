@@ -88,7 +88,7 @@ class EntityNewWindow(Adw.Window):
                     density=0,
                     luminance=0,
                     removable=False,
-                    equippable=False,
+                    usable=False,
                     visible=True,
                     direction=Direction.SOUTH.name.lower(),
                     state=State.IDLING.name.lower(),

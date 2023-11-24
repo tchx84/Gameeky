@@ -8,7 +8,7 @@
             "density": 1.0,
             "direction": "south",
             "durability": 100,
-            "equippable": false,
+            "usable": false,
             "luminance": 0.0,
             "name": "default",
             "radius": 0,

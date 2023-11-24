@@ -232,9 +232,9 @@ west</property>
           </object>
         </child>
         <child>
-          <object class="AdwSwitchRow" id="equippable">
+          <object class="AdwSwitchRow" id="usable">
             <property name="subtitle">Whether this entity can be used as tool</property>
-            <property name="title">Equippable</property>
+            <property name="title">Usable</property>
           </object>
         </child>
       </object>

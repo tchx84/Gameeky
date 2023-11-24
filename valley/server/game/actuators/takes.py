@@ -15,7 +15,7 @@ class Actuator(BaseActuator):
         if (entity := self._entity.obstacle) is None:
             return
 
-        if entity.equippable is False:
+        if entity.usable is False:
             return
 
         self._entity.perform(Action.TAKE)
