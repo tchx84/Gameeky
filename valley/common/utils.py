@@ -1,6 +1,6 @@
 import os
 
-from typing import Callable, Optional
+from typing import Callable, Optional, Tuple
 from gi.repository import GLib, Gio
 
 
@@ -65,12 +65,18 @@ def add_timeout_source(interval: float, callback: Callable) -> int:
 
 def add_idle_source(
     callback: Callable,
+    data: Optional[Tuple] = None,
     context: Optional[GLib.MainContext] = None,
 ) -> int:
     context = find_context() if context is None else context
+    data = () if data is None else data
+
+    def idle_callback(*args) -> int:
+        callback(*data)
+        return GLib.SOURCE_REMOVE
 
     source = GLib.idle_source_new()
-    source.set_callback(callback)
+    source.set_callback(idle_callback)
     source.attach(context)
 
     return source.get_id()

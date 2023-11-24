@@ -31,7 +31,7 @@ class Threaded(threading.Thread, GObject.GObject):
         GLib.idle_add(GObject.GObject.emit, self, *args)
 
     def exec(self, callback: Callable) -> None:
-        add_idle_source(callback, self._context)
+        add_idle_source(callback, context=self._context)
 
     def shutdown(self) -> None:
         self.exec(self.do_shutdown)
