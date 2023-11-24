@@ -9,7 +9,7 @@ pip install .[dev,test]
 
 export DATA_DIR=tests/data
 
-pyflakes valley tests
-black --check valley tests
-mypy valley tests
+pyflakes valley tests examples
+black --check valley tests examples
+mypy valley tests examples
 pytest -sv

@@ -88,6 +88,9 @@ def remove_source_id(source_id: int) -> None:
 
 
 def wait(milliseconds: int) -> None:
+    if not milliseconds:
+        return
+
     called = False
     context = GLib.MainContext.default()
 
