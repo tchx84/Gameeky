@@ -1,10 +1,11 @@
 from typing import Dict
 
-from gi.repository import Gdk, Gtk
+from gi.repository import Gdk, Gtk, GLib
 
 from ..game.service import Service
 
 from ...common.logger import logger
+from ...common.utils import add_idle_source
 from ...common.session import Session
 from ...common.definitions import Action, Direction
 
@@ -21,7 +22,12 @@ class Keyboard(Gtk.EventControllerKey):
         Gdk.KEY_i: (Action.INTERACT, 0),
     }
 
-    def __init__(self, widget: Gtk.Widget, service: Service) -> None:
+    def __init__(
+        self,
+        widget: Gtk.Widget,
+        service: Service,
+        context: GLib.MainContext,
+    ) -> None:
         super().__init__()
         self._is_pressed_by_key: Dict[int, bool] = {}
 
@@ -30,6 +36,8 @@ class Keyboard(Gtk.EventControllerKey):
 
         self._service = service
         self._service.connect("registered", self.__on_service_registered)
+
+        self._context = context
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
         self.connect("key-pressed", self.__on_key_pressed)
@@ -50,7 +58,7 @@ class Keyboard(Gtk.EventControllerKey):
             return
 
         self._is_pressed_by_key[key] = True
-        self._service.message(action, value)
+        self._message(action, value)
 
     def __on_key_released(
         self,
@@ -68,7 +76,11 @@ class Keyboard(Gtk.EventControllerKey):
         if self._is_pressed_by_key.keys():
             return
 
-        self._service.message(Action.IDLE, 0)
+        self._message(Action.IDLE, 0)
+
+    def _message(self, action: Action, value: float) -> None:
+        # Talk back to the service in the right context
+        add_idle_source(self._service.message, (action, value), self._context)
 
     def shutdown(self) -> None:
         self._is_pressed_by_key = {}

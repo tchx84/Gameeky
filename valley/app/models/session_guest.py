@@ -74,6 +74,7 @@ class SessionGuest(Threaded):
         self._keyboard = Keyboard(
             widget=self._widget,
             service=self._service,
+            context=self._context,
         )
 
         self._cursor = Cursor(
