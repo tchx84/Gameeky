@@ -206,6 +206,6 @@ class Scene(CommonScene, GObject.GObject):
             )
 
         self.anchor = Vector(
-            x=math.floor(self.width / 2) - (0 if self.width % 2 else 0.5),
-            y=math.floor(self.height / 2) - (0 if self.height % 2 else 0.5),
+            x=self.width / 2,
+            y=self.height / 2,
         )

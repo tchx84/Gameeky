@@ -99,8 +99,8 @@ class Scene(Gtk.Widget):
             rect_width = tile_width * scale_x
             rect_height = tile_height * scale_y
 
-            offset_x = (screen_width / 2) - (rect_width / 2)
-            offset_y = (screen_height / 2) + (tile_height / 2) - rect_height
+            offset_x = (screen_width / 2) - ((rect_width - tile_width) / 2)
+            offset_y = (screen_height / 2) - (rect_height - tile_height)
 
             rect_x = screen_x + offset_x
             rect_y = screen_y + offset_y
