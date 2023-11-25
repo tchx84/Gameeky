@@ -12,7 +12,7 @@ from ..definitions import Alpha, Normalized
 
 from ...common import colors
 from ...common.utils import oscillate
-from ...common.definitions import TICK
+from ...common.definitions import TICK, GRAPHICS_FILTER
 
 
 class Scene(Gtk.Widget):
@@ -21,6 +21,8 @@ class Scene(Gtk.Widget):
         self._model: Optional[SceneModel] = None
         self._layer: Optional[int] = None
         self._editing = editing
+
+        self._scaling = Gsk.ScalingFilter(GRAPHICS_FILTER)
         self._lightmap = Gdk.Texture.new_from_filename(
             os.path.join(__dir__, "lightmap.png")
         )
@@ -106,7 +108,7 @@ class Scene(Gtk.Widget):
             entity_rect = Graphene.Rect()
             entity_rect.init(rect_x, rect_y, rect_width, rect_height)
 
-            snapshot.append_texture(texture, entity_rect)
+            snapshot.append_scaled_texture(texture, self._scaling, entity_rect)
 
             if entity.status == Normalized.MIN:
                 continue

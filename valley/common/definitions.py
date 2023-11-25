@@ -1,3 +1,6 @@
+import os
+
+
 from enum import IntEnum, StrEnum, auto
 
 MAX_UDP_BYTES = 32 * 1024
@@ -16,6 +19,15 @@ DEFAULT_MESSAGES_PORT = 7772
 DEFAULT_SCENE_PORT = 7773
 DEFAULT_STATS_PORT = 7774
 DEFAULT_TIMEOUT = 1
+
+
+class ScalingFilter(IntEnum):
+    LINEAR = 0
+    NEAREST = 1
+    TRILINEAR = 2
+
+
+GRAPHICS_FILTER = ScalingFilter[os.environ.get("GRAPHICS_FILTER", "LINEAR").upper()]
 
 
 class Format(StrEnum):
