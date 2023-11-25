@@ -160,12 +160,19 @@ class Entity:
         sequence = self._sequences[entity.state]
         sequence.play()
 
+    def stop(self) -> None:
+        for sequence in self._sequences.values():
+            sequence.stop()
+
 
 class EntityRegistry:
     __entities__: Dict[int, Entity] = {}
 
     @classmethod
     def reset(cls) -> None:
+        for entity in cls.__entities__.values():
+            entity.stop()
+
         cls.__entities__ = {}
 
     @classmethod
