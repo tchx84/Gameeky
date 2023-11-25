@@ -11,7 +11,7 @@ from ...common.vector import Vector
 from ...common.entity import Entity
 from ...common.scene import Scene
 from ...common.definitions import Action, Direction, TICK, TILES_X, TILES_Y
-from ...common.utils import add_timeout_source, remove_source_id
+from ...common.utils import add_timeout_source, remove_source_id, get_time_milliseconds
 
 
 class Cursor:
@@ -43,12 +43,27 @@ class Cursor:
         self._target: Optional[Vector] = None
         self._timeout_source_id = add_timeout_source(TICK, self.__on_tick)
 
+        self._position = Vector(-1, -1)
+        self._position_timestamp = get_time_milliseconds()
+
     def _find(self, position: Vector) -> Optional[Entity]:
         for entity in self._model.entities:
             if entity.position == position:
                 return entity
 
         return None
+
+    def _stuck(self, player: Entity) -> bool:
+        timestamp = get_time_milliseconds()
+
+        if player.position != self._position:
+            self._position = player.position.copy()
+            self._position_timestamp = timestamp
+            return False
+
+        elapsed = timestamp - self._position_timestamp
+
+        return elapsed > 1000
 
     def __on_tick(self, *args) -> int:
         if self._target is None:
@@ -70,7 +85,9 @@ class Cursor:
 
         direction: Optional[Direction] = None
 
-        if self._target.x < x:
+        if self._stuck(player) is True:
+            direction = None
+        elif self._target.x < x:
             direction = Direction.WEST
         elif self._target.x > x:
             direction = Direction.EAST
@@ -84,6 +101,7 @@ class Cursor:
         else:
             self._service.message(Action.IDLE, 0)
             self._target = None
+            self._position = Vector(-1, -1)
 
         return GLib.SOURCE_CONTINUE
 
