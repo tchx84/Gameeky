@@ -25,7 +25,7 @@ class Description(SimpleNamespace):
 
 class Scanner(GObject.GObject):
     __gsignals__ = {
-        "found": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "found": (GObject.SignalFlags.RUN_LAST, None, (str,)),
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -75,7 +75,6 @@ class Scanner(GObject.GObject):
 
         for info in infos:
             path = enumerator.get_child(info).get_path()
-            description = Description.new_from_json(path)
-            self.emit("found", description)
+            self.emit("found", path)
 
         self._request_file(enumerator)

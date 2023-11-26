@@ -58,8 +58,8 @@ class SessionHost(Threaded):
         self._scanner.connect("done", self.__on_scanner_done)
         self._scanner.scan()
 
-    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
-        EntityGameRegistry.register(description)
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        EntityGameRegistry.register(Description.new_from_json(path))
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
         try:

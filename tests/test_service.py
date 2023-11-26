@@ -5,7 +5,7 @@ from unittest.mock import Mock
 from gi.repository import GLib
 
 from valley.common.utils import get_data_path
-from valley.common.scanner import Scanner
+from valley.common.scanner import Scanner, Description
 from valley.server.game.entity import EntityRegistry
 from valley.server.game.service import Service as Server
 from valley.client.game.service import Service as Client
@@ -56,7 +56,10 @@ def test_scanner_register():
     mock = Mock()
 
     scanner = Scanner(get_data_path("entities"))
-    scanner.connect("found", lambda _, d: EntityRegistry.register(d))
+    scanner.connect(
+        "found",
+        lambda _, p: EntityRegistry.register(Description.new_from_json(p)),
+    )
     scanner.connect("done", mock)
     scanner.scan()
 

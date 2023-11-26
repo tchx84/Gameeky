@@ -75,8 +75,8 @@ class Application(Gio.Application):
             None,
         )
 
-    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
-        EntityRegistry.register(description)
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        EntityRegistry.register(Description.new_from_json(path))
 
     def __on_scanner_done(self, scanner: Scanner) -> None:
         self._service = Service(

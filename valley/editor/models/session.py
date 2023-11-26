@@ -31,7 +31,8 @@ class Session(GObject.GObject):
 
         self.emit("started")
 
-    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        description = Description.new_from_json(path)
         EntityGraphicsRegistry.register(description)
         EntityGameRegistry.register(description)
         self.emit("registered", description)

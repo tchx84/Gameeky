@@ -97,7 +97,8 @@ class SessionGuest(Threaded):
         self._scanner.connect("done", self.__on_scanner_done)
         self._scanner.scan()
 
-    def __on_scanner_found(self, scanner: Scanner, description: Description) -> None:
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        description = Description.new_from_json(path)
         EntityGraphicsRegistry.register(description)
         EntitySoundRegistry.register(description)
 
