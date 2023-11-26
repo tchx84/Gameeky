@@ -83,6 +83,9 @@ class Scene(Gtk.Widget):
         tile_width = math.floor(screen_width / self._model.width)
         tile_height = math.floor(screen_height / self._model.height)
 
+        correction_x = screen_width - (tile_width * self._model.width)
+        correction_y = screen_height - (tile_height  * self._model.height)
+
         for entity in self._model.entities:
             if self._editing is False and entity.visible is False:
                 continue
@@ -94,14 +97,14 @@ class Scene(Gtk.Widget):
             if texture is None:
                 continue
 
-            screen_x = (entity.position.x - self._model.anchor.x) * tile_width
-            screen_y = (entity.position.y - self._model.anchor.y) * tile_height
+            screen_x = math.floor(((entity.position.x - self._model.anchor.x) * tile_width) + (correction_x / 2))
+            screen_y = math.floor(((entity.position.y - self._model.anchor.y) * tile_height) + (correction_y / 2))
 
             rect_width = tile_width * scale_x
             rect_height = tile_height * scale_y
 
-            offset_x = (screen_width / 2) - ((rect_width - tile_width) / 2)
-            offset_y = (screen_height / 2) - (rect_height - tile_height)
+            offset_x = ((screen_width - correction_x) / 2) - ((rect_width - tile_width) / 2)
+            offset_y = ((screen_height - correction_y) / 2) - (rect_height - tile_height)
 
             rect_x = screen_x + offset_x
             rect_y = screen_y + offset_y
@@ -132,10 +135,10 @@ class Scene(Gtk.Widget):
         screen_width = self.get_width()
         screen_height = self.get_height()
 
-        clip = Graphene.Rect()
-        clip.init(0, 0, screen_width, screen_height)
+        #clip = Graphene.Rect()
+        #clip.init(0, 0, screen_width, screen_height)
 
-        snapshot.push_clip(clip)
+        #snapshot.push_clip(clip)
 
         snapshot.push_blend(Gsk.BlendMode.MULTIPLY)
 
@@ -145,7 +148,7 @@ class Scene(Gtk.Widget):
         self._do_snapshot_entities(snapshot)
         snapshot.pop()
 
-        snapshot.pop()
+        #snapshot.pop()
 
     @property
     def layer(self) -> Optional[int]:
