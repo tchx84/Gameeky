@@ -1,5 +1,3 @@
-from typing import Optional
-
 from gi.repository import GObject
 
 from ...common.utils import get_data_path
@@ -7,6 +5,7 @@ from ...common.scanner import Scanner, Description
 
 from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
 from ...server.game.entity import EntityRegistry as EntityGameRegistry
+from ...server.game.actuators.base import ActuatorRegistry
 
 
 class Session(GObject.GObject):
@@ -16,26 +15,33 @@ class Session(GObject.GObject):
         "ready": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self) -> None:
-        super().__init__()
-        self._scanner: Optional[Scanner] = None
-
     def scan(self) -> None:
         EntityGraphicsRegistry.reset()
         EntityGameRegistry.reset()
 
-        self._scanner = Scanner(path=get_data_path("entities"))
-        self._scanner.connect("found", self.__on_scanner_found)
-        self._scanner.connect("done", self.__on_scanner_done)
-        self._scanner.scan()
+        scanner = Scanner(path=get_data_path("entities"))
+        scanner.connect("found", self.__on_entities_scanner_found)
+        scanner.connect("done", self.__on_entities_scanner_done)
+        scanner.scan()
 
         self.emit("started")
 
-    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+    def __on_entities_scanner_found(self, scanner: Scanner, path: str) -> None:
         description = Description.new_from_json(path)
         EntityGraphicsRegistry.register(description)
         EntityGameRegistry.register(description)
         self.emit("registered", description)
 
-    def __on_scanner_done(self, scanner: Scanner) -> None:
+    def __on_entities_scanner_done(self, scanner: Scanner) -> None:
+        ActuatorRegistry.reset()
+
+        scanner = Scanner(path=get_data_path("actuators"))
+        scanner.connect("found", self.__on_actuators_scanner_found)
+        scanner.connect("done", self.__on_actuators_scanner_done)
+        scanner.scan()
+
+    def __on_actuators_scanner_found(self, scanner: Scanner, path: str) -> None:
+        ActuatorRegistry.register(path)
+
+    def __on_actuators_scanner_done(self, scanner: Scanner) -> None:
         self.emit("ready")

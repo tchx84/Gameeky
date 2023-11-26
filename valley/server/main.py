@@ -6,6 +6,7 @@ from gi.repository import Gio, GLib
 
 from valley.server.game.service import Service
 from valley.server.game.entity import EntityRegistry
+from valley.server.game.actuators.base import ActuatorRegistry
 from valley.common.scanner import Scanner, Description
 from valley.common.utils import get_data_path
 from valley.common.definitions import (
@@ -75,10 +76,19 @@ class Application(Gio.Application):
             None,
         )
 
-    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+    def __on_entities_scanner_found(self, scanner: Scanner, path: str) -> None:
         EntityRegistry.register(Description.new_from_json(path))
 
-    def __on_scanner_done(self, scanner: Scanner) -> None:
+    def __on_entities_scanner_done(self, scanner: Scanner) -> None:
+        scanner = Scanner(get_data_path("actuators"))
+        scanner.connect("found", self.__on_actuators_scanner_found)
+        scanner.connect("done", self.__on_actuators_scanner_done)
+        scanner.scan()
+
+    def __on_actuators_scanner_found(self, scanner: Scanner, path: str) -> None:
+        ActuatorRegistry.register(path)
+
+    def __on_actuators_scanner_done(self, scanner: Scanner) -> None:
         self._service = Service(
             scene=self._scene,
             clients=self._clients,
@@ -90,10 +100,10 @@ class Application(Gio.Application):
         )
 
     def do_activate(self) -> None:
-        self._scanner = Scanner(get_data_path("entities"))
-        self._scanner.connect("found", self.__on_scanner_found)
-        self._scanner.connect("done", self.__on_scanner_done)
-        self._scanner.scan()
+        scanner = Scanner(get_data_path("entities"))
+        scanner.connect("found", self.__on_entities_scanner_found)
+        scanner.connect("done", self.__on_entities_scanner_done)
+        scanner.scan()
 
         self.hold()
 

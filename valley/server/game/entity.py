@@ -6,7 +6,7 @@ from typing import Dict, List, Optional, cast
 from .definitions import Density, Recovery, Delay
 from .partition import SpatialPartition
 
-from .actuators.base import Actuator
+from .actuators.base import Actuator, ActuatorRegistry
 from .actuators.transmutes import Actuator as TransmutesActuator
 from .actuators.teleports import Actuator as TeleportsActuator
 from .actuators.teleports_i import Actuator as TeleportsIActuator
@@ -158,6 +158,8 @@ class Entity(CommonEntity):
 
         for actuator in actuators:
             if ActuatorClass := self.__actuator_by_name__.get(actuator):
+                self.actuators.append(ActuatorClass(self))
+            elif ActuatorClass := ActuatorRegistry.find(actuator):
                 self.actuators.append(ActuatorClass(self))
 
     def _prepare(self) -> None:

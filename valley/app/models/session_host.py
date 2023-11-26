@@ -8,6 +8,7 @@ from ...common.threaded import Threaded
 
 from ...server.game.service import Service
 from ...server.game.entity import EntityRegistry as EntityGameRegistry
+from ...server.game.actuators.base import ActuatorRegistry
 
 
 class SessionHost(Threaded):
@@ -50,18 +51,29 @@ class SessionHost(Threaded):
             context=self.context,
         )
 
-    def _scan(self) -> None:
+    def _scan_entities(self) -> None:
         EntityGameRegistry.reset()
 
-        self._scanner = Scanner(path=get_data_path("entities"))
-        self._scanner.connect("found", self.__on_scanner_found)
-        self._scanner.connect("done", self.__on_scanner_done)
-        self._scanner.scan()
+        scanner = Scanner(path=get_data_path("entities"))
+        scanner.connect("found", self.__on_entities_scanner_found)
+        scanner.connect("done", self.__on_entities_scanner_done)
+        scanner.scan()
 
-    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+    def __on_entities_scanner_found(self, scanner: Scanner, path: str) -> None:
         EntityGameRegistry.register(Description.new_from_json(path))
 
-    def __on_scanner_done(self, scanner: Scanner) -> None:
+    def __on_entities_scanner_done(self, scanner: Scanner) -> None:
+        ActuatorRegistry.reset()
+
+        scanner = Scanner(path=get_data_path("actuators"))
+        scanner.connect("found", self.__on_actuators_scanner_found)
+        scanner.connect("done", self.__on_actuators_scanner_done)
+        scanner.scan()
+
+    def __on_actuators_scanner_found(self, scanner: Scanner, path: str) -> None:
+        ActuatorRegistry.register(path)
+
+    def __on_actuators_scanner_done(self, scanner: Scanner) -> None:
         try:
             self._setup()
         except Exception as e:
@@ -74,7 +86,7 @@ class SessionHost(Threaded):
         set_data_path(self._data_path)
 
         try:
-            self._scan()
+            self._scan_entities()
         except Exception as e:
             logger.error(e)
             self.emit("failed")

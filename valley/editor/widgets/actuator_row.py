@@ -6,6 +6,8 @@ from gi.repository import Gtk, Adw, GObject
 
 from .utils import get_position_in_model
 
+from ...server.game.actuators.base import ActuatorRegistry
+
 
 @Gtk.Template(filename=os.path.join(__dir__, "actuator_row.ui"))
 class ActuatorRow(Adw.ActionRow):
@@ -21,6 +23,9 @@ class ActuatorRow(Adw.ActionRow):
 
     def __init__(self) -> None:
         super().__init__()
+
+        for name in ActuatorRegistry.names():
+            self.model.append(name)
 
         # XXX Move to UI file
         self.dropdown.connect("notify::selected", self.__on_changed)

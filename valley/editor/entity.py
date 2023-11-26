@@ -18,8 +18,11 @@ from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
 
 from ..common.logger import logger
-from ..common.utils import set_data_path, get_data_folder
+from ..common.utils import get_data_path, set_data_path, get_data_folder
 from ..common.definitions import Format
+from ..common.scanner import Scanner, Description
+
+from ..server.game.actuators.base import ActuatorRegistry
 
 
 class Application(Adw.Application):
@@ -43,7 +46,23 @@ class Application(Adw.Application):
         if (description := dialog.description) is None:
             return
 
-        set_data_path(dialog.data_path)
+        ActuatorRegistry.reset()
+
+        scanner = Scanner(path=get_data_path("actuators"))
+        scanner.connect("found", self.__on_scanner_found)
+        scanner.connect("done", self.__on_scanner_done, dialog.data_path, description)
+        scanner.scan()
+
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        ActuatorRegistry.register(path)
+
+    def __on_scanner_done(
+        self,
+        scanner: Scanner,
+        data_path: str,
+        description: Description,
+    ) -> None:
+        set_data_path(data_path)
         self._window.description = description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
