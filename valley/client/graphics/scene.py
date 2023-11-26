@@ -1,4 +1,5 @@
 import os
+import math
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
@@ -41,8 +42,8 @@ class Scene(Gtk.Widget):
         screen_width = self.get_width()
         screen_height = self.get_height()
 
-        tile_width = screen_width / self._model.width
-        tile_height = screen_height / self._model.height
+        tile_width = math.floor(screen_width / self._model.width)
+        tile_height = math.floor(screen_height / self._model.height)
 
         alpha = oscillate(Alpha.MAX, Alpha.MIN, self._model.time)
 
@@ -79,8 +80,8 @@ class Scene(Gtk.Widget):
         screen_width = self.get_width()
         screen_height = self.get_height()
 
-        tile_width = screen_width / self._model.width
-        tile_height = screen_height / self._model.height
+        tile_width = math.floor(screen_width / self._model.width)
+        tile_height = math.floor(screen_height / self._model.height)
 
         for entity in self._model.entities:
             if self._editing is False and entity.visible is False:

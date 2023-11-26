@@ -40,11 +40,19 @@ class Grid(Gtk.Widget):
         if not self.ready:
             return
 
-        self.emit(
-            "clicked",
-            math.floor(x / (self.get_width() / self._columns)),
-            math.floor(y / (self.get_height() / self._rows)),
-        )
+        width = self.get_width()
+        height = self.get_height()
+
+        tile_width = math.floor(width / self._columns)
+        tile_height = math.floor(height / self._rows)
+
+        offset_x = (width - (tile_width * self._columns)) / 2
+        offset_y = (height - (tile_height * self._rows)) / 2
+
+        tile_x = (x - offset_x) / tile_width
+        tile_y = (y - offset_y) / tile_height
+
+        self.emit("clicked", tile_x, tile_y)
 
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
         if not self.ready:
@@ -53,11 +61,14 @@ class Grid(Gtk.Widget):
         width = self.get_width()
         height = self.get_height()
 
-        rect_width = width / self._columns
-        rect_height = height / self._rows
+        rect_width = math.floor(width / self._columns)
+        rect_height = math.floor(height / self._rows)
 
-        x = self.highlight.x * rect_width
-        y = self.highlight.y * rect_height
+        offset_x = (width - (rect_width * self._columns)) / 2
+        offset_y = (height - (rect_height * self._rows)) / 2
+
+        x = (self.highlight.x * rect_width) + offset_x
+        y = (self.highlight.y * rect_height) + offset_y
 
         highlight_rect = Graphene.Rect()
         highlight_rect.init(x, y, rect_width, rect_height)
@@ -65,18 +76,18 @@ class Grid(Gtk.Widget):
         snapshot.append_color(colors.GREEN, highlight_rect)
 
         for column in range(0, self._columns + 1):
-            x = column * rect_width
+            x = (column * rect_width) + offset_x
 
             line = Graphene.Rect()
-            line.init(x, 0, 1, height)
+            line.init(x, offset_y, 1, height - (offset_y * 2))
 
             snapshot.append_color(colors.GREEN, line)
 
         for row in range(0, self._rows + 1):
-            y = row * rect_height
+            y = (row * rect_height) + offset_y
 
             line = Graphene.Rect()
-            line.init(0, y, width, 1)
+            line.init(offset_x, y, width - (offset_x * 2), 1)
 
             snapshot.append_color(colors.GREEN, line)
 
