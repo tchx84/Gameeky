@@ -16,6 +16,7 @@ class ActuatorRow(Adw.ActionRow):
     __gsignals__ = {
         "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
         "removed": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "moved": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     dropdown = Gtk.Template.Child()
@@ -32,6 +33,10 @@ class ActuatorRow(Adw.ActionRow):
 
     def __on_changed(self, entry: Gtk.DropDown, value: int) -> None:
         self.emit("changed")
+
+    @Gtk.Template.Callback("on_moved")
+    def __on_moved(self, button: Gtk.Button) -> None:
+        self.emit("moved")
 
     @Gtk.Template.Callback("on_removed")
     def __on_removed(self, button: Gtk.Button) -> None:
