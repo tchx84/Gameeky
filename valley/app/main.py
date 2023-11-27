@@ -23,6 +23,7 @@ from .models.session_guest import SessionGuest
 from ..common.utils import wait
 from ..common.logger import logger
 from ..common.scanner import Description
+from ..common.monitor import Monitor
 
 
 class Application(Adw.Application):
@@ -31,8 +32,10 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.Client",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
+        self._monitor = Monitor.default()
         self._session_host: Optional[SessionHost] = None
         self._session_guest: Optional[SessionGuest] = None
+        self._description: Optional[Description] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionNewWindow(transient_for=self._window)
@@ -40,9 +43,11 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_new_done(self, dialog: SessionNewWindow) -> None:
+        self._description = dialog.description
+        self._monitor.shutdown()
         self._shutdown_guest()
         self._shutdown_host()
-        self._start_host(dialog.description)
+        self._start_host()
 
     def __on_join(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionJoinWindow(transient_for=self._window)
@@ -50,9 +55,17 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_join_done(self, dialog: SessionNewWindow) -> None:
+        self._description = dialog.description
+        self._monitor.shutdown()
         self._shutdown_guest()
         self._shutdown_host()
-        self._start_guest(dialog.description)
+        self._start_guest()
+
+    def __on_reload(self, window: Window) -> None:
+        self._monitor.shutdown()
+        self._shutdown_guest()
+        self._shutdown_host()
+        self._start_host()
 
     def _shutdown_guest(self) -> None:
         if self._session_guest is not None:
@@ -66,33 +79,39 @@ class Application(Adw.Application):
         if self._session_host is not None:
             self._session_host.shutdown()
 
-    def _start_host(self, description: Description) -> None:
+    def _start_host(self) -> None:
+        if self._description is None:
+            return
+
         self._session_host = SessionHost(
-            data_path=description.data_path,
-            scene=description.scene_path,
-            clients=description.clients,
-            session_port=description.session_port,
-            messages_port=description.messages_port,
-            scene_port=description.scene_port,
-            stats_port=description.stats_port,
+            data_path=self._description.data_path,
+            scene=self._description.scene_path,
+            clients=self._description.clients,
+            session_port=self._description.session_port,
+            messages_port=self._description.messages_port,
+            scene_port=self._description.scene_port,
+            stats_port=self._description.stats_port,
         )
 
-        self._session_host.connect("started", self.__on_host_started, description)
+        self._session_host.connect("started", self.__on_host_started)
         self._session_host.connect("initializing", self.__on_session_initializing)
         self._session_host.connect("failed", self.__on_session_failed)
         self._session_host.start()
 
-    def __on_host_started(self, session: SessionHost, description: Description) -> None:
-        self._start_guest(description)
+    def __on_host_started(self, session: SessionHost) -> None:
+        self._start_guest()
 
-    def _start_guest(self, description: Description) -> None:
+    def _start_guest(self) -> None:
+        if self._description is None:
+            return
+
         self._session_guest = SessionGuest(
-            data_path=description.data_path,
-            address=description.address,
-            session_port=description.session_port,
-            messages_port=description.messages_port,
-            scene_port=description.scene_port,
-            stats_port=description.stats_port,
+            data_path=self._description.data_path,
+            address=self._description.address,
+            session_port=self._description.session_port,
+            messages_port=self._description.messages_port,
+            scene_port=self._description.scene_port,
+            stats_port=self._description.stats_port,
             widget=self._window,
         )
 
@@ -120,6 +139,7 @@ class Application(Adw.Application):
         )
 
         self._window = Window(application=self)
+        self._window.connect("reload", self.__on_reload)
         self._window.present()
 
     def do_startup(self) -> None:
@@ -134,6 +154,7 @@ class Application(Adw.Application):
         self.add_action(join_action)
 
     def do_shutdown(self) -> None:
+        self._monitor.shutdown()
         self._shutdown_guest()
         self._shutdown_host()
         Adw.Application.do_shutdown(self)

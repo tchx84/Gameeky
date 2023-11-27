@@ -78,6 +78,17 @@
               <object class="GtkStackPage">
                 <property name="child">
                   <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="AdwBanner"/>
+                    </child>
+                    <child>
+                      <object class="AdwBanner" id="banner">
+                        <property name="button-label">Reload</property>
+                        <property name="title">The scene has been changed on disk</property>
+                        <signal name="button-clicked" handler="on_reload_clicked"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkOverlay" id="overlay">
                         <property name="hexpand">True</property>

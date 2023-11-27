@@ -1,3 +1,5 @@
+import os
+
 from typing import Optional
 from gi.repository import GObject
 
@@ -5,6 +7,7 @@ from ...common.logger import logger
 from ...common.utils import get_data_path, set_data_path
 from ...common.scanner import Scanner, Description
 from ...common.threaded import Threaded
+from ...common.monitor import Monitor
 
 from ...server.game.service import Service
 from ...server.game.entity import EntityRegistry as EntityGameRegistry
@@ -41,6 +44,7 @@ class SessionHost(Threaded):
         self._service: Optional[Service] = None
 
     def _setup(self) -> None:
+        Monitor.default().add(os.path.join(self._data_path, self._scene))
         self._service = Service(
             scene=self._scene,
             clients=self._clients,
@@ -60,6 +64,7 @@ class SessionHost(Threaded):
         scanner.scan()
 
     def __on_entities_scanner_found(self, scanner: Scanner, path: str) -> None:
+        Monitor.default().add(path)
         EntityGameRegistry.register(Description.new_from_json(path))
 
     def __on_entities_scanner_done(self, scanner: Scanner) -> None:
@@ -71,6 +76,7 @@ class SessionHost(Threaded):
         scanner.scan()
 
     def __on_actuators_scanner_found(self, scanner: Scanner, path: str) -> None:
+        Monitor.default().add(path)
         ActuatorRegistry.register(path)
 
     def __on_actuators_scanner_done(self, scanner: Scanner) -> None:
