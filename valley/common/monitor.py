@@ -3,7 +3,6 @@ from typing import List, Optional
 from gi.repository import Gio, GLib, GObject
 
 from .logger import logger
-from .utils import valid_file
 
 
 class Monitor(GObject.GObject):
@@ -22,12 +21,10 @@ class Monitor(GObject.GObject):
     def _do_add(self, path: str) -> None:
         if path in self._cache:
             return
-        if not valid_file(path):
-            return
 
         file = Gio.File.new_for_path(path)
 
-        monitor = file.monitor_file(Gio.FileMonitorFlags.NONE, None)
+        monitor = file.monitor(Gio.FileMonitorFlags.NONE, None)
         monitor.connect("changed", self.__on_changed)
 
         self._cache.append(path)

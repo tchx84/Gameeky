@@ -36,7 +36,7 @@ class Scanner(GObject.GObject):
     def scan(self) -> None:
         directory = Gio.File.new_for_path(self._path)
         directory.enumerate_children_async(
-            Gio.FILE_ATTRIBUTE_STANDARD_NAME,
+            Gio.FILE_ATTRIBUTE_STANDARD_TYPE,
             Gio.FileQueryInfoFlags.NONE,
             GLib.PRIORITY_DEFAULT,
             None,
@@ -74,6 +74,9 @@ class Scanner(GObject.GObject):
             return
 
         for info in infos:
+            if info.get_file_type() == Gio.FileType.DIRECTORY:
+                continue
+
             path = enumerator.get_child(info).get_path()
             self.emit("found", path)
 

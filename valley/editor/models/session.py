@@ -19,6 +19,7 @@ class Session(GObject.GObject):
     def __init__(self) -> None:
         super().__init__()
         Monitor.default().shutdown()
+        Monitor.default().add(get_data_path("entities"))
 
     def scan(self) -> None:
         EntityGraphicsRegistry.reset()
