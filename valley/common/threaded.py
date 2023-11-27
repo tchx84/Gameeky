@@ -17,6 +17,10 @@ class Threaded(threading.Thread, GObject.GObject):
     def do_shutdown(self) -> None:
         raise NotImplementedError()
 
+    def do_shutdown_sequence(self) -> None:
+        self.do_shutdown()
+        self._mainloop.quit()
+
     def run(self) -> None:
         self._context = GLib.MainContext.new()
         self._context.push_thread_default()
@@ -34,8 +38,7 @@ class Threaded(threading.Thread, GObject.GObject):
         add_idle_source(callback, context=self._context)
 
     def shutdown(self) -> None:
-        self.exec(self.do_shutdown)
-        self._mainloop.quit()
+        self.exec(self.do_shutdown_sequence)
         self.join()
 
     @property
