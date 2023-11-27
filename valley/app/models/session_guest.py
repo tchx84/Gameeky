@@ -49,6 +49,7 @@ class SessionGuest(Threaded):
         self._scene_model: Optional[SceneModel] = None
         self._stats_model: Optional[StatsModel] = None
         self._keyboard: Optional[Keyboard] = None
+        self._cursor: Optional[Cursor] = None
         self._sound: Optional[SceneSound] = None
 
     def _setup(self) -> None:

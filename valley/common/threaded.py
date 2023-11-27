@@ -1,6 +1,6 @@
 import threading
 
-from typing import Callable
+from typing import Callable, Optional
 from gi.repository import GLib, GObject
 
 from .utils import add_idle_source
@@ -10,6 +10,8 @@ class Threaded(threading.Thread, GObject.GObject):
     def __init__(self) -> None:
         GObject.GObject.__init__(self)
         threading.Thread.__init__(self)
+        self._context: Optional[GLib.MainContext] = None
+        self._mainloop: Optional[GLib.MainLoop] = None
 
     def do_run(self) -> None:
         raise NotImplementedError()
@@ -18,6 +20,9 @@ class Threaded(threading.Thread, GObject.GObject):
         raise NotImplementedError()
 
     def do_shutdown_sequence(self) -> None:
+        if self._mainloop is None:
+            return
+
         self.do_shutdown()
         self._mainloop.quit()
 
@@ -42,5 +47,5 @@ class Threaded(threading.Thread, GObject.GObject):
         self.join()
 
     @property
-    def context(self) -> GLib.MainContext:
+    def context(self) -> Optional[GLib.MainContext]:
         return self._context
