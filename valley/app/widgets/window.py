@@ -47,17 +47,9 @@ class Window(Adw.ApplicationWindow):
         self.stack.set_visible_child_name("loading")
 
     def switch_to_failed(self) -> None:
-        self._scene.model = None
-        self._hud.model = None
         self.stack.set_visible_child_name("failed")
 
-    def switch_to_game(
-        self,
-        scene: Optional[SceneModel],
-        stats: Optional[StatsModel],
-    ) -> None:
-        self._scene.model = scene
-        self._hud.model = stats
+    def switch_to_game(self) -> None:
         self.stack.set_visible_child_name("game")
 
     def display_actions(self, x: int, y: int) -> None:
@@ -72,6 +64,22 @@ class Window(Adw.ApplicationWindow):
     def __on_reload_clicked(self, button: Gtk.Button) -> None:
         self.banner.props.revealed = False
         self.emit("reload")
+
+    @property
+    def scene(self) -> Optional[SceneModel]:
+        return self._scene.model
+
+    @scene.setter
+    def scene(self, scene: Optional[SceneModel]) -> None:
+        self._scene.model = scene
+
+    @property
+    def stats(self) -> Optional[StatsModel]:
+        return self._hud.model
+
+    @stats.setter
+    def stats(self, stats: Optional[StatsModel]) -> None:
+        self._hud.model = stats
 
     @property
     def canvas(self) -> Gtk.Widget:

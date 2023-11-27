@@ -67,6 +67,9 @@ class Application(Adw.Application):
         self._start_host()
 
     def _shutdown_guest(self) -> None:
+        self._window.scene = None
+        self._window.stats = None
+
         if self._session_guest is not None:
             self._session_guest.shutdown()
 
@@ -116,7 +119,9 @@ class Application(Adw.Application):
         self._session_guest.start()
 
     def __on_guest_started(self, session: SessionGuest) -> None:
-        self._window.switch_to_game(session.scene, session.stats)
+        self._window.scene = session.scene
+        self._window.stats = session.stats
+        self._window.switch_to_game()
 
     def __on_session_initializing(self, *args) -> None:
         self._window.switch_to_loading()
