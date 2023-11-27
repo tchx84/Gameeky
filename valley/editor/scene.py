@@ -23,6 +23,7 @@ from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
 from ..common.scanner import Description
 from ..common.definitions import Format
+from ..common.monitor import Monitor
 
 
 class Application(Adw.Application):
@@ -31,6 +32,9 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.editor.Scene",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
+        self._monitor = Monitor.default()
+        self._data_path: Optional[str] = None
+        self._description: Optional[Description] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SceneNewWindow(transient_for=self._window)
@@ -46,13 +50,22 @@ class Application(Adw.Application):
         if (description := dialog.description) is None:
             return
 
-        set_data_path(dialog.data_path)
+        self._data_path = dialog.data_path
+        self._description = description
+        self._start_session()
+
+    def _on_reload(self, window: SceneWindow) -> None:
+        self._description = self._window.description
+        self._start_session()
+
+    def _start_session(self) -> None:
+        set_data_path(self._data_path)
 
         self._window.reset()
 
         self._session_model = SessionModel()
         self._session_model.connect("registered", self.__on_session_registered)
-        self._session_model.connect("ready", self.__on_session_ready, description)
+        self._session_model.connect("ready", self.__on_session_ready)
         self._session_model.scan()
 
     def __on_session_registered(
@@ -65,9 +78,9 @@ class Application(Adw.Application):
     def __on_session_ready(
         self,
         model: SessionModel,
-        description: Description,
     ) -> None:
-        self._window.description = description
+        if self._description is not None:
+            self._window.description = self._description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         folder = get_data_folder("scenes")
@@ -111,6 +124,7 @@ class Application(Adw.Application):
         )
 
         self._window = SceneWindow(application=self)
+        self._window.connect("reload", self._on_reload)
         self._window.present()
 
     def do_startup(self) -> None:
@@ -129,6 +143,7 @@ class Application(Adw.Application):
         self.add_action(save_action)
 
     def do_shutdown(self) -> None:
+        self._monitor.shutdown()
         Adw.Application.do_shutdown(self)
 
 

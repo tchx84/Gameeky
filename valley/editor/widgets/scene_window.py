@@ -4,7 +4,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 
 from typing import Optional
 
-from gi.repository import Gio, Gtk, Adw
+from gi.repository import Gio, Gtk, GObject, Adw
 
 from .scene import Scene as SceneView
 from .grid import Grid as GridView
@@ -18,11 +18,16 @@ from ..definitions import Layer
 from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.definitions import Format
+from ...common.monitor import Monitor
 
 
 @Gtk.Template(filename=os.path.join(__dir__, "scene_window.ui"))
 class SceneWindow(Adw.ApplicationWindow):
     __gtype_name__ = "SceneWindow"
+
+    __gsignals__ = {
+        "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
 
     aspect = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
@@ -41,6 +46,7 @@ class SceneWindow(Adw.ApplicationWindow):
     factory = Gtk.Template.Child()
     scene_page = Gtk.Template.Child()
     layer = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -62,6 +68,11 @@ class SceneWindow(Adw.ApplicationWindow):
         self.model.props.model = self._model
         self.factory.connect("setup", self.__on_factory_setup)
         self.factory.connect("bind", self.__on_factory_bind)
+
+        Monitor.default().connect("changed", self.__on_monitor_changed)
+
+    def __on_monitor_changed(self, monitor: Monitor) -> None:
+        self.banner.props.revealed = True
 
     def __on_factory_setup(
         self,
@@ -156,6 +167,9 @@ class SceneWindow(Adw.ApplicationWindow):
         )
 
     def reset(self) -> None:
+        self._scene_view.model = None
+        self.overlay.props.visible = False
+
         self.adder.props.active = True
         self.grid.props.active = True
         self.area.props.selected = 0
@@ -183,6 +197,11 @@ class SceneWindow(Adw.ApplicationWindow):
         self.adder.props.active = True
         self.area.props.selected = 0
 
+    @Gtk.Template.Callback("on_reload_clicked")
+    def __on_reload_clicked(self, *args) -> None:
+        self.emit("reload")
+        self.banner.props.revealed = False
+
     @property
     def layer_value(self) -> int:
         return int(self.layer.props.selected)
@@ -199,6 +218,7 @@ class SceneWindow(Adw.ApplicationWindow):
     def description(self, description: Description) -> None:
         self._scene_model.description = description
 
+        self.overlay.props.visible = True
         self.aspect.props.ratio = self._scene_model.ratio
 
         self._grid_view.columns = self._scene_model.width
