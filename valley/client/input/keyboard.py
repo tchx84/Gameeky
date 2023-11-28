@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from gi.repository import Gdk, Gtk, GLib
 
@@ -30,18 +30,30 @@ class Keyboard(Gtk.EventControllerKey):
     ) -> None:
         super().__init__()
         self._is_pressed_by_key: Dict[int, bool] = {}
+        self._registered_source_id: Optional[int] = None
+        self._key_pressed_source_id: Optional[int] = None
+        self._key_released_source_id: Optional[int] = None
 
         self._widget = widget
         self._widget.add_controller(self)
 
         self._service = service
-        self._service.connect("registered", self.__on_service_registered)
+        self._registered_source_id = self._service.connect(
+            "registered",
+            self.__on_service_registered,
+        )
 
         self._context = context
 
     def __on_service_registered(self, service: Service, session: Session) -> None:
-        self.connect("key-pressed", self.__on_key_pressed)
-        self.connect("key-released", self.__on_key_released)
+        self._key_pressed_source_id = self.connect(
+            "key-pressed",
+            self.__on_key_pressed,
+        )
+        self._key_released_source_id = self.connect(
+            "key-released",
+            self.__on_key_released,
+        )
 
     def __on_key_pressed(
         self,
@@ -84,10 +96,14 @@ class Keyboard(Gtk.EventControllerKey):
 
     def shutdown(self) -> None:
         self._is_pressed_by_key = {}
-        self.disconnect_by_func(self.__on_key_pressed)
-        self.disconnect_by_func(self.__on_key_released)
+
+        if self._key_pressed_source_id is not None:
+            self.disconnect(self._key_pressed_source_id)
+        if self._key_released_source_id is not None:
+            self.disconnect(self._key_released_source_id)
+        if self._registered_source_id is not None:
+            self._service.disconnect(self._registered_source_id)
 
         self._widget.remove_controller(self)
-        self._service.disconnect_by_func(self.__on_service_registered)
 
         logger.info("Client.Keyboard.shut")
