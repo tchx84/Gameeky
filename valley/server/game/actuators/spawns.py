@@ -7,6 +7,9 @@ class Actuator(BaseActuator):
     activatable = True
 
     def tick(self) -> None:
+        if self._entity.rate == 0 and not self.activated:
+            return
+
         if self._seconds_since_activation() < self._entity.rate and not self.activated:
             return
 
