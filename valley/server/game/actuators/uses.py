@@ -11,13 +11,16 @@ class Actuator(BaseActuator):
     activatable = False
 
     def tick(self) -> None:
+        if self._entity.held is None:
+            return
+
         if (entity := self._entity.obstacle) is None:
             return
 
         if entity.density != Density.SOLID:
             return
 
-        if not entity.name:
+        if not entity.mutable:
             return
 
         self._entity.perform(Action.USE)
