@@ -263,8 +263,12 @@ class Entity(CommonEntity):
         return self._handler.busy
 
     @property
+    def playable(self) -> bool:
+        return self.type_id == EntityType.PLAYER
+
+    @property
     def mutable(self) -> bool:
-        return len(self.actuators) > 0 or self.type_id == EntityType.PLAYER
+        return len(self.actuators) > 0
 
     @property
     def interactable(self) -> bool:

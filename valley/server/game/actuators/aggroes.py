@@ -10,13 +10,10 @@ class Actuator(BaseActuator):
         target = None
 
         for entity in self._entity.surroundings:
-            if entity is self._entity:
+            if entity.type_id == self._entity.type_id:
                 continue
-            if entity.mutable:
+            if entity.removable or entity.playable:
                 target = entity
                 break
-
-        if target is None:
-            return
 
         self._entity.target = target
