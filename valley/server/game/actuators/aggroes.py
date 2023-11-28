@@ -12,7 +12,7 @@ class Actuator(BaseActuator):
         for entity in self._entity.surroundings:
             if entity is self._entity:
                 continue
-            if entity.name:
+            if entity.mutable:
                 target = entity
                 break
 
