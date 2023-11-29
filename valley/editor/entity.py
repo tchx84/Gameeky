@@ -22,6 +22,7 @@ from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
 from ..common.definitions import Format
 from ..common.scanner import Description
+from ..common.monitor import Monitor
 
 
 class Application(Adw.Application):
@@ -30,6 +31,7 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.editor.Entity",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
+        self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
         self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
@@ -51,6 +53,10 @@ class Application(Adw.Application):
         self._data_path = dialog.data_path
         self._description = description
 
+        self._start_session()
+
+    def __on_reload(self, window: EntityWindow) -> None:
+        self._description = self._window.description
         self._start_session()
 
     def _start_session(self) -> None:
@@ -111,6 +117,7 @@ class Application(Adw.Application):
         )
 
         self._window = EntityWindow(application=self)
+        self._window.connect("reload", self.__on_reload)
         self._window.present()
 
     def do_startup(self) -> None:
@@ -129,6 +136,7 @@ class Application(Adw.Application):
         self.add_action(save_action)
 
     def do_shutdown(self) -> None:
+        self._monitor.shutdown()
         Adw.Application.do_shutdown(self)
 
 

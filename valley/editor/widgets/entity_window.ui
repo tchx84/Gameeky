@@ -9,75 +9,87 @@
     <property name="content">
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="AdwViewStack" id="stack">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="AdwViewStackPage">
-                <property name="child">
-                  <object class="GtkScrolledWindow">
+              <object class="AdwBanner" id="banner">
+                <property name="button-label">Reload</property>
+                <property name="title">Actuators have been changed on disk</property>
+                <signal name="button-clicked" handler="on_reload_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStack" id="stack">
+                <child>
+                  <object class="AdwViewStackPage">
                     <property name="child">
-                      <object class="AdwClamp">
+                      <object class="GtkScrolledWindow">
                         <property name="child">
-                          <object class="GtkBox" id="game_box">
-                            <property name="css-name">game_box</property>
-                            <property name="orientation">vertical</property>
+                          <object class="AdwClamp">
+                            <property name="child">
+                              <object class="GtkBox" id="game_box">
+                                <property name="css-name">game_box</property>
+                                <property name="orientation">vertical</property>
+                              </object>
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <style>
+                              <class name="game"/>
+                            </style>
                           </object>
                         </property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <style>
-                          <class name="game"/>
-                        </style>
                       </object>
                     </property>
+                    <property name="icon-name">applications-games-symbolic</property>
+                    <property name="name">game</property>
+                    <property name="title">game</property>
                   </object>
-                </property>
-                <property name="icon-name">applications-games-symbolic</property>
-                <property name="name">game</property>
-                <property name="title">game</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwViewStackPage">
-                <property name="child">
-                  <object class="GtkScrolledWindow">
+                </child>
+                <child>
+                  <object class="AdwViewStackPage">
                     <property name="child">
-                      <object class="AdwClamp">
+                      <object class="GtkScrolledWindow">
                         <property name="child">
-                          <object class="GtkBox" id="graphics_box"/>
+                          <object class="AdwClamp">
+                            <property name="child">
+                              <object class="GtkBox" id="graphics_box"/>
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <style>
+                              <class name="graphics"/>
+                            </style>
+                          </object>
                         </property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <style>
-                          <class name="graphics"/>
-                        </style>
                       </object>
                     </property>
+                    <property name="icon-name">applications-graphics-symbolic</property>
+                    <property name="name">graphics</property>
+                    <property name="title">graphics</property>
                   </object>
-                </property>
-                <property name="icon-name">applications-graphics-symbolic</property>
-                <property name="name">graphics</property>
-                <property name="title">graphics</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwViewStackPage">
-                <property name="child">
-                  <object class="GtkScrolledWindow">
+                </child>
+                <child>
+                  <object class="AdwViewStackPage">
                     <property name="child">
-                      <object class="AdwClamp">
+                      <object class="GtkScrolledWindow">
                         <property name="child">
-                          <object class="GtkBox" id="sound_box"/>
+                          <object class="AdwClamp">
+                            <property name="child">
+                              <object class="GtkBox" id="sound_box"/>
+                            </property>
+                            <style>
+                              <class name="sound"/>
+                            </style>
+                          </object>
                         </property>
-                        <style>
-                          <class name="sound"/>
-                        </style>
                       </object>
                     </property>
+                    <property name="icon-name">audio-volume-high-symbolic</property>
+                    <property name="name">sounds</property>
+                    <property name="title">sounds</property>
                   </object>
-                </property>
-                <property name="icon-name">audio-volume-high-symbolic</property>
-                <property name="name">sounds</property>
-                <property name="title">sounds</property>
+                </child>
               </object>
             </child>
           </object>
