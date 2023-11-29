@@ -17,7 +17,7 @@ from gi.repository import Gdk, Gio, Gtk, Adw
 from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
-from .models.session import Session as SessionModel
+from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
