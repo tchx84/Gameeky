@@ -74,7 +74,7 @@ class Scene:
             type_id=type_id,
             position=position,
             overrides=overrides,
-            partition=self._partition,
+            scene=self,
         )
 
         self._index += 1
@@ -143,8 +143,16 @@ class Scene:
         logger.info("Server.Scene.shut")
 
     @property
-    def entities(self):
+    def partition(self) -> SpatialPartition:
+        return self._partition
+
+    @property
+    def entities(self) -> List[Entity]:
         return list(self._entity_by_id.values())
+
+    @property
+    def mutables(self) -> List[Entity]:
+        return self._mutable_entities
 
     @classmethod
     def new_from_description(cls, description: Description) -> "Scene":

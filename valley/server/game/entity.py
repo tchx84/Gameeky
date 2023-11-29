@@ -1,10 +1,14 @@
+from __future__ import annotations
+
 import math
 
 from copy import deepcopy
-from typing import Dict, List, Optional, cast
+from typing import Dict, List, Optional, cast, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .scene import Scene
 
 from .definitions import Density, Recovery, Delay
-from .partition import SpatialPartition
 
 from .actuators.base import Actuator, ActuatorRegistry
 from .actuators.transmutes import Actuator as TransmutesActuator
@@ -111,7 +115,7 @@ class Entity(CommonEntity):
         target: str,
         radius: int,
         rate: float,
-        partition: SpatialPartition,
+        scene: Scene,
         *args,
         **kargs,
     ) -> None:
@@ -138,7 +142,7 @@ class Entity(CommonEntity):
         self._default_density = density
         self._default_visible = self.visible
 
-        self._partition = partition
+        self._scene = scene
 
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -237,7 +241,10 @@ class Entity(CommonEntity):
             self._spawned = self.held.spawns
 
     def position_at(self, direction: Direction) -> Vector:
-        return self._partition.get_position_for_direction(self.position, direction)
+        return self._scene.partition.get_position_for_direction(
+            self.position,
+            direction,
+        )
 
     def secure(self) -> None:
         self.position = Vector(
@@ -353,11 +360,11 @@ class Entity(CommonEntity):
 
     @position.setter
     def position(self, position) -> None:
-        self._partition.remove(self)
+        self._scene.partition.remove(self)
 
         self._position = position.copy()
 
-        self._partition.add(self)
+        self._scene.partition.add(self)
 
     @property
     def destination(self) -> Vector:
@@ -396,7 +403,7 @@ class Entity(CommonEntity):
 
     @property
     def obstacles(self) -> List["Entity"]:
-        return cast(List["Entity"], self._partition.find_by_direction(self))
+        return cast(List["Entity"], self._scene.partition.find_by_direction(self))
 
     @property
     def obstacle(self) -> Optional["Entity"]:
@@ -410,7 +417,10 @@ class Entity(CommonEntity):
 
     @property
     def surfaces(self) -> List["Entity"]:
-        return cast(List["Entity"], self._partition.find_by_position(self.position))
+        return cast(
+            List["Entity"],
+            self._scene.partition.find_by_position(self.position),
+        )
 
     @property
     def surface(self) -> Optional["Entity"]:
@@ -426,7 +436,7 @@ class Entity(CommonEntity):
 
         entities = cast(
             List["Entity"],
-            self._partition.find_by_distance(
+            self._scene.partition.find_by_distance(
                 target=self,
                 distance_x=self.radius,
                 distance_y=self.radius,
@@ -438,6 +448,10 @@ class Entity(CommonEntity):
                 surroundings.append(entity)
 
         return surroundings
+
+    @property
+    def scene(self) -> Scene:
+        return self._scene
 
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":
@@ -495,7 +509,7 @@ class EntityRegistry:
         type_id: int,
         position: Vector,
         overrides: Optional[Description],
-        partition: SpatialPartition,
+        scene: Scene,
     ) -> Entity:
         description = cls.find_and_override(type_id=type_id, overrides=overrides)
         return Entity.new_with_name(
@@ -521,5 +535,5 @@ class EntityRegistry:
             luminance=description.luminance,
             direction=Direction[description.direction.upper()],
             state=State[description.state.upper()],
-            partition=partition,
+            scene=scene,
         )
