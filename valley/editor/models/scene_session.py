@@ -19,6 +19,7 @@ class Session(GObject.GObject):
     def __init__(self) -> None:
         super().__init__()
         Monitor.default().shutdown()
+        Monitor.default().add(get_data_path("actuators"))
         Monitor.default().add(get_data_path("entities"))
 
     def scan(self) -> None:
@@ -35,7 +36,6 @@ class Session(GObject.GObject):
     def __on_entities_scanner_found(self, scanner: Scanner, path: str) -> None:
         description = Description.new_from_json(path)
 
-        Monitor.default().add(path)
         EntityGraphicsRegistry.register(description)
         EntityGameRegistry.register(description)
 
@@ -50,7 +50,6 @@ class Session(GObject.GObject):
         scanner.scan()
 
     def __on_actuators_scanner_found(self, scanner: Scanner, path: str) -> None:
-        Monitor.default().add(path)
         ActuatorRegistry.register(path)
 
     def __on_actuators_scanner_done(self, scanner: Scanner) -> None:
