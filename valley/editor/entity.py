@@ -16,13 +16,12 @@ from gi.repository import Gio, Adw, Gdk, Gtk
 from .widgets.entity_window import EntityWindow
 from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
+from .models.entity_session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import get_data_path, set_data_path, get_data_folder
+from ..common.utils import set_data_path, get_data_folder
 from ..common.definitions import Format
-from ..common.scanner import Scanner, Description
-
-from ..server.game.actuators.base import ActuatorRegistry
+from ..common.scanner import Description
 
 
 class Application(Adw.Application):
@@ -31,6 +30,9 @@ class Application(Adw.Application):
             application_id="dev.tchx84.valley.editor.Entity",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
+        self._data_path: Optional[str] = None
+        self._description: Optional[Description] = None
+        self._session_model: Optional[SessionModel] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = EntityNewWindow(transient_for=self._window)
@@ -46,24 +48,26 @@ class Application(Adw.Application):
         if (description := dialog.description) is None:
             return
 
-        ActuatorRegistry.reset()
+        self._data_path = dialog.data_path
+        self._description = description
 
-        scanner = Scanner(path=get_data_path("actuators"))
-        scanner.connect("found", self.__on_scanner_found)
-        scanner.connect("done", self.__on_scanner_done, dialog.data_path, description)
-        scanner.scan()
+        self._start_session()
 
-    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
-        ActuatorRegistry.register(path)
+    def _start_session(self) -> None:
+        if self._data_path is None:
+            return
 
-    def __on_scanner_done(
-        self,
-        scanner: Scanner,
-        data_path: str,
-        description: Description,
-    ) -> None:
-        set_data_path(data_path)
-        self._window.description = description
+        set_data_path(self._data_path)
+
+        self._session_model = SessionModel()
+        self._session_model.connect("ready", self.__on_session_done)
+        self._session_model.scan()
+
+    def __on_session_done(self, session: SessionModel) -> None:
+        if self._description is None:
+            return
+
+        self._window.description = self._description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         folder = get_data_folder("entities")

@@ -1,0 +1,29 @@
+from gi.repository import GObject
+
+from ...common.utils import get_data_path
+from ...common.scanner import Scanner
+
+from ...server.game.actuators.base import ActuatorRegistry
+
+
+class Session(GObject.GObject):
+    __gsignals__ = {
+        "started": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "ready": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
+    def scan(self) -> None:
+        ActuatorRegistry.reset()
+
+        scanner = Scanner(path=get_data_path("actuators"))
+        scanner.connect("found", self.__on_scanner_found)
+        scanner.connect("done", self.__on_scanner_done)
+        scanner.scan()
+
+        self.emit("started")
+
+    def __on_scanner_found(self, scanner: Scanner, path: str) -> None:
+        ActuatorRegistry.register(path)
+
+    def __on_scanner_done(self, scanner: Scanner) -> None:
+        self.emit("ready")
