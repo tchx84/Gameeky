@@ -3,6 +3,7 @@ import threading
 from typing import Callable, Optional
 from gi.repository import GLib, GObject
 
+from .logger import logger
 from .utils import add_idle_source
 
 
@@ -23,7 +24,11 @@ class Threaded(threading.Thread, GObject.GObject):
         if self._mainloop is None:
             return
 
-        self.do_shutdown()
+        try:
+            self.do_shutdown()
+        except Exception as e:
+            logger.error(e)
+
         self._mainloop.quit()
 
     def run(self) -> None:
@@ -32,7 +37,10 @@ class Threaded(threading.Thread, GObject.GObject):
 
         self._mainloop = GLib.MainLoop.new(self._context, False)
 
-        self.do_run()
+        try:
+            self.do_run()
+        except Exception as e:
+            logger.error(e)
 
         self._mainloop.run()
 
