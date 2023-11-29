@@ -48,6 +48,7 @@ from .handlers.move import Handler as MoveHandler
 from .handlers.take import Handler as TakeHandler
 from .handlers.use import Handler as UseHandler
 
+from ...common.logger import logger
 from ...common.scanner import Description
 from ...common.vector import Vector
 from ...common.utils import clamp, division, element
@@ -164,7 +165,10 @@ class Entity(CommonEntity):
             if ActuatorClass := self.__actuator_by_name__.get(actuator):
                 self.actuators.append(ActuatorClass(self))
             elif ActuatorClass := ActuatorRegistry.find(actuator):
-                self.actuators.append(ActuatorClass(self))
+                try:
+                    self.actuators.append(ActuatorClass(self))
+                except Exception as e:
+                    logger.error(e)
 
     def _prepare(self) -> None:
         if self._handler.busy is True:
@@ -183,7 +187,10 @@ class Entity(CommonEntity):
 
     def _update_actuators(self) -> None:
         for actuator in self.actuators:
-            actuator.tick()
+            try:
+                actuator.tick()
+            except Exception as e:
+                logger.error(e)
 
     def _update_held(self) -> None:
         if self.held is None:
@@ -217,7 +224,10 @@ class Entity(CommonEntity):
     def activate(self) -> None:
         for actuator in self.actuators:
             if actuator.activatable is True:
-                actuator.activate()
+                try:
+                    actuator.activate()
+                except Exception as e:
+                    logger.error(e)
 
     def drop(self, state: Optional[State] = None) -> None:
         if self.held is None:

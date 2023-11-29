@@ -4,6 +4,7 @@ from .base import Handler as BaseHandler
 
 from ..actuators.base import Actuator
 
+from ....common.logger import logger
 from ....common.definitions import Action, State
 
 
@@ -17,8 +18,11 @@ class Handler(BaseHandler):
 
         for entity in self._entity.obstacles:
             for actuator in entity.actuators:
-                if actuator.prepare(interactee=self._entity) is True:
-                    actuating.append(actuator)
+                try:
+                    if actuator.prepare(interactee=self._entity) is True:
+                        actuating.append(actuator)
+                except Exception as e:
+                    logger.error(e)
 
         if not actuating:
             return False
