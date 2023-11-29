@@ -48,6 +48,10 @@ class Actuator:
         self._activated = True
 
     @property
+    def entity(self) -> Entity:
+        return self._entity
+
+    @property
     def activated(self) -> bool:
         return self.activatable is True and self._activated is True
 
