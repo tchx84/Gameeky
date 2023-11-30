@@ -4,6 +4,7 @@ from .base import Handler as BaseHandler
 
 from ..definitions import Density
 
+from ....common.utils import division
 from ....common.definitions import Action, Direction, State
 
 
@@ -32,7 +33,7 @@ class Handler(BaseHandler):
 
         self._entity.state = State.MOVING
 
-        ratio = self._entity.strength / self._entity.weight
+        ratio = division(self._entity.strength, self._entity.weight)
         friction = Density.SOLID - surface.density
         seconds_since_tick = self._get_elapsed_seconds_since_tick()
 
