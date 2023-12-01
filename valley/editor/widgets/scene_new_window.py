@@ -20,6 +20,7 @@ class SceneNewWindow(Adw.Window):
     toast = Gtk.Template.Child()
     name = Gtk.Template.Child()
     project = Gtk.Template.Child()
+    daytime = Gtk.Template.Child()
     width = Gtk.Template.Child()
     height = Gtk.Template.Child()
 
@@ -90,5 +91,6 @@ class SceneNewWindow(Adw.Window):
                 y=0,
                 z=0,
             ),
+            daytime=self.daytime.props.selected_item.props.string,
             entities=[],
         )

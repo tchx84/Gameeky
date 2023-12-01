@@ -1,4 +1,5 @@
 {
+    "daytime": "dynamic",
     "entities": [
         {
             "overrides": null,

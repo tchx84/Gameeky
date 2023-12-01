@@ -70,3 +70,9 @@ class State(IntEnum):
     INTERACTING = auto()
     DESTROYING = auto()
     DESTROYED = auto()
+
+
+class DayTime(IntEnum):
+    DAY = auto()
+    NIGHT = auto()
+    DYNAMIC = auto()

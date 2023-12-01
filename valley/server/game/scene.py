@@ -10,14 +10,21 @@ from .entity import Entity, EntityRegistry
 from ...common.logger import logger
 from ...common.vector import Vector
 from ...common.scanner import Description
-from ...common.definitions import Action, EntityType, TICK, TILES_X, TILES_Y
+from ...common.definitions import Action, EntityType, DayTime, TICK, TILES_X, TILES_Y
 from ...common.scene import Scene as CommonScene
 from ...common.stats import Stats as CommonStats
 from ...common.utils import get_time_milliseconds, add_timeout_source, remove_source_id
 
 
 class Scene:
-    def __init__(self, name: str, width: int, height: int, spawn: Vector) -> None:
+    def __init__(
+        self,
+        name: str,
+        width: int,
+        height: int,
+        spawn: Vector,
+        daytime: DayTime,
+    ) -> None:
         self._time = 0.0
         self._index = 0
         self._mutable_entities: List[Entity] = []
@@ -28,6 +35,7 @@ class Scene:
         self.width = width
         self.height = height
         self.spawn = spawn
+        self.daytime = daytime
 
         self._timeout_source_id: Optional[int] = add_timeout_source(
             TICK,
@@ -37,6 +45,15 @@ class Scene:
     def __on_scene_ticked(self, *args) -> int:
         self.tick()
         return GLib.SOURCE_CONTINUE
+
+    def _tick_time(self) -> None:
+        if self.daytime == DayTime.DAY:
+            self._time = 0.0
+        elif self.daytime == DayTime.NIGHT:
+            self._time = 1.0
+        else:
+            # A full day in one hour
+            self._time = get_time_milliseconds() / 1000 / 60 / 60
 
     def tick(self) -> None:
         added = []
@@ -60,8 +77,7 @@ class Scene:
                 Description(direction=entity.direction.name),
             )
 
-        # A full day in one hour
-        self._time = get_time_milliseconds() / 1000 / 60 / 60
+        self._tick_time()
 
     def add(
         self,
@@ -165,6 +181,7 @@ class Scene:
                 y=description.spawn.y,
                 z=description.spawn.z,
             ),
+            daytime=DayTime[description.daytime.upper()],
         )
 
         for entity in description.entities:

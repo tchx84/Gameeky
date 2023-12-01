@@ -44,6 +44,19 @@
                                   </object>
                                 </child>
                                 <child>
+                                  <object class="AdwComboRow" id="daytime">
+                                    <property name="model">
+                                      <object class="GtkStringList">
+                                        <property name="strings">dynamic
+day
+night</property>
+                                      </object>
+                                    </property>
+                                    <property name="selected">0</property>
+                                    <property name="title">Time</property>
+                                  </object>
+                                </child>
+                                <child>
                                   <object class="AdwSpinRow" id="width">
                                     <property name="adjustment">
                                       <object class="GtkAdjustment">

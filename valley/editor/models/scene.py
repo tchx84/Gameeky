@@ -9,6 +9,7 @@ from .entity import Entity
 from ...common.scene import Scene as CommonScene
 from ...common.scanner import Description
 from ...common.vector import Vector
+from ...common.definitions import DayTime
 
 from ...server.game.partition import SpatialPartition
 
@@ -25,6 +26,7 @@ class Scene(CommonScene, GObject.GObject):
         self._partition: Optional[SpatialPartition] = None
         self._name = ""
         self.spawn = Vector()
+        self.daytime = DayTime.DYNAMIC
         self.layer: Optional[int] = None
 
     def _add(
@@ -177,6 +179,7 @@ class Scene(CommonScene, GObject.GObject):
                 y=self.spawn.y,
                 z=self.spawn.z,
             ),
+            daytime=self.daytime,
             entities=[cast(Entity, e).summary for e in self.entities],
         )
 
@@ -189,6 +192,7 @@ class Scene(CommonScene, GObject.GObject):
         self.name = description.name
         self.width = description.width
         self.height = description.height
+        self.daytime = description.daytime
 
         self.spawn = Vector(
             x=description.spawn.x,
