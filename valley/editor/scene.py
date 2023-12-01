@@ -17,6 +17,7 @@ from gi.repository import Gdk, Gio, Gtk, Adw
 from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
+from .widgets.scene_edit_window import SceneEditWindow
 from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
@@ -44,6 +45,12 @@ class Application(Adw.Application):
     def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SceneOpenWindow(transient_for=self._window)
         dialog.connect("done", self.__on_done)
+        dialog.present()
+
+    def __on_edit(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = SceneEditWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_done)
+        dialog.description = self._window.description
         dialog.present()
 
     def __on_done(self, dialog: SceneNewWindow) -> None:
@@ -137,6 +144,10 @@ class Application(Adw.Application):
         open_action = Gio.SimpleAction.new("open", None)
         open_action.connect("activate", self.__on_open)
         self.add_action(open_action)
+
+        edit_action = Gio.SimpleAction.new("edit", None)
+        edit_action.connect("activate", self.__on_edit)
+        self.add_action(edit_action)
 
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)

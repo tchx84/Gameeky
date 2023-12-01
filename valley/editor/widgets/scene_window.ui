@@ -320,6 +320,10 @@ night</property>
       <attribute name="label">Open</attribute>
     </item>
     <item>
+      <attribute name="action">app.edit</attribute>
+      <attribute name="label">Edit</attribute>
+    </item>
+    <item>
       <attribute name="action">app.save</attribute>
       <attribute name="label">Save _As…</attribute>
     </item>
