@@ -45,6 +45,19 @@ def valid_directory(path) -> bool:
     return True
 
 
+def valid_project(path) -> bool:
+    if valid_directory(os.path.join(path, "entities")) is False:
+        return False
+    if valid_directory(os.path.join(path, "scenes")) is False:
+        return False
+    if valid_directory(os.path.join(path, "assets")) is False:
+        return False
+    if valid_directory(os.path.join(path, "actuators")) is False:
+        return False
+
+    return True
+
+
 def find_context() -> GLib.MainContext:
     if (context := GLib.MainContext.get_thread_default()) is None:
         context = GLib.MainContext.default()

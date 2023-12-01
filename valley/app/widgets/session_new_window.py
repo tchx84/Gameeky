@@ -9,7 +9,7 @@ from ...common.logger import logger
 from ...common.utils import (
     get_data_path,
     get_data_folder,
-    valid_directory,
+    valid_project,
     valid_file,
 )
 from ...common.definitions import (
@@ -109,7 +109,7 @@ class SessionNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
-        if not valid_directory(self.project_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 

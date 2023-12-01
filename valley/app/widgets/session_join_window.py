@@ -8,7 +8,7 @@ from ...common.scanner import Description
 from ...common.logger import logger
 from ...common.utils import (
     get_data_path,
-    valid_directory,
+    valid_project,
 )
 from ...common.definitions import (
     DEFAULT_ADDRESS,
@@ -75,7 +75,7 @@ class SessionJoinWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
-        if not valid_directory(self.project_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 

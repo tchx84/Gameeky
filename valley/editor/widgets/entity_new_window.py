@@ -5,7 +5,7 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_directory
+from ...common.utils import get_data_path, get_data_folder, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Direction, State
 
@@ -38,7 +38,7 @@ class EntityNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
-        if not valid_directory(self.data_path):
+        if not valid_project(self.data_path):
             self._notify("A valid project must be provided")
             return
 

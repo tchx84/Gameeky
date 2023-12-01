@@ -7,7 +7,7 @@ from typing import Optional
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_file, valid_directory
+from ...common.utils import get_data_path, get_data_folder, valid_file, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Format
 
@@ -42,7 +42,7 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
-        if not valid_directory(self.data_path):
+        if not valid_project(self.data_path):
             self._notify("A valid project must be provided")
             return
 

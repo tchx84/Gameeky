@@ -6,7 +6,7 @@ from gi.repository import Gtk, Adw, GObject
 
 from .scene_settings import SceneSettings
 
-from ...common.utils import valid_directory
+from ...common.utils import valid_project
 from ...common.scanner import Description
 
 
@@ -43,7 +43,7 @@ class SceneNewWindow(Adw.Window):
             self._notify("A valid name must be provided")
             return
 
-        if not valid_directory(self.data_path):
+        if not valid_project(self.data_path):
             self._notify("A valid project must be provided")
             return
 
