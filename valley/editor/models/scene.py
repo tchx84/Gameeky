@@ -26,7 +26,7 @@ class Scene(CommonScene, GObject.GObject):
         self._partition: Optional[SpatialPartition] = None
         self._name = ""
         self.spawn = Vector()
-        self.daytime = DayTime.DYNAMIC
+        self.daytime = DayTime.DYNAMIC.name.lower()
         self.layer: Optional[int] = None
 
     def _add(
