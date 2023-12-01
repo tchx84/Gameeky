@@ -2,10 +2,11 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
-from gi.repository import Gio, Gtk, Adw, GObject
+from gi.repository import Gtk, Adw, GObject
 
-from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_directory
+from .scene_settings import SceneSettings
+
+from ...common.utils import valid_directory
 from ...common.scanner import Description
 
 
@@ -18,15 +19,12 @@ class SceneNewWindow(Adw.Window):
     }
 
     toast = Gtk.Template.Child()
-    name = Gtk.Template.Child()
-    project = Gtk.Template.Child()
-    daytime = Gtk.Template.Child()
-    width = Gtk.Template.Child()
-    height = Gtk.Template.Child()
+    content = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self.project.props.text = get_data_path("")
+        self._scene_settings = SceneSettings()
+        self.content.props.child = self._scene_settings
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -52,45 +50,14 @@ class SceneNewWindow(Adw.Window):
         self.emit("done")
         self.close()
 
-    @Gtk.Template.Callback("on_open_clicked")
-    def __on_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
-
-        dialog = Gtk.FileDialog()
-        dialog.props.initial_folder = folder
-        dialog.select_folder(callback=self.__on_open_dialog_finish)
-
-    def __on_open_dialog_finish(
-        self,
-        dialog: Gtk.FileDialog,
-        result: Gio.AsyncResult,
-    ) -> None:
-        try:
-            file = dialog.select_folder_finish(result)
-        except Exception as e:
-            logger.error(e)
-        else:
-            self.project.props.text = file.get_path()
-
     @property
     def title(self) -> str:
-        return self.name.props.text
+        return self._scene_settings.title
 
     @property
     def data_path(self) -> None:
-        return self.project.props.text
+        return self._scene_settings.data_path
 
     @property
     def description(self) -> Description:
-        return Description(
-            name=self.name.props.text,
-            width=int(self.width.props.value),
-            height=int(self.height.props.value),
-            spawn=Description(
-                x=0,
-                y=0,
-                z=0,
-            ),
-            daytime=self.daytime.props.selected_item.props.string,
-            entities=[],
-        )
+        return self._scene_settings.description
