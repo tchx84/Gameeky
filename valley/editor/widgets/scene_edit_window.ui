@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name scene_edit_window.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="SceneEditWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="AdwToastOverlay" id="toast">
+            <property name="child">
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="AdwClamp" id="content">
+                        <property name="hexpand">True</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Cancel</property>
+                <signal name="clicked" handler="on_cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label">Save</property>
+                <signal name="clicked" handler="on_save_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="dialog"/>
+        </style>
+      </object>
+    </property>
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="modal">True</property>
+    <property name="title">Edit</property>
+  </template>
+</interface>
