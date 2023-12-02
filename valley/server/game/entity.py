@@ -117,6 +117,7 @@ class Entity(CommonEntity):
         radius: int,
         rate: float,
         scene: Scene,
+        overrides: Optional[Description],
         *args,
         **kargs,
     ) -> None:
@@ -144,6 +145,9 @@ class Entity(CommonEntity):
         self._default_visible = self.visible
 
         self._scene = scene
+
+        # Keep original overrides for save files
+        self._overrides = overrides
 
         self._next_action = Action.IDLE
         self._next_value = 0.0
@@ -463,6 +467,18 @@ class Entity(CommonEntity):
     def scene(self) -> Scene:
         return self._scene
 
+    @property
+    def description(self) -> Description:
+        return Description(
+            type_id=self.type_id,
+            position=Description(
+                x=math.floor(self.position.x),
+                y=math.floor(self.position.y),
+                z=math.floor(self.position.z),
+            ),
+            overrides=self._overrides,
+        )
+
     @classmethod
     def new_with_name(cls, *args, **kargs) -> "Entity":
         entity = cls(*args, **kargs)
@@ -545,5 +561,6 @@ class EntityRegistry:
             luminance=description.luminance,
             direction=Direction[description.direction.upper()],
             state=State[description.state.upper()],
+            overrides=overrides,
             scene=scene,
         )

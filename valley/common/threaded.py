@@ -1,6 +1,6 @@
 import threading
 
-from typing import Callable, Optional
+from typing import Callable, Optional, Tuple
 from gi.repository import GLib, GObject
 
 from .logger import logger
@@ -47,8 +47,8 @@ class Threaded(threading.Thread, GObject.GObject):
     def emit(self, *args):
         GLib.idle_add(GObject.GObject.emit, self, *args)
 
-    def exec(self, callback: Callable) -> None:
-        add_idle_source(callback, context=self._context)
+    def exec(self, callback: Callable, data: Optional[Tuple] = None) -> None:
+        add_idle_source(callback, data=data, context=self._context)
 
     def shutdown(self) -> None:
         self.exec(self.do_shutdown_sequence)

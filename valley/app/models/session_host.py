@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Callable
 from gi.repository import GObject
 
 from ...common.logger import logger
@@ -103,3 +103,12 @@ class SessionHost(Threaded):
             self._service.shutdown()
 
         logger.info("Server.Session.shut")
+
+    def do_request_description(self, callback: Callable, path: str) -> None:
+        if self._service is None:
+            return
+
+        callback(path, self._service.scene.description)
+
+    def request_description(self, callback: Callable, path: str) -> None:
+        self.exec(self.do_request_description, (callback, path))

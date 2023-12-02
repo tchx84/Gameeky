@@ -23,6 +23,7 @@ from .models.session_guest import SessionGuest
 from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
+from ..common.utils import get_data_folder
 
 
 class Application(Adw.Application):
@@ -129,6 +130,47 @@ class Application(Adw.Application):
     def __on_session_failed(self, *args) -> None:
         self._window.switch_to_failed()
 
+    def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        folder = get_data_folder("scenes")
+
+        json_filter = Gtk.FileFilter()
+        json_filter.add_pattern("*.scene")
+
+        dialog = Gtk.FileDialog()
+        dialog.props.initial_folder = folder
+        dialog.props.initial_name = "save.json"
+        dialog.props.default_filter = json_filter
+        dialog.save(callback=self.__on_save_finished)
+
+    def __on_save_finished(
+        self,
+        dialog: Gtk.FileDialog,
+        result: Gio.AsyncResult,
+    ) -> None:
+        try:
+            file = dialog.save_finish(result)
+        except Exception as e:
+            logger.error(e)
+            return
+
+        if self._session_host is None:
+            return
+
+        self._session_host.request_description(
+            self.__on_description_received,
+            file.get_path(),
+        )
+
+    def __on_description_received(self, path: str, description: Description) -> None:
+        file = Gio.File.new_for_path(path)
+        file.replace_contents(
+            contents=description.to_json().encode("UTF-8"),
+            etag=None,
+            make_backup=False,
+            flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
+            cancellable=None,
+        )
+
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
         css_provider.load_from_path(os.path.join(__dir__, "style.css"))
@@ -152,6 +194,10 @@ class Application(Adw.Application):
         join_action = Gio.SimpleAction.new("join", None)
         join_action.connect("activate", self.__on_join)
         self.add_action(join_action)
+
+        save_action = Gio.SimpleAction.new("save", None)
+        save_action.connect("activate", self.__on_save)
+        self.add_action(save_action)
 
     def do_shutdown(self) -> None:
         self._monitor.shutdown()

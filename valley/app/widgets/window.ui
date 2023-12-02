@@ -145,6 +145,10 @@
       <attribute name="action">app.join</attribute>
       <attribute name="label">Join</attribute>
     </item>
+    <item>
+      <attribute name="action">app.save</attribute>
+      <attribute name="label">Save _As…</attribute>
+    </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">
     <property name="menu-model">menu</property>

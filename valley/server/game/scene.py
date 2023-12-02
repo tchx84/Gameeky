@@ -170,6 +170,30 @@ class Scene:
     def mutables(self) -> List[Entity]:
         return self._mutable_entities
 
+    @property
+    def description(self) -> Description:
+        spawn = self.spawn.copy()
+        entities: List[Description] = []
+
+        for entity in self.entities:
+            if entity.playable:
+                spawn = entity.position.copy()
+            else:
+                entities.append(entity.description)
+
+        return Description(
+            name=self.name,
+            width=self.width,
+            height=self.height,
+            spawn=Description(
+                x=spawn.x,
+                y=spawn.y,
+                z=spawn.z,
+            ),
+            daytime=self.daytime.name.lower(),
+            entities=entities,
+        )
+
     @classmethod
     def new_from_description(cls, description: Description) -> "Scene":
         scene = cls(
