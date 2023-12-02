@@ -24,6 +24,7 @@ class Window(Adw.ApplicationWindow):
         "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
+    toast = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     banner = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
@@ -42,6 +43,13 @@ class Window(Adw.ApplicationWindow):
         self._popup.set_parent(self.canvas)
 
         Monitor.default().connect("changed", self.__on_monitor_changed)
+
+    def warn(self, title: str) -> None:
+        toast = Adw.Toast()
+        toast.props.title = title
+        toast.props.timeout = 3
+
+        self.toast.add_toast(toast)
 
     def switch_to_loading(self) -> None:
         self.stack.set_visible_child_name("loading")

@@ -134,6 +134,7 @@ class Application(Adw.Application):
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         if self._session_host is None:
+            self._window.warn("Only an active host session can save the game state")
             return
         if self._description is None:
             return
