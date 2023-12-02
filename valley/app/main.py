@@ -2,6 +2,7 @@
 
 import os
 import sys
+import time
 import gi
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
@@ -24,6 +25,7 @@ from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.utils import get_data_folder
+from ..common.definitions import Format
 
 
 class Application(Adw.Application):
@@ -131,14 +133,22 @@ class Application(Adw.Application):
         self._window.switch_to_failed()
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        if self._session_host is None:
+            return
+        if self._description is None:
+            return
+
         folder = get_data_folder("scenes")
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern("*.scene")
+        json_filter.add_pattern(f"*.{Format.SCENE}")
+
+        scene = os.path.splitext(os.path.basename(self._description.scene_path))[0]
+        initial_name = f"{scene}_{time.strftime('%Y%m%d-%H%M%S')}.{Format.SCENE}"
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
-        dialog.props.initial_name = "save.json"
+        dialog.props.initial_name = initial_name
         dialog.props.default_filter = json_filter
         dialog.save(callback=self.__on_save_finished)
 
