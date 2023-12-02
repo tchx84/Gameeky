@@ -76,9 +76,13 @@ class Application(Adw.Application):
         if self._session_guest is not None:
             self._session_guest.shutdown()
 
+        self._session_guest = None
+
     def _shutdown_host(self) -> None:
         if self._session_host is not None:
             self._session_host.shutdown()
+
+        self._session_host = None
 
     def _start_host(self) -> None:
         if self._description is None:
