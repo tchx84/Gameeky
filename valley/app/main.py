@@ -140,16 +140,13 @@ class Application(Adw.Application):
         if self._session_host is None:
             self._window.warn("Only an active host session can save the game state")
             return
-        if self._description is None:
-            return
 
         folder = get_data_folder("scenes")
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.SCENE}")
 
-        scene = os.path.splitext(os.path.basename(self._description.scene_path))[0]
-        initial_name = f"{scene}_{time.strftime('%Y%m%d-%H%M%S')}.{Format.SCENE}"
+        initial_name = f"{self._session_host.scene_name}_{time.strftime('%Y%m%d-%H%M%S')}.{Format.SCENE}"
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder

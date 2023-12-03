@@ -112,3 +112,10 @@ class SessionHost(Threaded):
 
     def request_description(self, callback: Callable, path: str) -> None:
         self.exec(self.do_request_description, (callback, path))
+
+    @property
+    def scene_name(self) -> Optional[str]:
+        if self._service is None:
+            return None
+
+        return self._service.scene.name
