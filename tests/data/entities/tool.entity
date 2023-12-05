@@ -17,7 +17,7 @@
             "state": "idling",
             "strength": 1000,
             "takeable": true,
-            "target": "",
+            "target_name": "",
             "visible": true,
             "weight": 0
         }

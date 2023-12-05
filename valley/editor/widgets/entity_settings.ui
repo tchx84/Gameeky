@@ -109,8 +109,8 @@
           </object>
         </child>
         <child>
-          <object class="AdwEntryRow" id="target">
-            <property name="title">Target</property>
+          <object class="AdwEntryRow" id="target_name">
+            <property name="title">Target Name</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>

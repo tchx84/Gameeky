@@ -76,7 +76,7 @@ class EntityNewWindow(Adw.Window):
             game=Description(
                 default=Description(
                     name="",
-                    target="",
+                    target_name="",
                     stamina=0,
                     durability=0,
                     weight=0,

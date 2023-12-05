@@ -113,7 +113,7 @@ class Entity(CommonEntity):
         target_type: EntityType,
         name: str,
         actuators: List[str],
-        target: str,
+        target_name: str,
         radius: int,
         rate: float,
         scene: Scene,
@@ -135,7 +135,7 @@ class Entity(CommonEntity):
         self.rate = rate
         self.action = Action.IDLE
 
-        self._target = target
+        self._target_name = target_name
         self._weight = weight
         self._durability = durability
         self._stamina = stamina
@@ -325,11 +325,11 @@ class Entity(CommonEntity):
 
     @property
     def target(self) -> Optional["Entity"]:
-        return self.__entity_by_name__.get(self._target)
+        return self.__entity_by_name__.get(self._target_name)
 
     @target.setter
     def target(self, target: Optional["Entity"]) -> None:
-        self._target = target.name if target is not None else ""
+        self._target_name = target.name if target is not None else ""
 
     @property
     def held(self) -> Optional["Entity"]:
@@ -555,7 +555,7 @@ class EntityRegistry:
             target_type=description.target_type,
             name=description.name,
             actuators=description.actuators,
-            target=description.target,
+            target_name=description.target_name,
             radius=description.radius,
             rate=description.rate,
             luminance=description.luminance,

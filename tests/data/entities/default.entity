@@ -20,7 +20,7 @@
             "state": "idling",
             "strength": 100,
             "takeable": true,
-            "target": "",
+            "target_name": "",
             "visible": true,
             "weight": 100
         }
