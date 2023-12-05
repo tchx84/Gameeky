@@ -29,7 +29,7 @@ class Handler(BaseHandler):
         if self._get_elapsed_seconds_since_prepare() <= Delay.MAX:
             return
 
-        if self._entity.held.spawns != EntityType.EMPTY:
+        if self._entity.held.target_type != EntityType.EMPTY:
             self._entity.spawn()
 
         for target in self._entity.obstacles:

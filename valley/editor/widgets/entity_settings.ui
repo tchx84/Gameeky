@@ -115,15 +115,15 @@
           </object>
         </child>
         <child>
-          <object class="AdwSpinRow" id="spawns">
+          <object class="AdwSpinRow" id="target_type">
             <property name="adjustment">
               <object class="GtkAdjustment">
                 <property name="step-increment">1.0</property>
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">The identifier of another entity to be spawned by an actuator</property>
-            <property name="title">Spawns</property>
+            <property name="subtitle">The identifier of another entity</property>
+            <property name="title">Target Type</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>

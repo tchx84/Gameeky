@@ -12,7 +12,7 @@
             "rate": 0,
             "recovery": 1.0,
             "removable": false,
-            "spawns": 0,
+            "target_type": 0,
             "stamina": 0,
             "state": "idling",
             "strength": 0,

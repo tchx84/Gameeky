@@ -15,7 +15,7 @@
             "rate": 0,
             "recovery": 0.75,
             "removable": true,
-            "spawns": 0,
+            "target_type": 0,
             "stamina": 100,
             "state": "idling",
             "strength": 100,

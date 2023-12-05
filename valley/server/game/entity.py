@@ -110,7 +110,7 @@ class Entity(CommonEntity):
         takeable: bool,
         usable: bool,
         density: Density,
-        spawns: EntityType,
+        target_type: EntityType,
         name: str,
         actuators: List[str],
         target: str,
@@ -128,7 +128,7 @@ class Entity(CommonEntity):
         self.takeable = takeable
         self.usable = usable
         self.density = clamp(Density.SOLID, Density.VOID, density)
-        self.spawns = spawns
+        self.target_type = target_type
         self.name = name
         self.actuators: List[Actuator] = []
         self.radius = radius
@@ -249,10 +249,10 @@ class Entity(CommonEntity):
             self.held_by.drop()
 
     def spawn(self) -> None:
-        self._spawned = self.spawns
+        self._spawned = self.target_type
 
-        if self.held is not None and self.held.spawns != EntityType.EMPTY:
-            self._spawned = self.held.spawns
+        if self.held is not None and self.held.target_type != EntityType.EMPTY:
+            self._spawned = self.held.target_type
 
     def position_at(self, direction: Direction) -> Vector:
         return self._scene.partition.get_position_for_direction(
@@ -318,7 +318,7 @@ class Entity(CommonEntity):
     def spawned_at(self) -> Vector:
         position = self.position
 
-        if self.held is not None and self.held.spawns != EntityType.EMPTY:
+        if self.held is not None and self.held.target_type != EntityType.EMPTY:
             position = self.held.position
 
         return position.copy()
@@ -552,7 +552,7 @@ class EntityRegistry:
             usable=description.usable,
             density=description.density,
             visible=description.visible,
-            spawns=description.spawns,
+            target_type=description.target_type,
             name=description.name,
             actuators=description.actuators,
             target=description.target,

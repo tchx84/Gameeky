@@ -27,7 +27,7 @@ class EntitySettings(Gtk.Box):
     durability = Gtk.Template.Child()
     weight = Gtk.Template.Child()
     strength = Gtk.Template.Child()
-    spawns = Gtk.Template.Child()
+    target_type = Gtk.Template.Child()
     radius = Gtk.Template.Child()
     rate = Gtk.Template.Child()
     recovery = Gtk.Template.Child()
@@ -81,7 +81,7 @@ class EntitySettings(Gtk.Box):
             durability=int(self.durability.props.value),
             weight=int(self.weight.props.value),
             strength=int(self.strength.props.value),
-            spawns=int(self.spawns.props.value),
+            target_type=int(self.target_type.props.value),
             radius=int(self.radius.props.value),
             rate=int(self.rate.props.value),
             recovery=round(self.recovery.props.value, 2),
@@ -104,7 +104,7 @@ class EntitySettings(Gtk.Box):
         self.durability.props.value = description.durability
         self.weight.props.value = description.weight
         self.strength.props.value = description.strength
-        self.spawns.props.value = description.spawns
+        self.target_type.props.value = description.target_type
         self.radius.props.value = description.radius
         self.rate.props.value = description.rate
         self.recovery.props.value = description.recovery

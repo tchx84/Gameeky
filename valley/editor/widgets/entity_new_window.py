@@ -81,7 +81,7 @@ class EntityNewWindow(Adw.Window):
                     durability=0,
                     weight=0,
                     strength=0,
-                    spawns=0,
+                    target_type=0,
                     radius=0,
                     rate=0,
                     recovery=0,
