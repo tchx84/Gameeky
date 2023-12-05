@@ -15,4 +15,7 @@ class Actuator(BaseActuator):
         if entity.interactable is False:
             return
 
+        if not self._entity.targets(entity):
+            return
+
         self._entity.perform(Action.INTERACT)

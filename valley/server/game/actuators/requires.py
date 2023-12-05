@@ -19,7 +19,7 @@ class Actuator(BaseActuator):
         if requirement.visible is False:
             return
 
-        if requirement.type_id != self._entity.target_type:
+        if not self._entity.targets(requirement):
             return
 
         self._entity.target.activate()

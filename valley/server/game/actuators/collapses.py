@@ -14,7 +14,10 @@ class Actuator(BaseActuator):
         if self._seconds_since_activation() <= Delay.MAX:
             return
 
-        if not self._entity.surroundings:
+        if not (surroundings := self._entity.surroundings):
+            return
+
+        if not next((e for e in surroundings if self._entity.targets(e)), None):
             return
 
         self._entity.stop()

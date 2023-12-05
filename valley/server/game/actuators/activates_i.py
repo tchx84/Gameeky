@@ -29,6 +29,9 @@ class Actuator(BaseActuator):
         if entity.density != Density.SOLID:
             return False
 
+        if not self._entity.targets(entity):
+            return False
+
         self._target = entity
 
         return super().prepare(interactee)

@@ -271,6 +271,19 @@ class Entity(CommonEntity):
         self.visible = self._default_visible
         self.density = self._default_density
 
+    def targets(self, entity: "Entity") -> bool:
+        # If no particular target then it could target any entity
+        if not self.target_name and not self.target_type:
+            return True
+
+        if self.target_name == entity.name:
+            return True
+
+        if self.target_type == entity.type_id:
+            return True
+
+        return False
+
     @property
     def horizontally(self) -> bool:
         return self.direction in [Direction.EAST, Direction.WEST]

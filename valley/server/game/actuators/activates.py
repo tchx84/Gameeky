@@ -18,6 +18,9 @@ class Actuator(BaseActuator):
         if target.density != Density.SOLID:
             return
 
+        if not self._entity.targets(target):
+            return
+
         target.activate()
 
         super().tick()

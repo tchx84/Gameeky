@@ -12,11 +12,12 @@ class Actuator(BaseActuator):
         for entity in self._entity.surroundings:
             if entity.type_id == self._entity.type_id:
                 continue
-            if entity.type_id == self._entity.target_type:
-                target = entity
-                break
-            if entity.removable or entity.playable:
-                target = entity
-                break
+            if not self._entity.targets(entity):
+                continue
+            if not entity.removable and not entity.playable:
+                continue
+
+            target = entity
+            break
 
         self._entity.target = target

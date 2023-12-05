@@ -23,6 +23,9 @@ class Actuator(BaseActuator):
         if entity.density != Density.SOLID:
             return
 
+        if not self._entity.targets(entity):
+            return
+
         if not entity.removable and not entity.playable:
             return
 
