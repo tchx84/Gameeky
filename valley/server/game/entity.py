@@ -128,6 +128,7 @@ class Entity(CommonEntity):
         self.takeable = takeable
         self.usable = usable
         self.density = clamp(Density.SOLID, Density.VOID, density)
+        self.target_name = target_name
         self.target_type = target_type
         self.name = name
         self.actuators: List[Actuator] = []
@@ -135,7 +136,6 @@ class Entity(CommonEntity):
         self.rate = rate
         self.action = Action.IDLE
 
-        self._target_name = target_name
         self._weight = weight
         self._durability = durability
         self._stamina = stamina
@@ -325,11 +325,11 @@ class Entity(CommonEntity):
 
     @property
     def target(self) -> Optional["Entity"]:
-        return self.__entity_by_name__.get(self._target_name)
+        return self.__entity_by_name__.get(self.target_name)
 
     @target.setter
     def target(self, target: Optional["Entity"]) -> None:
-        self._target_name = target.name if target is not None else ""
+        self.target_name = target.name if target is not None else ""
 
     @property
     def held(self) -> Optional["Entity"]:
