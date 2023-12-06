@@ -39,6 +39,11 @@ class Scene(Gtk.Widget):
         screen_width = self.get_width()
         screen_height = self.get_height()
 
+        clip = Graphene.Rect()
+        clip.init(0, 0, screen_width, screen_height)
+
+        snapshot.push_clip(clip)
+
         tile_width = screen_width / self._model.width
         tile_height = screen_height / self._model.height
 
@@ -70,12 +75,19 @@ class Scene(Gtk.Widget):
 
         snapshot.pop()
 
+        snapshot.pop()
+
     def _do_snapshot_entities(self, snapshot: Gtk.Snapshot) -> None:
         if self._model is None:
             return
 
         screen_width = self.get_width()
         screen_height = self.get_height()
+
+        clip = Graphene.Rect()
+        clip.init(0, 0, screen_width, screen_height)
+
+        snapshot.push_clip(clip)
 
         tile_width = screen_width / self._model.width
         tile_height = screen_height / self._model.height
@@ -122,17 +134,11 @@ class Scene(Gtk.Widget):
                 tile_height * 0.2,
             )
 
+        snapshot.pop()
+
     def do_snapshot(self, snapshot: Gtk.Snapshot) -> None:
         if self._model is None:
             return
-
-        screen_width = self.get_width()
-        screen_height = self.get_height()
-
-        clip = Graphene.Rect()
-        clip.init(0, 0, screen_width, screen_height)
-
-        snapshot.push_clip(clip)
 
         snapshot.push_blend(Gsk.BlendMode.MULTIPLY)
 
@@ -140,8 +146,6 @@ class Scene(Gtk.Widget):
         snapshot.pop()
 
         self._do_snapshot_entities(snapshot)
-        snapshot.pop()
-
         snapshot.pop()
 
     @property
