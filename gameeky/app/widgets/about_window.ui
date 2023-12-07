@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name about_window.ui -->
+  <requires lib="libadwaita" version="1.2"/>
+  <object class="AdwAboutWindow" id="AboutWindow">
+    <property name="application-icon">emblem-system-symbolic</property>
+    <property name="application-name">gameeky</property>
+    <property name="copyright">© 2023 Martín Abente Lahaye</property>
+    <property name="developer-name">Martín Abente Lahaye</property>
+    <property name="issue-url">https://github.com/tchx84/gameeky/issues</property>
+    <property name="version">0.1.0</property>
+    <property name="website">https://github.com/tchx84/gameeky</property>
+  </object>
+</interface>

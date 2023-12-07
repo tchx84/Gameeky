@@ -24,6 +24,8 @@ from ..common.definitions import Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 
+from ..app.widgets.about_window import present_about
+
 
 class Application(Adw.Application):
     def __init__(self) -> None:
@@ -107,6 +109,9 @@ class Application(Adw.Application):
             cancellable=None,
         )
 
+    def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        present_about(self._window)
+
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
         css_provider.load_from_path(os.path.join(__dir__, "style.css"))
@@ -134,6 +139,10 @@ class Application(Adw.Application):
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
         self.add_action(save_action)
+
+        about_action = Gio.SimpleAction.new("about", None)
+        about_action.connect("activate", self.__on_about)
+        self.add_action(about_action)
 
     def do_shutdown(self) -> None:
         self._monitor.shutdown()

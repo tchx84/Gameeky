@@ -6,3 +6,9 @@
 .actions button {
     font-weight: normal;
 }
+
+/* About */
+
+.about .icon-dropshadow {
+    color: @accent_color;
+}

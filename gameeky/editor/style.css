@@ -42,3 +42,9 @@
 .dialog preferencesgroup {
     margin: 15px 0px;
 }
+
+/* About */
+
+.about .icon-dropshadow {
+    color: @accent_color;
+}

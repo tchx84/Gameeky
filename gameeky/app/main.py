@@ -20,6 +20,7 @@ from .widgets.session_new_window import SessionNewWindow
 from .widgets.session_join_window import SessionJoinWindow
 from .models.session_host import SessionHost
 from .models.session_guest import SessionGuest
+from .widgets.about_window import present_about
 
 from ..common.logger import logger
 from ..common.scanner import Description
@@ -183,6 +184,9 @@ class Application(Adw.Application):
             cancellable=None,
         )
 
+    def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        present_about(self._window)
+
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
         css_provider.load_from_path(os.path.join(__dir__, "style.css"))
@@ -210,6 +214,10 @@ class Application(Adw.Application):
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
         self.add_action(save_action)
+
+        about_action = Gio.SimpleAction.new("about", None)
+        about_action.connect("activate", self.__on_about)
+        self.add_action(about_action)
 
     def do_shutdown(self) -> None:
         self._monitor.shutdown()
