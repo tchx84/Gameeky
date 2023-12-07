@@ -4,12 +4,12 @@ from unittest.mock import Mock
 
 from gi.repository import GLib
 
-from valley.common.utils import get_data_path
-from valley.common.scanner import Scanner, Description
-from valley.server.game.entity import EntityRegistry
-from valley.server.game.service import Service as Server
-from valley.client.game.service import Service as Client
-from valley.common.definitions import (
+from gameeky.common.utils import get_data_path
+from gameeky.common.scanner import Scanner, Description
+from gameeky.server.game.entity import EntityRegistry
+from gameeky.server.game.service import Service as Server
+from gameeky.client.game.service import Service as Client
+from gameeky.common.definitions import (
     Action,
     Direction,
     EntityType,

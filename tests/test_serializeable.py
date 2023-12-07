@@ -1,10 +1,10 @@
-from valley.common.definitions import Action, Direction, State
-from valley.common.vector import Vector
-from valley.common.entity import Entity
-from valley.common.message import Message
-from valley.common.scene import Scene, SceneRequest
-from valley.common.stats import Stats, StatsRequest
-from valley.common.session import Session, SessionRequest
+from gameeky.common.definitions import Action, Direction, State
+from gameeky.common.vector import Vector
+from gameeky.common.entity import Entity
+from gameeky.common.message import Message
+from gameeky.common.scene import Scene, SceneRequest
+from gameeky.common.stats import Stats, StatsRequest
+from gameeky.common.session import Session, SessionRequest
 
 
 def test_serialize_vector():

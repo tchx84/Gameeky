@@ -4,12 +4,12 @@ import sys
 
 from gi.repository import Gio, GLib
 
-from valley.server.game.service import Service
-from valley.server.game.entity import EntityRegistry
-from valley.server.game.actuators.base import ActuatorRegistry
-from valley.common.scanner import Scanner, Description
-from valley.common.utils import get_data_path
-from valley.common.definitions import (
+from gameeky.server.game.service import Service
+from gameeky.server.game.entity import EntityRegistry
+from gameeky.server.game.actuators.base import ActuatorRegistry
+from gameeky.common.scanner import Scanner, Description
+from gameeky.common.utils import get_data_path
+from gameeky.common.definitions import (
     Command,
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
@@ -23,7 +23,7 @@ from valley.common.definitions import (
 class Application(Gio.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.valley.Server",
+            application_id="dev.tchx84.gameeky.Server",
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
 

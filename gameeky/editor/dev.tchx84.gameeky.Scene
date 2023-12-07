@@ -2,6 +2,6 @@ import sys
 
 
 if __name__ == "__main__":
-    from valley.editor import scene
+    from gameeky.editor import scene
 
     sys.exit(scene.main())

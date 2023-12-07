@@ -2,6 +2,6 @@ import sys
 
 
 if __name__ == "__main__":
-    from valley.editor import entity
+    from gameeky.editor import entity
 
     sys.exit(entity.main())

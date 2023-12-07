@@ -2,6 +2,6 @@ import sys
 
 
 if __name__ == "__main__":
-    from valley.app import main
+    from gameeky.app import main
 
     sys.exit(main.main())

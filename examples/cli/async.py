@@ -1,6 +1,6 @@
-from valley.common.definitions import Direction
+from gameeky.common.definitions import Direction
 
-from valley.cli.game import Game
+from gameeky.cli.game import Game
 
 
 def on_updated(game: Game, elapsed: int) -> None:

@@ -6,80 +6,94 @@ import os
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 
+gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 from typing import Any, Optional
 
-from gi.repository import Gio, Adw, Gdk, Gtk
+from gi.repository import Gdk, Gio, Gtk, Adw
 
-from .widgets.entity_window import EntityWindow
-from .widgets.entity_new_window import EntityNewWindow
-from .widgets.entity_open_window import EntityOpenWindow
-from .models.entity_session import Session as SessionModel
+from .widgets.scene_window import SceneWindow
+from .widgets.scene_new_window import SceneNewWindow
+from .widgets.scene_open_window import SceneOpenWindow
+from .widgets.scene_edit_window import SceneEditWindow
+from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder
-from ..common.definitions import Format
 from ..common.scanner import Description
+from ..common.definitions import Format
 from ..common.monitor import Monitor
 
 
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.valley.editor.Entity",
+            application_id="dev.tchx84.gameeky.editor.Scene",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
         self._description: Optional[Description] = None
-        self._session_model: Optional[SessionModel] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        dialog = EntityNewWindow(transient_for=self._window)
+        dialog = SceneNewWindow(transient_for=self._window)
         dialog.connect("done", self.__on_done)
         dialog.present()
 
     def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        dialog = EntityOpenWindow(transient_for=self._window)
+        dialog = SceneOpenWindow(transient_for=self._window)
         dialog.connect("done", self.__on_done)
         dialog.present()
 
-    def __on_done(self, dialog: EntityOpenWindow) -> None:
+    def __on_edit(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = SceneEditWindow(transient_for=self._window)
+        dialog.connect("done", self.__on_done)
+        dialog.description = self._window.description
+        dialog.present()
+
+    def __on_done(self, dialog: SceneNewWindow) -> None:
         if (description := dialog.description) is None:
             return
 
         self._data_path = dialog.data_path
         self._description = description
-
         self._start_session()
 
-    def __on_reload(self, window: EntityWindow) -> None:
+    def _on_reload(self, window: SceneWindow) -> None:
         self._description = self._window.description
         self._start_session()
 
     def _start_session(self) -> None:
-        if self._data_path is None:
-            return
-
         set_data_path(self._data_path)
 
+        self._window.reset()
+
         self._session_model = SessionModel()
-        self._session_model.connect("ready", self.__on_session_done)
+        self._session_model.connect("registered", self.__on_session_registered)
+        self._session_model.connect("ready", self.__on_session_ready)
         self._session_model.scan()
 
-    def __on_session_done(self, session: SessionModel) -> None:
-        if self._description is None:
-            return
+    def __on_session_registered(
+        self,
+        model: SessionModel,
+        description: Description,
+    ) -> None:
+        self._window.register(description)
 
-        self._window.description = self._description
+    def __on_session_ready(
+        self,
+        model: SessionModel,
+    ) -> None:
+        if self._description is not None:
+            self._window.description = self._description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        folder = get_data_folder("entities")
+        folder = get_data_folder("scenes")
 
         json_filter = Gtk.FileFilter()
-        json_filter.add_pattern(f"*.{Format.ENTITY}")
+        json_filter.add_pattern(f"*.{Format.SCENE}")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -116,8 +130,8 @@ class Application(Adw.Application):
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
-        self._window = EntityWindow(application=self)
-        self._window.connect("reload", self.__on_reload)
+        self._window = SceneWindow(application=self)
+        self._window.connect("reload", self._on_reload)
         self._window.present()
 
     def do_startup(self) -> None:
@@ -130,6 +144,10 @@ class Application(Adw.Application):
         open_action = Gio.SimpleAction.new("open", None)
         open_action.connect("activate", self.__on_open)
         self.add_action(open_action)
+
+        edit_action = Gio.SimpleAction.new("edit", None)
+        edit_action.connect("activate", self.__on_edit)
+        self.add_action(edit_action)
 
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)

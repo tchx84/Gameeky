@@ -31,7 +31,7 @@ from ..common.definitions import Format
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.valley.Client",
+            application_id="dev.tchx84.gameeky.Client",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
         self._monitor = Monitor.default()

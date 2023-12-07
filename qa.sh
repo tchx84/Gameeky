@@ -9,7 +9,7 @@ pip install .[dev,test]
 
 export DATA_DIR=tests/data
 
-pyflakes valley tests examples
-black --check valley tests examples
-mypy valley tests examples
+pyflakes gameeky tests examples
+black --check gameeky tests examples
+mypy gameeky tests examples
 pytest -sv
