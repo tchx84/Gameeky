@@ -24,7 +24,7 @@ from ..common.definitions import Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 
-from ..app.widgets.about_window import present_about
+from ..player.widgets.about_window import present_about
 
 
 class Application(Adw.Application):
