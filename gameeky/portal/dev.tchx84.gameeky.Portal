@@ -1,0 +1,7 @@
+import sys
+
+
+if __name__ == "__main__":
+    from gameeky.portal import portal
+
+    sys.exit(portal.main())

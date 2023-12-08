@@ -1,0 +1,15 @@
+/* Main */
+
+preferencesgroup {
+   margin: 15px;
+}
+
+.project button {
+    margin-left: 10px;
+}
+
+/* About */
+
+.about .icon-dropshadow {
+    color: @accent_color;
+}

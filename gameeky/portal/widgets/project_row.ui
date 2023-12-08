@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name project_row.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="ProjectRow" parent="AdwActionRow">
+    <child>
+      <object class="GtkBox">
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkButton">
+            <property name="icon-name">applications-games-symbolic</property>
+            <property name="tooltip-text">Play</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="icon-name">emblem-photos-symbolic</property>
+            <property name="tooltip-text">Scenes</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="icon-name">contact-new-symbolic</property>
+            <property name="tooltip-text">Entities</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="icon-name">document-edit-symbolic</property>
+            <property name="tooltip-text">Edit</property>
+            <signal name="clicked" handler="on_edit_clicked"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="icon-name">user-trash-symbolic</property>
+            <property name="tooltip-text">Remove</property>
+            <signal name="clicked" handler="on_remove_clicked"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="project"/>
+    </style>
+  </template>
+</interface>
