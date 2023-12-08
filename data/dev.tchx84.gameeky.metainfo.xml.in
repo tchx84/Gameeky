@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component type="desktop">
+  <id>dev.tchx84.gameeky</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>Gameeky</name>
+  <summary>Play, create and learn</summary>
+  <description>
+    <p>
+    Gameeky is a learning tool designed to put your STEAM skills into practice
+    </p>
+  </description>
+  <content_rating type="oars-1.1" />
+  <update_contact>martin.abente.lahaye@gmail.com</update_contact>
+  <developer_name>Martin Abente Lahaye</developer_name>
+  <url type="homepage">https://github.com/tchx84/gameeky</url>
+  <url type="bugtracker">https://github.com/tchx84/gameeky/issues</url>
+</component>

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=gameeky
+Exec=dev.tchx84.gameeky.Portal
+Icon=dev.tchx84.gameeky
+Terminal=false
+Type=Application
+Categories=Education;Game;
+StartupNotify=true

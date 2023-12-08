@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/dev/tchx84">
+    <file preprocess="xml-stripblanks">gameeky/common/widgets/about_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/actuator_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/actuators_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/animation_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/animation_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/animations_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_open_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/global_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/path_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/paths_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_edit_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_entity_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_open_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/sound_player.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/sound_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/sound_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/sounds_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/tileset_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/actions_popup.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/session_join_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/session_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_edit_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/window.ui</file>
+    <file>gameeky/client/graphics/lightmap.png</file>
+    <file>gameeky/editor/style.css</file>
+    <file>gameeky/player/style.css</file>
+    <file>gameeky/portal/style.css</file>
+  </gresource>
+</gresources>

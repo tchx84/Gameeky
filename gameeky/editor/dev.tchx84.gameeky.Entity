@@ -1,7 +1,0 @@
-import sys
-
-
-if __name__ == "__main__":
-    from gameeky.editor import entity
-
-    sys.exit(entity.main())
