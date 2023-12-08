@@ -4,7 +4,7 @@ from gi.repository import GObject
 
 from ...common.logger import logger
 from ...common.scanner import Scanner, Description
-from ...common.utils import get_projects_path, valid_project, valid_file
+from ...common.utils import get_projects_path, valid_project
 
 
 class Session(GObject.GObject):
@@ -22,11 +22,7 @@ class Session(GObject.GObject):
             return
 
         summary_path = os.path.join(path, "gameeky.project")
-
-        if not valid_file(summary_path):
-            return
-
-        logger.debug(f"Found {summary_path}")
         description = Description.new_from_json(summary_path)
 
         self.emit("found", description)
+        logger.debug(f"Found {summary_path}")

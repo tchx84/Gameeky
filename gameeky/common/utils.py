@@ -57,6 +57,8 @@ def valid_directory(path) -> bool:
 
 
 def valid_project(path) -> bool:
+    if valid_file(os.path.join(path, "gameeky.project")) is False:
+        return False
     if valid_directory(os.path.join(path, "entities")) is False:
         return False
     if valid_directory(os.path.join(path, "scenes")) is False:
