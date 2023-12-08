@@ -11,7 +11,7 @@
         "--device=dri",
         "--socket=wayland",
         "--socket=pulseaudio",
-        "--filesystem=~/gameeky"
+        "--filesystem=~/gameeky:create"
     ],
     "cleanup" : [
         "/include",
