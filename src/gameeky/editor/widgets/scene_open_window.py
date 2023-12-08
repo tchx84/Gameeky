@@ -1,7 +1,5 @@
 import os
 
-from typing import Optional
-
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
@@ -24,7 +22,6 @@ class SceneOpenWindow(Adw.Window):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._description: Optional[Description] = None
         self.project.props.text = get_data_path("")
 
     def _notify(self, title) -> None:
@@ -93,18 +90,16 @@ class SceneOpenWindow(Adw.Window):
         except Exception as e:
             logger.error(e)
         else:
-            path = file.get_path()
-            self.scene.props.text = path
-            self._description = Description.new_from_json(path)
+            self.scene.props.text = file.get_path()
 
     @property
     def scene_path(self) -> str:
-        return self.scene.props.text
+        return os.path.join(self.data_path, self.scene.props.text)
 
     @property
     def data_path(self) -> str:
         return self.project.props.text
 
     @property
-    def description(self) -> Optional[Description]:
-        return self._description
+    def description(self) -> Description:
+        return Description.new_from_json(self.scene_path)

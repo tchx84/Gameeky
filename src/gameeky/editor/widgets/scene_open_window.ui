@@ -38,6 +38,7 @@
                                 <child>
                                   <object class="AdwEntryRow" id="scene">
                                     <property name="hexpand">True</property>
+                                    <property name="text">scenes/default.scene</property>
                                     <property name="title">Scene</property>
                                     <child>
                                       <object class="GtkButton">
