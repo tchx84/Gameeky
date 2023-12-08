@@ -27,6 +27,10 @@ def get_data_path(*paths) -> str:
     return os.path.join(os.environ.get("DATA_DIR", os.path.expanduser("~")), *paths)
 
 
+def find_data_path(path) -> str:
+    return os.environ.get("DATA_DIR", os.path.dirname(os.path.dirname(path)))
+
+
 def get_data_folder(*paths):
     return Gio.File.new_for_path(os.path.join(get_data_path(""), *paths))
 

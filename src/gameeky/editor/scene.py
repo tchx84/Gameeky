@@ -7,7 +7,7 @@ gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 from gi.repository import Gdk, Gio, Gtk, Adw
 
@@ -18,7 +18,7 @@ from .widgets.scene_edit_window import SceneEditWindow
 from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import set_data_path, get_data_folder
+from ..common.utils import set_data_path, get_data_folder, find_data_path
 from ..common.scanner import Description
 from ..common.definitions import Format
 from ..common.monitor import Monitor
@@ -29,7 +29,7 @@ class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id="dev.tchx84.gameeky.editor.Scene",
-            flags=Gio.ApplicationFlags.NON_UNIQUE,
+            flags=Gio.ApplicationFlags.NON_UNIQUE | Gio.ApplicationFlags.HANDLES_OPEN,
         )
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
@@ -64,6 +64,11 @@ class Application(Adw.Application):
         self._start_session()
 
     def _start_session(self) -> None:
+        if self._data_path is None:
+            return
+        if self._description is None:
+            return
+
         set_data_path(self._data_path)
 
         self._window.reset()
@@ -122,6 +127,14 @@ class Application(Adw.Application):
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
+    def do_open(self, files: List[Gio.File], hint: str, data: Any) -> None:
+        path = files[-1].get_path()
+
+        self._data_path = find_data_path(path)
+        self._description = Description.new_from_json(path)
+
+        self.activate()
+
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource("/dev/tchx84/gameeky/editor/style.css")
@@ -134,6 +147,8 @@ class Application(Adw.Application):
         self._window = SceneWindow(application=self)
         self._window.connect("reload", self._on_reload)
         self._window.present()
+
+        self._start_session()
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
