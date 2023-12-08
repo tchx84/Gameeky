@@ -26,7 +26,7 @@ from ..common.widgets.about_window import present_about
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.editor.Scene",
+            application_id="dev.tchx84.gameeky.Scene",
             flags=Gio.ApplicationFlags.NON_UNIQUE | Gio.ApplicationFlags.HANDLES_OPEN,
         )
         self._monitor = Monitor.default()
