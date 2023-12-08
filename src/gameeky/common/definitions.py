@@ -38,6 +38,7 @@ class Action(IntEnum):
 
 
 class Command(StrEnum):
+    DATA_PATH = auto()
     SESSION_PORT = auto()
     MESSAGES_PORT = auto()
     SCENE_PORT = auto()

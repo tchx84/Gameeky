@@ -8,7 +8,7 @@ gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gdk, Gtk, Gio, Adw
+from gi.repository import Gdk, Gtk, GLib, Gio, Adw
 
 from typing import Any, Optional
 
@@ -21,8 +21,8 @@ from .models.session_guest import SessionGuest
 from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
-from ..common.utils import get_data_folder
-from ..common.definitions import Format
+from ..common.utils import get_data_folder, set_data_path, get_projects_path
+from ..common.definitions import Command, Format
 from ..common.widgets.about_window import present_about
 
 
@@ -30,12 +30,22 @@ class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id="dev.tchx84.gameeky.Client",
-            flags=Gio.ApplicationFlags.NON_UNIQUE,
+            flags=Gio.ApplicationFlags.NON_UNIQUE
+            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
         self._monitor = Monitor.default()
         self._session_host: Optional[SessionHost] = None
         self._session_guest: Optional[SessionGuest] = None
         self._description: Optional[Description] = None
+
+        self.add_main_option(
+            Command.DATA_PATH,
+            ord("d"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The absolute path to the project",
+            None,
+        )
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionNewWindow(transient_for=self._window)
@@ -183,6 +193,14 @@ class Application(Adw.Application):
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
+        options = command_line.get_options_dict().end().unpack()
+
+        set_data_path(options.get(Command.DATA_PATH, get_projects_path()))
+
+        self.activate()
+        return 0
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
