@@ -13,18 +13,21 @@
           <object class="GtkButton">
             <property name="icon-name">applications-games-symbolic</property>
             <property name="tooltip-text">Play</property>
+            <signal name="clicked" handler="on_play_clicked"/>
           </object>
         </child>
         <child>
           <object class="GtkButton">
             <property name="icon-name">emblem-photos-symbolic</property>
             <property name="tooltip-text">Scenes</property>
+            <signal name="clicked" handler="on_scene_clicked"/>
           </object>
         </child>
         <child>
           <object class="GtkButton">
             <property name="icon-name">contact-new-symbolic</property>
             <property name="tooltip-text">Entities</property>
+            <signal name="clicked" handler="on_entity_clicked"/>
           </object>
         </child>
         <child>

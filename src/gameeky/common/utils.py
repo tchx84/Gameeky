@@ -136,6 +136,10 @@ def wait(milliseconds: int) -> None:
             context.iteration(True)
 
 
+def launch(command: str) -> None:
+    GLib.spawn_command_line_async(GLib.find_program_in_path(command))
+
+
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
 
