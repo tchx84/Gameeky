@@ -8,6 +8,17 @@ def get_time_milliseconds() -> int:
     return int(GLib.get_monotonic_time() / 1000)
 
 
+def set_projects_path(path) -> None:
+    os.environ["PROJECTS_PATH"] = path
+
+
+def get_projects_path() -> str:
+    return os.environ.get(
+        "PROJECTS_PATH",
+        os.path.join(os.path.expanduser("~"), "gameeky"),
+    )
+
+
 def set_data_path(path) -> None:
     os.environ["DATA_DIR"] = path
 
