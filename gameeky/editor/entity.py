@@ -23,8 +23,7 @@ from ..common.utils import set_data_path, get_data_folder
 from ..common.definitions import Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
-
-from ..player.widgets.about_window import present_about
+from ..common.widgets.about_window import present_about
 
 
 class Application(Adw.Application):

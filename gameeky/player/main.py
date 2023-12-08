@@ -20,13 +20,13 @@ from .widgets.session_new_window import SessionNewWindow
 from .widgets.session_join_window import SessionJoinWindow
 from .models.session_host import SessionHost
 from .models.session_guest import SessionGuest
-from .widgets.about_window import present_about
 
 from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.utils import get_data_folder
 from ..common.definitions import Format
+from ..common.widgets.about_window import present_about
 
 
 class Application(Adw.Application):

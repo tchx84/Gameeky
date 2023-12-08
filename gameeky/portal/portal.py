@@ -17,7 +17,7 @@ from .widgets.window import Window
 from .models.session import Session
 
 from ..common.scanner import Description
-from ..player.widgets.about_window import present_about
+from ..common.widgets.about_window import present_about
 
 
 class Application(Adw.Application):
