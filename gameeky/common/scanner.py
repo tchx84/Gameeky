@@ -74,9 +74,6 @@ class Scanner(GObject.GObject):
             return
 
         for info in infos:
-            if info.get_file_type() == Gio.FileType.DIRECTORY:
-                continue
-
             path = enumerator.get_child(info).get_path()
             self.emit("found", path)
 
