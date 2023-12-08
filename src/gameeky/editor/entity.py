@@ -8,7 +8,7 @@ gi.require_version("Adw", "1")
 
 from typing import Any, Optional
 
-from gi.repository import Gio, Adw, Gdk, Gtk
+from gi.repository import Gio, Adw, Gdk, GLib, Gtk
 
 from .widgets.entity_window import EntityWindow
 from .widgets.entity_new_window import EntityNewWindow
@@ -16,8 +16,8 @@ from .widgets.entity_open_window import EntityOpenWindow
 from .models.entity_session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import set_data_path, get_data_folder
-from ..common.definitions import Format
+from ..common.utils import set_data_path, get_data_folder, get_projects_path
+from ..common.definitions import Command, Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
@@ -27,12 +27,22 @@ class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id="dev.tchx84.gameeky.editor.Entity",
-            flags=Gio.ApplicationFlags.NON_UNIQUE,
+            flags=Gio.ApplicationFlags.NON_UNIQUE
+            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
         self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
+
+        self.add_main_option(
+            Command.DATA_PATH,
+            ord("d"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The absolute path to the project",
+            None,
+        )
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = EntityNewWindow(transient_for=self._window)
@@ -107,6 +117,14 @@ class Application(Adw.Application):
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
+        options = command_line.get_options_dict().end().unpack()
+
+        set_data_path(options.get(Command.DATA_PATH, get_projects_path()))
+
+        self.activate()
+        return 0
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()

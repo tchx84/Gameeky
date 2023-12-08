@@ -7,7 +7,7 @@ gi.require_version("Adw", "1")
 
 from typing import Any, List, Optional
 
-from gi.repository import Gdk, Gio, Gtk, Adw
+from gi.repository import Gdk, Gio, Gtk, GLib, Adw
 
 from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
@@ -18,7 +18,7 @@ from .models.scene_session import Session as SessionModel
 from ..common.logger import logger
 from ..common.utils import set_data_path, get_data_folder, find_data_path
 from ..common.scanner import Description
-from ..common.definitions import Format
+from ..common.definitions import Command, Format
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
 
@@ -27,11 +27,22 @@ class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id="dev.tchx84.gameeky.Scene",
-            flags=Gio.ApplicationFlags.NON_UNIQUE | Gio.ApplicationFlags.HANDLES_OPEN,
+            flags=Gio.ApplicationFlags.NON_UNIQUE
+            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE
+            | Gio.ApplicationFlags.HANDLES_OPEN,
         )
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
         self._description: Optional[Description] = None
+
+        self.add_main_option(
+            Command.DATA_PATH,
+            ord("d"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The absolute path to the project",
+            None,
+        )
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SceneNewWindow(transient_for=self._window)
@@ -124,6 +135,15 @@ class Application(Adw.Application):
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
+        options = command_line.get_options_dict().end().unpack()
+
+        if (data_path := options.get(Command.DATA_PATH, None)) is not None:
+            set_data_path(data_path)
+
+        self.activate()
+        return 0
 
     def do_open(self, files: List[Gio.File], hint: str, data: Any) -> None:
         path = files[-1].get_path()
