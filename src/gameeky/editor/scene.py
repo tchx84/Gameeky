@@ -1,5 +1,6 @@
 import sys
 import gi
+import os
 
 gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
@@ -159,7 +160,9 @@ class Application(Adw.Application):
             scene_path = bytearray_to_string(scene_path[-1])
 
             self._data_path = find_data_path(scene_path)
-            self._description = Description.new_from_json(scene_path)
+            self._description = Description.new_from_json(
+                os.path.join(self._data_path, scene_path)
+            )
 
         self.activate()
         return 0
