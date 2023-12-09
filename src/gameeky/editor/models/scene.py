@@ -1,3 +1,4 @@
+import os
 import math
 
 from typing import Optional, List, cast
@@ -9,7 +10,8 @@ from .entity import Entity
 from ...common.scene import Scene as CommonScene
 from ...common.scanner import Description
 from ...common.vector import Vector
-from ...common.definitions import DayTime
+from ...common.definitions import DayTime, TILES_X, TILES_Y
+from ...common.utils import valid_file
 
 from ...server.game.partition import SpatialPartition
 
@@ -212,4 +214,20 @@ class Scene(CommonScene, GObject.GObject):
         self.anchor = Vector(
             x=math.floor(self.width / 2) - (0 if self.width % 2 else 0.5),
             y=math.floor(self.height / 2) - (0 if self.height % 2 else 0.5),
+        )
+
+    @classmethod
+    def new_from_file(cls, data_path: str, scene_path: str) -> Description:
+        scene_path = os.path.join(data_path, scene_path)
+
+        if valid_file(scene_path):
+            return Description.new_from_json(scene_path)
+
+        return Description(
+            name="default",
+            width=TILES_X * 2,
+            height=TILES_Y * 2,
+            spawn=Vector(),
+            daytime=DayTime.DYNAMIC,
+            entities=[],
         )

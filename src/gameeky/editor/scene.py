@@ -1,6 +1,5 @@
 import sys
 import gi
-import os
 
 gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
@@ -14,6 +13,7 @@ from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
 from .widgets.scene_edit_window import SceneEditWindow
+from .models.scene import Scene as SceneModel
 from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
@@ -160,9 +160,7 @@ class Application(Adw.Application):
             scene_path = bytearray_to_string(scene_path[-1])
 
             self._data_path = find_data_path(scene_path)
-            self._description = Description.new_from_json(
-                os.path.join(self._data_path, scene_path)
-            )
+            self._description = SceneModel.new_from_file(self._data_path, scene_path)
 
         self.activate()
         return 0
