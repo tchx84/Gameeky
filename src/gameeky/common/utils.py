@@ -42,6 +42,10 @@ def get_relative_path(path: str) -> str:
     return os.path.relpath(path, os.environ.get("DATA_DIR", ""))
 
 
+def bytearray_to_string(array: bytes) -> str:
+    return bytearray(array).replace(b"\x00", b"").decode("utf-8")
+
+
 def valid_file(path) -> bool:
     if GLib.file_test(path, GLib.FileTest.EXISTS) is False:
         return False

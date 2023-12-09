@@ -21,9 +21,23 @@ from .models.session_guest import SessionGuest
 from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
-from ..common.utils import get_data_folder, set_data_path, get_projects_path
-from ..common.definitions import Command, Format
 from ..common.widgets.about_window import present_about
+from ..common.utils import (
+    get_data_folder,
+    set_data_path,
+    find_data_path,
+    bytearray_to_string,
+)
+from ..common.definitions import (
+    Command,
+    Format,
+    DEFAULT_ADDRESS,
+    DEFAULT_CLIENTS,
+    DEFAULT_SESSION_PORT,
+    DEFAULT_MESSAGES_PORT,
+    DEFAULT_SCENE_PORT,
+    DEFAULT_STATS_PORT,
+)
 
 
 class Application(Adw.Application):
@@ -44,6 +58,15 @@ class Application(Adw.Application):
             GLib.OptionFlags.NONE,
             GLib.OptionArg.STRING,
             "The absolute path to the project",
+            None,
+        )
+
+        self.add_main_option(
+            GLib.OPTION_REMAINING,
+            ord("f"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.FILENAME_ARRAY,
+            "The absolute path to the scene",
             None,
         )
 
@@ -197,7 +220,22 @@ class Application(Adw.Application):
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
-        set_data_path(options.get(Command.DATA_PATH, get_projects_path()))
+        if (data_path := options.get(Command.DATA_PATH, None)) is not None:
+            set_data_path(data_path)
+
+        if (scene_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
+            scene_path = bytearray_to_string(scene_path[-1])
+
+            self._description = Description(
+                address=DEFAULT_ADDRESS,
+                data_path=find_data_path(scene_path),
+                scene_path=scene_path,
+                clients=DEFAULT_CLIENTS,
+                session_port=DEFAULT_SESSION_PORT,
+                messages_port=DEFAULT_MESSAGES_PORT,
+                scene_port=DEFAULT_SCENE_PORT,
+                stats_port=DEFAULT_STATS_PORT,
+            )
 
         self.activate()
         return 0
@@ -214,6 +252,8 @@ class Application(Adw.Application):
         self._window = Window(application=self)
         self._window.connect("reload", self.__on_reload)
         self._window.present()
+
+        self._start_host()
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
