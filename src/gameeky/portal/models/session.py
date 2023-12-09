@@ -3,6 +3,7 @@ import os
 from gi.repository import GObject
 
 from ...common.logger import logger
+from ...common.monitor import Monitor
 from ...common.scanner import Scanner, Description
 from ...common.utils import get_projects_path, valid_project
 
@@ -11,6 +12,11 @@ class Session(GObject.GObject):
     __gsignals__ = {
         "found": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
+
+    def __init__(self) -> None:
+        super().__init__()
+        Monitor.default().shutdown()
+        Monitor.default().add(get_projects_path())
 
     def scan(self) -> None:
         scanner = Scanner(path=get_projects_path())
@@ -26,3 +32,6 @@ class Session(GObject.GObject):
 
         self.emit("found", description)
         logger.debug(f"Found {summary_path}")
+
+    def shutdown(self) -> None:
+        Monitor.default().shutdown()

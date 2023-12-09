@@ -34,6 +34,10 @@ class Application(Adw.Application):
     def __on_found(self, session: Session, description: Description) -> None:
         self._window.load(description)
 
+    def __on_reload(self, window: Window) -> None:
+        self._window.reset()
+        self._setup_session()
+
     def _setup_session(self) -> None:
         self._session = Session()
         self._session.connect("found", self.__on_found)
@@ -49,6 +53,7 @@ class Application(Adw.Application):
         )
 
         self._window = Window(application=self)
+        self._window.connect("reload", self.__on_reload)
         self._window.present()
 
         self._setup_session()
@@ -65,6 +70,8 @@ class Application(Adw.Application):
         self.add_action(about_action)
 
     def do_shutdown(self) -> None:
+        if self._session is not None:
+            self._session.shutdown()
         Adw.Application.do_shutdown(self)
 
 

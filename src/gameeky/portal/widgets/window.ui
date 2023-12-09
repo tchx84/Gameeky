@@ -2,9 +2,9 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name window.ui -->
+  <requires lib="gio" version="2.0"/>
   <requires lib="gtk" version="4.6"/>
   <requires lib="libadwaita" version="1.4"/>
-  <requires lib="gio" version="2.0"/>
   <template class="Window" parent="AdwApplicationWindow">
     <property name="default-height">600</property>
     <property name="default-width">800</property>
@@ -12,17 +12,31 @@
     <child>
       <object class="AdwToolbarView">
         <property name="content">
-          <object class="GtkScrolledWindow">
-            <property name="child">
-              <object class="AdwClamp">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwBanner" id="banner">
+                <property name="button-label">Reload</property>
+                <property name="title">The projects have been changed on disk</property>
+                <signal name="button-clicked" handler="on_reload_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
                 <property name="child">
-                  <object class="AdwPreferencesGroup" id="content">
-                    <property name="description">These are your projects</property>
-                    <property name="title">Projects</property>
+                  <object class="AdwClamp">
+                    <property name="child">
+                      <object class="AdwPreferencesGroup" id="content">
+                        <property name="description">These are your projects</property>
+                        <property name="title">Projects</property>
+                      </object>
+                    </property>
                   </object>
                 </property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
               </object>
-            </property>
+            </child>
           </object>
         </property>
         <child type="top">
