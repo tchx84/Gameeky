@@ -24,6 +24,7 @@ class Window(Adw.ApplicationWindow):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
+        self._confirm = True
         self._listbox = find_widget_by_id(self.content, "listbox")
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
@@ -42,7 +43,10 @@ class Window(Adw.ApplicationWindow):
         self.content.remove(row)
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
-        self.banner.props.revealed = True
+        if self._confirm is True:
+            self.banner.props.revealed = True
+        else:
+            self.emit("reload")
 
     def __on_edit(self, row: ProjectRow) -> None:
         dialog = ProjectEditWindow(transient_for=self)
@@ -53,12 +57,15 @@ class Window(Adw.ApplicationWindow):
 
     def __on_edit_done(self, dialog: ProjectEditWindow, row: ProjectRow) -> None:
         Project.rename(row.description, dialog.description)
+        self._confirm = False
 
     def __on_removed(self, row: ProjectRow) -> None:
         Project.remove(row.description)
+        self._confirm = False
 
     def __on_add_done(self, window: ProjectNewWindow) -> None:
         Project.create(window.description)
+        self._confirm = False
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, button: Gtk.Button) -> None:
@@ -79,3 +86,5 @@ class Window(Adw.ApplicationWindow):
 
         for row in list(self._listbox):
             self._remove(row)
+
+        self._confirm = True
