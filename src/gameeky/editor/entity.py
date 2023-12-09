@@ -16,11 +16,16 @@ from .widgets.entity_open_window import EntityOpenWindow
 from .models.entity_session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import set_data_path, get_data_folder, get_projects_path
 from ..common.definitions import Command, Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
+from ..common.utils import (
+    set_data_path,
+    get_data_folder,
+    find_data_path,
+    bytearray_to_string,
+)
 
 
 class Application(Adw.Application):
@@ -41,6 +46,15 @@ class Application(Adw.Application):
             GLib.OptionFlags.NONE,
             GLib.OptionArg.STRING,
             "The absolute path to the project",
+            None,
+        )
+
+        self.add_main_option(
+            GLib.OPTION_REMAINING,
+            ord("f"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.FILENAME_ARRAY,
+            "The absolute path to the scene",
             None,
         )
 
@@ -69,6 +83,8 @@ class Application(Adw.Application):
 
     def _start_session(self) -> None:
         if self._data_path is None:
+            return
+        if self._description is None:
             return
 
         set_data_path(self._data_path)
@@ -121,7 +137,14 @@ class Application(Adw.Application):
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
-        set_data_path(options.get(Command.DATA_PATH, get_projects_path()))
+        if (data_path := options.get(Command.DATA_PATH, None)) is not None:
+            set_data_path(data_path)
+
+        if (entity_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
+            entity_path = bytearray_to_string(entity_path[-1])
+
+            self._data_path = find_data_path(entity_path)
+            self._description = Description.new_from_json(entity_path)
 
         self.activate()
         return 0
@@ -138,6 +161,8 @@ class Application(Adw.Application):
         self._window = EntityWindow(application=self)
         self._window.connect("reload", self.__on_reload)
         self._window.present()
+
+        self._start_session()
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)

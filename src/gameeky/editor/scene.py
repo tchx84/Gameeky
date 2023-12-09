@@ -5,7 +5,7 @@ gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from gi.repository import Gdk, Gio, Gtk, GLib, Adw
 
@@ -16,11 +16,16 @@ from .widgets.scene_edit_window import SceneEditWindow
 from .models.scene_session import Session as SessionModel
 
 from ..common.logger import logger
-from ..common.utils import set_data_path, get_data_folder, find_data_path
 from ..common.scanner import Description
 from ..common.definitions import Command, Format
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
+from ..common.utils import (
+    set_data_path,
+    get_data_folder,
+    find_data_path,
+    bytearray_to_string,
+)
 
 
 class Application(Adw.Application):
@@ -28,8 +33,7 @@ class Application(Adw.Application):
         super().__init__(
             application_id="dev.tchx84.gameeky.Scene",
             flags=Gio.ApplicationFlags.NON_UNIQUE
-            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE
-            | Gio.ApplicationFlags.HANDLES_OPEN,
+            | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
@@ -41,6 +45,15 @@ class Application(Adw.Application):
             GLib.OptionFlags.NONE,
             GLib.OptionArg.STRING,
             "The absolute path to the project",
+            None,
+        )
+
+        self.add_main_option(
+            GLib.OPTION_REMAINING,
+            ord("f"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.FILENAME_ARRAY,
+            "The absolute path to the scene",
             None,
         )
 
@@ -142,16 +155,14 @@ class Application(Adw.Application):
         if (data_path := options.get(Command.DATA_PATH, None)) is not None:
             set_data_path(data_path)
 
+        if (scene_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
+            scene_path = bytearray_to_string(scene_path[-1])
+
+            self._data_path = find_data_path(scene_path)
+            self._description = Description.new_from_json(scene_path)
+
         self.activate()
         return 0
-
-    def do_open(self, files: List[Gio.File], hint: str, data: Any) -> None:
-        path = files[-1].get_path()
-
-        self._data_path = find_data_path(path)
-        self._description = Description.new_from_json(path)
-
-        self.activate()
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
