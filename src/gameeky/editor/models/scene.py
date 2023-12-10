@@ -228,6 +228,6 @@ class Scene(CommonScene, GObject.GObject):
             width=TILES_X * 2,
             height=TILES_Y * 2,
             spawn=Vector(),
-            daytime=DayTime.DYNAMIC,
+            daytime=DayTime.DYNAMIC.name.lower(),
             entities=[],
         )
