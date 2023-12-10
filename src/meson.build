@@ -155,6 +155,7 @@ gameeky_sources = [
   'gameeky/portal/models/session.py',
   'gameeky/portal/portal.py',
   'gameeky/portal/widgets/__init__.py',
+  'gameeky/portal/widgets/confirmation_window.py',
   'gameeky/portal/widgets/project_edit_window.py',
   'gameeky/portal/widgets/project_new_window.py',
   'gameeky/portal/widgets/project_row.py',

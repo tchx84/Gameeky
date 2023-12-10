@@ -1,8 +1,9 @@
-from gi.repository import Gtk, Gio, GObject, Adw
+from gi.repository import Gtk, GObject, Adw
 
 from .project_row import ProjectRow
 from .project_new_window import ProjectNewWindow
 from .project_edit_window import ProjectEditWindow
+from .confirmation_window import ConfirmationWindow
 
 from ..models.project import Project
 
@@ -68,23 +69,11 @@ class Window(Adw.ApplicationWindow):
         row.description = new_description
 
     def __on_removed(self, row: ProjectRow) -> None:
-        dialog = Gtk.AlertDialog()
-        dialog.props.message = "Remove"
-        dialog.props.detail = f"Do you really want to remove {row.description.name}?"
-        dialog.props.buttons = ["Cancel", "Remove"]
-        dialog.props.cancel_button = 0
-        dialog.props.default_button = 1
-        dialog.choose(self, None, self.__on_removed_chosen, row)
+        dialog = ConfirmationWindow(transient_for=self)
+        dialog.connect("confirmed", self.__on_confirmed, row)
+        dialog.present()
 
-    def __on_removed_chosen(
-        self,
-        dialog: Gtk.AlertDialog,
-        result: Gio.AsyncResult,
-        row: ProjectRow,
-    ) -> None:
-        if not dialog.choose_finish(result):
-            return
-
+    def __on_confirmed(self, dialog: ConfirmationWindow, row: ProjectRow) -> None:
         self._ignore = True
 
         Project.remove(row.description)

@@ -30,6 +30,7 @@
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_join_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/portal/widgets/confirmation_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_edit_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_row.ui</file>
