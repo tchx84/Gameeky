@@ -1,5 +1,5 @@
 .logo {
-    color: @accent_color;
+    color: @accent_bg_color;
     margin-bottom: 10px;
 }
 
@@ -10,5 +10,5 @@
 /* About */
 
 .about .icon-dropshadow {
-    color: @accent_color;
+    color: @accent_bg_color;
 }

@@ -46,5 +46,5 @@
 /* About */
 
 .about .icon-dropshadow {
-    color: @accent_color;
+    color: @accent_bg_color;
 }
