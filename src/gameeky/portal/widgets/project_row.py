@@ -2,7 +2,8 @@ import os
 
 from gi.repository import Gtk, GObject
 
-from ...common.utils import launch, get_projects_path
+from ...common.utils import launch, get_projects_path, valid_file
+from ...common.monitor import Monitor
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
 
@@ -18,12 +19,23 @@ class ProjectRow(Gtk.FlowBoxChild):
 
     title = Gtk.Template.Child()
     subtitle = Gtk.Template.Child()
+    play = Gtk.Template.Child()
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._monitor = Monitor()
 
     def _get_data_path(self, *path) -> str:
         return os.path.join(get_projects_path(), self.title.props.label, *path)
 
     def _launch(self, command: str, filename: str) -> None:
         launch(command, f"--data_path={self._get_data_path()} {filename}")
+
+    def _update_button(self) -> None:
+        self.play.props.sensitive = valid_file(self._get_data_path(DEFAULT_SCENE))
+
+    def __on_monitor_changed(self, monitor: Monitor) -> None:
+        self._update_button()
 
     @Gtk.Template.Callback("on_play_clicked")
     def __on_play_clicked(self, button: Gtk.Button) -> None:
@@ -52,3 +64,13 @@ class ProjectRow(Gtk.FlowBoxChild):
     def description(self, description: Description) -> None:
         self.title.props.label = description.name
         self.subtitle.props.label = description.description
+
+        self._monitor.shutdown()
+        self._monitor.add(self._get_data_path("scenes"))
+        self._monitor.connect("changed", self.__on_monitor_changed)
+
+        self._update_button()
+
+    def shutdown(self) -> None:
+        self._monitor.disconnect_by_func(self.__on_monitor_changed)
+        self._monitor.shutdown()

@@ -40,6 +40,7 @@ class Window(Adw.ApplicationWindow):
     def _remove(self, row: ProjectRow) -> None:
         row.disconnect_by_func(self.__on_edit)
         row.disconnect_by_func(self.__on_removed)
+        row.shutdown()
 
         self.content.remove(row)
 
