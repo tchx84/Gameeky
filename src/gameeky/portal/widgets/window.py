@@ -1,4 +1,4 @@
-from gi.repository import Gtk, GObject, Adw
+from gi.repository import Gtk, Gio, GObject, Adw
 
 from .project_row import ProjectRow
 from .project_new_window import ProjectNewWindow
@@ -63,6 +63,23 @@ class Window(Adw.ApplicationWindow):
         row.description = new_description
 
     def __on_removed(self, row: ProjectRow) -> None:
+        dialog = Gtk.AlertDialog()
+        dialog.props.message = "Remove"
+        dialog.props.detail = "Are you sure you want to remove this project?"
+        dialog.props.buttons = ["Cancel", "Remove"]
+        dialog.props.cancel_button = 0
+        dialog.props.default_button = 1
+        dialog.choose(self, None, self.__on_removed_chosen, row)
+
+    def __on_removed_chosen(
+        self,
+        dialog: Gtk.AlertDialog,
+        result: Gio.AsyncResult,
+        row: ProjectRow,
+    ) -> None:
+        if not dialog.choose_finish(result):
+            return
+
         self._ignore = True
 
         Project.remove(row.description)
