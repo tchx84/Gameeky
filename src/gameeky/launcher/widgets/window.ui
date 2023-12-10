@@ -86,7 +86,7 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="label">Your projects</property>
+                                    <property name="label">Your Projects</property>
                                     <style>
                                       <class name="title-1"/>
                                     </style>
