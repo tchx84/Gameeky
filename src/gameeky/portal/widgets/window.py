@@ -93,6 +93,10 @@ class Window(Adw.ApplicationWindow):
         self.banner.props.revealed = False
         self.emit("reload")
 
+    @Gtk.Template.Callback("on_create_clicked")
+    def __on_create_clicked(self, button: Gtk.Button) -> None:
+        self.add()
+
     def add(self) -> None:
         dialog = ProjectNewWindow(transient_for=self)
         dialog.connect("done", self.__on_add_done)
