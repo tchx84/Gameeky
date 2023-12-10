@@ -8,7 +8,7 @@ gi.require_version("Adw", "1")
 
 from typing import Any, Optional
 
-from gi.repository import Gio, Adw, Gdk, Gtk
+from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
 from .widgets.window import Window
 from .models.session import Session
@@ -23,6 +23,7 @@ class Application(Adw.Application):
             application_id="dev.tchx84.gameeky.Portal",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
+        GLib.set_application_name("Gameeky")
         self._session: Optional[Session] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
