@@ -1,9 +1,5 @@
 /* Main */
 
-.landing .icon {
-    color: @accent_color;
-}
-
 .projects .title-1 {
     margin: 25px;
 }
