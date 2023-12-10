@@ -70,7 +70,7 @@ class Window(Adw.ApplicationWindow):
     def __on_removed(self, row: ProjectRow) -> None:
         dialog = Gtk.AlertDialog()
         dialog.props.message = "Remove"
-        dialog.props.detail = "Are you sure you want to remove this project?"
+        dialog.props.detail = f"Do you really want to remove {row.description.name}?"
         dialog.props.buttons = ["Cancel", "Remove"]
         dialog.props.cancel_button = 0
         dialog.props.default_button = 1
