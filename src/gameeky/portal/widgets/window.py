@@ -24,7 +24,7 @@ class Window(Adw.ApplicationWindow):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._confirm = True
+        self._ignore = False
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
     def _add(self, description: Description) -> None:
@@ -43,10 +43,8 @@ class Window(Adw.ApplicationWindow):
         self.content.remove(row)
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
-        if self._confirm is True:
-            self.banner.props.revealed = True
-        else:
-            self.emit("reload")
+        self.banner.props.revealed = not self._ignore
+        self._ignore = False
 
     def __on_edit(self, row: ProjectRow) -> None:
         dialog = ProjectEditWindow(transient_for=self)
@@ -56,16 +54,28 @@ class Window(Adw.ApplicationWindow):
         dialog.description = row.description
 
     def __on_edit_done(self, dialog: ProjectEditWindow, row: ProjectRow) -> None:
-        Project.rename(row.description, dialog.description)
-        self._confirm = False
+        self._ignore = True
+
+        old_description = row.description
+        new_description = dialog.description
+        Project.rename(old_description, new_description)
+
+        row.description = new_description
 
     def __on_removed(self, row: ProjectRow) -> None:
+        self._ignore = True
+
         Project.remove(row.description)
-        self._confirm = False
+
+        self._remove(row)
 
     def __on_add_done(self, window: ProjectNewWindow) -> None:
-        Project.create(window.description)
-        self._confirm = False
+        self._ignore = True
+
+        description = window.description
+        Project.create(description)
+
+        self._add(description)
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, button: Gtk.Button) -> None:
@@ -82,5 +92,5 @@ class Window(Adw.ApplicationWindow):
 
     def reset(self) -> None:
         self.content.remove_all()
-        self._confirm = True
+        self._ignore = False
         self.stack.set_visible_child_name("landing")
