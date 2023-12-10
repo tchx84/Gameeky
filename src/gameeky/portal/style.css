@@ -1,11 +1,26 @@
 /* Main */
 
-preferencesgroup {
-   margin: 15px;
+.landing .icon {
+    color: @accent_color;
 }
 
-.project button {
-    margin-left: 10px;
+.projects .title-1 {
+    margin: 25px;
+}
+
+.card {
+    margin: 10px;
+}
+.card .labels,
+.card .buttons {
+    margin: 5px;
+}
+.card .thumbnail {
+    color: @insensitive_fg_color;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: -gtk-icontheme("dev.tchx84.gameeky-symbolic");
 }
 
 /* About */

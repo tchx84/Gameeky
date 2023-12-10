@@ -22,19 +22,66 @@
               </object>
             </child>
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="child">
-                  <object class="AdwClamp">
+              <object class="GtkStack" id="stack">
+                <child>
+                  <object class="GtkStackPage">
                     <property name="child">
-                      <object class="AdwPreferencesGroup" id="content">
-                        <property name="description">These are your projects</property>
-                        <property name="title">Projects</property>
+                      <object class="AdwStatusPage">
+                        <property name="description">Your best creation is yet to happen</property>
+                        <property name="hexpand">True</property>
+                        <property name="icon-name">dev.tchx84.gameeky-symbolic</property>
+                        <property name="vexpand">True</property>
+                        <style>
+                          <class name="landing"/>
+                        </style>
                       </object>
                     </property>
+                    <property name="name">landing</property>
                   </object>
-                </property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkScrolledWindow">
+                        <property name="child">
+                          <object class="AdwClamp">
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="halign">center</property>
+                                <property name="hexpand">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label">Your projects</property>
+                                    <style>
+                                      <class name="title-1"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkFlowBox" id="content">
+                                    <property name="halign">center</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="homogeneous">True</property>
+                                    <property name="max-children-per-line">3</property>
+                                    <property name="min-children-per-line">1</property>
+                                    <property name="selection-mode">none</property>
+                                    <property name="valign">start</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                            <property name="maximum-size">800</property>
+                          </object>
+                        </property>
+                        <style>
+                          <class name="projects"/>
+                        </style>
+                      </object>
+                    </property>
+                    <property name="name">projects</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

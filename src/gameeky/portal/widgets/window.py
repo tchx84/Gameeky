@@ -8,7 +8,6 @@ from ..models.project import Project
 
 from ...common.monitor import Monitor
 from ...common.scanner import Description
-from ...common.utils import find_widget_by_id
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/window.ui")
@@ -20,12 +19,12 @@ class Window(Adw.ApplicationWindow):
     }
 
     banner = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
     content = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._confirm = True
-        self._listbox = find_widget_by_id(self.content, "listbox")
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
     def _add(self, description: Description) -> None:
@@ -34,7 +33,8 @@ class Window(Adw.ApplicationWindow):
         row.connect("removed", self.__on_removed)
         row.description = description
 
-        self.content.add(row)
+        self.content.append(row)
+        self.stack.set_visible_child_name("projects")
 
     def _remove(self, row: ProjectRow) -> None:
         row.disconnect_by_func(self.__on_edit)
@@ -81,10 +81,6 @@ class Window(Adw.ApplicationWindow):
         self._add(description)
 
     def reset(self) -> None:
-        if self._listbox is None:
-            return
-
-        for row in list(self._listbox):
-            self._remove(row)
-
+        self.content.remove_all()
         self._confirm = True
+        self.stack.set_visible_child_name("landing")
