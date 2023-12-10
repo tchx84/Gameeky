@@ -8,7 +8,7 @@ from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/project_row.ui")
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/project_row.ui")
 class ProjectRow(Gtk.FlowBoxChild):
     __gtype_name__ = "ProjectRow"
 

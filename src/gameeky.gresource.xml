@@ -30,15 +30,15 @@
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_join_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/window.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/confirmation_window.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_edit_window.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_new_window.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_row.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/project_settings.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/portal/widgets/window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/confirmation_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_edit_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/window.ui</file>
     <file>gameeky/client/graphics/lightmap.png</file>
     <file>gameeky/editor/style.css</file>
     <file>gameeky/player/style.css</file>
-    <file>gameeky/portal/style.css</file>
+    <file>gameeky/launcher/style.css</file>
   </gresource>
 </gresources>

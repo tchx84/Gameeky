@@ -23,5 +23,5 @@ if __name__ == '__main__':
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'gameeky.gresource'))
     resource._register()
 
-    from gameeky.portal import portal
-    sys.exit(portal.main(VERSION))
+    from gameeky.launcher import launcher
+    sys.exit(launcher.main(VERSION))

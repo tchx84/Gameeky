@@ -3,7 +3,7 @@
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "45",
     "sdk" : "org.gnome.Sdk",
-    "command" : "dev.tchx84.gameeky.Portal",
+    "command" : "dev.tchx84.gameeky.Launcher",
     "finish-args" : [
         "--share=network",
         "--share=ipc",

@@ -5,9 +5,9 @@ from .project_settings import ProjectSettings
 from ...common.scanner import Description
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/project_edit_window.ui")  # fmt: skip
-class ProjectEditWindow(Adw.Window):
-    __gtype_name__ = "ProjectEditWindow"
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/project_new_window.ui")  # fmt: skip
+class ProjectNewWindow(Adw.Window):
+    __gtype_name__ = "ProjectNewWindow"
 
     __gsignals__ = {
         "done": (GObject.SignalFlags.RUN_LAST, None, ()),
@@ -32,8 +32,8 @@ class ProjectEditWindow(Adw.Window):
     def __on_cancel_clicked(self, button: Gtk.Button) -> None:
         self.destroy()
 
-    @Gtk.Template.Callback("on_save_clicked")
-    def __on_save_clicked(self, button: Gtk.Button) -> None:
+    @Gtk.Template.Callback("on_create_clicked")
+    def __on_create_clicked(self, button: Gtk.Button) -> None:
         description = self.description
 
         if not description.name:
@@ -50,7 +50,3 @@ class ProjectEditWindow(Adw.Window):
     @property
     def description(self) -> Description:
         return self._project_settings.description
-
-    @description.setter
-    def description(self, description: Description) -> None:
-        self._project_settings.description = description

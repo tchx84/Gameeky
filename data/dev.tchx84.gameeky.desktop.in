@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=gameeky
-Exec=dev.tchx84.gameeky.Portal
+Exec=dev.tchx84.gameeky.Launcher
 Icon=dev.tchx84.gameeky
 Terminal=false
 Type=Application

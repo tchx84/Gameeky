@@ -20,7 +20,7 @@ from ..common.widgets.about_window import present_about
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.Portal",
+            application_id="dev.tchx84.gameeky.Launcher",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
         GLib.set_application_name("Gameeky")
@@ -46,7 +46,7 @@ class Application(Adw.Application):
 
     def do_activate(self) -> None:
         css_provider = Gtk.CssProvider()
-        css_provider.load_from_resource("/dev/tchx84/gameeky/portal/style.css")
+        css_provider.load_from_resource("/dev/tchx84/gameeky/launcher/style.css")
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(),
             css_provider,

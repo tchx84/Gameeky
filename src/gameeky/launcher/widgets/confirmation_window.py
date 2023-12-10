@@ -1,7 +1,7 @@
 from gi.repository import Adw, Gtk, GObject
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/confirmation_window.ui")  # fmt: skip
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/confirmation_window.ui")  # fmt: skip
 class ConfirmationWindow(Adw.MessageDialog):
     __gtype_name__ = "ConfirmationWindow"
 

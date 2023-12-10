@@ -11,7 +11,7 @@ from ...common.monitor import Monitor
 from ...common.scanner import Description
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/window.ui")
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/window.ui")
 class Window(Adw.ApplicationWindow):
     __gtype_name__ = "Window"
 

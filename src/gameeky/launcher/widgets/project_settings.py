@@ -3,7 +3,7 @@ from gi.repository import Gtk, Adw
 from ...common.scanner import Description
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/portal/widgets/project_settings.ui")  # fmt: skip
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/project_settings.ui")  # fmt: skip
 class ProjectSettings(Adw.PreferencesGroup):
     __gtype_name__ = "ProjectSettings"
 
