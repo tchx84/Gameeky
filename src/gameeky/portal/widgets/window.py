@@ -42,6 +42,11 @@ class Window(Adw.ApplicationWindow):
 
         self.content.remove(row)
 
+        if len(list(self.content)):
+            return
+
+        self.stack.set_visible_child_name("landing")
+
     def __on_monitor_changed(self, monitor: Monitor) -> None:
         self.banner.props.revealed = not self._ignore
         self._ignore = False
