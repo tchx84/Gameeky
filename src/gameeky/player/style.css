@@ -1,10 +1,5 @@
-.logo {
-    color: @accent_bg_color;
-    margin-bottom: 10px;
-}
-
 /* About */
 
-.about .icon-dropshadow {
+.icon-dropshadow {
     color: @accent_bg_color;
 }

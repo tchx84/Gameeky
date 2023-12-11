@@ -30,7 +30,7 @@
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
                                 <style>
-                                  <class name="logo"/>
+                                  <class name="icon-dropshadow"/>
                                 </style>
                               </object>
                             </child>
@@ -60,7 +60,7 @@
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
                                 <style>
-                                  <class name="logo"/>
+                                  <class name="icon-dropshadow"/>
                                 </style>
                               </object>
                             </child>
