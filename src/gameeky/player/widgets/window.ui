@@ -84,9 +84,6 @@
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="AdwBanner"/>
-                            </child>
-                            <child>
                               <object class="AdwBanner" id="banner">
                                 <property name="button-label">Reload</property>
                                 <property name="title">The scene has been changed on disk</property>
