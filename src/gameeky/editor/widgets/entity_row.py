@@ -4,6 +4,8 @@ from gi.repository import Gtk
 
 from .entity import Entity
 
+from ..models.entity_row import EntityRow as EntityRowModel
+
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/entity_row.ui")
 class EntityRow(Gtk.Box):
@@ -15,21 +17,25 @@ class EntityRow(Gtk.Box):
     def __init__(self) -> None:
         super().__init__()
 
+        self._model = EntityRowModel(type_id=0, name="", path="")
         self._entity = Entity()
         self.entity.props.child = self._entity
 
     @property
     def type_id(self) -> Optional[int]:
-        return self._entity.type_id
-
-    @type_id.setter
-    def type_id(self, type_id: int) -> None:
-        self._entity.type_id = type_id
+        return self._mdoel.props.type_id
 
     @property
     def name(self) -> str:
-        return self.label.props.label
+        return self._model.props.name
 
-    @name.setter
-    def name(self, name: str) -> None:
-        self.label.props.label = name
+    @property
+    def model(self) -> EntityRowModel:
+        return self._model
+
+    @model.setter
+    def model(self, model: EntityRowModel) -> None:
+        self._model = model
+
+        self._entity.type_id = self._model.props.type_id
+        self.label.props.label = self._model.props.name
