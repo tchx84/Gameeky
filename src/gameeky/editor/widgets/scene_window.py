@@ -1,10 +1,14 @@
+import os
+
 from typing import Optional
 
-from gi.repository import Gio, Gtk, GObject, Adw
+from gi.repository import Gio, Gdk, Gtk, GObject, Adw
 
 from .scene import Scene as SceneView
 from .grid import Grid as GridView
 from .entity_row import EntityRow
+from .confirmation_window import ConfirmationWindow
+from .scene_entity_popover import SceneEntityPopover
 from .scene_entity_window import SceneEntityWindow
 
 from ..models.entity_row import EntityRow as EntityRowModel
@@ -27,6 +31,7 @@ class SceneWindow(Adw.ApplicationWindow):
 
     aspect = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
+    entities_view = Gtk.Template.Child()
     adder = Gtk.Template.Child()
     eraser = Gtk.Template.Child()
     grid = Gtk.Template.Child()
@@ -55,6 +60,14 @@ class SceneWindow(Adw.ApplicationWindow):
         self.overlay.props.child = self._scene_view
         self.overlay.add_overlay(self._grid_view)
 
+        self._popover = SceneEntityPopover(parent=self.entities_view)
+        self._popover.connect("deleted", self.__on_entity_deleted)
+
+        self._controller = Gtk.GestureClick()
+        self._controller.set_button(Gdk.BUTTON_SECONDARY)
+        self._controller.connect("pressed", self.__on_controller_pressed)
+        self.entities_view.add_controller(self._controller)
+
         # XXX Move the UI file somehow
         self.time.connect("notify::selected-item", self.__on_time_changed)
         self.layer.connect("notify::selected-item", self.__on_layer_changed)
@@ -65,10 +78,43 @@ class SceneWindow(Adw.ApplicationWindow):
         self.factory.connect("setup", self.__on_factory_setup)
         self.factory.connect("bind", self.__on_factory_bind)
 
+        self._monitor_ignored = False
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
+    def __on_entity_deleted(
+        self, popover: SceneEntityPopover, row: EntityRowModel
+    ) -> None:
+        dialog = ConfirmationWindow(transient_for=self)
+        dialog.connect("confirmed", self.__on_confirmed, row)
+        dialog.present()
+
+    def __on_confirmed(self, dialog: ConfirmationWindow, row: EntityRowModel) -> None:
+        self._monitor_ignored = True
+
+        os.remove(row.path)
+
+        self._scene_model.remove_by_type_id(row.type_id)
+
+        _, position = self._model.find(row)
+        self._model.remove(position)
+
+    def __on_controller_pressed(
+        self,
+        controller: Gtk.GestureClick,
+        n_press: int,
+        x: float,
+        y: float,
+    ) -> None:
+        if (widget := self.entities_view.pick(x, y, Gtk.PickFlags.DEFAULT)) is None:
+            return
+
+        row = widget.get_ancestor(EntityRow.__gtype__)
+
+        self._popover.display(row, x, y)
+
     def __on_monitor_changed(self, monitor: Monitor) -> None:
-        self.banner.props.revealed = True
+        self.banner.props.revealed = not self._monitor_ignored
+        self._monitor_ignored = False
 
     def __on_factory_setup(
         self,
@@ -86,8 +132,7 @@ class SceneWindow(Adw.ApplicationWindow):
         model = item.get_item()
 
         view = item.get_child()
-        view.type_id = model.props.type_id
-        view.name = model.props.name
+        view.model = model
 
     def __on_time_changed(self, *args) -> None:
         self._scene_model.time = float(self.time.props.selected)
@@ -159,6 +204,7 @@ class SceneWindow(Adw.ApplicationWindow):
             EntityRowModel(
                 type_id=description.id,
                 name=description.game.default.name,
+                path=description._path,
             )
         )
 

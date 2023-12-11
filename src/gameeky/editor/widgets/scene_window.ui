@@ -140,7 +140,7 @@ night</property>
                 <property name="content">
                   <object class="GtkScrolledWindow">
                     <property name="child">
-                      <object class="GtkGridView">
+                      <object class="GtkGridView" id="entities_view">
                         <property name="factory">
                           <object class="GtkSignalListItemFactory" id="factory"/>
                         </property>
