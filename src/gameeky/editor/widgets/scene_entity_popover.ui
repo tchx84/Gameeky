@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name scene_entity_popover.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <template class="SceneEntityPopover" parent="GtkPopover">
+    <property name="child">
+      <object class="GtkListBox">
+        <property name="selection-mode">none</property>
+        <signal name="row-activated" handler="on_activated"/>
+        <child>
+          <object class="GtkListBoxRow" id="edit">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Edit</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">edit</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow" id="delete">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Delete</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">delete</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow" id="add">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Add</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">add</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="has-arrow">False</property>
+    <style>
+      <class name="menu"/>
+    </style>
+  </template>
+</interface>

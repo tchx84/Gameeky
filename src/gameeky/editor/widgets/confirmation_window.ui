@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.17.0 -->
+<interface>
+  <!-- interface-name confirmation_dialog.ui -->
+  <requires lib="libadwaita" version="1.2"/>
+  <template class="ConfirmationWindow" parent="AdwMessageDialog">
+    <property name="body" translatable="yes">Do you want to &lt;b&gt;permanently&lt;/b&gt; delete this entity?</property>
+    <property name="body-use-markup">True</property>
+    <property name="close-response">cancel</property>
+    <property name="default-response">delete</property>
+    <property name="heading" translatable="yes">Delete Entity?</property>
+    <signal name="response" handler="on_response_clicked"/>
+    <!-- Custom fragments -->
+    <responses>
+      <response id="cancel" translatable="yes">_Cancel</response>
+      <response id="delete" translatable="yes" appearance="destructive">_Delete</response>
+    </responses>
+  </template>
+</interface>

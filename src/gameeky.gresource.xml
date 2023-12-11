@@ -7,6 +7,7 @@
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/animation_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/animation_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/animations_settings.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/confirmation_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_open_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/entity_row.ui</file>
@@ -15,6 +16,7 @@
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/global_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/path_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/paths_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_entity_popover.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_edit_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_entity_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/scene_new_window.ui</file>
