@@ -18,9 +18,9 @@ class Description(SimpleNamespace):
         return json.dumps(self, cls=DescriptionEncoder, sort_keys=True, indent=4)
 
     @classmethod
-    def new_from_json(cls, path: str) -> "Description":
+    def new_from_json(cls, path: str, **kargs) -> "Description":
         with open(path, "r") as file:
-            return json.load(file, object_hook=lambda d: cls(**d))
+            return json.load(file, object_hook=lambda d: cls(**(d | kargs)))
 
 
 class Scanner(GObject.GObject):
