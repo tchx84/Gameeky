@@ -98,6 +98,13 @@ class Scene(CommonScene, GObject.GObject):
 
         self._remove_entity(entity)
 
+    def remove_by_type_id(self, type_id: int) -> None:
+        for entity in list(self.entities):
+            if entity.type_id == type_id:
+                self._remove_entity(cast(Entity, entity))
+
+        self.refresh()
+
     def add(self, type_id: int, x: int, y: int, z: Optional[int], area: int) -> None:
         from_range_x = math.floor(max(x - area, 0))
         to_range_x = math.floor(min(x + area + 1, self.width))
