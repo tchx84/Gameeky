@@ -143,7 +143,7 @@ gameeky_sources = [
   'gameeky/player/models/__init__.py',
   'gameeky/player/models/session_guest.py',
   'gameeky/player/models/session_host.py',
-  'gameeky/player/widgets/actions_popup.py',
+  'gameeky/player/widgets/actions_popover.py',
   'gameeky/player/widgets/highlight.py',
   'gameeky/player/widgets/hud.py',
   'gameeky/player/widgets/__init__.py',

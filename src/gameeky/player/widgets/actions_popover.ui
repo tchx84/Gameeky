@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name actions_popover.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <template class="ActionsPopover" parent="GtkPopover">
+    <property name="child">
+      <object class="GtkListBox">
+        <signal name="row-activated" handler="on_activated"/>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Take</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">take</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Use</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">use</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Drop</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">drop</property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Interact</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">interact</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label">Stop</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="name">idle</property>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="has-arrow">False</property>
+    <style>
+      <class name="menu"/>
+    </style>
+  </template>
+</interface>

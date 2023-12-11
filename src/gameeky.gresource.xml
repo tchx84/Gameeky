@@ -28,7 +28,7 @@
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/sound_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/sounds_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/tileset_window.ui</file>
-    <file preprocess="xml-stripblanks">gameeky/player/widgets/actions_popup.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/actions_popover.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_join_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/window.ui</file>

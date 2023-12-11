@@ -1,10 +1,10 @@
 from typing import Optional
-from gi.repository import Gtk, Gdk, Adw, GObject
+from gi.repository import Gtk, Adw, GObject
 
 from .scene import Scene as SceneWidget
 from .hud import Hud as HudWidget
 from .highlight import Highlight as HighlightWidget
-from .actions_popup import ActionsPopup
+from .actions_popover import ActionsPopover
 
 from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
@@ -35,8 +35,7 @@ class Window(Adw.ApplicationWindow):
         self.overlay.add_overlay(self._hud)
         self.overlay.add_overlay(self._highlight)
 
-        self._popup = ActionsPopup()
-        self._popup.set_parent(self.canvas)
+        self._popover = ActionsPopover(parent=self.canvas)
 
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
@@ -55,11 +54,6 @@ class Window(Adw.ApplicationWindow):
 
     def switch_to_game(self) -> None:
         self.stack.set_visible_child_name("game")
-
-    def display_actions(self, x: int, y: int) -> None:
-        self._popup.set_pointing_to(Gdk.Rectangle(x, y, 0, 0))
-        self._popup.set_offset(x, y)
-        self._popup.popup()
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
         self.banner.props.revealed = True
@@ -90,5 +84,5 @@ class Window(Adw.ApplicationWindow):
         return self._highlight.canvas
 
     @property
-    def popover(self) -> ActionsPopup:
-        return self._popup
+    def popover(self) -> ActionsPopover:
+        return self._popover

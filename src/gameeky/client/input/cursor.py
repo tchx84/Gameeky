@@ -28,15 +28,13 @@ class Cursor:
         self._left_click.set_button(Gdk.BUTTON_SECONDARY)
         self._left_click.connect("pressed", self.__on_left_pressed)
 
-        self._widget = widget
-
-        self._popover = self._widget.popover
+        self._popover = widget.popover
         self._performed_source_id = self._popover.connect(
             "performed",
             self.__on_action_perfomed,
         )
 
-        self._canvas = self._widget.canvas
+        self._canvas = widget.canvas
         self._canvas.add_controller(self._right_click)
         self._canvas.add_controller(self._left_click)
 
@@ -139,7 +137,7 @@ class Cursor:
         x: float,
         y: float,
     ) -> None:
-        self._widget.display_actions(x, y)
+        self._popover.display(x, y)
 
     def __on_action_perfomed(self, popover: Gtk.Popover, action: Action) -> None:
         self._service.message(action, 0)
