@@ -45,7 +45,7 @@
                             </child>
                             <child>
                               <object class="GtkLabel">
-                                <property name="label">Welcome to Gameeky</property>
+                                <property name="label" translatable="yes">Welcome to Gameeky</property>
                                 <property name="margin-bottom">25</property>
                                 <style>
                                   <class name="title-1"/>
@@ -55,7 +55,7 @@
                             <child>
                               <object class="GtkButton">
                                 <property name="halign">center</property>
-                                <property name="label">Create</property>
+                                <property name="label" translatable="yes">Create</property>
                                 <property name="name">create</property>
                                 <signal name="clicked" handler="on_create_clicked"/>
                                 <style>
@@ -86,7 +86,7 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="label">Your Projects</property>
+                                    <property name="label" translatable="yes">Your Projects</property>
                                     <style>
                                       <class name="title-1"/>
                                     </style>
@@ -139,11 +139,11 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label">New</attribute>
+      <attribute name="label" translatable="yes">New Project</attribute>
     </item>
     <item>
       <attribute name="action">app.about</attribute>
-      <attribute name="label">About</attribute>
+      <attribute name="label" translatable="yes">About</attribute>
     </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">

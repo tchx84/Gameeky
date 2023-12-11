@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name project_settings.ui -->
   <requires lib="libadwaita" version="1.2"/>
   <template class="ProjectSettings" parent="AdwPreferencesGroup">
     <child>
       <object class="AdwEntryRow" id="_name">
-        <property name="title">Name</property>
+        <property name="title" translatable="yes">Name</property>
       </object>
     </child>
     <child>
       <object class="AdwEntryRow" id="_description">
-        <property name="title">Description</property>
+        <property name="title" translatable="yes">Description</property>
       </object>
     </child>
   </template>

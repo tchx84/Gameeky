@@ -74,7 +74,7 @@
                   <object class="GtkButton" id="play">
                     <property name="halign">center</property>
                     <property name="icon-name">media-playback-start-symbolic</property>
-                    <property name="tooltip-text">Play</property>
+                    <property name="tooltip-text" translatable="yes">Play</property>
                     <property name="valign">center</property>
                     <signal name="clicked" handler="on_play_clicked"/>
                     <style>
@@ -87,7 +87,7 @@
                   <object class="GtkButton" id="edit">
                     <property name="halign">center</property>
                     <property name="icon-name">document-edit-symbolic</property>
-                    <property name="tooltip-text">Edit</property>
+                    <property name="tooltip-text" translatable="yes">Edit</property>
                     <property name="valign">center</property>
                     <signal name="clicked" handler="on_edit_clicked"/>
                     <style>
@@ -100,7 +100,7 @@
                   <object class="GtkButton" id="settings">
                     <property name="halign">center</property>
                     <property name="icon-name">applications-system-symbolic</property>
-                    <property name="tooltip-text">Settings</property>
+                    <property name="tooltip-text" translatable="yes">Settings</property>
                     <property name="valign">center</property>
                     <signal name="clicked" handler="on_settings_clicked"/>
                     <style>
@@ -113,7 +113,7 @@
                   <object class="GtkButton" id="remove">
                     <property name="halign">center</property>
                     <property name="icon-name">user-trash-symbolic</property>
-                    <property name="tooltip-text">Delete</property>
+                    <property name="tooltip-text" translatable="yes">Delete</property>
                     <property name="valign">center</property>
                     <signal name="clicked" handler="on_remove_clicked"/>
                     <style>
