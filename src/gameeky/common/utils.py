@@ -1,7 +1,7 @@
 import os
 
 from typing import Callable, Optional, Tuple
-from gi.repository import GLib, Gtk, Gio
+from gi.repository import GLib, Gio
 
 
 def get_time_milliseconds() -> int:
@@ -142,15 +142,6 @@ def wait(milliseconds: int) -> None:
 
 def launch(command: str, arguments: str) -> None:
     GLib.spawn_command_line_async(f"{GLib.find_program_in_path(command)} {arguments}")
-
-
-def find_widget_by_id(container: Gtk.Widget, child_id: str) -> Optional[Gtk.Widget]:
-    for widget in list(container):
-        if widget.get_buildable_id() == child_id:
-            return widget
-        if child := find_widget_by_id(widget, child_id):
-            return child
-    return None
 
 
 def clamp(maximum, minimum, value):
