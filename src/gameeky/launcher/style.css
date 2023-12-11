@@ -13,6 +13,7 @@
 }
 .card .thumbnail {
     color: @accent_bg_color;
+    opacity: 0.2;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
