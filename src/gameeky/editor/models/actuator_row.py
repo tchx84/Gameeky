@@ -1,3 +1,4 @@
+from typing import Optional, List
 from gettext import gettext as _
 
 from gi.repository import Gio
@@ -40,7 +41,7 @@ class ActuatorRow(BaseRow):
     }
 
     @classmethod
-    def model(cls, default=False) -> Gio.ListStore:
+    def model(cls, default=False, exclude: Optional[List[str]] = None) -> Gio.ListStore:
         model = super().model()
 
         for value in ActuatorRegistry.names():

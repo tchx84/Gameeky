@@ -1,4 +1,4 @@
-from typing import Type, Optional
+from typing import Type, Optional, List
 
 from gi.repository import Gio, Gtk, GObject
 
@@ -15,18 +15,19 @@ class DropDownHelper(GObject.GObject):
         dropdown: Gtk.DropDown,
         cls: Type[BaseRowModel],
         default=False,
+        exclude: Optional[List[str]] = None,
     ) -> None:
         super().__init__()
 
-        self._model = cls.model(default=default)
+        self._model = cls.model(default=default, exclude=exclude)
 
         self._factory = Gtk.SignalListItemFactory()
         self._factory.connect("bind", self.__on_bind)
         self._factory.connect("setup", self.__on_setup)
 
         self._dropdown = dropdown
-        self._dropdown.props.model = self._model
         self._dropdown.props.factory = self._factory
+        self._dropdown.props.model = self._model
         self._dropdown.connect("notify::selected", self.__on_changed)
 
     def __on_setup(
@@ -75,3 +76,11 @@ class DropDownHelper(GObject.GObject):
             return
 
         self._dropdown.props.selected = position
+
+    @property
+    def index(self) -> int:
+        return int(self._dropdown.props.selected)
+
+    @index.setter
+    def index(self, index: int) -> None:
+        self._dropdown.props.selected = index

@@ -10,8 +10,12 @@ from .entity_row import EntityRow
 from .confirmation_window import ConfirmationWindow
 from .scene_entity_popover import SceneEntityPopover
 from .scene_entity_window import SceneEntityWindow
+from .dropdown_helper import DropDownHelper
 
+from ..models.area_row import AreaRow as AreaRowModel
 from ..models.entity_row import EntityRow as EntityRowModel
+from ..models.layer_row import LayerRow as LayerRowModel
+from ..models.daytime_row import DayTimeRow as DayTimeRowModel
 from ..models.scene import Scene as SceneModel
 from ..definitions import Layer
 
@@ -68,9 +72,16 @@ class SceneWindow(Adw.ApplicationWindow):
         self._controller.connect("pressed", self.__on_controller_pressed)
         self.entities_view.add_controller(self._controller)
 
-        # XXX Move the UI file somehow
-        self.time.connect("notify::selected-item", self.__on_time_changed)
-        self.layer.connect("notify::selected-item", self.__on_layer_changed)
+        self._layer = DropDownHelper(self.layer, LayerRowModel)
+        self._layer.index = Layer.MAX
+        self._layer.connect("changed", self.__on_layer_changed)
+
+        self._time = DropDownHelper(self.time, DayTimeRowModel, exclude=["dynamic"])
+        self._time.index = 0
+        self._time.connect("changed", self.__on_time_changed)
+
+        self._area = DropDownHelper(self.area, AreaRowModel)
+        self._area.index = 0
 
         # XXX Move to the UI file somehow
         self._model = Gio.ListStore()
@@ -135,19 +146,19 @@ class SceneWindow(Adw.ApplicationWindow):
         view.model = model
 
     def __on_time_changed(self, *args) -> None:
-        self._scene_model.time = float(self.time.props.selected)
+        self._scene_model.time = float(self._time.index)
         self._scene_model.refresh()
 
     def __on_layer_changed(self, *args) -> None:
         layer: Optional[int] = (
-            self.layer_value if self.layer_value < Layer.MAX else None
+            self._layer.index if self._layer.index < Layer.MAX else None
         )
 
         self._scene_model.layer = layer
         self._scene_view.layer = layer
 
     def __on_clicked(self, grid: GridView, x: int, y: int) -> None:
-        area = int(self.area.props.selected)
+        area = self._area.index
 
         if self.spawner.props.active is True:
             self._set_spawn_point(x, y)
@@ -214,9 +225,9 @@ class SceneWindow(Adw.ApplicationWindow):
 
         self.adder.props.active = True
         self.grid.props.active = True
-        self.area.props.selected = 0
-        self.time.props.selected = 0
-        self.layer.props.selected = Layer.MAX
+        self._area.index = 0
+        self._time.index = 0
+        self._layer.index = Layer.MAX
 
         self._model.remove_all()
 
@@ -237,16 +248,12 @@ class SceneWindow(Adw.ApplicationWindow):
     @Gtk.Template.Callback("on_entity_selected")
     def __on_entity_selected(self, *args) -> None:
         self.adder.props.active = True
-        self.area.props.selected = 0
+        self._area.index = 0
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, *args) -> None:
         self.emit("reload")
         self.banner.props.revealed = False
-
-    @property
-    def layer_value(self) -> int:
-        return int(self.layer.props.selected)
 
     @property
     def suggested_name(self) -> str:

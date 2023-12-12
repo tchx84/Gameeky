@@ -69,20 +69,6 @@
                         <property name="hexpand">True</property>
                         <child>
                           <object class="GtkDropDown" id="layer">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <property name="strings">layer 0
-layer 1
-layer 2
-layer 3
-layer 4
-layer 5
-layer 6
-layer 7
-all layers</property>
-                              </object>
-                            </property>
-                            <property name="selected">8</property>
                           </object>
                         </child>
                       </object>
@@ -111,13 +97,6 @@ all layers</property>
                         </child>
                         <child>
                           <object class="GtkDropDown" id="time">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <property name="strings">day
-night</property>
-                              </object>
-                            </property>
-                            <property name="selected">0</property>
                             <property name="tooltip-text">Set time of the day</property>
                           </object>
                         </child>
@@ -270,16 +249,6 @@ night</property>
                         </child>
                         <child>
                           <object class="GtkDropDown" id="area">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <property name="strings">1x1
-3x3
-5x5
-7x7
-9x9</property>
-                              </object>
-                            </property>
-                            <property name="selected">0</property>
                             <property name="tooltip-text">Set drawing area</property>
                           </object>
                         </child>
