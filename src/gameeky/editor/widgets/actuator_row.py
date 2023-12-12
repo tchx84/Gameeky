@@ -1,8 +1,8 @@
 from gi.repository import Gtk, Adw, GObject
 
-from .utils import get_position_in_model
+from .dropdown_helper import DropDownHelper
 
-from ...server.game.actuators.base import ActuatorRegistry
+from ..models.actuator_row import ActuatorRow as ActuatorRowModel
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/actuator_row.ui")
@@ -16,18 +16,13 @@ class ActuatorRow(Adw.ActionRow):
     }
 
     dropdown = Gtk.Template.Child()
-    model = Gtk.Template.Child()
 
     def __init__(self) -> None:
         super().__init__()
+        self._dropdown = DropDownHelper(self.dropdown, ActuatorRowModel)
+        self._dropdown.connect("changed", self.__on_changed)
 
-        for name in ActuatorRegistry.names():
-            self.model.append(name)
-
-        # XXX Move to UI file
-        self.dropdown.connect("notify::selected", self.__on_changed)
-
-    def __on_changed(self, entry: Gtk.DropDown, value: int) -> None:
+    def __on_changed(self, dropdown: DropDownHelper) -> None:
         self.emit("changed")
 
     @Gtk.Template.Callback("on_moved")
@@ -40,13 +35,8 @@ class ActuatorRow(Adw.ActionRow):
 
     @property
     def value(self) -> str:
-        return self.dropdown.props.selected_item.props.string
+        return self._dropdown.value
 
     @value.setter
     def value(self, value: str) -> None:
-        position = get_position_in_model(self.model, value)
-
-        if position is None:
-            return
-
-        self.dropdown.props.selected = position
+        self._dropdown.value = value

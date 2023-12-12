@@ -3,7 +3,10 @@ from typing import Optional
 from gi.repository import GLib, Gtk, GObject
 
 from .actuators_row import ActuatorsRow
-from .utils import get_position_in_model
+from .dropdown_helper import DropDownHelper
+
+from ..models.direction_row import DirectionRow as DirectionRowModel
+from ..models.state_row import StateRow as StateRowModel
 
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_TIMEOUT
@@ -45,13 +48,17 @@ class EntitySettings(Gtk.Box):
         self._actuators.connect("changed", self.__on_changed)
         self.actuators.props.child = self._actuators
 
+        self._direction = DropDownHelper(self.direction, DirectionRowModel)
+        self._direction.connect("changed", self.__on_changed)
+
+        self._state = DropDownHelper(self.state, StateRowModel)
+        self._state.connect("changed", self.__on_changed)
+
         # XXX Move these to UI file somehow
         self.removable.connect("notify::active", self.__on_changed)
         self.takeable.connect("notify::active", self.__on_changed)
         self.usable.connect("notify::active", self.__on_changed)
         self.visible.connect("notify::active", self.__on_changed)
-        self.direction.connect("notify::selected-item", self.__on_changed)
-        self.state.connect("notify::selected-item", self.__on_changed)
 
     @Gtk.Template.Callback("on_changed")
     def __on_changed(self, *args) -> None:
@@ -87,8 +94,8 @@ class EntitySettings(Gtk.Box):
             takeable=self.takeable.props.active,
             usable=self.usable.props.active,
             visible=self.visible.props.active,
-            direction=self.direction.props.selected_item.props.string,
-            state=self.state.props.selected_item.props.string,
+            direction=self._direction.value,
+            state=self._state.value,
             actuators=self._actuators.value,
         )
 
@@ -110,10 +117,6 @@ class EntitySettings(Gtk.Box):
         self.takeable.props.active = description.takeable
         self.usable.props.active = description.usable
         self.visible.props.active = description.visible
-        self.direction.props.selected = get_position_in_model(
-            self.direction.props.model, description.direction
-        )
-        self.state.props.selected = get_position_in_model(
-            self.state.props.model, description.state
-        )
+        self._direction.value = description.direction
+        self._state.value = description.state
         self._actuators.value = description.actuators

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name entity_settings.ui -->
+  <requires lib="gio" version="2.44"/>
   <requires lib="gtk" version="4.10"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="EntitySettings" parent="GtkBox">
@@ -185,20 +186,6 @@
         </child>
         <child>
           <object class="AdwComboRow" id="state">
-            <property name="model">
-              <object class="GtkStringList">
-                <property name="strings">destroyed
-destroying
-dropping
-exhausted
-held
-idling
-interacting
-moving
-taking
-using</property>
-              </object>
-            </property>
             <property name="selected">0</property>
             <property name="subtitle">The initial state</property>
             <property name="title">State</property>
@@ -206,14 +193,6 @@ using</property>
         </child>
         <child>
           <object class="AdwComboRow" id="direction">
-            <property name="model">
-              <object class="GtkStringList">
-                <property name="strings">east
-north
-south
-west</property>
-              </object>
-            </property>
             <property name="selected">0</property>
             <property name="subtitle">The initial direction</property>
             <property name="title">Direction</property>

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name actuator_row.ui -->
+  <requires lib="gio" version="2.44"/>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.0"/>
   <template class="ActuatorRow" parent="AdwActionRow">
@@ -10,36 +11,6 @@
       <object class="GtkBox">
         <child>
           <object class="GtkDropDown" id="dropdown">
-            <property name="model">
-              <object class="GtkStringList" id="model">
-                <property name="strings">activates
-activates_i
-affects
-affects_i
-aggroes
-collapses
-collapses_t
-destroys
-destroys_i
-deteriorates
-drops
-exhausts
-follows
-interacts
-propulses
-requires
-roams
-spawns
-takes
-targets
-teleports
-teleports_i
-transmutes
-triggers
-triggers_i
-uses</property>
-              </object>
-            </property>
             <property name="selected">0</property>
             <property name="valign">center</property>
           </object>

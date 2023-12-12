@@ -1,7 +1,10 @@
 from gi.repository import Gtk, Adw, GObject
 
-from .utils import get_position_in_model
 from .animation_settings import AnimationSettings
+from .dropdown_helper import DropDownHelper
+
+from ..models.direction_row import DirectionRow as DirectionRowModel
+from ..models.state_row import StateRow as StateRowModel
 
 from ...common.scanner import Description
 
@@ -21,21 +24,24 @@ class AnimationRow(Adw.PreferencesGroup):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._animation_settings = AnimationSettings()
 
         # XXX Move these to UI file somehow
+        self._animation_settings = AnimationSettings()
         self._animation_settings.connect("changed", self.__on_changed)
-        self.state_combo.connect("notify::selected-item", self.__on_changed)
-        self.direction_combo.connect("notify::selected-item", self.__on_changed)
-
         self.animation_box.append(self._animation_settings)
+
+        self._state = DropDownHelper(self.state_combo, StateRowModel, True)
+        self._state.connect("changed", self.__on_changed)
+
+        self._direction = DropDownHelper(self.direction_combo, DirectionRowModel, True)
+        self._direction.connect("changed", self.__on_changed)
 
         self._update_description()
 
     def _update_description(self) -> None:
         description = f"While {self.state}"
 
-        if self.direction != "any":
+        if self.direction != "default":
             description += f" {self.direction}"
         if self.state == "default":
             description = "By default"
@@ -55,23 +61,19 @@ class AnimationRow(Adw.PreferencesGroup):
 
     @property
     def state(self) -> str:
-        return self.state_combo.props.selected_item.props.string
+        return self._state.value
 
     @state.setter
-    def state(self, state: str) -> None:
-        self.state_combo.props.selected = get_position_in_model(
-            self.state_combo.props.model, state
-        )
+    def state(self, value: str) -> None:
+        self._state.value = value
 
     @property
     def direction(self) -> str:
-        return self.direction_combo.props.selected_item.props.string
+        return self._direction.value
 
     @direction.setter
-    def direction(self, direction: str) -> None:
-        self.direction_combo.props.selected = get_position_in_model(
-            self.direction_combo.props.model, direction
-        )
+    def direction(self, value: str) -> None:
+        self._direction.value = value
 
     @property
     def description(self) -> Description:

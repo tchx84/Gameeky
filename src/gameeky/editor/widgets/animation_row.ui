@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name animation_row.ui -->
+  <requires lib="gio" version="2.44"/>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="AnimationRow" parent="AdwPreferencesGroup">
@@ -31,35 +32,11 @@
     <property name="title">Animation</property>
     <child>
       <object class="AdwComboRow" id="state_combo">
-        <property name="model">
-          <object class="GtkStringList">
-            <property name="strings">default
-destroyed
-destroying
-dropping
-exhausted
-held
-idling
-interacting
-moving
-taking
-using</property>
-          </object>
-        </property>
         <property name="title">State</property>
       </object>
     </child>
     <child>
       <object class="AdwComboRow" id="direction_combo">
-        <property name="model">
-          <object class="GtkStringList">
-            <property name="strings">any
-east
-north
-south
-west</property>
-          </object>
-        </property>
         <property name="title">Direction</property>
       </object>
     </child>

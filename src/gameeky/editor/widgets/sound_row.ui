@@ -2,6 +2,7 @@
 <!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name sound_row.ui -->
+  <requires lib="gio" version="2.44"/>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="SoundRow" parent="AdwPreferencesGroup">
@@ -29,20 +30,6 @@
     <property name="title">Sound</property>
     <child>
       <object class="AdwComboRow" id="state_combo">
-        <property name="model">
-          <object class="GtkStringList">
-            <property name="strings">destroyed
-destroying
-dropping
-exhausted
-held
-idling
-interacting
-moving
-taking
-using</property>
-          </object>
-        </property>
         <property name="title">State</property>
       </object>
     </child>

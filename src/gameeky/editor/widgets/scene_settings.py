@@ -1,9 +1,10 @@
 from typing import List
 from gi.repository import Gio, Gtk, Adw
 
-from .utils import get_position_in_model
+from .dropdown_helper import DropDownHelper
 
 from ..models.entity import Entity
+from ..models.daytime_row import DayTimeRow as DayTimeRowModel
 
 from ...common.logger import logger
 from ...common.utils import get_data_path, get_data_folder, clamp
@@ -26,6 +27,8 @@ class SceneSettings(Adw.PreferencesGroup):
         self._spawn = Vector(0, 0, 0)
         self._entities: List[Entity] = []
         self.project.props.text = get_data_path("")
+
+        self._daytime = DropDownHelper(self.daytime, DayTimeRowModel)
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
@@ -76,7 +79,7 @@ class SceneSettings(Adw.PreferencesGroup):
             width=width,
             height=height,
             spawn=self._spawn,
-            daytime=self.daytime.props.selected_item.props.string,
+            daytime=self._daytime.value,
             entities=self._entities,
         )
 
@@ -85,9 +88,7 @@ class SceneSettings(Adw.PreferencesGroup):
         self.name.props.text = description.name
         self.width.props.value = description.width
         self.height.props.value = description.height
-        self.daytime.props.selected = get_position_in_model(
-            self.daytime.props.model, description.daytime
-        )
+        self._daytime.value = description.daytime
 
         self._spawn = description.spawn
         self._entities = description.entities
