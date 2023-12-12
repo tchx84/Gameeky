@@ -38,7 +38,7 @@
                             <child>
                               <object class="GtkLabel">
                                 <property name="hexpand">True</property>
-                                <property name="label">Welcome to Gameeky</property>
+                                <property name="label" translatable="yes">Welcome to Gameeky</property>
                                 <property name="margin-bottom">25</property>
                                 <property name="vexpand">True</property>
                                 <style>
@@ -84,7 +84,7 @@
                               <object class="GtkLabel">
                                 <property name="halign">center</property>
                                 <property name="hexpand">True</property>
-                                <property name="label">Loading</property>
+                                <property name="label" translatable="yes">Loading</property>
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                               </object>
@@ -102,7 +102,7 @@
                             <child>
                               <object class="AdwBanner" id="banner">
                                 <property name="button-label">Reload</property>
-                                <property name="title">The scene has been changed on disk</property>
+                                <property name="title" translatable="yes">The scene has been changed on disk</property>
                                 <signal name="button-clicked" handler="on_reload_clicked"/>
                               </object>
                             </child>
@@ -139,7 +139,7 @@
                               <object class="GtkLabel">
                                 <property name="halign">center</property>
                                 <property name="hexpand">True</property>
-                                <property name="label">Failed</property>
+                                <property name="label" translatable="yes">Something wen't wrong</property>
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                               </object>
@@ -174,19 +174,19 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label">New</attribute>
+      <attribute name="label" translatable="yes">New Game</attribute>
     </item>
     <item>
       <attribute name="action">app.join</attribute>
-      <attribute name="label">Join</attribute>
+      <attribute name="label" translatable="yes">Join Game</attribute>
     </item>
     <item>
       <attribute name="action">app.save</attribute>
-      <attribute name="label">Save _As…</attribute>
+      <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>
     <item>
       <attribute name="action">app.about</attribute>
-      <attribute name="label">About</attribute>
+      <attribute name="label" translatable="yes">About</attribute>
     </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">

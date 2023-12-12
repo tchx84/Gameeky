@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name session_join_window.ui -->
   <requires lib="gtk" version="4.12"/>
@@ -24,7 +24,7 @@
                                 <child>
                                   <object class="AdwEntryRow" id="project">
                                     <property name="hexpand">True</property>
-                                    <property name="title">Project</property>
+                                    <property name="title" translatable="yes">Project</property>
                                     <child>
                                       <object class="GtkButton">
                                         <property name="halign">center</property>
@@ -37,13 +37,13 @@
                                 </child>
                                 <child>
                                   <object class="AdwEntryRow" id="address">
-                                    <property name="title">Address</property>
+                                    <property name="title" translatable="yes">Address</property>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="AdwExpanderRow">
                                     <property name="hexpand">True</property>
-                                    <property name="title">Advanced</property>
+                                    <property name="title" translatable="yes">Advanced</property>
                                     <child>
                                       <object class="AdwSpinRow" id="session_port">
                                         <property name="adjustment">
@@ -54,7 +54,7 @@
                                             <property name="value">1024.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Session Port</property>
+                                        <property name="title" translatable="yes">Session Port</property>
                                       </object>
                                     </child>
                                     <child>
@@ -67,7 +67,7 @@
                                             <property name="value">1024.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Messages Port</property>
+                                        <property name="title" translatable="yes">Messages Port</property>
                                       </object>
                                     </child>
                                     <child>
@@ -80,7 +80,7 @@
                                             <property name="value">1024.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Scene Port</property>
+                                        <property name="title" translatable="yes">Scene Port</property>
                                       </object>
                                     </child>
                                     <child>
@@ -93,7 +93,7 @@
                                             <property name="value">1024.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Stats Port</property>
+                                        <property name="title" translatable="yes">Stats Port</property>
                                       </object>
                                     </child>
                                   </object>
@@ -116,13 +116,13 @@
             <property name="show-start-title-buttons">False</property>
             <child>
               <object class="GtkButton">
-                <property name="label">Cancel</property>
+                <property name="label" translatable="yes">Cancel</property>
                 <signal name="clicked" handler="on_cancel_clicked"/>
               </object>
             </child>
             <child type="end">
               <object class="GtkButton">
-                <property name="label">Join</property>
+                <property name="label" translatable="yes">Join</property>
                 <signal name="clicked" handler="on_create_clicked"/>
                 <style>
                   <class name="suggested-action"/>
@@ -139,6 +139,6 @@
     <property name="default-height">500</property>
     <property name="default-width">700</property>
     <property name="modal">True</property>
-    <property name="title">Join</property>
+    <property name="title" translatable="yes">Game</property>
   </template>
 </interface>

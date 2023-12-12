@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name actions_popover.ui -->
   <requires lib="gtk" version="4.12"/>
@@ -11,7 +11,7 @@
           <object class="GtkListBoxRow">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Take</property>
+                <property name="label" translatable="yes">Take</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -23,7 +23,7 @@
           <object class="GtkListBoxRow">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Use</property>
+                <property name="label" translatable="yes">Use</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -35,7 +35,7 @@
           <object class="GtkListBoxRow">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Drop</property>
+                <property name="label" translatable="yes">Drop</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -47,7 +47,7 @@
           <object class="GtkListBoxRow">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Interact</property>
+                <property name="label" translatable="yes">Interact</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -58,7 +58,7 @@
           <object class="GtkListBoxRow">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Stop</property>
+                <property name="label" translatable="yes">Stop</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
