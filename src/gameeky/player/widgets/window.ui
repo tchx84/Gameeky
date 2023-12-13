@@ -139,7 +139,7 @@
                               <object class="GtkLabel">
                                 <property name="halign">center</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Something wen't wrong</property>
+                                <property name="label" translatable="yes">Something went wrong</property>
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                               </object>
