@@ -118,11 +118,11 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label" translatable="yes">New</attribute>
+      <attribute name="label" translatable="yes">_New</attribute>
     </item>
     <item>
       <attribute name="action">app.open</attribute>
-      <attribute name="label" translatable="yes">Open</attribute>
+      <attribute name="label" translatable="yes">_Open</attribute>
     </item>
     <item>
       <attribute name="action">app.save</attribute>
@@ -130,7 +130,7 @@
     </item>
     <item>
       <attribute name="action">app.about</attribute>
-      <attribute name="label" translatable="yes">About</attribute>
+      <attribute name="label" translatable="yes">_About</attribute>
     </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">

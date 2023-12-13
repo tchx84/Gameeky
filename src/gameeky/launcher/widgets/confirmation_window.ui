@@ -12,8 +12,8 @@
     <signal name="response" handler="on_response_clicked"/>
     <!-- Custom fragments -->
     <responses>
-      <response id="cancel" translatable="yes">_Cancel</response>
-      <response id="delete" translatable="yes" appearance="destructive">_Delete</response>
+      <response id="cancel" translatable="yes">Cancel</response>
+      <response id="delete" translatable="yes" appearance="destructive">Delete</response>
     </responses>
   </template>
 </interface>
