@@ -97,7 +97,7 @@ class Scene:
         self._entity_by_id[entity.id] = entity
         self._partition.add(entity)
 
-        if entity.mutable is True:
+        if entity.mutable or entity.playable:
             self._mutable_entities.append(entity)
 
         return entity.id
