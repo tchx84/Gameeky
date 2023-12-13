@@ -7,6 +7,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 from typing import Any, Optional
+from gettext import gettext as _
 
 from gi.repository import Gio, Adw, Gdk, GLib, Gtk
 
@@ -35,6 +36,8 @@ class Application(Adw.Application):
             flags=Gio.ApplicationFlags.NON_UNIQUE
             | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
+        GLib.set_application_name(_("Entity Editor"))
+
         self._monitor = Monitor.default()
         self._data_path: Optional[str] = None
         self._description: Optional[Description] = None

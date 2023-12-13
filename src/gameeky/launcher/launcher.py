@@ -7,6 +7,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
 from typing import Any, Optional
+from gettext import gettext as _
 
 from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
@@ -23,7 +24,8 @@ class Application(Adw.Application):
             application_id="dev.tchx84.gameeky.Launcher",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
-        GLib.set_application_name("Gameeky")
+        GLib.set_application_name(_("Gameeky"))
+
         self._session: Optional[Session] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:

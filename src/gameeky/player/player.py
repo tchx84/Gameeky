@@ -8,9 +8,10 @@ gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gdk, Gtk, GLib, Gio, Adw
-
 from typing import Any, Optional
+from gettext import gettext as _
+
+from gi.repository import Gdk, Gtk, GLib, Gio, Adw
 
 from .widgets.window import Window
 from .widgets.session_new_window import SessionNewWindow
@@ -47,6 +48,8 @@ class Application(Adw.Application):
             flags=Gio.ApplicationFlags.NON_UNIQUE
             | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
+        GLib.set_application_name(_("Player"))
+
         self._monitor = Monitor.default()
         self._session_host: Optional[SessionHost] = None
         self._session_guest: Optional[SessionGuest] = None

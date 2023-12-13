@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Player
+Exec=dev.tchx84.gameeky.Player
+Icon=dev.tchx84.gameeky
+Terminal=false
+Type=Application
+Categories=Education;Game;
+StartupNotify=true
