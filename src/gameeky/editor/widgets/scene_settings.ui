@@ -30,7 +30,6 @@
     </child>
     <child>
       <object class="AdwComboRow" id="daytime">
-        <property name="selected">0</property>
         <property name="title">Time</property>
       </object>
     </child>

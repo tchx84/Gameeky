@@ -186,14 +186,12 @@
         </child>
         <child>
           <object class="AdwComboRow" id="state">
-            <property name="selected">0</property>
             <property name="subtitle">The initial state</property>
             <property name="title">State</property>
           </object>
         </child>
         <child>
           <object class="AdwComboRow" id="direction">
-            <property name="selected">0</property>
             <property name="subtitle">The initial direction</property>
             <property name="title">Direction</property>
           </object>
