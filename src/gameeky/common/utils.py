@@ -24,7 +24,7 @@ def set_project_path(path) -> None:
 
 
 def get_project_path(*paths) -> str:
-    return os.path.join(os.environ.get("PROJECT_PATH", os.path.expanduser("~")), *paths)
+    return os.path.join(os.environ.get("PROJECT_PATH", get_projects_path()), *paths)
 
 
 def find_project_path(path) -> str:
