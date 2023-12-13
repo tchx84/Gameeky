@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 13:00-0300\n"
+"POT-Creation-Date: 2023-12-13 17:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,11 +40,10 @@ msgid "Play, create and learn"
 msgstr ""
 
 #: data/dev.tchx84.gameeky.metainfo.xml.in:9
-msgid ""
-"Gameeky is a learning tool designed to put your STEAM skills into practice"
+msgid "A learning tool designed to put your STEAM skills into practice."
 msgstr ""
 
-#: data/dev.tchx84.gameeky.metainfo.xml.in:15
+#: data/dev.tchx84.gameeky.metainfo.xml.in:16
 msgid "Martin Abente Lahaye"
 msgstr ""
 
