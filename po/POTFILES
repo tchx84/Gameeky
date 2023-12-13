@@ -1,6 +1,11 @@
 data/dev.tchx84.gameeky.desktop.in
+data/dev.tchx84.gameeky.entity.desktop.in
+data/dev.tchx84.gameeky.player.desktop.in
+data/dev.tchx84.gameeky.scene.desktop.in
 data/dev.tchx84.gameeky.metainfo.xml.in
 data/dev.tchx84.gameeky.gschema.xml
+src/gameeky/editor/entity.py
+src/gameeky/editor/scene.py
 src/gameeky/editor/models/actuator_row.py
 src/gameeky/editor/models/area_row.py
 src/gameeky/editor/models/base_row.py
@@ -10,6 +15,8 @@ src/gameeky/editor/models/layer_row.py
 src/gameeky/editor/models/state_row.py
 src/gameeky/editor/widgets/animation_row.py
 src/gameeky/editor/widgets/sound_row.py
+src/gameeky/launcher/launcher.py
+src/gameeky/player/player.py
 src/gameeky/editor/widgets/actuators_row.ui
 src/gameeky/editor/widgets/animation_row.ui
 src/gameeky/editor/widgets/animation_settings.ui

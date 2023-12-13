@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 11:13-0300\n"
+"POT-Creation-Date: 2023-12-13 13:00-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,20 @@ msgstr ""
 
 #: data/dev.tchx84.gameeky.desktop.in:3
 #: data/dev.tchx84.gameeky.metainfo.xml.in:6
+#: src/gameeky/launcher/launcher.py:27
 msgid "Gameeky"
+msgstr ""
+
+#: data/dev.tchx84.gameeky.entity.desktop.in:3 src/gameeky/editor/entity.py:39
+msgid "Entity Editor"
+msgstr ""
+
+#: data/dev.tchx84.gameeky.player.desktop.in:3 src/gameeky/player/player.py:51
+msgid "Player"
+msgstr ""
+
+#: data/dev.tchx84.gameeky.scene.desktop.in:3 src/gameeky/editor/scene.py:40
+msgid "Scene Editor"
 msgstr ""
 
 #: data/dev.tchx84.gameeky.metainfo.xml.in:7
@@ -422,7 +435,7 @@ msgstr ""
 #: src/gameeky/editor/widgets/entity_new_window.ui:65
 #: src/gameeky/editor/widgets/scene_new_window.ui:41
 #: src/gameeky/launcher/widgets/project_new_window.ui:41
-#: src/gameeky/launcher/widgets/window.ui:58
+#: src/gameeky/launcher/widgets/window.ui:59
 #: src/gameeky/player/widgets/session_new_window.ui:151
 msgid "Create"
 msgstr ""
