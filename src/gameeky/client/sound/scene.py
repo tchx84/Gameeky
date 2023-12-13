@@ -48,7 +48,7 @@ class Scene:
     def shutdown(self) -> None:
         self._reset()
 
-        logger.info("Client.Sound.shut")
+        logger.debug("Client.Sound.shut")
 
     @property
     def model(self) -> Optional[SceneModel]:

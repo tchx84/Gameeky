@@ -83,7 +83,7 @@ class Server(GObject.GObject):
         self._service.close()
         self._shut = True
 
-        logger.info("Server.TCP.shut")
+        logger.debug("Server.TCP.shut")
 
     @property
     def shut(self) -> bool:

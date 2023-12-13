@@ -152,4 +152,4 @@ class Cursor:
         self._canvas.remove_controller(self._right_click)
         self._canvas.remove_controller(self._left_click)
 
-        logger.info("Client.Cursor.shut")
+        logger.debug("Client.Cursor.shut")

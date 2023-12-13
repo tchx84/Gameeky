@@ -64,4 +64,4 @@ class Stats(CommonStats, GObject.GObject):
         self._updated_source_id = None
         self._registered_source_id = None
 
-        logger.info("Client.Stats.shut")
+        logger.debug("Client.Stats.shut")

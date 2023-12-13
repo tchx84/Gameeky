@@ -106,4 +106,4 @@ class Keyboard(Gtk.EventControllerKey):
 
         self._widget.remove_controller(self)
 
-        logger.info("Client.Keyboard.shut")
+        logger.debug("Client.Keyboard.shut")

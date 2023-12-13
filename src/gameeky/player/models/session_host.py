@@ -102,7 +102,7 @@ class SessionHost(Threaded):
         if self._service is not None:
             self._service.shutdown()
 
-        logger.info("Server.Session.shut")
+        logger.debug("Server.Session.shut")
 
     def do_request_description(self, callback: Callable, path: str) -> None:
         if self._service is None:

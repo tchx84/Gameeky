@@ -63,7 +63,7 @@ class Monitor(GObject.GObject):
         self._monitors = []
         self._timeout_source_id = None
 
-        logger.info("Common.Monitor.shut")
+        logger.debug("Common.Monitor.shut")
 
     @classmethod
     def default(cls) -> "Monitor":

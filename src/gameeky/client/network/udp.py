@@ -59,7 +59,7 @@ class Client(GObject.GObject):
     def shutdown(self) -> None:
         self._socket.close()
 
-        logger.info("Client.UDP.shut")
+        logger.debug("Client.UDP.shut")
 
     @property
     def shut(self) -> bool:

@@ -46,7 +46,7 @@ class Client(GObject.GObject):
         self._connection.close()
         self._shut = True
 
-        logger.info("Client.TCP.shut")
+        logger.debug("Client.TCP.shut")
 
     @property
     def shut(self) -> bool:

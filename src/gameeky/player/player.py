@@ -283,7 +283,7 @@ class Application(Adw.Application):
         self._shutdown_host()
         Adw.Application.do_shutdown(self)
 
-        logger.info("Client.Application.shut")
+        logger.debug("Client.Application.shut")
 
 
 def main(version: str) -> None:

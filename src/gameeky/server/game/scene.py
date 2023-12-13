@@ -156,7 +156,7 @@ class Scene:
 
         self._timeout_source_id = None
 
-        logger.info("Server.Scene.shut")
+        logger.debug("Server.Scene.shut")
 
     @property
     def partition(self) -> SpatialPartition:

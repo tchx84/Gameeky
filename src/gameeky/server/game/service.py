@@ -72,7 +72,7 @@ class Service(GObject.GObject):
         self._stats_manager = UDPServer(port=stats_port, context=context)
         self._stats_manager.connect("received", self.__on_stats_requested)
 
-        logger.info("Started")
+        logger.debug("Server.Service.Started")
 
     def __on_session_connected(self, manager, client, data):
         request = SessionRequest.deserialize(data)
@@ -96,7 +96,7 @@ class Service(GObject.GObject):
 
         self.emit("registered", session)
 
-        logger.info("Registered %s", client)
+        logger.debug("Server.Service.Registered %s", client)
 
     def __on_session_disconnected(self, manager, client):
         session = self._session_by_client.get(client)
@@ -111,7 +111,7 @@ class Service(GObject.GObject):
 
         self.emit("unregistered", session)
 
-        logger.info("Unregistered %s", client)
+        logger.debug("Server.Service.Unregistered %s", client)
 
     def __on_message_received(self, manager, address, data):
         message = Message.deserialize(data)
@@ -153,4 +153,4 @@ class Service(GObject.GObject):
         self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
-        logger.info("Server.Service.shut")
+        logger.debug("Server.Service.shut")

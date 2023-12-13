@@ -89,7 +89,7 @@ class Service(GObject.GObject):
         self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
-        logger.info("Client.Service.shut")
+        logger.debug("Client.Service.shut")
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(

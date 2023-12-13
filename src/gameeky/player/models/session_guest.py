@@ -137,7 +137,7 @@ class SessionGuest(Threaded):
         if self._service is not None:
             self._service.unregister()
 
-        logger.info("Client.Session.shut")
+        logger.debug("Client.Session.shut")
 
     @property
     def scene(self) -> Optional[SceneModel]:
