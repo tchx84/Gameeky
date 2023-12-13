@@ -65,6 +65,10 @@ class DropDownHelper(GObject.GObject):
         return self._dropdown
 
     @property
+    def text(self) -> str:
+        return self._dropdown.props.selected_item.props.text
+
+    @property
     def value(self) -> str:
         return self._dropdown.props.selected_item.props.value
 

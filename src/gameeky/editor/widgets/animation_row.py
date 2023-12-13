@@ -1,3 +1,4 @@
+from gettext import gettext as _
 from gi.repository import Gtk, Adw, GObject
 
 from .animation_settings import AnimationSettings
@@ -39,12 +40,12 @@ class AnimationRow(Adw.PreferencesGroup):
         self._update_description()
 
     def _update_description(self) -> None:
-        description = f"While {self.state}"
+        description = _(f"While {self._state.text.lower()}")
 
         if self.direction != "default":
-            description += f" {self.direction}"
+            description += f" {self._direction.text.lower()}"
         if self.state == "default":
-            description = "By default"
+            description = _("By default")
 
         self.props.description = description
 
