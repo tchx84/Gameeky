@@ -40,7 +40,7 @@ class AnimationRow(Adw.PreferencesGroup):
         self._update_description()
 
     def _update_description(self) -> None:
-        description = _(f"While {self._state.text.lower()}")
+        description = _("While %s") % self._state.text.lower()
 
         if self.direction != "default":
             description += f" {self._direction.text.lower()}"

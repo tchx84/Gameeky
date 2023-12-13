@@ -35,7 +35,7 @@ class SoundRow(Adw.PreferencesGroup):
         self._update_description()
 
     def _update_description(self) -> None:
-        self.props.description = _(f"While {self._state.text.lower()}")
+        self.props.description = _("While %s") % self._state.text.lower()
 
     def __on_changed(self, *args) -> None:
         self._update_description()
