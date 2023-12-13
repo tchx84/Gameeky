@@ -54,10 +54,10 @@
                             </child>
                             <child>
                               <object class="GtkButton">
+                                <property name="action-name">app.new</property>
                                 <property name="halign">center</property>
                                 <property name="label" translatable="yes">Create</property>
                                 <property name="name">create</property>
-                                <signal name="clicked" handler="on_create_clicked"/>
                                 <style>
                                   <class name="pill"/>
                                   <class name="suggested-action"/>
