@@ -15,5 +15,5 @@ class LayerRow(BaseRow):
         "layer 5": _("Layer 5"),
         "layer 6": _("Layer 6"),
         "layer 7": _("Layer 7"),
-        "all layers": _("All Layers"),
+        "all layers": _("All layers"),
     }
