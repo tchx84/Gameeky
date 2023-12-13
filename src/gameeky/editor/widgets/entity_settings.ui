@@ -9,8 +9,8 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">These values are the basic statistics of this entity</property>
-        <property name="title">Stats</property>
+        <property name="description" translatable="yes">These values are the basic statistics of this entity</property>
+        <property name="title" translatable="yes">Stats</property>
         <child>
           <object class="AdwSpinRow" id="stamina">
             <property name="adjustment">
@@ -19,8 +19,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">How much action this entity can perform</property>
-            <property name="title">Stamina</property>
+            <property name="subtitle" translatable="yes">How much action this entity can perform</property>
+            <property name="title" translatable="yes">Stamina</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -32,8 +32,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">How much wear or damage this entity can sustain</property>
-            <property name="title">Durability</property>
+            <property name="subtitle" translatable="yes">How much wear or damage this entity can sustain</property>
+            <property name="title" translatable="yes">Durability</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -45,8 +45,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">How heavy this entity is</property>
-            <property name="title">Weight</property>
+            <property name="subtitle" translatable="yes">How heavy this entity is</property>
+            <property name="title" translatable="yes">Weight</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -58,8 +58,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">How much weight or damage this entity can lift or apply</property>
-            <property name="title">Strength</property>
+            <property name="subtitle" translatable="yes">How much weight or damage this entity can lift or apply</property>
+            <property name="title" translatable="yes">Strength</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -67,8 +67,8 @@
     </child>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">These values modify basics statistics</property>
-        <property name="title">Modifiers</property>
+        <property name="description" translatable="yes">These values modify basics statistics</property>
+        <property name="title" translatable="yes">Modifiers</property>
         <child>
           <object class="AdwSpinRow" id="recovery">
             <property name="adjustment">
@@ -78,8 +78,8 @@
               </object>
             </property>
             <property name="digits">2</property>
-            <property name="subtitle">Affects recovery times, cool downs and delays</property>
-            <property name="title">Recovery</property>
+            <property name="subtitle" translatable="yes">Affects recovery times, cool downs and delays</property>
+            <property name="title" translatable="yes">Recovery</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -92,8 +92,8 @@
               </object>
             </property>
             <property name="digits">2</property>
-            <property name="subtitle">Affects the speed of other entities traversing through this entity</property>
-            <property name="title">Density</property>
+            <property name="subtitle" translatable="yes">Affects the speed of other entities traversing through this entity</property>
+            <property name="title" translatable="yes">Density</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -101,17 +101,17 @@
     </child>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">These values determine how this entity behaves</property>
-        <property name="title">Behaviors</property>
+        <property name="description" translatable="yes">These values determine how this entity behaves</property>
+        <property name="title" translatable="yes">Behaviors</property>
         <child>
           <object class="AdwEntryRow" id="name">
-            <property name="title">Name</property>
+            <property name="title" translatable="yes">Name</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
           <object class="AdwEntryRow" id="target_name">
-            <property name="title">Target Name</property>
+            <property name="title" translatable="yes">Target Name</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -123,8 +123,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">The identifier of another entity</property>
-            <property name="title">Target Type</property>
+            <property name="subtitle" translatable="yes">The identifier of another entity</property>
+            <property name="title" translatable="yes">Target Type</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -136,8 +136,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">The maximum area that an actuator can have an effect</property>
-            <property name="title">Radius</property>
+            <property name="subtitle" translatable="yes">The maximum area that an actuator can have an effect</property>
+            <property name="title" translatable="yes">Radius</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -149,8 +149,8 @@
                 <property name="upper">10000.0</property>
               </object>
             </property>
-            <property name="subtitle">How often an actuator can be triggered</property>
-            <property name="title">Rate</property>
+            <property name="subtitle" translatable="yes">How often an actuator can be triggered</property>
+            <property name="title" translatable="yes">Rate</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
@@ -161,13 +161,13 @@
     </child>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">These values affect how the entity looks on screen</property>
-        <property name="title">Visibility</property>
+        <property name="description" translatable="yes">These values affect how the entity looks on screen</property>
+        <property name="title" translatable="yes">Visibility</property>
         <child>
           <object class="AdwSwitchRow" id="visible">
             <property name="active">True</property>
-            <property name="subtitle">Whether this entity is visible at all</property>
-            <property name="title">Visible</property>
+            <property name="subtitle" translatable="yes">Whether this entity is visible at all</property>
+            <property name="title" translatable="yes">Visible</property>
           </object>
         </child>
         <child>
@@ -179,45 +179,45 @@
               </object>
             </property>
             <property name="digits">2</property>
-            <property name="subtitle">The amount of light this entity can emit</property>
-            <property name="title">Luminance</property>
+            <property name="subtitle" translatable="yes">The amount of light this entity can emit</property>
+            <property name="title" translatable="yes">Luminance</property>
             <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
           <object class="AdwComboRow" id="state">
-            <property name="subtitle">The initial state</property>
-            <property name="title">State</property>
+            <property name="subtitle" translatable="yes">The initial state</property>
+            <property name="title" translatable="yes">State</property>
           </object>
         </child>
         <child>
           <object class="AdwComboRow" id="direction">
-            <property name="subtitle">The initial direction</property>
-            <property name="title">Direction</property>
+            <property name="subtitle" translatable="yes">The initial direction</property>
+            <property name="title" translatable="yes">Direction</property>
           </object>
         </child>
       </object>
     </child>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">These values are used to determine specific conditions</property>
-        <property name="title">Conditions</property>
+        <property name="description" translatable="yes">These values are used to determine specific conditions</property>
+        <property name="title" translatable="yes">Conditions</property>
         <child>
           <object class="AdwSwitchRow" id="removable">
-            <property name="subtitle">Whether this entity can be removed from the scene</property>
-            <property name="title">Removable</property>
+            <property name="subtitle" translatable="yes">Whether this entity can be removed from the scene</property>
+            <property name="title" translatable="yes">Removable</property>
           </object>
         </child>
         <child>
           <object class="AdwSwitchRow" id="takeable">
-            <property name="subtitle">Whether this entity can be taken and moved by another entity</property>
-            <property name="title">Takeable</property>
+            <property name="subtitle" translatable="yes">Whether this entity can be taken and moved by another entity</property>
+            <property name="title" translatable="yes">Takeable</property>
           </object>
         </child>
         <child>
           <object class="AdwSwitchRow" id="usable">
-            <property name="subtitle">Whether this entity can be used as tool</property>
-            <property name="title">Usable</property>
+            <property name="subtitle" translatable="yes">Whether this entity can be used as tool</property>
+            <property name="title" translatable="yes">Usable</property>
           </object>
         </child>
       </object>

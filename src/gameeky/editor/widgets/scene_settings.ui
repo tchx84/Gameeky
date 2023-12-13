@@ -7,13 +7,12 @@
   <template class="SceneSettings" parent="AdwPreferencesGroup">
     <child>
       <object class="AdwEntryRow" id="name">
-        <property name="text">Untitled</property>
-        <property name="title">Name</property>
+        <property name="title" translatable="yes">Name</property>
       </object>
     </child>
     <child>
       <object class="AdwEntryRow" id="project">
-        <property name="title">Project</property>
+        <property name="title" translatable="yes">Project</property>
         <child>
           <object class="GtkBox">
             <child>
@@ -30,7 +29,7 @@
     </child>
     <child>
       <object class="AdwComboRow" id="daytime">
-        <property name="title">Time</property>
+        <property name="title" translatable="yes">Time</property>
       </object>
     </child>
     <child>
@@ -44,8 +43,8 @@
           </object>
         </property>
         <property name="hexpand">True</property>
-        <property name="subtitle">The number of horizontal tiles</property>
-        <property name="title">Width</property>
+        <property name="subtitle" translatable="yes">The number of horizontal tiles</property>
+        <property name="title" translatable="yes">Width</property>
       </object>
     </child>
     <child>
@@ -58,8 +57,8 @@
             <property name="value">22.0</property>
           </object>
         </property>
-        <property name="subtitle">The number of vertical tiles</property>
-        <property name="title">Height</property>
+        <property name="subtitle" translatable="yes">The number of vertical tiles</property>
+        <property name="title" translatable="yes">Height</property>
       </object>
     </child>
   </template>

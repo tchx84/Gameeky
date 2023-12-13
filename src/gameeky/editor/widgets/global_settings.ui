@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name global_settings.ui -->
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="GlobalSettings" parent="AdwPreferencesGroup">
-    <property name="description">These values must be unique among all entities</property>
-    <property name="title">Global</property>
+    <property name="description" translatable="yes">These values must be unique among all entities</property>
+    <property name="title" translatable="yes">Global</property>
     <child>
       <object class="AdwSpinRow" id="identifier">
         <property name="adjustment">
@@ -17,8 +17,8 @@
             <property name="value">1.0</property>
           </object>
         </property>
-        <property name="subtitle">Unique identifier for this entity</property>
-        <property name="title">Identifier</property>
+        <property name="subtitle" translatable="yes">Unique identifier for this entity</property>
+        <property name="title" translatable="yes">Identifier</property>
       </object>
     </child>
   </template>

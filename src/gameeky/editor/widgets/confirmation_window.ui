@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Created with Cambalache 0.17.0 -->
 <interface>
-  <!-- interface-name confirmation_dialog.ui -->
+  <!-- interface-name confirmation_window.ui -->
   <requires lib="libadwaita" version="1.2"/>
   <template class="ConfirmationWindow" parent="AdwMessageDialog">
     <property name="body" translatable="yes">Do you want to &lt;b&gt;permanently&lt;/b&gt; delete this entity?</property>

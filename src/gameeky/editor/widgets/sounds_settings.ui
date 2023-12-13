@@ -8,7 +8,7 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description">Add sounds for different states</property>
+        <property name="description" translatable="yes">Add sounds for different states</property>
         <property name="header-suffix">
           <object class="GtkButton">
             <property name="halign">center</property>
@@ -17,7 +17,7 @@
             <signal name="clicked" handler="on_clicked"/>
           </object>
         </property>
-        <property name="title">Sounds</property>
+        <property name="title" translatable="yes">Sounds</property>
       </object>
     </child>
     <child>

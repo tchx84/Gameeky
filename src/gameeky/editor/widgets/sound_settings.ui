@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.16.0 -->
+<!-- Created with Cambalache 0.17.0 -->
 <interface>
   <!-- interface-name sound_settings.ui -->
   <requires lib="gtk" version="4.0"/>
@@ -8,7 +8,7 @@
     <property name="hexpand">True</property>
     <child>
       <object class="AdwActionRow">
-        <property name="title">Preview</property>
+        <property name="title" translatable="yes">Preview</property>
         <child>
           <object class="GtkBox" id="preview">
             <property name="halign">end</property>
@@ -26,8 +26,8 @@
           </object>
         </property>
         <property name="digits">1</property>
-        <property name="subtitle">Number of seconds to elapse in-between sounds in the sequence</property>
-        <property name="title">Delay</property>
+        <property name="subtitle" translatable="yes">Number of seconds to elapse in-between sounds in the sequence</property>
+        <property name="title" translatable="yes">Delay</property>
         <signal name="changed" handler="on_changed"/>
       </object>
     </child>
@@ -40,8 +40,8 @@
           </object>
         </property>
         <property name="digits">1</property>
-        <property name="subtitle">Maximum number of seconds to keep playing this sound</property>
-        <property name="title">Timeout</property>
+        <property name="subtitle" translatable="yes">Maximum number of seconds to keep playing this sound</property>
+        <property name="title" translatable="yes">Timeout</property>
         <signal name="changed" handler="on_changed"/>
       </object>
     </child>

@@ -27,15 +27,15 @@
         </child>
       </object>
     </property>
-    <property name="title">Sound</property>
+    <property name="title" translatable="yes">Sound</property>
     <child>
       <object class="AdwComboRow" id="state_combo">
-        <property name="title">State</property>
+        <property name="title" translatable="yes">State</property>
       </object>
     </child>
     <child>
       <object class="AdwExpanderRow">
-        <property name="title">Details</property>
+        <property name="title" translatable="yes">Details</property>
         <child>
           <object class="GtkBox" id="sound_box"/>
         </child>

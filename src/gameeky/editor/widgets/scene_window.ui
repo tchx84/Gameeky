@@ -17,8 +17,8 @@
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="AdwBanner" id="banner">
-                        <property name="button-label">Reload</property>
-                        <property name="title">Entities have been changed on disk</property>
+                        <property name="button-label" translatable="yes">Reload</property>
+                        <property name="title" translatable="yes">Entities have been changed on disk</property>
                         <signal name="button-clicked" handler="on_reload_clicked"/>
                       </object>
                     </child>
@@ -69,6 +69,7 @@
                         <property name="hexpand">True</property>
                         <child>
                           <object class="GtkDropDown" id="layer">
+                            <property name="tooltip-text" translatable="yes">Select working layer</property>
                           </object>
                         </child>
                       </object>
@@ -82,14 +83,14 @@
                             <child>
                               <object class="GtkButton" id="zoom_in">
                                 <property name="icon-name">zoom-in-symbolic</property>
-                                <property name="tooltip-text">Zoom in</property>
+                                <property name="tooltip-text" translatable="yes">Zoom in</property>
                                 <signal name="clicked" handler="on_zoom_in"/>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton" id="zoom_out">
                                 <property name="icon-name">zoom-out-symbolic</property>
-                                <property name="tooltip-text">Zoom out</property>
+                                <property name="tooltip-text" translatable="yes">Zoom out</property>
                                 <signal name="clicked" handler="on_zoom_out"/>
                               </object>
                             </child>
@@ -97,7 +98,7 @@
                         </child>
                         <child>
                           <object class="GtkDropDown" id="time">
-                            <property name="tooltip-text">Set time of the day</property>
+                            <property name="tooltip-text" translatable="yes">Set time of the day</property>
                           </object>
                         </child>
                         <style>
@@ -197,35 +198,35 @@
                               <object class="GtkToggleButton" id="adder">
                                 <property name="active">True</property>
                                 <property name="icon-name">contact-new-symbolic</property>
-                                <property name="tooltip-text">Add</property>
+                                <property name="tooltip-text" translatable="yes">Add to the scene</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="eraser">
                                 <property name="group">adder</property>
                                 <property name="icon-name">user-trash-symbolic</property>
-                                <property name="tooltip-text">Remove</property>
+                                <property name="tooltip-text" translatable="yes">Remove from the scene</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="rotate">
                                 <property name="group">adder</property>
                                 <property name="icon-name">rotation-allowed-symbolic</property>
-                                <property name="tooltip-text">Rotate</property>
+                                <property name="tooltip-text" translatable="yes">Rotate</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="editor">
                                 <property name="group">adder</property>
                                 <property name="icon-name">document-edit-symbolic</property>
-                                <property name="tooltip-text">Edit</property>
+                                <property name="tooltip-text" translatable="yes">Override properties</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="spawner">
                                 <property name="group">adder</property>
                                 <property name="icon-name">find-location-symbolic</property>
-                                <property name="tooltip-text">Set starting location</property>
+                                <property name="tooltip-text" translatable="yes">Set starting location</property>
                               </object>
                             </child>
                           </object>
@@ -243,13 +244,13 @@
                           <object class="GtkToggleButton" id="grid">
                             <property name="active">True</property>
                             <property name="icon-name">view-grid-symbolic</property>
-                            <property name="tooltip-text">Show grid</property>
+                            <property name="tooltip-text" translatable="yes">Show grid</property>
                             <signal name="toggled" handler="on_grid_changed"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkDropDown" id="area">
-                            <property name="tooltip-text">Set drawing area</property>
+                            <property name="tooltip-text" translatable="yes">Set drawing area</property>
                           </object>
                         </child>
                         <style>
@@ -261,7 +262,7 @@
                 </child>
               </object>
             </property>
-            <property name="title">Entities</property>
+            <property name="title" translatable="yes">Entities</property>
           </object>
         </property>
       </object>
@@ -282,23 +283,23 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label">New</attribute>
+      <attribute name="label" translatable="yes">New Scene</attribute>
     </item>
     <item>
       <attribute name="action">app.open</attribute>
-      <attribute name="label">Open</attribute>
+      <attribute name="label" translatable="yes">Open Scene</attribute>
     </item>
     <item>
       <attribute name="action">app.edit</attribute>
-      <attribute name="label">Edit</attribute>
+      <attribute name="label" translatable="yes">Settings</attribute>
     </item>
     <item>
       <attribute name="action">app.save</attribute>
-      <attribute name="label">Save _As…</attribute>
+      <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>
     <item>
       <attribute name="action">app.about</attribute>
-      <attribute name="label">About</attribute>
+      <attribute name="label" translatable="yes">About</attribute>
     </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">
