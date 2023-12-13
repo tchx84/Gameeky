@@ -10,7 +10,7 @@ from ..network.udp import Server as UDPServer
 
 from ...common.vector import Vector
 from ...common.scanner import Description
-from ...common.utils import get_data_path
+from ...common.utils import get_project_path
 from ...common.logger import logger
 from ...common.scene import SceneRequest
 from ...common.stats import StatsRequest
@@ -51,7 +51,7 @@ class Service(GObject.GObject):
 
         self.scene = Scene.new_from_description(
             Description.new_from_json(
-                get_data_path(scene),
+                get_project_path(scene),
             )
         )
 

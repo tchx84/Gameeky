@@ -1,6 +1,6 @@
 from gi.repository import Gio, Gtk, GObject
 
-from ...common.utils import get_data_folder, get_relative_path
+from ...common.utils import get_project_folder, get_relative_path
 from ...common.logger import logger
 
 
@@ -25,7 +25,7 @@ class PathRow(Gtk.Box):
 
     @Gtk.Template.Callback("on_open_button_clicked")
     def __on_open_button_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("assets")
+        folder = get_project_folder("assets")
 
         ogg_filter = Gtk.FileFilter()
         ogg_filter.add_pattern("*.ogg")

@@ -39,7 +39,7 @@ class SceneNewWindow(Adw.Window):
             self._notify("A valid name must be provided")
             return
 
-        if not valid_project(self.data_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 
@@ -51,8 +51,8 @@ class SceneNewWindow(Adw.Window):
         return self._scene_settings.title
 
     @property
-    def data_path(self) -> None:
-        return self._scene_settings.data_path
+    def project_path(self) -> None:
+        return self._scene_settings.project_path
 
     @property
     def description(self) -> Description:

@@ -2,7 +2,7 @@ from typing import Optional, Callable
 from gi.repository import GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, set_data_path
+from ...common.utils import get_project_path, set_project_path
 from ...common.scanner import Scanner, Description
 from ...common.threaded import Threaded
 from ...common.monitor import Monitor
@@ -21,7 +21,7 @@ class SessionHost(Threaded):
 
     def __init__(
         self,
-        data_path: str,
+        project_path: str,
         scene: str,
         clients: int,
         session_port: int,
@@ -31,7 +31,7 @@ class SessionHost(Threaded):
     ) -> None:
         super().__init__()
 
-        self._data_path = data_path
+        self._project_path = project_path
         self._scene = scene
         self._clients = clients
         self._session_port = session_port
@@ -42,9 +42,9 @@ class SessionHost(Threaded):
         self._service: Optional[Service] = None
 
     def _setup(self) -> None:
-        Monitor.default().add(get_data_path("actuators"))
-        Monitor.default().add(get_data_path("entities"))
-        Monitor.default().add(get_data_path(self._scene))
+        Monitor.default().add(get_project_path("actuators"))
+        Monitor.default().add(get_project_path("entities"))
+        Monitor.default().add(get_project_path(self._scene))
 
         self._service = Service(
             scene=self._scene,
@@ -59,7 +59,7 @@ class SessionHost(Threaded):
     def _scan_entities(self) -> None:
         EntityGameRegistry.reset()
 
-        scanner = Scanner(path=get_data_path("entities"))
+        scanner = Scanner(path=get_project_path("entities"))
         scanner.connect("found", self.__on_entities_scanner_found)
         scanner.connect("done", self.__on_entities_scanner_done)
         scanner.scan()
@@ -70,7 +70,7 @@ class SessionHost(Threaded):
     def __on_entities_scanner_done(self, scanner: Scanner) -> None:
         ActuatorRegistry.reset()
 
-        scanner = Scanner(path=get_data_path("actuators"))
+        scanner = Scanner(path=get_project_path("actuators"))
         scanner.connect("found", self.__on_actuators_scanner_found)
         scanner.connect("done", self.__on_actuators_scanner_done)
         scanner.scan()
@@ -88,7 +88,7 @@ class SessionHost(Threaded):
             self.emit("started")
 
     def do_run(self) -> None:
-        set_data_path(self._data_path)
+        set_project_path(self._project_path)
 
         try:
             self._scan_entities()

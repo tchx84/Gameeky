@@ -1,7 +1,7 @@
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_project
+from ...common.utils import get_project_path, get_project_folder, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Direction, State
 
@@ -19,7 +19,7 @@ class EntityNewWindow(Adw.Window):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -34,7 +34,7 @@ class EntityNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_create_clicked")
     def __on_create_clicked(self, button: Gtk.Button) -> None:
-        if not valid_project(self.data_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 
@@ -43,7 +43,7 @@ class EntityNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
+        folder = get_project_folder("")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -62,7 +62,7 @@ class EntityNewWindow(Adw.Window):
             self.project.props.text = file.get_path()
 
     @property
-    def data_path(self) -> None:
+    def project_path(self) -> None:
         return self.project.props.text
 
     @property

@@ -25,14 +25,14 @@ class ProjectRow(Gtk.FlowBoxChild):
         super().__init__()
         self._monitor = Monitor()
 
-    def _get_data_path(self, *path) -> str:
+    def _get_project_path(self, *path) -> str:
         return os.path.join(get_projects_path(), self.title.props.label, *path)
 
     def _launch(self, command: str, filename: str) -> None:
-        launch(command, f"--data_path={self._get_data_path()} {filename}")
+        launch(command, f"--project_path={self._get_project_path()} {filename}")
 
     def _update_button(self) -> None:
-        self.play.props.sensitive = valid_file(self._get_data_path(DEFAULT_SCENE))
+        self.play.props.sensitive = valid_file(self._get_project_path(DEFAULT_SCENE))
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
         self._update_button()
@@ -66,7 +66,7 @@ class ProjectRow(Gtk.FlowBoxChild):
         self.subtitle.props.label = description.description
 
         self._monitor.shutdown()
-        self._monitor.add(self._get_data_path("scenes"))
+        self._monitor.add(self._get_project_path("scenes"))
         self._monitor.connect("changed", self.__on_monitor_changed)
 
         self._update_button()

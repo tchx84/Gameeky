@@ -11,7 +11,7 @@ from ...client.sound.entity import EntityRegistry as EntitySoundRegistry
 from ...client.sound.scene import Scene as SceneSound
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, set_data_path
+from ...common.utils import get_project_path, set_project_path
 from ...common.scanner import Scanner, Description
 from ...common.definitions import TILES_X, TILES_Y
 from ...common.threaded import Threaded
@@ -26,7 +26,7 @@ class SessionGuest(Threaded):
 
     def __init__(
         self,
-        data_path: str,
+        project_path: str,
         address: str,
         session_port: int,
         messages_port: int,
@@ -36,7 +36,7 @@ class SessionGuest(Threaded):
     ) -> None:
         super().__init__()
 
-        self._data_path = data_path
+        self._project_path = project_path
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
@@ -93,7 +93,7 @@ class SessionGuest(Threaded):
         EntityGraphicsRegistry.reset()
         EntitySoundRegistry.reset()
 
-        self._scanner = Scanner(path=get_data_path("entities"))
+        self._scanner = Scanner(path=get_project_path("entities"))
         self._scanner.connect("found", self.__on_scanner_found)
         self._scanner.connect("done", self.__on_scanner_done)
         self._scanner.scan()
@@ -113,7 +113,7 @@ class SessionGuest(Threaded):
             self.emit("started")
 
     def do_run(self) -> None:
-        set_data_path(self._data_path)
+        set_project_path(self._project_path)
 
         try:
             self._scan()

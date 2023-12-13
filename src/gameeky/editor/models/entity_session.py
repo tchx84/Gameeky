@@ -1,6 +1,6 @@
 from gi.repository import GObject
 
-from ...common.utils import get_data_path
+from ...common.utils import get_project_path
 from ...common.scanner import Scanner
 from ...common.monitor import Monitor
 
@@ -16,12 +16,12 @@ class Session(GObject.GObject):
     def __init__(self) -> None:
         super().__init__()
         Monitor.default().shutdown()
-        Monitor.default().add(get_data_path("actuators"))
+        Monitor.default().add(get_project_path("actuators"))
 
     def scan(self) -> None:
         ActuatorRegistry.reset()
 
-        scanner = Scanner(path=get_data_path("actuators"))
+        scanner = Scanner(path=get_project_path("actuators"))
         scanner.connect("found", self.__on_scanner_found)
         scanner.connect("done", self.__on_scanner_done)
         scanner.scan()

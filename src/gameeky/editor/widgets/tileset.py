@@ -3,7 +3,7 @@ from typing import Optional, Tuple
 from gi.repository import Gsk, Gtk, Gdk, Graphene, Pango
 
 from ...common import colors
-from ...common.utils import get_data_path, clamp
+from ...common.utils import get_project_path, clamp
 
 
 class Tileset(Gtk.Widget):
@@ -128,7 +128,7 @@ class Tileset(Gtk.Widget):
     @path.setter
     def path(self, path: str) -> None:
         self._path = path
-        self._texture = Gdk.Texture.new_from_filename(get_data_path(self._path))
+        self._texture = Gdk.Texture.new_from_filename(get_project_path(self._path))
         self.queue_draw()
 
     @property

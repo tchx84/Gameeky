@@ -3,9 +3,14 @@ import os
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_file, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Format
+from ...common.utils import (
+    get_project_path,
+    get_project_folder,
+    valid_file,
+    valid_project,
+)
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/scene_open_window.ui")  # fmt: skip
@@ -22,7 +27,7 @@ class SceneOpenWindow(Adw.Window):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -37,7 +42,7 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
-        if not valid_project(self.data_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 
@@ -50,7 +55,7 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_path_open_clicked")
     def __on_path_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
+        folder = get_project_folder("")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -70,7 +75,7 @@ class SceneOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_scene_open_clicked")
     def __on_scene_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder(os.path.join(self.data_path, "scenes"))
+        folder = get_project_folder(os.path.join(self.project_path, "scenes"))
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.SCENE}")
@@ -94,10 +99,10 @@ class SceneOpenWindow(Adw.Window):
 
     @property
     def scene_path(self) -> str:
-        return os.path.join(self.data_path, self.scene.props.text)
+        return os.path.join(self.project_path, self.scene.props.text)
 
     @property
-    def data_path(self) -> str:
+    def project_path(self) -> str:
         return self.project.props.text
 
     @property

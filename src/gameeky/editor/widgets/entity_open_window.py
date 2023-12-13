@@ -5,9 +5,14 @@ from typing import Optional
 from gi.repository import Gio, Gtk, Adw, GObject
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, valid_file, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Format
+from ...common.utils import (
+    get_project_path,
+    get_project_folder,
+    valid_file,
+    valid_project,
+)
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/entity_open_window.ui")  # fmt: skip
@@ -25,7 +30,7 @@ class EntityOpenWindow(Adw.Window):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._description: Optional[Description] = None
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -40,7 +45,7 @@ class EntityOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
-        if not valid_project(self.data_path):
+        if not valid_project(self.project_path):
             self._notify("A valid project must be provided")
             return
 
@@ -53,7 +58,7 @@ class EntityOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_path_open_clicked")
     def __on_path_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
+        folder = get_project_folder("")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -73,7 +78,7 @@ class EntityOpenWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_entity_open_clicked")
     def __on_entity_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder(os.path.join(self.data_path, "entities"))
+        folder = get_project_folder(os.path.join(self.project_path, "entities"))
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.ENTITY}")
@@ -102,7 +107,7 @@ class EntityOpenWindow(Adw.Window):
         return self.entity.props.text
 
     @property
-    def data_path(self) -> str:
+    def project_path(self) -> str:
         return self.project.props.text
 
     @property

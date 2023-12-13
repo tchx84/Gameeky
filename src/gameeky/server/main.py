@@ -8,7 +8,7 @@ from gameeky.server.game.service import Service
 from gameeky.server.game.entity import EntityRegistry
 from gameeky.server.game.actuators.base import ActuatorRegistry
 from gameeky.common.scanner import Scanner, Description
-from gameeky.common.utils import get_data_path
+from gameeky.common.utils import get_project_path
 from gameeky.common.definitions import (
     Command,
     DEFAULT_SCENE,
@@ -80,7 +80,7 @@ class Application(Gio.Application):
         EntityRegistry.register(Description.new_from_json(path))
 
     def __on_entities_scanner_done(self, scanner: Scanner) -> None:
-        scanner = Scanner(get_data_path("actuators"))
+        scanner = Scanner(get_project_path("actuators"))
         scanner.connect("found", self.__on_actuators_scanner_found)
         scanner.connect("done", self.__on_actuators_scanner_done)
         scanner.scan()
@@ -100,7 +100,7 @@ class Application(Gio.Application):
         )
 
     def do_activate(self) -> None:
-        scanner = Scanner(get_data_path("entities"))
+        scanner = Scanner(get_project_path("entities"))
         scanner.connect("found", self.__on_entities_scanner_found)
         scanner.connect("done", self.__on_entities_scanner_done)
         scanner.scan()

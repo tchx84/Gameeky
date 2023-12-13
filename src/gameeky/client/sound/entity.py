@@ -11,7 +11,7 @@ from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
-from ...common.utils import get_data_path, add_timeout_source, remove_source_id
+from ...common.utils import get_project_path, add_timeout_source, remove_source_id
 
 
 class Sound(GObject.GObject):
@@ -133,7 +133,7 @@ class SoundSequence:
 
         for path in description.paths:
             sound = Sound(
-                get_data_path(path),
+                get_project_path(path),
                 description.delay,
                 description.timeout,
             )
@@ -182,7 +182,7 @@ class EntityRegistry:
         for state in description.sound.states:
             for path in state.sequence.paths:
                 sound = Sound(
-                    get_data_path(path),
+                    get_project_path(path),
                     state.sequence.delay,
                     state.sequence.timeout,
                 )

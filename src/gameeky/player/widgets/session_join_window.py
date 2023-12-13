@@ -3,7 +3,7 @@ from gi.repository import Gio, Gtk, Adw, GObject
 from ...common.scanner import Description
 from ...common.logger import logger
 from ...common.utils import (
-    get_data_path,
+    get_project_path,
     valid_project,
 )
 from ...common.definitions import (
@@ -34,7 +34,7 @@ class SessionJoinWindow(Adw.Window):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
         self.address.props.text = DEFAULT_ADDRESS
         self.session_port.props.value = DEFAULT_SESSION_PORT
         self.messages_port.props.value = DEFAULT_MESSAGES_PORT
@@ -93,7 +93,7 @@ class SessionJoinWindow(Adw.Window):
     @property
     def description(self) -> Description:
         return Description(
-            data_path=self.project_path,
+            project_path=self.project_path,
             address=self.network_address,
             session_port=int(self.session_port.props.value),
             messages_port=int(self.messages_port.props.value),

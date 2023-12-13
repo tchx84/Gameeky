@@ -22,9 +22,9 @@ from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
 from ..common.utils import (
-    set_data_path,
-    get_data_folder,
-    find_data_path,
+    set_project_path,
+    get_project_folder,
+    find_project_path,
     bytearray_to_string,
 )
 
@@ -39,12 +39,12 @@ class Application(Adw.Application):
         GLib.set_application_name(_("Entity Editor"))
 
         self._monitor = Monitor.default()
-        self._data_path: Optional[str] = None
+        self._project_path: Optional[str] = None
         self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
 
         self.add_main_option(
-            Command.DATA_PATH,
+            Command.PROJECT_PATH,
             ord("d"),
             GLib.OptionFlags.NONE,
             GLib.OptionArg.STRING,
@@ -75,7 +75,7 @@ class Application(Adw.Application):
         if (description := dialog.description) is None:
             return
 
-        self._data_path = dialog.data_path
+        self._project_path = dialog.project_path
         self._description = description
 
         self._start_session()
@@ -85,12 +85,12 @@ class Application(Adw.Application):
         self._start_session()
 
     def _start_session(self) -> None:
-        if self._data_path is None:
+        if self._project_path is None:
             return
         if self._description is None:
             return
 
-        set_data_path(self._data_path)
+        set_project_path(self._project_path)
 
         self._session_model = SessionModel()
         self._session_model.connect("ready", self.__on_session_done)
@@ -103,7 +103,7 @@ class Application(Adw.Application):
         self._window.description = self._description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        folder = get_data_folder("entities")
+        folder = get_project_folder("entities")
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.ENTITY}")
@@ -140,13 +140,13 @@ class Application(Adw.Application):
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
-        if (data_path := options.get(Command.DATA_PATH, None)) is not None:
-            set_data_path(data_path)
+        if (project_path := options.get(Command.PROJECT_PATH, None)) is not None:
+            set_project_path(project_path)
 
         if (entity_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
             entity_path = bytearray_to_string(entity_path[-1])
 
-            self._data_path = find_data_path(entity_path)
+            self._project_path = find_project_path(entity_path)
             self._description = Description.new_from_json(entity_path)
 
         self.activate()

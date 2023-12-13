@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 from gi.repository import GLib
 
-from gameeky.common.utils import get_data_path
+from gameeky.common.utils import get_project_path
 from gameeky.common.scanner import Scanner, Description
 from gameeky.server.game.entity import EntityRegistry
 from gameeky.server.game.service import Service as Server
@@ -55,7 +55,7 @@ def setup_module():
 def test_scanner_register():
     mock = Mock()
 
-    scanner = Scanner(get_data_path("entities"))
+    scanner = Scanner(get_project_path("entities"))
     scanner.connect(
         "found",
         lambda _, p: EntityRegistry.register(Description.new_from_json(p)),

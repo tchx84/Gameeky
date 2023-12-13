@@ -5,8 +5,8 @@ from gi.repository import Gio, Gtk, Adw, GObject
 from ...common.scanner import Description
 from ...common.logger import logger
 from ...common.utils import (
-    get_data_path,
-    get_data_folder,
+    get_project_path,
+    get_project_folder,
     valid_project,
     valid_file,
 )
@@ -42,7 +42,7 @@ class SessionNewWindow(Adw.Window):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
         self.scene.props.text = DEFAULT_SCENE
         self.players.props.value = DEFAULT_CLIENTS
         self.session_port.props.value = DEFAULT_SESSION_PORT
@@ -59,7 +59,7 @@ class SessionNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_project_clicked")
     def __on_project_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
+        folder = get_project_folder("")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -79,7 +79,7 @@ class SessionNewWindow(Adw.Window):
 
     @Gtk.Template.Callback("on_scene_clicked")
     def __on_scene_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder(os.path.join(self.project_path, "scenes"))
+        folder = get_project_folder(os.path.join(self.project_path, "scenes"))
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.SCENE}")
@@ -130,7 +130,7 @@ class SessionNewWindow(Adw.Window):
     def description(self) -> Description:
         return Description(
             address=DEFAULT_ADDRESS,
-            data_path=self.project_path,
+            project_path=self.project_path,
             scene_path=self.scene_path,
             clients=int(self.players.props.value),
             session_port=int(self.session_port.props.value),

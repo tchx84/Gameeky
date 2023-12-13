@@ -7,7 +7,7 @@ from ..models.entity import Entity
 from ..models.daytime_row import DayTimeRow as DayTimeRowModel
 
 from ...common.logger import logger
-from ...common.utils import get_data_path, get_data_folder, clamp
+from ...common.utils import get_project_path, get_project_folder, clamp
 from ...common.scanner import Description
 from ...common.vector import Vector
 
@@ -26,13 +26,13 @@ class SceneSettings(Adw.PreferencesGroup):
         super().__init__()
         self._spawn = Vector(0, 0, 0)
         self._entities: List[Entity] = []
-        self.project.props.text = get_data_path("")
+        self.project.props.text = get_project_path("")
 
         self._daytime = DropDownHelper(self.daytime, DayTimeRowModel)
 
     @Gtk.Template.Callback("on_open_clicked")
     def __on_open_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("")
+        folder = get_project_folder("")
 
         dialog = Gtk.FileDialog()
         dialog.props.initial_folder = folder
@@ -55,7 +55,7 @@ class SceneSettings(Adw.PreferencesGroup):
         return self.name.props.text
 
     @property
-    def data_path(self) -> None:
+    def project_path(self) -> None:
         return self.project.props.text
 
     @property

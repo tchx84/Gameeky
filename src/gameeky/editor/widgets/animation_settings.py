@@ -6,7 +6,7 @@ from .animation import Animation
 from .tileset_window import TilesetWindow
 
 from ...common.logger import logger
-from ...common.utils import get_data_folder, get_relative_path
+from ...common.utils import get_project_folder, get_relative_path
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_TIMEOUT
 
@@ -77,7 +77,7 @@ class AnimationSettings(Adw.PreferencesGroup):
 
     @Gtk.Template.Callback("on_path_button_clicked")
     def __on_path_button_clicked(self, button: Gtk.Button) -> None:
-        folder = get_data_folder("assets")
+        folder = get_project_folder("assets")
 
         png_filter = Gtk.FileFilter()
         png_filter.add_pattern("*.png")

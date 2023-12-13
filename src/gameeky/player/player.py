@@ -24,9 +24,9 @@ from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
 from ..common.utils import (
-    get_data_folder,
-    set_data_path,
-    find_data_path,
+    get_project_folder,
+    set_project_path,
+    find_project_path,
     bytearray_to_string,
 )
 from ..common.definitions import (
@@ -56,7 +56,7 @@ class Application(Adw.Application):
         self._description: Optional[Description] = None
 
         self.add_main_option(
-            Command.DATA_PATH,
+            Command.PROJECT_PATH,
             ord("d"),
             GLib.OptionFlags.NONE,
             GLib.OptionArg.STRING,
@@ -123,7 +123,7 @@ class Application(Adw.Application):
             return
 
         self._session_host = SessionHost(
-            data_path=self._description.data_path,
+            project_path=self._description.project_path,
             scene=self._description.scene_path,
             clients=self._description.clients,
             session_port=self._description.session_port,
@@ -145,7 +145,7 @@ class Application(Adw.Application):
             return
 
         self._session_guest = SessionGuest(
-            data_path=self._description.data_path,
+            project_path=self._description.project_path,
             address=self._description.address,
             session_port=self._description.session_port,
             messages_port=self._description.messages_port,
@@ -175,7 +175,7 @@ class Application(Adw.Application):
             self._window.warn("Only an active host session can save the game state")
             return
 
-        folder = get_data_folder("scenes")
+        folder = get_project_folder("scenes")
 
         json_filter = Gtk.FileFilter()
         json_filter.add_pattern(f"*.{Format.SCENE}")
@@ -223,15 +223,15 @@ class Application(Adw.Application):
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
-        if (data_path := options.get(Command.DATA_PATH, None)) is not None:
-            set_data_path(data_path)
+        if (project_path := options.get(Command.PROJECT_PATH, None)) is not None:
+            set_project_path(project_path)
 
         if (scene_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
             scene_path = bytearray_to_string(scene_path[-1])
 
             self._description = Description(
                 address=DEFAULT_ADDRESS,
-                data_path=find_data_path(scene_path),
+                project_path=find_project_path(scene_path),
                 scene_path=scene_path,
                 clients=DEFAULT_CLIENTS,
                 session_port=DEFAULT_SESSION_PORT,

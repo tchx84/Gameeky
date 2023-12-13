@@ -19,27 +19,27 @@ def get_projects_path() -> str:
     )
 
 
-def set_data_path(path) -> None:
-    os.environ["DATA_DIR"] = path
+def set_project_path(path) -> None:
+    os.environ["PROJECT_PATH"] = path
 
 
-def get_data_path(*paths) -> str:
-    return os.path.join(os.environ.get("DATA_DIR", os.path.expanduser("~")), *paths)
+def get_project_path(*paths) -> str:
+    return os.path.join(os.environ.get("PROJECT_PATH", os.path.expanduser("~")), *paths)
 
 
-def find_data_path(path) -> str:
-    return os.environ.get("DATA_DIR", os.path.dirname(os.path.dirname(path)))
+def find_project_path(path) -> str:
+    return os.environ.get("PROJECT_PATH", os.path.dirname(os.path.dirname(path)))
 
 
-def get_data_folder(*paths):
-    return Gio.File.new_for_path(os.path.join(get_data_path(""), *paths))
+def get_project_folder(*paths):
+    return Gio.File.new_for_path(os.path.join(get_project_path(""), *paths))
 
 
 def get_relative_path(path: str) -> str:
     if not os.path.isabs(path):
         return path
 
-    return os.path.relpath(path, os.environ.get("DATA_DIR", ""))
+    return os.path.relpath(path, os.environ.get("PROJECT_PATH", ""))
 
 
 def bytearray_to_string(array: bytes) -> str:

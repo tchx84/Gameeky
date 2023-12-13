@@ -224,8 +224,8 @@ class Scene(CommonScene, GObject.GObject):
         )
 
     @classmethod
-    def new_from_file(cls, data_path: str, scene_path: str) -> Description:
-        scene_path = os.path.join(data_path, scene_path)
+    def new_from_file(cls, project_path: str, scene_path: str) -> Description:
+        scene_path = os.path.join(project_path, scene_path)
 
         if valid_file(scene_path):
             return Description.new_from_json(scene_path)

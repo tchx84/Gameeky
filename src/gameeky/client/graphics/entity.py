@@ -6,7 +6,7 @@ from ...common.definitions import Direction, State
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
 from ...common.utils import get_time_milliseconds, division
-from ...common.utils import get_data_path, clamp
+from ...common.utils import get_project_path, clamp
 
 
 class Animation:
@@ -121,7 +121,7 @@ class EntityRegistry:
             rows=description.rows,
             tiles_x=description.tiles_x,
             tiles_y=description.tiles_y,
-            path=get_data_path(description.path),
+            path=get_project_path(description.path),
         )
 
         for pixbuf in pixbufs[description.first_frame : description.last_frame + 1]:
