@@ -118,11 +118,11 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label" translatable="yes">New Entity</attribute>
+      <attribute name="label" translatable="yes">New</attribute>
     </item>
     <item>
       <attribute name="action">app.open</attribute>
-      <attribute name="label" translatable="yes">Open Entity</attribute>
+      <attribute name="label" translatable="yes">Open</attribute>
     </item>
     <item>
       <attribute name="action">app.save</attribute>

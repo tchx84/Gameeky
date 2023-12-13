@@ -174,11 +174,11 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label" translatable="yes">New Game</attribute>
+      <attribute name="label" translatable="yes">New</attribute>
     </item>
     <item>
       <attribute name="action">app.join</attribute>
-      <attribute name="label" translatable="yes">Join Game</attribute>
+      <attribute name="label" translatable="yes">Join</attribute>
     </item>
     <item>
       <attribute name="action">app.save</attribute>

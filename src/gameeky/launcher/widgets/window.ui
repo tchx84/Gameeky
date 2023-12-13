@@ -139,7 +139,7 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label" translatable="yes">New Project</attribute>
+      <attribute name="label" translatable="yes">New</attribute>
     </item>
     <item>
       <attribute name="action">app.about</attribute>

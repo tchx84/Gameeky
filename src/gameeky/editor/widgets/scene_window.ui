@@ -283,11 +283,11 @@
   <menu id="menu">
     <item>
       <attribute name="action">app.new</attribute>
-      <attribute name="label" translatable="yes">New Scene</attribute>
+      <attribute name="label" translatable="yes">New</attribute>
     </item>
     <item>
       <attribute name="action">app.open</attribute>
-      <attribute name="label" translatable="yes">Open Scene</attribute>
+      <attribute name="label" translatable="yes">Open</attribute>
     </item>
     <item>
       <attribute name="action">app.edit</attribute>
