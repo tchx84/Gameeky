@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 17:19-0300\n"
+"POT-Creation-Date: 2023-12-14 08:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -846,7 +846,7 @@ msgid "Welcome to Gameeky"
 msgstr ""
 
 #: src/gameeky/launcher/widgets/window.ui:89
-msgid "Your Projects"
+msgid "My Projects"
 msgstr ""
 
 #: src/gameeky/player/widgets/actions_popover.ui:14
