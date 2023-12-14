@@ -1,6 +1,6 @@
 from gameeky.common.definitions import Direction
 
-from gameeky.cli.game import Game
+from gameeky.library import Game
 
 
 game = Game()
