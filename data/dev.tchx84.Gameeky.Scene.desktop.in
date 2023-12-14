@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Gameeky
-Exec=dev.tchx84.gameeky.Launcher
-Icon=dev.tchx84.gameeky
+Name=Scene Editor
+Exec=dev.tchx84.Gameeky.Scene
+Icon=dev.tchx84.Gameeky.Devel
 Terminal=false
 Type=Application
 Categories=Education;Game;

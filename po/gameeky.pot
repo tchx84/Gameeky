@@ -17,33 +17,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/dev.tchx84.gameeky.desktop.in:3
-#: data/dev.tchx84.gameeky.metainfo.xml.in:6
+#: data/dev.tchx84.Gameeky.desktop.in:3
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:6
 #: src/gameeky/launcher/launcher.py:27
 msgid "Gameeky"
 msgstr ""
 
-#: data/dev.tchx84.gameeky.entity.desktop.in:3 src/gameeky/editor/entity.py:39
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:39
 msgid "Entity Editor"
 msgstr ""
 
-#: data/dev.tchx84.gameeky.player.desktop.in:3 src/gameeky/player/player.py:51
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:51
 msgid "Player"
 msgstr ""
 
-#: data/dev.tchx84.gameeky.scene.desktop.in:3 src/gameeky/editor/scene.py:40
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:40
 msgid "Scene Editor"
 msgstr ""
 
-#: data/dev.tchx84.gameeky.metainfo.xml.in:7
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:7
 msgid "Play, create and learn"
 msgstr ""
 
-#: data/dev.tchx84.gameeky.metainfo.xml.in:9
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:9
 msgid "A learning tool designed to put your STEAM skills into practice."
 msgstr ""
 
-#: data/dev.tchx84.gameeky.metainfo.xml.in:16
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:16
 msgid "Martin Abente Lahaye"
 msgstr ""
 

@@ -32,7 +32,7 @@ from ..common.utils import (
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.Entity",
+            application_id="dev.tchx84.Gameeky.Entity",
             flags=Gio.ApplicationFlags.NON_UNIQUE
             | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )

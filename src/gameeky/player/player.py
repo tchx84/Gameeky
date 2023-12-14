@@ -44,7 +44,7 @@ from ..common.definitions import (
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.Player",
+            application_id="dev.tchx84.Gameeky.Player",
             flags=Gio.ApplicationFlags.NON_UNIQUE
             | Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )

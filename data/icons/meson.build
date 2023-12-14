@@ -1,4 +1,4 @@
-application_id = 'dev.tchx84.gameeky'
+application_id = 'dev.tchx84.Gameeky'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

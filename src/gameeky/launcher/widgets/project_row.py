@@ -39,11 +39,11 @@ class ProjectRow(Gtk.FlowBoxChild):
 
     @Gtk.Template.Callback("on_play_clicked")
     def __on_play_clicked(self, button: Gtk.Button) -> None:
-        self._launch("dev.tchx84.gameeky.Player", DEFAULT_SCENE)
+        self._launch("dev.tchx84.Gameeky.Player", DEFAULT_SCENE)
 
     @Gtk.Template.Callback("on_edit_clicked")
     def __on_edit_clicked(self, button: Gtk.Button) -> None:
-        self._launch("dev.tchx84.gameeky.Scene", DEFAULT_SCENE)
+        self._launch("dev.tchx84.Gameeky.Scene", DEFAULT_SCENE)
 
     @Gtk.Template.Callback("on_settings_clicked")
     def __on_settings_clicked(self, button: Gtk.Button) -> None:

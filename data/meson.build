@@ -1,6 +1,6 @@
 launcher_desktop_file = i18n.merge_file(
-        input: 'dev.tchx84.gameeky.desktop.in',
-       output: 'dev.tchx84.gameeky.desktop',
+        input: 'dev.tchx84.Gameeky.desktop.in',
+       output: 'dev.tchx84.Gameeky.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -8,8 +8,8 @@ launcher_desktop_file = i18n.merge_file(
 )
 
 player_desktop_file = i18n.merge_file(
-        input: 'dev.tchx84.gameeky.player.desktop.in',
-       output: 'dev.tchx84.gameeky.player.desktop',
+        input: 'dev.tchx84.Gameeky.Player.desktop.in',
+       output: 'dev.tchx84.Gameeky.Player.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -17,8 +17,8 @@ player_desktop_file = i18n.merge_file(
 )
 
 scene_desktop_file = i18n.merge_file(
-        input: 'dev.tchx84.gameeky.scene.desktop.in',
-       output: 'dev.tchx84.gameeky.scene.desktop',
+        input: 'dev.tchx84.Gameeky.Scene.desktop.in',
+       output: 'dev.tchx84.Gameeky.Scene.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -26,8 +26,8 @@ scene_desktop_file = i18n.merge_file(
 )
 
 entity_desktop_file = i18n.merge_file(
-        input: 'dev.tchx84.gameeky.entity.desktop.in',
-       output: 'dev.tchx84.gameeky.entity.desktop',
+        input: 'dev.tchx84.Gameeky.Entity.desktop.in',
+       output: 'dev.tchx84.Gameeky.Entity.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -43,8 +43,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'dev.tchx84.gameeky.metainfo.xml.in',
-       output: 'dev.tchx84.gameeky.metainfo.xml',
+        input: 'dev.tchx84.Gameeky.metainfo.xml.in',
+       output: 'dev.tchx84.Gameeky.metainfo.xml',
        po_dir: '../po',
       install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -54,7 +54,7 @@ appstreamcli = find_program('appstreamcli', required: false, disabler: true)
 test('Validate appstream file', appstreamcli,
      args: ['validate', '--no-net', '--explain', appstream_file])
 
-install_data('dev.tchx84.gameeky.gschema.xml',
+install_data('dev.tchx84.Gameeky.gschema.xml',
   install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 

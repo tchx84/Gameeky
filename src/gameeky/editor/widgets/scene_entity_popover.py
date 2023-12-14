@@ -38,7 +38,7 @@ class SceneEntityPopover(Gtk.Popover):
         self.delete.props.sensitive = sensitive
 
     def _launch_editor(self, path="") -> None:
-        command = "dev.tchx84.gameeky.Entity"
+        command = "dev.tchx84.Gameeky.Entity"
         argument = f"--project_path={get_project_path()} {path}".strip()
 
         launch(command, argument)

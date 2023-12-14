@@ -4,7 +4,7 @@
   <!-- interface-name about_window.ui -->
   <requires lib="libadwaita" version="1.2"/>
   <object class="AdwAboutWindow" id="AboutWindow">
-    <property name="application-icon">dev.tchx84.gameeky</property>
+    <property name="application-icon">dev.tchx84.Gameeky</property>
     <property name="application-name">Gameeky</property>
     <property name="copyright">© 2023 Martín Abente Lahaye</property>
     <property name="developer-name">Martín Abente Lahaye</property>

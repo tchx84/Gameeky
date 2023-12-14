@@ -1,9 +1,9 @@
 {
-    "app-id" : "dev.tchx84.gameeky",
+    "app-id" : "dev.tchx84.Gameeky",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "45",
     "sdk" : "org.gnome.Sdk",
-    "command" : "dev.tchx84.gameeky.Launcher",
+    "command" : "dev.tchx84.Gameeky.Launcher",
     "finish-args" : [
         "--share=network",
         "--share=ipc",

@@ -17,8 +17,8 @@ conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
 
 configure_file(
-  input: 'gameeky/editor/dev.tchx84.gameeky.Entity.in',
-  output: 'dev.tchx84.gameeky.Entity',
+  input: 'gameeky/editor/dev.tchx84.Gameeky.Entity.in',
+  output: 'dev.tchx84.Gameeky.Entity',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
@@ -26,8 +26,8 @@ configure_file(
 )
 
 configure_file(
-  input: 'gameeky/editor/dev.tchx84.gameeky.Scene.in',
-  output: 'dev.tchx84.gameeky.Scene',
+  input: 'gameeky/editor/dev.tchx84.Gameeky.Scene.in',
+  output: 'dev.tchx84.Gameeky.Scene',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
@@ -35,8 +35,8 @@ configure_file(
 )
 
 configure_file(
-  input: 'gameeky/player/dev.tchx84.gameeky.Player.in',
-  output: 'dev.tchx84.gameeky.Player',
+  input: 'gameeky/player/dev.tchx84.Gameeky.Player.in',
+  output: 'dev.tchx84.Gameeky.Player',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),
@@ -44,8 +44,8 @@ configure_file(
 )
 
 configure_file(
-  input: 'gameeky/launcher/dev.tchx84.gameeky.Launcher.in',
-  output: 'dev.tchx84.gameeky.Launcher',
+  input: 'gameeky/launcher/dev.tchx84.Gameeky.Launcher.in',
+  output: 'dev.tchx84.Gameeky.Launcher',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),

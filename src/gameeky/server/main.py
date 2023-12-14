@@ -23,7 +23,7 @@ from gameeky.common.definitions import (
 class Application(Gio.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.Server",
+            application_id="dev.tchx84.Gameeky.Server",
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
         )
 

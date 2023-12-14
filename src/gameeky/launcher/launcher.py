@@ -21,7 +21,7 @@ from ..common.widgets.about_window import present_about
 class Application(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
-            application_id="dev.tchx84.gameeky.Launcher",
+            application_id="dev.tchx84.Gameeky.Launcher",
             flags=Gio.ApplicationFlags.NON_UNIQUE,
         )
         GLib.set_application_name(_("Gameeky"))

@@ -1,9 +1,9 @@
-data/dev.tchx84.gameeky.desktop.in
-data/dev.tchx84.gameeky.entity.desktop.in
-data/dev.tchx84.gameeky.player.desktop.in
-data/dev.tchx84.gameeky.scene.desktop.in
-data/dev.tchx84.gameeky.metainfo.xml.in
-data/dev.tchx84.gameeky.gschema.xml
+data/dev.tchx84.Gameeky.desktop.in
+data/dev.tchx84.Gameeky.Entity.desktop.in
+data/dev.tchx84.Gameeky.Player.desktop.in
+data/dev.tchx84.Gameeky.Scene.desktop.in
+data/dev.tchx84.Gameeky.metainfo.xml.in
+data/dev.tchx84.Gameeky.gschema.xml
 src/gameeky/editor/entity.py
 src/gameeky/editor/scene.py
 src/gameeky/editor/models/actuator_row.py

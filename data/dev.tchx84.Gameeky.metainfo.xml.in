@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>dev.tchx84.gameeky</id>
+  <id>dev.tchx84.Gameeky</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LicenseRef-proprietary</project_license>
   <name>Gameeky</name>
@@ -10,7 +10,7 @@
       A learning tool designed to put your STEAM skills into practice.
     </p>
   </description>
-  <launchable type="desktop-id">dev.tchx84.gameeky.desktop</launchable>
+  <launchable type="desktop-id">dev.tchx84.Gameeky.desktop</launchable>
   <url type="homepage">https://github.com/tchx84/gameeky</url>
   <url type="bugtracker">https://github.com/tchx84/gameeky/issues</url>
   <developer_name>Martin Abente Lahaye</developer_name>
@@ -20,5 +20,5 @@
     <release date="2023-12-13" version="0.1.0"/>
   </releases>
   <content_rating type="oars-1.1"/>
-  <provides>dev.tchx84.gameeky.desktop</provides>
+  <provides>dev.tchx84.Gameeky.desktop</provides>
 </component>
