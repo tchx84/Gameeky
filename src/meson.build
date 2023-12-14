@@ -170,6 +170,7 @@ gameeky_sources = [
   'gameeky/launcher/widgets/project_row.py',
   'gameeky/launcher/widgets/project_settings.py',
   'gameeky/launcher/widgets/window.py',
+  'gameeky/plugins/__init__.py',
   'gameeky/server/game/actuators/activates_i.py',
   'gameeky/server/game/actuators/activates.py',
   'gameeky/server/game/actuators/affects_i.py',
