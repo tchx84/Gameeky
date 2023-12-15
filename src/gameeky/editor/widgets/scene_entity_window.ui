@@ -43,6 +43,6 @@
     <property name="default-height">500</property>
     <property name="default-width">700</property>
     <property name="modal">True</property>
-    <property name="title" translatable="yes">Scene</property>
+    <property name="title" translatable="yes">Entity</property>
   </template>
 </interface>
