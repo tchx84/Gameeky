@@ -52,6 +52,15 @@ configure_file(
   install_mode: 'r-xr--r--'
 )
 
+configure_file(
+  input: 'gameeky/library/dev.tchx84.Gameeky.Exec.in',
+  output: 'dev.tchx84.Gameeky.Exec',
+  configuration: conf,
+  install: true,
+  install_dir: get_option('bindir'),
+  install_mode: 'r-xr--r--'
+)
+
 gameeky_sources = [
   'gameeky/client/definitions.py',
   'gameeky/client/game/__init__.py',

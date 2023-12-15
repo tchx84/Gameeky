@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+LOGLEVEL=DEBUG PYTHONPATH=@pkgdatadir@ @PYTHON@ $1
