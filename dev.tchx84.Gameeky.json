@@ -25,6 +25,7 @@
         "*.a"
     ],
     "modules" : [
+        "tests/requirements.json",
 	{
             "name": "gsound",
             "buildsystem": "meson",
