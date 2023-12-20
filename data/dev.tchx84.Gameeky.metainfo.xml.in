@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>dev.tchx84.Gameeky</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>LicenseRef-proprietary</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <name>Gameeky</name>
   <summary>Play, create and learn</summary>
   <description>
