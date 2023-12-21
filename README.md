@@ -1,12 +1,22 @@
+<img style="vertical-align: middle;" src="data/icons/hicolor/scalable/apps/dev.tchx84.Gameeky.svg" width="128" height="128" align="left">
+
 # Gameeky ![CI](https://github.com/tchx84/Gameeky/workflows/CI/badge.svg)
 
-<img height="100" src="https://github.com/tchx84/Gameeky/blob/main/data/icons/hicolor/scalable/apps/dev.tchx84.Gameeky.svg"/>
+Play, create and learn.
 
-Gameeky is a learning tool designed for young learners and educators to create and explore rich interactive worlds and experiences.
+![](data/screenshots/en/01.png)
+
+Gameeky is a learning tool designed for young learners and educators to create and explore rich interactive games and experiences.
+
+* Play and explore games with your friends
+* Create new games without writing any code
+* Nurture the artist in you by designing game objects for your games
+* Grasp the basics of programming using Python in a LOGO-like experience
+* Mature your programming skills by extending your game with Python plugins
 
 ## Usage
 
-A thorough documentation and tutorial page will be available soon.
+A thorough tutorial will be available soon.
 
 ## Build it yourself
 
@@ -19,6 +29,17 @@ flatpak --user run --branch=master dev.tchx84.Gameeky
 ```
 
 Or just use [Builder](https://flathub.org/apps/details/org.gnome.Builder)
+
+## Code of conduct
+
+Gameeky follows the [GNOME Code of Conduct](https://conduct.gnome.org/).
+
+- **Be friendly.** Use welcoming and inclusive language.
+- **Be empathetic.** Be respectful of differing viewpoints and experiences.
+- **Be respectful.** When we disagree, we do so in a polite and constructive manner.
+- **Be considerate.** Remember that decisions are often a difficult choice between competing priorities.
+- **Be patient and generous.** If someone asks for help it is because they need it.
+- **Try to be concise.** Read the discussion before commenting.
 
 ## Disclaimer
 
