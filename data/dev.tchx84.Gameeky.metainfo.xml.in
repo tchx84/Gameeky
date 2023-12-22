@@ -7,14 +7,17 @@
   <summary>Play, create and learn</summary>
   <description>
       <p>
-        A learning tool designed for young learners and educators to create and explore rich interactive games and experiences.
+        Gameeky lets young learners and educators create and explore cooperative games and learning experiences.
+      </p>
+      <p>
+        More specifically:
       </p>
       <ul>
-        <li>Play and explore games with your friends</li>
+        <li>Play and explore games with friends</li>
         <li>Create new games without writing any code</li>
-        <li>Nurture the artist in you by designing game objects for your games</li>
+        <li>Nurture artistic skills by designing game objects and creatures</li>
         <li>Grasp the basics of programming using Python in a LOGO-like experience</li>
-        <li>Mature your programming skills by extending your game with Python plugins</li>
+        <li>Mature programming skills by extending games with Python plugins</li>
       </ul>
   </description>
   <screenshots>
