@@ -27,6 +27,8 @@ from ...common.scene import Scene, SceneRequest
 from ...common.session import Session, SessionRequest
 from ...common.stats import Stats, StatsRequest
 from ...common.message import Message
+from ...common.errors import Error
+from ...common.config import VERSION
 
 
 class Service(GObject.GObject):
@@ -34,6 +36,7 @@ class Service(GObject.GObject):
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "scene-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "stats-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     def __init__(
@@ -73,7 +76,14 @@ class Service(GObject.GObject):
         self._session_manager.connect("received", self.__on_session_registered)
 
     def __on_session_registered(self, client: TCPClient, data: bytes) -> None:
-        self._session = Session.deserialize(data)
+        session = Session.deserialize(data)
+
+        if session.error is not None:
+            logger.error(Error.describe(session.error))
+            self.emit("failed")
+            return
+
+        self._session = session
         self._scene_manager.connect("received", self.__on_scene_received)
         self._stats_manager.connect("received", self.__on_stats_received)
         self.emit("registered", self._session)
@@ -98,6 +108,7 @@ class Service(GObject.GObject):
         self._session_manager.send(
             SessionRequest(
                 type_id=EntityType.PLAYER,
+                version=VERSION,
             ).serialize()
         )
 

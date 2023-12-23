@@ -61,6 +61,14 @@ configure_file(
   install_mode: 'r-xr--r--'
 )
 
+configure_file(
+  input: 'gameeky/common/config.py.in',
+  output: 'config.py',
+  configuration: conf,
+  install: true,
+  install_dir: pkgdatadir / 'gameeky' / 'common'
+)
+
 gameeky_sources = [
   'gameeky/client/definitions.py',
   'gameeky/client/game/__init__.py',
@@ -87,6 +95,7 @@ gameeky_sources = [
   'gameeky/common/debug.py',
   'gameeky/common/definitions.py',
   'gameeky/common/entity.py',
+  'gameeky/common/errors.py',
   'gameeky/common/__init__.py',
   'gameeky/common/logger.py',
   'gameeky/common/message.py',
