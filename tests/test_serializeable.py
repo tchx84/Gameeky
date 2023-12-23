@@ -5,6 +5,7 @@ from gameeky.common.message import Message
 from gameeky.common.scene import Scene, SceneRequest
 from gameeky.common.stats import Stats, StatsRequest
 from gameeky.common.session import Session, SessionRequest
+from gameeky.common.errors import Error
 
 
 def test_serialize_vector():
@@ -69,17 +70,19 @@ def test_serialize_scene_request():
 
 
 def test_serialize_session():
-    original = Session(id=360)
+    original = Session(id=360, error=Error.VERSION)
     serialized = Session.deserialize(original.serialize())
 
     assert serialized.id == original.id
+    assert serialized.error == original.error
 
 
 def test_serialize_session_request():
-    original = SessionRequest(type_id=0)
+    original = SessionRequest(type_id=0, version="1.2.3")
     serialized = SessionRequest.deserialize(original.serialize())
 
     assert original.type_id == serialized.type_id
+    assert original.version == serialized.version
 
 
 def test_serialize_stats():

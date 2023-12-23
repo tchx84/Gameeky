@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from typing import Dict
+from typing import Dict, Optional
 
 from gi.repository import GLib, GObject
 
@@ -35,11 +35,19 @@ from ...common.stats import StatsRequest
 from ...common.session import SessionRequest
 from ...common.session import Session as CommonSession
 from ...common.message import Message
+from ...common.errors import Error
+from ...common.config import VERSION
 
 
 class Session(CommonSession):
-    def __init__(self, id, entity_id: int, sequence: int = -1) -> None:
-        super().__init__(id=id)
+    def __init__(
+        self,
+        id: int,
+        error: Optional[int],
+        entity_id: int,
+        sequence: int = -1,
+    ) -> None:
+        super().__init__(id=id, error=error)
         self.entity_id = entity_id
         self.sequence = sequence
 
@@ -95,6 +103,10 @@ class Service(GObject.GObject):
     def __on_session_connected(self, manager, client, data):
         request = SessionRequest.deserialize(data)
 
+        if request.version != VERSION:
+            client.send(CommonSession(id=-1, error=Error.VERSION).serialize())
+            return
+
         entity_id = self.scene.add(
             request.type_id,
             position=Vector(
@@ -104,7 +116,7 @@ class Service(GObject.GObject):
             ),
         )
 
-        session = Session(id=self._index, entity_id=entity_id)
+        session = Session(id=self._index, error=None, entity_id=entity_id)
 
         self._index += 1
         self._session_by_client[client] = session
