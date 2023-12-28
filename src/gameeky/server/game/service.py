@@ -37,6 +37,7 @@ from ...common.session import Session as CommonSession
 from ...common.message import Message
 from ...common.errors import Error
 from ...common.config import VERSION
+from ...common.utils import get_project_name
 
 
 class Session(CommonSession):
@@ -105,6 +106,10 @@ class Service(GObject.GObject):
 
         if request.version != VERSION:
             client.send(CommonSession(id=-1, error=Error.VERSION).serialize())
+            return
+
+        if request.project != get_project_name():
+            client.send(CommonSession(id=-1, error=Error.PROJECT).serialize())
             return
 
         entity_id = self.scene.add(
