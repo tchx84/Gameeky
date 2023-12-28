@@ -17,6 +17,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import json
 
 from typing import Callable, Optional, Tuple
 from gi.repository import GLib, Gio
@@ -51,6 +52,11 @@ def find_project_path(path) -> str:
 
 def get_project_folder(*paths):
     return Gio.File.new_for_path(os.path.join(get_project_path(""), *paths))
+
+
+def get_project_name() -> str:
+    with open(get_project_path("gameeky.project")) as file:
+        return json.load(file)["name"]
 
 
 def get_relative_path(path: str) -> str:

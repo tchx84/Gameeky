@@ -29,6 +29,7 @@ from ...common.stats import Stats, StatsRequest
 from ...common.message import Message
 from ...common.errors import Error
 from ...common.config import VERSION
+from ...common.utils import get_project_name
 
 
 class Service(GObject.GObject):
@@ -109,6 +110,7 @@ class Service(GObject.GObject):
             SessionRequest(
                 type_id=EntityType.PLAYER,
                 version=VERSION,
+                project=get_project_name(),
             ).serialize()
         )
 

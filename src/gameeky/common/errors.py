@@ -23,10 +23,13 @@ from gettext import gettext as _
 
 class Error(IntEnum):
     VERSION = auto()
+    PROJECT = auto()
 
     @classmethod
     def describe(cls, code: int) -> str:
         if code == cls.VERSION:
             return _("Wrong client version")
+        if code == cls.PROJECT:
+            return _("Wrong project")
 
         return _("Unknown")

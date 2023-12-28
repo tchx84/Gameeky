@@ -78,11 +78,12 @@ def test_serialize_session():
 
 
 def test_serialize_session_request():
-    original = SessionRequest(type_id=0, version="1.2.3")
+    original = SessionRequest(type_id=0, version="1.2.3", project="name")
     serialized = SessionRequest.deserialize(original.serialize())
 
     assert original.type_id == serialized.type_id
     assert original.version == serialized.version
+    assert original.project == serialized.project
 
 
 def test_serialize_stats():
