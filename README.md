@@ -20,28 +20,9 @@ More specifically:
 
 A thorough tutorial will be available soon.
 
-## Build it yourself
+## Contribute
 
-```
-git clone https://github.com/tchx84/Gameeky.git
-cd Gameeky
-flatpak --user install org.gnome.{Platform,Sdk}//45
-flatpak-builder --user --force-clean --install build dev.tchx84.Gameeky.json
-flatpak --user run --branch=master dev.tchx84.Gameeky
-```
-
-Or just use [Builder](https://flathub.org/apps/details/org.gnome.Builder)
-
-## Code of conduct
-
-Gameeky follows the [GNOME Code of Conduct](https://conduct.gnome.org/).
-
-- **Be friendly.** Use welcoming and inclusive language.
-- **Be empathetic.** Be respectful of differing viewpoints and experiences.
-- **Be respectful.** When we disagree, we do so in a polite and constructive manner.
-- **Be considerate.** Remember that decisions are often a difficult choice between competing priorities.
-- **Be patient and generous.** If someone asks for help it is because they need it.
-- **Try to be concise.** Read the discussion before commenting.
+Everyone is welcome to contribute to this project, please read these [instructions](CONTRIBUTING.md) carefully.
 
 ## Disclaimer
 
