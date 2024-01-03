@@ -1,5 +1,3 @@
-<img style="vertical-align: middle;" src="data/icons/hicolor/scalable/apps/dev.tchx84.Gameeky.svg" width="128" height="128" align="left">
-
 # Gameeky ![CI](https://github.com/tchx84/Gameeky/workflows/CI/badge.svg)
 
 Play, create and learn.
