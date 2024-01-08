@@ -7,9 +7,7 @@ Thanks for taking the time to contribute! Before getting started:
 
 ## Understanding the goal
 
-Gameeky is a tool for learning about art, programming, video games and more. It's not a professional video game engine.
-
-Therefore, its primary goal is to provide a better learning experience for these topics. Providing an efficient game development process is explicitly not a goal. You can read more about this project rationale [here](https://blogs.gnome.org/tchx84/2023/12/15/gameeky-a-new-learning-tool-to-develop-steam-skills/).
+Gameeky is a learning tool in the form of a game engine. It's not a game engine that's also useful as a learning tool. Therefore, its primary goal is to provide a better learning experience for programming, arts and more, not an efficient nor professional game development process. You can read more about this project rationale [here](https://blogs.gnome.org/tchx84/2023/12/15/gameeky-a-new-learning-tool-to-develop-steam-skills/).
 
 If you're looking for a tool to create professional video games, I highly recommend the [Godot](https://godotengine.org/) game engine.
 
@@ -17,16 +15,15 @@ If you're looking for a tool to create professional video games, I highly recomm
 
 There are plenty of ways to contribute to this project. To mention a few:
 
-* Code new functionalities or fix bugs.
-* Design new tools or improve the existing tools for a better experience.
+* Code bug fixes.
+* Design improved tools for a better experience.
 * Translate this project to your language.
-* Add new sample projects to allow the creation of new types of games.
+* Create new thematic packs to allow more diverse types of games.
 * Write tutorials and guides to help educators and learners to take advantage of this project.
 
 If you like the project, but just don't have time to contribute, there are other ways to support it:
 
-* Star the project on GitHub.
-* Share the project on social media.
+* Share this project on social media.
 * Refer this project to educators.
 * Take this project to your classroom.
 
@@ -53,7 +50,7 @@ The following is the recommended way for getting started:
 
 ## Making changes
 
-The process is well explained in this [article](https://opensource.com/article/19/7/create-pull-request-github), so you can simply follow these instructions.
+The process is well explained in this [article](https://opensource.com/article/19/7/create-pull-request-github), so you can simply follow these instructions to create pull requests.
 
 The only request is that you [organize](https://github.blog/2022-06-30-write-better-commits-build-better-projects/) your commits in a way that makes sense. Please, do not send a single commit with too many changes.
 
