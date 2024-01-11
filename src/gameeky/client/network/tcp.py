@@ -29,6 +29,7 @@ class Client(GObject.GObject):
 
     __gsignals__ = {
         "received": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     def __init__(self, address: str, port: int, context: GLib.MainContext) -> None:
@@ -51,8 +52,13 @@ class Client(GObject.GObject):
         if self.shut is True:
             return
 
-        raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
-        self.emit("received", raw.get_data())
+        try:
+            raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
+        except Exception as e:
+            logger.error(e)
+            self.emit("failed")
+        else:
+            self.emit("received", raw.get_data())
 
     def send(self, data: bytes) -> None:
         if self.shut is True:
