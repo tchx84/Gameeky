@@ -17,9 +17,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from typing import Dict, List, Tuple
+from gettext import gettext as _
 
 from gi.repository import Gdk, GdkPixbuf
 
+from ...common.logger import logger
 from ...common.definitions import Direction, State
 from ...common.entity import Entity as CommonEntity
 from ...common.scanner import Description
@@ -97,6 +99,7 @@ class Entity:
 
 class EntityRegistry:
     __entities__: Dict[int, Entity] = {}
+    __missing__ = Gdk.Texture.new_from_resource("/dev/tchx84/gameeky/client/graphics/missing.png")  # fmt: skip
 
     @classmethod
     def reset(cls) -> None:
@@ -104,6 +107,10 @@ class EntityRegistry:
 
     @classmethod
     def get_texture(cls, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
+        if entity.type_id not in cls.__entities__:
+            logger.warning(_("Missing entity type: %d") % entity.type_id)
+            return 1, 1, cls.__missing__
+
         return cls.__entities__[entity.type_id].get_texture(entity)
 
     @classmethod
