@@ -105,6 +105,7 @@ class SessionGuest(Threaded):
         self._sound = SceneSound()
         self._sound.model = self._scene_model
 
+        self._service.connect("registered", self.__on_registered)
         self._service.connect("failed", self.__on_registered_failed)
         self._service.register()
 
@@ -128,8 +129,9 @@ class SessionGuest(Threaded):
         except Exception as e:
             logger.error(e)
             self.emit("failed")
-        else:
-            self.emit("started")
+
+    def __on_registered(self, *args) -> None:
+        self.emit("started")
 
     def __on_registered_failed(self, service: Service) -> None:
         self.emit("failed")
