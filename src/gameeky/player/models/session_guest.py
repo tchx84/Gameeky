@@ -133,7 +133,7 @@ class SessionGuest(Threaded):
     def __on_registered(self, *args) -> None:
         self.emit("started")
 
-    def __on_registered_failed(self, service: Service) -> None:
+    def __on_registered_failed(self, *args) -> None:
         self.emit("failed")
 
     def do_run(self) -> None:

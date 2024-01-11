@@ -75,6 +75,7 @@ class Service(GObject.GObject):
         )
 
         self._session_manager.connect("received", self.__on_session_registered)
+        self._session_manager.connect("failed", self.__on_session_failed)
 
     def __on_session_registered(self, client: TCPClient, data: bytes) -> None:
         session = Session.deserialize(data)
@@ -88,6 +89,9 @@ class Service(GObject.GObject):
         self._scene_manager.connect("received", self.__on_scene_received)
         self._stats_manager.connect("received", self.__on_stats_received)
         self.emit("registered", self._session)
+
+    def __on_session_failed(self, client: TCPClient) -> None:
+        self.emit("failed")
 
     def __on_stats_received(
         self,
