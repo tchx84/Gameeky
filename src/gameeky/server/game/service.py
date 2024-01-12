@@ -88,13 +88,7 @@ class Service(GObject.GObject):
         self._session_manager.connect("disconnected", self.__on_session_disconnected)
 
         self._messages_manager = UDPServer(port=messages_port, context=context)
-        self._messages_manager.connect("received", self.__on_message_received)
-
-        self._scene_manager = UDPServer(port=scene_port, context=context)
-        self._scene_manager.connect("received", self.__on_scene_requested)
-
-        self._stats_manager = UDPServer(port=stats_port, context=context)
-        self._stats_manager.connect("received", self.__on_stats_requested)
+        self._messages_manager.connect("received", self.__on_payload_received)
 
         logger.debug("Server.Service.Started")
 
@@ -149,8 +143,17 @@ class Service(GObject.GObject):
 
         logger.debug("Server.Service.Unregistered %s", client)
 
-    def __on_message_received(self, manager, address, data):
-        message = Payload.deserialize(data).message
+    def __on_payload_received(self, manager, address, data):
+        payload = Payload.deserialize(data)
+
+        if payload.message is not None:
+            self.__on_message_received(payload.message)
+        elif payload.scene_request is not None:
+            self.__on_scene_requested(payload.scene_request, address)
+        elif payload.stats_request is not None:
+            self.__on_stats_requested(payload.stats_request, address)
+
+    def __on_message_received(self, message):
         session = self._session_by_id.get(message.session_id)
 
         if session is None:
@@ -162,30 +165,26 @@ class Service(GObject.GObject):
         self.scene.update(session.entity_id, message.action, message.value)
         self.emit("updated")
 
-    def __on_scene_requested(self, manager, address, data):
-        request = Payload.deserialize(data).scene_request
+    def __on_scene_requested(self, request, address):
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
             return
 
         scene = self.scene.prepare_for_entity_id(session.entity_id)
-        self._scene_manager.send(address, Payload(scene=scene).serialize())
+        self._messages_manager.send(address, Payload(scene=scene).serialize())
 
-    def __on_stats_requested(self, manager, address, data):
-        request = Payload.deserialize(data).stats_request
+    def __on_stats_requested(self, request, address):
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
             return
 
         stats = self.scene.prepare_stats_for_entity_id(session.entity_id)
-        self._stats_manager.send(address, Payload(stats=stats).serialize())
+        self._messages_manager.send(address, Payload(stats=stats).serialize())
 
     def shutdown(self) -> None:
         self.scene.shutdown()
-        self._stats_manager.shutdown()
-        self._scene_manager.shutdown()
         self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
