@@ -5,6 +5,7 @@ from gameeky.common.message import Message
 from gameeky.common.scene import Scene, SceneRequest
 from gameeky.common.stats import Stats, StatsRequest
 from gameeky.common.session import Session, SessionRequest
+from gameeky.common.payload import Payload
 from gameeky.common.errors import Error
 
 
@@ -100,3 +101,10 @@ def test_serialize_stats_request():
     serialized = StatsRequest.deserialize(original.serialize())
 
     assert original.session_id == serialized.session_id
+
+
+def test_serialize_payload():
+    original = Payload(session=Session(id=360, error=Error.VERSION))
+    serialized = Payload.deserialize(original.serialize())
+
+    assert original.session.id == serialized.session.id

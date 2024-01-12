@@ -100,6 +100,7 @@ gameeky_sources = [
   'gameeky/common/logger.py',
   'gameeky/common/message.py',
   'gameeky/common/monitor.py',
+  'gameeky/common/payload.py',
   'gameeky/common/scanner.py',
   'gameeky/common/scene.py',
   'gameeky/common/serializeable.py',
