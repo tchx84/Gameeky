@@ -48,8 +48,6 @@ class SessionGuest(Threaded):
         address: str,
         session_port: int,
         messages_port: int,
-        scene_port: int,
-        stats_port: int,
         widget: Gtk.Widget,
     ) -> None:
         super().__init__()
@@ -58,8 +56,6 @@ class SessionGuest(Threaded):
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
-        self._scene_port = scene_port
-        self._stats_port = stats_port
 
         self._widget = widget
 
@@ -75,8 +71,6 @@ class SessionGuest(Threaded):
             address=self._address,
             session_port=self._session_port,
             messages_port=self._messages_port,
-            scene_port=self._scene_port,
-            stats_port=self._stats_port,
             context=self._context,
         )
 

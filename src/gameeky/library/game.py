@@ -33,8 +33,6 @@ from ..common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
-    DEFAULT_SCENE_PORT,
-    DEFAULT_STATS_PORT,
 )
 
 from ..client.game.service import Service
@@ -50,15 +48,11 @@ class Game(GObject.GObject):
         address: str = DEFAULT_ADDRESS,
         session_port: int = DEFAULT_SESSION_PORT,
         messages_port: int = DEFAULT_MESSAGES_PORT,
-        scene_port: int = DEFAULT_SCENE_PORT,
-        stats_port: int = DEFAULT_STATS_PORT,
     ) -> None:
         super().__init__()
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
-        self._scene_port = scene_port
-        self._stats_port = stats_port
 
         self._entity: Optional[Entity] = None
         self._scene: Optional[Scene] = None
@@ -121,8 +115,6 @@ class Game(GObject.GObject):
             self._address,
             self._session_port,
             self._messages_port,
-            self._scene_port,
-            self._stats_port,
             GLib.MainContext.default(),
         )
         self._service.connect("registered", self.__on_registered)

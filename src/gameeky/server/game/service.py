@@ -63,8 +63,6 @@ class Service(GObject.GObject):
         clients: int,
         session_port: int,
         messages_port: int,
-        scene_port: int,
-        stats_port: int,
         context: GLib.MainContext,
     ) -> None:
         super().__init__()

@@ -54,8 +54,6 @@ from ..common.definitions import (
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
-    DEFAULT_SCENE_PORT,
-    DEFAULT_STATS_PORT,
 )
 
 
@@ -146,8 +144,6 @@ class Application(Adw.Application):
             clients=self._description.clients,
             session_port=self._description.session_port,
             messages_port=self._description.messages_port,
-            scene_port=self._description.scene_port,
-            stats_port=self._description.stats_port,
         )
 
         self._session_host.connect("started", self.__on_host_started)
@@ -167,8 +163,6 @@ class Application(Adw.Application):
             address=self._description.address,
             session_port=self._description.session_port,
             messages_port=self._description.messages_port,
-            scene_port=self._description.scene_port,
-            stats_port=self._description.stats_port,
             widget=self._window,
         )
 
@@ -254,8 +248,6 @@ class Application(Adw.Application):
                 clients=DEFAULT_CLIENTS,
                 session_port=DEFAULT_SESSION_PORT,
                 messages_port=DEFAULT_MESSAGES_PORT,
-                scene_port=DEFAULT_SCENE_PORT,
-                stats_port=DEFAULT_STATS_PORT,
             )
 
         self.activate()

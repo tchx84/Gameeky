@@ -96,32 +96,6 @@
                                         <property name="title" translatable="yes">Messages Port</property>
                                       </object>
                                     </child>
-                                    <child>
-                                      <object class="AdwSpinRow" id="scene_port">
-                                        <property name="adjustment">
-                                          <object class="GtkAdjustment">
-                                            <property name="lower">1024.0</property>
-                                            <property name="step-increment">1.0</property>
-                                            <property name="upper">9999.0</property>
-                                            <property name="value">1024.0</property>
-                                          </object>
-                                        </property>
-                                        <property name="title" translatable="yes">Scene Port</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwSpinRow" id="stats_port">
-                                        <property name="adjustment">
-                                          <object class="GtkAdjustment">
-                                            <property name="lower">1024.0</property>
-                                            <property name="step-increment">1.0</property>
-                                            <property name="upper">9999.0</property>
-                                            <property name="value">1024.0</property>
-                                          </object>
-                                        </property>
-                                        <property name="title" translatable="yes">Stats Port</property>
-                                      </object>
-                                    </child>
                                   </object>
                                 </child>
                               </object>
