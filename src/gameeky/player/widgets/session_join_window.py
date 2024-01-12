@@ -28,8 +28,6 @@ from ...common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
     DEFAULT_MESSAGES_PORT,
-    DEFAULT_SCENE_PORT,
-    DEFAULT_STATS_PORT,
 )
 
 
@@ -46,8 +44,6 @@ class SessionJoinWindow(Adw.Window):
     address = Gtk.Template.Child()
     session_port = Gtk.Template.Child()
     messages_port = Gtk.Template.Child()
-    scene_port = Gtk.Template.Child()
-    stats_port = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -56,8 +52,6 @@ class SessionJoinWindow(Adw.Window):
         self.address.props.text = DEFAULT_ADDRESS
         self.session_port.props.value = DEFAULT_SESSION_PORT
         self.messages_port.props.value = DEFAULT_MESSAGES_PORT
-        self.scene_port.props.value = DEFAULT_SCENE_PORT
-        self.stats_port.props.value = DEFAULT_STATS_PORT
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -115,6 +109,4 @@ class SessionJoinWindow(Adw.Window):
             address=self.network_address,
             session_port=int(self.session_port.props.value),
             messages_port=int(self.messages_port.props.value),
-            scene_port=int(self.scene_port.props.value),
-            stats_port=int(self.stats_port.props.value),
         )
