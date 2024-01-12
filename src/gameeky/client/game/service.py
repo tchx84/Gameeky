@@ -64,16 +64,6 @@ class Service(GObject.GObject):
             port=messages_port,
             context=context,
         )
-        self._scene_manager = UDPClient(
-            address=address,
-            port=scene_port,
-            context=context,
-        )
-        self._stats_manager = UDPClient(
-            address=address,
-            port=stats_port,
-            context=context,
-        )
 
         self._session_manager.connect("received", self.__on_session_registered)
         self._session_manager.connect("failed", self.__on_session_failed)
@@ -87,28 +77,24 @@ class Service(GObject.GObject):
             return
 
         self._session = session
-        self._scene_manager.connect("received", self.__on_scene_received)
-        self._stats_manager.connect("received", self.__on_stats_received)
+        self._messages_manager.connect("received", self.__on_payload_received)
         self.emit("registered", self._session)
 
     def __on_session_failed(self, client: TCPClient) -> None:
         self.emit("failed")
 
-    def __on_stats_received(
+    def __on_payload_received(
         self,
         manager: UDPClient,
         address: Gio.InetSocketAddress,
         data: bytes,
     ) -> None:
-        self.emit("stats-updated", Payload.deserialize(data).stats)
+        payload = Payload.deserialize(data)
 
-    def __on_scene_received(
-        self,
-        manager: UDPClient,
-        address: Gio.InetSocketAddress,
-        data: bytes,
-    ) -> None:
-        self.emit("scene-updated", Payload.deserialize(data).scene)
+        if payload.scene is not None:
+            self.emit("scene-updated", payload.scene)
+        elif payload.stats is not None:
+            self.emit("stats-updated", payload.stats)
 
     def register(self) -> None:
         self._session_manager.send(
@@ -122,8 +108,6 @@ class Service(GObject.GObject):
         )
 
     def unregister(self) -> None:
-        self._stats_manager.shutdown()
-        self._scene_manager.shutdown()
         self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
@@ -143,11 +127,11 @@ class Service(GObject.GObject):
         self._sequence += 1
 
     def request_scene(self) -> None:
-        self._scene_manager.send(
+        self._messages_manager.send(
             Payload(scene_request=SceneRequest(self._session.id)).serialize()
         )
 
     def request_stats(self) -> None:
-        self._stats_manager.send(
+        self._messages_manager.send(
             Payload(stats_request=StatsRequest(self._session.id)).serialize()
         )
