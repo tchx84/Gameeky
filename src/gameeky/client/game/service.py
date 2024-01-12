@@ -23,10 +23,11 @@ from ..network.udp import Client as UDPClient
 
 from ...common.logger import logger
 from ...common.definitions import Action, EntityType
-from ...common.scene import Scene, SceneRequest
-from ...common.session import Session, SessionRequest
-from ...common.stats import Stats, StatsRequest
+from ...common.scene import SceneRequest
+from ...common.session import SessionRequest
+from ...common.stats import StatsRequest
 from ...common.message import Message
+from ...common.payload import Payload
 from ...common.errors import Error
 from ...common.config import VERSION
 from ...common.utils import get_project_name
@@ -78,7 +79,7 @@ class Service(GObject.GObject):
         self._session_manager.connect("failed", self.__on_session_failed)
 
     def __on_session_registered(self, client: TCPClient, data: bytes) -> None:
-        session = Session.deserialize(data)
+        session = Payload.deserialize(data).session
 
         if session.error is not None:
             logger.error(Error.describe(session.error))
@@ -99,7 +100,7 @@ class Service(GObject.GObject):
         address: Gio.InetSocketAddress,
         data: bytes,
     ) -> None:
-        self.emit("stats-updated", Stats.deserialize(data))
+        self.emit("stats-updated", Payload.deserialize(data).stats)
 
     def __on_scene_received(
         self,
@@ -107,14 +108,16 @@ class Service(GObject.GObject):
         address: Gio.InetSocketAddress,
         data: bytes,
     ) -> None:
-        self.emit("scene-updated", Scene.deserialize(data))
+        self.emit("scene-updated", Payload.deserialize(data).scene)
 
     def register(self) -> None:
         self._session_manager.send(
-            SessionRequest(
-                type_id=EntityType.PLAYER,
-                version=VERSION,
-                project=get_project_name(),
+            Payload(
+                session_request=SessionRequest(
+                    type_id=EntityType.PLAYER,
+                    version=VERSION,
+                    project=get_project_name(),
+                )
             ).serialize()
         )
 
@@ -128,17 +131,23 @@ class Service(GObject.GObject):
 
     def message(self, action: Action, value: float) -> None:
         self._messages_manager.send(
-            Message(
-                self._session.id,
-                action,
-                value,
-                self._sequence,
+            Payload(
+                message=Message(
+                    self._session.id,
+                    action,
+                    value,
+                    self._sequence,
+                )
             ).serialize()
         )
         self._sequence += 1
 
     def request_scene(self) -> None:
-        self._scene_manager.send(SceneRequest(self._session.id).serialize())
+        self._scene_manager.send(
+            Payload(scene_request=SceneRequest(self._session.id)).serialize()
+        )
 
     def request_stats(self) -> None:
-        self._stats_manager.send(StatsRequest(self._session.id).serialize())
+        self._stats_manager.send(
+            Payload(stats_request=StatsRequest(self._session.id)).serialize()
+        )

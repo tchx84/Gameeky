@@ -30,11 +30,8 @@ from ...common.vector import Vector
 from ...common.scanner import Description
 from ...common.utils import get_project_path
 from ...common.logger import logger
-from ...common.scene import SceneRequest
-from ...common.stats import StatsRequest
-from ...common.session import SessionRequest
 from ...common.session import Session as CommonSession
-from ...common.message import Message
+from ...common.payload import Payload
 from ...common.errors import Error
 from ...common.config import VERSION
 from ...common.utils import get_project_name
@@ -102,14 +99,18 @@ class Service(GObject.GObject):
         logger.debug("Server.Service.Started")
 
     def __on_session_connected(self, manager, client, data):
-        request = SessionRequest.deserialize(data)
+        request = Payload.deserialize(data).session_request
 
         if request.version != VERSION:
-            client.send(CommonSession(id=-1, error=Error.VERSION).serialize())
+            client.send(
+                Payload(session=CommonSession(id=-1, error=Error.VERSION)).serialize()
+            )
             return
 
         if request.project != get_project_name():
-            client.send(CommonSession(id=-1, error=Error.PROJECT).serialize())
+            client.send(
+                Payload(session=CommonSession(id=-1, error=Error.PROJECT)).serialize()
+            )
             return
 
         entity_id = self.scene.add(
@@ -127,7 +128,7 @@ class Service(GObject.GObject):
         self._session_by_client[client] = session
         self._session_by_id[session.id] = session
 
-        client.send(session.serialize())
+        client.send(Payload(session=session).serialize())
 
         self.emit("registered", session)
 
@@ -149,7 +150,7 @@ class Service(GObject.GObject):
         logger.debug("Server.Service.Unregistered %s", client)
 
     def __on_message_received(self, manager, address, data):
-        message = Message.deserialize(data)
+        message = Payload.deserialize(data).message
         session = self._session_by_id.get(message.session_id)
 
         if session is None:
@@ -162,24 +163,24 @@ class Service(GObject.GObject):
         self.emit("updated")
 
     def __on_scene_requested(self, manager, address, data):
-        request = SceneRequest.deserialize(data)
+        request = Payload.deserialize(data).scene_request
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
             return
 
         scene = self.scene.prepare_for_entity_id(session.entity_id)
-        self._scene_manager.send(address, scene.serialize())
+        self._scene_manager.send(address, Payload(scene=scene).serialize())
 
     def __on_stats_requested(self, manager, address, data):
-        request = StatsRequest.deserialize(data)
+        request = Payload.deserialize(data).stats_request
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
             return
 
         stats = self.scene.prepare_stats_for_entity_id(session.entity_id)
-        self._stats_manager.send(address, stats.serialize())
+        self._stats_manager.send(address, Payload(stats=stats).serialize())
 
     def shutdown(self) -> None:
         self.scene.shutdown()
