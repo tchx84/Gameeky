@@ -18,7 +18,7 @@
 
 from typing import Dict, Optional
 
-from gi.repository import GLib, GObject
+from gi.repository import Gio, GLib, GObject
 
 from .scene import Scene
 
@@ -31,6 +31,9 @@ from ...common.scanner import Description
 from ...common.utils import get_project_path
 from ...common.logger import logger
 from ...common.session import Session as CommonSession
+from ...common.scene import SceneRequest as CommonSceneRequest
+from ...common.stats import StatsRequest as CommonStatsRequest
+from ...common.message import Message as CommonMessage
 from ...common.payload import Payload
 from ...common.errors import Error
 from ...common.config import VERSION
@@ -90,7 +93,12 @@ class Service(GObject.GObject):
 
         logger.debug("Server.Service.Started")
 
-    def __on_session_connected(self, manager, client, data):
+    def __on_session_connected(
+        self,
+        manager: TCPServer,
+        client: TCPClient,
+        data: bytes,
+    ) -> None:
         request = Payload.deserialize(data).session_request
 
         if request.version != VERSION:
@@ -126,7 +134,11 @@ class Service(GObject.GObject):
 
         logger.debug("Server.Service.Registered %s", client)
 
-    def __on_session_disconnected(self, manager, client):
+    def __on_session_disconnected(
+        self,
+        manager: TCPServer,
+        client: TCPClient,
+    ) -> None:
         session = self._session_by_client.get(client)
 
         if session is None:
@@ -141,7 +153,12 @@ class Service(GObject.GObject):
 
         logger.debug("Server.Service.Unregistered %s", client)
 
-    def __on_payload_received(self, manager, address, data):
+    def __on_payload_received(
+        self,
+        manager: UDPServer,
+        address: Gio.InetSocketAddress,
+        data: bytes,
+    ) -> None:
         payload = Payload.deserialize(data)
 
         if payload.message is not None:
@@ -151,7 +168,10 @@ class Service(GObject.GObject):
         elif payload.stats_request is not None:
             self.__on_stats_requested(payload.stats_request, address)
 
-    def __on_message_received(self, message):
+    def __on_message_received(
+        self,
+        message: CommonMessage,
+    ) -> None:
         session = self._session_by_id.get(message.session_id)
 
         if session is None:
@@ -163,7 +183,11 @@ class Service(GObject.GObject):
         self.scene.update(session.entity_id, message.action, message.value)
         self.emit("updated")
 
-    def __on_scene_requested(self, request, address):
+    def __on_scene_requested(
+        self,
+        request: CommonSceneRequest,
+        address: Gio.InetSocketAddress,
+    ) -> None:
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
@@ -172,7 +196,11 @@ class Service(GObject.GObject):
         scene = self.scene.prepare_for_entity_id(session.entity_id)
         self._messages_manager.send(address, Payload(scene=scene).serialize())
 
-    def __on_stats_requested(self, request, address):
+    def __on_stats_requested(
+        self,
+        request: CommonStatsRequest,
+        address: Gio.InetSocketAddress,
+    ) -> None:
         session = self._session_by_id.get(request.session_id)
 
         if session is None:
