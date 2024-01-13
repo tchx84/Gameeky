@@ -94,6 +94,7 @@ gameeky_sources = [
   'gameeky/common/colors.py',
   'gameeky/common/debug.py',
   'gameeky/common/definitions.py',
+  'gameeky/common/dialogue.py',
   'gameeky/common/entity.py',
   'gameeky/common/errors.py',
   'gameeky/common/__init__.py',

@@ -23,6 +23,7 @@ from .session import Session, SessionRequest
 from .scene import Scene, SceneRequest
 from .stats import Stats, StatsRequest
 from .message import Message
+from .dialogue import Dialogue
 
 
 class Payload(Serializeable):
@@ -34,6 +35,7 @@ class Payload(Serializeable):
         Optional[Stats.Signature],
         Optional[StatsRequest.Signature],
         Optional[Message.Signature],
+        Optional[Dialogue.Signature],
     ]
 
     def __init__(
@@ -45,6 +47,7 @@ class Payload(Serializeable):
         stats: Optional[Stats] = None,
         stats_request: Optional[StatsRequest] = None,
         message: Optional[Message] = None,
+        dialogue: Optional[Dialogue] = None,
     ) -> None:
         self.session = session
         self.session_request = session_request
@@ -53,6 +56,7 @@ class Payload(Serializeable):
         self.stats = stats
         self.stats_request = stats_request
         self.message = message
+        self.dialogue = dialogue
 
     def to_values(self) -> Signature:
         return (
@@ -63,6 +67,7 @@ class Payload(Serializeable):
             self.stats.to_values() if self.stats else None,
             self.stats_request.to_values() if self.stats_request else None,
             self.message.to_values() if self.message else None,
+            self.dialogue.to_values() if self.dialogue else None,
         )
 
     @classmethod
@@ -75,6 +80,7 @@ class Payload(Serializeable):
             stats,
             stats_request,
             message,
+            dialogue,
         ) = values
 
         return cls(
@@ -85,4 +91,5 @@ class Payload(Serializeable):
             Stats.from_values(stats) if stats else None,
             StatsRequest.from_values(stats_request) if stats_request else None,
             Message.from_values(message) if message else None,
+            Dialogue.from_values(dialogue) if dialogue else None,
         )
