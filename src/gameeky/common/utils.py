@@ -110,12 +110,20 @@ def find_context() -> GLib.MainContext:
     return context
 
 
-def add_timeout_source(interval: float, callback: Callable) -> int:
+def add_timeout_source(
+    interval: float,
+    callback: Callable,
+    data: Optional[Tuple] = None,
+) -> int:
     context = find_context()
+    data = () if data is None else data
+
+    def timeout_callback(*args) -> int:
+        return callback(*data)
 
     source = GLib.timeout_source_new(interval)
     source.set_priority(GLib.PRIORITY_DEFAULT)
-    source.set_callback(callback)
+    source.set_callback(timeout_callback)
     source.attach(context)
 
     return source.get_id()
