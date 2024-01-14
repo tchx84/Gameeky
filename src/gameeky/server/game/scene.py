@@ -102,7 +102,7 @@ class Scene:
         type_id: int,
         position: Vector,
         overrides: Optional[Description] = None,
-    ) -> int:
+    ) -> Entity:
         entity = EntityRegistry.new_from_values(
             id=self._index,
             type_id=type_id,
@@ -118,7 +118,7 @@ class Scene:
         if entity.mutable or entity.playable:
             self._mutable_entities.append(entity)
 
-        return entity.id
+        return entity
 
     def update(self, entity_id: int, action: Action, value: float) -> None:
         entity = self._entity_by_id[entity_id]
@@ -131,6 +131,7 @@ class Scene:
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)
         Entity.unregister(entity)
+        entity.shutdown()
 
         if entity.mutable is True:
             self._mutable_entities.remove(entity)
