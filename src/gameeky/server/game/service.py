@@ -21,6 +21,7 @@ from typing import Dict, Optional
 from gi.repository import Gio, GLib, GObject
 
 from .scene import Scene
+from .entity import Entity
 
 from ..network.tcp import Server as TCPServer
 from ..network.tcp import Client as TCPClient
@@ -34,6 +35,7 @@ from ...common.session import Session as CommonSession
 from ...common.scene import SceneRequest as CommonSceneRequest
 from ...common.stats import StatsRequest as CommonStatsRequest
 from ...common.message import Message as CommonMessage
+from ...common.dialogue import Dialogue as CommonDialogue
 from ...common.payload import Payload
 from ...common.errors import Error
 from ...common.config import VERSION
@@ -46,10 +48,12 @@ class Session(CommonSession):
         id: int,
         error: Optional[int],
         entity_id: int,
+        client: TCPClient,
         sequence: int = -1,
     ) -> None:
         super().__init__(id=id, error=error)
         self.entity_id = entity_id
+        self.client = client
         self.sequence = sequence
 
 
@@ -73,6 +77,7 @@ class Service(GObject.GObject):
         self._index = 0
         self._session_by_client: Dict[TCPClient, Session] = {}
         self._session_by_id: Dict[int, Session] = {}
+        self._session_by_entity_id: Dict[int, Session] = {}
 
         self.scene = Scene.new_from_description(
             Description.new_from_json(
@@ -113,7 +118,7 @@ class Service(GObject.GObject):
             )
             return
 
-        entity_id = self.scene.add(
+        entity = self.scene.add(
             request.type_id,
             position=Vector(
                 x=self.scene.spawn.x,
@@ -121,12 +126,19 @@ class Service(GObject.GObject):
                 z=self.scene.spawn.z,
             ),
         )
+        entity.connect("told", self.__on_entity_told)
 
-        session = Session(id=self._index, error=None, entity_id=entity_id)
+        session = Session(
+            id=self._index,
+            error=None,
+            entity_id=entity.id,
+            client=client,
+        )
 
         self._index += 1
         self._session_by_client[client] = session
         self._session_by_id[session.id] = session
+        self._session_by_entity_id[entity.id] = session
 
         client.send(Payload(session=session).serialize())
 
@@ -147,11 +159,16 @@ class Service(GObject.GObject):
         self.scene.remove(session.entity_id)
 
         del self._session_by_client[client]
+        del self._session_by_entity_id[session.entity_id]
         del self._session_by_id[session.id]
 
         self.emit("unregistered", session)
 
         logger.debug("Server.Service.Unregistered %s", client)
+
+    def __on_entity_told(self, entity: Entity, text: str) -> None:
+        client = self._session_by_entity_id[entity.id].client
+        client.send(Payload(dialogue=CommonDialogue(text=text)).serialize())
 
     def __on_payload_received(
         self,

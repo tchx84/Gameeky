@@ -24,9 +24,10 @@ from ..network.udp import Client as UDPClient
 from ...common.logger import logger
 from ...common.definitions import Action, EntityType
 from ...common.scene import SceneRequest
-from ...common.session import SessionRequest
+from ...common.session import Session, SessionRequest
 from ...common.stats import StatsRequest
 from ...common.message import Message
+from ...common.dialogue import Dialogue
 from ...common.payload import Payload
 from ...common.errors import Error
 from ...common.config import VERSION
@@ -38,6 +39,7 @@ class Service(GObject.GObject):
         "registered": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "scene-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "stats-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "dialogue-updated": (GObject.SignalFlags.RUN_LAST, None, (object,)),
         "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -63,25 +65,34 @@ class Service(GObject.GObject):
             context=context,
         )
 
-        self._session_manager.connect("received", self.__on_session_registered)
+        self._messages_manager.connect("received", self.__on_message_payload_received)
+        self._session_manager.connect("received", self.__on_session_payload_received)
         self._session_manager.connect("failed", self.__on_session_failed)
 
-    def __on_session_registered(self, client: TCPClient, data: bytes) -> None:
-        session = Payload.deserialize(data).session
+    def __on_session_payload_received(self, client: TCPClient, data: bytes) -> None:
+        payload = Payload.deserialize(data)
 
+        if payload.session is not None:
+            self.__on_session_registered(payload.session)
+        elif payload.dialogue is not None:
+            self.__on_dialogue_received(payload.dialogue)
+
+    def __on_session_registered(self, session: Session) -> None:
         if session.error is not None:
             logger.error(Error.describe(session.error))
             self.emit("failed")
             return
 
         self._session = session
-        self._messages_manager.connect("received", self.__on_payload_received)
         self.emit("registered", self._session)
 
     def __on_session_failed(self, client: TCPClient) -> None:
         self.emit("failed")
 
-    def __on_payload_received(
+    def __on_dialogue_received(self, dialogue: Dialogue) -> None:
+        self.emit("dialogue-updated", dialogue)
+
+    def __on_message_payload_received(
         self,
         manager: UDPClient,
         address: Gio.InetSocketAddress,

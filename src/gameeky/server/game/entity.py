@@ -23,6 +23,8 @@ import math
 from copy import deepcopy
 from typing import Dict, List, Optional, cast, TYPE_CHECKING
 
+from gi.repository import GObject, GLib
+
 if TYPE_CHECKING:
     from .scene import Scene
 
@@ -69,12 +71,22 @@ from .handlers.use import Handler as UseHandler
 from ...common.logger import logger
 from ...common.scanner import Description
 from ...common.vector import Vector
-from ...common.utils import clamp, division, element
 from ...common.definitions import Action, Direction, EntityType, State
 from ...common.entity import Entity as CommonEntity
+from ...common.utils import (
+    clamp,
+    division,
+    element,
+    remove_source_id,
+    add_timeout_source,
+)
 
 
-class Entity(CommonEntity):
+class Entity(CommonEntity, GObject.GObject):
+    __gsignals__ = {
+        "told": (GObject.SignalFlags.RUN_LAST, None, (str,)),
+    }
+
     __entity_by_name__: Dict[str, "Entity"] = {}
 
     __handler_by_action__ = {
@@ -139,7 +151,9 @@ class Entity(CommonEntity):
         *args,
         **kargs,
     ) -> None:
-        super().__init__(*args, **kargs)
+        CommonEntity.__init__(self, *args, **kargs)
+        GObject.GObject.__init__(self)
+
         self.strength = strength
         self.recovery = clamp(Recovery.MAX, Recovery.MIN, recovery)
         self.removable = removable
@@ -191,6 +205,8 @@ class Entity(CommonEntity):
                     self.actuators.append(ActuatorClass(self))
                 except Exception as e:
                     logger.error(e)
+
+        self._timeout_source_id: Optional[int] = None
 
     def _prepare(self) -> None:
         if self._handler.busy is True:
@@ -301,6 +317,21 @@ class Entity(CommonEntity):
             return True
 
         return False
+
+    def tell(self, text: str) -> None:
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
+
+        self._timeout_source_id = add_timeout_source(250, self.__on_told, (text,))
+
+    def __on_told(self, text: str) -> int:
+        self.emit("told", text)
+        self._timeout_source_id = None
+        return GLib.SOURCE_REMOVE
+
+    def shutdown(self) -> None:
+        if self._timeout_source_id is not None:
+            remove_source_id(self._timeout_source_id)
 
     @property
     def horizontally(self) -> bool:
