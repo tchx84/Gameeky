@@ -174,6 +174,7 @@ class Application(Adw.Application):
     def __on_guest_started(self, session: SessionGuest) -> None:
         self._window.scene = session.scene
         self._window.stats = session.stats
+        self._window.dialogue = session.dialogue
         self._window.switch_to_game()
 
     def __on_session_initializing(self, *args) -> None:

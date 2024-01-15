@@ -72,6 +72,7 @@ configure_file(
 gameeky_sources = [
   'gameeky/client/definitions.py',
   'gameeky/client/game/__init__.py',
+  'gameeky/client/game/dialogue.py',
   'gameeky/client/game/scene.py',
   'gameeky/client/game/service.py',
   'gameeky/client/game/stats.py',
@@ -169,6 +170,7 @@ gameeky_sources = [
   'gameeky/player/models/session_guest.py',
   'gameeky/player/models/session_host.py',
   'gameeky/player/widgets/actions_popover.py',
+  'gameeky/player/widgets/dialogue.py',
   'gameeky/player/widgets/highlight.py',
   'gameeky/player/widgets/hud.py',
   'gameeky/player/widgets/__init__.py',

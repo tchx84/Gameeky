@@ -3,3 +3,23 @@
 .icon-dropshadow {
     color: @accent_bg_color;
 }
+
+/* Dialogue */
+
+.dialogue {
+    background-color: @accent_bg_color;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.dialogue label {
+    font-size: xx-large;
+    font-weight: bold;
+    color: @accent_fg_color;
+
+}
+
+.dialogue button {
+    color: @accent_fg_color;
+}
