@@ -142,6 +142,7 @@ class Entity(CommonEntity, GObject.GObject):
         density: Density,
         target_type: EntityType,
         name: str,
+        dialogue: str,
         actuators: List[str],
         target_name: str,
         radius: int,
@@ -163,6 +164,7 @@ class Entity(CommonEntity, GObject.GObject):
         self.target_name = target_name
         self.target_type = target_type
         self.name = name
+        self.dialogue = dialogue
         self.actuators: List[Actuator] = []
         self.radius = radius
         self.rate = rate
@@ -616,6 +618,7 @@ class EntityRegistry:
             visible=description.visible,
             target_type=description.target_type,
             name=description.name,
+            dialogue=description.dialogue,
             actuators=description.actuators,
             target_name=description.target_name,
             radius=description.radius,

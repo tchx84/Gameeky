@@ -40,6 +40,7 @@ class EntitySettings(Gtk.Box):
 
     name = Gtk.Template.Child()
     target_name = Gtk.Template.Child()
+    dialogue = Gtk.Template.Child()
     stamina = Gtk.Template.Child()
     durability = Gtk.Template.Child()
     weight = Gtk.Template.Child()
@@ -98,6 +99,7 @@ class EntitySettings(Gtk.Box):
         return Description(
             name=self.name.props.text,
             target_name=self.target_name.props.text,
+            dialogue=self.dialogue.props.text,
             stamina=int(self.stamina.props.value),
             durability=int(self.durability.props.value),
             weight=int(self.weight.props.value),
@@ -121,6 +123,7 @@ class EntitySettings(Gtk.Box):
     def description(self, description: Description) -> None:
         self.name.props.text = description.name
         self.target_name.props.text = description.target_name
+        self.dialogue.props.text = description.dialogue
         self.stamina.props.value = description.stamina
         self.durability.props.value = description.durability
         self.weight.props.value = description.weight
