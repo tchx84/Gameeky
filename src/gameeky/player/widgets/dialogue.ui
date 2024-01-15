@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name dialogue.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <template class="Dialogue" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="valign">end</property>
+    <property name="visible">False</property>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="ellipsize">end</property>
+        <property name="halign">start</property>
+        <property name="hexpand">True</property>
+        <property name="justify">center</property>
+        <property name="lines">3</property>
+        <property name="valign">center</property>
+        <property name="vexpand">True</property>
+        <property name="wrap">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton">
+        <property name="halign">end</property>
+        <property name="icon-name">pan-down-symbolic</property>
+        <property name="valign">end</property>
+        <signal name="clicked" handler="on_clicked"/>
+        <style>
+          <class name="flat"/>
+        </style>
+      </object>
+    </child>
+    <style>
+      <class name="dialogue"/>
+    </style>
+  </template>
+</interface>

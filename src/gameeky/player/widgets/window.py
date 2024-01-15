@@ -23,9 +23,11 @@ from .scene import Scene as SceneWidget
 from .hud import Hud as HudWidget
 from .highlight import Highlight as HighlightWidget
 from .actions_popover import ActionsPopover
+from .dialogue import Dialogue
 
 from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
+from ...client.game.dialogue import Dialogue as DialogueModel
 
 from ...common.monitor import Monitor
 
@@ -48,10 +50,12 @@ class Window(Adw.ApplicationWindow):
         self._scene = SceneWidget()
         self._hud = HudWidget()
         self._highlight = HighlightWidget()
+        self._dialogue = Dialogue()
 
         self.overlay.add_overlay(self._scene)
         self.overlay.add_overlay(self._hud)
         self.overlay.add_overlay(self._highlight)
+        self.overlay.add_overlay(self._dialogue)
 
         self._popover = ActionsPopover(parent=self.canvas)
 
@@ -96,6 +100,14 @@ class Window(Adw.ApplicationWindow):
     @stats.setter
     def stats(self, stats: Optional[StatsModel]) -> None:
         self._hud.model = stats
+
+    @property
+    def dialogue(self) -> Optional[DialogueModel]:
+        return self._dialogue.model
+
+    @dialogue.setter
+    def dialogue(self, dialogue: Optional[DialogueModel]) -> None:
+        self._dialogue.model = dialogue
 
     @property
     def canvas(self) -> Gtk.Widget:

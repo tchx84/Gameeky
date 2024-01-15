@@ -22,6 +22,7 @@ from gi.repository import GObject, Gtk
 from ...client.game.service import Service
 from ...client.game.scene import Scene as SceneModel
 from ...client.game.stats import Stats as StatsModel
+from ...client.game.dialogue import Dialogue as DialogueModel
 from ...client.input.keyboard import Keyboard
 from ...client.input.cursor import Cursor
 from ...client.graphics.entity import EntityRegistry as EntityGraphicsRegistry
@@ -62,6 +63,7 @@ class SessionGuest(Threaded):
         self._service: Optional[Service] = None
         self._scene_model: Optional[SceneModel] = None
         self._stats_model: Optional[StatsModel] = None
+        self._dialogue_model: Optional[DialogueModel] = None
         self._keyboard: Optional[Keyboard] = None
         self._cursor: Optional[Cursor] = None
         self._sound: Optional[SceneSound] = None
@@ -81,6 +83,10 @@ class SessionGuest(Threaded):
         )
 
         self._stats_model = StatsModel(
+            service=self._service,
+        )
+
+        self._dialogue_model = DialogueModel(
             service=self._service,
         )
 
@@ -146,6 +152,8 @@ class SessionGuest(Threaded):
             self._scene_model.shutdown()
         if self._stats_model is not None:
             self._stats_model.shutdown()
+        if self._dialogue_model is not None:
+            self._dialogue_model.shutdown()
         if self._keyboard is not None:
             self._keyboard.shutdown()
         if self._cursor is not None:
@@ -164,3 +172,7 @@ class SessionGuest(Threaded):
     @property
     def stats(self) -> Optional[StatsModel]:
         return self._stats_model
+
+    @property
+    def dialogue(self) -> Optional[DialogueModel]:
+        return self._dialogue_model
