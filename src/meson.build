@@ -212,6 +212,8 @@ gameeky_sources = [
   'gameeky/server/game/actuators/propulses.py',
   'gameeky/server/game/actuators/requires.py',
   'gameeky/server/game/actuators/roams.py',
+  'gameeky/server/game/actuators/says.py',
+  'gameeky/server/game/actuators/says_i.py',
   'gameeky/server/game/actuators/spawns.py',
   'gameeky/server/game/actuators/takes.py',
   'gameeky/server/game/actuators/targets.py',
