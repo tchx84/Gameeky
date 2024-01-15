@@ -41,6 +41,7 @@ class Actuator:
         self._busy = False
         self._activated = False
         self._activated_timestamp = get_time_milliseconds()
+        self._initial_activated_timestamp = self._activated_timestamp
 
     def _seconds_since_activation(self) -> float:
         return (get_time_milliseconds() - self._activated_timestamp) / 1000
@@ -64,6 +65,13 @@ class Actuator:
 
     def activate(self) -> None:
         self._activated = True
+
+    @property
+    def ready(self) -> bool:
+        if self._activated_timestamp == self._initial_activated_timestamp:
+            return True
+
+        return self._seconds_since_activation() > self._entity.rate or self.activated
 
     @property
     def entity(self) -> Entity:
