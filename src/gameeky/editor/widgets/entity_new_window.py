@@ -91,6 +91,7 @@ class EntityNewWindow(Adw.Window):
                 default=Description(
                     name="",
                     target_name="",
+                    dialogue="",
                     stamina=0,
                     durability=0,
                     weight=0,

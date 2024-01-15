@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.17.0 -->
+<!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name entity_settings.ui -->
   <requires lib="gio" version="2.44"/>
@@ -113,6 +113,11 @@
           <object class="AdwEntryRow" id="target_name">
             <property name="title" translatable="yes">Target Name</property>
             <signal name="changed" handler="on_changed"/>
+          </object>
+        </child>
+        <child>
+          <object class="AdwEntryRow" id="dialogue">
+            <property name="title" translatable="yes">Dialogue</property>
           </object>
         </child>
         <child>
