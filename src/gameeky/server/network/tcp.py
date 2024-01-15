@@ -21,7 +21,7 @@ from typing import Any, Optional
 from gi.repository import Gio, GLib, GObject
 
 from ...common.logger import logger
-from ...common.utils import add_idle_source
+from ...common.utils import add_idle_source, find_context
 from ...common.definitions import MAX_TCP_BYTES
 
 
@@ -31,16 +31,17 @@ class Client(GObject.GObject):
     def __init__(self, server: "Server", connection: Gio.SocketConnection) -> None:
         super().__init__()
 
+        self._context = find_context()
         self._acknowledged = False
         self._server = server
         self._connection = connection
         self._input_stream = connection.get_input_stream()
         self._output_stream = connection.get_output_stream()
 
-    def __str__(self) -> str:
-        return self._connection.get_remote_address().to_string()
-
     def send(self, data: bytes) -> None:
+        add_idle_source(self.do_send, (data,), context=self._context)
+
+    def do_send(self, data: bytes) -> None:
         if self._server.shut is True:
             return
 
