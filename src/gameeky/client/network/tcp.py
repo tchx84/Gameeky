@@ -21,7 +21,7 @@ from typing import Any, Optional
 from gi.repository import GLib, Gio, GObject
 
 from ...common.logger import logger
-from ...common.definitions import MAX_TCP_BYTES, DEFAULT_TIMEOUT
+from ...common.definitions import MAX_TCP_BYTES
 
 
 class Client(GObject.GObject):
@@ -36,7 +36,6 @@ class Client(GObject.GObject):
         super().__init__()
 
         self._client = Gio.SocketClient.new()
-        self._client.set_timeout(DEFAULT_TIMEOUT)
         self._connection = self._client.connect_to_host(address, port, None)
 
         self._input_stream = self._connection.get_input_stream()
@@ -48,9 +47,9 @@ class Client(GObject.GObject):
 
         self._shut = False
 
-    def __on_data_received_db(self, data: Optional[Any] = None) -> None:
+    def __on_data_received_db(self, data: Optional[Any] = None) -> int:
         if self.shut is True:
-            return
+            return GLib.SOURCE_REMOVE
 
         try:
             raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
@@ -58,7 +57,14 @@ class Client(GObject.GObject):
             logger.error(e)
             self.emit("failed")
         else:
-            self.emit("received", raw.get_data())
+            data = raw.get_data()
+
+            if not data:
+                return GLib.SOURCE_REMOVE
+
+            self.emit("received", data)
+
+        return GLib.SOURCE_CONTINUE
 
     def send(self, data: bytes) -> None:
         if self.shut is True:
