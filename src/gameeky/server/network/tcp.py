@@ -21,6 +21,7 @@ from typing import Any, Optional
 from gi.repository import Gio, GLib, GObject
 
 from ...common.logger import logger
+from ...common.utils import add_idle_source
 from ...common.definitions import MAX_TCP_BYTES
 
 
@@ -77,6 +78,8 @@ class Server(GObject.GObject):
     def __init__(self, port: int, clients: int, context: GLib.MainContext) -> None:
         super().__init__()
 
+        self._context = context
+
         self._service = Gio.ThreadedSocketService.new(clients)
         self._service.add_inet_port(port)
         self._service.connect("run", self.__on_session_started_cb)
@@ -94,7 +97,7 @@ class Server(GObject.GObject):
         client.run()
 
     def emit(self, *args) -> None:
-        GLib.idle_add(GObject.GObject.emit, self, *args)
+        add_idle_source(GObject.GObject.emit, (self,) + args, context=self._context)
 
     def shutdown(self) -> None:
         self._service.stop()
