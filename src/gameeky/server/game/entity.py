@@ -57,6 +57,8 @@ from .actuators.collapses_t import Actuator as CollapsesTActuator
 from .actuators.affects import Actuator as AffectsActuator
 from .actuators.affects_i import Actuator as AffectsIActuator
 from .actuators.aggroes import Actuator as AggroesActuator
+from .actuators.says import Actuator as SaysActuator
+from .actuators.says_i import Actuator as SaysIActuator
 
 from .handlers.base import Handler
 from .handlers.destroy import Handler as DestroyHandler
@@ -127,6 +129,8 @@ class Entity(CommonEntity, GObject.GObject):
         AffectsActuator.name: AffectsActuator,
         AffectsIActuator.name: AffectsIActuator,
         AggroesActuator.name: AggroesActuator,
+        SaysActuator.name: SaysActuator,
+        SaysIActuator.name: SaysIActuator,
     }
 
     def __init__(
