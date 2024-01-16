@@ -136,6 +136,7 @@ gameeky_sources = [
   'gameeky/editor/widgets/animation_row.py',
   'gameeky/editor/widgets/animation_settings.py',
   'gameeky/editor/widgets/animations_settings.py',
+  'gameeky/editor/widgets/confirmation_save_window.py',
   'gameeky/editor/widgets/confirmation_window.py',
   'gameeky/editor/widgets/dropdown_helper.py',
   'gameeky/editor/widgets/entity_new_window.py',
