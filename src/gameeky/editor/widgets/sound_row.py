@@ -32,6 +32,7 @@ class SoundRow(Adw.PreferencesGroup):
     __gtype_name__ = "SoundRow"
 
     __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
         "cloned": (GObject.SignalFlags.RUN_LAST, None, ()),
         "removed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
@@ -57,6 +58,7 @@ class SoundRow(Adw.PreferencesGroup):
 
     def __on_changed(self, *args) -> None:
         self._update_description()
+        self.emit("changed")
 
     @Gtk.Template.Callback("on_remove_clicked")
     def __on_remove_clicked(self, button: Gtk.Button) -> None:

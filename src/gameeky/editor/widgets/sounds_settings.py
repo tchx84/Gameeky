@@ -18,7 +18,7 @@
 
 from typing import Optional
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from .sound_row import SoundRow
 
@@ -29,6 +29,10 @@ from ...common.scanner import Description
 class SoundsSettings(Gtk.Box):
     __gtype_name__ = "SoundsSettings"
 
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
     sounds_box = Gtk.Template.Child()
 
     def _add(
@@ -38,6 +42,7 @@ class SoundsSettings(Gtk.Box):
         prepend: bool = False,
     ) -> None:
         row = SoundRow()
+        row.connect("changed", self.__on_changed)
         row.connect("cloned", self.__on_cloned)
         row.connect("removed", self.__on_removed)
 
@@ -51,12 +56,20 @@ class SoundsSettings(Gtk.Box):
         else:
             self.sounds_box.append(row)
 
+        self.emit("changed")
+
     def _remove(self, row: SoundRow) -> None:
         row.shutdown()
+        row.disconnect_by_func(self.__on_changed)
         row.disconnect_by_func(self.__on_cloned)
         row.disconnect_by_func(self.__on_removed)
 
         self.sounds_box.remove(row)
+
+        self.emit("changed")
+
+    def __on_changed(self, row: SoundRow) -> None:
+        self.emit("changed")
 
     def __on_removed(self, row: SoundRow) -> None:
         self._remove(row)
