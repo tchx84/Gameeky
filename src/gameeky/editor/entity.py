@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 import sys
 import gi
 
@@ -58,6 +57,7 @@ class Application(Adw.Application):
 
         self._monitor = Monitor.default()
         self._project_path: Optional[str] = None
+        self._entity_path: Optional[str] = None
         self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
 
@@ -94,6 +94,7 @@ class Application(Adw.Application):
             return
 
         self._project_path = dialog.project_path
+        self._entity_path = dialog.entity_path
         self._description = description
 
         self._start_session()
@@ -121,6 +122,16 @@ class Application(Adw.Application):
         self._window.description = self._description
 
     def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        if self._entity_path is None:
+            self.__on_save_as(action, data)
+        else:
+            self._do_save(self._entity_path)
+
+    def __on_save_as(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
         folder = get_project_folder("entities")
 
         json_filter = Gtk.FileFilter()
@@ -143,7 +154,10 @@ class Application(Adw.Application):
             logger.error(e)
             return
 
-        file = Gio.File.new_for_path(file.get_path())
+        self._do_save(file.get_path())
+
+    def _do_save(self, path: str) -> None:
+        file = Gio.File.new_for_path(path)
         file.replace_contents(
             contents=self._window.description.to_json().encode("UTF-8"),
             etag=None,
@@ -151,6 +165,8 @@ class Application(Adw.Application):
             flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
             cancellable=None,
         )
+
+        self._entity_path = path
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
@@ -164,6 +180,7 @@ class Application(Adw.Application):
         if (entity_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
             entity_path = bytearray_to_string(entity_path[-1])
 
+            self._entity_path = entity_path
             self._project_path = find_project_path(entity_path)
             self._description = Description.new_from_json(entity_path)
 
@@ -199,6 +216,10 @@ class Application(Adw.Application):
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
         self.add_action(save_action)
+
+        save_as_action = Gio.SimpleAction.new("save_as", None)
+        save_as_action.connect("activate", self.__on_save_as)
+        self.add_action(save_as_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)

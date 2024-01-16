@@ -80,6 +80,10 @@ class EntityNewWindow(Adw.Window):
             self.project.props.text = file.get_path()
 
     @property
+    def entity_path(self) -> None:
+        return None
+
+    @property
     def project_path(self) -> None:
         return self.project.props.text
 
