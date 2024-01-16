@@ -31,6 +31,7 @@ from gi.repository import Gio, Adw, Gdk, GLib, Gtk
 from .widgets.entity_window import EntityWindow
 from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
+from .widgets.confirmation_save_window import ConfirmationSaveWindow
 from .models.entity_session import Session as SessionModel
 
 from ..common.logger import logger
@@ -60,6 +61,7 @@ class Application(Adw.Application):
         self._entity_path: Optional[str] = None
         self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
+        self._pending_changes = False
 
         self.add_main_option(
             Command.PROJECT_PATH,
@@ -103,6 +105,9 @@ class Application(Adw.Application):
         self._description = self._window.description
         self._start_session()
 
+    def __on_changed(self, window: EntityWindow) -> None:
+        self._pending_changes = True
+
     def _start_session(self) -> None:
         if self._project_path is None:
             return
@@ -121,17 +126,13 @@ class Application(Adw.Application):
 
         self._window.description = self._description
 
-    def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+    def __on_save(self, *args) -> None:
         if self._entity_path is None:
-            self.__on_save_as(action, data)
+            self.__on_save_as()
         else:
             self._do_save(self._entity_path)
 
-    def __on_save_as(
-        self,
-        action: Gio.SimpleAction,
-        data: Optional[Any] = None,
-    ) -> None:
+    def __on_save_as(self, *args) -> None:
         folder = get_project_folder("entities")
 
         json_filter = Gtk.FileFilter()
@@ -167,9 +168,24 @@ class Application(Adw.Application):
         )
 
         self._entity_path = path
+        self._pending_changes = False
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def __on_close_requested(self, window: EntityWindow) -> bool:
+        if not self._pending_changes:
+            return False
+
+        dialog = ConfirmationSaveWindow(transient_for=self._window)
+        dialog.connect("saved", self.__on_save)
+        dialog.connect("discarded", self.__on_discarded)
+        dialog.present()
+
+        return True
+
+    def __on_discarded(self, dialog: ConfirmationSaveWindow) -> None:
+        self.quit()
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
@@ -198,6 +214,8 @@ class Application(Adw.Application):
 
         self._window = EntityWindow(application=self)
         self._window.connect("reload", self.__on_reload)
+        self._window.connect("changed", self.__on_changed)
+        self._window.connect("close-request", self.__on_close_requested)
         self._window.present()
 
         self._start_session()

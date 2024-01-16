@@ -34,6 +34,7 @@ class EntityWindow(Adw.ApplicationWindow):
 
     __gsignals__ = {
         "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     game_box = Gtk.Template.Child()
@@ -53,7 +54,15 @@ class EntityWindow(Adw.ApplicationWindow):
         self.graphics_box.append(self._animations_settings)
         self.sound_box.append(self._sounds_settings)
 
+        self._global_settings.connect("changed", self.__on_changed)
+        self._entity_settings.connect("changed", self.__on_changed)
+        self._animations_settings.connect("changed", self.__on_changed)
+        self._sounds_settings.connect("changed", self.__on_changed)
+
         Monitor.default().connect("changed", self.__on_monitor_changed)
+
+    def __on_changed(self, *args) -> None:
+        self.emit("changed")
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
         self.banner.props.revealed = True

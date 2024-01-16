@@ -18,7 +18,7 @@
 
 from typing import Dict, Optional
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from .animation_row import AnimationRow
 
@@ -28,6 +28,10 @@ from ...common.scanner import Description
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/animations_settings.ui")  # fmt: skip
 class AnimationsSettings(Gtk.Box):
     __gtype_name__ = "AnimationsSettings"
+
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
 
     button = Gtk.Template.Child()
     animations_box = Gtk.Template.Child()
@@ -40,6 +44,7 @@ class AnimationsSettings(Gtk.Box):
         prepend: bool = False,
     ) -> None:
         row = AnimationRow()
+        row.connect("changed", self.__on_changed)
         row.connect("cloned", self.__on_cloned)
         row.connect("removed", self.__on_removed)
 
@@ -55,12 +60,20 @@ class AnimationsSettings(Gtk.Box):
         else:
             self.animations_box.append(row)
 
+        self.emit("changed")
+
     def _remove(self, row: AnimationRow) -> None:
         row.shutdown()
+        row.disconnect_by_func(self.__on_changed)
         row.disconnect_by_func(self.__on_cloned)
         row.disconnect_by_func(self.__on_removed)
 
         self.animations_box.remove(row)
+
+        self.emit("changed")
+
+    def __on_changed(self, row: AnimationRow) -> None:
+        self.emit("changed")
 
     def __on_removed(self, row: AnimationRow) -> None:
         self._remove(row)

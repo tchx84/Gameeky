@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, GObject
 
 from ...common.scanner import Description
 
@@ -25,7 +25,15 @@ from ...common.scanner import Description
 class GlobalSettings(Adw.PreferencesGroup):
     __gtype_name__ = "GlobalSettings"
 
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
+
     identifier = Gtk.Template.Child()
+
+    @Gtk.Template.Callback("on_changed")
+    def __on_changed(self, *args) -> None:
+        self.emit("changed")
 
     @property
     def description(self) -> Description:
