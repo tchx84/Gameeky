@@ -18,7 +18,7 @@
 
 from typing import Optional
 
-from gi.repository import Gtk, Gio, Adw, GObject, GLib
+from gi.repository import Gtk, Gio, Adw, GObject
 
 from .animation import Animation
 from .tileset_window import TilesetWindow
@@ -26,7 +26,6 @@ from .tileset_window import TilesetWindow
 from ...common.logger import logger
 from ...common.utils import get_project_folder, get_relative_path
 from ...common.scanner import Description
-from ...common.definitions import DEFAULT_TIMEOUT
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/animation_settings.ui")  # fmt: skip
@@ -57,7 +56,6 @@ class AnimationSettings(Adw.PreferencesGroup):
 
     def __init__(self) -> None:
         super().__init__()
-        self._handler_id: Optional[int] = None
         self._tileset: Optional[TilesetWindow] = None
 
         self._animation = Animation()
@@ -119,21 +117,9 @@ class AnimationSettings(Adw.PreferencesGroup):
 
     @Gtk.Template.Callback("on_animation_changed")
     def __on_animation_changed(self, *args) -> None:
-        if self._handler_id is not None:
-            GLib.Source.remove(self._handler_id)
-
-        self._handler_id = GLib.timeout_add_seconds(
-            DEFAULT_TIMEOUT / 2,
-            self.__on_animation_change_delayed,
-        )
-
-    def __on_animation_change_delayed(self) -> int:
         self._animation.update(self.description)
         self._update_tileset()
-
         self.emit("changed")
-        self._handler_id = None
-        return GLib.SOURCE_REMOVE
 
     @property
     def description(self) -> Description:

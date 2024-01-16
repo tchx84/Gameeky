@@ -16,9 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from typing import Optional
-
-from gi.repository import GLib, Gtk, GObject
+from gi.repository import Gtk, GObject
 
 from .actuators_row import ActuatorsRow
 from .dropdown_helper import DropDownHelper
@@ -27,7 +25,6 @@ from ..models.direction_row import DirectionRow as DirectionRowModel
 from ..models.state_row import StateRow as StateRowModel
 
 from ...common.scanner import Description
-from ...common.definitions import DEFAULT_TIMEOUT
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/entity_settings.ui")  # fmt: skip
@@ -61,7 +58,6 @@ class EntitySettings(Gtk.Box):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._handler_id: Optional[int] = None
 
         self._actuators = ActuatorsRow()
         self._actuators.connect("changed", self.__on_changed)
@@ -81,18 +77,7 @@ class EntitySettings(Gtk.Box):
 
     @Gtk.Template.Callback("on_changed")
     def __on_changed(self, *args) -> None:
-        if self._handler_id is not None:
-            GLib.Source.remove(self._handler_id)
-
-        self._handler_id = GLib.timeout_add_seconds(
-            DEFAULT_TIMEOUT / 2,
-            self.__on_change_delayed,
-        )
-
-    def __on_change_delayed(self) -> int:
         self.emit("changed")
-        self._handler_id = None
-        return GLib.SOURCE_REMOVE
 
     @property
     def description(self) -> Description:

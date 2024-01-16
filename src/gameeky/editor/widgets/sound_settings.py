@@ -16,15 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from typing import Optional
-
-from gi.repository import Adw, GLib, Gtk, GObject
+from gi.repository import Adw, Gtk, GObject
 
 from .paths_row import PathsRow
 from .sound_player import SoundPlayer
 
 from ...common.scanner import Description
-from ...common.definitions import DEFAULT_TIMEOUT
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/sound_settings.ui")  # fmt: skip
@@ -42,7 +39,6 @@ class SoundSettings(Adw.PreferencesGroup):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._handler_id: Optional[int] = None
 
         self._paths = PathsRow()
         self._paths.connect("changed", self.__on_changed)
@@ -53,20 +49,8 @@ class SoundSettings(Adw.PreferencesGroup):
 
     @Gtk.Template.Callback("on_changed")
     def __on_changed(self, *args) -> None:
-        if self._handler_id is not None:
-            GLib.Source.remove(self._handler_id)
-
-        self._handler_id = GLib.timeout_add_seconds(
-            DEFAULT_TIMEOUT / 2,
-            self.__on_change_delayed,
-        )
-
-    def __on_change_delayed(self) -> int:
         self._preview.update(self.description)
-
         self.emit("changed")
-        self._handler_id = None
-        return GLib.SOURCE_REMOVE
 
     @property
     def description(self) -> Description:
