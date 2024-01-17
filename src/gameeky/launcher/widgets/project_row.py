@@ -47,7 +47,10 @@ class ProjectRow(Gtk.FlowBoxChild):
         return os.path.join(get_projects_path(), self.title.props.label, *path)
 
     def _launch(self, command: str, filename: str) -> None:
-        launch(command, f"--project_path={self._get_project_path()} {filename}")
+        launch(
+            command,
+            f"--project_path={self._get_project_path()} {self._get_project_path(filename)}",
+        )
 
     def _update_button(self) -> None:
         self.play.props.sensitive = valid_file(self._get_project_path(DEFAULT_SCENE))
