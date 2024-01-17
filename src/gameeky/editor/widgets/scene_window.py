@@ -48,6 +48,7 @@ class SceneWindow(Adw.ApplicationWindow):
     __gtype_name__ = "SceneWindow"
 
     __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
         "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -109,6 +110,8 @@ class SceneWindow(Adw.ApplicationWindow):
 
         self._monitor_ignored = False
         Monitor.default().connect("changed", self.__on_monitor_changed)
+
+        self._listen_changes()
 
     def __on_entity_deleted(
         self, popover: SceneEntityPopover, row: EntityRowModel
@@ -228,6 +231,15 @@ class SceneWindow(Adw.ApplicationWindow):
         )
         editor.present()
 
+    def _listen_changes(self) -> None:
+        self._scene_model.connect("updated", self.__on_scene_changed)
+
+    def _ignore_changes(self) -> None:
+        self._scene_model.disconnect_by_func(self.__on_scene_changed)
+
+    def __on_scene_changed(self, scene: SceneModel) -> None:
+        self.emit("changed")
+
     def register(self, description: Description) -> None:
         self._model.append(
             EntityRowModel(
@@ -283,6 +295,8 @@ class SceneWindow(Adw.ApplicationWindow):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._ignore_changes()
+
         self._scene_model.description = description
 
         self.overlay.props.visible = True
@@ -297,3 +311,5 @@ class SceneWindow(Adw.ApplicationWindow):
         self._scene_view.scale = 1.0
 
         self.scene_page.props.title = self._scene_model.name
+
+        self._listen_changes()
