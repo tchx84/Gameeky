@@ -4,7 +4,7 @@
   <!-- interface-name confirmation_discard_window.ui -->
   <requires lib="libadwaita" version="1.2"/>
   <template class="ConfirmationSaveWindow" parent="AdwMessageDialog">
-    <property name="body" translatable="yes">Do you want to &lt;b&gt;save&lt;/b&gt; changes?</property>
+    <property name="body" translatable="yes">There are unsaved changes. Changes which are not saved will be permanently lost.</property>
     <property name="body-use-markup">True</property>
     <property name="close-response">cancel</property>
     <property name="default-response">discard</property>
