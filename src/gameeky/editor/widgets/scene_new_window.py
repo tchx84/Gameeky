@@ -73,5 +73,9 @@ class SceneNewWindow(Adw.Window):
         return self._scene_settings.project_path
 
     @property
+    def scene_path(self) -> None:
+        return None
+
+    @property
     def description(self) -> Description:
         return self._scene_settings.description
