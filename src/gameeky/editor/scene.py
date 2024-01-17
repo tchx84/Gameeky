@@ -32,6 +32,7 @@ from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
 from .widgets.scene_edit_window import SceneEditWindow
+from .widgets.confirmation_save_window import ConfirmationSaveWindow
 from .models.scene import Scene as SceneModel
 from .models.scene_session import Session as SessionModel
 
@@ -61,6 +62,7 @@ class Application(Adw.Application):
         self._project_path: Optional[str] = None
         self._scene_path: Optional[str] = None
         self._description: Optional[Description] = None
+        self._pending_changes = False
 
         self.add_main_option(
             Command.PROJECT_PATH,
@@ -108,6 +110,9 @@ class Application(Adw.Application):
     def _on_reload(self, window: SceneWindow) -> None:
         self._description = self._window.description
         self._start_session()
+
+    def _on_changed(self, window: SceneWindow) -> None:
+        self._pending_changes = True
 
     def _start_session(self) -> None:
         if self._project_path is None:
@@ -178,9 +183,24 @@ class Application(Adw.Application):
             cancellable=None,
         )
         self._scene_path = path
+        self._pending_changes = False
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def __on_close_requested(self, window: SceneWindow) -> bool:
+        if not self._pending_changes:
+            return False
+
+        dialog = ConfirmationSaveWindow(transient_for=self._window)
+        dialog.connect("saved", self.__on_save)
+        dialog.connect("discarded", self.__on_discarded)
+        dialog.present()
+
+        return True
+
+    def __on_discarded(self, dialog: ConfirmationSaveWindow) -> None:
+        self.quit()
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
@@ -209,6 +229,8 @@ class Application(Adw.Application):
 
         self._window = SceneWindow(application=self)
         self._window.connect("reload", self._on_reload)
+        self._window.connect("changed", self._on_changed)
+        self._window.connect("close-request", self.__on_close_requested)
         self._window.present()
 
         self._start_session()
