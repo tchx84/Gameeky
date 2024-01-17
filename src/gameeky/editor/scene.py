@@ -59,6 +59,7 @@ class Application(Adw.Application):
 
         self._monitor = Monitor.default()
         self._project_path: Optional[str] = None
+        self._scene_path: Optional[str] = None
         self._description: Optional[Description] = None
 
         self.add_main_option(
@@ -100,6 +101,7 @@ class Application(Adw.Application):
             return
 
         self._project_path = dialog.project_path
+        self._scene_path = dialog.scene_path
         self._description = description
         self._start_session()
 
@@ -136,7 +138,13 @@ class Application(Adw.Application):
         if self._description is not None:
             self._window.description = self._description
 
-    def __on_save(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+    def __on_save(self, *args) -> None:
+        if self._scene_path is None:
+            self.__on_save_as()
+        else:
+            self._do_save(self._scene_path)
+
+    def __on_save_as(self, *args) -> None:
         folder = get_project_folder("scenes")
 
         json_filter = Gtk.FileFilter()
@@ -157,9 +165,11 @@ class Application(Adw.Application):
             file = dialog.save_finish(result)
         except Exception as e:
             logger.error(e)
-            return
+        else:
+            self._do_save(file.get_path())
 
-        file = Gio.File.new_for_path(file.get_path())
+    def _do_save(self, path) -> None:
+        file = Gio.File.new_for_path(path)
         file.replace_contents(
             contents=self._window.description.to_json().encode("UTF-8"),
             etag=None,
@@ -167,6 +177,7 @@ class Application(Adw.Application):
             flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
             cancellable=None,
         )
+        self._scene_path = path
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
@@ -181,6 +192,7 @@ class Application(Adw.Application):
             scene_path = bytearray_to_string(scene_path[-1])
 
             self._project_path = find_project_path(scene_path)
+            self._scene_path = scene_path
             self._description = SceneModel.new_from_file(self._project_path, scene_path)
 
         self.activate()
@@ -219,6 +231,10 @@ class Application(Adw.Application):
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
         self.add_action(save_action)
+
+        save_as_action = Gio.SimpleAction.new("save_as", None)
+        save_as_action.connect("activate", self.__on_save_as)
+        self.add_action(save_as_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)
