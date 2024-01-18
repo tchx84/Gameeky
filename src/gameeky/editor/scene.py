@@ -93,10 +93,17 @@ class Application(Adw.Application):
         dialog.present()
 
     def __on_edit(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
-        dialog = SceneEditWindow(transient_for=self._window)
-        dialog.connect("done", self.__on_done)
+        dialog = SceneEditWindow(
+            transient_for=self._window,
+            scene_path=self._scene_path,
+        )
+        dialog.connect("done", self.__on_edit_done)
         dialog.description = self._window.description
         dialog.present()
+
+    def __on_edit_done(self, dialog: SceneEditWindow) -> None:
+        self._pending_changes = True
+        self.__on_done(dialog)
 
     def __on_done(self, dialog: SceneNewWindow) -> None:
         if (description := dialog.description) is None:
