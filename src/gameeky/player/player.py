@@ -122,6 +122,7 @@ class Application(Adw.Application):
     def _shutdown_guest(self) -> None:
         self._window.scene = None
         self._window.stats = None
+        self._window.dialogue = None
 
         if self._session_guest is not None:
             self._session_guest.shutdown()
