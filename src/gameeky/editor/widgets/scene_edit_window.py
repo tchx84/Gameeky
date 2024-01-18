@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from typing import Optional
+
 from gi.repository import Gtk, Adw, GObject
 
 from .scene_settings import SceneSettings
@@ -35,8 +37,9 @@ class SceneEditWindow(Adw.Window):
     toast = Gtk.Template.Child()
     content = Gtk.Template.Child()
 
-    def __init__(self, *args, **kargs) -> None:
+    def __init__(self, scene_path: Optional[str], *args, **kargs) -> None:
         super().__init__(*args, **kargs)
+        self._scene_path = scene_path
         self._scene_settings = SceneSettings()
         self.content.props.child = self._scene_settings
 
@@ -71,6 +74,10 @@ class SceneEditWindow(Adw.Window):
     @property
     def project_path(self) -> None:
         return self._scene_settings.project_path
+
+    @property
+    def scene_path(self) -> Optional[str]:
+        return self._scene_path
 
     @property
     def description(self) -> Description:
