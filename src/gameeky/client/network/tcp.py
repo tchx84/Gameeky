@@ -32,11 +32,18 @@ class Client(GObject.GObject):
         "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
-    def __init__(self, address: str, port: int, context: GLib.MainContext) -> None:
+    def __init__(
+        self,
+        address: str,
+        port: int,
+        context: GLib.MainContext,
+        graceful: bool,
+    ) -> None:
         super().__init__()
 
         self._client = Gio.SocketClient.new()
         self._connection = self._client.connect_to_host(address, port, None)
+        self._connection.set_graceful_disconnect(graceful)
 
         self._input_stream = self._connection.get_input_stream()
         self._output_stream = self._connection.get_output_stream()
