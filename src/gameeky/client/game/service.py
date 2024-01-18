@@ -49,6 +49,7 @@ class Service(GObject.GObject):
         session_port: int,
         messages_port: int,
         context: GLib.MainContext,
+        graceful=True,
     ) -> None:
         super().__init__()
 
@@ -58,6 +59,7 @@ class Service(GObject.GObject):
             address=address,
             port=session_port,
             context=context,
+            graceful=graceful,
         )
         self._messages_manager = UDPClient(
             address=address,
