@@ -32,8 +32,8 @@ from ....common.utils import get_time_milliseconds, valid_file
 
 class Actuator:
     name = "base"
-    interactable = True
-    activatable = True
+    interactable = False
+    activatable = False
 
     def __init__(self, entity: Entity) -> None:
         self._entity = entity
