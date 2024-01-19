@@ -87,6 +87,7 @@ def test_client_create():
         session_port=DEFAULT_SESSION_PORT,
         messages_port=DEFAULT_MESSAGES_PORT,
         context=context,
+        graceful=False,
     )
 
     update()
