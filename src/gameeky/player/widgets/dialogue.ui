@@ -20,7 +20,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkButton">
+      <object class="GtkButton" id="button">
         <property name="halign">end</property>
         <property name="icon-name">pan-down-symbolic</property>
         <property name="valign">end</property>

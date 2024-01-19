@@ -28,6 +28,7 @@ class Dialogue(Gtk.Box):
     __gtype_name__ = "Dialogue"
 
     label = Gtk.Template.Child()
+    button = Gtk.Template.Child()
 
     def __init__(self) -> None:
         super().__init__()
@@ -37,6 +38,7 @@ class Dialogue(Gtk.Box):
     def __on_updated(self, model: DialogueModel) -> None:
         self.label.props.label = model.text
         self.props.visible = True
+        self.button.grab_focus()
 
     @Gtk.Template.Callback("on_clicked")
     def __on_activated(self, button: Gtk.Button) -> None:
