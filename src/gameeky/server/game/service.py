@@ -125,6 +125,9 @@ class Service(GObject.GObject):
                 y=self.scene.spawn.y,
                 z=self.scene.spawn.z,
             ),
+            overrides=Description(
+                name=request.username,
+            ),
         )
         entity.connect("told", self.__on_entity_told)
 
