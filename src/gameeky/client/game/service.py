@@ -112,6 +112,7 @@ class Service(GObject.GObject):
                     type_id=EntityType.PLAYER,
                     version=VERSION,
                     project=get_project_name(),
+                    username=GLib.get_user_name(),
                 )
             ).serialize()
         )
