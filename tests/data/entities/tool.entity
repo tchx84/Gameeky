@@ -46,5 +46,6 @@
     "id": 3,
     "sound": {
         "states": []
-    }
+    },
+    "version": "0.1.0"
 }

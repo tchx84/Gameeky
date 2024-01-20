@@ -22,6 +22,7 @@ from ...common.logger import logger
 from ...common.utils import get_project_path, get_project_folder, valid_project
 from ...common.scanner import Description
 from ...common.definitions import Direction, State
+from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/entity_new_window.ui")  # fmt: skip
@@ -91,6 +92,7 @@ class EntityNewWindow(Adw.Window):
     def description(self) -> Description:
         return Description(
             id=1,
+            version=VERSION,
             game=Description(
                 default=Description(
                     name="",
