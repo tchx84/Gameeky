@@ -30,6 +30,7 @@ from ...common.scanner import Description
 from ...common.vector import Vector
 from ...common.definitions import DayTime, TILES_X, TILES_Y
 from ...common.utils import valid_file
+from ...common.config import VERSION
 
 from ...server.game.partition import SpatialPartition
 
@@ -199,6 +200,7 @@ class Scene(CommonScene, GObject.GObject):
     def description(self) -> Description:
         return Description(
             name=self.name,
+            version=VERSION,
             width=self.width,
             height=self.height,
             spawn=Description(

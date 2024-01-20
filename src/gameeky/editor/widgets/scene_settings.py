@@ -28,6 +28,7 @@ from ...common.logger import logger
 from ...common.utils import get_project_path, get_project_folder, clamp
 from ...common.scanner import Description
 from ...common.vector import Vector
+from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/scene_settings.ui")  # fmt: skip
@@ -94,6 +95,7 @@ class SceneSettings(Adw.PreferencesGroup):
 
         return Description(
             name=self.name.props.text,
+            version=VERSION,
             width=width,
             height=height,
             spawn=self._spawn,

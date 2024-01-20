@@ -19,6 +19,7 @@
 from gi.repository import Gtk, Adw, GObject
 
 from ...common.scanner import Description
+from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/global_settings.ui")  # fmt: skip
@@ -39,6 +40,7 @@ class GlobalSettings(Adw.PreferencesGroup):
     def description(self) -> Description:
         return Description(
             id=int(self.identifier.props.value),
+            version=VERSION,
             game=Description(
                 default=None,
             ),
