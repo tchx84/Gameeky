@@ -23,6 +23,8 @@ from gi.repository import GObject
 from ...common.scanner import Description
 from ...common.entity import Entity as CommonEntity
 from ...common.definitions import Direction, State
+from ...common.config import VERSION
+
 from ...server.game.entity import EntityRegistry
 
 
@@ -101,4 +103,42 @@ class Entity(CommonEntity, GObject.GObject):
                 z=self.position.z,
             ),
             overrides=self.delta,
+        )
+
+    @classmethod
+    def new_description(self) -> Description:
+        return Description(
+            id=1,
+            version=VERSION,
+            game=Description(
+                default=Description(
+                    name="",
+                    target_name="",
+                    dialogue="",
+                    stamina=0,
+                    durability=0,
+                    weight=0,
+                    strength=0,
+                    target_type=0,
+                    radius=0,
+                    rate=0,
+                    recovery=0,
+                    density=0,
+                    luminance=0,
+                    removable=False,
+                    takeable=False,
+                    usable=False,
+                    visible=True,
+                    direction=Direction.SOUTH.name.lower(),
+                    state=State.IDLING.name.lower(),
+                    actuators=[],
+                ),
+            ),
+            graphics=Description(
+                default=None,
+                states=[],
+            ),
+            sound=Description(
+                states=[],
+            ),
         )

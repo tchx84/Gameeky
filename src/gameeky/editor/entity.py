@@ -32,6 +32,7 @@ from .widgets.entity_window import EntityWindow
 from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
 from .widgets.confirmation_save_window import ConfirmationSaveWindow
+from .models.entity import Entity as EntityModel
 from .models.entity_session import Session as SessionModel
 
 from ..common.logger import logger
@@ -59,8 +60,8 @@ class Application(Adw.Application):
         self._monitor = Monitor.default()
         self._project_path: Optional[str] = None
         self._entity_path: Optional[str] = None
-        self._description: Optional[Description] = None
         self._session_model: Optional[SessionModel] = None
+        self._description = EntityModel.new_description()
         self._pending_changes = False
 
         self.add_main_option(
@@ -111,8 +112,6 @@ class Application(Adw.Application):
     def _start_session(self) -> None:
         if self._project_path is None:
             return
-        if self._description is None:
-            return
 
         set_project_path(self._project_path)
 
@@ -121,9 +120,6 @@ class Application(Adw.Application):
         self._session_model.scan()
 
     def __on_session_done(self, session: SessionModel) -> None:
-        if self._description is None:
-            return
-
         self._window.description = self._description
 
     def __on_save(self, *args) -> None:
@@ -191,6 +187,7 @@ class Application(Adw.Application):
         options = command_line.get_options_dict().end().unpack()
 
         if (project_path := options.get(Command.PROJECT_PATH, None)) is not None:
+            self._project_path = project_path
             set_project_path(project_path)
 
         if (entity_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
