@@ -176,6 +176,13 @@ def launch(command: str, arguments: str) -> None:
     GLib.spawn_command_line_async(f"{GLib.find_program_in_path(command)} {arguments}")
 
 
+def quote(string: str) -> str:
+    if not string:
+        return string
+    else:
+        return f"'{string}'"
+
+
 def clamp(maximum, minimum, value):
     return min(max(minimum, value), maximum)
 
