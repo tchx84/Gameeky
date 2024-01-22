@@ -24,6 +24,7 @@ from ...common.utils import launch, quote, get_projects_path, valid_file
 from ...common.monitor import Monitor
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
+from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/project_row.ui")
@@ -79,6 +80,7 @@ class ProjectRow(Gtk.FlowBoxChild):
         return Description(
             name=self.title.props.label,
             description=self.subtitle.props.label,
+            version=VERSION,
         )
 
     @description.setter
