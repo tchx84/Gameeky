@@ -186,7 +186,7 @@ class EntityRegistry:
             pixbuf = pixbuf.new_subpixbuf(
                 crop_x,
                 0,
-                pixbuf.get_width() - crop_x,
+                pixbuf.get_width() - (crop_x * 2),
                 pixbuf.get_height(),
             )
         if crop_y > 0:
@@ -194,7 +194,7 @@ class EntityRegistry:
                 0,
                 crop_y,
                 pixbuf.get_width(),
-                pixbuf.get_height() - crop_y,
+                pixbuf.get_height() - (crop_y * 2),
             )
         if rotate > 0.0:
             pixbuf = pixbuf.rotate_simple(rotate)
