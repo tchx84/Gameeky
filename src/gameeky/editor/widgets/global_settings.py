@@ -18,8 +18,9 @@
 
 from gi.repository import Gtk, Adw, GObject
 
+from ..models.entity import Entity as EntityModel
+
 from ...common.scanner import Description
-from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/global_settings.ui")  # fmt: skip
@@ -38,15 +39,9 @@ class GlobalSettings(Adw.PreferencesGroup):
 
     @property
     def description(self) -> Description:
-        return Description(
-            id=int(self.identifier.props.value),
-            version=VERSION,
-            game=Description(
-                default=None,
-            ),
-            graphics=None,
-            sound=None,
-        )
+        description = EntityModel.new_description()
+        description.id = int(self.identifier.props.value)
+        return description
 
     @description.setter
     def description(self, description: Description) -> None:

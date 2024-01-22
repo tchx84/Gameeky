@@ -18,11 +18,11 @@
 
 from gi.repository import Gio, Gtk, Adw, GObject
 
+from ..models.entity import Entity as EntityModel
+
 from ...common.logger import logger
 from ...common.utils import get_project_path, get_project_folder, valid_project
 from ...common.scanner import Description
-from ...common.definitions import Direction, State
-from ...common.config import VERSION
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/entity_new_window.ui")  # fmt: skip
@@ -90,38 +90,4 @@ class EntityNewWindow(Adw.Window):
 
     @property
     def description(self) -> Description:
-        return Description(
-            id=1,
-            version=VERSION,
-            game=Description(
-                default=Description(
-                    name="",
-                    target_name="",
-                    dialogue="",
-                    stamina=0,
-                    durability=0,
-                    weight=0,
-                    strength=0,
-                    target_type=0,
-                    radius=0,
-                    rate=0,
-                    recovery=0,
-                    density=0,
-                    luminance=0,
-                    removable=False,
-                    takeable=False,
-                    usable=False,
-                    visible=True,
-                    direction=Direction.SOUTH.name.lower(),
-                    state=State.IDLING.name.lower(),
-                    actuators=[],
-                ),
-            ),
-            graphics=Description(
-                default=None,
-                states=[],
-            ),
-            sound=Description(
-                states=[],
-            ),
-        )
+        return EntityModel.new_description()
