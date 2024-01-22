@@ -23,7 +23,7 @@ from gi.repository import Gdk, Gtk, GObject
 
 from .entity_row import EntityRow
 
-from ...common.utils import launch, get_project_path
+from ...common.utils import launch, quote, get_project_path
 
 
 class Operation(StrEnum):
@@ -57,7 +57,7 @@ class SceneEntityPopover(Gtk.Popover):
 
     def _launch_editor(self, path="") -> None:
         command = "dev.tchx84.Gameeky.Entity"
-        argument = f"--project_path={get_project_path()} {path}".strip()
+        argument = f"--project_path={quote(get_project_path())} {quote(path)}".strip()
 
         launch(command, argument)
 

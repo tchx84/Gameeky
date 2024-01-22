@@ -20,7 +20,7 @@ import os
 
 from gi.repository import Gtk, GObject
 
-from ...common.utils import launch, get_projects_path, valid_file
+from ...common.utils import launch, quote, get_projects_path, valid_file
 from ...common.monitor import Monitor
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
@@ -49,7 +49,7 @@ class ProjectRow(Gtk.FlowBoxChild):
     def _launch(self, command: str, filename: str) -> None:
         launch(
             command,
-            f"--project_path={self._get_project_path()} {self._get_project_path(filename)}",
+            f"--project_path={quote(self._get_project_path())} {quote(self._get_project_path(filename))}",
         )
 
     def _update_button(self) -> None:
