@@ -47,6 +47,7 @@ class ActuatorRow(BaseRow):
         "propulses": _("Propulses"),
         "requires": _("Requires"),
         "roams": _("Roams"),
+        "rotates_i": _("Rotates on interaction"),
         "says": _("Says"),
         "says_i": _("Says on interaction"),
         "spawns": _("Spawns"),
