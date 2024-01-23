@@ -80,14 +80,14 @@ class AnimationSettings(Adw.PreferencesGroup):
         self._changes.add(self.flip_y, signal="notify::active")
 
     def _update(self) -> None:
-        self._animation.update(self.description)
-        self._update_tileset()
+        description = self.description
 
-    def _update_tileset(self) -> None:
+        self._animation.update(description)
+        self._update_tileset(description)
+
+    def _update_tileset(self, description: Description) -> None:
         if self._tileset is None:
             return
-
-        description = self.description
 
         self._tileset.rows = description.rows
         self._tileset.columns = description.columns
@@ -107,7 +107,7 @@ class AnimationSettings(Adw.PreferencesGroup):
         self._tileset.connect("close-request", self.__on_close_tileset)
         self._tileset.present()
 
-        self._update_tileset()
+        self._update_tileset(self.description)
 
     @Gtk.Template.Callback("on_path_button_clicked")
     def __on_path_button_clicked(self, button: Gtk.Button) -> None:
