@@ -19,7 +19,6 @@
         </property>
         <property name="subtitle" translatable="yes">Unique identifier for this entity</property>
         <property name="title" translatable="yes">Identifier</property>
-        <signal name="changed" handler="on_changed"/>
       </object>
     </child>
   </template>

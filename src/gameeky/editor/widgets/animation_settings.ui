@@ -33,7 +33,6 @@
     <child>
       <object class="AdwEntryRow" id="path">
         <property name="title" translatable="yes">Tileset File</property>
-        <signal name="changed" handler="on_animation_changed"/>
         <child>
           <object class="GtkBox">
             <property name="halign">end</property>
@@ -76,7 +75,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of tileset columns</property>
         <property name="title">Columns</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -91,7 +89,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of tileset rows</property>
         <property name="title">Rows</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -104,7 +101,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of the first frame to include in the animation</property>
         <property name="title">First Frame</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -117,7 +113,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of the last frame to include in the animation</property>
         <property name="title">Last Frame</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -131,7 +126,6 @@
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">Number of seconds the complete animation should last</property>
         <property name="title">Duration</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -145,7 +139,6 @@
         <property name="subtitle" translatable="yes">Angle to rotate the image</property>
         <property name="title">Rotate</property>
         <property name="wrap">True</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -160,7 +153,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of tiles to include on the x-axis</property>
         <property name="title">Tiles X</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -175,7 +167,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of tiles to include on the y-axis</property>
         <property name="title">Tiles Y</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -191,7 +182,6 @@
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">How many times larger this image should be on the x-axis</property>
         <property name="title">Scale X</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -207,7 +197,6 @@
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">How many times larger this image should be on the y-axis</property>
         <property name="title">Scale Y</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -220,7 +209,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of pixels to remove on the x-axis</property>
         <property name="title">Crop X</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>
@@ -233,7 +221,6 @@
         </property>
         <property name="subtitle" translatable="yes">Number of pixels to remove on the y-axis</property>
         <property name="title">Crop Y</property>
-        <signal name="changed" handler="on_animation_changed"/>
       </object>
     </child>
     <child>

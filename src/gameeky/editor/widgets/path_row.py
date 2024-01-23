@@ -18,6 +18,8 @@
 
 from gi.repository import Gio, Gtk, GObject
 
+from .change_signal_helper import ChangeSignalHelper
+
 from ...common.utils import get_project_folder, get_relative_path
 from ...common.logger import logger
 
@@ -33,7 +35,12 @@ class PathRow(Gtk.Box):
 
     entry = Gtk.Template.Child()
 
-    @Gtk.Template.Callback("on_changed")
+    def __init__(self, *args, **kargs) -> None:
+        super().__init__(*args, **kargs)
+
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self.entry)
+
     def __on_changed(self, entry: Gtk.Entry) -> None:
         self.emit("changed")
 
@@ -63,7 +70,7 @@ class PathRow(Gtk.Box):
         except Exception as e:
             logger.error(e)
         else:
-            self.path = file.get_path()
+            self.entry.props.text = get_relative_path(file.get_path())
 
     @property
     def path(self) -> str:
@@ -71,4 +78,8 @@ class PathRow(Gtk.Box):
 
     @path.setter
     def path(self, path: str) -> None:
+        self._changes.block()
+
         self.entry.props.text = get_relative_path(path)
+
+        self._changes.unblock()

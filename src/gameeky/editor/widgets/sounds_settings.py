@@ -56,8 +56,6 @@ class SoundsSettings(Gtk.Box):
         else:
             self.sounds_box.append(row)
 
-        self.emit("changed")
-
     def _remove(self, row: SoundRow) -> None:
         row.shutdown()
         row.disconnect_by_func(self.__on_changed)
@@ -66,20 +64,21 @@ class SoundsSettings(Gtk.Box):
 
         self.sounds_box.remove(row)
 
-        self.emit("changed")
-
     def __on_changed(self, row: SoundRow) -> None:
         self.emit("changed")
 
     def __on_removed(self, row: SoundRow) -> None:
         self._remove(row)
+        self.emit("changed")
 
     def __on_cloned(self, row: SoundRow) -> None:
         self._add(row.state, row.description, prepend=True)
+        self.emit("changed")
 
     @Gtk.Template.Callback("on_clicked")
     def __on_clicked(self, button: Gtk.Button) -> None:
         self._add(state=None, description=None, prepend=True)
+        self.emit("changed")
 
     @property
     def description(self) -> Description:

@@ -20,6 +20,7 @@ from gi.repository import Gtk, GObject
 
 from .actuators_row import ActuatorsRow
 from .dropdown_helper import DropDownHelper
+from .change_signal_helper import ChangeSignalHelper
 
 from ..models.direction_row import DirectionRow as DirectionRowModel
 from ..models.state_row import StateRow as StateRowModel
@@ -60,22 +61,33 @@ class EntitySettings(Gtk.Box):
         super().__init__(*args, **kargs)
 
         self._actuators = ActuatorsRow()
-        self._actuators.connect("changed", self.__on_changed)
         self.actuators.props.child = self._actuators
 
         self._direction = DropDownHelper(self.direction, DirectionRowModel)
-        self._direction.connect("changed", self.__on_changed)
-
         self._state = DropDownHelper(self.state, StateRowModel)
-        self._state.connect("changed", self.__on_changed)
 
-        # XXX Move these to UI file somehow
-        self.removable.connect("notify::active", self.__on_changed)
-        self.takeable.connect("notify::active", self.__on_changed)
-        self.usable.connect("notify::active", self.__on_changed)
-        self.visible.connect("notify::active", self.__on_changed)
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self.stamina)
+        self._changes.add(self.durability)
+        self._changes.add(self.weight)
+        self._changes.add(self.strength)
+        self._changes.add(self.recovery)
+        self._changes.add(self.density)
+        self._changes.add(self.name)
+        self._changes.add(self.target_name)
+        self._changes.add(self.dialogue)
+        self._changes.add(self.target_type)
+        self._changes.add(self.radius)
+        self._changes.add(self.rate)
+        self._changes.add(self._actuators)
+        self._changes.add(self.visible, signal="notify::active")
+        self._changes.add(self.luminance)
+        self._changes.add(self._state)
+        self._changes.add(self._direction)
+        self._changes.add(self.removable, signal="notify::active")
+        self._changes.add(self.takeable, signal="notify::active")
+        self._changes.add(self.usable, signal="notify::active")
 
-    @Gtk.Template.Callback("on_changed")
     def __on_changed(self, *args) -> None:
         self.emit("changed")
 
@@ -106,6 +118,8 @@ class EntitySettings(Gtk.Box):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self.name.props.text = description.name
         self.target_name.props.text = description.target_name
         self.dialogue.props.text = description.dialogue
@@ -126,3 +140,5 @@ class EntitySettings(Gtk.Box):
         self._direction.value = description.direction
         self._state.value = description.state
         self._actuators.value = description.actuators
+
+        self._changes.unblock()

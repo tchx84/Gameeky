@@ -60,8 +60,6 @@ class AnimationsSettings(Gtk.Box):
         else:
             self.animations_box.append(row)
 
-        self.emit("changed")
-
     def _remove(self, row: AnimationRow) -> None:
         row.shutdown()
         row.disconnect_by_func(self.__on_changed)
@@ -70,20 +68,21 @@ class AnimationsSettings(Gtk.Box):
 
         self.animations_box.remove(row)
 
-        self.emit("changed")
-
     def __on_changed(self, row: AnimationRow) -> None:
         self.emit("changed")
 
     def __on_removed(self, row: AnimationRow) -> None:
         self._remove(row)
+        self.emit("changed")
 
     def __on_cloned(self, row: AnimationRow) -> None:
         self._add(row.state, row.direction, row.description, prepend=True)
+        self.emit("changed")
 
     @Gtk.Template.Callback("on_clicked")
     def __on_clicked(self, button: Gtk.Button) -> None:
         self._add(state=None, direction=None, description=None, prepend=True)
+        self.emit("changed")
 
     @property
     def description(self) -> Description:

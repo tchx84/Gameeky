@@ -22,6 +22,7 @@ from gi.repository import Gtk, Gio, Adw, GObject
 
 from .animation import Animation
 from .tileset_window import TilesetWindow
+from .change_signal_helper import ChangeSignalHelper
 
 from ...common.logger import logger
 from ...common.utils import get_project_folder, get_relative_path
@@ -61,9 +62,26 @@ class AnimationSettings(Adw.PreferencesGroup):
         self._animation = Animation()
         self.animation_box.append(self._animation)
 
-        # XXX Move the UI file somehow
-        self.flip_x.connect("notify::active", self.__on_animation_changed)
-        self.flip_y.connect("notify::active", self.__on_animation_changed)
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self.path)
+        self._changes.add(self.columns)
+        self._changes.add(self.rows)
+        self._changes.add(self.first_frame)
+        self._changes.add(self.last_frame)
+        self._changes.add(self.duration)
+        self._changes.add(self.rotate)
+        self._changes.add(self.tiles_x)
+        self._changes.add(self.tiles_y)
+        self._changes.add(self.scale_x)
+        self._changes.add(self.scale_y)
+        self._changes.add(self.crop_x)
+        self._changes.add(self.crop_y)
+        self._changes.add(self.flip_x, signal="notify::active")
+        self._changes.add(self.flip_y, signal="notify::active")
+
+    def _update(self) -> None:
+        self._animation.update(self.description)
+        self._update_tileset()
 
     def _update_tileset(self) -> None:
         if self._tileset is None:
@@ -115,10 +133,8 @@ class AnimationSettings(Adw.PreferencesGroup):
         else:
             self.path.props.text = file.get_path()
 
-    @Gtk.Template.Callback("on_animation_changed")
-    def __on_animation_changed(self, *args) -> None:
-        self._animation.update(self.description)
-        self._update_tileset()
+    def __on_changed(self, *args) -> None:
+        self._update()
         self.emit("changed")
 
     @property
@@ -143,6 +159,8 @@ class AnimationSettings(Adw.PreferencesGroup):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self.path.props.text = description.path
         self.columns.props.value = description.columns
         self.rows.props.value = description.rows
@@ -158,6 +176,10 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.rotate.props.value = description.rotate
         self.tiles_x.props.value = description.tiles_x
         self.tiles_y.props.value = description.tiles_y
+
+        self._update()
+
+        self._changes.unblock()
 
     def shutdown(self) -> None:
         self._animation.shutdown()

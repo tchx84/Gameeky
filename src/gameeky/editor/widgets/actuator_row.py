@@ -19,6 +19,7 @@
 from gi.repository import Gtk, Adw, GObject
 
 from .dropdown_helper import DropDownHelper
+from .change_signal_helper import ChangeSignalHelper
 
 from ..models.actuator_row import ActuatorRow as ActuatorRowModel
 
@@ -38,7 +39,9 @@ class ActuatorRow(Adw.ActionRow):
     def __init__(self) -> None:
         super().__init__()
         self._dropdown = DropDownHelper(self.dropdown, ActuatorRowModel)
-        self._dropdown.connect("changed", self.__on_changed)
+
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self._dropdown)
 
     def __on_changed(self, dropdown: DropDownHelper) -> None:
         self.emit("changed")
@@ -57,4 +60,8 @@ class ActuatorRow(Adw.ActionRow):
 
     @value.setter
     def value(self, value: str) -> None:
+        self._changes.block()
+
         self._dropdown.value = value
+
+        self._changes.unblock()

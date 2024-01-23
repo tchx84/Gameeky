@@ -20,6 +20,7 @@ from gi.repository import Adw, Gtk, GObject
 
 from .paths_row import PathsRow
 from .sound_player import SoundPlayer
+from .change_signal_helper import ChangeSignalHelper
 
 from ...common.scanner import Description
 
@@ -41,16 +42,22 @@ class SoundSettings(Adw.PreferencesGroup):
         super().__init__(*args, **kargs)
 
         self._paths = PathsRow()
-        self._paths.connect("changed", self.__on_changed)
         self.paths.append(self._paths)
 
         self._preview = SoundPlayer()
         self.preview.append(self._preview)
 
-    @Gtk.Template.Callback("on_changed")
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self.delay)
+        self._changes.add(self.timeout)
+        self._changes.add(self._paths)
+
     def __on_changed(self, *args) -> None:
-        self._preview.update(self.description)
+        self._update()
         self.emit("changed")
+
+    def _update(self) -> None:
+        self._preview.update(self.description)
 
     @property
     def description(self) -> Description:
@@ -62,9 +69,15 @@ class SoundSettings(Adw.PreferencesGroup):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self.delay.props.value = description.delay
         self.timeout.props.value = description.timeout
         self._paths.paths = description.paths
+
+        self._update()
+
+        self._changes.unblock()
 
     def shutdown(self) -> None:
         self._preview.shutdown()

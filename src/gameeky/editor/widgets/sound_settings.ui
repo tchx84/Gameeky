@@ -28,7 +28,6 @@
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">Number of seconds to elapse in-between sounds in the sequence</property>
         <property name="title" translatable="yes">Delay</property>
-        <signal name="changed" handler="on_changed"/>
       </object>
     </child>
     <child>
@@ -42,7 +41,6 @@
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">Maximum number of seconds to keep playing this sound</property>
         <property name="title" translatable="yes">Timeout</property>
-        <signal name="changed" handler="on_changed"/>
       </object>
     </child>
     <child>

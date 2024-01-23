@@ -21,6 +21,7 @@ from gi.repository import Gtk, Adw, GObject
 
 from .animation_settings import AnimationSettings
 from .dropdown_helper import DropDownHelper
+from .change_signal_helper import ChangeSignalHelper
 
 from ..models.direction_row import DirectionRow as DirectionRowModel
 from ..models.state_row import StateRow as StateRowModel
@@ -45,16 +46,16 @@ class AnimationRow(Adw.PreferencesGroup):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        # XXX Move these to UI file somehow
         self._animation_settings = AnimationSettings()
-        self._animation_settings.connect("changed", self.__on_changed)
         self.animation_box.append(self._animation_settings)
 
         self._state = DropDownHelper(self.state_combo, StateRowModel, True)
-        self._state.connect("changed", self.__on_changed)
-
         self._direction = DropDownHelper(self.direction_combo, DirectionRowModel, True)
-        self._direction.connect("changed", self.__on_changed)
+
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self._animation_settings)
+        self._changes.add(self._state)
+        self._changes.add(self._direction)
 
         self._update_description()
 
@@ -86,7 +87,12 @@ class AnimationRow(Adw.PreferencesGroup):
 
     @state.setter
     def state(self, value: str) -> None:
+        self._changes.block()
+
         self._state.value = value
+        self._update_description()
+
+        self._changes.unblock()
 
     @property
     def direction(self) -> str:
@@ -94,7 +100,12 @@ class AnimationRow(Adw.PreferencesGroup):
 
     @direction.setter
     def direction(self, value: str) -> None:
+        self._changes.block()
+
         self._direction.value = value
+        self._update_description()
+
+        self._changes.unblock()
 
     @property
     def description(self) -> Description:
@@ -102,7 +113,11 @@ class AnimationRow(Adw.PreferencesGroup):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self._animation_settings.description = description
+
+        self._changes.unblock()
 
     def shutdown(self) -> None:
         self._animation_settings.shutdown()
