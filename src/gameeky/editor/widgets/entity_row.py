@@ -57,3 +57,4 @@ class EntityRow(Gtk.Box):
 
         self._entity.type_id = self._model.props.type_id
         self.label.props.label = self._model.props.name
+        self.props.tooltip_text = self._model.props.name
