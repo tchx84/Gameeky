@@ -7,7 +7,6 @@
     <child>
       <object class="GtkEntry" id="entry">
         <property name="hexpand">True</property>
-        <signal name="changed" handler="on_changed"/>
       </object>
     </child>
     <child>

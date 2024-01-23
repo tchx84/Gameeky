@@ -41,24 +41,24 @@ class PathsRow(Gtk.Box):
         row.connect("removed", self.__on_removed)
 
         self.rows.append(row)
-        self.emit("changed")
 
     def _remove(self, row: PathRow) -> None:
         row.disconnect_by_func(self.__on_changed)
         row.disconnect_by_func(self.__on_removed)
 
         self.rows.remove(row)
-        self.emit("changed")
 
     def __on_changed(self, row: PathRow) -> None:
         self.emit("changed")
 
     def __on_removed(self, row: PathRow) -> None:
         self._remove(row)
+        self.emit("changed")
 
     @Gtk.Template.Callback("on_button_clicked")
     def __on_button_clicked(self, button: Gtk.Button) -> None:
         self._add("")
+        self.emit("changed")
 
     @property
     def paths(self) -> List[str]:

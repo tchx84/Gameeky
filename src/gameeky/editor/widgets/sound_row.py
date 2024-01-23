@@ -21,6 +21,7 @@ from gi.repository import Gtk, Adw, GObject
 
 from .sound_settings import SoundSettings
 from .dropdown_helper import DropDownHelper
+from .change_signal_helper import ChangeSignalHelper
 
 from ..models.state_row import StateRow as StateRowModel
 
@@ -43,22 +44,23 @@ class SoundRow(Adw.PreferencesGroup):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        # XXX Move these to UI file somehow
         self._sound_settings = SoundSettings()
-        self._sound_settings.connect("changed", self.__on_changed)
         self.sound_box.append(self._sound_settings)
 
         self._state = DropDownHelper(self.state_combo, StateRowModel)
-        self._state.connect("changed", self.__on_changed)
 
         self._update_description()
 
-    def _update_description(self) -> None:
-        self.props.description = _("While %s") % self._state.text.lower()
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self._state)
+        self._changes.add(self._sound_settings)
 
     def __on_changed(self, *args) -> None:
         self._update_description()
         self.emit("changed")
+
+    def _update_description(self) -> None:
+        self.props.description = _("While %s") % self._state.text.lower()
 
     @Gtk.Template.Callback("on_remove_clicked")
     def __on_remove_clicked(self, button: Gtk.Button) -> None:
@@ -74,7 +76,12 @@ class SoundRow(Adw.PreferencesGroup):
 
     @state.setter
     def state(self, value: str) -> None:
+        self._changes.block()
+
         self._state.value = value
+        self._update_description()
+
+        self._changes.unblock()
 
     @property
     def description(self) -> Description:
@@ -82,7 +89,11 @@ class SoundRow(Adw.PreferencesGroup):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self._sound_settings.description = description
+
+        self._changes.unblock()
 
     def shutdown(self) -> None:
         self._sound_settings.shutdown()

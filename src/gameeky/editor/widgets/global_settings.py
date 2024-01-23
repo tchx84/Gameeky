@@ -18,6 +18,8 @@
 
 from gi.repository import Gtk, Adw, GObject
 
+from .change_signal_helper import ChangeSignalHelper
+
 from ..models.entity import Entity as EntityModel
 
 from ...common.scanner import Description
@@ -33,7 +35,12 @@ class GlobalSettings(Adw.PreferencesGroup):
 
     identifier = Gtk.Template.Child()
 
-    @Gtk.Template.Callback("on_changed")
+    def __init__(self, *args, **kargs) -> None:
+        super().__init__(*args, **kargs)
+
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self.identifier)
+
     def __on_changed(self, *args) -> None:
         self.emit("changed")
 
@@ -45,4 +52,8 @@ class GlobalSettings(Adw.PreferencesGroup):
 
     @description.setter
     def description(self, description: Description) -> None:
+        self._changes.block()
+
         self.identifier.props.value = description.id
+
+        self._changes.unblock()

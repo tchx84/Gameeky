@@ -21,7 +21,6 @@
             </property>
             <property name="subtitle" translatable="yes">How much action this entity can perform</property>
             <property name="title" translatable="yes">Stamina</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -34,7 +33,6 @@
             </property>
             <property name="subtitle" translatable="yes">How much wear or damage this entity can sustain</property>
             <property name="title" translatable="yes">Durability</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -47,7 +45,6 @@
             </property>
             <property name="subtitle" translatable="yes">How heavy this entity is</property>
             <property name="title" translatable="yes">Weight</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -60,7 +57,6 @@
             </property>
             <property name="subtitle" translatable="yes">How much weight or damage this entity can lift or apply</property>
             <property name="title" translatable="yes">Strength</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
       </object>
@@ -80,7 +76,6 @@
             <property name="digits">2</property>
             <property name="subtitle" translatable="yes">Affects recovery times, cool downs and delays</property>
             <property name="title" translatable="yes">Recovery</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -94,7 +89,6 @@
             <property name="digits">2</property>
             <property name="subtitle" translatable="yes">Affects the speed of other entities traversing through this entity</property>
             <property name="title" translatable="yes">Density</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
       </object>
@@ -106,13 +100,11 @@
         <child>
           <object class="AdwEntryRow" id="name">
             <property name="title" translatable="yes">Name</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
           <object class="AdwEntryRow" id="target_name">
             <property name="title" translatable="yes">Target Name</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -130,7 +122,6 @@
             </property>
             <property name="subtitle" translatable="yes">The identifier of another entity</property>
             <property name="title" translatable="yes">Target Type</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -143,7 +134,6 @@
             </property>
             <property name="subtitle" translatable="yes">The maximum area that an actuator can have an effect</property>
             <property name="title" translatable="yes">Radius</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -156,7 +146,6 @@
             </property>
             <property name="subtitle" translatable="yes">How often an actuator can be triggered</property>
             <property name="title" translatable="yes">Rate</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>
@@ -186,7 +175,6 @@
             <property name="digits">2</property>
             <property name="subtitle" translatable="yes">The amount of light this entity can emit</property>
             <property name="title" translatable="yes">Luminance</property>
-            <signal name="changed" handler="on_changed"/>
           </object>
         </child>
         <child>

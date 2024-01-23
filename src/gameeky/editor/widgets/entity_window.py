@@ -22,6 +22,7 @@ from .global_settings import GlobalSettings
 from .entity_settings import EntitySettings
 from .animations_settings import AnimationsSettings
 from .sounds_settings import SoundsSettings
+from .change_signal_helper import ChangeSignalHelper
 
 from ...common.scanner import Description
 from ...common.definitions import Format
@@ -44,6 +45,7 @@ class EntityWindow(Adw.ApplicationWindow):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
+
         self._global_settings = GlobalSettings()
         self._entity_settings = EntitySettings()
         self._animations_settings = AnimationsSettings()
@@ -56,25 +58,17 @@ class EntityWindow(Adw.ApplicationWindow):
 
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
-        self._listen_changes()
+        self._changes = ChangeSignalHelper(self.__on_changed)
+        self._changes.add(self._global_settings)
+        self._changes.add(self._entity_settings)
+        self._changes.add(self._animations_settings)
+        self._changes.add(self._sounds_settings)
 
     def __on_changed(self, *args) -> None:
         self.emit("changed")
 
     def __on_monitor_changed(self, monitor: Monitor) -> None:
         self.banner.props.revealed = True
-
-    def _listen_changes(self) -> None:
-        self._global_settings.connect("changed", self.__on_changed)
-        self._entity_settings.connect("changed", self.__on_changed)
-        self._animations_settings.connect("changed", self.__on_changed)
-        self._sounds_settings.connect("changed", self.__on_changed)
-
-    def _ignore_changes(self) -> None:
-        self._global_settings.disconnect_by_func(self.__on_changed)
-        self._entity_settings.disconnect_by_func(self.__on_changed)
-        self._animations_settings.disconnect_by_func(self.__on_changed)
-        self._sounds_settings.disconnect_by_func(self.__on_changed)
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, *args) -> None:
@@ -99,11 +93,11 @@ class EntityWindow(Adw.ApplicationWindow):
 
     @description.setter
     def description(self, description: Description) -> None:
-        self._ignore_changes()
+        self._changes.block()
 
         self._global_settings.description = description
         self._entity_settings.description = description.game.default
         self._animations_settings.description = description.graphics
         self._sounds_settings.description = description.sound
 
-        self._listen_changes()
+        self._changes.unblock()
