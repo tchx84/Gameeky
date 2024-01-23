@@ -18,6 +18,8 @@
 
 from .base import Actuator as BaseActuator
 
+from ..definitions import Density
+
 
 class Actuator(BaseActuator):
     name = "spawns"
@@ -30,6 +32,20 @@ class Actuator(BaseActuator):
 
         if self._seconds_since_activation() < self._entity.rate and not self.activated:
             return
+
+        # Don't spawn entity on top of nothing
+        if not (surfaces := self._entity.surfaces):
+            return super().tick()
+
+        # Don't spawn entity on top of a solid entity
+        for surface in surfaces:
+            if surface.density == Density.SOLID:
+                return super().tick()
+
+        # Don't spawn entity if already spawned
+        for surface in surfaces:
+            if surface.type_id == self._entity.target_type:
+                return super().tick()
 
         self._entity.spawn()
 
