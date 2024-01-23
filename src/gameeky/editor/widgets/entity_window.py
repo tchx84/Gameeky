@@ -78,7 +78,7 @@ class EntityWindow(Adw.ApplicationWindow):
     @property
     def suggested_name(self) -> str:
         prefix = f"{self._global_settings.description.id:04d}"
-        suffix = f"{self._entity_settings.description.name.lower()}"
+        suffix = f"{self._entity_settings.description.name.replace(' ', '_').lower()}"
 
         return f"{prefix}_{suffix}.{Format.ENTITY}"
 
