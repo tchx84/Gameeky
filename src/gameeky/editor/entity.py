@@ -215,7 +215,7 @@ class Application(Adw.Application):
         self._window.connect("close-request", self.__on_close_requested)
         self._window.present()
 
-        self._start_session()
+        GLib.idle_add(self._start_session)
 
     def do_startup(self) -> None:
         Adw.Application.do_startup(self)
