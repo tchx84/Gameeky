@@ -18,7 +18,7 @@
 
 from typing import Optional
 
-from gi.repository import Gtk, Gio, Adw, GObject
+from gi.repository import Gtk, Gio, GLib, Adw, GObject
 
 from .animation import Animation
 from .tileset_window import TilesetWindow
@@ -177,7 +177,7 @@ class AnimationSettings(Adw.PreferencesGroup):
         self.tiles_x.props.value = description.tiles_x
         self.tiles_y.props.value = description.tiles_y
 
-        self._update()
+        GLib.idle_add(self._update)
 
         self._changes.unblock()
 
