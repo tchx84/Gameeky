@@ -175,7 +175,7 @@
           <object class="GtkAdjustment">
             <property name="lower">1.0</property>
             <property name="step-increment">0.1</property>
-            <property name="upper">5.0</property>
+            <property name="upper">128.0</property>
             <property name="value">1.0</property>
           </object>
         </property>
@@ -190,7 +190,7 @@
           <object class="GtkAdjustment">
             <property name="lower">1.0</property>
             <property name="step-increment">0.1</property>
-            <property name="upper">5.0</property>
+            <property name="upper">128.0</property>
             <property name="value">1.0</property>
           </object>
         </property>
