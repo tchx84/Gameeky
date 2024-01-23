@@ -36,6 +36,10 @@ class Handler(BaseHandler):
         if not obstacles:
             return False
 
+        # Don't walk on top on entity being held
+        if obstacles == [self._entity.held]:
+            return False
+
         for obstacle in obstacles:
             if obstacle.density == Density.SOLID:
                 return False
