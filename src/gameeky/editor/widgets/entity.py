@@ -48,8 +48,8 @@ class Entity(Gtk.Widget):
         rect_width = self.get_width() * ratio_x
         rect_height = self.get_height() * ratio_y
 
-        rect_x = 0 if ratio_x == 1.0 else rect_width / 2
-        rect_y = 0 if ratio_y == 1.0 else rect_height / 2
+        rect_x = (self.get_width() / 2) - (rect_width / 2)
+        rect_y = (self.get_height() / 2) - (rect_height / 2)
 
         rect = Graphene.Rect()
         rect.init(rect_x, rect_y, rect_width, rect_height)
