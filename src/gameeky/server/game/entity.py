@@ -90,8 +90,6 @@ class Entity(CommonEntity, GObject.GObject):
         "told": (GObject.SignalFlags.RUN_LAST, None, (str,)),
     }
 
-    __entity_by_name__: Dict[str, "Entity"] = {}
-
     __handler_by_action__ = {
         Action.DESTROY: DestroyHandler,
         Action.DROP: DropHandler,
@@ -395,7 +393,7 @@ class Entity(CommonEntity, GObject.GObject):
 
     @property
     def target(self) -> Optional["Entity"]:
-        return self.__entity_by_name__.get(self.target_name)
+        return self.scene.find_by_name(self.target_name)
 
     @target.setter
     def target(self, target: Optional["Entity"]) -> None:
@@ -549,20 +547,6 @@ class Entity(CommonEntity, GObject.GObject):
             overrides=self._overrides,
         )
 
-    @classmethod
-    def new_with_name(cls, *args, **kargs) -> "Entity":
-        entity = cls(*args, **kargs)
-
-        if entity.name:
-            cls.__entity_by_name__[entity.name] = entity
-
-        return entity
-
-    @classmethod
-    def unregister(cls, entity: "Entity") -> None:
-        if cls.__entity_by_name__.get(entity.name) == entity:
-            del cls.__entity_by_name__[entity.name]
-
 
 class EntityRegistry:
     __entities__: Dict[int, Description] = {}
@@ -608,7 +592,7 @@ class EntityRegistry:
         scene: Scene,
     ) -> Entity:
         description = cls.find_and_override(type_id=type_id, overrides=overrides)
-        return Entity.new_with_name(
+        return Entity(
             id=id,
             type_id=type_id,
             position=position,
