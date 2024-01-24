@@ -56,6 +56,7 @@ from .actuators.collapses import Actuator as CollapsesActuator
 from .actuators.collapses_t import Actuator as CollapsesTActuator
 from .actuators.affects import Actuator as AffectsActuator
 from .actuators.affects_i import Actuator as AffectsIActuator
+from .actuators.affects_u import Actuator as AffectsUActuator
 from .actuators.aggroes import Actuator as AggroesActuator
 from .actuators.says import Actuator as SaysActuator
 from .actuators.says_i import Actuator as SaysIActuator
@@ -127,6 +128,7 @@ class Entity(CommonEntity, GObject.GObject):
         CollapsesTActuator.name: CollapsesTActuator,
         AffectsActuator.name: AffectsActuator,
         AffectsIActuator.name: AffectsIActuator,
+        AffectsUActuator.name: AffectsUActuator,
         AggroesActuator.name: AggroesActuator,
         SaysActuator.name: SaysActuator,
         SaysIActuator.name: SaysIActuator,

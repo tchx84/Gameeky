@@ -199,6 +199,7 @@ gameeky_sources = [
   'gameeky/server/game/actuators/activates_i.py',
   'gameeky/server/game/actuators/activates.py',
   'gameeky/server/game/actuators/affects_i.py',
+  'gameeky/server/game/actuators/affects_u.py',
   'gameeky/server/game/actuators/affects.py',
   'gameeky/server/game/actuators/aggroes.py',
   'gameeky/server/game/actuators/base.py',
