@@ -242,10 +242,6 @@ class Entity(CommonEntity, GObject.GObject):
             return
 
         self.held.direction = self.direction
-
-        if self.obstacle is not None:
-            return
-
         self.held.position = self.position_at(self.direction)
 
     def tick(self) -> None:
