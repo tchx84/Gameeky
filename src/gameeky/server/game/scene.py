@@ -175,6 +175,9 @@ class Scene:
             held=held,
         )
 
+    def find_by_id(self, id: int) -> Optional[Entity]:
+        return self._entity_by_id.get(id)
+
     def find_by_name(self, name: str) -> Optional[Entity]:
         return self._entity_by_name.get(name)
 
