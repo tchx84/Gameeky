@@ -33,6 +33,7 @@
     <file preprocess="xml-stripblanks">gameeky/player/widgets/dialogue.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_join_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/session_new_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/player/widgets/shortcuts_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/player/widgets/window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/confirmation_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_edit_window.ui</file>

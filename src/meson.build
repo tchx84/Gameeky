@@ -179,6 +179,7 @@ gameeky_sources = [
   'gameeky/player/widgets/scene.py',
   'gameeky/player/widgets/session_join_window.py',
   'gameeky/player/widgets/session_new_window.py',
+  'gameeky/player/widgets/shortcuts_window.py',
   'gameeky/player/widgets/window.py',
   'gameeky/launcher/__init__.py',
   'gameeky/launcher/models/__init__.py',
