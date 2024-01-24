@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.17.0 -->
+<interface>
+  <!-- interface-name shortcuts_window.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <object class="GtkShortcutsWindow" id="ShortcutsWindow">
+    <property name="modal">True</property>
+    <child>
+      <object class="GtkShortcutsSection">
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Movement</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Up</property>
+                <property name="title" translatable="yes">Move north</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Right</property>
+                <property name="title" translatable="yes">Move east</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Down</property>
+                <property name="title" translatable="yes">Move south</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Left</property>
+                <property name="title" translatable="yes">Move west</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Actions</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">T</property>
+                <property name="title" translatable="yes">Take object</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">D</property>
+                <property name="title" translatable="yes">Drop object</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">U</property>
+                <property name="title" translatable="yes">Use object</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">I</property>
+                <property name="title" translatable="yes">Interact with object</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Dialogues</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Return</property>
+                <property name="title" translatable="yes">Close dialog</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
