@@ -18,17 +18,24 @@
 
 from .base import Actuator as BaseActuator
 
+from ....common.definitions import State
+
 
 class Actuator(BaseActuator):
     name = "drops"
     interactable = False
     activatable = False
 
+    def __init__(self, *args, **kargs) -> None:
+        super().__init__(*args, **kargs)
+        self._dropped = False
+
     def tick(self) -> None:
-        if self._entity.busy is True:
+        if self._dropped is True:
             return
 
-        if self._entity.durability > 0:
+        if self._entity.state not in [State.DESTROYING, State.DESTROYED]:
             return
 
         self._entity.spawn()
+        self._dropped = True
