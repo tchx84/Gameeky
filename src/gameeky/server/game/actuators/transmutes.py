@@ -27,6 +27,10 @@ class Actuator(BaseActuator):
     activatable = True
 
     def tick(self) -> None:
+        # Don't keep spawning entities if already reached final state
+        if self._entity.blocked:
+            return
+
         if self._seconds_since_activation() < self._entity.rate and not self.activated:
             return
 
