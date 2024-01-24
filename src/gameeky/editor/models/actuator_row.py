@@ -34,6 +34,7 @@ class ActuatorRow(BaseRow):
         "activates_i": _("Activates on interaction"),
         "affects": _("Affects"),
         "affects_i": _("Affects on interaction"),
+        "affects_u": _("Affects on use"),
         "aggroes": _("Aggroes"),
         "collapses": _("Collapses"),
         "collapses_t": _("Collapses over time"),
