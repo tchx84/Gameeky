@@ -47,6 +47,7 @@ class Scene:
         self._index = 0
         self._mutable_entities: List[Entity] = []
         self._entity_by_id: Dict[int, Entity] = {}
+        self._entity_by_name: Dict[str, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
 
         self.name = name
@@ -115,6 +116,9 @@ class Scene:
         self._entity_by_id[entity.id] = entity
         self._partition.add(entity)
 
+        if entity.name:
+            self._entity_by_name[entity.name] = entity
+
         if entity.mutable or entity.playable:
             self._mutable_entities.append(entity)
 
@@ -132,6 +136,9 @@ class Scene:
         self._partition.remove(entity)
         Entity.unregister(entity)
         entity.shutdown()
+
+        if self._entity_by_name.get(entity.name) == entity:
+            del self._entity_by_name[entity.name]
 
         if entity.mutable is True:
             self._mutable_entities.remove(entity)
@@ -168,6 +175,9 @@ class Scene:
             stamina=entity.normalized_stamina,
             held=held,
         )
+
+    def find_by_name(self, name: str) -> Optional[Entity]:
+        return self._entity_by_name.get(name)
 
     def shutdown(self) -> None:
         if self._timeout_source_id is not None:
