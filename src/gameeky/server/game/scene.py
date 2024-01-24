@@ -134,7 +134,6 @@ class Scene:
 
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)
-        Entity.unregister(entity)
         entity.shutdown()
 
         if self._entity_by_name.get(entity.name) == entity:
