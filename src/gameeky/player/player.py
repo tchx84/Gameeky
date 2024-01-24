@@ -34,6 +34,7 @@ from gi.repository import Gdk, Gtk, GLib, Gio, Adw
 from .widgets.window import Window
 from .widgets.session_new_window import SessionNewWindow
 from .widgets.session_join_window import SessionJoinWindow
+from .widgets.shortcuts_window import present_shortcuts
 from .models.session_host import SessionHost
 from .models.session_guest import SessionGuest
 
@@ -231,6 +232,13 @@ class Application(Adw.Application):
             cancellable=None,
         )
 
+    def __on_shortcuts(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        present_shortcuts(self._window)
+
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
@@ -284,6 +292,10 @@ class Application(Adw.Application):
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
         self.add_action(save_action)
+
+        shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
+        shortcuts_action.connect("activate", self.__on_shortcuts)
+        self.add_action(shortcuts_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)
