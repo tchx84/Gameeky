@@ -185,6 +185,10 @@
       <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>
     <item>
+      <attribute name="action">app.shortcuts</attribute>
+      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+    </item>
+    <item>
       <attribute name="action">app.about</attribute>
       <attribute name="label" translatable="yes">_About</attribute>
     </item>
