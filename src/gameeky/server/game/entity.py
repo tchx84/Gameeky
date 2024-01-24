@@ -165,6 +165,7 @@ class Entity(CommonEntity, GObject.GObject):
         self.takeable = takeable
         self.usable = usable
         self.density = clamp(Density.SOLID, Density.VOID, density)
+        self.target_id: Optional[int] = None
         self.target_name = target_name
         self.target_type = target_type
         self.name = name
@@ -313,7 +314,10 @@ class Entity(CommonEntity, GObject.GObject):
 
     def targets(self, entity: "Entity") -> bool:
         # If no particular target then it could target any entity
-        if not self.target_name and not self.target_type:
+        if not self.target_id and not self.target_name and not self.target_type:
+            return True
+
+        if self.target_id == entity.id:
             return True
 
         if self.target_name == entity.name:
@@ -393,11 +397,16 @@ class Entity(CommonEntity, GObject.GObject):
 
     @property
     def target(self) -> Optional["Entity"]:
-        return self.scene.find_by_name(self.target_name)
+        if self.target_id:
+            return self.scene.find_by_id(self.target_id)
+        elif self.target_name:
+            return self.scene.find_by_name(self.target_name)
+        else:
+            return None
 
     @target.setter
     def target(self, target: Optional["Entity"]) -> None:
-        self.target_name = target.name if target is not None else ""
+        self.target_id = target.id if target is not None else None
 
     @property
     def held(self) -> Optional["Entity"]:
