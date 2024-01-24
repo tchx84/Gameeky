@@ -1,7 +1,9 @@
 {
     "game": {
         "default": {
-            "actuators": [],
+            "actuators": [
+                "affects_u"
+            ],
             "density": 1.0,
             "dialogue": "",
             "direction": "south",
