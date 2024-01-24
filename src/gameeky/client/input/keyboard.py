@@ -34,8 +34,8 @@ class Keyboard(Gtk.EventControllerKey):
         Gdk.KEY_Up: (Action.MOVE, Direction.NORTH),
         Gdk.KEY_Left: (Action.MOVE, Direction.WEST),
         Gdk.KEY_Down: (Action.MOVE, Direction.SOUTH),
-        Gdk.KEY_x: (Action.USE, 0),
-        Gdk.KEY_c: (Action.TAKE, 0),
+        Gdk.KEY_u: (Action.USE, 0),
+        Gdk.KEY_t: (Action.TAKE, 0),
         Gdk.KEY_d: (Action.DROP, 0),
         Gdk.KEY_i: (Action.INTERACT, 0),
     }
