@@ -31,7 +31,7 @@ class Actuator(BaseActuator):
         if self._entity.blocked:
             return
 
-        if self._seconds_since_activation() < self._entity.rate and not self.activated:
+        if not self.ready:
             return
 
         self._entity.state = State.DESTROYED

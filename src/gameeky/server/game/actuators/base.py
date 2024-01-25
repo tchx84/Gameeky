@@ -67,11 +67,18 @@ class Actuator:
         self._activated = True
 
     @property
+    def fresh(self) -> bool:
+        return self._activated_timestamp == self._initial_activated_timestamp
+
+    @property
     def ready(self) -> bool:
-        if self._activated_timestamp == self._initial_activated_timestamp:
+        if self.activated is True:
             return True
 
-        return self._seconds_since_activation() > self._entity.rate or self.activated
+        if self._entity.rate == 0:
+            return False
+
+        return self._seconds_since_activation() > self._entity.rate
 
     @property
     def entity(self) -> Entity:
