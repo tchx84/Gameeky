@@ -34,6 +34,8 @@ class Actuator(BaseActuator):
                 continue
             if not entity.removable and not entity.playable:
                 continue
+            if not entity.inline_with(self._entity):
+                continue
 
             target = entity
             break
