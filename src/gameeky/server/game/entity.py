@@ -299,6 +299,14 @@ class Entity(CommonEntity, GObject.GObject):
             direction,
         )
 
+    def inline_with(self, entity: "Entity") -> bool:
+        if self.position.x == entity.position.x:
+            return True
+        if self.position.y == entity.position.y:
+            return True
+
+        return False
+
     def secure(self) -> None:
         self.position = Vector(
             math.floor(self.position.x),
