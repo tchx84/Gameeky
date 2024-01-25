@@ -28,7 +28,7 @@ class Actuator(BaseActuator):
         if not self._entity.dialogue:
             return
 
-        if not self.ready:
+        if not self.ready and not self.fresh:
             return
 
         if not (surroundings := self._entity.surroundings):
