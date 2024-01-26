@@ -38,6 +38,7 @@ class SceneSettings(Adw.PreferencesGroup):
     name = Gtk.Template.Child()
     project = Gtk.Template.Child()
     daytime = Gtk.Template.Child()
+    duration = Gtk.Template.Child()
     width = Gtk.Template.Child()
     height = Gtk.Template.Child()
 
@@ -100,6 +101,7 @@ class SceneSettings(Adw.PreferencesGroup):
             height=height,
             spawn=self._spawn,
             daytime=self._daytime.value,
+            duration=int(self.duration.props.value),
             entities=self._entities,
         )
 
@@ -109,6 +111,7 @@ class SceneSettings(Adw.PreferencesGroup):
         self.width.props.value = description.width
         self.height.props.value = description.height
         self._daytime.value = description.daytime
+        self.duration.props.value = description.duration
 
         self._spawn = description.spawn
         self._entities = description.entities

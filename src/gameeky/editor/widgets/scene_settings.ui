@@ -33,6 +33,21 @@
       </object>
     </child>
     <child>
+      <object class="AdwSpinRow" id="duration">
+        <property name="adjustment">
+          <object class="GtkAdjustment">
+            <property name="lower">60.0</property>
+            <property name="step-increment">1.0</property>
+            <property name="upper">86400.0</property>
+            <property name="value">3600.0</property>
+          </object>
+        </property>
+        <property name="hexpand">True</property>
+        <property name="subtitle">The number of seconds a full day lasts</property>
+        <property name="title">Duration</property>
+      </object>
+    </child>
+    <child>
       <object class="AdwSpinRow" id="width">
         <property name="adjustment">
           <object class="GtkAdjustment">

@@ -91,3 +91,6 @@ class DayTime(IntEnum):
     DAY = auto()
     NIGHT = auto()
     DYNAMIC = auto()
+
+
+DEFAULT_DURATION = 3600

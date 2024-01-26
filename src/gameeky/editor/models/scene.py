@@ -28,7 +28,7 @@ from .entity import Entity
 from ...common.scene import Scene as CommonScene
 from ...common.scanner import Description
 from ...common.vector import Vector
-from ...common.definitions import DayTime, TILES_X, TILES_Y
+from ...common.definitions import DayTime, TILES_X, TILES_Y, DEFAULT_DURATION
 from ...common.utils import valid_file
 from ...common.config import VERSION
 
@@ -48,6 +48,7 @@ class Scene(CommonScene, GObject.GObject):
         self._name = ""
         self.spawn = Vector()
         self.daytime = DayTime.DYNAMIC.name.lower()
+        self.duration = DEFAULT_DURATION
         self.layer: Optional[int] = None
 
     def _add(
@@ -209,6 +210,7 @@ class Scene(CommonScene, GObject.GObject):
                 z=self.spawn.z,
             ),
             daytime=self.daytime,
+            duration=self.duration,
             entities=[cast(Entity, e).summary for e in self.entities],
         )
 
@@ -222,6 +224,7 @@ class Scene(CommonScene, GObject.GObject):
         self.width = description.width
         self.height = description.height
         self.daytime = description.daytime
+        self.duration = description.duration
 
         self.spawn = Vector(
             x=description.spawn.x,
@@ -256,5 +259,6 @@ class Scene(CommonScene, GObject.GObject):
             height=TILES_Y * 2,
             spawn=Vector(),
             daytime=DayTime.DYNAMIC.name.lower(),
+            duration=DEFAULT_DURATION,
             entities=[],
         )

@@ -1,5 +1,6 @@
 {
     "daytime": "dynamic",
+    "duration": 3600,
     "entities": [
         {
             "overrides": null,
