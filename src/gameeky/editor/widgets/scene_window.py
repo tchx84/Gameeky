@@ -50,6 +50,7 @@ class SceneWindow(Adw.ApplicationWindow):
     __gsignals__ = {
         "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
         "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "committed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     aspect = Gtk.Template.Child()
@@ -129,6 +130,8 @@ class SceneWindow(Adw.ApplicationWindow):
 
         _, position = self._model.find(row)
         self._model.remove(position)
+
+        self.emit("committed")
 
     def __on_controller_pressed(
         self,

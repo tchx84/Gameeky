@@ -121,6 +121,10 @@ class Application(Adw.Application):
     def _on_changed(self, window: SceneWindow) -> None:
         self._pending_changes = True
 
+    def _on_committed(self, window: SceneWindow) -> None:
+        if self._scene_path is not None:
+            self._do_save(self._scene_path)
+
     def _start_session(self) -> None:
         if self._project_path is None:
             return
@@ -237,6 +241,7 @@ class Application(Adw.Application):
         self._window = SceneWindow(application=self)
         self._window.connect("reload", self._on_reload)
         self._window.connect("changed", self._on_changed)
+        self._window.connect("committed", self._on_committed)
         self._window.connect("close-request", self.__on_close_requested)
         self._window.present()
 
