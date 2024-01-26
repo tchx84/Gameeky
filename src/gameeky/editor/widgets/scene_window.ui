@@ -127,6 +127,7 @@
                         <property name="max-columns">3</property>
                         <property name="model">
                           <object class="GtkSingleSelection" id="selection">
+                            <property name="autoselect">False</property>
                             <property name="model">
                               <object class="GtkSortListModel">
                                 <property name="model">
