@@ -41,6 +41,9 @@ class Grid(Gtk.Widget):
         self._scale = 1.0
         self._highlight = Vector()
 
+        self._color = colors.GREEN.copy()
+        self._color.alpha = 0.5
+
         self._controller = Gtk.GestureClick()
         self._controller.connect("pressed", self.__on_clicked)
         self.add_controller(self._controller)
@@ -80,7 +83,7 @@ class Grid(Gtk.Widget):
         highlight_rect = Graphene.Rect()
         highlight_rect.init(x, y, rect_width, rect_height)
 
-        snapshot.append_color(colors.GREEN, highlight_rect)
+        snapshot.append_color(self._color, highlight_rect)
 
         for column in range(0, self._columns + 1):
             x = column * rect_width
@@ -88,7 +91,7 @@ class Grid(Gtk.Widget):
             line = Graphene.Rect()
             line.init(x, 0, 1, height)
 
-            snapshot.append_color(colors.GREEN, line)
+            snapshot.append_color(self._color, line)
 
         for row in range(0, self._rows + 1):
             y = row * rect_height
@@ -96,7 +99,7 @@ class Grid(Gtk.Widget):
             line = Graphene.Rect()
             line.init(0, y, width, 1)
 
-            snapshot.append_color(colors.GREEN, line)
+            snapshot.append_color(self._color, line)
 
     def do_get_request_mode(self):
         return Gtk.SizeRequestMode.CONSTANT_SIZE
