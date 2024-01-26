@@ -42,6 +42,7 @@ class Scene:
         height: int,
         spawn: Vector,
         daytime: DayTime,
+        duration: int,
     ) -> None:
         self._time = 0.0
         self._index = 0
@@ -55,6 +56,7 @@ class Scene:
         self.height = height
         self.spawn = spawn
         self.daytime = daytime
+        self.duration = duration
 
         self._timeout_source_id: Optional[int] = add_timeout_source(
             TICK,
@@ -71,8 +73,7 @@ class Scene:
         elif self.daytime == DayTime.NIGHT:
             self._time = 1.0
         else:
-            # A full day in one hour
-            self._time = get_time_milliseconds() / 1000 / 60 / 60
+            self._time = get_time_milliseconds() / 1000 / self.duration
 
     def tick(self) -> None:
         added = []
@@ -222,6 +223,7 @@ class Scene:
                 z=spawn.z,
             ),
             daytime=self.daytime.name.lower(),
+            duration=self.duration,
             entities=entities,
         )
 
@@ -237,6 +239,7 @@ class Scene:
                 z=description.spawn.z,
             ),
             daytime=DayTime[description.daytime.upper()],
+            duration=description.duration,
         )
 
         for entity in description.entities:
