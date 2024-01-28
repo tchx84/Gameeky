@@ -334,6 +334,13 @@ class Entity(CommonEntity, GObject.GObject):
 
         return False
 
+    def targets_by_type(self, entity: "Entity") -> bool:
+        # if no particular type then target any
+        if not self.target_type:
+            return True
+
+        return self.target_type == entity.type_id
+
     def tell(self, text: str) -> None:
         if self._timeout_source_id is not None:
             remove_source_id(self._timeout_source_id)
@@ -412,7 +419,12 @@ class Entity(CommonEntity, GObject.GObject):
 
     @target.setter
     def target(self, target: Optional["Entity"]) -> None:
-        self.target_id = target.id if target is not None else None
+        if not target:
+            self.target_id = None
+            self.target_name = ""
+        else:
+            self.target_id = target.id
+            self.target_name = target.name
 
     @property
     def held(self) -> Optional["Entity"]:
