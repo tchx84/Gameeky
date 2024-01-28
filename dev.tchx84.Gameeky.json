@@ -24,6 +24,14 @@
         "*.la",
         "*.a"
     ],
+    "add-extensions": {
+        "dev.tchx84.Gameeky.ThematicPack": {
+            "directory": "extensions",
+            "subdirectories": true,
+            "no-autodownload": true,
+            "autodelete": true
+        }
+    },
     "modules": [
         "tests/requirements.json",
         {
@@ -65,6 +73,9 @@
                     "path": ".",
                     "branch": "HEAD"
                 }
+            ],
+            "post-install": [
+                "install -d /app/extensions"
             ]
         }
     ]
