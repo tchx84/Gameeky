@@ -30,7 +30,7 @@ class Project:
             file.write(description.to_json())
 
     @classmethod
-    def create(cls, description: Description) -> None:
+    def create(cls, description: Description) -> str:
         project_path = os.path.join(get_projects_path(), description.name)
 
         os.makedirs(os.path.join(project_path, "actuators"))
@@ -40,17 +40,18 @@ class Project:
 
         cls.write(project_path, description)
 
-    @classmethod
-    def rename(cls, old: Description, new: Description) -> None:
-        projects_path = get_projects_path()
-
-        old_project_path = os.path.join(projects_path, old.name)
-        new_project_path = os.path.join(projects_path, new.name)
-
-        os.rename(old_project_path, new_project_path)
-        cls.write(new_project_path, new)
+        return project_path
 
     @classmethod
-    def remove(cls, description: Description) -> None:
-        project_path = os.path.join(get_projects_path(), description.name)
-        shutil.rmtree(project_path)
+    def rename(cls, path: str, description: Description) -> str:
+        projects_path = os.path.dirname(path)
+        project_path = os.path.join(projects_path, description.name)
+
+        os.rename(path, project_path)
+        cls.write(project_path, description)
+
+        return project_path
+
+    @classmethod
+    def remove(cls, path: str) -> None:
+        shutil.rmtree(path)

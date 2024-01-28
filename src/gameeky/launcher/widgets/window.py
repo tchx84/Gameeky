@@ -46,8 +46,8 @@ class Window(Adw.ApplicationWindow):
         self._ignore = False
         Monitor.default().connect("changed", self.__on_monitor_changed)
 
-    def _add(self, description: Description) -> None:
-        row = ProjectRow()
+    def _add(self, path: str, description: Description) -> None:
+        row = ProjectRow(path)
         row.connect("edited", self.__on_edit)
         row.connect("removed", self.__on_removed)
         row.description = description
@@ -81,11 +81,11 @@ class Window(Adw.ApplicationWindow):
     def __on_edit_done(self, dialog: ProjectEditWindow, row: ProjectRow) -> None:
         self._ignore = True
 
-        old_description = row.description
-        new_description = dialog.description
-        Project.rename(old_description, new_description)
+        description = dialog.description
+        path = Project.rename(row.path, description)
 
-        row.description = new_description
+        row.path = path
+        row.description = description
 
     def __on_removed(self, row: ProjectRow) -> None:
         dialog = ConfirmationWindow(transient_for=self)
@@ -95,7 +95,7 @@ class Window(Adw.ApplicationWindow):
     def __on_confirmed(self, dialog: ConfirmationWindow, row: ProjectRow) -> None:
         self._ignore = True
 
-        Project.remove(row.description)
+        Project.remove(row.path)
 
         self._remove(row)
 
@@ -103,9 +103,9 @@ class Window(Adw.ApplicationWindow):
         self._ignore = True
 
         description = window.description
-        Project.create(description)
+        path = Project.create(description)
 
-        self._add(description)
+        self._add(path, description)
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, button: Gtk.Button) -> None:
@@ -117,8 +117,8 @@ class Window(Adw.ApplicationWindow):
         dialog.connect("done", self.__on_add_done)
         dialog.present()
 
-    def load(self, description: Description) -> None:
-        self._add(description)
+    def load(self, path: str, description: Description) -> None:
+        self._add(path, description)
 
     def reset(self) -> None:
         self.content.remove_all()

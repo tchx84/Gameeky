@@ -28,7 +28,7 @@ from ...common.utils import get_projects_path, valid_project
 
 class Session(GObject.GObject):
     __gsignals__ = {
-        "found": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "found": (GObject.SignalFlags.RUN_LAST, None, (str, object)),
     }
 
     def __init__(self) -> None:
@@ -48,7 +48,7 @@ class Session(GObject.GObject):
         summary_path = os.path.join(path, "gameeky.project")
         description = Description.new_from_json(summary_path)
 
-        self.emit("found", description)
+        self.emit("found", path, description)
         logger.debug(f"Found {summary_path}")
 
     def shutdown(self) -> None:
