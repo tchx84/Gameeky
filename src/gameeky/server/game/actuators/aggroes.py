@@ -25,19 +25,19 @@ class Actuator(BaseActuator):
     activatable = False
 
     def tick(self) -> None:
-        target = None
-
         for entity in self._entity.surroundings:
             if entity.type_id == self._entity.type_id:
                 continue
-            if not self._entity.targets(entity):
+            if entity.blocked:
+                continue
+            if not self._entity.targets_by_type(entity):
                 continue
             if not entity.removable and not entity.playable:
+                continue
+            if not entity.visible:
                 continue
             if not entity.inline_with(self._entity):
                 continue
 
-            target = entity
+            self._entity.target = entity
             break
-
-        self._entity.target = target
