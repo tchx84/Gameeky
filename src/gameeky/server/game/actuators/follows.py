@@ -16,9 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import annotations
+
+from typing import Optional, TYPE_CHECKING
+
 from .base import Actuator as BaseActuator
 
+if TYPE_CHECKING:
+    from ..entity import Entity
+
+from ..definitions import Delay
+
 from ....common.definitions import Action, Direction
+from ....common.vector import Vector
+from ....common.utils import get_time_milliseconds
 
 
 class Actuator(BaseActuator):
@@ -26,10 +37,40 @@ class Actuator(BaseActuator):
     interactable = False
     activatable = False
 
+    def __init__(self, entity: Entity) -> None:
+        super().__init__(entity)
+        self._position: Optional[Vector] = None
+        self._timestamp: Optional[int] = None
+
+    def _stucked_on_target(self) -> bool:
+        if self._position is None:
+            self._position = self._entity.position.copy()
+        if self._timestamp is None:
+            self._timestamp = get_time_milliseconds()
+
+        # Keep track of the last time it actually moved
+        if self._position != self._entity.position:
+            self._position = self._entity.position.copy()
+            self._timestamp = get_time_milliseconds()
+
+        time_on_position = (get_time_milliseconds() - self._timestamp) / 1000
+
+        # If current target becomes unavailable for too long then forget it
+        if time_on_position < Delay.MAX:
+            return False
+
+        self._entity.target = None
+        self._position = None
+        self._timestamp = None
+
+        return True
+
     def tick(self) -> None:
         if self._entity.target is None:
             return
         if self._entity.blocked is True:
+            return
+        if self._stucked_on_target():
             return
 
         delta_x = self._entity.target.position.x - self._entity.position.x
