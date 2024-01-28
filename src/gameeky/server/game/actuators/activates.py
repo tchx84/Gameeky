@@ -33,6 +33,9 @@ class Actuator(BaseActuator):
         if (target := self._entity.overlay) is None:
             return
 
+        if target == self._entity:
+            return
+
         if target.density != Density.SOLID:
             return
 
