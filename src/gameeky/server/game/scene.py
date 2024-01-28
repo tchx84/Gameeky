@@ -47,6 +47,7 @@ class Scene:
         self._time = 0.0
         self._index = 0
         self._mutable_entities: List[Entity] = []
+        self._playable_entities: List[Entity] = []
         self._entity_by_id: Dict[int, Entity] = {}
         self._entity_by_name: Dict[str, Entity] = {}
         self._partition = SpatialPartition(width=width, height=height)
@@ -123,6 +124,9 @@ class Scene:
         if entity.mutable or entity.playable:
             self._mutable_entities.append(entity)
 
+        if entity.playable:
+            self._playable_entities.append(entity)
+
         return entity
 
     def update(self, entity_id: int, action: Action, value: float) -> None:
@@ -142,6 +146,9 @@ class Scene:
 
         if entity.mutable is True:
             self._mutable_entities.remove(entity)
+
+        if entity.playable is True:
+            self._playable_entities.remove(entity)
 
     def prepare_for_entity_id(self, entity_id: int) -> CommonScene:
         entity = self._entity_by_id[entity_id]
@@ -201,6 +208,10 @@ class Scene:
     @property
     def mutables(self) -> List[Entity]:
         return self._mutable_entities
+
+    @property
+    def playables(self) -> List[Entity]:
+        return self._playable_entities
 
     @property
     def description(self) -> Description:
