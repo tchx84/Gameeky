@@ -20,7 +20,7 @@ import os
 
 from gi.repository import Gtk, GObject
 
-from ...common.utils import launch, quote, get_projects_path, valid_file
+from ...common.utils import launch, quote, valid_file
 from ...common.monitor import Monitor
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
@@ -40,12 +40,13 @@ class ProjectRow(Gtk.FlowBoxChild):
     subtitle = Gtk.Template.Child()
     play = Gtk.Template.Child()
 
-    def __init__(self) -> None:
+    def __init__(self, path: str) -> None:
         super().__init__()
+        self.path = path
         self._monitor = Monitor()
 
     def _get_project_path(self, *path) -> str:
-        return os.path.join(get_projects_path(), self.title.props.label, *path)
+        return os.path.join(self.path, *path)
 
     def _launch(self, command: str, filename: str) -> None:
         launch(

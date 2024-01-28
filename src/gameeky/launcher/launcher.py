@@ -52,8 +52,8 @@ class Application(Adw.Application):
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
-    def __on_found(self, session: Session, description: Description) -> None:
-        self._window.load(description)
+    def __on_found(self, session: Session, path: str, description: Description) -> None:
+        self._window.load(path, description)
 
     def __on_reload(self, window: Window) -> None:
         self._window.reset()
