@@ -35,6 +35,9 @@ class Handler(BaseHandler):
         actuating = []
 
         for entity in self._entity.obstacles:
+            if entity.held_by:
+                continue
+
             for actuator in entity.actuators:
                 try:
                     if actuator.prepare(interactee=self._entity) is True:
