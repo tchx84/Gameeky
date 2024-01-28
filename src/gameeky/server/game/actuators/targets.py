@@ -32,25 +32,26 @@ class Actuator(BaseActuator):
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
-        self._original_target: Optional[Entity] = None
+        self._target: Optional[Entity] = None
 
     def tick(self) -> None:
-        if self._original_target is None:
-            self._original_target = self._entity.target
+        if self._target is None:
+            self._target = self._entity.target
             return
 
+        # If no current target then use this target
         if self._entity.target is None:
-            self._entity.target = self._original_target
+            self._entity.target = self._target
             return
 
+        # If current target becomes unavailable then use this target
         if self._entity.target.blocked:
-            self._entity.target = self._original_target
+            self._entity.target = self._target
             return
 
-        if self._entity.position != self._entity.target.position:
+        if self._entity.position != self._target.position:
             return
 
-        if self._entity.target.visible is True:
-            return
-
-        self._entity.target = self._entity.target.target
+        # If target is reached then target the next target
+        self._target = self._target.target
+        self._entity.target = self._target
