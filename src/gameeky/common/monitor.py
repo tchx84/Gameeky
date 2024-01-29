@@ -29,6 +29,7 @@ class Monitor(GObject.GObject):
     }
 
     __default__: Optional["Monitor"] = None
+    __excluded__ = ["__pycache__"]
 
     def __init__(self) -> None:
         super().__init__()
@@ -57,6 +58,10 @@ class Monitor(GObject.GObject):
         other: Gio.File,
         event_type: Gio.FileMonitorEvent,
     ) -> None:
+        for excluded in self.__excluded__:
+            if excluded in file.get_path():
+                return
+
         if self._timeout_source_id is not None:
             GLib.Source.remove(self._timeout_source_id)
 
