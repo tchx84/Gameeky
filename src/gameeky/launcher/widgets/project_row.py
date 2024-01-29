@@ -18,7 +18,7 @@
 
 import os
 
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk, GLib, GObject
 
 from ...common.utils import launch, quote, valid_file
 from ...common.monitor import Monitor
@@ -39,10 +39,20 @@ class ProjectRow(Gtk.FlowBoxChild):
     title = Gtk.Template.Child()
     subtitle = Gtk.Template.Child()
     play = Gtk.Template.Child()
+    edit = Gtk.Template.Child()
+    settings = Gtk.Template.Child()
+    remove = Gtk.Template.Child()
 
     def __init__(self, path: str) -> None:
         super().__init__()
         self.path = path
+
+        writeable = GLib.access(self.path, os.W_OK) == 0
+
+        self.edit.props.sensitive = writeable
+        self.settings.props.sensitive = writeable
+        self.remove.props.sensitive = writeable
+
         self._monitor = Monitor()
 
     def _get_project_path(self, *path) -> str:
