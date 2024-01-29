@@ -23,7 +23,7 @@ from gi.repository import GObject
 from ...common.logger import logger
 from ...common.monitor import Monitor
 from ...common.scanner import Scanner, Description
-from ...common.utils import get_projects_path, valid_project
+from ...common.utils import get_projects_path, get_packs_path, valid_project
 
 
 class Session(GObject.GObject):
@@ -33,11 +33,19 @@ class Session(GObject.GObject):
 
     def __init__(self) -> None:
         super().__init__()
+
         Monitor.default().shutdown()
         Monitor.default().add(get_projects_path())
+        Monitor.default().add(get_packs_path())
 
     def scan(self) -> None:
         scanner = Scanner(path=get_projects_path())
+        scanner.connect("found", self.__on_scanner_found)
+        scanner.connect("done", self.__on_scanner_done)
+        scanner.scan()
+
+    def __on_scanner_done(self, scanner: Scanner) -> None:
+        scanner = Scanner(path=get_packs_path())
         scanner.connect("found", self.__on_scanner_found)
         scanner.scan()
 
