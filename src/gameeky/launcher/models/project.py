@@ -57,7 +57,14 @@ class Project:
         description.name = find_new_name(get_projects_path(), description.name)
         project_path = os.path.join(get_projects_path(), description.name)
 
-        shutil.copytree(path, project_path)
+        os.mkdir(project_path)
+
+        for directory in ["actuators", "assets", "entities", "scenes"]:
+            shutil.copytree(
+                os.path.join(path, directory),
+                os.path.join(project_path, directory),
+            )
+
         cls.write(project_path, description)
 
         return project_path
