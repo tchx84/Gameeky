@@ -33,6 +33,7 @@ class ProjectRow(Gtk.FlowBoxChild):
 
     __gsignals__ = {
         "edited": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "copied": (GObject.SignalFlags.RUN_LAST, None, ()),
         "removed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -81,6 +82,10 @@ class ProjectRow(Gtk.FlowBoxChild):
     @Gtk.Template.Callback("on_settings_clicked")
     def __on_settings_clicked(self, button: Gtk.Button) -> None:
         self.emit("edited")
+
+    @Gtk.Template.Callback("on_copy_clicked")
+    def __on_copy_clicked(self, button: Gtk.Button) -> None:
+        self.emit("copied")
 
     @Gtk.Template.Callback("on_remove_clicked")
     def __on_remove_clicked(self, button: Gtk.Button) -> None:

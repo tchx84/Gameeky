@@ -49,6 +49,7 @@ class Window(Adw.ApplicationWindow):
     def _add(self, path: str, description: Description) -> None:
         row = ProjectRow(path)
         row.connect("edited", self.__on_edit)
+        row.connect("copied", self.__on_copied)
         row.connect("removed", self.__on_removed)
         row.description = description
 
@@ -57,6 +58,7 @@ class Window(Adw.ApplicationWindow):
 
     def _remove(self, row: ProjectRow) -> None:
         row.disconnect_by_func(self.__on_edit)
+        row.disconnect_by_func(self.__on_copied)
         row.disconnect_by_func(self.__on_removed)
         row.shutdown()
 
@@ -98,6 +100,14 @@ class Window(Adw.ApplicationWindow):
         Project.remove(row.path)
 
         self._remove(row)
+
+    def __on_copied(self, row: ProjectRow) -> None:
+        self._ignore = True
+
+        description = row.description
+        path = Project.copy(row.path, description)
+
+        self._add(path, description)
 
     def __on_add_done(self, window: ProjectNewWindow) -> None:
         self._ignore = True
