@@ -20,6 +20,7 @@ import os
 import json
 
 from typing import Callable, Optional, Tuple
+from gettext import gettext as _
 from gi.repository import GLib, Gio
 
 
@@ -181,6 +182,13 @@ def quote(string: str) -> str:
         return string
     else:
         return f"'{string}'"
+
+
+def find_new_name(directory: str, name: str) -> str:
+    while os.path.lexists(os.path.join(directory, name)):
+        name = _("%s (copy)") % name
+
+    return name
 
 
 def clamp(maximum, minimum, value):
