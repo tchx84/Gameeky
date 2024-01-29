@@ -4,8 +4,10 @@ data/dev.tchx84.Gameeky.Player.desktop.in
 data/dev.tchx84.Gameeky.Scene.desktop.in
 data/dev.tchx84.Gameeky.metainfo.xml.in
 data/dev.tchx84.Gameeky.gschema.xml
+src/gameeky/client/graphics/entity.py
+src/gameeky/common/errors.py
+src/gameeky/common/utils.py
 src/gameeky/editor/entity.py
-src/gameeky/editor/scene.py
 src/gameeky/editor/models/actuator_row.py
 src/gameeky/editor/models/area_row.py
 src/gameeky/editor/models/base_row.py
@@ -13,6 +15,7 @@ src/gameeky/editor/models/daytime_row.py
 src/gameeky/editor/models/direction_row.py
 src/gameeky/editor/models/layer_row.py
 src/gameeky/editor/models/state_row.py
+src/gameeky/editor/scene.py
 src/gameeky/editor/widgets/animation_row.py
 src/gameeky/editor/widgets/sound_row.py
 src/gameeky/launcher/launcher.py
@@ -21,6 +24,7 @@ src/gameeky/editor/widgets/actuators_row.ui
 src/gameeky/editor/widgets/animation_row.ui
 src/gameeky/editor/widgets/animation_settings.ui
 src/gameeky/editor/widgets/animations_settings.ui
+src/gameeky/editor/widgets/confirmation_save_window.ui
 src/gameeky/editor/widgets/confirmation_window.ui
 src/gameeky/editor/widgets/entity_new_window.ui
 src/gameeky/editor/widgets/entity_open_window.ui
@@ -48,4 +52,5 @@ src/gameeky/launcher/widgets/window.ui
 src/gameeky/player/widgets/actions_popover.ui
 src/gameeky/player/widgets/session_join_window.ui
 src/gameeky/player/widgets/session_new_window.ui
+src/gameeky/player/widgets/shortcuts_window.ui
 src/gameeky/player/widgets/window.ui
