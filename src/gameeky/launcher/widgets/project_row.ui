@@ -110,6 +110,19 @@
                   </object>
                 </child>
                 <child>
+                  <object class="GtkButton" id="copy">
+                    <property name="halign">center</property>
+                    <property name="icon-name">edit-copy-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Copy</property>
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="on_copy_clicked"/>
+                    <style>
+                      <class name="osd"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkButton" id="remove">
                     <property name="halign">center</property>
                     <property name="icon-name">user-trash-symbolic</property>

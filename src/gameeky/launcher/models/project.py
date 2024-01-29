@@ -20,7 +20,7 @@ import os
 import shutil
 
 from ...common.scanner import Description
-from ...common.utils import get_projects_path
+from ...common.utils import get_projects_path, find_new_name
 
 
 class Project:
@@ -48,6 +48,16 @@ class Project:
         project_path = os.path.join(projects_path, description.name)
 
         os.rename(path, project_path)
+        cls.write(project_path, description)
+
+        return project_path
+
+    @classmethod
+    def copy(cls, path: str, description: Description) -> str:
+        description.name = find_new_name(get_projects_path(), description.name)
+        project_path = os.path.join(get_projects_path(), description.name)
+
+        shutil.copytree(path, project_path)
         cls.write(project_path, description)
 
         return project_path
