@@ -43,8 +43,8 @@
           </object>
         </property>
         <property name="hexpand">True</property>
-        <property name="subtitle">The number of seconds a full day lasts</property>
-        <property name="title">Duration</property>
+        <property name="subtitle" translatable="yes">The number of seconds a full day lasts</property>
+        <property name="title" translatable="yes">Duration</property>
       </object>
     </child>
     <child>
