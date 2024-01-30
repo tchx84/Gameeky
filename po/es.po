@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 21:31-0300\n"
+"POT-Creation-Date: 2024-01-29 22:11-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -395,62 +395,120 @@ msgstr "Archivo de conjunto de mosaicos"
 msgid "Number of tileset columns"
 msgstr "Número de columnas del conjunto de mosaicos"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:77
+msgid "Columns"
+msgstr "Columnas"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:90
 msgid "Number of tileset rows"
 msgstr "Número de filas del conjunto de mosaicos"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:91
+msgid "Rows"
+msgstr "Filas"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:102
 msgid "Number of the first frame to include in the animation"
 msgstr "Número del primer cuadro a incluir en la animación"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:103
+msgid "First Frame"
+msgstr "Primer Fotograma"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:114
 msgid "Number of the last frame to include in the animation"
 msgstr "Número del último cuadro a incluir en la animación"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:115
+msgid "Last Frame"
+msgstr "Último Fotograma"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:127
 msgid "Number of seconds the complete animation should last"
 msgstr "Número de segundos que debe durar la animación completa"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:128
+#: src/gameeky/editor/widgets/scene_settings.ui:47
+msgid "Duration"
+msgstr "Duración"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:139
 msgid "Angle to rotate the image"
 msgstr "Ángulo para rotar la imagen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:140
+#: src/gameeky/editor/widgets/scene_window.ui:216
+msgid "Rotate"
+msgstr "Rotar"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:154
 msgid "Number of tiles to include on the x-axis"
 msgstr "Número de mosaicos a incluir en el eje x"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:155
+msgid "Tiles X"
+msgstr "Mosaicos X"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:168
 msgid "Number of tiles to include on the y-axis"
 msgstr "Número de mosaicos a incluir en el eje y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:169
+msgid "Tiles Y"
+msgstr "Mosaicos Y"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:183
 msgid "How many times larger this image should be on the x-axis"
 msgstr "Cuántas veces más grande debería ser esta imagen en el eje x"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:184
+msgid "Scale X"
+msgstr "Escala X"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:198
 msgid "How many times larger this image should be on the y-axis"
 msgstr "Cuántas veces más grande debería ser esta imagen en el eje y"
 
+#: src/gameeky/editor/widgets/animation_settings.ui:199
+msgid "Scale Y"
+msgstr "Escala Y"
+
 #: src/gameeky/editor/widgets/animation_settings.ui:210
 msgid "Number of pixels to remove on the x-axis"
-msgstr "Número de píxeles a eliminar en el eje x"
+msgstr "Número de píxeles a recortar en el eje x"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:211
+msgid "Crop X"
+msgstr "Recorte X"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:222
 msgid "Number of pixels to remove on the y-axis"
-msgstr "Número de píxeles a eliminar en el eje y"
+msgstr "Número de píxeles a recortar en el eje y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:223
+msgid "Crop Y"
+msgstr "Recorte Y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:228
+msgid "Whether to flip the image on the x-axis"
+msgstr "Voltea la imagen en el eje x"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:229
 msgid "Flip X"
-msgstr "Voltear X"
+msgstr "Voltea X"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:234
+msgid "Whether to flip the image on the y-axis"
+msgstr "Voltea la imagen en el eje y"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:235
 msgid "Flip Y"
-msgstr "Voltear Y"
+msgstr "Voltea Y"
 
 #: src/gameeky/editor/widgets/animations_settings.ui:11
 msgid "Add animations for different states and directions combinations"
 msgstr ""
-"Agregar animaciones para diferentes combinaciones de estados y direcciones"
+"Agrega animaciones para diferentes combinaciones de estados y direcciones"
 
 #: src/gameeky/editor/widgets/animations_settings.ui:20
 msgid "Animations"
@@ -810,10 +868,6 @@ msgstr "Tiempo"
 msgid "The number of seconds a full day lasts"
 msgstr "El número de segundos que dura un día completo"
 
-#: src/gameeky/editor/widgets/scene_settings.ui:47
-msgid "Duration"
-msgstr "Duración"
-
 #: src/gameeky/editor/widgets/scene_settings.ui:61
 msgid "The number of horizontal tiles"
 msgstr "El número de mosaicos horizontales"
@@ -861,10 +915,6 @@ msgstr "Añadir a la escena"
 #: src/gameeky/editor/widgets/scene_window.ui:209
 msgid "Remove from the scene"
 msgstr "Retirar de la escena"
-
-#: src/gameeky/editor/widgets/scene_window.ui:216
-msgid "Rotate"
-msgstr "Rotar"
 
 #: src/gameeky/editor/widgets/scene_window.ui:223
 msgid "Override properties"
