@@ -63,7 +63,7 @@
     </child>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="description" translatable="yes">These values modify basics statistics</property>
+        <property name="description" translatable="yes">These values modify basic statistics</property>
         <property name="title" translatable="yes">Modifiers</property>
         <child>
           <object class="AdwSpinRow" id="recovery">
