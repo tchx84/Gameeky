@@ -1,0 +1,1046 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Gameeky\n"
+"Language: es\n"
+
+#: data/dev.tchx84.Gameeky.desktop.in:3
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:6
+#: src/gameeky/launcher/launcher.py:45
+msgid "Gameeky"
+msgstr "Gameeky"
+
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:58
+msgid "Entity Editor"
+msgstr "Editor de Entidades"
+
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:68
+msgid "Player"
+msgstr "Jugador"
+
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:59
+msgid "Scene Editor"
+msgstr "Editor de Escena"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:7
+msgid "Play, create and learn"
+msgstr "Juega, crea y aprende"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:9
+msgid "Gameeky lets young learners and educators create and explore cooperative games and learning experiences."
+msgstr "Gameeky permite a estudiantes jóvenes y educadores, crear y explorar juegos cooperativos y experiencias de aprendizaje."
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:12
+msgid "More specifically:"
+msgstr "Más específicamente:"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:16
+msgid "Play and explore games with friends"
+msgstr "Juega y explora juegos con amigos."
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:17
+msgid "Create new games without writing any code"
+msgstr "Crea nuevos juegos sin escribir ningún código"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:18
+msgid "Nurture artistic skills by designing game objects and creatures"
+msgstr "Fomenta las habilidades artísticas diseñando objetos y criaturas del juego."
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:19
+msgid "Grasp the basics of programming using Python in a LOGO-like experience"
+msgstr "Comprende los conceptos básicos de programación usando Python en una experiencia similar a LOGO"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:20
+msgid "Mature programming skills by extending games with Python plugins"
+msgstr "Madura tus habilidades de programación ampliando juegos con plugins de Python"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:40
+msgid "Martin Abente Lahaye"
+msgstr "Martín Abente Lahaye"
+
+#: src/gameeky/client/graphics/entity.py:111
+msgid "Missing entity type: %d"
+msgstr "Tipo de entidad faltante: %d"
+
+#: src/gameeky/common/errors.py:31
+msgid "Wrong client version"
+msgstr "Versión de cliente incorrecta"
+
+#: src/gameeky/common/errors.py:33
+msgid "Wrong project"
+msgstr "Proyecto equivocado"
+
+#: src/gameeky/common/errors.py:35
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: src/gameeky/common/utils.py:196
+msgid "%s (copy)"
+msgstr "%s (copiar)"
+
+#: src/gameeky/editor/models/actuator_row.py:33
+msgid "Activates"
+msgstr "Activa"
+
+#: src/gameeky/editor/models/actuator_row.py:34
+msgid "Activates on interaction"
+msgstr "Se activa al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:35
+msgid "Affects"
+msgstr "Afectos"
+
+#: src/gameeky/editor/models/actuator_row.py:36
+msgid "Affects on interaction"
+msgstr "Efecta en la interacción"
+
+#: src/gameeky/editor/models/actuator_row.py:37
+msgid "Affects on use"
+msgstr "Afecta al uso"
+
+#: src/gameeky/editor/models/actuator_row.py:38
+msgid "Aggroes"
+msgstr "Agrede"
+
+#: src/gameeky/editor/models/actuator_row.py:39
+msgid "Collapses"
+msgstr "Colapsa"
+
+#: src/gameeky/editor/models/actuator_row.py:40
+msgid "Collapses over time"
+msgstr "Colapsa con el tiempo"
+
+#: src/gameeky/editor/models/actuator_row.py:41
+msgid "Destroys"
+msgstr "Destruye"
+
+#: src/gameeky/editor/models/actuator_row.py:42
+msgid "Destroys on interaction"
+msgstr "Destruye al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:43
+msgid "Deteriorates"
+msgstr "Se deteriora"
+
+#: src/gameeky/editor/models/actuator_row.py:44
+msgid "Drops"
+msgstr "Suelta"
+
+#: src/gameeky/editor/models/actuator_row.py:45
+msgid "Exhausts"
+msgstr "Agota"
+
+#: src/gameeky/editor/models/actuator_row.py:46
+msgid "Follows"
+msgstr "Sigue"
+
+#: src/gameeky/editor/models/actuator_row.py:47
+msgid "Interacts"
+msgstr "Interactúa"
+
+#: src/gameeky/editor/models/actuator_row.py:48
+msgid "Propulses"
+msgstr "Propulsa"
+
+#: src/gameeky/editor/models/actuator_row.py:49
+msgid "Requires"
+msgstr "Requiere"
+
+#: src/gameeky/editor/models/actuator_row.py:50
+msgid "Roams"
+msgstr "Deambula"
+
+#: src/gameeky/editor/models/actuator_row.py:51
+msgid "Rotates on interaction"
+msgstr "Gira al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:52
+msgid "Says"
+msgstr "Dice"
+
+#: src/gameeky/editor/models/actuator_row.py:53
+msgid "Says on interaction"
+msgstr "Dice al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:54
+msgid "Spawns"
+msgstr "Agrega"
+
+#: src/gameeky/editor/models/actuator_row.py:55
+msgid "Takes"
+msgstr "Toma"
+
+#: src/gameeky/editor/models/actuator_row.py:56
+msgid "Targets"
+msgstr "Apunta"
+
+#: src/gameeky/editor/models/actuator_row.py:57
+msgid "Teleports"
+msgstr "Teletransporta"
+
+#: src/gameeky/editor/models/actuator_row.py:58
+msgid "Teleports on interaction"
+msgstr "Se teletransporta al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:59
+msgid "Transmutes"
+msgstr "Transmuta"
+
+#: src/gameeky/editor/models/actuator_row.py:60
+msgid "Triggers"
+msgstr "Desencadena"
+
+#: src/gameeky/editor/models/actuator_row.py:61
+msgid "Triggers on interaction"
+msgstr "Desencadena al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:62
+msgid "Uses"
+msgstr "Usa"
+
+#: src/gameeky/editor/models/area_row.py:28
+msgid "1x1"
+msgstr "1x1"
+
+#: src/gameeky/editor/models/area_row.py:29
+msgid "3x3"
+msgstr "3x3"
+
+#: src/gameeky/editor/models/area_row.py:30
+msgid "5x5"
+msgstr "5x5"
+
+#: src/gameeky/editor/models/area_row.py:31
+msgid "7x7"
+msgstr "7x7"
+
+#: src/gameeky/editor/models/area_row.py:32
+msgid "9x9"
+msgstr "9x9"
+
+#: src/gameeky/editor/models/base_row.py:43
+msgid "Default"
+msgstr "Predeterminado"
+
+#: src/gameeky/editor/models/daytime_row.py:28
+msgid "Dynamic"
+msgstr "Dinámico"
+
+#: src/gameeky/editor/models/daytime_row.py:29
+msgid "Day"
+msgstr "Día"
+
+#: src/gameeky/editor/models/daytime_row.py:30
+msgid "Night"
+msgstr "Noche"
+
+#: src/gameeky/editor/models/direction_row.py:28
+msgid "East"
+msgstr "Este"
+
+#: src/gameeky/editor/models/direction_row.py:29
+msgid "North"
+msgstr "Norte"
+
+#: src/gameeky/editor/models/direction_row.py:30
+msgid "South"
+msgstr "Sur"
+
+#: src/gameeky/editor/models/direction_row.py:31
+msgid "West"
+msgstr "Oeste"
+
+#: src/gameeky/editor/models/layer_row.py:28
+msgid "Layer 0"
+msgstr "Capa 0"
+
+#: src/gameeky/editor/models/layer_row.py:29
+msgid "Layer 1"
+msgstr "Capa 1"
+
+#: src/gameeky/editor/models/layer_row.py:30
+msgid "Layer 2"
+msgstr "Capa 2"
+
+#: src/gameeky/editor/models/layer_row.py:31
+msgid "Layer 3"
+msgstr "Capa 3"
+
+#: src/gameeky/editor/models/layer_row.py:32
+msgid "Layer 4"
+msgstr "Capa 4"
+
+#: src/gameeky/editor/models/layer_row.py:33
+msgid "Layer 5"
+msgstr "Capa 5"
+
+#: src/gameeky/editor/models/layer_row.py:34
+msgid "Layer 6"
+msgstr "Capa 6"
+
+#: src/gameeky/editor/models/layer_row.py:35
+msgid "Layer 7"
+msgstr "Capa 7"
+
+#: src/gameeky/editor/models/layer_row.py:36
+msgid "All layers"
+msgstr "Todas las capas"
+
+#: src/gameeky/editor/models/state_row.py:28
+msgid "Destroyed"
+msgstr "Destruido"
+
+#: src/gameeky/editor/models/state_row.py:29
+msgid "Destroying"
+msgstr "Destruyendo"
+
+#: src/gameeky/editor/models/state_row.py:30
+msgid "Dropping"
+msgstr "Soltando"
+
+#: src/gameeky/editor/models/state_row.py:31
+msgid "Exhausted"
+msgstr "Agotado"
+
+#: src/gameeky/editor/models/state_row.py:32
+msgid "Held"
+msgstr "Retenido"
+
+#: src/gameeky/editor/models/state_row.py:33
+msgid "Idling"
+msgstr "Quieto"
+
+#: src/gameeky/editor/models/state_row.py:34
+msgid "Interacting"
+msgstr "Interactuando"
+
+#: src/gameeky/editor/models/state_row.py:35
+msgid "Moving"
+msgstr "Moviendo"
+
+#: src/gameeky/editor/models/state_row.py:36
+msgid "Taking"
+msgstr "Tomando"
+
+#: src/gameeky/editor/models/state_row.py:37
+msgid "Using"
+msgstr "Usando"
+
+#: src/gameeky/editor/widgets/animation_row.py:63
+#: src/gameeky/editor/widgets/sound_row.py:63
+msgid "While %s"
+msgstr "Mientras %s"
+
+#: src/gameeky/editor/widgets/animation_row.py:68
+msgid "By default"
+msgstr "Por defecto"
+
+#: src/gameeky/editor/widgets/actuators_row.ui:12
+msgid "The actuators that will modify this entity behavior"
+msgstr "Los actuadores que modificarán el comportamiento de esta entidad."
+
+#: src/gameeky/editor/widgets/actuators_row.ui:13
+msgid "Actuators"
+msgstr "Actuadores"
+
+#: src/gameeky/editor/widgets/animation_row.ui:32
+msgid "Animation"
+msgstr "Animación"
+
+#: src/gameeky/editor/widgets/animation_row.ui:35
+#: src/gameeky/editor/widgets/entity_settings.ui:183
+#: src/gameeky/editor/widgets/sound_row.ui:33
+msgid "State"
+msgstr "Estado"
+
+#: src/gameeky/editor/widgets/animation_row.ui:40
+#: src/gameeky/editor/widgets/entity_settings.ui:189
+msgid "Direction"
+msgstr "Dirección"
+
+#: src/gameeky/editor/widgets/animation_row.ui:45
+#: src/gameeky/editor/widgets/sound_row.ui:38
+msgid "Details"
+msgstr "Detalles"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:15
+#: src/gameeky/editor/widgets/sound_settings.ui:11
+msgid "Preview"
+msgstr "Vista previa"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:35
+msgid "Tileset File"
+msgstr "Archivo de conjunto de mosaicos"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:76
+msgid "Number of tileset columns"
+msgstr "Número de columnas del conjunto de mosaicos"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:90
+msgid "Number of tileset rows"
+msgstr "Número de filas del conjunto de mosaicos"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:102
+msgid "Number of the first frame to include in the animation"
+msgstr "Número del primer cuadro a incluir en la animación."
+
+#: src/gameeky/editor/widgets/animation_settings.ui:114
+msgid "Number of the last frame to include in the animation"
+msgstr "Número del último cuadro a incluir en la animación."
+
+#: src/gameeky/editor/widgets/animation_settings.ui:127
+msgid "Number of seconds the complete animation should last"
+msgstr "Número de segundos que debe durar la animación completa."
+
+#: src/gameeky/editor/widgets/animation_settings.ui:139
+msgid "Angle to rotate the image"
+msgstr "Ángulo para rotar la imagen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:154
+msgid "Number of tiles to include on the x-axis"
+msgstr "Número de mosaicos a incluir en el eje x"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:168
+msgid "Number of tiles to include on the y-axis"
+msgstr "Número de mosaicos a incluir en el eje y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:183
+msgid "How many times larger this image should be on the x-axis"
+msgstr "Cuántas veces más grande debería ser esta imagen en el eje x"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:198
+msgid "How many times larger this image should be on the y-axis"
+msgstr "Cuántas veces más grande debería ser esta imagen en el eje y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:210
+msgid "Number of pixels to remove on the x-axis"
+msgstr "Número de píxeles a eliminar en el eje x"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:222
+msgid "Number of pixels to remove on the y-axis"
+msgstr "Número de píxeles para eliminar en el eje y"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:229
+msgid "Flip X"
+msgstr "Voltear X"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:235
+msgid "Flip Y"
+msgstr "Voltear Y"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:11
+msgid "Add animations for different states and directions combinations"
+msgstr "Agregar animaciones para diferentes combinaciones de estados y direcciones"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:20
+msgid "Animations"
+msgstr "animaciones"
+
+#: src/gameeky/editor/widgets/confirmation_save_window.ui:7
+msgid "There are unsaved changes. Changes which are not saved will be permanently lost."
+msgstr "Hay cambios no guardados. Los cambios que no se guarden, se perderán permanentemente"
+
+#: src/gameeky/editor/widgets/confirmation_save_window.ui:11
+msgid "Save Changes?"
+msgstr "¿Guardar Cambios?"
+
+#: src/gameeky/editor/widgets/confirmation_save_window.ui:15
+#: src/gameeky/editor/widgets/confirmation_window.ui:15
+#: src/gameeky/editor/widgets/entity_new_window.ui:59
+#: src/gameeky/editor/widgets/entity_open_window.ui:70
+#: src/gameeky/editor/widgets/scene_edit_window.ui:35
+#: src/gameeky/editor/widgets/scene_entity_window.ui:23
+#: src/gameeky/editor/widgets/scene_new_window.ui:35
+#: src/gameeky/editor/widgets/scene_open_window.ui:71
+#: src/gameeky/launcher/widgets/confirmation_window.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:35
+#: src/gameeky/launcher/widgets/project_new_window.ui:35
+#: src/gameeky/player/widgets/session_join_window.ui:93
+#: src/gameeky/player/widgets/session_new_window.ui:119
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/gameeky/editor/widgets/confirmation_save_window.ui:16
+msgid "Discard"
+msgstr "Descartar"
+
+#: src/gameeky/editor/widgets/confirmation_save_window.ui:17
+#: src/gameeky/editor/widgets/entity_window.ui:129
+#: src/gameeky/editor/widgets/scene_edit_window.ui:41
+#: src/gameeky/editor/widgets/scene_entity_window.ui:29
+#: src/gameeky/editor/widgets/scene_window.ui:299
+#: src/gameeky/launcher/widgets/project_edit_window.ui:41
+msgid "Save"
+msgstr "Guardar"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this entity?"
+msgstr "¿Quieres eliminar <b>permanentemente</b> esta entidad?"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:11
+msgid "Delete Entity?"
+msgstr "¿Eliminar Entidad?"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:16
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
+#: src/gameeky/launcher/widgets/confirmation_window.ui:16
+#: src/gameeky/launcher/widgets/project_row.ui:129
+msgid "Delete"
+msgstr "Eliminar"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:26
+#: src/gameeky/editor/widgets/entity_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_settings.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:58
+#: src/gameeky/launcher/widgets/project_new_window.ui:58
+#: src/gameeky/player/widgets/session_join_window.ui:27
+#: src/gameeky/player/widgets/session_new_window.ui:27
+msgid "Project"
+msgstr "Proyecto"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:65
+#: src/gameeky/editor/widgets/scene_new_window.ui:41
+#: src/gameeky/launcher/widgets/project_new_window.ui:41
+#: src/gameeky/launcher/widgets/window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:125
+msgid "Create"
+msgstr "Crear"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:82
+#: src/gameeky/editor/widgets/entity_open_window.ui:41
+#: src/gameeky/editor/widgets/entity_open_window.ui:93
+#: src/gameeky/editor/widgets/scene_entity_window.ui:46
+msgid "Entity"
+msgstr "Entidad"
+
+#: src/gameeky/editor/widgets/entity_open_window.ui:76
+#: src/gameeky/editor/widgets/scene_open_window.ui:77
+msgid "Open"
+msgstr "Abierto"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:12
+msgid "These values are the basic statistics of this entity"
+msgstr "Estos valores son las estadísticas básicas de esta entidad."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:13
+msgid "Stats"
+msgstr "Estadísticas"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:22
+msgid "How much action this entity can perform"
+msgstr "Cuánta acción puede realizar esta entidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:23
+msgid "Stamina"
+msgstr "Resistencia"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:34
+msgid "How much wear or damage this entity can sustain"
+msgstr "Cuánto desgaste o daño puede soportar esta entidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:35
+msgid "Durability"
+msgstr "Durabilidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:46
+msgid "How heavy this entity is"
+msgstr "Qué tan pesada es esta entidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:47
+msgid "Weight"
+msgstr "Peso"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:58
+msgid "How much weight or damage this entity can lift or apply"
+msgstr "Cuánto peso o daño esta entidad puede levantar o aplicar"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:59
+msgid "Strength"
+msgstr "Fuerza"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:66
+msgid "These values modify basics statistics"
+msgstr "Estos valores modifican las estadísticas básicas."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:67
+msgid "Modifiers"
+msgstr "Modificadores"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:77
+msgid "Affects recovery times, cool downs and delays"
+msgstr "Afecta los tiempos de recuperación, enfriamientos y retrasos."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:78
+msgid "Recovery"
+msgstr "Recuperación"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:90
+msgid "Affects the speed of other entities traversing through this entity"
+msgstr "Afecta la velocidad de otras entidades que atraviesan esta entidad."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:91
+msgid "Density"
+msgstr "Densidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:98
+msgid "These values determine how this entity behaves"
+msgstr "Estos valores determinan cómo se comporta esta entidad."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:99
+msgid "Behaviors"
+msgstr "Comportamientos"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:102
+#: src/gameeky/editor/widgets/scene_settings.ui:10
+#: src/gameeky/launcher/widgets/project_settings.ui:9
+msgid "Name"
+msgstr "Nombre"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:107
+msgid "Target Name"
+msgstr "Nombre del Objetivo"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:112
+msgid "Dialogue"
+msgstr "Diálogo"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:123
+msgid "The identifier of another entity"
+msgstr "El identificador de otra entidad."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:124
+msgid "Target Type"
+msgstr "Tipo de Objetivo"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:135
+msgid "The maximum area that an actuator can have an effect"
+msgstr "El área máxima en la que un actuador puede tener efecto."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:136
+msgid "Radius"
+msgstr "Radio"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:147
+msgid "How often an actuator can be triggered"
+msgstr "Con qué frecuencia se puede activar un actuador"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:148
+msgid "Rate"
+msgstr "Tasa"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:158
+msgid "These values affect how the entity looks on screen"
+msgstr "Estos valores afectan la apariencia de la entidad en la pantalla."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:159
+msgid "Visibility"
+msgstr "Visibilidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:163
+msgid "Whether this entity is visible at all"
+msgstr "Si esta entidad es visible en absoluto"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:164
+msgid "Visible"
+msgstr "visible"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:176
+msgid "The amount of light this entity can emit"
+msgstr "La cantidad de luz que esta entidad puede emitir"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:177
+msgid "Luminance"
+msgstr "Luminancia"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:182
+msgid "The initial state"
+msgstr "El estado inicial"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:188
+msgid "The initial direction"
+msgstr "La dirección inicial"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:196
+msgid "These values are used to determine specific conditions"
+msgstr "Estos valores se utilizan para determinar condiciones específicas."
+
+#: src/gameeky/editor/widgets/entity_settings.ui:197
+msgid "Conditions"
+msgstr "Condiciones"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:200
+msgid "Whether this entity can be removed from the scene"
+msgstr "Si esta entidad puede ser eliminada de la escena"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:201
+msgid "Removable"
+msgstr "Desmontable"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:206
+msgid "Whether this entity can be taken and moved by another entity"
+msgstr "Si esta entidad puede ser tomada y trasladada por otra entidad"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:207
+msgid "Takeable"
+msgstr "Tomable"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:212
+msgid "Whether this entity can be used as tool"
+msgstr "Si esta entidad puede usarse como herramienta"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:213
+msgid "Usable"
+msgstr "utilizable"
+
+#: src/gameeky/editor/widgets/entity_window.ui:17
+msgid "Actuators have been changed on disk"
+msgstr "Los actuadores han sido cambiados en el disco."
+
+#: src/gameeky/editor/widgets/entity_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:116
+#: src/gameeky/player/widgets/session_new_window.ui:142
+msgid "Game"
+msgstr "Juego"
+
+#: src/gameeky/editor/widgets/entity_window.ui:69
+msgid "Graphics"
+msgstr "Gráficos"
+
+#: src/gameeky/editor/widgets/entity_window.ui:90
+#: src/gameeky/editor/widgets/sounds_settings.ui:20
+msgid "Sounds"
+msgstr "Sonidos"
+
+#: src/gameeky/editor/widgets/entity_window.ui:121
+#: src/gameeky/editor/widgets/scene_window.ui:287
+#: src/gameeky/launcher/widgets/window.ui:142
+#: src/gameeky/player/widgets/window.ui:177
+msgid "_New"
+msgstr "_Nuevo"
+
+#: src/gameeky/editor/widgets/entity_window.ui:125
+#: src/gameeky/editor/widgets/scene_window.ui:291
+msgid "_Open"
+msgstr "_Abrir"
+
+#: src/gameeky/editor/widgets/entity_window.ui:133
+#: src/gameeky/editor/widgets/scene_window.ui:303
+#: src/gameeky/player/widgets/window.ui:185
+msgid "Save _As…"
+msgstr "Guardar _Como…"
+
+#: src/gameeky/editor/widgets/entity_window.ui:137
+#: src/gameeky/editor/widgets/scene_window.ui:307
+#: src/gameeky/launcher/widgets/window.ui:146
+#: src/gameeky/player/widgets/window.ui:193
+msgid "_About"
+msgstr "_Acerca de"
+
+#: src/gameeky/editor/widgets/global_settings.ui:8
+msgid "These values must be unique among all entities"
+msgstr "Estos valores deben ser únicos entre todas las entidades."
+
+#: src/gameeky/editor/widgets/global_settings.ui:9
+msgid "Global"
+msgstr "Global"
+
+#: src/gameeky/editor/widgets/global_settings.ui:20
+msgid "Unique identifier for this entity"
+msgstr "Identificador único para esta entidad"
+
+#: src/gameeky/editor/widgets/global_settings.ui:21
+msgid "Identifier"
+msgstr "Identificador"
+
+#: src/gameeky/editor/widgets/paths_row.ui:12
+msgid "Sound files to be played in sequence"
+msgstr "Archivos de sonido que se reproducirán en secuencia"
+
+#: src/gameeky/editor/widgets/paths_row.ui:13
+msgid "Files"
+msgstr "Archivos"
+
+#: src/gameeky/editor/widgets/scene_edit_window.ui:58
+#: src/gameeky/editor/widgets/scene_new_window.ui:58
+#: src/gameeky/editor/widgets/scene_open_window.ui:42
+#: src/gameeky/editor/widgets/scene_open_window.ui:94
+#: src/gameeky/player/widgets/session_new_window.ui:41
+msgid "Scene"
+msgstr "Escena"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:15
+#: src/gameeky/launcher/widgets/project_row.ui:90
+msgid "Edit"
+msgstr "Editar"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:39
+msgid "Add"
+msgstr "Añadir"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:32
+msgid "Time"
+msgstr "Tiempo"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:46
+msgid "The number of seconds a full day lasts"
+msgstr "El número de segundos que dura un día completo."
+
+#: src/gameeky/editor/widgets/scene_settings.ui:47
+msgid "Duration"
+msgstr "Duración"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:61
+msgid "The number of horizontal tiles"
+msgstr "El número de mosaicos horizontales."
+
+#: src/gameeky/editor/widgets/scene_settings.ui:62
+msgid "Width"
+msgstr "Ancho"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:75
+msgid "The number of vertical tiles"
+msgstr "El número de mosaicos verticales."
+
+#: src/gameeky/editor/widgets/scene_settings.ui:76
+msgid "Height"
+msgstr "Altura"
+
+#: src/gameeky/editor/widgets/scene_window.ui:20
+msgid "Reload"
+msgstr "Recargar"
+
+#: src/gameeky/editor/widgets/scene_window.ui:21
+msgid "Entities have been changed on disk"
+msgstr "Se han cambiado entidades en el disco."
+
+#: src/gameeky/editor/widgets/scene_window.ui:72
+msgid "Select working layer"
+msgstr "Seleccionar capa de trabajo"
+
+#: src/gameeky/editor/widgets/scene_window.ui:86
+msgid "Zoom in"
+msgstr "Acercar"
+
+#: src/gameeky/editor/widgets/scene_window.ui:93
+msgid "Zoom out"
+msgstr "Alejar"
+
+#: src/gameeky/editor/widgets/scene_window.ui:101
+msgid "Set time of the day"
+msgstr "Establecer hora del día"
+
+#: src/gameeky/editor/widgets/scene_window.ui:202
+msgid "Add to the scene"
+msgstr "Añadir a la escena"
+
+#: src/gameeky/editor/widgets/scene_window.ui:209
+msgid "Remove from the scene"
+msgstr "Retirar de la escena"
+
+#: src/gameeky/editor/widgets/scene_window.ui:216
+msgid "Rotate"
+msgstr "Girar"
+
+#: src/gameeky/editor/widgets/scene_window.ui:223
+msgid "Override properties"
+msgstr "Modificar propiedades"
+
+#: src/gameeky/editor/widgets/scene_window.ui:230
+msgid "Set starting location"
+msgstr "Establecer ubicación inicial"
+
+#: src/gameeky/editor/widgets/scene_window.ui:248
+msgid "Show grid"
+msgstr "Mostrar cuadrícula"
+
+#: src/gameeky/editor/widgets/scene_window.ui:254
+msgid "Set drawing area"
+msgstr "Establecer área de dibujo"
+
+#: src/gameeky/editor/widgets/scene_window.ui:266
+msgid "Entities"
+msgstr "Entidades"
+
+#: src/gameeky/editor/widgets/scene_window.ui:295
+msgid "_Settings"
+msgstr "_Configuración"
+
+#: src/gameeky/editor/widgets/sound_row.ui:30
+msgid "Sound"
+msgstr "Sonido"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:29
+msgid "Number of seconds to elapse in-between sounds in the sequence"
+msgstr "Número de segundos que transcurrirán entre sonidos en la secuencia"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:30
+msgid "Delay"
+msgstr "Retrasar"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:42
+msgid "Maximum number of seconds to keep playing this sound"
+msgstr "Número máximo de segundos para seguir reproduciendo este sonido."
+
+#: src/gameeky/editor/widgets/sound_settings.ui:43
+msgid "Timeout"
+msgstr "Tiempo de espera"
+
+#: src/gameeky/editor/widgets/sounds_settings.ui:11
+msgid "Add sounds for different states"
+msgstr "Agregar sonidos para diferentes estados"
+
+#: src/gameeky/editor/widgets/tileset_window.ui:51
+msgid "Tileset"
+msgstr "Conjunto de mosaicos"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this project?"
+msgstr "¿Quieres eliminar <b>permanentemente</b> este proyecto?"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:11
+msgid "Delete Project?"
+msgstr "¿Eliminar proyecto?"
+
+#: src/gameeky/launcher/widgets/project_row.ui:77
+msgid "Play"
+msgstr "Jugar"
+
+#: src/gameeky/launcher/widgets/project_row.ui:103
+msgid "Settings"
+msgstr "Configuración"
+
+#: src/gameeky/launcher/widgets/project_row.ui:116
+msgid "Copy"
+msgstr "Copiar"
+
+#: src/gameeky/launcher/widgets/project_settings.ui:14
+msgid "Description"
+msgstr "Descripción"
+
+#: src/gameeky/launcher/widgets/window.ui:48
+#: src/gameeky/player/widgets/window.ui:41
+msgid "Welcome to Gameeky"
+msgstr "Bienvenido a Gameeky"
+
+#: src/gameeky/launcher/widgets/window.ui:89
+msgid "My Projects"
+msgstr "Mis Proyectos"
+
+#: src/gameeky/player/widgets/actions_popover.ui:14
+msgid "Take"
+msgstr "Tomar"
+
+#: src/gameeky/player/widgets/actions_popover.ui:26
+msgid "Use"
+msgstr "Uso"
+
+#: src/gameeky/player/widgets/actions_popover.ui:38
+msgid "Drop"
+msgstr "Soltar"
+
+#: src/gameeky/player/widgets/actions_popover.ui:50
+msgid "Interact"
+msgstr "Interactuar"
+
+#: src/gameeky/player/widgets/actions_popover.ui:61
+msgid "Stop"
+msgstr "Detener"
+
+#: src/gameeky/player/widgets/session_join_window.ui:40
+msgid "Address"
+msgstr "Dirección"
+
+#: src/gameeky/player/widgets/session_join_window.ui:46
+#: src/gameeky/player/widgets/session_new_window.ui:72
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: src/gameeky/player/widgets/session_join_window.ui:57
+#: src/gameeky/player/widgets/session_new_window.ui:83
+msgid "Session Port"
+msgstr "Puerto de Sesión"
+
+#: src/gameeky/player/widgets/session_join_window.ui:70
+#: src/gameeky/player/widgets/session_new_window.ui:96
+msgid "Messages Port"
+msgstr "Puerto de Mensajes"
+
+#: src/gameeky/player/widgets/session_join_window.ui:99
+msgid "Join"
+msgstr "Únete"
+
+#: src/gameeky/player/widgets/session_new_window.ui:65
+msgid "Players"
+msgstr "Jugadores"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:12
+msgid "Movement"
+msgstr "Movimiento"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:16
+msgid "Move north"
+msgstr "Muévete al norte"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:22
+msgid "Move east"
+msgstr "Muévete hacia el este"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:28
+msgid "Move south"
+msgstr "Muévete hacia el sur"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:34
+msgid "Move west"
+msgstr "Muévete al oeste"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:41
+msgid "Actions"
+msgstr "Acciones"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:45
+msgid "Take object"
+msgstr "Tomar objeto"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:51
+msgid "Drop object"
+msgstr "Soltar objeto"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:57
+msgid "Use object"
+msgstr "Usar objeto"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:63
+msgid "Interact with object"
+msgstr "Interactuar con el objeto"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:70
+msgid "Dialogues"
+msgstr "Diálogos"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:74
+msgid "Close dialog"
+msgstr "Cerrar diálogo"
+
+#: src/gameeky/player/widgets/window.ui:87
+msgid "Loading"
+msgstr "Cargando"
+
+#: src/gameeky/player/widgets/window.ui:105
+msgid "The scene has been changed on disk"
+msgstr "La escena ha sido cambiada en el disco."
+
+#: src/gameeky/player/widgets/window.ui:142
+msgid "Something went wrong"
+msgstr "Algo salió mal"
+
+#: src/gameeky/player/widgets/window.ui:181
+msgid "_Join"
+msgstr "_Únete"
+
+#: src/gameeky/player/widgets/window.ui:189
+msgid "_Keyboard Shortcuts"
+msgstr "_Atajos de teclado"
