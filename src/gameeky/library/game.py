@@ -149,6 +149,9 @@ class Game(GObject.GObject):
     def interact(self, time: int = 0) -> None:
         self.perform(Action.INTERACT, time=time)
 
+    def update(self) -> None:
+        wait(int(TICK))
+
     @property
     def entity(self) -> Optional[Entity]:
         return self._entity
