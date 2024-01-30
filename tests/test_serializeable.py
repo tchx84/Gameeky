@@ -71,10 +71,11 @@ def test_serialize_scene_request():
 
 
 def test_serialize_session():
-    original = Session(id=360, error=Error.VERSION)
+    original = Session(id=360, entity_id=16, error=Error.VERSION)
     serialized = Session.deserialize(original.serialize())
 
     assert serialized.id == original.id
+    assert serialized.entity_id == original.entity_id
     assert serialized.error == original.error
 
 
@@ -110,7 +111,7 @@ def test_serialize_stats_request():
 
 
 def test_serialize_payload():
-    original = Payload(session=Session(id=360, error=Error.VERSION))
+    original = Payload(session=Session(id=360, entity_id=16, error=Error.VERSION))
     serialized = Payload.deserialize(original.serialize())
 
     assert original.session.id == serialized.session.id

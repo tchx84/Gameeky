@@ -22,14 +22,15 @@ from .serializeable import Serializeable
 
 
 class Session(Serializeable):
-    Signature = Tuple[int, Optional[int]]
+    Signature = Tuple[int, int, Optional[int]]
 
-    def __init__(self, id: int, error: Optional[int]) -> None:
+    def __init__(self, id: int, entity_id: int, error: Optional[int]) -> None:
         self.id = id
+        self.entity_id = entity_id
         self.error = error
 
     def to_values(self) -> Signature:
-        return (self.id, self.error)
+        return (self.id, self.entity_id, self.error)
 
     @classmethod
     def from_values(cls, values: Signature) -> "Session":
