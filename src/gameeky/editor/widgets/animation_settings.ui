@@ -41,6 +41,7 @@
               <object class="GtkButton" id="path_button">
                 <property name="halign">end</property>
                 <property name="icon-name">document-open-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Open</property>
                 <property name="valign">center</property>
                 <signal name="clicked" handler="on_path_button_clicked"/>
                 <style>
@@ -52,6 +53,7 @@
               <object class="GtkButton" id="view_button">
                 <property name="halign">end</property>
                 <property name="icon-name">view-reveal-symbolic</property>
+                <property name="tooltip-text" translatable="yes">View</property>
                 <property name="valign">center</property>
                 <signal name="clicked" handler="on_view_button_clicked"/>
                 <style>
