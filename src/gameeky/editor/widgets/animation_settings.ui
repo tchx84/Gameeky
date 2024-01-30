@@ -74,7 +74,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of tileset columns</property>
-        <property name="title">Columns</property>
+        <property name="title" translatable="yes">Columns</property>
       </object>
     </child>
     <child>
@@ -88,7 +88,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of tileset rows</property>
-        <property name="title">Rows</property>
+        <property name="title" translatable="yes">Rows</property>
       </object>
     </child>
     <child>
@@ -100,7 +100,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of the first frame to include in the animation</property>
-        <property name="title">First Frame</property>
+        <property name="title" translatable="yes">First Frame</property>
       </object>
     </child>
     <child>
@@ -112,7 +112,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of the last frame to include in the animation</property>
-        <property name="title">Last Frame</property>
+        <property name="title" translatable="yes">Last Frame</property>
       </object>
     </child>
     <child>
@@ -125,7 +125,7 @@
         </property>
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">Number of seconds the complete animation should last</property>
-        <property name="title">Duration</property>
+        <property name="title" translatable="yes">Duration</property>
       </object>
     </child>
     <child>
@@ -137,7 +137,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Angle to rotate the image</property>
-        <property name="title">Rotate</property>
+        <property name="title" translatable="yes">Rotate</property>
         <property name="wrap">True</property>
       </object>
     </child>
@@ -152,7 +152,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of tiles to include on the x-axis</property>
-        <property name="title">Tiles X</property>
+        <property name="title" translatable="yes">Tiles X</property>
       </object>
     </child>
     <child>
@@ -166,7 +166,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of tiles to include on the y-axis</property>
-        <property name="title">Tiles Y</property>
+        <property name="title" translatable="yes">Tiles Y</property>
       </object>
     </child>
     <child>
@@ -181,7 +181,7 @@
         </property>
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">How many times larger this image should be on the x-axis</property>
-        <property name="title">Scale X</property>
+        <property name="title" translatable="yes">Scale X</property>
       </object>
     </child>
     <child>
@@ -196,7 +196,7 @@
         </property>
         <property name="digits">1</property>
         <property name="subtitle" translatable="yes">How many times larger this image should be on the y-axis</property>
-        <property name="title">Scale Y</property>
+        <property name="title" translatable="yes">Scale Y</property>
       </object>
     </child>
     <child>
@@ -208,7 +208,7 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of pixels to remove on the x-axis</property>
-        <property name="title">Crop X</property>
+        <property name="title" translatable="yes">Crop X</property>
       </object>
     </child>
     <child>
@@ -220,18 +220,18 @@
           </object>
         </property>
         <property name="subtitle" translatable="yes">Number of pixels to remove on the y-axis</property>
-        <property name="title">Crop Y</property>
+        <property name="title" translatable="yes">Crop Y</property>
       </object>
     </child>
     <child>
       <object class="AdwSwitchRow" id="flip_x">
-        <property name="subtitle">Whether to flip the image on the x-axis</property>
+        <property name="subtitle" translatable="yes">Whether to flip the image on the x-axis</property>
         <property name="title" translatable="yes">Flip X</property>
       </object>
     </child>
     <child>
       <object class="AdwSwitchRow" id="flip_y">
-        <property name="subtitle">Whether to flip the image on the y-axis</property>
+        <property name="subtitle" translatable="yes">Whether to flip the image on the y-axis</property>
         <property name="title" translatable="yes">Flip Y</property>
       </object>
     </child>
