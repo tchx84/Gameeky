@@ -584,7 +584,7 @@ msgid "Strength"
 msgstr "Fuerza"
 
 #: src/gameeky/editor/widgets/entity_settings.ui:66
-msgid "These values modify basics statistics"
+msgid "These values modify basic statistics"
 msgstr "Estos valores modifican las estadísticas básicas"
 
 #: src/gameeky/editor/widgets/entity_settings.ui:67

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 16:51-0300\n"
+"POT-Creation-Date: 2024-01-29 21:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -580,7 +580,7 @@ msgid "Strength"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_settings.ui:66
-msgid "These values modify basics statistics"
+msgid "These values modify basic statistics"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_settings.ui:67
