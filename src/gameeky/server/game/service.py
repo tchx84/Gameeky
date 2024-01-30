@@ -51,8 +51,7 @@ class Session(CommonSession):
         client: TCPClient,
         sequence: int = -1,
     ) -> None:
-        super().__init__(id=id, error=error)
-        self.entity_id = entity_id
+        super().__init__(id=id, entity_id=entity_id, error=error)
         self.client = client
         self.sequence = sequence
 
@@ -108,13 +107,25 @@ class Service(GObject.GObject):
 
         if request.version != VERSION:
             client.send(
-                Payload(session=CommonSession(id=-1, error=Error.VERSION)).serialize()
+                Payload(
+                    session=CommonSession(
+                        id=-1,
+                        entity_id=-1,
+                        error=Error.VERSION,
+                    )
+                ).serialize()
             )
             return
 
         if request.project != get_project_name():
             client.send(
-                Payload(session=CommonSession(id=-1, error=Error.PROJECT)).serialize()
+                Payload(
+                    session=CommonSession(
+                        id=-1,
+                        entity_id=-1,
+                        error=Error.PROJECT,
+                    )
+                ).serialize()
             )
             return
 

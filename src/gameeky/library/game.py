@@ -87,8 +87,13 @@ class Game(GObject.GObject):
         self._stats = stats
 
     def __on_scene_updated(self, service: Service, scene: Scene) -> None:
+        if self._session is None:
+            return
+
         self._scene = scene
-        self._entity = next((e for e in scene.entities if e.position == scene.anchor))
+        self._entity = next(
+            (e for e in scene.entities if e.id == self._session.entity_id)
+        )
 
         self.emit("updated", get_time_milliseconds() - self._timestamp)
 
