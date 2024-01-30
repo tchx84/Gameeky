@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 16:52-0300\n"
+"POT-Creation-Date: 2024-01-29 21:31-0300\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -582,7 +582,7 @@ msgid "Strength"
 msgstr "Força"
 
 #: src/gameeky/editor/widgets/entity_settings.ui:66
-msgid "These values modify basics statistics"
+msgid "These values modify basic statistics"
 msgstr "Estes valores modificam estatísticas básicas"
 
 #: src/gameeky/editor/widgets/entity_settings.ui:67
