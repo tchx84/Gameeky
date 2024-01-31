@@ -34,6 +34,7 @@ from .models.session import Session
 
 from ..common.scanner import Description
 from ..common.widgets.about_window import present_about
+from ..common.widgets.documentation import present_documentation
 
 
 class Application(Adw.Application):
@@ -51,6 +52,13 @@ class Application(Adw.Application):
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
+
+    def __on_documentation(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        present_documentation()
 
     def __on_found(self, session: Session, path: str, description: Description) -> None:
         self._window.load(path, description)
@@ -85,6 +93,10 @@ class Application(Adw.Application):
         new_action = Gio.SimpleAction.new("new", None)
         new_action.connect("activate", self.__on_new)
         self.add_action(new_action)
+
+        documentation_action = Gio.SimpleAction.new("documentation", None)
+        documentation_action.connect("activate", self.__on_documentation)
+        self.add_action(documentation_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)
