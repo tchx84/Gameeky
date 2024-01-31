@@ -42,6 +42,7 @@ from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
+from ..common.widgets.documentation import present_documentation
 from ..common.utils import (
     get_project_folder,
     set_project_path,
@@ -242,6 +243,13 @@ class Application(Adw.Application):
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
+    def __on_documentation(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        present_documentation()
+
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
@@ -296,6 +304,10 @@ class Application(Adw.Application):
         shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
         shortcuts_action.connect("activate", self.__on_shortcuts)
         self.add_action(shortcuts_action)
+
+        documentation_action = Gio.SimpleAction.new("documentation", None)
+        documentation_action.connect("activate", self.__on_documentation)
+        self.add_action(documentation_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)

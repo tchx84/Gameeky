@@ -142,6 +142,10 @@
       <attribute name="label" translatable="yes">_New</attribute>
     </item>
     <item>
+      <attribute name="action">app.documentation</attribute>
+      <attribute name="label" translatable="yes">_Documentation</attribute>
+    </item>
+    <item>
       <attribute name="action">app.about</attribute>
       <attribute name="label" translatable="yes">_About Gameeky</attribute>
     </item>

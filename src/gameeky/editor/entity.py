@@ -40,6 +40,7 @@ from ..common.definitions import Command, Format
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
+from ..common.widgets.documentation import present_documentation
 from ..common.utils import (
     set_project_path,
     get_project_folder,
@@ -169,6 +170,13 @@ class Application(Adw.Application):
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
+    def __on_documentation(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        present_documentation()
+
     def __on_close_requested(self, window: EntityWindow) -> bool:
         if not self._pending_changes:
             return False
@@ -235,6 +243,10 @@ class Application(Adw.Application):
         save_as_action = Gio.SimpleAction.new("save_as", None)
         save_as_action.connect("activate", self.__on_save_as)
         self.add_action(save_as_action)
+
+        documentation_action = Gio.SimpleAction.new("documentation", None)
+        documentation_action.connect("activate", self.__on_documentation)
+        self.add_action(documentation_action)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.__on_about)
