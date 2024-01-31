@@ -22,6 +22,6 @@ def on_updated(game: Game, elapsed: int) -> None:
         game.quit()
 
 
-game = Game()
+game = Game(project="~/gameeky/project")
 game.connect("updated", on_updated)
 game.run()

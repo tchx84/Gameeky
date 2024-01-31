@@ -16,12 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import os
+
 from typing import Optional
 
 from gi.repository import GLib, GObject
 
 from ..common.logger import logger
-from ..common.utils import wait, get_time_milliseconds
+from ..common.utils import wait, get_time_milliseconds, set_project_path
 from ..common.entity import Entity
 from ..common.scene import Scene
 from ..common.stats import Stats
@@ -45,11 +47,13 @@ class Game(GObject.GObject):
 
     def __init__(
         self,
+        project: str,
         address: str = DEFAULT_ADDRESS,
         session_port: int = DEFAULT_SESSION_PORT,
         messages_port: int = DEFAULT_MESSAGES_PORT,
     ) -> None:
         super().__init__()
+        self._project = os.path.expanduser(project)
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
@@ -63,6 +67,8 @@ class Game(GObject.GObject):
 
         self._timestamp = get_time_milliseconds()
         self._mainloop: Optional[GLib.MainLoop] = None
+
+        set_project_path(self._project)
 
     def _update(self) -> int:
         if self._service is None:
