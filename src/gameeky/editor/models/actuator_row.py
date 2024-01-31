@@ -62,11 +62,50 @@ class ActuatorRow(BaseRow):
         "uses": _("Uses"),
     }
 
+    __tooltips__ = {
+        "activates": _("Activates entities that reached its position"),
+        "activates_i": _("Activates entities that reached its position, when it's interacted with"),
+        "affects": _("Affects the stats (Durability, Stamina and Strength) of nearby (Radius) entities"),
+        "affects_i": _("Affects the stats (Durability, Stamina and Strength) of its interactees"),
+        "affects_u": _("Affects the stats (Durability, Stamina and Strength) of nearby (Radius) entities, when it's used"),
+        "aggroes": _("Targets nearby (Radius) entities (Target Type)"),
+        "collapses": _("Performs a DESTROY action, when entities are nearby (Radius)"),
+        "collapses_t": _("Performs a DESTROY action on a fixed interval (Rate)"),
+        "destroys": _("Performs a DESTROY action, when its durability reaches zero"),
+        "destroys_i": _("Performs a DESTROY action, when it's interacted with"),
+        "deteriorates": _("Reduces its durability over time"),
+        "drops": _("Adds entities (Target Type) to the scene, when it's destroyed"),
+        "exhausts": _("Performs EXHAUST actions, when its stamina reaches zero"),
+        "follows": _("Performs MOVE actions to its target's (Target Name) direction"),
+        "interacts": _("Performs INTERACT actions on entities (Target Type)"),
+        "propulses": _("Performs MOVE actions to its current direction"),
+        "requires": _("Activates its target (Target Name), when its requirement (Target Type) reached its position"),
+        "roams": _("Performs MOVE actions to random directions"),
+        "rotates_i": _("Changes its direction, when it's interacted with"),
+        "says": _("Sends its dialogue to nearby (Radius) entities"),
+        "says_i": _("Sends its dialogue to its interactees"),
+        "spawns": _("Adds entities (Target Type) to the scene on a fixed interval (Rate)"),
+        "takes": _("Performs TAKE actions on usable entities"),
+        "targets": _("Targets its target's target, when it reached its target's position"),
+        "teleports": _("Teleports nearby (Radius) entities to its target's (Target Name) position"),
+        "teleports_i": _("Teleports its interactees to its target's (Target Name) position"),
+        "transmutes": _("Replaces itself by an entity (Target Type) on a fixed interval (Rate)"),
+        "triggers": _("Activates its target (Target Name), when entities are nearby (Radius)"),
+        "triggers_i": _("Activates its target (Target Name), when it's interacted with"),
+        "uses": _("Performs USE actions on entities (Target Type), when holding a usable entity"),
+    }  # fmt: skip
+
     @classmethod
     def model(cls, default=False, exclude: Optional[List[str]] = None) -> Gio.ListStore:
         model = super().model()
 
         for value in ActuatorRegistry.names():
-            model.append(cls(value=value, text=value))
+            model.append(
+                cls(
+                    value=value,
+                    text=value,
+                    tooltip=_("Performs custom behaviors"),
+                )
+            )
 
         return model

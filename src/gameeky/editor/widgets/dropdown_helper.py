@@ -48,6 +48,8 @@ class DropDownHelper(GObject.GObject):
         self._dropdown.props.model = self._model
         self._dropdown.connect("notify::selected", self.__on_changed)
 
+        self._update_tooltip()
+
     def __on_setup(
         self,
         factory: Gtk.SignalListItemFactory,
@@ -69,7 +71,11 @@ class DropDownHelper(GObject.GObject):
         child.set_text(row.text)
 
     def __on_changed(self, entry: Gtk.DropDown, value: int) -> None:
+        self._update_tooltip()
         self.emit("changed")
+
+    def _update_tooltip(self) -> None:
+        self._dropdown.props.tooltip_text = self.tooltip
 
     def get_position_in_model(self, model: Gio.ListStore, value: str) -> Optional[int]:
         for index, row in enumerate(list(model)):
@@ -81,6 +87,10 @@ class DropDownHelper(GObject.GObject):
     @property
     def widget(self) -> Gtk.DropDown:
         return self._dropdown
+
+    @property
+    def tooltip(self) -> str:
+        return self._dropdown.props.selected_item.props.tooltip
 
     @property
     def text(self) -> str:
