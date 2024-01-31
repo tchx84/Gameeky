@@ -85,6 +85,10 @@ class Actuator:
         return self._entity
 
     @property
+    def interactee(self) -> Optional[Entity]:
+        return self._interactee
+
+    @property
     def activated(self) -> bool:
         return self.activatable is True and self._activated is True
 
