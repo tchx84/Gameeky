@@ -69,6 +69,7 @@ class DropDownHelper(GObject.GObject):
         child.set_text(row.text)
 
     def __on_changed(self, entry: Gtk.DropDown, value: int) -> None:
+        self._dropdown.props.tooltip_text = self.tooltip
         self.emit("changed")
 
     def get_position_in_model(self, model: Gio.ListStore, value: str) -> Optional[int]:
@@ -81,6 +82,10 @@ class DropDownHelper(GObject.GObject):
     @property
     def widget(self) -> Gtk.DropDown:
         return self._dropdown
+
+    @property
+    def tooltip(self) -> str:
+        return self._dropdown.props.selected_item.props.tooltip
 
     @property
     def text(self) -> str:
