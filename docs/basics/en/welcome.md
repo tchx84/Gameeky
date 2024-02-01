@@ -21,12 +21,12 @@
 
 [Gameeky](https://github.com/tchx84/gameeky) lets young learners and educators create and explore cooperative games and learning experiences. More specifically:
 
-* Play and explore games with friends
-* Create new games without writing any code
-* Tell stories through these games
-* Nurture artistic skills by designing game objects and creatures
-* Grasp the basics of programming using Python in a LOGO-like experience
-* Mature programming skills by extending games with Python plugins
+* Play and explore games with friends.
+* Create new games without writing any code.
+* Tell stories through these games.
+* Nurture artistic skills by designing game objects and creatures.
+* Grasp the basics of programming using Python in a LOGO-like experience.
+* Mature programming skills by extending games with Python plugins.
 
 > [!NOTE]
 > This is a learning tool in the shape of a game engine. It's not a professional game engine. If you're looking for a tool to create professional video games, please consider the [Godot](https://godotengine.org) game engine.
@@ -43,7 +43,7 @@ flatpak --user install flathub dev.tchx84.Gameeky
 
 ## Thematic packs
 
-Gameeky provides predefined packs of projects and building blocks for different interests, e.g. a farming role [game](https://github.com/tchx84/FreedomValley) in a medieval fantasy setting. A thematic pack can contain:
+Gameeky provides predefined packs of projects and building blocks for different interests, e.g. A farming role [game](https://github.com/tchx84/FreedomValley) in a medieval fantasy setting. A thematic pack can contain:
 
 * **Assets** like tilesets, sprites and sounds.
 * **Entities** with predefined properties and behaviors.
@@ -83,7 +83,7 @@ The launcher provides an easier way to manage thematic packs installed as addons
 Starting a new game is easy as clicking on the project's *Play* button from the Launcher but, to play another Scene within the same project follow these steps:
 
 1. From the Launcher, click *Play* button on the project's card.
-2. From the Player, go to the menu and click on *New* option.
+2. From the Player, go to the menu and select on *New* option.
 3. From the creation dialog, select the Scene file and click on the *Create* button.
 
 ![](../../../data/screenshots/en/02.png)
@@ -92,8 +92,8 @@ Starting a new game is easy as clicking on the project's *Play* button from the 
 
 The in-game [HUD](https://en.wikipedia.org/wiki/HUD_(video_games)) is minimal as it only provides the following:
 
-* A green bar that represents the player's Entity durability, e.g. to convey the health of the player's Entity.
-* A blue bar that represents the player's Entity stamina, e.g. to convey how many actions can still be performed by the player's Entity.
+* A green bar that represents the player's Entity durability, e.g. To convey the health of the player's Entity.
+* A blue bar that represents the player's Entity stamina, e.g. To convey how many actions can still be performed by the player's Entity.
 * An icon slot that represents the Entity that is currently being held by the player's Entity.
 
 ### Controls
@@ -126,13 +126,13 @@ The state of the game can be saved at any moment and restored later. Save files 
 Starting a new game is easy as clicking on the *Play* button on the project's card from the Launcher but, to start a cooperative game these steps must be followed:
 
 1. From the Launcher, click on the *Play* button on the project's card.
-2. From the Player interface, go to the menu and select the *New* option.
+2. From the Player, go to the menu and select the *New* option.
 3. From the creation dialog, increased the number of players and then click on the *Create* button.
 
 To join a cooperative game:
 
 1. From the Launcher, click on the *Play* button on the same project's card.
-2. From the Player interface, go to the menu and select the *Join* option.
+2. From the Player, go to the menu and select the *Join* option.
 3. From the joining dialog, specify the [IP address](https://flathub.org/apps/org.gabmus.whatip) of whoever started the cooperative game and click on the *Join* button.
 
 ## The Scene Editor
@@ -193,7 +193,7 @@ To create a new Entity, follow these steps:
 
 ### Concepts
 
-Entities represent everything that can exist in the game, e.g. the grass, the player, a light source, the background music and even the game logic. An Entity is composed of three parts:
+Entities represent everything that can exist in the game, e.g. The grass, the player, a light source, the background music and even the game logic. An Entity is composed of three parts:
 
 1. **Game** logic properties.
 2. **Graphics**.
@@ -201,27 +201,27 @@ Entities represent everything that can exist in the game, e.g. the grass, the pl
 
 #### Game logic properties
 
-These properties determine how Entities behave and interact with other Entities, e.g. different combinations of these properties will determine whether an Entity is acting as a static stone or a living foe.
+These properties determine how Entities behave and interact with other Entities, e.g. Different combinations of these properties will determine whether an Entity is acting as a static stone or a living foe.
 
 Although there two dozen properties, a few of these require special attention here:
 
 * The **identifier** must be unique among all the Entities of the same project.
 * An Entity is always in one and a single **state**, e.g. *Idling*, *Moving*, *Destroyed*, etc. The state can change by performing different actions, by intrinsic or extrinsic means.
 * An Entity is always pointing to one and a single **direction**. It can be *North*, *East*, *South* or *West*.
-* An Entity state can be changed intrinsically by **actuators** that provide predefined logic to Entities, e.g. a **Roams** actuator will move the Entity in random directions, and a **Destroys** actuator will flag the Entity for removal from the Scene when its durability reaches zero.
-* All Entity properties coexist in a single system and therefore some behaviors can emerge from different combinations of these properties, e.g. the speed in which an Entity can move it's determined by its **weight** and its **strength**, while the total weight of an Entity depends on the weight of the Entity its holding, and so on.
+* An Entity state can be changed intrinsically by **actuators** that provide predefined logic to Entities, e.g. A **Roams** actuator will move the Entity in random directions, and a **Destroys** actuator will flag the Entity for removal from the Scene when its durability reaches zero.
+* All Entity properties coexist in a single system and therefore some behaviors can emerge from different combinations of these properties, e.g. The speed in which an Entity can move it's determined by its **weight** and its **strength**, while the total weight of an Entity depends on the weight of the Entity its holding, and so on.
 
 #### Graphics
 
 Entities are represented on screen through 2D graphics, which can be static or animated.
 
-These graphics are assigned to specific combinations of state and direction, e.g. a specific animation will be rendered when an Entity is *Moving* to the *West*, while another animation will be rendered when the same Entity is *Idling* to the *South*.
+These graphics are assigned to specific combinations of state and direction, e.g. An specific animation will be rendered when an Entity is *Moving* to the *West*, while another animation will be rendered when the same Entity is *Idling* to the *South*.
 
-All Entities **must** provide a *Default* graphic, e.g. to visualize it on the Scene Editor.
+All Entities **must** provide a *Default* graphic, e.g. To visualize it on the Scene Editor.
 
 #### Sounds
 
-Similarly to graphics, Entities can emit sounds when in specific states, e.g. a footsteps sound is played when the Entity is *Moving*. Only states are taken into account, the Entity direction takes no part in sounds.
+Similarly to graphics, Entities can emit sounds when in specific states, e.g. Footsteps sound is played when the Entity is *Moving*. Only states are taken into account, the Entity direction takes no part in sounds.
 
 There aren't *Default* sounds, as sounds are optional.
 
@@ -324,6 +324,10 @@ for entity in game.scene.entities:
 game.quit()
 ```
 
+> [!NOTE]
+> Cooperators can only see their immediate surroundings of the Scene, not the full Scene.
+
+
 Inspect the player's Entity advance [stats](../../../src/gameeky/common/stats.py):
 
 ```python
@@ -346,15 +350,15 @@ Actuators can modify the behavior an Entity. A single Entity can use multiple Ac
 
 There are three types of Actuators:
 
-1. **Regular** Actuators enact on each tick of the Scene, e.g. [moving](../../../src/gameeky/server/game/actuators/roams.py) the Entity in a random location.
-2. **Activatable** Actuators enact only when activated in intervals or by another Actuator, e.g. [spawning](../../../src/gameeky/server/game/actuators/spawns.py) a new foe Entity in the Scene every five seconds.
-3. **Interactable** Actuators enact when another Entity interacts with their parent Entity, e.g. [teleporting](../../../src/gameeky/server/game/actuators/teleports.py) an Entity to a different location when interacting with a door Entity.
+1. **Regular** Actuators enact on each tick of the Scene, e.g. [Moving](../../../src/gameeky/server/game/actuators/roams.py) the Entity in a random location.
+2. **Activatable** Actuators enact only when activated in intervals or by another Actuator, e.g. [Spawning](../../../src/gameeky/server/game/actuators/spawns.py) a new foe Entity in the Scene every five seconds.
+3. **Interactable** Actuators enact when another Entity interacts with their parent Entity, e.g. [Teleporting](../../../src/gameeky/server/game/actuators/teleports.py) an Entity to a different location when interacting with a door Entity.
 
 All Actuators use their parent Entity game properties to modify their behavior:
 
-* The *Target Name* and *Target Type* properties can be used to filter the Entities affected by the Actuator, e.g. [targeting](../../../src/gameeky/server/game/actuators/aggroes.py) only certain Entities types for aggression.
-* The *Rate* property can be used in activatables to reduce the activation frequency, e.g. [transmuting](../../../src/gameeky/server/game/actuators/transmutes.py) an Entity into another Entity type after ten seconds.
-* The *Radius* property can be used to determine the effect radius of an Actuator, e.g. [burning](../../../src/gameeky/server/game/actuators/affects.py) an Entity when closing in a campfire Entity.
+* The *Target Name* and *Target Type* properties can be used to filter the Entities affected by the Actuator, e.g. [Targeting](../../../src/gameeky/server/game/actuators/aggroes.py) only certain Entities types for aggression.
+* The *Rate* property can be used in activatables to reduce the activation frequency, e.g. [Transmuting](../../../src/gameeky/server/game/actuators/transmutes.py) an Entity into another Entity type after ten seconds.
+* The *Radius* property can be used to determine the effect radius of an Actuator, e.g. [Burning](../../../src/gameeky/server/game/actuators/affects.py) an Entity when closing in a campfire Entity.
 
 ### Workflow
 
