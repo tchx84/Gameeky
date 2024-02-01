@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 00:41-0300\n"
+"POT-Creation-Date: 2024-02-01 01:20-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,11 +98,11 @@ msgstr "%s (copia)"
 
 #: src/gameeky/editor/models/actuator_row.py:33
 msgid "Activates"
-msgstr "Se activa"
+msgstr "Activa"
 
 #: src/gameeky/editor/models/actuator_row.py:34
 msgid "Activates on interaction"
-msgstr "Se activa al interactuar"
+msgstr "Activa al interactuar"
 
 #: src/gameeky/editor/models/actuator_row.py:35
 msgid "Affects"
@@ -142,7 +142,7 @@ msgstr "Se deteriora"
 
 #: src/gameeky/editor/models/actuator_row.py:44
 msgid "Drops"
-msgstr "Suelta"
+msgstr "Deja caer"
 
 #: src/gameeky/editor/models/actuator_row.py:45
 msgid "Exhausts"
@@ -217,137 +217,159 @@ msgid "Uses"
 msgstr "Usa"
 
 #: src/gameeky/editor/models/actuator_row.py:66
-#, fuzzy
 msgid "Activates entities that reached its position"
-msgstr "Se activa al interactuar"
+msgstr "Activa entidades que alcanzaron su posición"
 
 #: src/gameeky/editor/models/actuator_row.py:67
 msgid "Activates entities that reached its position, when it's interacted with"
 msgstr ""
+"Activa entidades que alcanzaron su posición, cuando se interactúa con ella"
 
 #: src/gameeky/editor/models/actuator_row.py:68
 msgid ""
 "Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
 "entities"
 msgstr ""
+"Afecta las estadísticas (Durabilidad, Resistencia y Fuerza) de entidades "
+"cercanas (Radio)"
 
 #: src/gameeky/editor/models/actuator_row.py:69
 msgid "Affects the stats (Durability, Stamina and Strength) of its interactees"
 msgstr ""
+"Afecta las estadísticas (Durabilidad, Resistencia y Fuerza) de sus "
+"interactuantes"
 
 #: src/gameeky/editor/models/actuator_row.py:70
 msgid ""
 "Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
 "entities, when it's used"
 msgstr ""
+"Afecta las estadísticas (Durabilidad, Resistencia y Fuerza) de entidades "
+"cercanas (Radio), cuando se la usa"
 
 #: src/gameeky/editor/models/actuator_row.py:71
 msgid "Targets nearby (Radius) entities (Target Type)"
-msgstr ""
+msgstr "Apunta a entidades (Tipo de Objetivo) cercanas (Radio)"
 
 #: src/gameeky/editor/models/actuator_row.py:72
 msgid "Performs a DESTROY action, when entities are nearby (Radius)"
-msgstr ""
+msgstr "Realiza la acción DESTRUIR, cuando hay entidades cercanas (Radio)"
 
 #: src/gameeky/editor/models/actuator_row.py:73
 msgid "Performs a DESTROY action on a fixed interval (Rate)"
-msgstr ""
+msgstr "Realiza la acción DESTRUIR en un intervalo fijo (Tasa)"
 
 #: src/gameeky/editor/models/actuator_row.py:74
 msgid "Performs a DESTROY action, when its durability reaches zero"
-msgstr ""
+msgstr "Realiza la acción DESTRUIR, cuando su durabilidad llega a cero"
 
 #: src/gameeky/editor/models/actuator_row.py:75
 msgid "Performs a DESTROY action, when it's interacted with"
-msgstr ""
+msgstr "Realiza la acción DESTRUIR, cuando se interactúa con ella"
 
 #: src/gameeky/editor/models/actuator_row.py:76
 msgid "Reduces its durability over time"
-msgstr ""
+msgstr "Reduce su durabilidad en el tiempo"
 
 #: src/gameeky/editor/models/actuator_row.py:77
 msgid "Adds entities (Target Type) to the scene, when it's destroyed"
-msgstr ""
+msgstr "Agrega entidades (Tipo de Objetivo) a la escena, cuando se destruye"
 
 #: src/gameeky/editor/models/actuator_row.py:78
 msgid "Performs EXHAUST actions, when its stamina reaches zero"
-msgstr ""
+msgstr "Realiza acciones de AGOTAR, cuando su resistencia llega a cero."
 
 #: src/gameeky/editor/models/actuator_row.py:79
 msgid "Performs MOVE actions to its target's (Target Name) direction"
 msgstr ""
+"Realiza acciones de MOVER en la dirección de su objetivo (Nombre del "
+"Objetivo)."
 
 #: src/gameeky/editor/models/actuator_row.py:80
 msgid "Performs INTERACT actions on entities (Target Type)"
-msgstr ""
+msgstr "Realiza acciones de INTERACTUAR sobre entidades (Tipo de Objetivo)"
 
 #: src/gameeky/editor/models/actuator_row.py:81
 msgid "Performs MOVE actions to its current direction"
-msgstr ""
+msgstr "Realiza acciones de MOVER en su dirección actual"
 
 #: src/gameeky/editor/models/actuator_row.py:82
 msgid ""
 "Activates its target (Target Name), when its requirement (Target Type) "
 "reached its position"
 msgstr ""
+"Activa su objetivo (Nombre del Objetivo), cuando su requisito (Tipo de "
+"Objetivo) alcanza su posición"
 
 #: src/gameeky/editor/models/actuator_row.py:83
 msgid "Performs MOVE actions to random directions"
-msgstr ""
+msgstr "Realiza acciones de MOVER en direcciones aleatorias"
 
 #: src/gameeky/editor/models/actuator_row.py:84
 msgid "Changes its direction, when it's interacted with"
-msgstr ""
+msgstr "Cambia su dirección, cuando se interactúa con ella"
 
 #: src/gameeky/editor/models/actuator_row.py:85
 msgid "Sends its dialogue to nearby (Radius) entities"
-msgstr ""
+msgstr "Envía su diálogo a entidades cercanas (Radio)"
 
 #: src/gameeky/editor/models/actuator_row.py:86
 msgid "Sends its dialogue to its interactees"
-msgstr ""
+msgstr "Envía su diálogo a sus interactuantes"
 
 #: src/gameeky/editor/models/actuator_row.py:87
 msgid "Adds entities (Target Type) to the scene on a fixed interval (Rate)"
 msgstr ""
+"Agrega entidades (Tipo de Objetivo) a la escena en un intervalo fijo (Tasa)"
 
 #: src/gameeky/editor/models/actuator_row.py:88
 msgid "Performs TAKE actions on usable entities"
-msgstr ""
+msgstr "Realiza acciones de TOMAR en entidades utilizables"
 
 #: src/gameeky/editor/models/actuator_row.py:89
 msgid "Targets its target's target, when it reached its target's position"
 msgstr ""
+"Apunta al objetivo de su objetivo, cuando alcanza la posición de su objetivo"
 
 #: src/gameeky/editor/models/actuator_row.py:90
 msgid ""
 "Teleports nearby (Radius) entities to its target's (Target Name) position"
 msgstr ""
+"Teletransporta entidades cercanas (Radio) a la posición de su objetivo "
+"(Nombre del Objetivo)"
 
 #: src/gameeky/editor/models/actuator_row.py:91
 msgid "Teleports its interactees to its target's (Target Name) position"
 msgstr ""
+"Teletransporta a sus interactuantes a la posición de su objetivo (Nombre del "
+"Objetivo)"
 
 #: src/gameeky/editor/models/actuator_row.py:92
 msgid "Replaces itself by an entity (Target Type) on a fixed interval (Rate)"
 msgstr ""
+"Se reemplaza por una entidad (Tipo de Objetivo) en un intervalo fijo (Tasa)"
 
 #: src/gameeky/editor/models/actuator_row.py:93
 msgid "Activates its target (Target Name), when entities are nearby (Radius)"
 msgstr ""
+"Activa su objetivo (Nombre del Objetivo), cuando hay entidades cercanas "
+"(Radio)"
 
 #: src/gameeky/editor/models/actuator_row.py:94
 msgid "Activates its target (Target Name), when it's interacted with"
 msgstr ""
+"Activa su objetivo (Nombre del Objetivo), cuando se interactúa con ella"
 
 #: src/gameeky/editor/models/actuator_row.py:95
 msgid ""
 "Performs USE actions on entities (Target Type), when holding a usable entity"
 msgstr ""
+"Realiza acciones de USAR en entidades (Tipo de Objetivo), cuando posee una "
+"entidad utilizable"
 
 #: src/gameeky/editor/models/actuator_row.py:107
 msgid "Performs custom behaviors"
-msgstr ""
+msgstr "Realiza comportamientos personalizados"
 
 #: src/gameeky/editor/models/area_row.py:28
 msgid "1x1"
@@ -459,7 +481,7 @@ msgstr "Retenido"
 
 #: src/gameeky/editor/models/state_row.py:33
 msgid "Idling"
-msgstr "Quieto"
+msgstr "Quieta"
 
 #: src/gameeky/editor/models/state_row.py:34
 msgid "Interacting"
@@ -528,11 +550,11 @@ msgstr "Archivo de conjunto de mosaicos"
 #: src/gameeky/editor/widgets/entity_open_window.ui:76
 #: src/gameeky/editor/widgets/scene_open_window.ui:77
 msgid "Open"
-msgstr "Abierto"
+msgstr "Abrir"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:56
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:78
 msgid "Number of tileset columns"
@@ -954,9 +976,8 @@ msgstr "Guardar _Como…"
 #: src/gameeky/editor/widgets/scene_window.ui:307
 #: src/gameeky/launcher/widgets/window.ui:146
 #: src/gameeky/player/widgets/window.ui:193
-#, fuzzy
 msgid "_Documentation"
-msgstr "Duración"
+msgstr "_Documentación"
 
 #: src/gameeky/editor/widgets/entity_window.ui:141
 #: src/gameeky/editor/widgets/scene_window.ui:311
