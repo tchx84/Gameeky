@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 22:11-0300\n"
+"POT-Creation-Date: 2024-02-01 00:41-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,19 +14,19 @@ msgstr ""
 
 #: data/dev.tchx84.Gameeky.desktop.in:3
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:6
-#: src/gameeky/launcher/launcher.py:45
+#: src/gameeky/launcher/launcher.py:46
 msgid "Gameeky"
 msgstr "Gameeky"
 
-#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:58
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:59
 msgid "Entity Editor"
 msgstr "Editor de Entidades"
 
-#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:68
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:69
 msgid "Player"
 msgstr "Jugador"
 
-#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:59
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:60
 msgid "Scene Editor"
 msgstr "Editor de Escena"
 
@@ -216,6 +216,139 @@ msgstr "Desencadena al interactuar"
 msgid "Uses"
 msgstr "Usa"
 
+#: src/gameeky/editor/models/actuator_row.py:66
+#, fuzzy
+msgid "Activates entities that reached its position"
+msgstr "Se activa al interactuar"
+
+#: src/gameeky/editor/models/actuator_row.py:67
+msgid "Activates entities that reached its position, when it's interacted with"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:68
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:69
+msgid "Affects the stats (Durability, Stamina and Strength) of its interactees"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:70
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities, when it's used"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:71
+msgid "Targets nearby (Radius) entities (Target Type)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:72
+msgid "Performs a DESTROY action, when entities are nearby (Radius)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:73
+msgid "Performs a DESTROY action on a fixed interval (Rate)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:74
+msgid "Performs a DESTROY action, when its durability reaches zero"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:75
+msgid "Performs a DESTROY action, when it's interacted with"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:76
+msgid "Reduces its durability over time"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:77
+msgid "Adds entities (Target Type) to the scene, when it's destroyed"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:78
+msgid "Performs EXHAUST actions, when its stamina reaches zero"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:79
+msgid "Performs MOVE actions to its target's (Target Name) direction"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:80
+msgid "Performs INTERACT actions on entities (Target Type)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:81
+msgid "Performs MOVE actions to its current direction"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:82
+msgid ""
+"Activates its target (Target Name), when its requirement (Target Type) "
+"reached its position"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:83
+msgid "Performs MOVE actions to random directions"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:84
+msgid "Changes its direction, when it's interacted with"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:85
+msgid "Sends its dialogue to nearby (Radius) entities"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:86
+msgid "Sends its dialogue to its interactees"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:87
+msgid "Adds entities (Target Type) to the scene on a fixed interval (Rate)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:88
+msgid "Performs TAKE actions on usable entities"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:89
+msgid "Targets its target's target, when it reached its target's position"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:90
+msgid ""
+"Teleports nearby (Radius) entities to its target's (Target Name) position"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:91
+msgid "Teleports its interactees to its target's (Target Name) position"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:92
+msgid "Replaces itself by an entity (Target Type) on a fixed interval (Rate)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:93
+msgid "Activates its target (Target Name), when entities are nearby (Radius)"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:94
+msgid "Activates its target (Target Name), when it's interacted with"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:95
+msgid ""
+"Performs USE actions on entities (Target Type), when holding a usable entity"
+msgstr ""
+
+#: src/gameeky/editor/models/actuator_row.py:107
+msgid "Performs custom behaviors"
+msgstr ""
+
 #: src/gameeky/editor/models/area_row.py:28
 msgid "1x1"
 msgstr "1x1"
@@ -236,7 +369,7 @@ msgstr "7x7"
 msgid "9x9"
 msgstr "9x9"
 
-#: src/gameeky/editor/models/base_row.py:43
+#: src/gameeky/editor/models/base_row.py:46
 msgid "Default"
 msgstr "Predeterminado"
 
@@ -391,117 +524,127 @@ msgstr "Vista previa"
 msgid "Tileset File"
 msgstr "Archivo de conjunto de mosaicos"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:76
+#: src/gameeky/editor/widgets/animation_settings.ui:44
+#: src/gameeky/editor/widgets/entity_open_window.ui:76
+#: src/gameeky/editor/widgets/scene_open_window.ui:77
+msgid "Open"
+msgstr "Abierto"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:56
+msgid "View"
+msgstr ""
+
+#: src/gameeky/editor/widgets/animation_settings.ui:78
 msgid "Number of tileset columns"
 msgstr "Número de columnas del conjunto de mosaicos"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:77
+#: src/gameeky/editor/widgets/animation_settings.ui:79
 msgid "Columns"
 msgstr "Columnas"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:90
+#: src/gameeky/editor/widgets/animation_settings.ui:92
 msgid "Number of tileset rows"
 msgstr "Número de filas del conjunto de mosaicos"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:91
+#: src/gameeky/editor/widgets/animation_settings.ui:93
 msgid "Rows"
 msgstr "Filas"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:102
+#: src/gameeky/editor/widgets/animation_settings.ui:104
 msgid "Number of the first frame to include in the animation"
 msgstr "Número del primer cuadro a incluir en la animación"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:103
+#: src/gameeky/editor/widgets/animation_settings.ui:105
 msgid "First Frame"
 msgstr "Primer Fotograma"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:114
+#: src/gameeky/editor/widgets/animation_settings.ui:116
 msgid "Number of the last frame to include in the animation"
 msgstr "Número del último cuadro a incluir en la animación"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:115
+#: src/gameeky/editor/widgets/animation_settings.ui:117
 msgid "Last Frame"
 msgstr "Último Fotograma"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:127
+#: src/gameeky/editor/widgets/animation_settings.ui:129
 msgid "Number of seconds the complete animation should last"
 msgstr "Número de segundos que debe durar la animación completa"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:128
+#: src/gameeky/editor/widgets/animation_settings.ui:130
 #: src/gameeky/editor/widgets/scene_settings.ui:47
 msgid "Duration"
 msgstr "Duración"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:139
+#: src/gameeky/editor/widgets/animation_settings.ui:141
 msgid "Angle to rotate the image"
 msgstr "Ángulo para rotar la imagen"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:140
+#: src/gameeky/editor/widgets/animation_settings.ui:142
 #: src/gameeky/editor/widgets/scene_window.ui:216
 msgid "Rotate"
 msgstr "Rotar"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:154
+#: src/gameeky/editor/widgets/animation_settings.ui:156
 msgid "Number of tiles to include on the x-axis"
 msgstr "Número de mosaicos a incluir en el eje x"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:155
+#: src/gameeky/editor/widgets/animation_settings.ui:157
 msgid "Tiles X"
 msgstr "Mosaicos X"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:168
+#: src/gameeky/editor/widgets/animation_settings.ui:170
 msgid "Number of tiles to include on the y-axis"
 msgstr "Número de mosaicos a incluir en el eje y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:169
+#: src/gameeky/editor/widgets/animation_settings.ui:171
 msgid "Tiles Y"
 msgstr "Mosaicos Y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:183
+#: src/gameeky/editor/widgets/animation_settings.ui:185
 msgid "How many times larger this image should be on the x-axis"
 msgstr "Cuántas veces más grande debería ser esta imagen en el eje x"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:184
+#: src/gameeky/editor/widgets/animation_settings.ui:186
 msgid "Scale X"
 msgstr "Escala X"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:198
+#: src/gameeky/editor/widgets/animation_settings.ui:200
 msgid "How many times larger this image should be on the y-axis"
 msgstr "Cuántas veces más grande debería ser esta imagen en el eje y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:199
+#: src/gameeky/editor/widgets/animation_settings.ui:201
 msgid "Scale Y"
 msgstr "Escala Y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:210
+#: src/gameeky/editor/widgets/animation_settings.ui:212
 msgid "Number of pixels to remove on the x-axis"
 msgstr "Número de píxeles a recortar en el eje x"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:211
+#: src/gameeky/editor/widgets/animation_settings.ui:213
 msgid "Crop X"
 msgstr "Recorte X"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:222
+#: src/gameeky/editor/widgets/animation_settings.ui:224
 msgid "Number of pixels to remove on the y-axis"
 msgstr "Número de píxeles a recortar en el eje y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:223
+#: src/gameeky/editor/widgets/animation_settings.ui:225
 msgid "Crop Y"
 msgstr "Recorte Y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:228
+#: src/gameeky/editor/widgets/animation_settings.ui:230
 msgid "Whether to flip the image on the x-axis"
 msgstr "Voltea la imagen en el eje x"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:229
+#: src/gameeky/editor/widgets/animation_settings.ui:231
 msgid "Flip X"
 msgstr "Voltea X"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:234
+#: src/gameeky/editor/widgets/animation_settings.ui:236
 msgid "Whether to flip the image on the y-axis"
 msgstr "Voltea la imagen en el eje y"
 
-#: src/gameeky/editor/widgets/animation_settings.ui:235
+#: src/gameeky/editor/widgets/animation_settings.ui:237
 msgid "Flip Y"
 msgstr "Voltea Y"
 
@@ -595,11 +738,6 @@ msgstr "Crear"
 #: src/gameeky/editor/widgets/scene_entity_window.ui:46
 msgid "Entity"
 msgstr "Entidad"
-
-#: src/gameeky/editor/widgets/entity_open_window.ui:76
-#: src/gameeky/editor/widgets/scene_open_window.ui:77
-msgid "Open"
-msgstr "Abierto"
 
 #: src/gameeky/editor/widgets/entity_settings.ui:12
 msgid "These values are the basic statistics of this entity"
@@ -816,6 +954,14 @@ msgstr "Guardar _Como…"
 #: src/gameeky/editor/widgets/scene_window.ui:307
 #: src/gameeky/launcher/widgets/window.ui:146
 #: src/gameeky/player/widgets/window.ui:193
+#, fuzzy
+msgid "_Documentation"
+msgstr "Duración"
+
+#: src/gameeky/editor/widgets/entity_window.ui:141
+#: src/gameeky/editor/widgets/scene_window.ui:311
+#: src/gameeky/launcher/widgets/window.ui:150
+#: src/gameeky/player/widgets/window.ui:197
 msgid "_About Gameeky"
 msgstr "Acerca de _Gameeky"
 
