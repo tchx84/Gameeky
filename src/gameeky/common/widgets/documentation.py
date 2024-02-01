@@ -26,6 +26,7 @@ URL = "https://github.com/tchx84/Gameeky/blob/v%s/docs/basics/%s/%s.md"
 
 SUPPORTED = {
     "en_": {"language": "en", "document": "welcome"},
+    "es_": {"language": "es", "document": "bienvenida"},
 }
 
 
