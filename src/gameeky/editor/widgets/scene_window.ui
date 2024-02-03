@@ -128,6 +128,7 @@
                         <property name="model">
                           <object class="GtkSingleSelection" id="selection">
                             <property name="autoselect">False</property>
+                            <property name="can-unselect">True</property>
                             <property name="model">
                               <object class="GtkSortListModel">
                                 <property name="model">
@@ -200,6 +201,7 @@
                                 <property name="active">True</property>
                                 <property name="icon-name">contact-new-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Add to the scene</property>
+                                <signal name="clicked" handler="on_adder_selected"/>
                               </object>
                             </child>
                             <child>
@@ -207,6 +209,7 @@
                                 <property name="group">adder</property>
                                 <property name="icon-name">user-trash-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Remove from the scene</property>
+                                <signal name="clicked" handler="on_tool_selected"/>
                               </object>
                             </child>
                             <child>
@@ -214,6 +217,7 @@
                                 <property name="group">adder</property>
                                 <property name="icon-name">rotation-allowed-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Rotate</property>
+                                <signal name="clicked" handler="on_tool_selected"/>
                               </object>
                             </child>
                             <child>
@@ -221,6 +225,7 @@
                                 <property name="group">adder</property>
                                 <property name="icon-name">document-edit-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Override properties</property>
+                                <signal name="clicked" handler="on_tool_selected"/>
                               </object>
                             </child>
                             <child>
@@ -228,6 +233,7 @@
                                 <property name="group">adder</property>
                                 <property name="icon-name">find-location-symbolic</property>
                                 <property name="tooltip-text" translatable="yes">Set starting location</property>
+                                <signal name="clicked" handler="on_tool_selected"/>
                               </object>
                             </child>
                           </object>
