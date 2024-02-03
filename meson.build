@@ -10,6 +10,7 @@ gnome = import('gnome')
 
 
 subdir('data')
+subdir('docs')
 subdir('src')
 subdir('po')
 subdir('tests')

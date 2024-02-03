@@ -35,6 +35,7 @@
     },
     "modules": [
         "tests/requirements.json",
+        "docs/requirements.json",
         {
             "name": "gsound",
             "buildsystem": "meson",
