@@ -112,7 +112,6 @@ gameeky_sources = [
   'gameeky/common/utils.py',
   'gameeky/common/vector.py',
   'gameeky/common/widgets/about_window.py',
-  'gameeky/common/widgets/documentation.py',
   'gameeky/common/widgets/documentation_window.py',
   'gameeky/common/widgets/__init__.py',
   'gameeky/editor/definitions.py',
