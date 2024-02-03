@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/dev/tchx84">
     <file preprocess="xml-stripblanks">gameeky/common/widgets/about_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/common/widgets/documentation_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/actuator_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/actuators_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/editor/widgets/animation_row.ui</file>
