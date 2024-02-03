@@ -18,7 +18,7 @@ More specifically:
 
 ## Usage
 
-A thorough tutorial will be available soon.
+Check the abridged [tutorial](docs/basics/en/index.md) out.
 
 ## Contribute
 
