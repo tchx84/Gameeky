@@ -76,6 +76,7 @@ class SceneWindow(Adw.ApplicationWindow):
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
         self._scene_model = SceneModel()
+        self._last_selected: Optional[int] = None
 
         self._scene_view = SceneView()
         self._grid_view = GridView()
@@ -263,6 +264,7 @@ class SceneWindow(Adw.ApplicationWindow):
         self._layer.index = Layer.MAX
 
         self._model.remove_all()
+        self._last_selected = None
 
     @Gtk.Template.Callback("on_zoom_in")
     def __on_zoom_in(self, *args) -> None:
@@ -280,13 +282,26 @@ class SceneWindow(Adw.ApplicationWindow):
 
     @Gtk.Template.Callback("on_entity_selected")
     def __on_entity_selected(self, *args) -> None:
+        if self.selection.props.selected_item is None:
+            return
+
         self.adder.props.active = True
         self._area.index = 0
+        self._last_selected = self.selection.props.selected
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, *args) -> None:
         self.emit("reload")
         self.banner.props.revealed = False
+
+    @Gtk.Template.Callback("on_adder_selected")
+    def __on_adder_selected(self, *args) -> None:
+        if self._last_selected is not None:
+            self.selection.select_item(self._last_selected, True)
+
+    @Gtk.Template.Callback("on_tool_selected")
+    def __on_tool_selected(self, *args) -> None:
+        self.selection.unselect_item(self.selection.props.selected)
 
     @property
     def suggested_name(self) -> str:
