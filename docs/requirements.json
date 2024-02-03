@@ -1,0 +1,28 @@
+{
+    "name": "pandoc",
+    "buildsystem": "simple",
+    "build-commands": [
+        "cp bin/pandoc /app/bin/pandoc"
+    ],
+    "sources": [
+        {
+            "type": "archive",
+            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-amd64.tar.gz",
+            "sha256": "07635f6953201ee261bf90e821b8fe36c045e5a6fbae2ae6b1c2127715432942",
+            "only-arches": [
+                "x86_64"
+            ]
+        },
+        {
+            "type": "archive",
+            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-arm64.tar.gz",
+            "sha256": "3eae92420d3eee830ec121267bbf2e7f3a6c066aa58d599a9b769f50c4967c67",
+            "only-arches": [
+                "aarch64"
+            ]
+        }
+    ],
+    "cleanup": [
+        "*"
+    ]
+}

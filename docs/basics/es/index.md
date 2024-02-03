@@ -1,7 +1,6 @@
-# Bienvenida a la documentación de Gameeky
+# Documentación de Gameeky
 
-> [!WARNING]
-> Este es un software reciente y está sujeto a cambios.
+> ⚠️ **Adventencia:** Este es un software reciente y está sujeto a cambios.
 
 ## Temas
 
@@ -28,8 +27,7 @@
 * Comprende los conceptos básicos de programación usando Python en una experiencia similar a la de LOGO.
 * Habilidades de programación maduras ampliando juegos con complementos de Python.
 
-> [!NOTE]
-> Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).
+> 📝 **Nótese:** Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).
 
 ## Instalación
 
@@ -76,7 +74,7 @@ El Lanzador proporciona una forma sencilla de administrar paquetes temáticos in
 * Editar un proyecto existente.
 * Eliminar un proyecto existente.
 
-![](../../../data/screenshots/en/04.png)
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png)
 
 ## El Reproductor
 
@@ -86,7 +84,7 @@ Iniciar un juego es tan fácil como hacer clic en el botón *Jugar* del proyecto
 2. Desde el Reproductor, vaya al menú y seleccione la opción *Nuevo*.
 3. Desde el diálogo de creación, seleccione el archivo de escena y haga clic en el botón *Crear*.
 
-![](../../../data/screenshots/en/02.png)
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png)
 
 ### HUD del juego
 
@@ -143,7 +141,7 @@ Editar una escena existente es fácil como hacer clic en el botón *Editar* en l
 2. Desde el Lanzador, haga clic en el botón *Editar* en la tarjeta de la copia del proyecto.
 3. Desde el Editor de escenas, vaya al menú y seleccione la opción *Nuevo*.
 
-![](../../../data/screenshots/en/01.png)
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png)
 
 ### Conceptos
 
@@ -189,7 +187,7 @@ Para crear una nueva Entidad, siga estos pasos:
 1. Desde el Editor de Escenas, haga clic derecho sobre cualquier parte del panel izquierdo.
 2. Seleccione la opción *Agregar* en la ventana emergente.
 
-![](../../../data/screenshots/en/03.png)
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png)
 
 ### Conceptos
 
@@ -324,8 +322,7 @@ for entity in game.scene.entities:
 game.quit()
 ```
 
-> [!NOTE]
-> Los cooperadores sólo pueden ver su entorno inmediato de la Escena, no la Escena completa.
+> 📝 **Nótese:** Los cooperadores sólo pueden ver su entorno inmediato de la Escena, no la Escena completa.
 
 Inspeccione el estado de las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas de la Entidad del jugador:
 
@@ -370,8 +367,7 @@ Siga estos pasos para crear un nuevo actuador:
 5. Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los actuadores predefinidos.
 6. Selecciónelo y guarde la entidad en el disco.
 
-> [!NOTE]
-> También se puede acceder a los Actuadores creados por el usuario desde el Editor de Escenas al personalizar entidades específicas.
+> 📝 **Nótese:** También se puede acceder a los Actuadores creados por el usuario desde el Editor de Escenas al personalizar entidades específicas.
 
 ### Ejemplos
 
@@ -449,8 +445,7 @@ class Actuator(Plugin):
             print(entity.name)
 ```
 
-> [!NOTE]
-> El método *surroundings* tiene en cuenta la propiedad *Radio* de la Entidad.
+> 📝 **Nótese:** El método *surroundings* tiene en cuenta la propiedad *Radio* de la Entidad.
 
 Inspeccione todas las entidades en la [Escena](../../../src/gameeky/server/game/scene.py) que no sean estáticas:
 
@@ -491,8 +486,7 @@ class Actuator(Plugin):
         super().tick()
 ```
 
-> [!NOTE]
-> La propiedad *ready* tiene en cuenta la propiedad *Rate* de la Entidad.
+> 📝 **Nótese:** La propiedad *ready* tiene en cuenta la propiedad *Rate* de la Entidad.
 
 Cree un actuador que actúe solo cuando interactúe con un jugador:
 
