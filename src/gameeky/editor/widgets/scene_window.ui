@@ -297,16 +297,16 @@
       <attribute name="label" translatable="yes">_Open</attribute>
     </item>
     <item>
-      <attribute name="action">app.edit</attribute>
-      <attribute name="label" translatable="yes">_Settings</attribute>
-    </item>
-    <item>
       <attribute name="action">app.save</attribute>
       <attribute name="label" translatable="yes">Save</attribute>
     </item>
     <item>
       <attribute name="action">app.save_as</attribute>
       <attribute name="label" translatable="yes">Save _As…</attribute>
+    </item>
+    <item>
+      <attribute name="action">app.edit</attribute>
+      <attribute name="label" translatable="yes">_Settings</attribute>
     </item>
     <item>
       <attribute name="action">app.documentation</attribute>
