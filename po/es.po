@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 01:20-0300\n"
+"POT-Creation-Date: 2024-02-03 13:06-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,22 +55,26 @@ msgid "Create new games without writing any code"
 msgstr "Crea nuevos juegos sin escribir ningún código"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:18
+msgid "Tell stories through these games"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:19
 msgid "Nurture artistic skills by designing game objects and creatures"
 msgstr ""
 "Fomenta las habilidades artísticas diseñando objetos y criaturas del juego"
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:19
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:20
 msgid "Grasp the basics of programming using Python in a LOGO-like experience"
 msgstr ""
 "Comprende los conceptos básicos de programación usando Python en una "
 "experiencia similar a LOGO"
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:20
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:21
 msgid "Mature programming skills by extending games with Python plugins"
 msgstr ""
 "Mejora tus habilidades de programación ampliando juegos con plugins de Python"
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:40
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:41
 msgid "Martin Abente Lahaye"
 msgstr "Martín Abente Lahaye"
 
@@ -517,13 +521,28 @@ msgstr "Los actuadores que modificarán el comportamiento de esta entidad"
 msgid "Actuators"
 msgstr "Actuadores"
 
+#: src/gameeky/editor/widgets/animation_row.ui:16
+#: src/gameeky/editor/widgets/sound_row.ui:16
+#: src/gameeky/launcher/widgets/project_row.ui:116
+msgid "Copy"
+msgstr "Copiar"
+
+#: src/gameeky/editor/widgets/animation_row.ui:25
+#: src/gameeky/editor/widgets/confirmation_window.ui:16
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
+#: src/gameeky/editor/widgets/sound_row.ui:25
+#: src/gameeky/launcher/widgets/confirmation_window.ui:16
+#: src/gameeky/launcher/widgets/project_row.ui:129
+msgid "Delete"
+msgstr "Eliminar"
+
 #: src/gameeky/editor/widgets/animation_row.ui:32
 msgid "Animation"
 msgstr "Animación"
 
 #: src/gameeky/editor/widgets/animation_row.ui:35
 #: src/gameeky/editor/widgets/entity_settings.ui:183
-#: src/gameeky/editor/widgets/sound_row.ui:33
+#: src/gameeky/editor/widgets/sound_row.ui:35
 msgid "State"
 msgstr "Estado"
 
@@ -533,7 +552,7 @@ msgid "Direction"
 msgstr "Dirección"
 
 #: src/gameeky/editor/widgets/animation_row.ui:45
-#: src/gameeky/editor/widgets/sound_row.ui:38
+#: src/gameeky/editor/widgets/sound_row.ui:40
 msgid "Details"
 msgstr "Detalles"
 
@@ -602,7 +621,7 @@ msgid "Angle to rotate the image"
 msgstr "Ángulo para rotar la imagen"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:142
-#: src/gameeky/editor/widgets/scene_window.ui:216
+#: src/gameeky/editor/widgets/scene_window.ui:219
 msgid "Rotate"
 msgstr "Rotar"
 
@@ -715,7 +734,7 @@ msgstr "Descartar"
 #: src/gameeky/editor/widgets/entity_window.ui:129
 #: src/gameeky/editor/widgets/scene_edit_window.ui:41
 #: src/gameeky/editor/widgets/scene_entity_window.ui:29
-#: src/gameeky/editor/widgets/scene_window.ui:299
+#: src/gameeky/editor/widgets/scene_window.ui:301
 #: src/gameeky/launcher/widgets/project_edit_window.ui:41
 msgid "Save"
 msgstr "Guardar"
@@ -727,13 +746,6 @@ msgstr "¿Quieres eliminar <b>permanentemente</b> esta entidad?"
 #: src/gameeky/editor/widgets/confirmation_window.ui:11
 msgid "Delete Entity?"
 msgstr "¿Eliminar Entidad?"
-
-#: src/gameeky/editor/widgets/confirmation_window.ui:16
-#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
-#: src/gameeky/launcher/widgets/confirmation_window.ui:16
-#: src/gameeky/launcher/widgets/project_row.ui:129
-msgid "Delete"
-msgstr "Eliminar"
 
 #: src/gameeky/editor/widgets/entity_new_window.ui:26
 #: src/gameeky/editor/widgets/entity_open_window.ui:27
@@ -955,32 +967,32 @@ msgid "Sounds"
 msgstr "Sonidos"
 
 #: src/gameeky/editor/widgets/entity_window.ui:121
-#: src/gameeky/editor/widgets/scene_window.ui:287
+#: src/gameeky/editor/widgets/scene_window.ui:293
 #: src/gameeky/launcher/widgets/window.ui:142
 #: src/gameeky/player/widgets/window.ui:177
 msgid "_New"
 msgstr "_Nuevo"
 
 #: src/gameeky/editor/widgets/entity_window.ui:125
-#: src/gameeky/editor/widgets/scene_window.ui:291
+#: src/gameeky/editor/widgets/scene_window.ui:297
 msgid "_Open"
 msgstr "_Abrir"
 
 #: src/gameeky/editor/widgets/entity_window.ui:133
-#: src/gameeky/editor/widgets/scene_window.ui:303
+#: src/gameeky/editor/widgets/scene_window.ui:305
 #: src/gameeky/player/widgets/window.ui:185
 msgid "Save _As…"
 msgstr "Guardar _Como…"
 
 #: src/gameeky/editor/widgets/entity_window.ui:137
-#: src/gameeky/editor/widgets/scene_window.ui:307
+#: src/gameeky/editor/widgets/scene_window.ui:313
 #: src/gameeky/launcher/widgets/window.ui:146
 #: src/gameeky/player/widgets/window.ui:193
 msgid "_Documentation"
 msgstr "_Documentación"
 
 #: src/gameeky/editor/widgets/entity_window.ui:141
-#: src/gameeky/editor/widgets/scene_window.ui:311
+#: src/gameeky/editor/widgets/scene_window.ui:317
 #: src/gameeky/launcher/widgets/window.ui:150
 #: src/gameeky/player/widgets/window.ui:197
 msgid "_About Gameeky"
@@ -1075,39 +1087,39 @@ msgstr "Alejar"
 msgid "Set time of the day"
 msgstr "Establecer tiempo del día"
 
-#: src/gameeky/editor/widgets/scene_window.ui:202
+#: src/gameeky/editor/widgets/scene_window.ui:203
 msgid "Add to the scene"
 msgstr "Añadir a la escena"
 
-#: src/gameeky/editor/widgets/scene_window.ui:209
+#: src/gameeky/editor/widgets/scene_window.ui:211
 msgid "Remove from the scene"
 msgstr "Retirar de la escena"
 
-#: src/gameeky/editor/widgets/scene_window.ui:223
+#: src/gameeky/editor/widgets/scene_window.ui:227
 msgid "Override properties"
 msgstr "Modificar propiedades"
 
-#: src/gameeky/editor/widgets/scene_window.ui:230
+#: src/gameeky/editor/widgets/scene_window.ui:235
 msgid "Set starting location"
 msgstr "Establecer ubicación inicial"
 
-#: src/gameeky/editor/widgets/scene_window.ui:248
+#: src/gameeky/editor/widgets/scene_window.ui:254
 msgid "Show grid"
 msgstr "Mostrar cuadrícula"
 
-#: src/gameeky/editor/widgets/scene_window.ui:254
+#: src/gameeky/editor/widgets/scene_window.ui:260
 msgid "Set drawing area"
 msgstr "Establecer área de dibujo"
 
-#: src/gameeky/editor/widgets/scene_window.ui:266
+#: src/gameeky/editor/widgets/scene_window.ui:272
 msgid "Entities"
 msgstr "Entidades"
 
-#: src/gameeky/editor/widgets/scene_window.ui:295
+#: src/gameeky/editor/widgets/scene_window.ui:309
 msgid "_Settings"
 msgstr "_Configuración"
 
-#: src/gameeky/editor/widgets/sound_row.ui:30
+#: src/gameeky/editor/widgets/sound_row.ui:32
 msgid "Sound"
 msgstr "Sonido"
 
@@ -1150,10 +1162,6 @@ msgstr "Jugar"
 #: src/gameeky/launcher/widgets/project_row.ui:103
 msgid "Settings"
 msgstr "Configuración"
-
-#: src/gameeky/launcher/widgets/project_row.ui:116
-msgid "Copy"
-msgstr "Copiar"
 
 #: src/gameeky/launcher/widgets/project_settings.ui:14
 msgid "Description"

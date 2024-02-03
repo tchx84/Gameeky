@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 00:41-0300\n"
+"POT-Creation-Date: 2024-02-03 13:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,18 +58,22 @@ msgid "Create new games without writing any code"
 msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:18
-msgid "Nurture artistic skills by designing game objects and creatures"
+msgid "Tell stories through these games"
 msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:19
-msgid "Grasp the basics of programming using Python in a LOGO-like experience"
+msgid "Nurture artistic skills by designing game objects and creatures"
 msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:20
+msgid "Grasp the basics of programming using Python in a LOGO-like experience"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:21
 msgid "Mature programming skills by extending games with Python plugins"
 msgstr ""
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:40
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:41
 msgid "Martin Abente Lahaye"
 msgstr ""
 
@@ -493,13 +497,28 @@ msgstr ""
 msgid "Actuators"
 msgstr ""
 
+#: src/gameeky/editor/widgets/animation_row.ui:16
+#: src/gameeky/editor/widgets/sound_row.ui:16
+#: src/gameeky/launcher/widgets/project_row.ui:116
+msgid "Copy"
+msgstr ""
+
+#: src/gameeky/editor/widgets/animation_row.ui:25
+#: src/gameeky/editor/widgets/confirmation_window.ui:16
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
+#: src/gameeky/editor/widgets/sound_row.ui:25
+#: src/gameeky/launcher/widgets/confirmation_window.ui:16
+#: src/gameeky/launcher/widgets/project_row.ui:129
+msgid "Delete"
+msgstr ""
+
 #: src/gameeky/editor/widgets/animation_row.ui:32
 msgid "Animation"
 msgstr ""
 
 #: src/gameeky/editor/widgets/animation_row.ui:35
 #: src/gameeky/editor/widgets/entity_settings.ui:183
-#: src/gameeky/editor/widgets/sound_row.ui:33
+#: src/gameeky/editor/widgets/sound_row.ui:35
 msgid "State"
 msgstr ""
 
@@ -509,7 +528,7 @@ msgid "Direction"
 msgstr ""
 
 #: src/gameeky/editor/widgets/animation_row.ui:45
-#: src/gameeky/editor/widgets/sound_row.ui:38
+#: src/gameeky/editor/widgets/sound_row.ui:40
 msgid "Details"
 msgstr ""
 
@@ -578,7 +597,7 @@ msgid "Angle to rotate the image"
 msgstr ""
 
 #: src/gameeky/editor/widgets/animation_settings.ui:142
-#: src/gameeky/editor/widgets/scene_window.ui:216
+#: src/gameeky/editor/widgets/scene_window.ui:219
 msgid "Rotate"
 msgstr ""
 
@@ -688,7 +707,7 @@ msgstr ""
 #: src/gameeky/editor/widgets/entity_window.ui:129
 #: src/gameeky/editor/widgets/scene_edit_window.ui:41
 #: src/gameeky/editor/widgets/scene_entity_window.ui:29
-#: src/gameeky/editor/widgets/scene_window.ui:299
+#: src/gameeky/editor/widgets/scene_window.ui:301
 #: src/gameeky/launcher/widgets/project_edit_window.ui:41
 msgid "Save"
 msgstr ""
@@ -699,13 +718,6 @@ msgstr ""
 
 #: src/gameeky/editor/widgets/confirmation_window.ui:11
 msgid "Delete Entity?"
-msgstr ""
-
-#: src/gameeky/editor/widgets/confirmation_window.ui:16
-#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
-#: src/gameeky/launcher/widgets/confirmation_window.ui:16
-#: src/gameeky/launcher/widgets/project_row.ui:129
-msgid "Delete"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_new_window.ui:26
@@ -928,32 +940,32 @@ msgid "Sounds"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:121
-#: src/gameeky/editor/widgets/scene_window.ui:287
+#: src/gameeky/editor/widgets/scene_window.ui:293
 #: src/gameeky/launcher/widgets/window.ui:142
 #: src/gameeky/player/widgets/window.ui:177
 msgid "_New"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:125
-#: src/gameeky/editor/widgets/scene_window.ui:291
+#: src/gameeky/editor/widgets/scene_window.ui:297
 msgid "_Open"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:133
-#: src/gameeky/editor/widgets/scene_window.ui:303
+#: src/gameeky/editor/widgets/scene_window.ui:305
 #: src/gameeky/player/widgets/window.ui:185
 msgid "Save _As…"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:137
-#: src/gameeky/editor/widgets/scene_window.ui:307
+#: src/gameeky/editor/widgets/scene_window.ui:313
 #: src/gameeky/launcher/widgets/window.ui:146
 #: src/gameeky/player/widgets/window.ui:193
 msgid "_Documentation"
 msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:141
-#: src/gameeky/editor/widgets/scene_window.ui:311
+#: src/gameeky/editor/widgets/scene_window.ui:317
 #: src/gameeky/launcher/widgets/window.ui:150
 #: src/gameeky/player/widgets/window.ui:197
 msgid "_About Gameeky"
@@ -1048,39 +1060,39 @@ msgstr ""
 msgid "Set time of the day"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:202
+#: src/gameeky/editor/widgets/scene_window.ui:203
 msgid "Add to the scene"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:209
+#: src/gameeky/editor/widgets/scene_window.ui:211
 msgid "Remove from the scene"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:223
+#: src/gameeky/editor/widgets/scene_window.ui:227
 msgid "Override properties"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:230
+#: src/gameeky/editor/widgets/scene_window.ui:235
 msgid "Set starting location"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:248
+#: src/gameeky/editor/widgets/scene_window.ui:254
 msgid "Show grid"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:254
+#: src/gameeky/editor/widgets/scene_window.ui:260
 msgid "Set drawing area"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:266
+#: src/gameeky/editor/widgets/scene_window.ui:272
 msgid "Entities"
 msgstr ""
 
-#: src/gameeky/editor/widgets/scene_window.ui:295
+#: src/gameeky/editor/widgets/scene_window.ui:309
 msgid "_Settings"
 msgstr ""
 
-#: src/gameeky/editor/widgets/sound_row.ui:30
+#: src/gameeky/editor/widgets/sound_row.ui:32
 msgid "Sound"
 msgstr ""
 
@@ -1122,10 +1134,6 @@ msgstr ""
 
 #: src/gameeky/launcher/widgets/project_row.ui:103
 msgid "Settings"
-msgstr ""
-
-#: src/gameeky/launcher/widgets/project_row.ui:116
-msgid "Copy"
 msgstr ""
 
 #: src/gameeky/launcher/widgets/project_settings.ui:14
