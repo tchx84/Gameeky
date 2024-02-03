@@ -1,6 +1,8 @@
 # Documentation
 
-> ⚠️ **Warning:** This is still an early release and therefore everything here is subject to change.
+> ⚠️ **Warning:** Gameeky is still in early stages of development and therefore things are subject to change.
+
+> 📝 **Note:** This document is not an exhaustive tutorial on everything Gameeky can do, but should provide enough directions to get started.
 
 ## Topics
 
