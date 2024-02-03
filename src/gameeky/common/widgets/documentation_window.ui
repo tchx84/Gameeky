@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.17.0 -->
+<interface>
+  <!-- interface-name documentation_window.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <requires lib="webkitgtk" version="6.0"/>
+  <template class="DocumentationWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="WebKitWebView" id="webview">
+            <signal name="decide-policy" handler="on_decide_policy"/>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child>
+              <object class="GtkButton" id="back_button">
+                <property name="icon-name">go-previous-symbolic</property>
+                <property name="sensitive">False</property>
+                <signal name="clicked" handler="on_back_clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="forward_button">
+                <property name="icon-name">go-next-symbolic</property>
+                <property name="sensitive">False</property>
+                <signal name="clicked" handler="on_forward_clicked"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+    <property name="modal">True</property>
+    <property name="title" translatable="yes">Documentation</property>
+  </template>
+</interface>
