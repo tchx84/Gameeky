@@ -12,11 +12,12 @@ More specifically:
 
 * Play and explore games with friends
 * Create new games without writing any code
+* Tell stories through these games
 * Nurture artistic skills by designing game objects and creatures
 * Grasp the basics of programming using Python in a LOGO-like experience
 * Mature programming skills by extending games with Python plugins
 
-## Usage
+## Use it
 
 Check the abridged [tutorial](docs/basics/en/index.md) out.
 
