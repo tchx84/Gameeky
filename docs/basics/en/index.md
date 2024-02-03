@@ -261,6 +261,7 @@ For an improved experience, try the following tips and tricks:
 * When creating a new thematic pack assume that the entity with identifier number *1* will be assigned to the user's character in the game.
 * When creating a new entity, always begin with setting the identifier number and then *Save* the Entity to disk. Keep the name suggested by the entity editor. This will make it easier to assign unique identifiers along the road.
 * When creating a new animation, always leave both, the entity editor and the tileset viewer, open side by side. This will make it easier to setup the animation frames.
+* After creating an animation, click on the *Copy* button to add the next animation. This will make it easier to setup the next animation.
 
 ## LOGO-like code
 
