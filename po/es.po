@@ -56,7 +56,7 @@ msgstr "Crea nuevos juegos sin escribir ningún código"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:18
 msgid "Tell stories through these games"
-msgstr ""
+msgstr "Cuenta historias a través de estos juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:19
 msgid "Nurture artistic skills by designing game objects and creatures"
