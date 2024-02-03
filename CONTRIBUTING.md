@@ -7,7 +7,7 @@ Thanks for taking the time to contribute! Before getting started:
 
 ## Understanding the goal
 
-Gameeky is a learning tool in the form of a game engine. It's not a game engine that's also useful as a learning tool. Therefore, its primary goal is to provide a better learning experience for programming, arts and other STEAM skills. It's not a goal to provide an efficient nor professional game development process. You can read more about this project rationale [here](https://blogs.gnome.org/tchx84/2023/12/15/gameeky-a-new-learning-tool-to-develop-steam-skills/).
+Gameeky is a learning tool in the shape of a game engine. It's not a professional game engine. Therefore, its primary goal is to provide a better learning experience for programming, arts and other STEAM skills. It's not a goal to provide an efficient nor professional game development process. You can read more about this project rationale [here](https://blogs.gnome.org/tchx84/2023/12/15/gameeky-a-new-learning-tool-to-develop-steam-skills/).
 
 If you're looking for a tool to create professional video games, I highly recommend the [Godot](https://godotengine.org/) game engine.
 
