@@ -36,6 +36,6 @@
     <property name="default-height">600</property>
     <property name="default-width">800</property>
     <property name="modal">True</property>
-    <property name="title" translatable="yes">Documentation</property>
+    <property name="title">Gameeky</property>
   </template>
 </interface>

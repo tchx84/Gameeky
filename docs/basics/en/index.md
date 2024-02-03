@@ -1,4 +1,4 @@
-# Gameeky documentation
+# Documentation
 
 > ⚠️ **Warning:** This is still an early release and therefore everything here is subject to change.
 
