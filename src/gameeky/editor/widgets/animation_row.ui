@@ -13,7 +13,7 @@
           <object class="GtkButton">
             <property name="halign">center</property>
             <property name="icon-name">edit-copy-symbolic</property>
-            <property name="tooltip-text">Clone</property>
+            <property name="tooltip-text" translatable="yes">Copy</property>
             <property name="valign">center</property>
             <signal name="clicked" handler="on_clone_clicked"/>
           </object>
@@ -22,7 +22,7 @@
           <object class="GtkButton">
             <property name="halign">center</property>
             <property name="icon-name">list-remove-symbolic</property>
-            <property name="tooltip-text">Remove</property>
+            <property name="tooltip-text" translatable="yes">Delete</property>
             <property name="valign">center</property>
             <signal name="clicked" handler="on_remove_clicked"/>
           </object>
