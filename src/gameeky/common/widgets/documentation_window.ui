@@ -15,6 +15,9 @@
         </property>
         <child type="top">
           <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle"/>
+            </property>
             <child>
               <object class="GtkButton" id="back_button">
                 <property name="icon-name">go-previous-symbolic</property>
@@ -36,6 +39,5 @@
     <property name="default-height">600</property>
     <property name="default-width">800</property>
     <property name="modal">True</property>
-    <property name="title">Gameeky</property>
   </template>
 </interface>
