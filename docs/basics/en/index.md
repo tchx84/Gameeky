@@ -26,7 +26,7 @@
 * Create new games without writing any code.
 * Tell stories through these games.
 * Nurture artistic skills by designing game objects and creatures.
-* Grasp the basics of programming using Python in a LOGO-like experience.
+* Grasp the basics of programming using Python in a [LOGO](https://en.wikipedia.org/wiki/Logo_(programming_language))-like experience.
 * Mature programming skills by extending games with Python plugins.
 
 > 📝 **Note:** This is a learning tool in the shape of a game engine. It's not a professional game engine. If you're looking for a tool to create professional video games, please consider the [Godot](https://godotengine.org) game engine.
@@ -43,7 +43,7 @@ flatpak --user install flathub dev.tchx84.Gameeky
 
 ## Thematic packs
 
-Gameeky provides predefined packs of building blocks for different interests, e.g., a farming role playing [game](https://github.com/tchx84/FreedomValley) set in a medieval fantasy world. A thematic pack contains:
+Gameeky provides packs of predefined building blocks for different interests, e.g., a farming role playing [game](https://github.com/tchx84/FreedomValley) set in a medieval fantasy world. A thematic pack contains:
 
 * Assets like tilesets, sprites and sounds.
 * Entities created from these assets, with predefined properties and behaviors.
@@ -120,9 +120,9 @@ The user's character can perform multiple actions to interact with the game worl
 
 * *Move* to advance the user's character to one of four directions, e.g., to move the character to the *North*.
 * *Take* to hold an entity from the scene. The entity must be directly in front of the user's character to be taken, e.g., to grab the entity and move that it later.
-* *Use* to apply any effects that the held entity might have. These effects affect the entities that are located right in font of the user's character, e.g., to chop some logs with an axe.
+* *Use* to apply any effects that the entity being held might have. These effects affect the entities that are located right in font of the user's character, e.g., to chop some logs with an axe.
 * *Drop* to stop holding an entity, e.g., to stop moving it.
-* *Interact* to activate any behavior from an entity. To interact with another entity, the entity must be located right in front of the user's character, e.g., to activate a teleport or read dialogues from letters.
+* *Interact* to activate any behavior from an entity. To interact with another entity, the entity must be located right in front of the user's character, e.g., to activate a teleport or read from signs.
 * *Stop* to stop any action being performed and simply idle.
 
 ### Save files
@@ -154,7 +154,7 @@ To join a cooperative game:
 
 ## The scene editor
 
-The scene editor lets users create and modify scenes. It serves as the initial and simplest form of no-code creation experience in Gameeky.
+The scene editor lets users create and modify game worlds. It serves as the initial and simplest form of no-code creation experience in Gameeky.
 
 To edit an existing Scene, click on the *Edit* button of the project from the launcher. To create a new scene it's recommended to start off an existing project such as a thematic pack. Follow these steps to add a new Scene:
 
