@@ -166,7 +166,7 @@ To edit an existing Scene, click on the *Edit* button of the project from the la
 
 ### Concepts
 
-A scene is a collection of entities arranged in a tiles matrix. The basic properties of a scene are:
+A scene is a collection of entities arranged in a tiles grid. The basic properties of a scene are:
 
 * A *Name* that must be unique among the scenes of the same project.
 * The *Time* of the day in which the scene occurs. It can be *Day*, *Night* or *Dynamic*.
@@ -178,9 +178,9 @@ A scene is a collection of entities arranged in a tiles matrix. The basic proper
 
 The scene editing workflow resembles one of a painting tool. Entities are painted and removed to and from the scene. The basic steps to edit a scene are the following:
 
-1. To add entities to the scene, select an entity from the left panel and place it on the scene by clicking on a tile in the matrix.
-2. To remove entities from the scene, select the *Remove* tool from the left and then click on the entity tile in the matrix.
-3. Although entities come with predefined properties and behaviors, particular entities in the scene can be customized. Select the *Edit* tool from the left panel and then click on the entity tile in the matrix.
+1. To add entities to the scene, select an entity from the left panel and place it on the scene by clicking on a tile in the grid.
+2. To remove entities from the scene, select the *Remove* tool from the left and then click on the entity tile in the grid.
+3. Although entities come with predefined properties and behaviors, particular entities in the scene can be customized. Select the *Edit* tool from the left panel and then click on the entity tile in the grid.
 
 Additionally, the scene editor provides helpers to make things easier such as:
 
