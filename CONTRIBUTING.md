@@ -60,7 +60,7 @@ Additionally, you can add your name to [the list of contributors](./src/gameeky/
 
 Gameeky requires that both the user interface and the beginner's guide are translated. To translate the user interface to a new language, run these commands on the terminal:
 
-```sh
+```bash
 # Fedora requirements
 $ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel
 
@@ -78,7 +78,7 @@ $ ninja gameeky-update-po
 
 To translate the beginner's guide, follow these steps:
 
-```
+```bash
 $ cd Gameeky
 
 $ mkdir docs/basics/es
@@ -93,7 +93,7 @@ $ touch docs/basics/es/index.md
 
 This project comes with automated tests that you can run, even before you submit your changes. Simply run these commands on the terminal:
 
-```sh
+```bash
 # Fedora requirements
 $ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel
 
