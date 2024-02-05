@@ -46,7 +46,7 @@ class Scene(CommonScene, GObject.GObject):
         self._index = 0
         self._partition: Optional[SpatialPartition] = None
         self._name = ""
-        self.spawn = Vector()
+        self._spawn = Vector()
         self.daytime = DayTime.DYNAMIC.name.lower()
         self.duration = DEFAULT_DURATION
         self.layer: Optional[int] = None
@@ -198,6 +198,15 @@ class Scene(CommonScene, GObject.GObject):
         return self.width / self.height
 
     @property
+    def spawn(self) -> Vector:
+        return self._spawn
+
+    @spawn.setter
+    def spawn(self, spawn: Vector) -> None:
+        self._spawn = spawn
+        self.refresh()
+
+    @property
     def description(self) -> Description:
         return Description(
             name=self.name,
@@ -226,7 +235,7 @@ class Scene(CommonScene, GObject.GObject):
         self.daytime = description.daytime
         self.duration = description.duration
 
-        self.spawn = Vector(
+        self._spawn = Vector(
             x=description.spawn.x,
             y=description.spawn.y,
             z=description.spawn.z,
