@@ -56,6 +56,10 @@ The only request is that you [organize](https://github.blog/2022-06-30-write-bet
 
 Additionally, you can add your name to [the list of contributors](./src/gameeky/common/widgets/about_window.ui) in a separate commit.
 
+## Changing the user interface
+
+All the user interfaces were built with [Cambalache](https://flathub.org/apps/ar.xjuan.Cambalache). Therefore, it's the recommended tool for manipulating the *UI* files of this project.
+
 ## Adding new translations
 
 Gameeky requires that both the user interface and the beginner's guide are translated. To translate the user interface to a new language, run these commands on the terminal:
