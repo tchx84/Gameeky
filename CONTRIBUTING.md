@@ -58,7 +58,7 @@ Additionally, you can add your name to [the list of contributors](./src/gameeky/
 
 ## Adding new translations
 
-To add a new translation simply run these commands on the terminal:
+Gameeky requires that both the user interface and the beginner's guide are translated. To translate the user interface to a new language, run these commands on the terminal:
 
 ```sh
 # Fedora requirements
@@ -73,7 +73,20 @@ $ ninja gameeky-pot
 $ ninja gameeky-update-po
 
 # Edit the newly created po/es.po
-# Commit the changes and create a new Pull Request
+# Commit the changes
+```
+
+To translate the beginner's guide, follow these steps:
+
+```
+$ cd Gameeky
+
+$ mkdir docs/basics/es
+$ touch docs/basics/es/index.md
+
+# Edit the newly created index.md file and write a translated version of docs/basics/en/index.md
+# Add the language code to docs/meson.build
+# Commit the changes and create a Pull Request
 ```
 
 ## Testing your changes
