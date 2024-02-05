@@ -30,8 +30,12 @@ class Project:
             file.write(description.to_json())
 
     @classmethod
+    def sanitize(cls, name: str) -> str:
+        return os.path.basename(os.path.abspath(name)).strip()
+
+    @classmethod
     def create(cls, description: Description) -> str:
-        project_path = os.path.join(get_projects_path(), description.name)
+        project_path = os.path.join(get_projects_path(), cls.sanitize(description.name))
 
         os.makedirs(os.path.join(project_path, "actuators"))
         os.makedirs(os.path.join(project_path, "assets"))
@@ -45,7 +49,7 @@ class Project:
     @classmethod
     def rename(cls, path: str, description: Description) -> str:
         projects_path = os.path.dirname(path)
-        project_path = os.path.join(projects_path, description.name)
+        project_path = os.path.join(projects_path, cls.sanitize(description.name))
 
         os.rename(path, project_path)
         cls.write(project_path, description)
@@ -55,7 +59,7 @@ class Project:
     @classmethod
     def copy(cls, path: str, description: Description) -> str:
         description.name = find_new_name(get_projects_path(), description.name)
-        project_path = os.path.join(get_projects_path(), description.name)
+        project_path = os.path.join(get_projects_path(), cls.sanitize(description.name))
 
         os.mkdir(project_path)
 
