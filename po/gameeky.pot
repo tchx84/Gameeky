@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 13:06-0300\n"
+"POT-Creation-Date: 2024-02-05 15:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,23 @@ msgstr ""
 msgid "Mature programming skills by extending games with Python plugins"
 msgstr ""
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:41
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:26
+msgid "Gameeky showing its scene editor"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:30
+msgid "Gameeky showing its game player"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:34
+msgid "Gameeky showing its entity editor"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:38
+msgid "Gameeky showing its game launcher"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:45
 msgid "Martin Abente Lahaye"
 msgstr ""
 
