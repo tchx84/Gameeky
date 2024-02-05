@@ -232,6 +232,8 @@ Although there are two dozen properties, a few of these require special attentio
 * An entity state can be changed intrinsically by *Actuators* that provide predefined logic, e.g., a *Roams* actuator will move the entity to random directions, and a *Destroys* actuator will flag the entity for removal from the scene when its durability reaches zero.
 * All entity properties coexist in a single system and therefore behaviors can emerge from different combinations of these properties, e.g., the speed in which an entity can move is determined by its *Weight* and its *Strength*, while the total weight of an entity depends on the weight of the entity its holding, and so on.
 
+> 📝 **Note:** When creating a new thematic pack assume that the entity with identifier number *1* will be assigned to the user's character in the game.
+
 #### Graphics
 
 Entities are represented on the screen through 2D graphics, which can be static or animated.
@@ -258,7 +260,6 @@ The entity creation workflow is similar to filling a form or a template. The mos
 
 For an improved experience, try the following tips and tricks:
 
-* When creating a new thematic pack assume that the entity with identifier number *1* will be assigned to the user's character in the game.
 * When creating a new entity, always begin with setting the identifier number and then *Save* the Entity to disk. Keep the name suggested by the entity editor. This will make it easier to assign unique identifiers along the road.
 * When creating a new animation, always leave both, the entity editor and the tileset viewer, open side by side. This will make it easier to set up the animation frames.
 * After creating an animation, click on the *Copy* button to add the next animation. This will make it easier to set up the next animation.

@@ -232,6 +232,8 @@ Aunque hay dos docenas de propiedades, algunas de ellas requieren atención espe
 * El estado de una entidad se puede cambiar intrínsecamente mediante *Actuadores* que proporcionan una lógica predefinida, por ejemplo, un actuador *Deambula* moverá la entidad en direcciones aleatorias, y un actuador *Se destruye* señalará la entidad para su eliminación de la escena cuando su durabilidad llegue a cero.
 * Todas las propiedades de una entidad coexisten en un solo sistema y por lo tanto pueden surgir comportamientos de diferentes combinaciones de estas propiedades, por ejemplo, la velocidad a la que una entidad puede moverse está determinada por su *Peso* y su *Fuerza*, mientras que el peso total de una entidad depende del peso de la entidad que sostiene, y así sucesivamente.
 
+> 📝 **Notese:** Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.
+
 #### Gráficos
 
 Las entidades se representan en pantalla a través de gráficos 2D, que pueden ser estáticos o animados.
@@ -258,7 +260,6 @@ El flujo de trabajo de creación de entidades es similar a completar un formular
 
 Para una mejor experiencia, siga estos consejos y trucos:
 
-* Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.
 * Al crear una nueva entidad, comience siempre configurando el número de identificador y luego *Guarde* la entidad en el disco. Mantenga el nombre sugerido por el editor de entidades. Esto facilitará la asignación de identificadores únicos a la larga.
 * Al crear una nueva animación, deje siempre abiertos el editor de entidades y el visor de mosaicos, uno al lado del otro. Esto facilitará la configuración de los cuadros de animación.
 * Después de crear una animación, haga clic en el botón *Copiar* para agregar la siguiente animación. Esto facilitará la configuración de la siguiente animación.
