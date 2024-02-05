@@ -372,7 +372,9 @@ For an improved experience, try the following tips and tricks:
 
 ## Plugins
 
-Actuators can modify the behavior of an entity. A single entity can use multiple actuators to model more complex behaviors. Although there's a wide range of predefined actuators, the end result is limited when compared to actual code. Therefore, Gameeky provides support for user-created actuators to go beyond what the predefined actuators can do.
+Actuators can modify the behavior of an entity. A single entity can use multiple actuators to model more complex behaviors. Although there's a wide range of predefined actuators, the end result is limited when compared to actual code.
+
+Therefore, Gameeky provides support for user-created actuators to go beyond what the predefined actuators can do.
 
 ### Concepts
 

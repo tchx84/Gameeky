@@ -372,7 +372,9 @@ Para una mejor experiencia, siga estos consejos y trucos:
 
 ## Complementos
 
-Los actuadores pueden modificar el comportamiento de una entidad. Una sola entidad puede utilizar múltiples actuadores para modelar comportamientos más complejos. Aunque existe una amplia gama de actuadores predefinidos, el resultado final es limitado en comparación con el código real. Por lo tanto, Gameeky proporciona soporte para actuadores creados por el usuario, e ir más allá de lo que pueden hacer los actuadores predefinidos.
+Los actuadores pueden modificar el comportamiento de una entidad. Una sola entidad puede utilizar múltiples actuadores para modelar comportamientos más complejos. Aunque existe una amplia gama de actuadores predefinidos, el resultado final es limitado en comparación con el código real.
+
+Por lo tanto, Gameeky proporciona soporte para actuadores creados por el usuario, e ir más allá de lo que pueden hacer los actuadores predefinidos.
 
 ### Conceptos
 
