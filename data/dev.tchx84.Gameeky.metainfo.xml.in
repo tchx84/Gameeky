@@ -23,15 +23,19 @@
   </description>
   <screenshots>
     <screenshot type="default">
+      <caption>Gameeky showing its scene editor</caption>
       <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png</image>
     </screenshot>
     <screenshot>
+      <caption>Gameeky showing its game player</caption>
       <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png</image>
     </screenshot>
     <screenshot>
+      <caption>Gameeky showing its entity editor</caption>
       <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png</image>
     </screenshot>
     <screenshot>
+      <caption>Gameeky showing its game launcher</caption>
       <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png</image>
     </screenshot>
   </screenshots>
