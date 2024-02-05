@@ -76,19 +76,19 @@ msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:26
 msgid "Gameeky showing its scene editor"
-msgstr ""
+msgstr "Gameeky mostrando su editor de escenas"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:30
 msgid "Gameeky showing its game player"
-msgstr ""
+msgstr "Gameeky mostrando su reproductor de juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:34
 msgid "Gameeky showing its entity editor"
-msgstr ""
+msgstr "Gameeky mostrando su editor de entidades"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:38
 msgid "Gameeky showing its game launcher"
-msgstr ""
+msgstr "Gameeky mostrando su lanzador de juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:45
 msgid "Martin Abente Lahaye"
