@@ -265,7 +265,7 @@ For an improved experience, try the following tips and tricks:
 
 ## LOGO-like code
 
-Having support for cooperative game play opens the door for cooperators that can be controlled with code. To achieve this, Gameeky provides a small library that enables learners to control a single Entity using Python, in a LOGO-like experience.
+Having support for cooperative game play opens the door for cooperators that can be controlled with code. To achieve this, Gameeky provides a small library that enables users to control a single Entity using Python, in a LOGO-like experience.
 
 ### Workflow
 
