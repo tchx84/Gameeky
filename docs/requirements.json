@@ -2,6 +2,7 @@
     "name": "pandoc",
     "buildsystem": "simple",
     "build-commands": [
+        "mkdir -p /app/bin/",
         "cp bin/pandoc /app/bin/pandoc"
     ],
     "sources": [
