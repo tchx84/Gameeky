@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.5.1] - 2024-02-05
 
 * Fixed screenshots missing captions.
 
