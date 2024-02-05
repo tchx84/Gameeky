@@ -20,6 +20,8 @@ from gi.repository import Gtk, Adw, GObject
 
 from .project_settings import ProjectSettings
 
+from ..models.project import Project
+
 from ...common.scanner import Description
 
 
@@ -54,7 +56,7 @@ class ProjectEditWindow(Adw.Window):
     def __on_save_clicked(self, button: Gtk.Button) -> None:
         description = self.description
 
-        if not description.name:
+        if not Project.sanitize(description.name):
             self._notify("A valid name must be provided")
             return
 
