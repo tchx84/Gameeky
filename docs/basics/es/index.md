@@ -72,7 +72,7 @@ Gameeky proporciona cuatro componentes principales:
 
 ## El lanzador
 
-El lanzador sirve como punto de partida de Gameeky. Proporciona una manera fácil de administrar paquetes temáticos instalados como complementos y proyectos ubicados en el directorio `~/gameeky`. El administrador soporta todas las operaciones básicas de gestión:
+El lanzador sirve como punto de partida de Gameeky. Proporciona una manera fácil de administrar paquetes temáticos instalados como complementos y proyectos ubicados en el directorio `~/Gameeky`. El administrador soporta todas las operaciones básicas de gestión:
 
 * Crear nuevos paquetes temáticos y proyectos desde cero.
 * Editar proyectos existentes.
@@ -293,7 +293,7 @@ Unirse y abandonar un [juego](../../../src/gameeky/library/game.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.quit()
 ```
@@ -304,7 +304,7 @@ Realizar [acciones](../../../src/gameeky/common/definitions.py):
 from gameeky.library import Game
 from gameeky.common.definitions import Direction
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -324,7 +324,7 @@ Inspeccionar la posición y las propiedades básicas del personaje del usuario [
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -338,7 +338,7 @@ Inspeccione el estado de la [escena](../../../src/gameeky/common/scene.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -355,7 +355,7 @@ Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -396,7 +396,7 @@ Para crear un nuevo actuador, siga los pasos:
 
 1. Abra un nuevo documento en un editor de texto.
 2. Escriba una clase de actuador; consulte los ejemplos a continuación.
-3. Guarde el nuevo documento en `~/gameeky/NOMBRE_DEL_PROYECTO/actuators/NOMBRE_DEL_ACTUADOR.py`
+3. Guarde el nuevo documento en `~/Gameeky/NOMBRE_DEL_PROYECTO/actuators/NOMBRE_DEL_ACTUADOR.py`
 4. Desde el editor de entidades, vaya a la pestaña *Juego* y a la sección de actuadores.
 5. Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los actuadores predefinidos.
 6. Selecciónelo y guarde la entidad en el disco.

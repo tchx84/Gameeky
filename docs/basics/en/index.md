@@ -72,7 +72,7 @@ The Gameeky package provides four main components:
 
 ## The launcher
 
-The launcher serves as the Gameeky starting point. It provides an easy way to manage thematic packs installed as addons and projects located under the `~/gameeky` directory. The manager supports all the basic management operations:
+The launcher serves as the Gameeky starting point. It provides an easy way to manage thematic packs installed as addons and projects located under the `~/Gameeky` directory. The manager supports all the basic management operations:
 
 * Create new thematic packs and project from scratch.
 * Edit existing projects.
@@ -293,7 +293,7 @@ Join and leave a [game](../../../src/gameeky/library/game.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.quit()
 ```
@@ -304,7 +304,7 @@ Perform [actions](../../../src/gameeky/common/definitions.py):
 from gameeky.library import Game
 from gameeky.common.definitions import Direction
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -324,7 +324,7 @@ Inspect the position and basic properties of the user's character [entity](../..
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -338,7 +338,7 @@ Inspect the state of the [scene](../../../src/gameeky/common/scene.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -355,7 +355,7 @@ Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the user's 
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/gameeky/project", address="127.0.0.1")
+game = Game(project="~/Gameeky/project", address="127.0.0.1")
 game.join()
 game.update()
 
@@ -396,7 +396,7 @@ To create a new actuator, follow the steps:
 
 1. Open a new document in a text editor.
 2. Write an actuator class, see examples below.
-3. Save the new document to `~/gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py`
+3. Save the new document to `~/Gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py`
 4. From the entity editor, go under the *Game* tab to the actuators section.
 5. A new option called *ACTUATOR_NAME* will be displayed along with the predefined actuators.
 6. Select it and save the entity to disk.
