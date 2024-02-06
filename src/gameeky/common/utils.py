@@ -42,7 +42,7 @@ def set_projects_path(path) -> None:
 def get_projects_path() -> str:
     return os.environ.get(
         "PROJECTS_PATH",
-        os.path.join(os.path.expanduser("~"), "gameeky"),
+        os.path.join(os.path.expanduser("~"), "Gameeky"),
     )
 
 
