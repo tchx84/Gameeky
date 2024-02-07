@@ -1,5 +1,9 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed typos and issues with grammar in the Spanish documentation.
+
 ## [0.5.2] - 2024-02-06
 
 * Fixed default PROJECTS_PATH name to fit better inside the HOME folder.
