@@ -1,8 +1,8 @@
 # Documentación
 
-> ⚠️ **Advertencia:** Gameeky aún se encuentra en las primeras etapas de desarrollo y, por lo tanto, las cosas están sujetas a cambios.
+> ⚠️ **Advertencia:** Gameeky aún se encuentra en las primeras etapas de desarrollo y, por lo tanto, está sujeta a cambios.
 
-> 📝 **Notese:** Este documento no es un tutorial exhaustivo sobre todo lo que Gameeky puede hacer, pero debería proporcionar suficientes instrucciones para comenzar.
+> 📝 **Nótese:** Este documento no es un tutorial exhaustivo sobre todo lo que Gameeky puede hacer, pero debería proporcionar suficientes instrucciones para comenzar.
 
 ## Temas
 
@@ -20,7 +20,7 @@
 
 ## Introducción
 
-[Gameeky](https://github.com/tchx84/gameeky) permite a jóvenes estudiantes y educadores crear y explorar juegos cooperativos y experiencias de aprendizaje. Más específicamente:
+[Gameeky](https://github.com/tchx84/gameeky) brinda experiencias de aprendizaje a estudiantes jóvenes y educadores, permitiéndoles crear y explorar con juegos cooperativos. Más específicamente:
 
 * Juega y explora juegos con amigos.
 * Crea nuevos juegos sin escribir ningún código.
@@ -29,11 +29,11 @@
 * Aprende conceptos básicos de programación usando Python en una experiencia similar a [LOGO](https://es.wikipedia.org/wiki/Logo_(lenguaje_de_programaci%C3%B3n)).
 * Madura habilidades de programación ampliando juegos con complementos en Python.
 
-> 📝 **Notese:** Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).
+> 📝 **Nótese:** Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).
 
 ## Instalación
 
-El método de instalación recomendado es a través del centro de software del sistema, por ejemplo, *GNOME Software*. Busque *Gameeky* e instálelo. Alternativamente, también se puede instalar desde [Flathub](https://flathub.org). De manera similar, busque *Gameeky* y siga las instrucciones del sitio web.
+El método de instalación recomendado es a través del centro de software del sistema, por ejemplo, *GNOME Software*. Busque *Gameeky* y proceda a instalarlo. Alternativamente, también se puede instalar desde [Flathub](https://flathub.org). De manera similar, busque *Gameeky* y siga las instrucciones del sitio web.
 
 Por último, también se puede instalar desde la terminal:
 
@@ -45,7 +45,7 @@ flatpak --user install flathub dev.tchx84.Gameeky
 
 Gameeky proporciona paquetes con bloques de construcción predefinidos para diferentes intereses, por ejemplo, un [juego] de rol agrícola (https://github.com/tchx84/FreedomValley) ambientado en un mundo de fantasía medieval. Un paquete temático contiene:
 
-* Recursos como conjuntos de mosaicos, sprites y sonidos.
+* Recursos como conjuntos de mosaicos, imágenes y sonidos.
 * Entidades creadas a partir de estos recursos, con propiedades y comportamientos predefinidos.
 * Escenas creadas con esas entidades.
 * Actuadores que amplían los comportamientos predefinidos.
@@ -65,7 +65,7 @@ flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley
 
 Gameeky proporciona cuatro componentes principales:
 
-1. El lanzador es el componente principal desde donde se pueden encontrar y ejecutar todos los paquetes temáticos y proyectos.
+1. El lanzador es el componente principal donde se pueden encontrar y ejecutar todos los paquetes temáticos y proyectos.
 2. El reproductor es el lugar donde se puede jugar y unirse a juegos.
 3. El editor de escenas es donde se pueden crear y editar escenas.
 4. El editor de entidades es donde se pueden crear y editar entidades.
@@ -100,7 +100,7 @@ El [HUD](https://es.wikipedia.org/wiki/HUD_(videojuegos)) es una interfaz ubicad
 
 * Una barra verde que representa la durabilidad del personaje del usuario, por ejemplo, para monitorear la salud del personaje.
 * Una barra azul que representa la resistencia del personaje del usuario, por ejemplo, para estimar cuántas acciones puede realizar el personaje.
-* Un icono para mostrar la entidad que actualmente sostiene el personaje del usuario, por ejemplo, para determinar con qué herramienta está equipado el personaje.
+* Un ícono para mostrar la entidad que actualmente sostiene el personaje del usuario, por ejemplo, para determinar con qué herramienta está equipado el personaje.
 
 Otro elemento es el visor de diálogos. Este visor se coloca en la parte inferior de la pantalla y se utiliza para mostrar diálogos del juego, por ejemplo, un mensaje de un personaje del juego o del narrador. Está compuesto por las siguientes partes:
 
@@ -118,11 +118,11 @@ Una vez en el juego, el personaje del usuario se puede controlar con dos método
 
 El personaje del usuario puede realizar múltiples acciones para interactuar con el mundo del juego:
 
-* *Mover* para hacer avanzar el personaje del usuario en una de cuatro direcciones, por ejemplo, para mover el personaje hacia el *Norte*.
+* *Mover* para hacer avanzar al personaje del usuario en una de cuatro direcciones, por ejemplo, para mover al personaje hacia el *Norte*.
 * *Tomar* para sostener una entidad de la escena. La entidad debe estar directamente frente al personaje del usuario para ser tomada, por ejemplo, para sostener la entidad y moverla.
 * *Usar* para aplicar cualquier efecto que la entidad sostenida pueda tener. Estos efectos afectan a las entidades que se encuentran justo en la fuente del personaje del usuario, por ejemplo, para cortar algunos troncos con un hacha.
 * *Soltar* para dejar de sostener una entidad, por ejemplo, para dejar de moverla.
-* *Interactuar* para activar cualquier comportamiento de una entidad. Para interactuar con otra entidad, la entidad debe estar ubicada justo en frente del personaje del usuario, por ejemplo, para activar un portal o leer letreros.
+* *Interactuar* para activar cualquier comportamiento de una entidad. Para interactuar con otra entidad, la misma debe estar ubicada justo en frente del personaje del usuario, por ejemplo, para activar un portal o leer letreros.
 * *Detener* para detener cualquier acción que se esté realizando y simplemente hacer nada.
 
 ### Guardar archivos
@@ -130,13 +130,13 @@ El personaje del usuario puede realizar múltiples acciones para interactuar con
 El estado del juego se puede guardar en cualquier momento y restaurar más tarde. Los archivos guardados son copias completas de la escena y, por lo tanto, archivos de escena normales.
 
 1. Para guardar el estado del juego, vaya al menú y seleccione la opción *Guardar Como…*.
-2. Para restaurar el estado del juego, sigue los mismos pasos descritos anteriormente para abrir una escena.
+2. Para restaurar el estado del juego, siga los mismos pasos descritos anteriormente para abrir una escena.
 
 ## Juego cooperativo
 
-Gameeky fue diseñado desde cero para crear y compartir experiencias cooperativas. Todos los juegos creados con él se pueden jugar de forma cooperativa. No hay requisitos especiales. Aunque no existe un límite teórico en cuanto a cuántos usuarios pueden unirse a un juego cooperativo, existen limitaciones técnicas. Por ejemplo, recursos informáticos limitados.
+Gameeky fue diseñado desde cero para crear y compartir experiencias cooperativas. Todos los juegos creados con él, se pueden jugar de forma cooperativa. No hay requisitos especiales. Aunque no existe un límite teórico en cuanto a cuántos usuarios pueden unirse a un juego cooperativo, existen limitaciones técnicas. Por ejemplo, recursos informáticos limitados.
 
-Para iniciar un juego cooperativo, sigue estos pasos:
+Para iniciar un juego cooperativo, siga estos pasos:
 
 1. Desde el lanzador, haga clic en el botón *Jugar* de la tarjeta del proyecto.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
@@ -148,9 +148,9 @@ Para unirse a un juego cooperativo:
 2. Desde el reproductor, vaya al menú y seleccione la opción *Unirse*.
 3. En el cuadro de diálogo para unirse, especifique la [dirección IP](https://flathub.org/apps/org.gabmus.whatip) del usuario que inició el juego cooperativo y haga clic en el botón *Unirse*.
 
-> 📝 **Notese:** Todos los usuarios que se unan a un juego cooperativo deben tener una copia del mismo paquete temático o proyecto.
+> 📝 **Nótese:** Todos los usuarios que se unan a un juego cooperativo deben tener una copia del mismo paquete temático o proyecto.
 
-> 📝 **Notese:** No es necesario compartir las escenas personalizadas creadas a partir de paquetes temáticos. La escena se comparte automáticamente durante el juego, siempre que todos los usuarios compartan el mismo paquete temático.
+> 📝 **Nótese:** No es necesario compartir las escenas personalizadas creadas a partir de paquetes temáticos. La escena se comparte automáticamente durante el juego, siempre que todos los usuarios compartan el mismo paquete temático.
 
 ## El editor de escenas
 
@@ -158,7 +158,7 @@ El editor de escenas permite a los usuarios crear y modificar mundos del juego. 
 
 Para editar una escena existente, haga clic en el botón *Editar* del proyecto desde el lanzador. Para crear una nueva escena, se recomienda comenzar con un proyecto existente, como un paquete temático. Siga estos pasos para agregar una nueva escena:
 
-1. Desde el lanzador, haga clic en el botón *Copiar* del proyecto. Este paso **sólo** es necesario para los paquetes temáticos. Los paquetes temáticos no se pueden modificar, por lo que se crea una copia editable.
+1. Desde el lanzador, haga clic en el botón *Copiar* del proyecto. Este paso **solo** es necesario para los paquetes temáticos. Los paquetes temáticos no se pueden modificar, por lo que se crea una copia editable.
 2. Desde el lanzador, haga clic en el botón *Editar* del proyecto.
 3. Desde el editor de escenas, vaya al menú y seleccione la opción *Nuevo*.
 
@@ -169,10 +169,10 @@ Para editar una escena existente, haga clic en el botón *Editar* del proyecto d
 Una escena es una colección de entidades dispuestas en una cuadrícula de mosaicos. Las propiedades básicas de una escena son:
 
 * Un *Nombre* que debe ser único entre las escenas del mismo proyecto.
-* La *Tiempo* del día en que ocurre la escena. Puede ser *Día*, *Noche* o *Dinámico*.
-* Si es *Dinámico*, la *Duración* especifica la cantidad de segundos que se necesitan para completar un ciclo completo de día y noche. De lo contrario, esta propiedad se ignora.
-* El *Ancho* de la escena especifica el número total de mosaicos en el eje horizontal.
-* La *Alto* de la escena especifica el número total de mosaicos en el eje vertical.
+* El *Tiempo* del día en que ocurre la escena. Puede ser *Día*, *Noche* o *Dinámico*.
+* Si es *Dinámico*, la *Duración*, especifica la cantidad de segundos que se necesitan para completar un ciclo completo de día y noche. De lo contrario, esta propiedad se ignora.
+* El *Ancho* de la escena, especifica el número total de mosaicos en el eje horizontal.
+* La *Alto* de la escena, especifica el número total de mosaicos en el eje vertical.
 
 ### Flujo de trabajo
 
@@ -232,7 +232,7 @@ Aunque hay dos docenas de propiedades, algunas de ellas requieren atención espe
 * El estado de una entidad se puede cambiar intrínsecamente mediante *Actuadores* que proporcionan una lógica predefinida, por ejemplo, un actuador *Deambula* moverá la entidad en direcciones aleatorias, y un actuador *Se destruye* señalará la entidad para su eliminación de la escena cuando su durabilidad llegue a cero.
 * Todas las propiedades de una entidad coexisten en un solo sistema y por lo tanto pueden surgir comportamientos de diferentes combinaciones de estas propiedades, por ejemplo, la velocidad a la que una entidad puede moverse está determinada por su *Peso* y su *Fuerza*, mientras que el peso total de una entidad depende del peso de la entidad que sostiene, y así sucesivamente.
 
-> 📝 **Notese:** Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.
+> 📝 **Nótese:** Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.
 
 #### Gráficos
 
@@ -252,7 +252,7 @@ No hay sonidos *Predeterminados*, ya que los sonidos son opcionales.
 
 El flujo de trabajo de creación de entidades es similar a completar un formulario o una plantilla. La entidad más básica se crea con los siguientes pasos:
 
-1. En la pestaña *Juego*, comience a configurar los valores de arriba a abajo. Tenga en cuenta que todas las propiedades proporcionan sus propios valores predeterminados. Sólo el identificador es obligatorio. Se recomienda establecer un nombre para que sea más fácil encontrar la entidad en el editor de escenas.
+1. En la pestaña *Juego*, comience a configurar los valores de arriba a abajo. Tenga en cuenta que todas las propiedades proporcionan sus propios valores predeterminados. Únicamente el identificador es obligatorio. Se recomienda establecer un nombre para que sea más fácil encontrar la entidad en el editor de escenas.
 2. En la pestaña *Gráficos*, haga clic en el botón *Agregar* para crear la primera animación predeterminada. Deje *Estado* y *Dirección* en *Predeterminado*. Expanda la sección *Detalles* de la animación predeterminada para seleccionar una imagen. Haga clic en el botón *Ver* para inspeccionar la imagen seleccionada.
 3. Guarde la entidad y úsela desde el editor de escenas.
 
@@ -266,11 +266,11 @@ Para una mejor experiencia, siga estos consejos y trucos:
 
 ## Código similar a LOGO
 
-Tener soporte para juegos cooperativos abre la puerta a cooperadores que pueden controlarse con código. Para lograr esto, Gameeky proporciona una pequeña biblioteca que permite a los usuarios controlar una única Entidad usando Python, en una experiencia similar a LOGO.
+Tener soporte para juegos cooperativos abre la puerta a cooperadores que pueden controlarse con código. Para lograr esto, Gameeky proporciona una pequeña biblioteca que permite a los usuarios controlar una única entidad usando Python, en una experiencia similar a LOGO.
 
 ### Flujo de trabajo
 
-Sigue estos pasos para iniciar un juego cooperativo:
+Siga estos pasos para iniciar un juego cooperativo:
 
 1. Desde el lanzador, haga clic en el botón *Jugar* del proyecto.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
@@ -348,9 +348,9 @@ for entity in game.scene.entities:
 game.quit()
 ```
 
-> 📝 **Notese:** Los cooperadores solo pueden ver su entorno inmediato en la escena, no la escena completa.
+> 📝 **Nótese:** Los cooperadores solo pueden ver su entorno inmediato en la escena, no la escena completa.
 
-Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas de la entidad de personaje del usuario:
+Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas de la entidad del personaje del usuario:
 
 ```python
 from gameeky.library import Game
@@ -401,7 +401,7 @@ Para crear un nuevo actuador, siga los pasos:
 5. Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los actuadores predefinidos.
 6. Selecciónelo y guarde la entidad en el disco.
 
-> 📝 **Notese:** También se puede acceder a los actuadores creados por el usuario desde el editor de escenas al personalizar entidades específicas.
+> 📝 **Nótese:** También se puede acceder a los actuadores creados por el usuario desde el editor de escenas al personalizar entidades específicas.
 
 ### Ejemplos
 
@@ -479,7 +479,7 @@ class Actuator(Plugin):
             print(entity.name)
 ```
 
-> 📝 **Notese:** El método *surroundings* tiene en cuenta la propiedad *Radio* de la entidad.
+> 📝 **Nótese:** El método *surroundings* tiene en cuenta la propiedad *Radio* de la entidad.
 
 Inspeccionar todas las entidades en la [escena](../../../src/gameeky/server/game/scene.py), que no sean estáticas:
 
@@ -520,7 +520,7 @@ class Actuator(Plugin):
         super().tick()
 ```
 
-> 📝 **Notese:** La propiedad *ready* tiene en cuenta la propiedad *Tasa* de la entidad.
+> 📝 **Nótese:** La propiedad *ready* tiene en cuenta la propiedad *Tasa* de la entidad.
 
 Crear un actuador que actúa solo cuando los usuarios interactúen con él:
 
