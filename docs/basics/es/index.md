@@ -43,7 +43,7 @@ flatpak --user install flathub dev.tchx84.Gameeky
 
 ## Paquetes temáticos
 
-Gameeky proporciona paquetes con bloques de construcción predefinidos para diferentes intereses, por ejemplo, un [juego] de rol agrícola (https://github.com/tchx84/FreedomValley) ambientado en un mundo de fantasía medieval. Un paquete temático contiene:
+Gameeky proporciona paquetes con bloques de construcción predefinidos para diferentes intereses, por ejemplo, un [juego](https://github.com/tchx84/FreedomValley) de rol agrícola ambientado en un mundo de fantasía medieval. Un paquete temático contiene:
 
 * Recursos como conjuntos de mosaicos, imágenes y sonidos.
 * Entidades creadas a partir de estos recursos, con propiedades y comportamientos predefinidos.
