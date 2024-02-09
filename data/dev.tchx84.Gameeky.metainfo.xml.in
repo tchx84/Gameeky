@@ -46,7 +46,7 @@
   <update_contact>martin.abente.lahaye@gmail.com</update_contact>
   <translation type="gettext">gameeky</translation>
   <releases>
-    <release date="2024-02-08" version="0.5.3"/>
+    <release date="2024-02-09" version="0.5.4"/>
   </releases>
   <content_rating type="oars-1.1"/>
   <provides>dev.tchx84.Gameeky.desktop</provides>

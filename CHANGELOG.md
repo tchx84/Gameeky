@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.5.4] - 2024-02-09
 
 * Fixed broken link in Spanish documentation.
 
