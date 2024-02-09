@@ -1,5 +1,9 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed broken link in Spanish documentation.
+
 ## [0.5.3] - 2024-02-08
 
 * Fixed typos and issues with grammar in the Spanish documentation.
