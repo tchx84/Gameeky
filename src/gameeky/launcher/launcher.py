@@ -30,7 +30,9 @@ from gettext import gettext as _
 from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
 from .widgets.window import Window
+from .widgets.confirmation_create_window import ConfirmationCreateWindow
 from .models.session import Session
+from .models.service import Software
 
 from ..common.scanner import Description
 from ..common.widgets.about_window import present_about
@@ -48,6 +50,14 @@ class Application(Adw.Application):
         self._session: Optional[Session] = None
 
     def __on_new(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        if Software.available():
+            dialog = ConfirmationCreateWindow(transient_for=self._window)
+            dialog.connect("confirmed", self.__on_create_confirmed)
+            dialog.present()
+        else:
+            self._window.add()
+
+    def __on_create_confirmed(self, dialog: ConfirmationCreateWindow) -> None:
         self._window.add()
 
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
