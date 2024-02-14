@@ -189,6 +189,7 @@ gameeky_sources = [
   'gameeky/launcher/models/session.py',
   'gameeky/launcher/launcher.py',
   'gameeky/launcher/widgets/__init__.py',
+  'gameeky/launcher/widgets/confirmation_create_window.py',
   'gameeky/launcher/widgets/confirmation_window.py',
   'gameeky/launcher/widgets/project_edit_window.py',
   'gameeky/launcher/widgets/project_new_window.py',
