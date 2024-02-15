@@ -185,6 +185,7 @@ gameeky_sources = [
   'gameeky/launcher/__init__.py',
   'gameeky/launcher/models/__init__.py',
   'gameeky/launcher/models/project.py',
+  'gameeky/launcher/models/service.py',
   'gameeky/launcher/models/session.py',
   'gameeky/launcher/launcher.py',
   'gameeky/launcher/widgets/__init__.py',

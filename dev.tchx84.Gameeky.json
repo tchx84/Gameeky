@@ -12,7 +12,8 @@
         "--device=dri",
         "--socket=wayland",
         "--socket=pulseaudio",
-        "--filesystem=~/Gameeky:create"
+        "--filesystem=~/Gameeky:create",
+        "--talk-name=org.gnome.Software"
     ],
     "cleanup": [
         "/include",
