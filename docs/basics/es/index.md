@@ -20,20 +20,29 @@
 
 ## Introducción
 
-[Gameeky](https://github.com/tchx84/gameeky) brinda experiencias de aprendizaje a estudiantes jóvenes y educadores, permitiéndoles crear y explorar con juegos cooperativos. Más específicamente:
+[Gameeky](https://github.com/tchx84/gameeky) brinda experiencias de
+aprendizaje a estudiantes jóvenes y educadores, permitiéndoles crear y
+explorar con juegos cooperativos. Más específicamente:
 
 * Juega y explora juegos con amigos.
 * Crea nuevos juegos sin escribir ningún código.
 * Cuenta historias a través de estos juegos.
 * Fomenta habilidades artísticas diseñando objetos y criaturas del juego.
-* Aprende conceptos básicos de programación usando Python en una experiencia similar a [LOGO](https://es.wikipedia.org/wiki/Logo_(lenguaje_de_programaci%C3%B3n)).
-* Madura habilidades de programación ampliando juegos con complementos en Python.
+* Aprende conceptos básicos de programación usando Python en una experiencia
+  similar a
+  [LOGO](https://es.wikipedia.org/wiki/Logo_(lenguaje_de_programaci%C3%B3n)).
+* Madura habilidades de programación ampliando juegos con complementos en
+  Python.
 
 > 📝 **Nótese:** Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).
 
 ## Instalación
 
-El método de instalación recomendado es a través del centro de software del sistema, por ejemplo, *GNOME Software*. Busque *Gameeky* y proceda a instalarlo. Alternativamente, también se puede instalar desde [Flathub](https://flathub.org). De manera similar, busque *Gameeky* y siga las instrucciones del sitio web.
+El método de instalación recomendado es a través del centro de software del
+sistema, por ejemplo, *GNOME Software*. Busque *Gameeky* y proceda a
+instalarlo. Alternativamente, también se puede instalar desde
+[Flathub](https://flathub.org). De manera similar, busque *Gameeky* y siga
+las instrucciones del sitio web.
 
 Por último, también se puede instalar desde la terminal:
 
@@ -43,16 +52,26 @@ flatpak --user install flathub dev.tchx84.Gameeky
 
 ## Paquetes temáticos
 
-Gameeky proporciona paquetes con bloques de construcción predefinidos para diferentes intereses, por ejemplo, un [juego](https://github.com/tchx84/FreedomValley) de rol agrícola ambientado en un mundo de fantasía medieval. Un paquete temático contiene:
+Gameeky proporciona paquetes con bloques de construcción predefinidos para
+diferentes intereses, por ejemplo, un
+[juego](https://github.com/tchx84/FreedomValley) de rol agrícola ambientado
+en un mundo de fantasía medieval. Un paquete temático contiene:
 
 * Recursos como conjuntos de mosaicos, imágenes y sonidos.
-* Entidades creadas a partir de estos recursos, con propiedades y comportamientos predefinidos.
+* Entidades creadas a partir de estos recursos, con propiedades y
+  comportamientos predefinidos.
 * Escenas creadas con esas entidades.
 * Actuadores que amplían los comportamientos predefinidos.
 
-Estos bloques de construcción se pueden reutilizar para crear escenas personalizadas, juegos nuevos y muchos materiales de aprendizaje.
+Estos bloques de construcción se pueden reutilizar para crear escenas
+personalizadas, juegos nuevos y muchos materiales de aprendizaje.
 
-El método de instalación recomendado es a través del centro de software del sistema, por ejemplo, *Software GNOME*. Los paquetes temáticos se ofrecen como complementos desde la página del centro de software. Alternativamente, también se puede instalar desde [Flathub](https://flathub.org). Del mismo modo, los paquetes temáticos se ofrecen como complementos del sitio web. Seleccione el complemento y siga las instrucciones del sitio web.
+El método de instalación recomendado es a través del centro de software del
+sistema, por ejemplo, *Software GNOME*. Los paquetes temáticos se ofrecen
+como complementos desde la página del centro de software. Alternativamente,
+también se puede instalar desde [Flathub](https://flathub.org). Del mismo
+modo, los paquetes temáticos se ofrecen como complementos del sitio
+web. Seleccione el complemento y siga las instrucciones del sitio web.
 
 Por último, los packs también se pueden instalar desde la terminal:
 
@@ -65,7 +84,8 @@ flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley
 
 Gameeky proporciona cinco componentes principales:
 
-1. El lanzador es el componente principal donde se pueden encontrar y ejecutar todos los paquetes temáticos y proyectos.
+1. El lanzador es el componente principal donde se pueden encontrar y
+   ejecutar todos los paquetes temáticos y proyectos.
 2. El reproductor es el lugar donde se puede jugar y unirse a juegos.
 3. El editor de escenas es donde se pueden crear y editar escenas.
 4. El editor de entidades es donde se pueden crear y editar entidades.
@@ -73,7 +93,10 @@ Gameeky proporciona cinco componentes principales:
 
 ## El lanzador
 
-El lanzador sirve como punto de partida de Gameeky. Proporciona una manera fácil de administrar paquetes temáticos instalados como complementos y proyectos ubicados en el directorio `~/Gameeky`. El administrador soporta todas las operaciones básicas de gestión:
+El lanzador sirve como punto de partida de Gameeky. Proporciona una manera
+fácil de administrar paquetes temáticos instalados como complementos y
+proyectos ubicados en el directorio `~/Gameeky`. El administrador soporta
+todas las operaciones básicas de gestión:
 
 * Crear nuevos paquetes temáticos y proyectos desde cero.
 * Editar proyectos existentes.
@@ -96,41 +119,63 @@ Para importar un proyecto, siga estos pasos:
 
 ## El reproductor
 
-El reproductor proporciona una representación visual del mundo del juego y los medios para interactuar con ese mundo.
+El reproductor proporciona una representación visual del mundo del juego y
+los medios para interactuar con ese mundo.
 
-Para iniciar un juego, haga clic en el botón *Jugar* del proyecto desde el lanzador. Esto iniciará la escena predeterminada para ese proyecto. Cada paquete temático y proyecto viene con una escena predeterminada. Para jugar otras escenas del mismo proyecto, siga estos pasos:
+Para iniciar un juego, haga clic en el botón *Jugar* del proyecto desde el
+lanzador. Esto iniciará la escena predeterminada para ese proyecto. Cada
+paquete temático y proyecto viene con una escena predeterminada. Para jugar
+otras escenas del mismo proyecto, siga estos pasos:
 
 1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
-3. Desde el cuadro de diálogo de creación, seleccione el archivo de escena y haga clic en el botón *Crear*.
+3. Desde el cuadro de diálogo de creación, seleccione el archivo de escena y
+   haga clic en el botón *Crear*.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png)
 
 ### Elementos de la pantalla del juego
 
-Una vez en el juego, la escena ocupa la mayor parte de la pantalla, pero también hay otros elementos.
+Una vez en el juego, la escena ocupa la mayor parte de la pantalla, pero
+también hay otros elementos.
 
-El [HUD](https://es.wikipedia.org/wiki/HUD_(videojuegos)) es una interfaz ubicada en la parte inferior central de la pantalla. Este elemento se utiliza para visualizar las estadísticas del personaje del usuario. Está compuesto por las siguientes partes:
+El [HUD](https://es.wikipedia.org/wiki/HUD_(videojuegos)) es una interfaz
+ubicada en la parte inferior central de la pantalla. Este elemento se
+utiliza para visualizar las estadísticas del personaje del usuario. Está
+compuesto por las siguientes partes:
 
-* Una barra verde que representa la durabilidad del personaje del usuario, por ejemplo, para monitorear la salud del personaje.
-* Una barra azul que representa la resistencia del personaje del usuario, por ejemplo, para estimar cuántas acciones puede realizar el personaje.
-* Un ícono para mostrar la entidad que actualmente sostiene el personaje del usuario, por ejemplo, para determinar con qué herramienta está equipado el personaje.
+* Una barra verde que representa la durabilidad del personaje del usuario,
+  por ejemplo, para monitorear la salud del personaje.
+* Una barra azul que representa la resistencia del personaje del usuario,
+  por ejemplo, para estimar cuántas acciones puede realizar el personaje.
+* Un ícono para mostrar la entidad que actualmente sostiene el personaje del
+  usuario, por ejemplo, para determinar con qué herramienta está equipado el
+  personaje.
 
-Otro elemento es el visor de diálogos. Este visor se coloca en la parte inferior de la pantalla y se utiliza para mostrar diálogos del juego, por ejemplo, un mensaje de un personaje del juego o del narrador. Está compuesto por las siguientes partes:
+Otro elemento es el visor de diálogos. Este visor se coloca en la parte
+inferior de la pantalla y se utiliza para mostrar diálogos del juego, por
+ejemplo, un mensaje de un personaje del juego o del narrador. Está compuesto
+por las siguientes partes:
 
 * Una sección de color azul claro que contiene el texto del diálogo.
 * Un botón para cerrar el diálogo.
 
 ### Controles
 
-Una vez en el juego, el personaje del usuario se puede controlar con dos métodos:
+Una vez en el juego, el personaje del usuario se puede controlar con dos
+métodos:
 
-* Controles de teclado. Para ver la lista completa de combinaciones de teclas, vaya al menú y seleccione la opción *Atajos de Teclado*.
-* Controles del ratón. Para ver las acciones disponibles, haga clic derecho en la escena del juego y seleccione una acción del menú. Para mover el personaje del usuario, haga clic en la escena y el personaje del usuario se moverá en esa dirección.
+* Controles de teclado. Para ver la lista completa de combinaciones de
+  teclas, vaya al menú y seleccione la opción *Atajos de Teclado*.
+* Controles del ratón. Para ver las acciones disponibles, haga clic derecho
+  en la escena del juego y seleccione una acción del menú. Para mover el
+  personaje del usuario, haga clic en la escena y el personaje del usuario
+  se moverá en esa dirección.
 
 ### Acciones
 
-El personaje del usuario puede realizar múltiples acciones para interactuar con el mundo del juego:
+El personaje del usuario puede realizar múltiples acciones para interactuar
+con el mundo del juego:
 
 * *Mover* para hacer avanzar al personaje del usuario en una de cuatro direcciones, por ejemplo, para mover al personaje hacia el *Norte*.
 * *Tomar* para sostener una entidad de la escena. La entidad debe estar directamente frente al personaje del usuario para ser tomada, por ejemplo, para sostener la entidad y moverla.
@@ -142,26 +187,37 @@ El personaje del usuario puede realizar múltiples acciones para interactuar con
 
 ### Guardar archivos
 
-El estado del juego se puede guardar en cualquier momento y restaurar más tarde. Los archivos guardados son copias completas de la escena y, por lo tanto, archivos de escena normales.
+El estado del juego se puede guardar en cualquier momento y restaurar más
+tarde. Los archivos guardados son copias completas de la escena y, por lo
+tanto, archivos de escena normales.
 
-1. Para guardar el estado del juego, vaya al menú y seleccione la opción *Guardar Como…*.
-2. Para restaurar el estado del juego, siga los mismos pasos descritos anteriormente para abrir una escena.
+1. Para guardar el estado del juego, vaya al menú y seleccione la opción
+   *Guardar Como…*.
+2. Para restaurar el estado del juego, siga los mismos pasos descritos
+   anteriormente para abrir una escena.
 
 ## Juego cooperativo
 
-Gameeky fue diseñado desde cero para crear y compartir experiencias cooperativas. Todos los juegos creados con él, se pueden jugar de forma cooperativa. No hay requisitos especiales. Aunque no existe un límite teórico en cuanto a cuántos usuarios pueden unirse a un juego cooperativo, existen limitaciones técnicas. Por ejemplo, recursos informáticos limitados.
+Gameeky fue diseñado desde cero para crear y compartir experiencias
+cooperativas. Todos los juegos creados con él, se pueden jugar de forma
+cooperativa. No hay requisitos especiales. Aunque no existe un límite
+teórico en cuanto a cuántos usuarios pueden unirse a un juego cooperativo,
+existen limitaciones técnicas. Por ejemplo, recursos informáticos limitados.
 
 Para iniciar un juego cooperativo, siga estos pasos:
 
 1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
-3. Desde el cuadro de diálogo de creación, aumente el número de participantes y luego haga clic en el botón *Crear*.
+3. Desde el cuadro de diálogo de creación, aumente el número de
+   participantes y luego haga clic en el botón *Crear*.
 
 Para unirse a un juego cooperativo:
 
 1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Unirse*.
-3. En el cuadro de diálogo para unirse, especifique la [dirección IP](https://flathub.org/apps/org.gabmus.whatip) del usuario que inició el juego cooperativo y haga clic en el botón *Unirse*.
+3. En el cuadro de diálogo para unirse, especifique la [dirección
+   IP](https://flathub.org/apps/org.gabmus.whatip) del usuario que inició el
+   juego cooperativo y haga clic en el botón *Unirse*.
 
 > 📝 **Nótese:** Todos los usuarios que se unan a un juego cooperativo deben tener una copia del mismo paquete temático o proyecto.
 
@@ -171,9 +227,14 @@ Para unirse a un juego cooperativo:
 
 ## El editor de escenas
 
-El editor de escenas permite a los usuarios crear y modificar mundos del juego. Sirve como la experiecia inicial y más sencilla de creación sin código en Gameeky.
+El editor de escenas permite a los usuarios crear y modificar mundos del
+juego. Sirve como la experiecia inicial y más sencilla de creación sin
+código en Gameeky.
 
-Para editar una escena existente, haga clic en el botón *Editar* del proyecto desde el lanzador. Para crear una nueva escena, se recomienda comenzar con un proyecto existente, como un paquete temático. Siga estos pasos para agregar una nueva escena:
+Para editar una escena existente, haga clic en el botón *Editar* del
+proyecto desde el lanzador. Para crear una nueva escena, se recomienda
+comenzar con un proyecto existente, como un paquete temático. Siga estos
+pasos para agregar una nueva escena:
 
 1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Editar*.
 2. Desde el editor de escenas, vaya al menú y seleccione la opción *Nuevo*.
@@ -184,56 +245,85 @@ Para editar una escena existente, haga clic en el botón *Editar* del proyecto d
 
 ### Conceptos
 
-Una escena es una colección de entidades dispuestas en una cuadrícula de mosaicos. Las propiedades básicas de una escena son:
+Una escena es una colección de entidades dispuestas en una cuadrícula de
+mosaicos. Las propiedades básicas de una escena son:
 
 * Un *Nombre* que debe ser único entre las escenas del mismo proyecto.
-* El *Tiempo* del día en que ocurre la escena. Puede ser *Día*, *Noche* o *Dinámico*.
-* Si es *Dinámico*, la *Duración*, especifica la cantidad de segundos que se necesitan para completar un ciclo completo de día y noche. De lo contrario, esta propiedad se ignora.
-* El *Ancho* de la escena, especifica el número total de mosaicos en el eje horizontal.
-* La *Alto* de la escena, especifica el número total de mosaicos en el eje vertical.
+* El *Tiempo* del día en que ocurre la escena. Puede ser *Día*, *Noche* o
+  *Dinámico*.
+* Si es *Dinámico*, la *Duración*, especifica la cantidad de segundos que se
+  necesitan para completar un ciclo completo de día y noche. De lo
+  contrario, esta propiedad se ignora.
+* El *Ancho* de la escena, especifica el número total de mosaicos en el eje
+  horizontal.
+* La *Alto* de la escena, especifica el número total de mosaicos en el eje
+  vertical.
 
 ### Flujo de trabajo
 
-El flujo de trabajo de edición de escenas se parece al de una herramienta de diseño gráfico. Las entidades se pintan y se retiran de la escena. Los pasos básicos para editar una escena son los siguientes:
+El flujo de trabajo de edición de escenas se parece al de una herramienta de
+diseño gráfico. Las entidades se pintan y se retiran de la escena. Los pasos
+básicos para editar una escena son los siguientes:
 
 1. Para agregar entidades a la escena, seleccione una entidad en el panel izquierdo y colóquela en la escena haciendo clic en un mosaico de la cuadrícula.
 2. Para eliminar entidades de la escena, seleccione la herramienta *Eliminar* de la izquierda y luego haga clic en el mosaico de la entidad en la cuadrícula.
 3. Aunque las entidades vienen con propiedades y comportamientos predefinidos, se pueden personalizar entidades particulares de la escena. Seleccione la herramienta *Editar* en el panel izquierdo y luego haga clic en el mosaico de entidad en la cuadrícula.
 4. Para probar la escena, vaya al menú y seleccione la opción *Probar*.
 
-Además, el editor de escenas proporciona ayudas para facilitar las cosas, como por ejemplo:
+Además, el editor de escenas proporciona ayudas para facilitar las cosas,
+como por ejemplo:
 
-* Selector de área de dibujo para agregar o eliminar múltiples entidades a la vez, por ejemplo, para crear rápidamente el terreno de la escena.
-* Selector de capas para modificar entidades en una capa específica, por ejemplo, para modificar rápidamente el terreno de la escena.
-* Selector de tiempo para visualizar la escena durante el *Día* o la *Noche*, por ejemplo, para inspeccionar las fuentes de luz en la escena.
+* Selector de área de dibujo para agregar o eliminar múltiples entidades a
+  la vez, por ejemplo, para crear rápidamente el terreno de la escena.
+* Selector de capas para modificar entidades en una capa específica, por
+  ejemplo, para modificar rápidamente el terreno de la escena.
+* Selector de tiempo para visualizar la escena durante el *Día* o la
+  *Noche*, por ejemplo, para inspeccionar las fuentes de luz en la escena.
 
 ### Consejos y trucos
 
-Para un mejor experiencia, siga estos consejos y trucos:
+Para una mejor experiencia, siga estos consejos y trucos:
 
-* Al crear el terreno básico de la escena, use el selector de capas y configúrelo en *Capa 0*. Esto reducirá la superposición innecesaria de mosaicos de terreno y facilitará el flujo de trabajo de edición en general.
-* Al editar una escena, deje el reproductor abierto en esa escena. Cuando se guarden los cambios en la escena, el reproductor detectará estos cambios y presentará una opción para recargar la escena con los nuevos cambios. Esto reduce el tiempo de cambio entre el editor de escenas y el reproductor.
-* Al editar una escena, use la herramienta de configuración de ubicación inicial del panel izquierdo para colocar el personaje del usuario en una ubicación conveniente para inspeccionar los cambios.
+* Al crear el terreno básico de la escena, use el selector de capas y
+  configúrelo en *Capa 0*. Esto reducirá la superposición innecesaria de
+  mosaicos de terreno y facilitará el flujo de trabajo de edición en
+  general.
+* Al editar una escena, deje el reproductor abierto en esa escena. Cuando se
+  guarden los cambios en la escena, el reproductor detectará estos cambios y
+  presentará una opción para recargar la escena con los nuevos cambios. Esto
+  reduce el tiempo de cambio entre el editor de escenas y el reproductor.
+* Al editar una escena, use la herramienta de configuración de ubicación
+  inicial del panel izquierdo para colocar el personaje del usuario en una
+  ubicación conveniente para inspeccionar los cambios.
 
 ## El editor de entidades
 
-El editor de entidades permite a los usuarios crear y modificar criaturas y objetos del juego. Proporciona una experiencia de creación sin código más profunda, ya que requiere comprender los sistemas subyacentes de Gameeky.
+El editor de entidades permite a los usuarios crear y modificar criaturas y
+objetos del juego. Proporciona una experiencia de creación sin código más
+profunda, ya que requiere comprender los sistemas subyacentes de Gameeky.
 
-Antes de crear una nueva entidad desde cero, se recomienda inspeccionar las entidades existentes de los paquetes temáticos. Entonces, para inspeccionar una entidad existente, siga estos pasos:
+Antes de crear una nueva entidad desde cero, se recomienda inspeccionar las
+entidades existentes de los paquetes temáticos. Entonces, para inspeccionar
+una entidad existente, siga estos pasos:
 
-1. Desde el editor de escenas, haga clic derecho en una entidad en el panel izquierdo.
+1. Desde el editor de escenas, haga clic derecho en una entidad en el panel
+   izquierdo.
 2. Seleccione la opción *Editar* del menú.
 
 Para crear una nueva entidad:
 
-1. Desde el editor de escenas, haga clic derecho en cualquier parte del panel izquierdo.
+1. Desde el editor de escenas, haga clic derecho en cualquier parte del
+   panel izquierdo.
 2. Seleccione la opción *Agregar* del menú.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png)
 
 ### Conceptos
 
-Las entidades representan todo lo que puede existir en el juego, por ejemplo, la hierba, el personaje del usuario, una fuente de luz, la música de fondo e incluso la lógica del juego. Una entidad se compone de tres partes:
+Las entidades representan todo lo que puede existir en el juego, por
+ejemplo, la hierba, el personaje del usuario, una fuente de luz, la música
+de fondo e incluso la lógica del juego. Una entidad se compone de tres
+partes:
 
 1. Propiedades de la lógica del juego.
 2. Gráficos.
@@ -241,38 +331,74 @@ Las entidades representan todo lo que puede existir en el juego, por ejemplo, la
 
 #### Propiedades de la lógica del juego
 
-Estas propiedades determinan cómo las entidades se comportan e interactúan con otras entidades; por ejemplo, diferentes combinaciones de estas propiedades determinarán si una entidad actúa como una piedra estática o como un enemigo vivo.
+Estas propiedades determinan cómo las entidades se comportan e interactúan
+con otras entidades; por ejemplo, diferentes combinaciones de estas
+propiedades determinarán si una entidad actúa como una piedra estática o
+como un enemigo vivo.
 
-Aunque hay dos docenas de propiedades, algunas de ellas requieren atención especial aquí:
+Aunque hay dos docenas de propiedades, algunas de ellas requieren atención
+especial aquí:
 
-* El *Identificador* debe ser único entre todas las entidades de un mismo proyecto.
-* Una entidad siempre está en un solo *Estado*, por ejemplo, *Inactivo*, *Moviendo*, *Destruido*, etc. El estado puede cambiar realizando diferentes acciones, por medios intrínsecos o extrínsecos.
-* Una entidad siempre apunta a una única *Dirección*. Puede ser *Norte*, *Este*, *Sur* u *Oeste*.
-* El estado de una entidad se puede cambiar intrínsecamente mediante *Actuadores* que proporcionan una lógica predefinida, por ejemplo, un actuador *Deambula* moverá la entidad en direcciones aleatorias, y un actuador *Se destruye* señalará la entidad para su eliminación de la escena cuando su durabilidad llegue a cero.
-* Todas las propiedades de una entidad coexisten en un solo sistema y por lo tanto pueden surgir comportamientos de diferentes combinaciones de estas propiedades, por ejemplo, la velocidad a la que una entidad puede moverse está determinada por su *Peso* y su *Fuerza*, mientras que el peso total de una entidad depende del peso de la entidad que sostiene, y así sucesivamente.
+* El *Identificador* debe ser único entre todas las entidades de un mismo
+  proyecto.
+* Una entidad siempre está en un solo *Estado*, por ejemplo, *Inactivo*,
+  *Moviendo*, *Destruido*, etc. El estado puede cambiar realizando
+  diferentes acciones, por medios intrínsecos o extrínsecos.
+* Una entidad siempre apunta a una única *Dirección*. Puede ser *Norte*,
+  *Este*, *Sur* u *Oeste*.
+* El estado de una entidad se puede cambiar intrínsecamente mediante
+  *Actuadores* que proporcionan una lógica predefinida, por ejemplo, un
+  actuador *Deambula* moverá la entidad en direcciones aleatorias, y un
+  actuador *Se destruye* señalará la entidad para su eliminación de la
+  escena cuando su durabilidad llegue a cero.
+* Todas las propiedades de una entidad coexisten en un solo sistema y por lo
+  tanto pueden surgir comportamientos de diferentes combinaciones de estas
+  propiedades, por ejemplo, la velocidad a la que una entidad puede moverse
+  está determinada por su *Peso* y su *Fuerza*, mientras que el peso total
+  de una entidad depende del peso de la entidad que sostiene, y así
+  sucesivamente.
 
 > 📝 **Nótese:** Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.
 
 #### Gráficos
 
-Las entidades se representan en pantalla a través de gráficos 2D, que pueden ser estáticos o animados.
+Las entidades se representan en pantalla a través de gráficos 2D, que pueden
+ser estáticos o animados.
 
-Estos gráficos se asignan a combinaciones específicas de estado y dirección, por ejemplo, se representará una animación específica cuando una entidad se *Mueva* hacia el *Oeste*, mientras que se representará otra animación cuando la misma entidad esté *Quieta* hacia el *Sur*.
+Estos gráficos se asignan a combinaciones específicas de estado y dirección,
+por ejemplo, se representará una animación específica cuando una entidad se
+*Mueva* hacia el *Oeste*, mientras que se representará otra animación cuando
+la misma entidad esté *Quieta* hacia el *Sur*.
 
-Todas las entidades deben proporcionar un gráfico *Predeterminado*, por ejemplo, para visualizarlo en el editor de escenas o al depurar complementos.
+Todas las entidades deben proporcionar un gráfico *Predeterminado*, por
+ejemplo, para visualizarlo en el editor de escenas o al depurar
+complementos.
 
 #### Sonidos
 
-De manera similar a los gráficos, las entidades pueden emitir sonidos cuando se encuentran en estados específicos, por ejemplo, el sonido de pasos se reproduce cuando la entidad se está *Moviendo*. Las direcciones no importan aquí.
+De manera similar a los gráficos, las entidades pueden emitir sonidos cuando
+se encuentran en estados específicos, por ejemplo, el sonido de pasos se
+reproduce cuando la entidad se está *Moviendo*. Las direcciones no importan
+aquí.
 
 No hay sonidos *Predeterminados*, ya que los sonidos son opcionales.
 
 ### Flujo de trabajo
 
-El flujo de trabajo de creación de entidades es similar a completar un formulario o una plantilla. La entidad más básica se crea con los siguientes pasos:
+El flujo de trabajo de creación de entidades es similar a completar un
+formulario o una plantilla. La entidad más básica se crea con los siguientes
+pasos:
 
-1. En la pestaña *Juego*, comience a configurar los valores de arriba a abajo. Tenga en cuenta que todas las propiedades proporcionan sus propios valores predeterminados. Únicamente el identificador es obligatorio. Se recomienda establecer un nombre para que sea más fácil encontrar la entidad en el editor de escenas.
-2. En la pestaña *Gráficos*, haga clic en el botón *Agregar* para crear la primera animación predeterminada. Deje *Estado* y *Dirección* en *Predeterminado*. Expanda la sección *Detalles* de la animación predeterminada para seleccionar una imagen. Haga clic en el botón *Ver* para inspeccionar la imagen seleccionada.
+1. En la pestaña *Juego*, comience a configurar los valores de arriba a
+   abajo. Tenga en cuenta que todas las propiedades proporcionan sus propios
+   valores predeterminados. Únicamente el identificador es obligatorio. Se
+   recomienda establecer un nombre para que sea más fácil encontrar la
+   entidad en el editor de escenas.
+2. En la pestaña *Gráficos*, haga clic en el botón *Agregar* para crear la
+   primera animación predeterminada. Deje *Estado* y *Dirección* en
+   *Predeterminado*. Expanda la sección *Detalles* de la animación
+   predeterminada para seleccionar una imagen. Haga clic en el botón *Ver*
+   para inspeccionar la imagen seleccionada.
 3. Guarde la entidad y úsela desde el editor de escenas.
 
 ### Consejos y trucos
@@ -286,7 +412,10 @@ Para una mejor experiencia, siga estos consejos y trucos:
 
 ## El editor de código y código similar a LOGO
 
-Tener soporte para juegos cooperativos abre la puerta a cooperadores que pueden controlarse con código. Para lograr esto, Gameeky proporciona una pequeña biblioteca que permite a los usuarios controlar una única entidad usando Python, en una experiencia similar a LOGO.
+Tener soporte para juegos cooperativos abre la puerta a cooperadores que
+pueden controlarse con código. Para lograr esto, Gameeky proporciona una
+pequeña biblioteca que permite a los usuarios controlar una única entidad
+usando Python, en una experiencia similar a LOGO.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png)
 
@@ -296,7 +425,8 @@ Siga estos pasos para iniciar un juego cooperativo:
 
 1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
-3. Desde el cuadro de diálogo de creación, aumente el número de participantes y luego haga clic en el botón *Crear*.
+3. Desde el cuadro de diálogo de creación, aumente el número de
+   participantes y luego haga clic en el botón *Crear*.
 
 Para unirse al juego con código se deben seguir estos pasos:
 
@@ -337,7 +467,8 @@ game.interact(time=1000)
 game.quit()
 ```
 
-Inspeccionar la posición y las propiedades básicas del personaje del usuario [entidad](../../../src/gameeky/common/entity.py):
+Inspeccionar la posición y las propiedades básicas del personaje del usuario
+[entidad](../../../src/gameeky/common/entity.py):
 
 ```python
 from gameeky.library import Game
@@ -368,7 +499,8 @@ game.quit()
 
 > 📝 **Nótese:** Los cooperadores solo pueden ver su entorno inmediato en la escena, no la escena completa.
 
-Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas de la entidad del personaje del usuario:
+Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py)
+avanzadas de la entidad del personaje del usuario:
 
 ```python
 from gameeky.library import Game
@@ -390,23 +522,46 @@ Para una mejor experiencia, siga estos consejos y trucos:
 
 ## Complementos
 
-Los actuadores pueden modificar el comportamiento de una entidad. Una sola entidad puede utilizar múltiples actuadores para modelar comportamientos más complejos. Aunque existe una amplia gama de actuadores predefinidos, el resultado final es limitado en comparación con el código real.
+Los actuadores pueden modificar el comportamiento de una entidad. Una sola
+entidad puede utilizar múltiples actuadores para modelar comportamientos más
+complejos. Aunque existe una amplia gama de actuadores predefinidos, el
+resultado final es limitado en comparación con el código real.
 
-Por lo tanto, Gameeky proporciona soporte para actuadores creados por el usuario, e ir más allá de lo que pueden hacer los actuadores predefinidos.
+Por lo tanto, Gameeky proporciona soporte para actuadores creados por el
+usuario, e ir más allá de lo que pueden hacer los actuadores predefinidos.
 
 ### Conceptos
 
 Hay tres tipos de actuadores:
 
-1. Los actuadores regulares actúan en cada tic de la escena, por ejemplo, para [mover](../../../src/gameeky/server/game/actuators/roams.py) la entidad a una ubicación aleatoria en cada tic.
-2. Los actuadores activables actúan solo en intervalos de tiempo fijos o cuando son activados explícitamente por otra entidad, por ejemplo, para [agregar](../../../src/gameeky/server/game/actuators/spawns.py) un nuevo enemigo a la escena cada cinco segundos.
-3. Los actuadores interactuables actúan cuando otras entidades interactúan con su entidad, por ejemplo, para [teletransportar](../../../src/gameeky/server/game/actuators/teleports.py) una entidad a una ubicación diferente cuando esa entidad interactúa con un portal.
+1. Los actuadores regulares actúan en cada tic de la escena, por ejemplo,
+   para [mover](../../../src/gameeky/server/game/actuators/roams.py) la
+   entidad a una ubicación aleatoria en cada tic.
+2. Los actuadores activables actúan solo en intervalos de tiempo fijos o
+   cuando son activados explícitamente por otra entidad, por ejemplo, para
+   [agregar](../../../src/gameeky/server/game/actuators/spawns.py) un nuevo
+   enemigo a la escena cada cinco segundos.
+3. Los actuadores interactuables actúan cuando otras entidades interactúan
+   con su entidad, por ejemplo, para
+   [teletransportar](../../../src/gameeky/server/game/actuators/teleports.py
+   una entidad a una ubicación diferente cuando esa entidad interactúa con
+   un portal.
 
-Todos los actuadores utilizan las propiedades de juego de su entidad para modificar su comportamiento:
+Todos los actuadores utilizan las propiedades de juego de su entidad para
+modificar su comportamiento:
 
-* Las propiedades *Nombre de Destino* y *Tipo de Destino* se pueden utilizar para filtrar las entidades afectadas por el actuador, por ejemplo, [apuntar](../../../src/gameeky/server/game/actuators/ aggroes.py) solo ciertos tipos de entidades para agresión.
-* La propiedad *Tasa* se puede usar en activables para reducir la frecuencia de activación, por ejemplo, para [incubar](../../../src/gameeky/server/game/actuators/transmutes.py) un huevo en un pollo después de diez segundos.
-* La propiedad *Radio* se puede utilizar para determinar el área de efecto de un actuador, por ejemplo, para [quemar](../../../src/gameeky/server/game/actuators/affects.py) entidades al entrar en un incendio.
+* Las propiedades *Nombre de Destino* y *Tipo de Destino* se pueden utilizar
+  para filtrar las entidades afectadas por el actuador, por ejemplo,
+  [apuntar](../../../src/gameeky/server/game/actuators/ aggroes.py) solo
+  ciertos tipos de entidades para agresión.
+* La propiedad *Tasa* se puede usar en activables para reducir la frecuencia
+  de activación, por ejemplo, para
+  [incubar](../../../src/gameeky/server/game/actuators/transmutes.py) un
+  huevo en un pollo después de diez segundos.
+* La propiedad *Radio* se puede utilizar para determinar el área de efecto
+  de un actuador, por ejemplo, para
+  [quemar](../../../src/gameeky/server/game/actuators/affects.py) entidades
+  al entrar en un incendio.
 
 ### Flujo de trabajo
 
@@ -414,16 +569,20 @@ Para crear un nuevo actuador, siga los pasos:
 
 1. Abra un nuevo documento en un editor de texto.
 2. Escriba una clase de actuador; consulte los ejemplos a continuación.
-3. Guarde el nuevo documento en `~/Gameeky/NOMBRE_DEL_PROYECTO/actuators/NOMBRE_DEL_ACTUADOR.py`
-4. Desde el editor de entidades, vaya a la pestaña *Juego* y a la sección de actuadores.
-5. Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los actuadores predefinidos.
+3. Guarde el nuevo documento en
+   `~/Gameeky/NOMBRE_DEL_PROYECTO/actuators/NOMBRE_DEL_ACTUADOR.py`
+4. Desde el editor de entidades, vaya a la pestaña *Juego* y a la sección de
+   actuadores.
+5. Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los
+   actuadores predefinidos.
 6. Selecciónelo y guarde la entidad en el disco.
 
 > 📝 **Nótese:** También se puede acceder a los actuadores creados por el usuario desde el editor de escenas al personalizar entidades específicas.
 
 ### Ejemplos
 
-Una clase [actuador](../../../src/gameeky/server/game/actuators/base.py) mínima:
+Una clase [actuador](../../../src/gameeky/server/game/actuators/base.py)
+mínima:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -464,7 +623,8 @@ class Actuator(Plugin):
         self.entity.tell("Hello...")
 ```
 
-Inspeccionar todas las demás entidades que se encuentran en frente a la entidad:
+Inspeccionar todas las demás entidades que se encuentran en frente a la
+entidad:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -475,7 +635,8 @@ class Actuator(Plugin):
             print(entity.name)
 ```
 
-Inspeccionar todas las demás entidades que comparten la misma posición que la entidad:
+Inspeccionar todas las demás entidades que comparten la misma posición que
+la entidad:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -499,7 +660,8 @@ class Actuator(Plugin):
 
 > 📝 **Nótese:** El método *surroundings* tiene en cuenta la propiedad *Radio* de la entidad.
 
-Inspeccionar todas las entidades en la [escena](../../../src/gameeky/server/game/scene.py), que no sean estáticas:
+Inspeccionar todas las entidades en la
+[escena](../../../src/gameeky/server/game/scene.py), que no sean estáticas:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -563,12 +725,21 @@ class Actuator(Plugin):
         super().tick()
 ```
 
-Para ver ejemplos más complejos, consulte el directorio [actuadores](../../../src/gameeky/server/game/actuators/) predefinidos de Gameeky.
+Para ver ejemplos más complejos, consulte el directorio
+[actuadores](../../../src/gameeky/server/game/actuators/) predefinidos de
+Gameeky.
 
 ### Consejos y trucos
 
 Para una mejor experiencia, siga estos consejos y trucos:
 
-* Un solo actuador no debe modificar toda la escena. Iterar sobre todas las entidades en la escena es extremadamente costoso y el rendimiento se verá afectado, por ejemplo, limitarse a *mutables* y *playables* únicamente.
-* Es preferible escribir diferentes actuadores para diferentes comportamientos; por ejemplo, evitar escribir un solo actuador que implemente todos los comportamientos personalizados. Esto hará que sea más fácil de entender y reutilizar a largo plazo.
-* Utilice sólo métodos y atributos públicos, por ejemplo, apéguese a métodos como *obstacles* o *interactee*. Esto hará que sea menos probable que los actuadores se rompan en el futuro.
+* Un solo actuador no debe modificar toda la escena. Iterar sobre todas las
+  entidades en la escena es extremadamente costoso y el rendimiento se verá
+  afectado, por ejemplo, limitarse a *mutables* y *playables* únicamente.
+* Es preferible escribir diferentes actuadores para diferentes
+  comportamientos; por ejemplo, evitar escribir un solo actuador que
+  implemente todos los comportamientos personalizados. Esto hará que sea más
+  fácil de entender y reutilizar a largo plazo.
+* Utilice sólo métodos y atributos públicos, por ejemplo, apéguese a métodos
+  como *obstacles* o *interactee*. Esto hará que sea menos probable que los
+  actuadores se rompan en el futuro.

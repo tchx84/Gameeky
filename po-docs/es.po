@@ -1,0 +1,2036 @@
+# Spanish translations for PACKAGE package
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-02-15 14:11-0300\n"
+"PO-Revision-Date: 2024-02-09 13:09-0300\n"
+"Last-Translator: Martin Abente Lahaye <martin.abente.lahaye@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. type: Title #
+#: ../docs/basics/en/index.md:1
+#, no-wrap
+msgid "Documentation"
+msgstr "Documentación"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:4
+#, no-wrap
+msgid "> ⚠️ **Warning:** Gameeky is still in early stages of development and therefore things are subject to change.\n"
+msgstr "> ⚠️ **Advertencia:** Gameeky aún se encuentra en las primeras etapas de desarrollo y, por lo tanto, está sujeta a cambios.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:6
+#, no-wrap
+msgid "> 📝 **Note:** This document is not an exhaustive tutorial on everything Gameeky can do, but should provide enough directions to get started.\n"
+msgstr "> 📝 **Nótese:** Este documento no es un tutorial exhaustivo sobre todo lo que Gameeky puede hacer, pero debería proporcionar suficientes instrucciones para comenzar.\n"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:7
+#, no-wrap
+msgid "Topics"
+msgstr "Temas"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:20
+msgid "[Introduction](#introduction)"
+msgstr "[Introducción](#introducción)"
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:20
+msgid "[Installation](#installation)"
+msgstr "[Instalación](#instalación)"
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:20
+msgid "[Thematic packs](#thematic-packs)"
+msgstr "[Paquetes temáticos](#paquetes-temáticos)"
+
+#. type: Bullet: '4. '
+#: ../docs/basics/en/index.md:20
+msgid "[Overview](#overview)"
+msgstr "[Descripción general](#descripción-general)"
+
+#. type: Bullet: '5. '
+#: ../docs/basics/en/index.md:20
+msgid "[The launcher](#the-launcher)"
+msgstr "[El lanzador](#el-lanzador)"
+
+#. type: Bullet: '6. '
+#: ../docs/basics/en/index.md:20
+msgid "[The player](#the-player)"
+msgstr "[El reproductor](#el-reproductor)"
+
+#. type: Bullet: '7. '
+#: ../docs/basics/en/index.md:20
+msgid "[Cooperative game play](#cooperative-game-play)"
+msgstr "[Juego cooperativo](#juego-cooperativo)"
+
+#. type: Bullet: '8. '
+#: ../docs/basics/en/index.md:20
+msgid "[The scene editor](#the-scene-editor)"
+msgstr "[El editor de escenas](#el-editor-de-escenas)"
+
+#. type: Bullet: '9. '
+#: ../docs/basics/en/index.md:20
+msgid "[The entity editor](#the-entity-editor)"
+msgstr "[El editor de entidades](#el-editor-de-entidades)"
+
+#. type: Bullet: '10. '
+#: ../docs/basics/en/index.md:20
+msgid "[LOGO-like code](#logo-like-code)"
+msgstr "[Código similar a LOGO](#código-similar-a-logo)"
+
+#. type: Bullet: '11. '
+#: ../docs/basics/en/index.md:20
+msgid "[Plugins](#plugins)"
+msgstr "[Complementos](#complementos)"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:21
+#, no-wrap
+msgid "Introduction"
+msgstr "Introducción"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:24
+msgid ""
+"[Gameeky](https://github.com/tchx84/gameeky) lets young learners and "
+"educators create and explore cooperative games and learning experiences. "
+"More specifically:"
+msgstr ""
+"[Gameeky](https://github.com/tchx84/gameeky) brinda experiencias de "
+"aprendizaje a estudiantes jóvenes y educadores, permitiéndoles crear y "
+"explorar con juegos cooperativos. Más específicamente:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid "Play and explore games with friends."
+msgstr "Juega y explora juegos con amigos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid "Create new games without writing any code."
+msgstr "Crea nuevos juegos sin escribir ningún código."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid "Tell stories through these games."
+msgstr "Cuenta historias a través de estos juegos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid "Nurture artistic skills by designing game objects and creatures."
+msgstr ""
+"Fomenta habilidades artísticas diseñando objetos y criaturas del juego."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid ""
+"Grasp the basics of programming using Python in a [LOGO](https://en."
+"wikipedia.org/wiki/Logo_(programming_language))-like experience."
+msgstr ""
+"Aprende conceptos básicos de programación usando Python en una experiencia "
+"similar a [LOGO](https://es.wikipedia.org/wiki/"
+"Logo_(lenguaje_de_programaci%C3%B3n))."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:31
+msgid "Mature programming skills by extending games with Python plugins."
+msgstr ""
+"Madura habilidades de programación ampliando juegos con complementos en "
+"Python."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:33
+#, no-wrap
+msgid "> 📝 **Note:** This is a learning tool in the shape of a game engine. It's not a professional game engine. If you're looking for a tool to create professional video games, please consider the [Godot](https://godotengine.org) game engine.\n"
+msgstr "> 📝 **Nótese:** Esta es una herramienta de aprendizaje en forma de motor de juego. No es un motor de juego profesional. Si está buscando una herramienta para crear videojuegos profesionales, considere el motor de juegos [Godot](https://godotengine.org).\n"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:34
+#, no-wrap
+msgid "Installation"
+msgstr "Instalación"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:37
+msgid ""
+"The recommended installation method is through the software center of the "
+"system, e.g., *GNOME Software*. Search for *Gameeky* and install it. "
+"Alternatively, it can also be installed from [Flathub](https://flathub.org). "
+"Similarly, search for *Gameeky* and follow the website instructions."
+msgstr ""
+"El método de instalación recomendado es a través del centro de software del "
+"sistema, por ejemplo, *GNOME Software*. Busque *Gameeky* y proceda a "
+"instalarlo. Alternativamente, también se puede instalar desde [Flathub]"
+"(https://flathub.org). De manera similar, busque *Gameeky* y siga las "
+"instrucciones del sitio web."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:39
+msgid "Lastly, it can also be installed from the terminal:"
+msgstr "Por último, también se puede instalar desde la terminal:"
+
+#. type: Fenced code block (bash)
+#: ../docs/basics/en/index.md:40
+#, no-wrap
+msgid "flatpak --user install flathub dev.tchx84.Gameeky\n"
+msgstr "flatpak --user install flathub dev.tchx84.Gameeky\n"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:44
+#, no-wrap
+msgid "Thematic packs"
+msgstr "Paquetes temáticos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:47
+msgid ""
+"Gameeky provides packs of predefined building blocks for different "
+"interests, e.g., a farming role playing [game](https://github.com/tchx84/"
+"FreedomValley) set in a medieval fantasy world. A thematic pack contains:"
+msgstr ""
+"Gameeky proporciona paquetes con bloques de construcción predefinidos para "
+"diferentes intereses, por ejemplo, un [juego](https://github.com/tchx84/"
+"FreedomValley) de rol agrícola ambientado en un mundo de fantasía medieval. "
+"Un paquete temático contiene:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:52
+msgid "Assets like tilesets, sprites and sounds."
+msgstr "Recursos como conjuntos de mosaicos, imágenes y sonidos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:52
+msgid ""
+"Entities created from these assets, with predefined properties and behaviors."
+msgstr ""
+"Entidades creadas a partir de estos recursos, con propiedades y "
+"comportamientos predefinidos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:52
+msgid "Scenes created with those entities."
+msgstr "Escenas creadas con esas entidades."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:52
+msgid "Actuators that extend the predefined behaviors."
+msgstr "Actuadores que amplían los comportamientos predefinidos."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:54
+msgid ""
+"These building blocks can be reused to create custom scenes, new games and "
+"many learning materials."
+msgstr ""
+"Estos bloques de construcción se pueden reutilizar para crear escenas "
+"personalizadas, juegos nuevos y muchos materiales de aprendizaje."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:56
+msgid ""
+"The recommended installation method is through the software center of the "
+"system, e.g., *GNOME Software*. Thematic packs are offered as addons from "
+"the software center page. Alternatively, it can also be installed from "
+"[Flathub](https://flathub.org). Similarly, thematic packs are offered as "
+"addons from the website. Select the addon and follow the website "
+"instructions."
+msgstr ""
+"El método de instalación recomendado es a través del centro de software del "
+"sistema, por ejemplo, *Software GNOME*. Los paquetes temáticos se ofrecen "
+"como complementos desde la página del centro de software. Alternativamente, "
+"también se puede instalar desde [Flathub](https://flathub.org). Del mismo "
+"modo, los paquetes temáticos se ofrecen como complementos del sitio web. "
+"Seleccione el complemento y siga las instrucciones del sitio web."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:58
+msgid "Lastly, packs can also be installed from the terminal:"
+msgstr "Por último, los packs también se pueden instalar desde la terminal:"
+
+#. type: Fenced code block (bash)
+#: ../docs/basics/en/index.md:59
+#, no-wrap
+msgid ""
+"flatpak --user remote-ls flathub | grep dev.tchx84.Gameeky.ThematicPack\n"
+"flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley\n"
+msgstr ""
+"flatpak --user remote-ls flathub | grep dev.tchx84.Gameeky.ThematicPack\n"
+"flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley\n"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:64
+#, no-wrap
+msgid "Overview"
+msgstr "Descripción general"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:67
+msgid "The Gameeky package provides four main components:"
+msgstr "Gameeky proporciona cuatro componentes principales:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:72
+msgid ""
+"The launcher is the main component where all thematic packs and projects can "
+"be found and launched from."
+msgstr ""
+"El lanzador es el componente principal donde se pueden encontrar y ejecutar "
+"todos los paquetes temáticos y proyectos."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:72
+msgid "The player is where games can be played and joined."
+msgstr "El reproductor es el lugar donde se puede jugar y unirse a juegos."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:72
+msgid "The scene editor is where scenes can be created and edited."
+msgstr "El editor de escenas es donde se pueden crear y editar escenas."
+
+#. type: Bullet: '4. '
+#: ../docs/basics/en/index.md:72
+msgid "The entity editor is where entities can be created and edited."
+msgstr "El editor de entidades es donde se pueden crear y editar entidades."
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:73
+#, no-wrap
+msgid "The launcher"
+msgstr "El lanzador"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:76
+msgid ""
+"The launcher serves as the Gameeky starting point. It provides an easy way "
+"to manage thematic packs installed as addons and projects located under the "
+"`~/Gameeky` directory. The manager supports all the basic management "
+"operations:"
+msgstr ""
+"El lanzador sirve como punto de partida de Gameeky. Proporciona una manera "
+"fácil de administrar paquetes temáticos instalados como complementos y "
+"proyectos ubicados en el directorio `~/Gameeky`. El administrador soporta "
+"todas las operaciones básicas de gestión:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:80
+msgid "Create new thematic packs and project from scratch."
+msgstr "Crear nuevos paquetes temáticos y proyectos desde cero."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:80
+msgid "Edit existing projects."
+msgstr "Editar proyectos existentes."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:80
+msgid "Remove existing projects."
+msgstr "Eliminar proyectos existentes."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:82
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/04.png)"
+msgstr ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/04.png)"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:83
+#, no-wrap
+msgid "The player"
+msgstr "El reproductor"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:86
+msgid ""
+"The player provides a visual representation of the game world and the means "
+"to interact with that world."
+msgstr ""
+"El reproductor proporciona una representación visual del mundo del juego y "
+"los medios para interactuar con ese mundo."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:88
+msgid ""
+"To start a game, click on the *Play* button of the project from the "
+"launcher. This will start the default scene for that project. Every thematic "
+"pack and project comes with a default scene. To play other scenes from the "
+"same project, follow these steps:"
+msgstr ""
+"Para iniciar un juego, haga clic en el botón *Jugar* del proyecto desde el "
+"lanzador. Esto iniciará la escena predeterminada para ese proyecto. Cada "
+"paquete temático y proyecto viene con una escena predeterminada. Para jugar "
+"otras escenas del mismo proyecto, siga estos pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:92 ../docs/basics/en/index.md:278
+msgid "From the launcher, click on the *Play* button of the project."
+msgstr "Desde el lanzador, haga clic en el botón *Jugar* del proyecto."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:92 ../docs/basics/en/index.md:144
+#: ../docs/basics/en/index.md:278
+msgid "From the player, go to the menu and select the *New* option."
+msgstr "Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:92
+msgid ""
+"From the creation dialog, select the scene file and click on the *Create* "
+"button."
+msgstr ""
+"Desde el cuadro de diálogo de creación, seleccione el archivo de escena y "
+"haga clic en el botón *Crear*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:94
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/02.png)"
+msgstr ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/02.png)"
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:95
+#, no-wrap
+msgid "In-game screen elements"
+msgstr "Elementos de la pantalla del juego"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:98
+msgid ""
+"Once in the game, the scene takes most of the screen but there are other "
+"elements as well."
+msgstr ""
+"Una vez en el juego, la escena ocupa la mayor parte de la pantalla, pero "
+"también hay otros elementos."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:100
+msgid ""
+"The [HUD](https://en.wikipedia.org/wiki/HUD_(video_games)) is an interface "
+"placed at the bottom center of the screen. This element is used to visualize "
+"the user's character stats. It's composed of the following parts:"
+msgstr ""
+"El [HUD](https://es.wikipedia.org/wiki/HUD_(videojuegos)) es una interfaz "
+"ubicada en la parte inferior central de la pantalla. Este elemento se "
+"utiliza para visualizar las estadísticas del personaje del usuario. Está "
+"compuesto por las siguientes partes:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:104
+msgid ""
+"A green bar that represents the user's character durability, e.g., to "
+"monitor the health of the character."
+msgstr ""
+"Una barra verde que representa la durabilidad del personaje del usuario, por "
+"ejemplo, para monitorear la salud del personaje."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:104
+msgid ""
+"A blue bar that represents the user's character stamina, e.g., to estimate "
+"how many actions can be performed by the character."
+msgstr ""
+"Una barra azul que representa la resistencia del personaje del usuario, por "
+"ejemplo, para estimar cuántas acciones puede realizar el personaje."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:104
+msgid ""
+"An icon slot to display the entity that is currently being held by the "
+"user's character, e.g., to determine what tool the character is equipped "
+"with."
+msgstr ""
+"Un ícono para mostrar la entidad que actualmente sostiene el personaje del "
+"usuario, por ejemplo, para determinar con qué herramienta está equipado el "
+"personaje."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:106
+msgid ""
+"Another element is the dialogue viewer. This viewer is placed at the bottom "
+"of the screen and it's used to display in-game dialogues, e.g., a message "
+"from a game character or the narrator. It's composed of the following parts:"
+msgstr ""
+"Otro elemento es el visor de diálogos. Este visor se coloca en la parte "
+"inferior de la pantalla y se utiliza para mostrar diálogos del juego, por "
+"ejemplo, un mensaje de un personaje del juego o del narrador. Está compuesto "
+"por las siguientes partes:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:109
+msgid "A light blue section that contains the dialogue text."
+msgstr "Una sección de color azul claro que contiene el texto del diálogo."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:109
+msgid "A button to close the dialogue."
+msgstr "Un botón para cerrar el diálogo."
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:110
+#, no-wrap
+msgid "Controls"
+msgstr "Controles"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:113
+msgid ""
+"Once in the game, the user's character can be controlled with two methods:"
+msgstr ""
+"Una vez en el juego, el personaje del usuario se puede controlar con dos "
+"métodos:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:116
+msgid ""
+"Keyboard controls. To see the full list of key bindings, go the menu and "
+"select the *Keyboard Shortcuts* option."
+msgstr ""
+"Controles de teclado. Para ver la lista completa de combinaciones de teclas, "
+"vaya al menú y seleccione la opción *Atajos de Teclado*."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:116
+msgid ""
+"Mouse controls. To see the available actions, right-click on the game view "
+"and select an action from the menu. To move the user's character, click on "
+"the scene view and the user's character will move towards that direction."
+msgstr ""
+"Controles del ratón. Para ver las acciones disponibles, haga clic derecho en "
+"la escena del juego y seleccione una acción del menú. Para mover el "
+"personaje del usuario, haga clic en la escena y el personaje del usuario se "
+"moverá en esa dirección."
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:117
+#, no-wrap
+msgid "Actions"
+msgstr "Acciones"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:120
+msgid ""
+"The user's character can perform multiple actions to interact with the game "
+"world:"
+msgstr ""
+"El personaje del usuario puede realizar múltiples acciones para interactuar "
+"con el mundo del juego:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid ""
+"*Move* to advance the user's character to one of four directions, e.g., to "
+"move the character to the *North*."
+msgstr ""
+"*Mover* para hacer avanzar al personaje del usuario en una de cuatro "
+"direcciones, por ejemplo, para mover al personaje hacia el *Norte*."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid ""
+"*Take* to hold an entity from the scene. The entity must be directly in "
+"front of the user's character to be taken, e.g., to grab the entity and move "
+"that it later."
+msgstr ""
+"*Tomar* para sostener una entidad de la escena. La entidad debe estar "
+"directamente frente al personaje del usuario para ser tomada, por ejemplo, "
+"para sostener la entidad y moverla."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid ""
+"*Use* to apply any effects that the entity being held might have. These "
+"effects affect the entities that are located right in font of the user's "
+"character, e.g., to chop some logs with an axe."
+msgstr ""
+"*Usar* para aplicar cualquier efecto que la entidad sostenida pueda tener. "
+"Estos efectos afectan a las entidades que se encuentran justo en la fuente "
+"del personaje del usuario, por ejemplo, para cortar algunos troncos con un "
+"hacha."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid "*Drop* to stop holding an entity, e.g., to stop moving it."
+msgstr ""
+"*Soltar* para dejar de sostener una entidad, por ejemplo, para dejar de "
+"moverla."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid ""
+"*Interact* to activate any behavior from an entity. To interact with another "
+"entity, the entity must be located right in front of the user's character, e."
+"g., to activate a teleport or read from signs."
+msgstr ""
+"*Interactuar* para activar cualquier comportamiento de una entidad. Para "
+"interactuar con otra entidad, la misma debe estar ubicada justo en frente "
+"del personaje del usuario, por ejemplo, para activar un portal o leer "
+"letreros."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:127
+msgid "*Stop* to stop any action being performed and simply idle."
+msgstr ""
+"*Detener* para detener cualquier acción que se esté realizando y simplemente "
+"hacer nada."
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:128
+#, no-wrap
+msgid "Save files"
+msgstr "Guardar archivos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:131
+msgid ""
+"The state of the game can be saved at any moment and restored later. Save "
+"files are full copies of the scene and therefore regular scene files."
+msgstr ""
+"El estado del juego se puede guardar en cualquier momento y restaurar más "
+"tarde. Los archivos guardados son copias completas de la escena y, por lo "
+"tanto, archivos de escena normales."
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:134
+msgid ""
+"To save the state of the game, go to the menu and select the *Save As…* "
+"option."
+msgstr ""
+"Para guardar el estado del juego, vaya al menú y seleccione la opción "
+"*Guardar Como…*."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:134
+msgid ""
+"To restore the state of the game, follow the same steps described above to "
+"open an scene."
+msgstr ""
+"Para restaurar el estado del juego, siga los mismos pasos descritos "
+"anteriormente para abrir una escena."
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:135
+#, no-wrap
+msgid "Cooperative game play"
+msgstr "Juego cooperativo"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:138
+msgid ""
+"Gameeky was designed from the ground up to create and share cooperative "
+"experiences. All the games created with it can be played cooperatively. "
+"There are no special requirements. Although there's no theoretical limit as "
+"for how many users can join a cooperative game, there are technical "
+"limitations. E.g., limited computing resources."
+msgstr ""
+"Gameeky fue diseñado desde cero para crear y compartir experiencias "
+"cooperativas. Todos los juegos creados con él, se pueden jugar de forma "
+"cooperativa. No hay requisitos especiales. Aunque no existe un límite "
+"teórico en cuanto a cuántos usuarios pueden unirse a un juego cooperativo, "
+"existen limitaciones técnicas. Por ejemplo, recursos informáticos limitados."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:140
+msgid "To start a cooperative game, follow these steps:"
+msgstr "Para iniciar un juego cooperativo, siga estos pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:144
+msgid "From the launcher, click on the *Play* button from the project's card."
+msgstr ""
+"Desde el lanzador, haga clic en el botón *Jugar* de la tarjeta del proyecto."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:144
+msgid ""
+"From the creation dialog, increase the number of participants and then click "
+"on the *Create* button."
+msgstr ""
+"Desde el cuadro de diálogo de creación, aumente el número de participantes y "
+"luego haga clic en el botón *Crear*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:146
+msgid "To join a cooperative game:"
+msgstr "Para unirse a un juego cooperativo:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:150
+msgid ""
+"From the launcher, click on the *Play* button from the same project's card."
+msgstr ""
+"Desde el lanzador, haga clic en el botón *Jugar* de la tarjeta del mismo "
+"proyecto."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:150
+msgid "From the player, go to the menu and select the *Join* option."
+msgstr "Desde el reproductor, vaya al menú y seleccione la opción *Unirse*."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:150
+msgid ""
+"From the join dialog, specify the [IP address](https://flathub.org/apps/org."
+"gabmus.whatip) of the user who started the cooperative game and click on the "
+"*Join* button."
+msgstr ""
+"En el cuadro de diálogo para unirse, especifique la [dirección IP](https://"
+"flathub.org/apps/org.gabmus.whatip) del usuario que inició el juego "
+"cooperativo y haga clic en el botón *Unirse*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:152
+#, no-wrap
+msgid "> 📝 **Note:** All the users joining a cooperative game must have a copy of the same thematic pack or project.\n"
+msgstr "> 📝 **Nótese:** Todos los usuarios que se unan a un juego cooperativo deben tener una copia del mismo paquete temático o proyecto.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:154
+#, no-wrap
+msgid "> 📝 **Note:** Custom scenes created from thematic packs don't need to be shared. The scene is automatically shared during game play, as long as all users share the same thematic pack.\n"
+msgstr "> 📝 **Nótese:** No es necesario compartir las escenas personalizadas creadas a partir de paquetes temáticos. La escena se comparte automáticamente durante el juego, siempre que todos los usuarios compartan el mismo paquete temático.\n"
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:155
+#, no-wrap
+msgid "The scene editor"
+msgstr "El editor de escenas"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:158
+msgid ""
+"The scene editor lets users create and modify game worlds. It serves as the "
+"initial and simplest form of no-code creation experience in Gameeky."
+msgstr ""
+"El editor de escenas permite a los usuarios crear y modificar mundos del "
+"juego. Sirve como la experiecia inicial y más sencilla de creación sin "
+"código en Gameeky."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:160
+msgid ""
+"To edit an existing Scene, click on the *Edit* button of the project from "
+"the launcher. To create a new scene it's recommended to start off an "
+"existing project such as a thematic pack. Follow these steps to add a new "
+"Scene:"
+msgstr ""
+"Para editar una escena existente, haga clic en el botón *Editar* del "
+"proyecto desde el lanzador. Para crear una nueva escena, se recomienda "
+"comenzar con un proyecto existente, como un paquete temático. Siga estos "
+"pasos para agregar una nueva escena:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:164
+msgid ""
+"From the launcher, click on the *Copy* button of the project. This step is "
+"**only** needed for thematic packs. Thematic packs can't be modified, so "
+"this creates an editable copy."
+msgstr ""
+"Desde el lanzador, haga clic en el botón *Copiar* del proyecto. Este paso "
+"**solo** es necesario para los paquetes temáticos. Los paquetes temáticos no "
+"se pueden modificar, por lo que se crea una copia editable."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:164
+msgid "From the launcher, click on the *Edit* button of the project."
+msgstr "Desde el lanzador, haga clic en el botón *Editar* del proyecto."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:164
+msgid "From the scene editor, go to the menu and select the *New* option."
+msgstr ""
+"Desde el editor de escenas, vaya al menú y seleccione la opción *Nuevo*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:166
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/01.png)"
+msgstr ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/01.png)"
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:167 ../docs/basics/en/index.md:215
+#: ../docs/basics/en/index.md:379
+#, no-wrap
+msgid "Concepts"
+msgstr "Conceptos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:170
+msgid ""
+"A scene is a collection of entities arranged in a tiles grid. The basic "
+"properties of a scene are:"
+msgstr ""
+"Una escena es una colección de entidades dispuestas en una cuadrícula de "
+"mosaicos. Las propiedades básicas de una escena son:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:176
+msgid "A *Name* that must be unique among the scenes of the same project."
+msgstr "Un *Nombre* que debe ser único entre las escenas del mismo proyecto."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:176
+msgid ""
+"The *Time* of the day in which the scene occurs. It can be *Day*, *Night* or "
+"*Dynamic*."
+msgstr ""
+"El *Tiempo* del día en que ocurre la escena. Puede ser *Día*, *Noche* o "
+"*Dinámico*."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:176
+msgid ""
+"If *Dynamic*, the *Duration* specifies the number of seconds that it takes "
+"to complete a full day and night cycle. Otherwise this property is ignored."
+msgstr ""
+"Si es *Dinámico*, la *Duración*, especifica la cantidad de segundos que se "
+"necesitan para completar un ciclo completo de día y noche. De lo contrario, "
+"esta propiedad se ignora."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:176
+msgid ""
+"The *Width* of the scene specifies the total number of tiles on the "
+"horizontal axis."
+msgstr ""
+"El *Ancho* de la escena, especifica el número total de mosaicos en el eje "
+"horizontal."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:176
+msgid ""
+"The *Height* of the scene specifies the total number of tiles on the "
+"vertical axis."
+msgstr ""
+"La *Alto* de la escena, especifica el número total de mosaicos en el eje "
+"vertical."
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:177 ../docs/basics/en/index.md:251
+#: ../docs/basics/en/index.md:271 ../docs/basics/en/index.md:393
+#, no-wrap
+msgid "Workflow"
+msgstr "Flujo de trabajo"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:180
+msgid ""
+"The scene editing workflow resembles one of a painting tool. Entities are "
+"painted and removed to and from the scene. The basic steps to edit a scene "
+"are the following:"
+msgstr ""
+"El flujo de trabajo de edición de escenas se parece al de una herramienta de "
+"diseño gráfico. Las entidades se pintan y se retiran de la escena. Los pasos "
+"básicos para editar una escena son los siguientes:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:184
+msgid ""
+"To add entities to the scene, select an entity from the left panel and place "
+"it on the scene by clicking on a tile in the grid."
+msgstr ""
+"Para agregar entidades a la escena, seleccione una entidad en el panel "
+"izquierdo y colóquela en la escena haciendo clic en un mosaico de la "
+"cuadrícula."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:184
+msgid ""
+"To remove entities from the scene, select the *Remove* tool from the left "
+"and then click on the entity tile in the grid."
+msgstr ""
+"Para eliminar entidades de la escena, seleccione la herramienta *Eliminar* "
+"de la izquierda y luego haga clic en el mosaico de la entidad en la "
+"cuadrícula."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:184
+msgid ""
+"Although entities come with predefined properties and behaviors, particular "
+"entities in the scene can be customized. Select the *Edit* tool from the "
+"left panel and then click on the entity tile in the grid."
+msgstr ""
+"Aunque las entidades vienen con propiedades y comportamientos predefinidos, "
+"se pueden personalizar entidades particulares de la escena. Seleccione la "
+"herramienta *Editar* en el panel izquierdo y luego haga clic en el mosaico "
+"de entidad en la cuadrícula."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:186
+msgid ""
+"Additionally, the scene editor provides helpers to make things easier such "
+"as:"
+msgstr ""
+"Además, el editor de escenas proporciona ayudas para facilitar las cosas, "
+"como por ejemplo:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:190
+msgid ""
+"Drawing area selector to add or remove multiple entities at once, e.g., to "
+"quickly create the scene terrain."
+msgstr ""
+"Selector de área de dibujo para agregar o eliminar múltiples entidades a la "
+"vez, por ejemplo, para crear rápidamente el terreno de la escena."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:190
+msgid ""
+"Layer selector to modify entities at a specific layer, e.g., to quickly "
+"modify the scene terrain."
+msgstr ""
+"Selector de capas para modificar entidades en una capa específica, por "
+"ejemplo, para modificar rápidamente el terreno de la escena."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:190
+msgid ""
+"Time selector to visualize the scene during *Day* or *Night*, e.g., to "
+"inspect the light sources in the scene."
+msgstr ""
+"Selector de tiempo para visualizar la escena durante el *Día* o la *Noche*, "
+"por ejemplo, para inspeccionar las fuentes de luz en la escena."
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:191 ../docs/basics/en/index.md:259
+#: ../docs/basics/en/index.md:367 ../docs/basics/en/index.md:550
+#, no-wrap
+msgid "Tips and tricks"
+msgstr "Consejos y trucos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:194 ../docs/basics/en/index.md:262
+#: ../docs/basics/en/index.md:370 ../docs/basics/en/index.md:553
+msgid "For an improved experience, try the following tips and tricks:"
+msgstr "Para una mejor experiencia, siga estos consejos y trucos:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:198
+msgid ""
+"When creating the basic terrain of the scene, use the layer selector and set "
+"it at *Layer 0*. This will reduce the unnecessary overlapping of terrain "
+"tiles and it will ease the editing workflow overall."
+msgstr ""
+"Al crear el terreno básico de la escena, use el selector de capas y "
+"configúrelo en *Capa 0*. Esto reducirá la superposición innecesaria de "
+"mosaicos de terreno y facilitará el flujo de trabajo de edición en general."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:198
+msgid ""
+"When editing a scene, leave the player open on that scene. When changes to "
+"the scene are saved, the player will detect these changes and present an "
+"option to reload the scene with the new changes. This reduces the time "
+"switching between the scene editor and the player."
+msgstr ""
+"Al editar una escena, deje el reproductor abierto en esa escena. Cuando se "
+"guarden los cambios en la escena, el reproductor detectará estos cambios y "
+"presentará una opción para recargar la escena con los nuevos cambios. Esto "
+"reduce el tiempo de cambio entre el editor de escenas y el reproductor."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:198
+msgid ""
+"When editing a scene, use the initial location setter tool from the left "
+"panel to place the user's character in a convenient location to inspect the "
+"changes."
+msgstr ""
+"Al editar una escena, use la herramienta de configuración de ubicación "
+"inicial del panel izquierdo para colocar el personaje del usuario en una "
+"ubicación conveniente para inspeccionar los cambios."
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:199
+#, no-wrap
+msgid "The entity editor"
+msgstr "El editor de entidades"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:202
+msgid ""
+"The entity editor lets users create and modify game objects and creatures. "
+"It provides a deeper no-code creation experience, as it requires "
+"understanding the underlying systems of Gameeky."
+msgstr ""
+"El editor de entidades permite a los usuarios crear y modificar criaturas y "
+"objetos del juego. Proporciona una experiencia de creación sin código más "
+"profunda, ya que requiere comprender los sistemas subyacentes de Gameeky."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:204
+msgid ""
+"Before creating a new entity from scratch, it's recommended to inspect "
+"existing entities from thematic packs. So, to inspect an existing entity "
+"follow these steps:"
+msgstr ""
+"Antes de crear una nueva entidad desde cero, se recomienda inspeccionar las "
+"entidades existentes de los paquetes temáticos. Entonces, para inspeccionar "
+"una entidad existente, siga estos pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:207
+msgid "From the scene editor, right-click on an entity in the left panel."
+msgstr ""
+"Desde el editor de escenas, haga clic derecho en una entidad en el panel "
+"izquierdo."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:207
+msgid "Select the *Edit* option from the menu."
+msgstr "Seleccione la opción *Editar* del menú."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:209
+msgid "To create a new entity:"
+msgstr "Para crear una nueva entidad:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:212
+msgid "From the scene editor, right-click anywhere in the left panel."
+msgstr ""
+"Desde el editor de escenas, haga clic derecho en cualquier parte del panel "
+"izquierdo."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:212
+msgid "Select the *Add* option from the menu."
+msgstr "Seleccione la opción *Agregar* del menú."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:214
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/03.png)"
+msgstr ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/"
+"en/03.png)"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:218
+msgid ""
+"Entities represent everything that can exist in the game, e.g., the grass, "
+"the user's character, a light source, the background music and even the game "
+"logic. An entity is composed of three parts:"
+msgstr ""
+"Las entidades representan todo lo que puede existir en el juego, por "
+"ejemplo, la hierba, el personaje del usuario, una fuente de luz, la música "
+"de fondo e incluso la lógica del juego. Una entidad se compone de tres "
+"partes:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:222
+msgid "Game logic properties."
+msgstr "Propiedades de la lógica del juego."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:222
+msgid "Graphics."
+msgstr "Gráficos."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:222
+msgid "Sounds."
+msgstr "Sonidos."
+
+#. type: Title ####
+#: ../docs/basics/en/index.md:223
+#, no-wrap
+msgid "Game logic properties"
+msgstr "Propiedades de la lógica del juego"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:226
+msgid ""
+"These properties determine how entities behave and interact with other "
+"entities, e.g., different combinations of these properties will determine "
+"whether an entity is acting as a static stone or a living foe."
+msgstr ""
+"Estas propiedades determinan cómo las entidades se comportan e interactúan "
+"con otras entidades; por ejemplo, diferentes combinaciones de estas "
+"propiedades determinarán si una entidad actúa como una piedra estática o "
+"como un enemigo vivo."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:228
+msgid ""
+"Although there are two dozen properties, a few of these require special "
+"attention here:"
+msgstr ""
+"Aunque hay dos docenas de propiedades, algunas de ellas requieren atención "
+"especial aquí:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:234
+msgid ""
+"The *Identifier* must be unique among all the entities of the same project."
+msgstr ""
+"El *Identificador* debe ser único entre todas las entidades de un mismo "
+"proyecto."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:234
+msgid ""
+"An entity is always in one and a single *State*, e.g., *Idling*, *Moving*, "
+"*Destroyed*, etc. The state can change by performing different actions, by "
+"intrinsic or extrinsic means."
+msgstr ""
+"Una entidad siempre está en un solo *Estado*, por ejemplo, *Inactivo*, "
+"*Moviendo*, *Destruido*, etc. El estado puede cambiar realizando diferentes "
+"acciones, por medios intrínsecos o extrínsecos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:234
+msgid ""
+"An entity is always pointing to one and a single *Direction*. It can be "
+"*North*, *East*, *South* or *West*."
+msgstr ""
+"Una entidad siempre apunta a una única *Dirección*. Puede ser *Norte*, "
+"*Este*, *Sur* u *Oeste*."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:234
+msgid ""
+"An entity state can be changed intrinsically by *Actuators* that provide "
+"predefined logic, e.g., a *Roams* actuator will move the entity to random "
+"directions, and a *Destroys* actuator will flag the entity for removal from "
+"the scene when its durability reaches zero."
+msgstr ""
+"El estado de una entidad se puede cambiar intrínsecamente mediante "
+"*Actuadores* que proporcionan una lógica predefinida, por ejemplo, un "
+"actuador *Deambula* moverá la entidad en direcciones aleatorias, y un "
+"actuador *Se destruye* señalará la entidad para su eliminación de la escena "
+"cuando su durabilidad llegue a cero."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:234
+msgid ""
+"All entity properties coexist in a single system and therefore behaviors can "
+"emerge from different combinations of these properties, e.g., the speed in "
+"which an entity can move is determined by its *Weight* and its *Strength*, "
+"while the total weight of an entity depends on the weight of the entity its "
+"holding, and so on."
+msgstr ""
+"Todas las propiedades de una entidad coexisten en un solo sistema y por lo "
+"tanto pueden surgir comportamientos de diferentes combinaciones de estas "
+"propiedades, por ejemplo, la velocidad a la que una entidad puede moverse "
+"está determinada por su *Peso* y su *Fuerza*, mientras que el peso total de "
+"una entidad depende del peso de la entidad que sostiene, y así sucesivamente."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:236
+#, no-wrap
+msgid "> 📝 **Note:** When creating a new thematic pack assume that the entity with identifier number *1* will be assigned to the user's character in the game.\n"
+msgstr "> 📝 **Nótese:** Al crear un nuevo paquete temático, asuma que la entidad con el número de identificador *1* se asignará al personaje del usuario en el juego.\n"
+
+#. type: Title ####
+#: ../docs/basics/en/index.md:237
+#, no-wrap
+msgid "Graphics"
+msgstr "Gráficos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:240
+msgid ""
+"Entities are represented on the screen through 2D graphics, which can be "
+"static or animated."
+msgstr ""
+"Las entidades se representan en pantalla a través de gráficos 2D, que pueden "
+"ser estáticos o animados."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:242
+msgid ""
+"These graphics are assigned to specific combinations of state and direction, "
+"e.g., a specific animation will be rendered when an entity is *Moving* to "
+"the *West*, while another animation will be rendered when the same entity is "
+"*Idling* to the *South*."
+msgstr ""
+"Estos gráficos se asignan a combinaciones específicas de estado y dirección, "
+"por ejemplo, se representará una animación específica cuando una entidad se "
+"*Mueva* hacia el *Oeste*, mientras que se representará otra animación cuando "
+"la misma entidad esté *Quieta* hacia el *Sur*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:244
+msgid ""
+"All entities must provide a *Default* graphic, e.g., to visualize it on the "
+"scene editor or debug plugins."
+msgstr ""
+"Todas las entidades deben proporcionar un gráfico *Predeterminado*, por "
+"ejemplo, para visualizarlo en el editor de escenas o al depurar complementos."
+
+#. type: Title ####
+#: ../docs/basics/en/index.md:245
+#, no-wrap
+msgid "Sounds"
+msgstr "Sonidos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:248
+msgid ""
+"Similarly to graphics, entities can emit sounds when in specific states, e."
+"g., footsteps sound is played when the entity is *Moving*. Directions don't "
+"matter here."
+msgstr ""
+"De manera similar a los gráficos, las entidades pueden emitir sonidos cuando "
+"se encuentran en estados específicos, por ejemplo, el sonido de pasos se "
+"reproduce cuando la entidad se está *Moviendo*. Las direcciones no importan "
+"aquí."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:250
+msgid "There aren't *Default* sounds, as sounds are optional."
+msgstr "No hay sonidos *Predeterminados*, ya que los sonidos son opcionales."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:254
+msgid ""
+"The entity creation workflow is similar to filling a form or a template. The "
+"most basic entity is created with the following steps:"
+msgstr ""
+"El flujo de trabajo de creación de entidades es similar a completar un "
+"formulario o una plantilla. La entidad más básica se crea con los siguientes "
+"pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:258
+msgid ""
+"Under the *Game* tab, start setting the values from top to bottom. Note that "
+"all properties provide their own defaults. Only the identifier is mandatory. "
+"Setting a name is recommended so that it's easier to find the entity on the "
+"scene editor."
+msgstr ""
+"En la pestaña *Juego*, comience a configurar los valores de arriba a abajo. "
+"Tenga en cuenta que todas las propiedades proporcionan sus propios valores "
+"predeterminados. Únicamente el identificador es obligatorio. Se recomienda "
+"establecer un nombre para que sea más fácil encontrar la entidad en el "
+"editor de escenas."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:258
+msgid ""
+"Under the *Graphics* tab, click on the *Add* button to create the first and "
+"default animation. Leave both *State* and *Direction* to *Default*. Expand "
+"the *Details* section of the default animation to select an image. Click on "
+"the *View* button to inspect the selected image."
+msgstr ""
+"En la pestaña *Gráficos*, haga clic en el botón *Agregar* para crear la "
+"primera animación predeterminada. Deje *Estado* y *Dirección* en "
+"*Predeterminado*. Expanda la sección *Detalles* de la animación "
+"predeterminada para seleccionar una imagen. Haga clic en el botón *Ver* para "
+"inspeccionar la imagen seleccionada."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:258
+msgid "Save the entity and use it from the scene editor."
+msgstr "Guarde la entidad y úsela desde el editor de escenas."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:266
+msgid ""
+"When creating a new entity, always begin with setting the identifier number "
+"and then *Save* the Entity to disk. Keep the name suggested by the entity "
+"editor. This will make it easier to assign unique identifiers along the road."
+msgstr ""
+"Al crear una nueva entidad, comience siempre configurando el número de "
+"identificador y luego *Guarde* la entidad en el disco. Mantenga el nombre "
+"sugerido por el editor de entidades. Esto facilitará la asignación de "
+"identificadores únicos a la larga."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:266
+msgid ""
+"When creating a new animation, always leave both, the entity editor and the "
+"tileset viewer, open side by side. This will make it easier to set up the "
+"animation frames."
+msgstr ""
+"Al crear una nueva animación, deje siempre abiertos el editor de entidades y "
+"el visor de mosaicos, uno al lado del otro. Esto facilitará la configuración "
+"de los cuadros de animación."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:266
+msgid ""
+"After creating an animation, click on the *Copy* button to add the next "
+"animation. This will make it easier to set up the next animation."
+msgstr ""
+"Después de crear una animación, haga clic en el botón *Copiar* para agregar "
+"la siguiente animación. Esto facilitará la configuración de la siguiente "
+"animación."
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:267
+#, no-wrap
+msgid "LOGO-like code"
+msgstr "Código similar a LOGO"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:270
+msgid ""
+"Having support for cooperative game play opens the door for cooperators that "
+"can be controlled with code. To achieve this, Gameeky provides a small "
+"library that enables users to control a single Entity using Python, in a "
+"LOGO-like experience."
+msgstr ""
+"Tener soporte para juegos cooperativos abre la puerta a cooperadores que "
+"pueden controlarse con código. Para lograr esto, Gameeky proporciona una "
+"pequeña biblioteca que permite a los usuarios controlar una única entidad "
+"usando Python, en una experiencia similar a LOGO."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:274
+msgid "Follow these steps to start a cooperative game:"
+msgstr "Siga estos pasos para iniciar un juego cooperativo:"
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:278
+msgid ""
+"From the creation dialog, increased the number of participants and then "
+"click on the *Create* button."
+msgstr ""
+"Desde el cuadro de diálogo de creación, aumente el número de participantes y "
+"luego haga clic en el botón *Crear*."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:280
+msgid "To join the game from code, these steps must be followed:"
+msgstr "Para unirse al juego desde el código se deben seguir estos pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:283
+msgid "Write Python code that uses the Gameeky library, see examples below."
+msgstr ""
+"Escriba código Python que utilice la biblioteca Gameeky; consulte los "
+"ejemplos a continuación."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:283
+msgid "Run that code from the terminal with the following command:"
+msgstr "Ejecute ese código desde la terminal con el siguiente comando:"
+
+#. type: Fenced code block (bash)
+#: ../docs/basics/en/index.md:284
+#, no-wrap
+msgid ""
+"cd ~/path/to/my/file/\n"
+"flatpak --user run --filesystem=$PWD --command=dev.tchx84.Gameeky.Exec dev.tchx84.Gameeky sample.py\n"
+msgstr ""
+"cd ~/path/to/my/file/\n"
+"flatpak --user run --filesystem=$PWD --command=dev.tchx84.Gameeky.Exec dev.tchx84.Gameeky sample.py\n"
+
+#. type: Title ###
+#: ../docs/basics/en/index.md:289 ../docs/basics/en/index.md:406
+#, no-wrap
+msgid "Examples"
+msgstr "Ejemplos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:292
+msgid "Join and leave a [game](../../../src/gameeky/library/game.py):"
+msgstr "Unirse y abandonar un [juego](../../../src/gameeky/library/game.py):"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:293
+#, no-wrap
+msgid ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.quit()\n"
+msgstr ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.quit()\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:302
+msgid "Perform [actions](../../../src/gameeky/common/definitions.py):"
+msgstr "Realizar [acciones](../../../src/gameeky/common/definitions.py):"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:303
+#, no-wrap
+msgid ""
+"from gameeky.library import Game\n"
+"from gameeky.common.definitions import Direction\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"game.idle(time=1000)\n"
+"game.move(Direction.EAST, time=1000)\n"
+"game.move(Direction.WEST, time=1000)\n"
+"game.take(time=1000)\n"
+"game.use(time=1000)\n"
+"game.drop(time=1000)\n"
+"game.interact(time=1000)\n"
+"\n"
+"game.quit()\n"
+msgstr ""
+"from gameeky.library import Game\n"
+"from gameeky.common.definitions import Direction\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"game.idle(time=1000)\n"
+"game.move(Direction.EAST, time=1000)\n"
+"game.move(Direction.WEST, time=1000)\n"
+"game.take(time=1000)\n"
+"game.use(time=1000)\n"
+"game.drop(time=1000)\n"
+"game.interact(time=1000)\n"
+"\n"
+"game.quit()\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:323
+msgid ""
+"Inspect the position and basic properties of the user's character [entity]"
+"(../../../src/gameeky/common/entity.py):"
+msgstr ""
+"Inspeccionar la posición y las propiedades básicas del personaje del usuario "
+"[entidad](../../../src/gameeky/common/entity.py):"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:324
+#, no-wrap
+msgid ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"print(game.entity.position.x, game.entity.position.y)\n"
+"\n"
+"game.quit()\n"
+msgstr ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"print(game.entity.position.x, game.entity.position.y)\n"
+"\n"
+"game.quit()\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:337
+msgid "Inspect the state of the [scene](../../../src/gameeky/common/scene.py):"
+msgstr ""
+"Inspeccione el estado de la [escena](../../../src/gameeky/common/scene.py):"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:338
+#, no-wrap
+msgid ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"for entity in game.scene.entities:\n"
+"    print(entity.position.x, entity.position.y)\n"
+"\n"
+"game.quit()\n"
+msgstr ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"for entity in game.scene.entities:\n"
+"    print(entity.position.x, entity.position.y)\n"
+"\n"
+"game.quit()\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:352
+#, no-wrap
+msgid "> 📝 **Note:** Cooperators can only see their immediate surroundings from the scene, not the full scene.\n"
+msgstr "> 📝 **Nótese:** Los cooperadores solo pueden ver su entorno inmediato en la escena, no la escena completa.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:354
+msgid ""
+"Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the "
+"user's character entity:"
+msgstr ""
+"Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) "
+"avanzadas de la entidad del personaje del usuario:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:355
+#, no-wrap
+msgid ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"print(game.stats.durability, game.stats.stamina, game.stats.held)\n"
+"\n"
+"game.quit()\n"
+msgstr ""
+"from gameeky.library import Game\n"
+"\n"
+"game = Game(project=\"~/Gameeky/project\", address=\"127.0.0.1\")\n"
+"game.join()\n"
+"game.update()\n"
+"\n"
+"print(game.stats.durability, game.stats.stamina, game.stats.held)\n"
+"\n"
+"game.quit()\n"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:372
+msgid ""
+"When testing code locally, leave both the player and the terminal open side "
+"by side. That way it will easier to see the code in action, literally."
+msgstr ""
+"Cuando pruebe el código localmente, deje el reproductor y la terminal "
+"abiertos uno al lado del otro. De esa forma será más fácil ver el código en "
+"acción, literalmente."
+
+#. type: Title ##
+#: ../docs/basics/en/index.md:373
+#, no-wrap
+msgid "Plugins"
+msgstr "Complementos"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:376
+msgid ""
+"Actuators can modify the behavior of an entity. A single entity can use "
+"multiple actuators to model more complex behaviors. Although there's a wide "
+"range of predefined actuators, the end result is limited when compared to "
+"actual code."
+msgstr ""
+"Los actuadores pueden modificar el comportamiento de una entidad. Una sola "
+"entidad puede utilizar múltiples actuadores para modelar comportamientos más "
+"complejos. Aunque existe una amplia gama de actuadores predefinidos, el "
+"resultado final es limitado en comparación con el código real."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:378
+msgid ""
+"Therefore, Gameeky provides support for user-created actuators to go beyond "
+"what the predefined actuators can do."
+msgstr ""
+"Por lo tanto, Gameeky proporciona soporte para actuadores creados por el "
+"usuario, e ir más allá de lo que pueden hacer los actuadores predefinidos."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:382
+msgid "There are three types of actuators:"
+msgstr "Hay tres tipos de actuadores:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:386
+msgid ""
+"Regular actuators enact on each tick of the scene, e.g., to [move](../../../"
+"src/gameeky/server/game/actuators/roams.py) the entity to a random location "
+"on each tick."
+msgstr ""
+"Los actuadores regulares actúan en cada tic de la escena, por ejemplo, para "
+"[mover](../../../src/gameeky/server/game/actuators/roams.py) la entidad a "
+"una ubicación aleatoria en cada tic."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:386
+msgid ""
+"Activatable actuators enact only in fixed time intervals or when explicitly "
+"activated by another entity, e.g., to [spawn](../../../src/gameeky/server/"
+"game/actuators/spawns.py) a new foe to the scene every five seconds."
+msgstr ""
+"Los actuadores activables actúan solo en intervalos de tiempo fijos o cuando "
+"son activados explícitamente por otra entidad, por ejemplo, para [agregar]"
+"(../../../src/gameeky/server/game/actuators/spawns.py) un nuevo enemigo a la "
+"escena cada cinco segundos."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:386
+msgid ""
+"Interactable actuators enact when other entities interact with its entity, e."
+"g., to [teleport](../../../src/gameeky/server/game/actuators/teleports.py) "
+"an entity to a different location when that entity interacts with a portal."
+msgstr ""
+"Los actuadores interactuables actúan cuando otras entidades interactúan con "
+"su entidad, por ejemplo, para [teletransportar](../../../src/gameeky/server/"
+"game/actuators/teleports.py una entidad a una ubicación diferente cuando esa "
+"entidad interactúa con un portal."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:388
+msgid ""
+"All actuators use their own entity game properties to modify their behavior:"
+msgstr ""
+"Todos los actuadores utilizan las propiedades de juego de su entidad para "
+"modificar su comportamiento:"
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:392
+msgid ""
+"The *Target Name* and *Target Type* properties can be used to filter the "
+"entities affected by the actuator, e.g., to [target](../../../src/gameeky/"
+"server/game/actuators/aggroes.py) only certain entities types for aggression."
+msgstr ""
+"Las propiedades *Nombre de Destino* y *Tipo de Destino* se pueden utilizar "
+"para filtrar las entidades afectadas por el actuador, por ejemplo, [apuntar]"
+"(../../../src/gameeky/server/game/actuators/ aggroes.py) solo ciertos tipos "
+"de entidades para agresión."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:392
+msgid ""
+"The *Rate* property can be used in activatables to reduce the activation "
+"frequency, e.g., to [hatch](../../../src/gameeky/server/game/actuators/"
+"transmutes.py) an egg into a chicken after ten seconds."
+msgstr ""
+"La propiedad *Tasa* se puede usar en activables para reducir la frecuencia "
+"de activación, por ejemplo, para [incubar](../../../src/gameeky/server/game/"
+"actuators/transmutes.py) un huevo en un pollo después de diez segundos."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:392
+msgid ""
+"The *Radius* property can be used to determine the area of effect of an "
+"actuator, e.g., to [burn](../../../src/gameeky/server/game/actuators/affects."
+"py) entities when stepping into a fire."
+msgstr ""
+"La propiedad *Radio* se puede utilizar para determinar el área de efecto de "
+"un actuador, por ejemplo, para [quemar](../../../src/gameeky/server/game/"
+"actuators/affects.py) entidades al entrar en un incendio."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:396
+msgid "To create a new actuator, follow the steps:"
+msgstr "Para crear un nuevo actuador, siga los pasos:"
+
+#. type: Bullet: '1. '
+#: ../docs/basics/en/index.md:403
+msgid "Open a new document in a text editor."
+msgstr "Abra un nuevo documento en un editor de texto."
+
+#. type: Bullet: '2. '
+#: ../docs/basics/en/index.md:403
+msgid "Write an actuator class, see examples below."
+msgstr "Escriba una clase de actuador; consulte los ejemplos a continuación."
+
+#. type: Bullet: '3. '
+#: ../docs/basics/en/index.md:403
+msgid ""
+"Save the new document to `~/Gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py`"
+msgstr ""
+"Guarde el nuevo documento en `~/Gameeky/NOMBRE_DEL_PROYECTO/actuators/"
+"NOMBRE_DEL_ACTUADOR.py`"
+
+#. type: Bullet: '4. '
+#: ../docs/basics/en/index.md:403
+msgid ""
+"From the entity editor, go under the *Game* tab to the actuators section."
+msgstr ""
+"Desde el editor de entidades, vaya a la pestaña *Juego* y a la sección de "
+"actuadores."
+
+#. type: Bullet: '5. '
+#: ../docs/basics/en/index.md:403
+msgid ""
+"A new option called *ACTUATOR_NAME* will be displayed along with the "
+"predefined actuators."
+msgstr ""
+"Se mostrará una nueva opción llamada *NOMBRE_DEL_ACTUADOR* junto con los "
+"actuadores predefinidos."
+
+#. type: Bullet: '6. '
+#: ../docs/basics/en/index.md:403
+msgid "Select it and save the entity to disk."
+msgstr "Selecciónelo y guarde la entidad en el disco."
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:405
+#, no-wrap
+msgid "> 📝 **Note:** User-created actuators can also be accessed from the scene editor when customizing specific entities.\n"
+msgstr "> 📝 **Nótese:** También se puede acceder a los actuadores creados por el usuario desde el editor de escenas al personalizar entidades específicas.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:409
+msgid ""
+"A minimal [actuator](../../../src/gameeky/server/game/actuators/base.py) "
+"class:"
+msgstr ""
+"Una clase [actuador](../../../src/gameeky/server/game/actuators/base.py) "
+"mínima:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:410
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        pass\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        pass\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:419
+msgid "Inspect the [entity](../../../src/gameeky/server/game/entity.py):"
+msgstr "Inspeccionar la [entidad](../../../src/gameeky/server/game/entity.py):"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:420
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        print(self.entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        print(self.entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:429
+msgid "Perform an action on the entity:"
+msgstr "Realizar una acción sobre la entidad:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:430
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"from gameeky.common.definitions import Action, Direction\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        self.entity.perform(Action.MOVE, Direction.SOUTH)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"from gameeky.common.definitions import Action, Direction\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        self.entity.perform(Action.MOVE, Direction.SOUTH)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:440
+msgid "Send a dialogue to the entity:"
+msgstr "Enviar un diálogo a la entidad:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:441
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        self.entity.tell(\"Hello...\")\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        self.entity.tell(\"Hello...\")\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:450
+msgid "Inspect all the other entities sitting right in front of the entity:"
+msgstr ""
+"Inspeccionar todas las demás entidades que se encuentran en frente a la "
+"entidad:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:451
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.obstacles:\n"
+"            print(entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.obstacles:\n"
+"            print(entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:461
+msgid ""
+"Inspect all the other entities that share the same position as the entity:"
+msgstr ""
+"Inspeccionar todas las demás entidades que comparten la misma posición que "
+"la entidad:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:462
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.surfaces:\n"
+"            print(entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.surfaces:\n"
+"            print(entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:472
+msgid "Inspect all the other entities that surround the entity:"
+msgstr "Inspeccionar todas las demás entidades que rodean la entidad:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:473
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.surroundings:\n"
+"            print(entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.surroundings:\n"
+"            print(entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:483
+#, no-wrap
+msgid "> 📝 **Note:** The *surroundings* method takes into account the *Radius* property of the entity.\n"
+msgstr "> 📝 **Nótese:** El método *surroundings* tiene en cuenta la propiedad *Radio* de la entidad.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:485
+msgid ""
+"Inspect all entities in the [scene](../../../src/gameeky/server/game/scene."
+"py), that are not static:"
+msgstr ""
+"Inspeccionar todas las entidades en la [escena](../../../src/gameeky/server/"
+"game/scene.py), que no sean estáticas:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:486
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.scene.mutables:\n"
+"            print(entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.scene.mutables:\n"
+"            print(entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:496
+msgid "Inspect all entities that are controlled by users:"
+msgstr "Inspeccionar todas las entidades controladas por usuarios:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:497
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.scene.playables:\n"
+"            print(entity.name)\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    def tick(self) -> None:\n"
+"        for entity in self.entity.scene.playables:\n"
+"            print(entity.name)\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:507
+msgid "Create an actuator that enacts every five seconds:"
+msgstr "Crear un actuador que actúa cada cinco segundos:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:508
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    activatable = True\n"
+"\n"
+"    def tick(self) -> None:\n"
+"        if not self.ready:\n"
+"            return\n"
+"\n"
+"        print(\"Activated...\")\n"
+"\n"
+"        super().tick()\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    activatable = True\n"
+"\n"
+"    def tick(self) -> None:\n"
+"        if not self.ready:\n"
+"            return\n"
+"\n"
+"        print(\"Activated...\")\n"
+"\n"
+"        super().tick()\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:524
+#, no-wrap
+msgid "> 📝 **Note:** The *ready* property takes into account the *Rate* property of the entity.\n"
+msgstr "> 📝 **Nótese:** La propiedad *ready* tiene en cuenta la propiedad *Tasa* de la entidad.\n"
+
+#. type: Plain text
+#: ../docs/basics/en/index.md:526
+msgid "Create an actuator that enacts only when interacted by users:"
+msgstr ""
+"Crear un actuador que actúa solo cuando los usuarios interactúen con él:"
+
+#. type: Fenced code block (python)
+#: ../docs/basics/en/index.md:527
+#, no-wrap
+msgid ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    interactable = True\n"
+"\n"
+"    def prepare(self, interactee: \"Entity\") -> bool:\n"
+"        if interactee.playable is False:\n"
+"            return False\n"
+"\n"
+"        return super().prepare(interactee)\n"
+"\n"
+"    def tick(self) -> None:\n"
+"        if self.interactee is None:\n"
+"            return\n"
+"\n"
+"        print(f\"Interacted with {self._interactee.name}\")\n"
+"\n"
+"        super().tick()\n"
+msgstr ""
+"from gameeky.plugins import Actuator as Plugin\n"
+"\n"
+"class Actuator(Plugin):\n"
+"    interactable = True\n"
+"\n"
+"    def prepare(self, interactee: \"Entity\") -> bool:\n"
+"        if interactee.playable is False:\n"
+"            return False\n"
+"\n"
+"        return super().prepare(interactee)\n"
+"\n"
+"    def tick(self) -> None:\n"
+"        if self.interactee is None:\n"
+"            return\n"
+"\n"
+"        print(f\"Interacted with {self._interactee.name}\")\n"
+"\n"
+"        super().tick()\n"
+
+# directorio de actuadores - añadir un 'de'? -- Rafael
+#. type: Plain text
+#: ../docs/basics/en/index.md:549
+msgid ""
+"Fore more complex examples check Gameeky's predefined [actuators](../../../"
+"src/gameeky/server/game/actuators/) directory."
+msgstr ""
+"Para ver ejemplos más complejos, consulte el directorio [actuadores]"
+"(../../../src/gameeky/server/game/actuators/) predefinidos de Gameeky."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:556
+msgid ""
+"A single actuator should not modify the whole scene. Iterating over all the "
+"entities in the scene is extremely costly and the performance will be "
+"severed, e.g., stick to *mutables* and *playables* only."
+msgstr ""
+"Un solo actuador no debe modificar toda la escena. Iterar sobre todas las "
+"entidades en la escena es extremadamente costoso y el rendimiento se verá "
+"afectado, por ejemplo, limitarse a *mutables* y *playables* únicamente."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:556
+msgid ""
+"It's preferred to write different actuators for different behaviors, e.g., "
+"avoid writing a single actuator that implements all of the custom behaviors. "
+"This will make it easier to understand and reuse in the long run."
+msgstr ""
+"Es preferible escribir diferentes actuadores para diferentes "
+"comportamientos; por ejemplo, evitar escribir un solo actuador que "
+"implemente todos los comportamientos personalizados. Esto hará que sea más "
+"fácil de entender y reutilizar a largo plazo."
+
+#. type: Bullet: '* '
+#: ../docs/basics/en/index.md:556
+msgid ""
+"Use only public methods and attributes, e.g., stick to methods like "
+"*obstacles* or *interactee*. These will make it less likely for the "
+"actuators to break in the future."
+msgstr ""
+"Utilice sólo métodos y atributos públicos, por ejemplo, apéguese a métodos "
+"como *obstacles* o *interactee*. Esto hará que sea menos probable que los "
+"actuadores se rompan en el futuro."
