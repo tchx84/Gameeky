@@ -1,29 +1,73 @@
 {
-    "name": "pandoc",
-    "buildsystem": "simple",
-    "build-commands": [
-        "mkdir -p /app/bin/",
-        "cp bin/pandoc /app/bin/pandoc"
-    ],
-    "sources": [
+    "name": "documentation",
+    "modules": [
         {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-amd64.tar.gz",
-            "sha256": "07635f6953201ee261bf90e821b8fe36c045e5a6fbae2ae6b1c2127715432942",
-            "only-arches": [
-                "x86_64"
+            "name": "pandoc",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/bin/",
+                "cp bin/pandoc /app/bin/pandoc"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-amd64.tar.gz",
+                    "sha256": "07635f6953201ee261bf90e821b8fe36c045e5a6fbae2ae6b1c2127715432942",
+                    "only-arches": [
+                        "x86_64"
+                    ]
+                },
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-arm64.tar.gz",
+                    "sha256": "3eae92420d3eee830ec121267bbf2e7f3a6c066aa58d599a9b769f50c4967c67",
+                    "only-arches": [
+                        "aarch64"
+                    ]
+                }
+            ],
+            "cleanup": [
+                "*"
             ]
         },
         {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-arm64.tar.gz",
-            "sha256": "3eae92420d3eee830ec121267bbf2e7f3a6c066aa58d599a9b769f50c4967c67",
-            "only-arches": [
-                "aarch64"
+            "name": "mdpo",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"mdpo\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/7f/ac/2de09f29c85a1c91d45bbb394d339dbda2b9fcf64d5a43895d2e643b9c39/contextlib_chdir-1.0.2-py3-none-any.whl",
+                    "sha256": "f72f7abd0f87c18a57aee30acf97659ca315157e50bd07e084b8737e0719de3c"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/49/47/3dc0d705612771d6337432de8bfcac7de8b8bc261c2f52e80436a86a8b58/importlib_metadata_argparse_version-2.0.0-py3-none-any.whl",
+                    "sha256": "f7d26c79f7d515602f3477f41b14bf47ad3d41297dc40b27076f61a73e2ad653"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/db/b3/f8ec15def9e433afee7fb20070b5880ff3227a5090565369402e0ffee440/md_ulb_pwrap-0.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+                    "sha256": "d64353d9bfc24cec01508a5d48b8afcd5cb139728b67721524ae59098bb1d75b"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/d1/8c/a4656bfe80cdba97ce0ea53a8c8d76bab741c54bfb4d32a90740c090d80d/mdpo-2.0.0-py3-none-any.whl",
+                    "sha256": "e499263c0c3a5a3850a8d9033597e7e27159872bf1c5e91245090dc4a0120838"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/6b/99/45bb1f9926efe370c6dbe324741c749658e44cb060124f28dad201202274/polib-1.2.0-py2.py3-none-any.whl",
+                    "sha256": "1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/5e/8f/06df4c3f17f33b32dc638b755adfa8ce61d5dc79e9ace1ca59123ac25eaf/pymd4c-1.3.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+                    "sha256": "3c4b490bf1213c3037ab1e7dccdaad25aa35ce00ed129ea311ae505ef8e8010b"
+                }
             ]
         }
-    ],
-    "cleanup": [
-        "*"
     ]
 }

@@ -1,3 +1,50 @@
+md2po = find_program('md2po', required: false)
+
+run_target('gameeky-docs-pot',
+  command : [
+    md2po,
+    '..' / 'docs' / 'basics' / 'en' / 'index.md',
+    '-dProject-Id-Version: gameeky',
+    '-dContent-Type: text/plain; charset=UTF-8',
+    '--quiet',
+    '--save',
+    '--po-encoding=UTF8',
+    '--po-filepath=' + '..' / 'docs'/ 'basics' / 'po' / 'gameeky.pot',
+  ]
+)
+
+msgmerge = find_program('msgmerge', required: false)
+
+run_target('gameeky-docs-update-po',
+  command : [
+    msgmerge,
+    '--previous',
+    '--update',
+    '--backup=none',
+    '..' / 'docs' / 'basics' / 'po' / 'es.po',
+    '..' / 'docs' / 'basics' / 'po' / 'gameeky.pot',
+  ]
+)
+
+translations = [
+  'es',
+]
+
+po2md = find_program('po2md', required: true, disabler: true)
+
+foreach translation : translations
+  run_command(
+    po2md,
+    'basics' / 'en' / 'index.md',
+    '--pofiles=' + 'basics' / 'po' / translation + '.po',
+    '--wrapwidth=0',
+    '--quiet',
+    '--save',
+    'basics' / translation / 'index.md',
+    check: true,
+  )
+endforeach
+
 languages = [
   'en',
   'es',
