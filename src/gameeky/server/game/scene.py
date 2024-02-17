@@ -105,6 +105,7 @@ class Scene:
         type_id: int,
         position: Vector,
         overrides: Optional[Description] = None,
+        playable: bool = False,
     ) -> Entity:
         entity = EntityRegistry.new_from_values(
             id=self._index,
@@ -112,6 +113,7 @@ class Scene:
             position=position,
             overrides=overrides,
             scene=self,
+            playable=playable,
         )
 
         self._index += 1

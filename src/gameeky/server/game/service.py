@@ -139,6 +139,7 @@ class Service(GObject.GObject):
             overrides=Description(
                 name=request.username,
             ),
+            playable=True,
         )
         entity.connect("told", self.__on_entity_told)
 

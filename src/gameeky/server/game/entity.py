@@ -155,6 +155,7 @@ class Entity(CommonEntity, GObject.GObject):
         rate: float,
         scene: Scene,
         overrides: Optional[Description],
+        playable: bool,
         *args,
         **kargs,
     ) -> None:
@@ -184,6 +185,7 @@ class Entity(CommonEntity, GObject.GObject):
         self._max_stamina = stamina
         self._default_density = density
         self._default_visible = self.visible
+        self._playable = playable
 
         self._scene = scene
 
@@ -370,7 +372,7 @@ class Entity(CommonEntity, GObject.GObject):
 
     @property
     def playable(self) -> bool:
-        return self.type_id == EntityType.PLAYER
+        return self._playable
 
     @property
     def mutable(self) -> bool:
@@ -618,6 +620,7 @@ class EntityRegistry:
         position: Vector,
         overrides: Optional[Description],
         scene: Scene,
+        playable: bool,
     ) -> Entity:
         type_id, description = cls.find_and_override(
             type_id=type_id,
@@ -650,4 +653,5 @@ class EntityRegistry:
             state=State[description.state.upper()],
             overrides=overrides,
             scene=scene,
+            playable=playable,
         )
