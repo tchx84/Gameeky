@@ -21,7 +21,7 @@ from __future__ import annotations
 import math
 
 from copy import deepcopy
-from typing import Dict, List, Optional, cast, TYPE_CHECKING
+from typing import Dict, List, Optional, Tuple, cast, TYPE_CHECKING
 
 from gi.repository import GObject, GLib
 
@@ -595,7 +595,8 @@ class EntityRegistry:
         cls,
         type_id: int,
         overrides: Optional[Description],
-    ) -> Description:
+    ) -> Tuple[int, Description]:
+        type_id = type_id if type_id in cls.__entities__ else EntityType.PLAYER
         registry = cls.__entities__[type_id]
         description = deepcopy(registry.game.default)
 
@@ -607,7 +608,7 @@ class EntityRegistry:
                     getattr(overrides, attribute),
                 )
 
-        return description
+        return type_id, description
 
     @classmethod
     def new_from_values(
@@ -618,7 +619,11 @@ class EntityRegistry:
         overrides: Optional[Description],
         scene: Scene,
     ) -> Entity:
-        description = cls.find_and_override(type_id=type_id, overrides=overrides)
+        type_id, description = cls.find_and_override(
+            type_id=type_id,
+            overrides=overrides,
+        )
+
         return Entity(
             id=id,
             type_id=type_id,
