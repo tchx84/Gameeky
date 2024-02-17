@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.17.0 -->
+<!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name session_join_window.ui -->
   <requires lib="gtk" version="4.12"/>
@@ -44,6 +44,21 @@
                                   <object class="AdwExpanderRow">
                                     <property name="hexpand">True</property>
                                     <property name="title" translatable="yes">Advanced</property>
+                                    <child>
+                                      <object class="AdwSpinRow" id="entity_type">
+                                        <property name="adjustment">
+                                          <object class="GtkAdjustment">
+                                            <property name="lower">1.0</property>
+                                            <property name="page-increment">1.0</property>
+                                            <property name="page-size">1.0</property>
+                                            <property name="step-increment">1.0</property>
+                                            <property name="upper">65536.0</property>
+                                            <property name="value">1.0</property>
+                                          </object>
+                                        </property>
+                                        <property name="title">Entity Type</property>
+                                      </object>
+                                    </child>
                                     <child>
                                       <object class="AdwSpinRow" id="session_port">
                                         <property name="adjustment">

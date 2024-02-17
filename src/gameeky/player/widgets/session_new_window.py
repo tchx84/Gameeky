@@ -48,6 +48,7 @@ class SessionNewWindow(Adw.Window):
 
     toast = Gtk.Template.Child()
     project = Gtk.Template.Child()
+    entity_type = Gtk.Template.Child()
     scene = Gtk.Template.Child()
     players = Gtk.Template.Child()
     session_port = Gtk.Template.Child()
@@ -143,6 +144,7 @@ class SessionNewWindow(Adw.Window):
         return Description(
             address=DEFAULT_ADDRESS,
             project_path=self.project_path,
+            entity_type=int(self.entity_type.props.value),
             scene_path=self.scene_path,
             clients=int(self.players.props.value),
             session_port=int(self.session_port.props.value),

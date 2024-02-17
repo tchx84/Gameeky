@@ -22,7 +22,7 @@ from ..network.tcp import Client as TCPClient
 from ..network.udp import Client as UDPClient
 
 from ...common.logger import logger
-from ...common.definitions import Action, EntityType
+from ...common.definitions import Action
 from ...common.scene import SceneRequest
 from ...common.session import Session, SessionRequest
 from ...common.stats import StatsRequest
@@ -45,6 +45,7 @@ class Service(GObject.GObject):
 
     def __init__(
         self,
+        entity_type: int,
         address: str,
         session_port: int,
         messages_port: int,
@@ -53,6 +54,7 @@ class Service(GObject.GObject):
     ) -> None:
         super().__init__()
 
+        self._entity_type = entity_type
         self._sequence = 0
 
         self._session_manager = TCPClient(
@@ -111,7 +113,7 @@ class Service(GObject.GObject):
         self._session_manager.send(
             Payload(
                 session_request=SessionRequest(
-                    type_id=EntityType.PLAYER,
+                    type_id=self._entity_type,
                     version=VERSION,
                     project=get_project_name(),
                     username=GLib.get_user_name(),
