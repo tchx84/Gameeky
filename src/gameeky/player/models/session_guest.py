@@ -46,6 +46,7 @@ class SessionGuest(Threaded):
     def __init__(
         self,
         project_path: str,
+        entity_type: int,
         address: str,
         session_port: int,
         messages_port: int,
@@ -54,6 +55,7 @@ class SessionGuest(Threaded):
         super().__init__()
 
         self._project_path = project_path
+        self._entity_type = entity_type
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
@@ -70,6 +72,7 @@ class SessionGuest(Threaded):
 
     def _setup(self) -> None:
         self._service = Service(
+            entity_type=self._entity_type,
             address=self._address,
             session_port=self._session_port,
             messages_port=self._messages_port,

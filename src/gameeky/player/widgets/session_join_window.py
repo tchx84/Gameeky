@@ -41,6 +41,7 @@ class SessionJoinWindow(Adw.Window):
 
     toast = Gtk.Template.Child()
     project = Gtk.Template.Child()
+    entity_type = Gtk.Template.Child()
     address = Gtk.Template.Child()
     session_port = Gtk.Template.Child()
     messages_port = Gtk.Template.Child()
@@ -106,6 +107,7 @@ class SessionJoinWindow(Adw.Window):
     def description(self) -> Description:
         return Description(
             project_path=self.project_path,
+            entity_type=int(self.entity_type.props.value),
             address=self.network_address,
             session_port=int(self.session_port.props.value),
             messages_port=int(self.messages_port.props.value),

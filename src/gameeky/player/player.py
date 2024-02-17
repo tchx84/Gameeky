@@ -52,6 +52,7 @@ from ..common.utils import (
 from ..common.definitions import (
     Command,
     Format,
+    EntityType,
     DEFAULT_ADDRESS,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
@@ -163,6 +164,7 @@ class Application(Adw.Application):
 
         self._session_guest = SessionGuest(
             project_path=self._description.project_path,
+            entity_type=self._description.entity_type,
             address=self._description.address,
             session_port=self._description.session_port,
             messages_port=self._description.messages_port,
@@ -263,6 +265,7 @@ class Application(Adw.Application):
             self._description = Description(
                 address=DEFAULT_ADDRESS,
                 project_path=find_project_path(scene_path),
+                entity_type=EntityType.PLAYER,
                 scene_path=scene_path,
                 clients=DEFAULT_CLIENTS,
                 session_port=DEFAULT_SESSION_PORT,
