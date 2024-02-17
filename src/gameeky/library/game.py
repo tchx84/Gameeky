@@ -31,6 +31,7 @@ from ..common.session import Session
 from ..common.definitions import (
     Action,
     Direction,
+    EntityType,
     TICK,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
@@ -48,12 +49,14 @@ class Game(GObject.GObject):
     def __init__(
         self,
         project: str,
+        entity_type: int = EntityType.PLAYER,
         address: str = DEFAULT_ADDRESS,
         session_port: int = DEFAULT_SESSION_PORT,
         messages_port: int = DEFAULT_MESSAGES_PORT,
     ) -> None:
         super().__init__()
         self._project = os.path.expanduser(project)
+        self._entity_type = entity_type
         self._address = address
         self._session_port = session_port
         self._messages_port = messages_port
@@ -123,6 +126,7 @@ class Game(GObject.GObject):
         logger.debug("join")
 
         self._service = Service(
+            self._entity_type,
             self._address,
             self._session_port,
             self._messages_port,
