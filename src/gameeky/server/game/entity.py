@@ -395,7 +395,7 @@ class Entity(CommonEntity, GObject.GObject):
 
     @property
     def removed(self) -> bool:
-        return self.state == State.DESTROYED and self.removable is True
+        return self.state == State.DESTROYED and self.removable and not self.playable
 
     @property
     def spawned(self) -> EntityType:
