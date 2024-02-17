@@ -83,6 +83,7 @@ def test_client_create():
     global client
 
     client = Client(
+        entity_type=EntityType.PLAYER,
         address=DEFAULT_ADDRESS,
         session_port=DEFAULT_SESSION_PORT,
         messages_port=DEFAULT_MESSAGES_PORT,
