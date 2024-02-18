@@ -1,6 +1,10 @@
 pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 gnome = import('gnome')
 
+dependency('libadwaita-1', version : '>= 1.4')
+dependency('webkitgtk-6.0', version : '>= 2.40')
+dependency('gsound', version : '>= 1.0')
+
 gnome.compile_resources('gameeky',
   'gameeky.gresource.xml',
   gresource_bundle: true,
