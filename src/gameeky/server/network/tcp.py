@@ -22,7 +22,7 @@ from gi.repository import Gio, GLib, GObject
 
 from ...common.logger import logger
 from ...common.utils import add_idle_source, find_context
-from ...common.definitions import MAX_TCP_BYTES
+from ...common.definitions import DEFAULT_SEPARATOR
 
 
 class Client(GObject.GObject):
@@ -35,44 +35,50 @@ class Client(GObject.GObject):
         self._acknowledged = False
         self._server = server
         self._connection = connection
-        self._input_stream = connection.get_input_stream()
-        self._output_stream = connection.get_output_stream()
+        self._data_input_stream = Gio.DataInputStream.new(
+            connection.get_input_stream(),
+        )
+        self._data_output_stream = Gio.DataOutputStream.new(
+            connection.get_output_stream(),
+        )
 
-    def send(self, data: bytes) -> None:
+    def send(self, data: str) -> None:
         add_idle_source(self.do_send, (data,), context=self._context)
 
-    def do_send(self, data: bytes) -> None:
-        if self._server.shut is True:
+    def do_send(self, data: str) -> None:
+        if self._server.cancellable.is_cancelled():
             return
 
-        self._output_stream.write(data)
+        self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
 
     def run(self) -> None:
-        while self._server.shut is False and self._connection.is_connected():
+        while not self._server.cancellable.is_cancelled():
             try:
-                raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
+                data, _ = self._data_input_stream.read_line(None)
             except:
                 break
 
-            data = raw.get_data()
             if not data:
                 break
 
             if self._acknowledged is False:
-                self._server.emit("connected", self, data)
+                self._server.emit("connected", self, data.decode("UTF-8"))
                 self._acknowledged = True
             else:
-                self._server.emit("received", self, data)
+                self._server.emit("received", self, data.decode("UTF-8"))
 
         self._server.emit("disconnected", self)
+
+    def shutdown(self) -> None:
+        self._connection.close()
 
 
 class Server(GObject.GObject):
     __gtype_name__ = "TCPServer"
 
     __gsignals__ = {
-        "connected": (GObject.SignalFlags.RUN_LAST, None, (object, object)),
-        "received": (GObject.SignalFlags.RUN_LAST, None, (object, object)),
+        "connected": (GObject.SignalFlags.RUN_LAST, None, (object, str)),
+        "received": (GObject.SignalFlags.RUN_LAST, None, (object, str)),
         "disconnected": (GObject.SignalFlags.RUN_LAST, None, (object,)),
     }
 
@@ -86,7 +92,7 @@ class Server(GObject.GObject):
         self._service.connect("run", self.__on_session_started_cb)
         self._service.start()
 
-        self._shut = False
+        self.cancellable = Gio.Cancellable()
 
     def __on_session_started_cb(
         self,
@@ -101,12 +107,8 @@ class Server(GObject.GObject):
         add_idle_source(GObject.GObject.emit, (self,) + args, context=self._context)
 
     def shutdown(self) -> None:
+        self.cancellable.cancel()
         self._service.stop()
         self._service.close()
-        self._shut = True
 
         logger.debug("Server.TCP.shut")
-
-    @property
-    def shut(self) -> bool:
-        return self._shut

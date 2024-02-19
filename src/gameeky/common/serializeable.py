@@ -31,10 +31,9 @@ class Serializeable(object):
     def from_values(cls, values: Any) -> Any:
         raise NotImplementedError
 
-    def serialize(self) -> bytes:
-        return json.dumps(self.to_values()).encode("UTF-8")
+    def serialize(self) -> str:
+        return json.dumps(self.to_values())
 
     @classmethod
-    def deserialize(cls, data: bytes) -> Any:
-        values = json.loads(data.decode("UTF-8"))
-        return cls.from_values(values)
+    def deserialize(cls, data: str) -> Any:
+        return cls.from_values(json.loads(data))

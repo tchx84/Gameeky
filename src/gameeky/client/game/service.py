@@ -16,10 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import GLib, GObject
 
 from ..network.tcp import Client as TCPClient
-from ..network.udp import Client as UDPClient
 
 from ...common.logger import logger
 from ...common.definitions import Action
@@ -63,23 +62,21 @@ class Service(GObject.GObject):
             context=context,
             graceful=graceful,
         )
-        self._messages_manager = UDPClient(
-            address=address,
-            port=messages_port,
-            context=context,
-        )
 
-        self._messages_manager.connect("received", self.__on_message_payload_received)
-        self._session_manager.connect("received", self.__on_session_payload_received)
+        self._session_manager.connect("received", self.__on_session_received)
         self._session_manager.connect("failed", self.__on_session_failed)
 
-    def __on_session_payload_received(self, client: TCPClient, data: bytes) -> None:
+    def __on_session_received(self, client: TCPClient, data: str) -> None:
         payload = Payload.deserialize(data)
 
         if payload.session is not None:
             self.__on_session_registered(payload.session)
         elif payload.dialogue is not None:
             self.__on_dialogue_received(payload.dialogue)
+        elif payload.scene is not None:
+            self.emit("scene-updated", payload.scene)
+        elif payload.stats is not None:
+            self.emit("stats-updated", payload.stats)
 
     def __on_session_registered(self, session: Session) -> None:
         if session.error is not None:
@@ -96,19 +93,6 @@ class Service(GObject.GObject):
     def __on_dialogue_received(self, dialogue: Dialogue) -> None:
         self.emit("dialogue-updated", dialogue)
 
-    def __on_message_payload_received(
-        self,
-        manager: UDPClient,
-        address: Gio.InetSocketAddress,
-        data: bytes,
-    ) -> None:
-        payload = Payload.deserialize(data)
-
-        if payload.scene is not None:
-            self.emit("scene-updated", payload.scene)
-        elif payload.stats is not None:
-            self.emit("stats-updated", payload.stats)
-
     def register(self) -> None:
         self._session_manager.send(
             Payload(
@@ -122,13 +106,12 @@ class Service(GObject.GObject):
         )
 
     def unregister(self) -> None:
-        self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
         logger.debug("Client.Service.shut")
 
     def message(self, action: Action, value: float) -> None:
-        self._messages_manager.send(
+        self._session_manager.send(
             Payload(
                 message=Message(
                     self._session.id,
@@ -141,11 +124,11 @@ class Service(GObject.GObject):
         self._sequence += 1
 
     def request_scene(self) -> None:
-        self._messages_manager.send(
+        self._session_manager.send(
             Payload(scene_request=SceneRequest(self._session.id)).serialize()
         )
 
     def request_stats(self) -> None:
-        self._messages_manager.send(
+        self._session_manager.send(
             Payload(stats_request=StatsRequest(self._session.id)).serialize()
         )
