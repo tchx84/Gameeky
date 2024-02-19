@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE
 # Copyright (C) YEAR Free Software Foundation, Inc.
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the gameeky package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-02-15 15:26-0300\n"
+"Project-Id-Version: gameeky VERSION\n"
+"POT-Creation-Date: 2024-02-18 23:33-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. type: Title #
-#: ../docs/basics/en/index.md:1
+#: ../basics/en/index.md:1
 #, markdown-text, no-wrap
 msgid "Documentation"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:4
+#: ../basics/en/index.md:4
 #, markdown-text, no-wrap
 msgid ""
 "> ⚠️ **Warning:** Gameeky is still in early stages of development and "
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:6
+#: ../basics/en/index.md:6
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** This document is not an exhaustive tutorial on everything "
@@ -39,85 +39,85 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:7
+#: ../basics/en/index.md:7
 #, markdown-text, no-wrap
 msgid "Topics"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Introduction](#introduction)"
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Installation](#installation)"
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Thematic packs](#thematic-packs)"
 msgstr ""
 
 #. type: Bullet: '4. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Overview](#overview)"
 msgstr ""
 
 #. type: Bullet: '5. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[The launcher](#the-launcher)"
 msgstr ""
 
 #. type: Bullet: '6. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[The player](#the-player)"
 msgstr ""
 
 #. type: Bullet: '7. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Cooperative game play](#cooperative-game-play)"
 msgstr ""
 
 #. type: Bullet: '8. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[The scene editor](#the-scene-editor)"
 msgstr ""
 
 #. type: Bullet: '9. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[The entity editor](#the-entity-editor)"
 msgstr ""
 
 #. type: Bullet: '10. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[LOGO-like code](#logo-like-code)"
 msgstr ""
 
 #. type: Bullet: '11. '
-#: ../docs/basics/en/index.md:20
+#: ../basics/en/index.md:20
 #, markdown-text
 msgid "[Plugins](#plugins)"
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:21
+#: ../basics/en/index.md:21
 #, markdown-text, no-wrap
 msgid "Introduction"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:24
+#: ../basics/en/index.md:24
 #, markdown-text
 msgid ""
 "[Gameeky](https://github.com/tchx84/gameeky) lets young learners and "
@@ -126,31 +126,31 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid "Play and explore games with friends."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid "Create new games without writing any code."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid "Tell stories through these games."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid "Nurture artistic skills by designing game objects and creatures."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid ""
 "Grasp the basics of programming using Python in a "
@@ -159,13 +159,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:31
+#: ../basics/en/index.md:31
 #, markdown-text
 msgid "Mature programming skills by extending games with Python plugins."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:33
+#: ../basics/en/index.md:33
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** This is a learning tool in the shape of a game engine. It's "
@@ -175,13 +175,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:34
+#: ../basics/en/index.md:34
 #, markdown-text, no-wrap
 msgid "Installation"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:37
+#: ../basics/en/index.md:37
 #, markdown-text
 msgid ""
 "The recommended installation method is through the software center of the "
@@ -192,25 +192,25 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:39
+#: ../basics/en/index.md:39
 #, markdown-text
 msgid "Lastly, it can also be installed from the terminal:"
 msgstr ""
 
 #. type: Fenced code block (bash)
-#: ../docs/basics/en/index.md:40
+#: ../basics/en/index.md:40
 #, no-wrap
 msgid "flatpak --user install flathub dev.tchx84.Gameeky\n"
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:44
+#: ../basics/en/index.md:44
 #, markdown-text, no-wrap
 msgid "Thematic packs"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:47
+#: ../basics/en/index.md:47
 #, markdown-text
 msgid ""
 "Gameeky provides packs of predefined building blocks for different "
@@ -220,13 +220,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:52
+#: ../basics/en/index.md:52
 #, markdown-text
 msgid "Assets like tilesets, sprites and sounds."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:52
+#: ../basics/en/index.md:52
 #, markdown-text
 msgid ""
 "Entities created from these assets, with predefined properties and "
@@ -234,19 +234,19 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:52
+#: ../basics/en/index.md:52
 #, markdown-text
 msgid "Scenes created with those entities."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:52
+#: ../basics/en/index.md:52
 #, markdown-text
 msgid "Actuators that extend the predefined behaviors."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:54
+#: ../basics/en/index.md:54
 #, markdown-text
 msgid ""
 "These building blocks can be reused to create custom scenes, new games and "
@@ -254,7 +254,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:56
+#: ../basics/en/index.md:56
 #, markdown-text
 msgid ""
 "The recommended installation method is through the software center of the "
@@ -266,13 +266,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:58
+#: ../basics/en/index.md:58
 #, markdown-text
 msgid "Lastly, packs can also be installed from the terminal:"
 msgstr ""
 
 #. type: Fenced code block (bash)
-#: ../docs/basics/en/index.md:59
+#: ../basics/en/index.md:59
 #, no-wrap
 msgid ""
 "flatpak --user remote-ls flathub | grep dev.tchx84.Gameeky.ThematicPack\n"
@@ -281,19 +281,19 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:64
+#: ../basics/en/index.md:64
 #, markdown-text, no-wrap
 msgid "Overview"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:67
+#: ../basics/en/index.md:67
 #, markdown-text
 msgid "The Gameeky package provides four main components:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:72
+#: ../basics/en/index.md:72
 #, markdown-text
 msgid ""
 "The launcher is the main component where all thematic packs and projects can "
@@ -301,31 +301,31 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:72
+#: ../basics/en/index.md:72
 #, markdown-text
 msgid "The player is where games can be played and joined."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:72
+#: ../basics/en/index.md:72
 #, markdown-text
 msgid "The scene editor is where scenes can be created and edited."
 msgstr ""
 
 #. type: Bullet: '4. '
-#: ../docs/basics/en/index.md:72
+#: ../basics/en/index.md:72
 #, markdown-text
 msgid "The entity editor is where entities can be created and edited."
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:73
+#: ../basics/en/index.md:73
 #, markdown-text, no-wrap
 msgid "The launcher"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:76
+#: ../basics/en/index.md:76
 #, markdown-text
 msgid ""
 "The launcher serves as the Gameeky starting point. It provides an easy way "
@@ -335,37 +335,37 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:80
+#: ../basics/en/index.md:80
 #, markdown-text
 msgid "Create new thematic packs and project from scratch."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:80
+#: ../basics/en/index.md:80
 #, markdown-text
 msgid "Edit existing projects."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:80
+#: ../basics/en/index.md:80
 #, markdown-text
 msgid "Remove existing projects."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:82
+#: ../basics/en/index.md:82
 #, markdown-text
 msgid "![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png)"
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:83
+#: ../basics/en/index.md:83
 #, markdown-text, no-wrap
 msgid "The player"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:86
+#: ../basics/en/index.md:86
 #, markdown-text
 msgid ""
 "The player provides a visual representation of the game world and the means "
@@ -373,7 +373,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:88
+#: ../basics/en/index.md:88
 #, markdown-text
 msgid ""
 "To start a game, click on the *Play* button of the project from the "
@@ -383,20 +383,19 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:92 ../docs/basics/en/index.md:278
+#: ../basics/en/index.md:92 ../basics/en/index.md:278
 #, markdown-text
 msgid "From the launcher, click on the *Play* button of the project."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:92 ../docs/basics/en/index.md:144
-#: ../docs/basics/en/index.md:278
+#: ../basics/en/index.md:92 ../basics/en/index.md:144 ../basics/en/index.md:278
 #, markdown-text
 msgid "From the player, go to the menu and select the *New* option."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:92
+#: ../basics/en/index.md:92
 #, markdown-text
 msgid ""
 "From the creation dialog, select the scene file and click on the *Create* "
@@ -404,19 +403,19 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:94
+#: ../basics/en/index.md:94
 #, markdown-text
 msgid "![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png)"
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:95
+#: ../basics/en/index.md:95
 #, markdown-text, no-wrap
 msgid "In-game screen elements"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:98
+#: ../basics/en/index.md:98
 #, markdown-text
 msgid ""
 "Once in the game, the scene takes most of the screen but there are other "
@@ -424,7 +423,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:100
+#: ../basics/en/index.md:100
 #, markdown-text
 msgid ""
 "The [HUD](https://en.wikipedia.org/wiki/HUD_(video_games)) is an interface "
@@ -433,7 +432,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:104
+#: ../basics/en/index.md:104
 #, markdown-text
 msgid ""
 "A green bar that represents the user's character durability, e.g., to "
@@ -441,7 +440,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:104
+#: ../basics/en/index.md:104
 #, markdown-text
 msgid ""
 "A blue bar that represents the user's character stamina, e.g., to estimate "
@@ -449,7 +448,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:104
+#: ../basics/en/index.md:104
 #, markdown-text
 msgid ""
 "An icon slot to display the entity that is currently being held by the "
@@ -458,7 +457,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:106
+#: ../basics/en/index.md:106
 #, markdown-text
 msgid ""
 "Another element is the dialogue viewer. This viewer is placed at the bottom "
@@ -467,31 +466,31 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:109
+#: ../basics/en/index.md:109
 #, markdown-text
 msgid "A light blue section that contains the dialogue text."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:109
+#: ../basics/en/index.md:109
 #, markdown-text
 msgid "A button to close the dialogue."
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:110
+#: ../basics/en/index.md:110
 #, markdown-text, no-wrap
 msgid "Controls"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:113
+#: ../basics/en/index.md:113
 #, markdown-text
 msgid "Once in the game, the user's character can be controlled with two methods:"
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:116
+#: ../basics/en/index.md:116
 #, markdown-text
 msgid ""
 "Keyboard controls. To see the full list of key bindings, go the menu and "
@@ -499,7 +498,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:116
+#: ../basics/en/index.md:116
 #, markdown-text
 msgid ""
 "Mouse controls. To see the available actions, right-click on the game view "
@@ -508,13 +507,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:117
+#: ../basics/en/index.md:117
 #, markdown-text, no-wrap
 msgid "Actions"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:120
+#: ../basics/en/index.md:120
 #, markdown-text
 msgid ""
 "The user's character can perform multiple actions to interact with the game "
@@ -522,7 +521,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid ""
 "*Move* to advance the user's character to one of four directions, e.g., to "
@@ -530,7 +529,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid ""
 "*Take* to hold an entity from the scene. The entity must be directly in "
@@ -539,7 +538,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid ""
 "*Use* to apply any effects that the entity being held might have. These "
@@ -548,13 +547,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid "*Drop* to stop holding an entity, e.g., to stop moving it."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid ""
 "*Interact* to activate any behavior from an entity. To interact with another "
@@ -563,19 +562,19 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:127
+#: ../basics/en/index.md:127
 #, markdown-text
 msgid "*Stop* to stop any action being performed and simply idle."
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:128
+#: ../basics/en/index.md:128
 #, markdown-text, no-wrap
 msgid "Save files"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:131
+#: ../basics/en/index.md:131
 #, markdown-text
 msgid ""
 "The state of the game can be saved at any moment and restored later. Save "
@@ -583,7 +582,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:134
+#: ../basics/en/index.md:134
 #, markdown-text
 msgid ""
 "To save the state of the game, go to the menu and select the *Save As…* "
@@ -591,7 +590,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:134
+#: ../basics/en/index.md:134
 #, markdown-text
 msgid ""
 "To restore the state of the game, follow the same steps described above to "
@@ -599,13 +598,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:135
+#: ../basics/en/index.md:135
 #, markdown-text, no-wrap
 msgid "Cooperative game play"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:138
+#: ../basics/en/index.md:138
 #, markdown-text
 msgid ""
 "Gameeky was designed from the ground up to create and share cooperative "
@@ -616,19 +615,19 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:140
+#: ../basics/en/index.md:140
 #, markdown-text
 msgid "To start a cooperative game, follow these steps:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:144
+#: ../basics/en/index.md:144
 #, markdown-text
 msgid "From the launcher, click on the *Play* button from the project's card."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:144
+#: ../basics/en/index.md:144
 #, markdown-text
 msgid ""
 "From the creation dialog, increase the number of participants and then click "
@@ -636,25 +635,25 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:146
+#: ../basics/en/index.md:146
 #, markdown-text
 msgid "To join a cooperative game:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:150
+#: ../basics/en/index.md:150
 #, markdown-text
 msgid "From the launcher, click on the *Play* button from the same project's card."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:150
+#: ../basics/en/index.md:150
 #, markdown-text
 msgid "From the player, go to the menu and select the *Join* option."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:150
+#: ../basics/en/index.md:150
 #, markdown-text
 msgid ""
 "From the join dialog, specify the [IP "
@@ -663,7 +662,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:152
+#: ../basics/en/index.md:152
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** All the users joining a cooperative game must have a copy of "
@@ -671,7 +670,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:154
+#: ../basics/en/index.md:154
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** Custom scenes created from thematic packs don't need to be "
@@ -680,13 +679,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:155
+#: ../basics/en/index.md:155
 #, markdown-text, no-wrap
 msgid "The scene editor"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:158
+#: ../basics/en/index.md:158
 #, markdown-text
 msgid ""
 "The scene editor lets users create and modify game worlds. It serves as the "
@@ -694,7 +693,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:160
+#: ../basics/en/index.md:160
 #, markdown-text
 msgid ""
 "To edit an existing Scene, click on the *Edit* button of the project from "
@@ -704,7 +703,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:164
+#: ../basics/en/index.md:164
 #, markdown-text
 msgid ""
 "From the launcher, click on the *Copy* button of the project. This step is "
@@ -713,32 +712,32 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:164
+#: ../basics/en/index.md:164
 #, markdown-text
 msgid "From the launcher, click on the *Edit* button of the project."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:164
+#: ../basics/en/index.md:164
 #, markdown-text
 msgid "From the scene editor, go to the menu and select the *New* option."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:166
+#: ../basics/en/index.md:166
 #, markdown-text
 msgid "![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png)"
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:167 ../docs/basics/en/index.md:215
-#: ../docs/basics/en/index.md:379
+#: ../basics/en/index.md:167 ../basics/en/index.md:215
+#: ../basics/en/index.md:379
 #, markdown-text, no-wrap
 msgid "Concepts"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:170
+#: ../basics/en/index.md:170
 #, markdown-text
 msgid ""
 "A scene is a collection of entities arranged in a tiles grid. The basic "
@@ -746,13 +745,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:176
+#: ../basics/en/index.md:176
 #, markdown-text
 msgid "A *Name* that must be unique among the scenes of the same project."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:176
+#: ../basics/en/index.md:176
 #, markdown-text
 msgid ""
 "The *Time* of the day in which the scene occurs. It can be *Day*, *Night* or "
@@ -760,7 +759,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:176
+#: ../basics/en/index.md:176
 #, markdown-text
 msgid ""
 "If *Dynamic*, the *Duration* specifies the number of seconds that it takes "
@@ -768,7 +767,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:176
+#: ../basics/en/index.md:176
 #, markdown-text
 msgid ""
 "The *Width* of the scene specifies the total number of tiles on the "
@@ -776,7 +775,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:176
+#: ../basics/en/index.md:176
 #, markdown-text
 msgid ""
 "The *Height* of the scene specifies the total number of tiles on the "
@@ -784,14 +783,14 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:177 ../docs/basics/en/index.md:251
-#: ../docs/basics/en/index.md:271 ../docs/basics/en/index.md:393
+#: ../basics/en/index.md:177 ../basics/en/index.md:251
+#: ../basics/en/index.md:271 ../basics/en/index.md:393
 #, markdown-text, no-wrap
 msgid "Workflow"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:180
+#: ../basics/en/index.md:180
 #, markdown-text
 msgid ""
 "The scene editing workflow resembles one of a painting tool. Entities are "
@@ -800,7 +799,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:184
+#: ../basics/en/index.md:184
 #, markdown-text
 msgid ""
 "To add entities to the scene, select an entity from the left panel and place "
@@ -808,7 +807,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:184
+#: ../basics/en/index.md:184
 #, markdown-text
 msgid ""
 "To remove entities from the scene, select the *Remove* tool from the left "
@@ -816,7 +815,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:184
+#: ../basics/en/index.md:184
 #, markdown-text
 msgid ""
 "Although entities come with predefined properties and behaviors, particular "
@@ -825,7 +824,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:186
+#: ../basics/en/index.md:186
 #, markdown-text
 msgid ""
 "Additionally, the scene editor provides helpers to make things easier such "
@@ -833,7 +832,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:190
+#: ../basics/en/index.md:190
 #, markdown-text
 msgid ""
 "Drawing area selector to add or remove multiple entities at once, e.g., to "
@@ -841,7 +840,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:190
+#: ../basics/en/index.md:190
 #, markdown-text
 msgid ""
 "Layer selector to modify entities at a specific layer, e.g., to quickly "
@@ -849,7 +848,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:190
+#: ../basics/en/index.md:190
 #, markdown-text
 msgid ""
 "Time selector to visualize the scene during *Day* or *Night*, e.g., to "
@@ -857,21 +856,21 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:191 ../docs/basics/en/index.md:259
-#: ../docs/basics/en/index.md:367 ../docs/basics/en/index.md:550
+#: ../basics/en/index.md:191 ../basics/en/index.md:259
+#: ../basics/en/index.md:367 ../basics/en/index.md:550
 #, markdown-text, no-wrap
 msgid "Tips and tricks"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:194 ../docs/basics/en/index.md:262
-#: ../docs/basics/en/index.md:370 ../docs/basics/en/index.md:553
+#: ../basics/en/index.md:194 ../basics/en/index.md:262
+#: ../basics/en/index.md:370 ../basics/en/index.md:553
 #, markdown-text
 msgid "For an improved experience, try the following tips and tricks:"
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:198
+#: ../basics/en/index.md:198
 #, markdown-text
 msgid ""
 "When creating the basic terrain of the scene, use the layer selector and set "
@@ -880,7 +879,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:198
+#: ../basics/en/index.md:198
 #, markdown-text
 msgid ""
 "When editing a scene, leave the player open on that scene. When changes to "
@@ -890,7 +889,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:198
+#: ../basics/en/index.md:198
 #, markdown-text
 msgid ""
 "When editing a scene, use the initial location setter tool from the left "
@@ -899,13 +898,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:199
+#: ../basics/en/index.md:199
 #, markdown-text, no-wrap
 msgid "The entity editor"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:202
+#: ../basics/en/index.md:202
 #, markdown-text
 msgid ""
 "The entity editor lets users create and modify game objects and "
@@ -914,7 +913,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:204
+#: ../basics/en/index.md:204
 #, markdown-text
 msgid ""
 "Before creating a new entity from scratch, it's recommended to inspect "
@@ -923,43 +922,43 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:207
+#: ../basics/en/index.md:207
 #, markdown-text
 msgid "From the scene editor, right-click on an entity in the left panel."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:207
+#: ../basics/en/index.md:207
 #, markdown-text
 msgid "Select the *Edit* option from the menu."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:209
+#: ../basics/en/index.md:209
 #, markdown-text
 msgid "To create a new entity:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:212
+#: ../basics/en/index.md:212
 #, markdown-text
 msgid "From the scene editor, right-click anywhere in the left panel."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:212
+#: ../basics/en/index.md:212
 #, markdown-text
 msgid "Select the *Add* option from the menu."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:214
+#: ../basics/en/index.md:214
 #, markdown-text
 msgid "![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png)"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:218
+#: ../basics/en/index.md:218
 #, markdown-text
 msgid ""
 "Entities represent everything that can exist in the game, e.g., the grass, "
@@ -968,31 +967,31 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:222
+#: ../basics/en/index.md:222
 #, markdown-text
 msgid "Game logic properties."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:222
+#: ../basics/en/index.md:222
 #, markdown-text
 msgid "Graphics."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:222
+#: ../basics/en/index.md:222
 #, markdown-text
 msgid "Sounds."
 msgstr ""
 
 #. type: Title ####
-#: ../docs/basics/en/index.md:223
+#: ../basics/en/index.md:223
 #, markdown-text, no-wrap
 msgid "Game logic properties"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:226
+#: ../basics/en/index.md:226
 #, markdown-text
 msgid ""
 "These properties determine how entities behave and interact with other "
@@ -1001,7 +1000,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:228
+#: ../basics/en/index.md:228
 #, markdown-text
 msgid ""
 "Although there are two dozen properties, a few of these require special "
@@ -1009,13 +1008,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:234
+#: ../basics/en/index.md:234
 #, markdown-text
 msgid "The *Identifier* must be unique among all the entities of the same project."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:234
+#: ../basics/en/index.md:234
 #, markdown-text
 msgid ""
 "An entity is always in one and a single *State*, e.g., *Idling*, *Moving*, "
@@ -1024,7 +1023,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:234
+#: ../basics/en/index.md:234
 #, markdown-text
 msgid ""
 "An entity is always pointing to one and a single *Direction*. It can be "
@@ -1032,7 +1031,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:234
+#: ../basics/en/index.md:234
 #, markdown-text
 msgid ""
 "An entity state can be changed intrinsically by *Actuators* that provide "
@@ -1042,7 +1041,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:234
+#: ../basics/en/index.md:234
 #, markdown-text
 msgid ""
 "All entity properties coexist in a single system and therefore behaviors can "
@@ -1053,7 +1052,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:236
+#: ../basics/en/index.md:236
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** When creating a new thematic pack assume that the entity with "
@@ -1062,13 +1061,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ####
-#: ../docs/basics/en/index.md:237
+#: ../basics/en/index.md:237
 #, markdown-text, no-wrap
 msgid "Graphics"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:240
+#: ../basics/en/index.md:240
 #, markdown-text
 msgid ""
 "Entities are represented on the screen through 2D graphics, which can be "
@@ -1076,7 +1075,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:242
+#: ../basics/en/index.md:242
 #, markdown-text
 msgid ""
 "These graphics are assigned to specific combinations of state and direction, "
@@ -1086,7 +1085,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:244
+#: ../basics/en/index.md:244
 #, markdown-text
 msgid ""
 "All entities must provide a *Default* graphic, e.g., to visualize it on the "
@@ -1094,13 +1093,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ####
-#: ../docs/basics/en/index.md:245
+#: ../basics/en/index.md:245
 #, markdown-text, no-wrap
 msgid "Sounds"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:248
+#: ../basics/en/index.md:248
 #, markdown-text
 msgid ""
 "Similarly to graphics, entities can emit sounds when in specific states, "
@@ -1109,13 +1108,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:250
+#: ../basics/en/index.md:250
 #, markdown-text
 msgid "There aren't *Default* sounds, as sounds are optional."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:254
+#: ../basics/en/index.md:254
 #, markdown-text
 msgid ""
 "The entity creation workflow is similar to filling a form or a template. The "
@@ -1123,7 +1122,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:258
+#: ../basics/en/index.md:258
 #, markdown-text
 msgid ""
 "Under the *Game* tab, start setting the values from top to bottom. Note that "
@@ -1133,7 +1132,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:258
+#: ../basics/en/index.md:258
 #, markdown-text
 msgid ""
 "Under the *Graphics* tab, click on the *Add* button to create the first and "
@@ -1143,13 +1142,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:258
+#: ../basics/en/index.md:258
 #, markdown-text
 msgid "Save the entity and use it from the scene editor."
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:266
+#: ../basics/en/index.md:266
 #, markdown-text
 msgid ""
 "When creating a new entity, always begin with setting the identifier number "
@@ -1159,7 +1158,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:266
+#: ../basics/en/index.md:266
 #, markdown-text
 msgid ""
 "When creating a new animation, always leave both, the entity editor and the "
@@ -1168,7 +1167,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:266
+#: ../basics/en/index.md:266
 #, markdown-text
 msgid ""
 "After creating an animation, click on the *Copy* button to add the next "
@@ -1176,13 +1175,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:267
+#: ../basics/en/index.md:267
 #, markdown-text, no-wrap
 msgid "LOGO-like code"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:270
+#: ../basics/en/index.md:270
 #, markdown-text
 msgid ""
 "Having support for cooperative game play opens the door for cooperators that "
@@ -1192,13 +1191,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:274
+#: ../basics/en/index.md:274
 #, markdown-text
 msgid "Follow these steps to start a cooperative game:"
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:278
+#: ../basics/en/index.md:278
 #, markdown-text
 msgid ""
 "From the creation dialog, increased the number of participants and then "
@@ -1206,25 +1205,25 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:280
+#: ../basics/en/index.md:280
 #, markdown-text
 msgid "To join the game from code, these steps must be followed:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:283
+#: ../basics/en/index.md:283
 #, markdown-text
 msgid "Write Python code that uses the Gameeky library, see examples below."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:283
+#: ../basics/en/index.md:283
 #, markdown-text
 msgid "Run that code from the terminal with the following command:"
 msgstr ""
 
 #. type: Fenced code block (bash)
-#: ../docs/basics/en/index.md:284
+#: ../basics/en/index.md:284
 #, no-wrap
 msgid ""
 "cd ~/path/to/my/file/\n"
@@ -1233,19 +1232,19 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: ../docs/basics/en/index.md:289 ../docs/basics/en/index.md:406
+#: ../basics/en/index.md:289 ../basics/en/index.md:406
 #, markdown-text, no-wrap
 msgid "Examples"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:292
+#: ../basics/en/index.md:292
 #, markdown-text
 msgid "Join and leave a [game](../../../src/gameeky/library/game.py):"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:293
+#: ../basics/en/index.md:293
 #, no-wrap
 msgid ""
 "from gameeky.library import Game\n"
@@ -1256,13 +1255,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:302
+#: ../basics/en/index.md:302
 #, markdown-text
 msgid "Perform [actions](../../../src/gameeky/common/definitions.py):"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:303
+#: ../basics/en/index.md:303
 #, no-wrap
 msgid ""
 "from gameeky.library import Game\n"
@@ -1284,7 +1283,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:323
+#: ../basics/en/index.md:323
 #, markdown-text
 msgid ""
 "Inspect the position and basic properties of the user's character "
@@ -1292,7 +1291,7 @@ msgid ""
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:324
+#: ../basics/en/index.md:324
 #, no-wrap
 msgid ""
 "from gameeky.library import Game\n"
@@ -1307,13 +1306,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:337
+#: ../basics/en/index.md:337
 #, markdown-text
 msgid "Inspect the state of the [scene](../../../src/gameeky/common/scene.py):"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:338
+#: ../basics/en/index.md:338
 #, no-wrap
 msgid ""
 "from gameeky.library import Game\n"
@@ -1329,7 +1328,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:352
+#: ../basics/en/index.md:352
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** Cooperators can only see their immediate surroundings from the "
@@ -1337,7 +1336,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:354
+#: ../basics/en/index.md:354
 #, markdown-text
 msgid ""
 "Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the "
@@ -1345,7 +1344,7 @@ msgid ""
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:355
+#: ../basics/en/index.md:355
 #, no-wrap
 msgid ""
 "from gameeky.library import Game\n"
@@ -1360,7 +1359,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:372
+#: ../basics/en/index.md:372
 #, markdown-text
 msgid ""
 "When testing code locally, leave both the player and the terminal open side "
@@ -1368,13 +1367,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: ../docs/basics/en/index.md:373
+#: ../basics/en/index.md:373
 #, markdown-text, no-wrap
 msgid "Plugins"
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:376
+#: ../basics/en/index.md:376
 #, markdown-text
 msgid ""
 "Actuators can modify the behavior of an entity. A single entity can use "
@@ -1384,7 +1383,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:378
+#: ../basics/en/index.md:378
 #, markdown-text
 msgid ""
 "Therefore, Gameeky provides support for user-created actuators to go beyond "
@@ -1392,13 +1391,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:382
+#: ../basics/en/index.md:382
 #, markdown-text
 msgid "There are three types of actuators:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:386
+#: ../basics/en/index.md:386
 #, markdown-text
 msgid ""
 "Regular actuators enact on each tick of the scene, e.g., to "
@@ -1407,7 +1406,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:386
+#: ../basics/en/index.md:386
 #, markdown-text
 msgid ""
 "Activatable actuators enact only in fixed time intervals or when explicitly "
@@ -1417,7 +1416,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:386
+#: ../basics/en/index.md:386
 #, markdown-text
 msgid ""
 "Interactable actuators enact when other entities interact with its entity, "
@@ -1426,13 +1425,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:388
+#: ../basics/en/index.md:388
 #, markdown-text
 msgid "All actuators use their own entity game properties to modify their behavior:"
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:392
+#: ../basics/en/index.md:392
 #, markdown-text
 msgid ""
 "The *Target Name* and *Target Type* properties can be used to filter the "
@@ -1442,7 +1441,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:392
+#: ../basics/en/index.md:392
 #, markdown-text
 msgid ""
 "The *Rate* property can be used in activatables to reduce the activation "
@@ -1452,7 +1451,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:392
+#: ../basics/en/index.md:392
 #, markdown-text
 msgid ""
 "The *Radius* property can be used to determine the area of effect of an "
@@ -1462,37 +1461,37 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:396
+#: ../basics/en/index.md:396
 #, markdown-text
 msgid "To create a new actuator, follow the steps:"
 msgstr ""
 
 #. type: Bullet: '1. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid "Open a new document in a text editor."
 msgstr ""
 
 #. type: Bullet: '2. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid "Write an actuator class, see examples below."
 msgstr ""
 
 #. type: Bullet: '3. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid "Save the new document to `~/Gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py`"
 msgstr ""
 
 #. type: Bullet: '4. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid "From the entity editor, go under the *Game* tab to the actuators section."
 msgstr ""
 
 #. type: Bullet: '5. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid ""
 "A new option called *ACTUATOR_NAME* will be displayed along with the "
@@ -1500,13 +1499,13 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '6. '
-#: ../docs/basics/en/index.md:403
+#: ../basics/en/index.md:403
 #, markdown-text
 msgid "Select it and save the entity to disk."
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:405
+#: ../basics/en/index.md:405
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** User-created actuators can also be accessed from the scene "
@@ -1514,7 +1513,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:409
+#: ../basics/en/index.md:409
 #, markdown-text
 msgid ""
 "A minimal [actuator](../../../src/gameeky/server/game/actuators/base.py) "
@@ -1522,7 +1521,7 @@ msgid ""
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:410
+#: ../basics/en/index.md:410
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1533,13 +1532,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:419
+#: ../basics/en/index.md:419
 #, markdown-text
 msgid "Inspect the [entity](../../../src/gameeky/server/game/entity.py):"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:420
+#: ../basics/en/index.md:420
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1550,13 +1549,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:429
+#: ../basics/en/index.md:429
 #, markdown-text
 msgid "Perform an action on the entity:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:430
+#: ../basics/en/index.md:430
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1568,13 +1567,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:440
+#: ../basics/en/index.md:440
 #, markdown-text
 msgid "Send a dialogue to the entity:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:441
+#: ../basics/en/index.md:441
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1585,13 +1584,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:450
+#: ../basics/en/index.md:450
 #, markdown-text
 msgid "Inspect all the other entities sitting right in front of the entity:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:451
+#: ../basics/en/index.md:451
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1603,13 +1602,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:461
+#: ../basics/en/index.md:461
 #, markdown-text
 msgid "Inspect all the other entities that share the same position as the entity:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:462
+#: ../basics/en/index.md:462
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1621,13 +1620,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:472
+#: ../basics/en/index.md:472
 #, markdown-text
 msgid "Inspect all the other entities that surround the entity:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:473
+#: ../basics/en/index.md:473
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1639,7 +1638,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:483
+#: ../basics/en/index.md:483
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** The *surroundings* method takes into account the *Radius* "
@@ -1647,7 +1646,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:485
+#: ../basics/en/index.md:485
 #, markdown-text
 msgid ""
 "Inspect all entities in the "
@@ -1655,7 +1654,7 @@ msgid ""
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:486
+#: ../basics/en/index.md:486
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1667,13 +1666,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:496
+#: ../basics/en/index.md:496
 #, markdown-text
 msgid "Inspect all entities that are controlled by users:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:497
+#: ../basics/en/index.md:497
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1685,13 +1684,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:507
+#: ../basics/en/index.md:507
 #, markdown-text
 msgid "Create an actuator that enacts every five seconds:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:508
+#: ../basics/en/index.md:508
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1709,7 +1708,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:524
+#: ../basics/en/index.md:524
 #, markdown-text, no-wrap
 msgid ""
 "> 📝 **Note:** The *ready* property takes into account the *Rate* property of "
@@ -1717,13 +1716,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:526
+#: ../basics/en/index.md:526
 #, markdown-text
 msgid "Create an actuator that enacts only when interacted by users:"
 msgstr ""
 
 #. type: Fenced code block (python)
-#: ../docs/basics/en/index.md:527
+#: ../basics/en/index.md:527
 #, no-wrap
 msgid ""
 "from gameeky.plugins import Actuator as Plugin\n"
@@ -1747,7 +1746,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: ../docs/basics/en/index.md:549
+#: ../basics/en/index.md:549
 #, markdown-text
 msgid ""
 "Fore more complex examples check Gameeky's predefined "
@@ -1755,7 +1754,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:556
+#: ../basics/en/index.md:556
 #, markdown-text
 msgid ""
 "A single actuator should not modify the whole scene. Iterating over all the "
@@ -1764,7 +1763,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:556
+#: ../basics/en/index.md:556
 #, markdown-text
 msgid ""
 "It's preferred to write different actuators for different behaviors, e.g., "
@@ -1773,7 +1772,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '* '
-#: ../docs/basics/en/index.md:556
+#: ../basics/en/index.md:556
 #, markdown-text
 msgid ""
 "Use only public methods and attributes, e.g., stick to methods like "
