@@ -18,13 +18,12 @@
 
 import gi
 
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional
 
-gi.require_version("GSound", "1.0")
+gi.require_version("Gst", "1.0")
 
-from gi.repository import GLib, Gio, GSound, GObject
+from gi.repository import GLib, Gst, GObject
 
-from ...common.logger import logger
 from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
@@ -41,9 +40,14 @@ class Sound(GObject.GObject):
         super().__init__()
 
         self._path = path
-        self._cancellable = Gio.Cancellable()
-        self._context = GSound.Context()
-        self._context.init()
+
+        Gst.init()
+        self._playbin = Gst.ElementFactory.make("playbin", "player")
+        self._playbin.set_property("uri", f"file://{path}")
+
+        bus = self._playbin.get_bus()
+        bus.add_signal_watch()
+        bus.connect("message", self.__on_messaged)
 
         self._delay = delay
         self._timeout = timeout
@@ -51,17 +55,13 @@ class Sound(GObject.GObject):
         self._timestamp = get_time_milliseconds()
         self._playing = False
 
-    def __on_sound_finished(
+    def __on_messaged(
         self,
-        context: GSound.Context,
-        result: Gio.AsyncResult,
-        data: Optional[Any] = None,
+        bus: Gst.Bus,
+        message: Gst.Message,
     ) -> None:
-        try:
-            self._context.play_full_finish(result)
-        except GLib.GError as e:
-            if not e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
-                logger.error(e)
+        if message.type != Gst.MessageType.EOS:
+            return
 
         self._stop_timeout()
         self._playing = False
@@ -101,16 +101,13 @@ class Sound(GObject.GObject):
             return
 
         self._playing = True
-        self._cancellable.reset()
         self._timestamp = timestamp
-        self._context.play_full(
-            {GSound.ATTR_MEDIA_FILENAME: self._path},
-            self._cancellable,
-            self.__on_sound_finished,
-        )
+        self._playbin.set_state(Gst.State.NULL)
+        self._playbin.set_state(Gst.State.PLAYING)
 
     def stop(self) -> None:
-        self._cancellable.cancel()
+        self._playbin.set_state(Gst.State.PAUSED)
+        self._playing = False
 
 
 class SoundSequence:

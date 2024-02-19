@@ -37,7 +37,6 @@
     "modules": [
         "tests/requirements.json",
         "docs/requirements.json",
-        "src/requirements.json",
         {
             "name": "gameeky",
             "builddir": true,

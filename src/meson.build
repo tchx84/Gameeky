@@ -3,7 +3,7 @@ gnome = import('gnome')
 
 dependency('libadwaita-1', version : '>= 1.4')
 dependency('webkitgtk-6.0', version : '>= 2.40')
-dependency('gsound', version : '>= 1.0')
+dependency('gstreamer-1.0', version : '>= 1.0')
 
 gnome.compile_resources('gameeky',
   'gameeky.gresource.xml',
