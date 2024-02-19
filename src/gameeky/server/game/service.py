@@ -18,14 +18,13 @@
 
 from typing import Dict, Optional
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import GLib, GObject
 
 from .scene import Scene
 from .entity import Entity
 
 from ..network.tcp import Server as TCPServer
 from ..network.tcp import Client as TCPClient
-from ..network.udp import Server as UDPServer
 
 from ...common.vector import Vector
 from ...common.scanner import Description
@@ -90,10 +89,8 @@ class Service(GObject.GObject):
             context=context,
         )
         self._session_manager.connect("connected", self.__on_session_connected)
+        self._session_manager.connect("received", self.__on_session_received)
         self._session_manager.connect("disconnected", self.__on_session_disconnected)
-
-        self._messages_manager = UDPServer(port=messages_port, context=context)
-        self._messages_manager.connect("received", self.__on_payload_received)
 
         logger.debug("Server.Service.Started")
 
@@ -101,7 +98,7 @@ class Service(GObject.GObject):
         self,
         manager: TCPServer,
         client: TCPClient,
-        data: bytes,
+        data: str,
     ) -> None:
         request = Payload.deserialize(data).session_request
 
@@ -161,6 +158,21 @@ class Service(GObject.GObject):
 
         logger.debug("Server.Service.Registered %s", client)
 
+    def __on_session_received(
+        self,
+        manager: TCPServer,
+        client: TCPClient,
+        data: str,
+    ) -> None:
+        payload = Payload.deserialize(data)
+
+        if payload.message is not None:
+            self.__on_message_received(payload.message)
+        elif payload.scene_request is not None:
+            self.__on_scene_requested(payload.scene_request, client)
+        elif payload.stats_request is not None:
+            self.__on_stats_requested(payload.stats_request, client)
+
     def __on_session_disconnected(
         self,
         manager: TCPServer,
@@ -178,27 +190,13 @@ class Service(GObject.GObject):
         del self._session_by_id[session.id]
 
         self.emit("unregistered", session)
+        client.shutdown()
 
         logger.debug("Server.Service.Unregistered %s", client)
 
     def __on_entity_told(self, entity: Entity, text: str) -> None:
         client = self._session_by_entity_id[entity.id].client
         client.send(Payload(dialogue=CommonDialogue(text=text)).serialize())
-
-    def __on_payload_received(
-        self,
-        manager: UDPServer,
-        address: Gio.InetSocketAddress,
-        data: bytes,
-    ) -> None:
-        payload = Payload.deserialize(data)
-
-        if payload.message is not None:
-            self.__on_message_received(payload.message)
-        elif payload.scene_request is not None:
-            self.__on_scene_requested(payload.scene_request, address)
-        elif payload.stats_request is not None:
-            self.__on_stats_requested(payload.stats_request, address)
 
     def __on_message_received(
         self,
@@ -218,7 +216,7 @@ class Service(GObject.GObject):
     def __on_scene_requested(
         self,
         request: CommonSceneRequest,
-        address: Gio.InetSocketAddress,
+        client: TCPClient,
     ) -> None:
         session = self._session_by_id.get(request.session_id)
 
@@ -226,12 +224,12 @@ class Service(GObject.GObject):
             return
 
         scene = self.scene.prepare_for_entity_id(session.entity_id)
-        self._messages_manager.send(address, Payload(scene=scene).serialize())
+        client.send(Payload(scene=scene).serialize())
 
     def __on_stats_requested(
         self,
         request: CommonStatsRequest,
-        address: Gio.InetSocketAddress,
+        client: TCPClient,
     ) -> None:
         session = self._session_by_id.get(request.session_id)
 
@@ -239,11 +237,10 @@ class Service(GObject.GObject):
             return
 
         stats = self.scene.prepare_stats_for_entity_id(session.entity_id)
-        self._messages_manager.send(address, Payload(stats=stats).serialize())
+        client.send(Payload(stats=stats).serialize())
 
     def shutdown(self) -> None:
         self.scene.shutdown()
-        self._messages_manager.shutdown()
         self._session_manager.shutdown()
 
         logger.debug("Server.Service.shut")

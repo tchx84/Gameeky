@@ -21,14 +21,14 @@ from typing import Any, Optional
 from gi.repository import GLib, Gio, GObject
 
 from ...common.logger import logger
-from ...common.definitions import MAX_TCP_BYTES
+from ...common.definitions import DEFAULT_SEPARATOR
 
 
 class Client(GObject.GObject):
     __gtype_name__ = "TCPClient"
 
     __gsignals__ = {
-        "received": (GObject.SignalFlags.RUN_LAST, None, (object,)),
+        "received": (GObject.SignalFlags.RUN_LAST, None, (str,)),
         "failed": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
@@ -45,46 +45,51 @@ class Client(GObject.GObject):
         self._connection = self._client.connect_to_host(address, port, None)
         self._connection.set_graceful_disconnect(graceful)
 
-        self._input_stream = self._connection.get_input_stream()
-        self._output_stream = self._connection.get_output_stream()
+        self._cancellable = Gio.Cancellable()
+        self._data_input_stream = Gio.DataInputStream.new(
+            self._connection.get_input_stream()
+        )
+        self._data_output_stream = Gio.DataOutputStream.new(
+            self._connection.get_output_stream()
+        )
 
-        self._input_source = self._input_stream.create_source(None)
-        self._input_source.set_callback(self.__on_data_received_db)
-        self._input_source.attach(context)
+        self._listen()
 
-        self._shut = False
-
-    def __on_data_received_db(self, data: Optional[Any] = None) -> int:
-        if self.shut is True:
-            return GLib.SOURCE_REMOVE
-
+    def __on_line_read(
+        self,
+        stream: Gio.DataInputStream,
+        result: Gio.AsyncResult,
+        data: Optional[Any] = None,
+    ) -> None:
         try:
-            raw = self._input_stream.read_bytes(MAX_TCP_BYTES, None)
+            data, _ = stream.read_line_finish(result)
         except Exception as e:
             logger.error(e)
             self.emit("failed")
-        else:
-            data = raw.get_data()
-
-            if not data:
-                return GLib.SOURCE_REMOVE
-
-            self.emit("received", data)
-
-        return GLib.SOURCE_CONTINUE
-
-    def send(self, data: bytes) -> None:
-        if self.shut is True:
             return
 
-        self._output_stream.write(data)
+        if not data:
+            return
+
+        self.emit("received", data.decode("UTF-8"))
+        self._listen()
+
+    def _listen(self) -> None:
+        self._data_input_stream.read_line_async(
+            GLib.PRIORITY_DEFAULT,
+            self._cancellable,
+            self.__on_line_read,
+            None,
+        )
+
+    def send(self, data: str) -> None:
+        if self._cancellable.is_cancelled() is True:
+            return
+
+        self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
 
     def shutdown(self) -> None:
+        self._cancellable.cancel()
         self._connection.close()
-        self._shut = True
 
         logger.debug("Client.TCP.shut")
-
-    @property
-    def shut(self) -> bool:
-        return self._shut
