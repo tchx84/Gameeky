@@ -92,7 +92,6 @@ gameeky_sources = [
   'gameeky/client/input/keyboard.py',
   'gameeky/client/network/__init__.py',
   'gameeky/client/network/tcp.py',
-  'gameeky/client/network/udp.py',
   'gameeky/client/sound/entity.py',
   'gameeky/client/sound/__init__.py',
   'gameeky/client/sound/scene.py',
@@ -255,7 +254,6 @@ gameeky_sources = [
   'gameeky/server/main.py',
   'gameeky/server/network/__init__.py',
   'gameeky/server/network/tcp.py',
-  'gameeky/server/network/udp.py',
 ]
 
 install_data(gameeky_sources, install_dir: pkgdatadir, preserve_path: true)
