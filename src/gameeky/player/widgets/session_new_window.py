@@ -34,7 +34,6 @@ from ...common.definitions import (
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 
@@ -52,7 +51,6 @@ class SessionNewWindow(Adw.Window):
     scene = Gtk.Template.Child()
     players = Gtk.Template.Child()
     session_port = Gtk.Template.Child()
-    messages_port = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -61,7 +59,6 @@ class SessionNewWindow(Adw.Window):
         self.scene.props.text = DEFAULT_SCENE
         self.players.props.value = DEFAULT_CLIENTS
         self.session_port.props.value = DEFAULT_SESSION_PORT
-        self.messages_port.props.value = DEFAULT_MESSAGES_PORT
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -148,5 +145,4 @@ class SessionNewWindow(Adw.Window):
             scene_path=self.scene_path,
             clients=int(self.players.props.value),
             session_port=int(self.session_port.props.value),
-            messages_port=int(self.messages_port.props.value),
         )

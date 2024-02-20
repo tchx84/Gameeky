@@ -43,7 +43,6 @@ class SessionHost(Threaded):
         scene: str,
         clients: int,
         session_port: int,
-        messages_port: int,
     ) -> None:
         super().__init__()
 
@@ -51,7 +50,6 @@ class SessionHost(Threaded):
         self._scene = scene
         self._clients = clients
         self._session_port = session_port
-        self._messages_port = messages_port
 
         self._service: Optional[Service] = None
 
@@ -64,7 +62,6 @@ class SessionHost(Threaded):
             scene=self._scene,
             clients=self._clients,
             session_port=self._session_port,
-            messages_port=self._messages_port,
             context=self.context,
         )
 

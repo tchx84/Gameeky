@@ -30,7 +30,6 @@ TILES_Y = 11
 DEFAULT_ADDRESS = "127.0.0.1"
 DEFAULT_CLIENTS = 1
 DEFAULT_SESSION_PORT = 7771
-DEFAULT_MESSAGES_PORT = 7772
 DEFAULT_TIMEOUT = 1
 DEFAULT_SEPARATOR = "\n"
 
@@ -57,7 +56,6 @@ class Action(IntEnum):
 class Command(StrEnum):
     PROJECT_PATH = auto()
     SESSION_PORT = auto()
-    MESSAGES_PORT = auto()
     CLIENTS = auto()
     ADDRESS = auto()
     SCENE = auto()

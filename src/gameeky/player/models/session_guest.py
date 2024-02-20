@@ -49,7 +49,6 @@ class SessionGuest(Threaded):
         entity_type: int,
         address: str,
         session_port: int,
-        messages_port: int,
         widget: Gtk.Widget,
     ) -> None:
         super().__init__()
@@ -58,7 +57,6 @@ class SessionGuest(Threaded):
         self._entity_type = entity_type
         self._address = address
         self._session_port = session_port
-        self._messages_port = messages_port
 
         self._widget = widget
 
@@ -75,7 +73,6 @@ class SessionGuest(Threaded):
             entity_type=self._entity_type,
             address=self._address,
             session_port=self._session_port,
-            messages_port=self._messages_port,
             context=self._context,
         )
 

@@ -16,7 +16,6 @@ from gameeky.common.definitions import (
     DEFAULT_SCENE,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 context = None
@@ -72,7 +71,6 @@ def test_server_create():
         scene=DEFAULT_SCENE,
         clients=1,
         session_port=DEFAULT_SESSION_PORT,
-        messages_port=DEFAULT_MESSAGES_PORT,
         context=context,
     )
 
@@ -86,7 +84,6 @@ def test_client_create():
         entity_type=EntityType.PLAYER,
         address=DEFAULT_ADDRESS,
         session_port=DEFAULT_SESSION_PORT,
-        messages_port=DEFAULT_MESSAGES_PORT,
         context=context,
         graceful=False,
     )

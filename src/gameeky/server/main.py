@@ -32,7 +32,6 @@ from gameeky.common.definitions import (
     DEFAULT_SCENE,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 
@@ -57,14 +56,6 @@ class Application(Gio.Application):
             GLib.OptionFlags.NONE,
             GLib.OptionArg.INT,
             "Port to be used for the session service",
-            None,
-        )
-        self.add_main_option(
-            Command.MESSAGES_PORT,
-            ord("u"),
-            GLib.OptionFlags.NONE,
-            GLib.OptionArg.INT,
-            "Port to be used for the updates service",
             None,
         )
         self.add_main_option(
@@ -93,7 +84,6 @@ class Application(Gio.Application):
             scene=self._scene,
             clients=self._clients,
             session_port=self._session_port,
-            messages_port=self._messages_port,
             context=GLib.MainContext.default(),
         )
 
@@ -113,7 +103,6 @@ class Application(Gio.Application):
         self._scene = options.get(Command.SCENE, DEFAULT_SCENE)
         self._clients = options.get(Command.CLIENTS, DEFAULT_CLIENTS)
         self._session_port = options.get(Command.SESSION_PORT, DEFAULT_SESSION_PORT)
-        self._messages_port = options.get(Command.MESSAGES_PORT, DEFAULT_MESSAGES_PORT)
 
         self.do_activate()
         return 0
