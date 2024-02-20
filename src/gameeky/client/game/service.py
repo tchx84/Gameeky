@@ -47,7 +47,6 @@ class Service(GObject.GObject):
         entity_type: int,
         address: str,
         session_port: int,
-        messages_port: int,
         context: GLib.MainContext,
         graceful=True,
     ) -> None:

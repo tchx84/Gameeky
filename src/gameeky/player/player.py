@@ -56,7 +56,6 @@ from ..common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_CLIENTS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 
@@ -147,7 +146,6 @@ class Application(Adw.Application):
             scene=self._description.scene_path,
             clients=self._description.clients,
             session_port=self._description.session_port,
-            messages_port=self._description.messages_port,
         )
 
         self._session_host.connect("started", self.__on_host_started)
@@ -167,7 +165,6 @@ class Application(Adw.Application):
             entity_type=self._description.entity_type,
             address=self._description.address,
             session_port=self._description.session_port,
-            messages_port=self._description.messages_port,
             widget=self._window,
         )
 
@@ -269,7 +266,6 @@ class Application(Adw.Application):
                 scene_path=scene_path,
                 clients=DEFAULT_CLIENTS,
                 session_port=DEFAULT_SESSION_PORT,
-                messages_port=DEFAULT_MESSAGES_PORT,
             )
 
         self.activate()

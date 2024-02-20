@@ -35,7 +35,6 @@ from ..common.definitions import (
     TICK,
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 from ..client.game.service import Service
@@ -52,14 +51,12 @@ class Game(GObject.GObject):
         entity_type: int = EntityType.PLAYER,
         address: str = DEFAULT_ADDRESS,
         session_port: int = DEFAULT_SESSION_PORT,
-        messages_port: int = DEFAULT_MESSAGES_PORT,
     ) -> None:
         super().__init__()
         self._project = os.path.expanduser(project)
         self._entity_type = entity_type
         self._address = address
         self._session_port = session_port
-        self._messages_port = messages_port
 
         self._entity: Optional[Entity] = None
         self._scene: Optional[Scene] = None
@@ -129,7 +126,6 @@ class Game(GObject.GObject):
             self._entity_type,
             self._address,
             self._session_port,
-            self._messages_port,
             GLib.MainContext.default(),
         )
         self._service.connect("registered", self.__on_registered)

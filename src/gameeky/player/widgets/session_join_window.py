@@ -27,7 +27,6 @@ from ...common.utils import (
 from ...common.definitions import (
     DEFAULT_ADDRESS,
     DEFAULT_SESSION_PORT,
-    DEFAULT_MESSAGES_PORT,
 )
 
 
@@ -44,7 +43,6 @@ class SessionJoinWindow(Adw.Window):
     entity_type = Gtk.Template.Child()
     address = Gtk.Template.Child()
     session_port = Gtk.Template.Child()
-    messages_port = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -52,7 +50,6 @@ class SessionJoinWindow(Adw.Window):
         self.project.props.text = get_project_path("")
         self.address.props.text = DEFAULT_ADDRESS
         self.session_port.props.value = DEFAULT_SESSION_PORT
-        self.messages_port.props.value = DEFAULT_MESSAGES_PORT
 
     def _notify(self, title) -> None:
         toast = Adw.Toast()
@@ -110,5 +107,4 @@ class SessionJoinWindow(Adw.Window):
             entity_type=int(self.entity_type.props.value),
             address=self.network_address,
             session_port=int(self.session_port.props.value),
-            messages_port=int(self.messages_port.props.value),
         )
