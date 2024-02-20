@@ -61,6 +61,8 @@ class Cursor:
 
         self._position = Vector(-1, -1)
         self._position_timestamp = get_time_milliseconds()
+        self._action: Optional[Action] = None
+        self._direction: Optional[Direction] = None
 
     def _find(self, position: Vector) -> Optional[Entity]:
         for entity in self._model.entities:
@@ -113,11 +115,18 @@ class Cursor:
             direction = Direction.SOUTH
 
         if direction is not None:
-            self._service.message(Action.MOVE, direction)
+            action = Action.MOVE
         else:
-            self._service.message(Action.IDLE, 0)
+            action = Action.IDLE
             self._target = None
             self._position = Vector(-1, -1)
+
+        if action == self._action and direction == self._direction:
+            return GLib.SOURCE_CONTINUE
+
+        self._service.message(action, direction if direction else 0)
+        self._action = action
+        self._direction = direction
 
         return GLib.SOURCE_CONTINUE
 
