@@ -16,18 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import os
 import gi
-import locale
 
 gi.require_version("WebKit", "6.0")
-
-from typing import Optional
 
 from gi.repository import Adw, Gio, GObject, Gtk, WebKit
 from gi.repository.WebKit import WebView
 
-from ..config import pkgdatadir
 from ..logger import logger
 
 
@@ -35,36 +30,16 @@ from ..logger import logger
 class DocumentationWindow(Adw.Window):
     __gtype_name__ = "DocumentationWindow"
 
-    __default__ = "en"
-    __languages__ = {
-        "en_": "en",
-        "es_": "es",
-    }
-
     webview = Gtk.Template.Child()
     back_button = Gtk.Template.Child()
     forward_button = Gtk.Template.Child()
 
-    def __init__(self, *args, **kargs) -> None:
+    def __init__(self, uri: str, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
 
-        code, encoding = locale.getlocale()
-        language = self._find_language(code)
-        uri = os.path.join(pkgdatadir, "docs", "basics", language, "index.html")
-
-        self.webview.load_uri(f"file://{uri}")
+        self.webview.load_uri(uri)
         self.webview.connect_after("load-changed", self.__on_load_clicked)
         self.webview.connect("notify::uri", self.__on_load_uri)
-
-    def _find_language(self, code: Optional[str]) -> str:
-        if code is None:
-            return self.__default__
-
-        for option, language in self.__languages__.items():
-            if code.startswith(option):
-                return language
-
-        return self.__default__
 
     def __on_load_uri(self, webview: WebView, param: GObject.ParamSpec) -> None:
         self.webview.load_uri(self.webview.props.uri)

@@ -41,7 +41,7 @@ from ..common.scanner import Description
 from ..common.definitions import Command, Format
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
-from ..common.widgets.documentation_window import DocumentationWindow
+from ..common.widgets.documentation_wrapper import present_documentation
 from ..common.utils import (
     set_project_path,
     get_project_folder,
@@ -205,8 +205,7 @@ class Application(Adw.Application):
         action: Gio.SimpleAction,
         data: Optional[Any] = None,
     ) -> None:
-        dialog = DocumentationWindow(transient_for=self._window)
-        dialog.present()
+        present_documentation(self._window)
 
     def __on_close_requested(self, window: SceneWindow) -> bool:
         if not self._pending_changes:
