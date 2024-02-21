@@ -36,7 +36,7 @@ from .models.service import Software
 
 from ..common.scanner import Description
 from ..common.widgets.about_window import present_about
-from ..common.widgets.documentation_window import DocumentationWindow
+from ..common.widgets.documentation_wrapper import present_documentation
 
 
 class Application(Adw.Application):
@@ -68,8 +68,7 @@ class Application(Adw.Application):
         action: Gio.SimpleAction,
         data: Optional[Any] = None,
     ) -> None:
-        dialog = DocumentationWindow(transient_for=self._window)
-        dialog.present()
+        present_documentation(self._window)
 
     def __on_found(self, session: Session, path: str, description: Description) -> None:
         self._window.load(path, description)

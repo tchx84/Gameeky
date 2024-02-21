@@ -42,7 +42,7 @@ from ..common.logger import logger
 from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
-from ..common.widgets.documentation_window import DocumentationWindow
+from ..common.widgets.documentation_wrapper import present_documentation
 from ..common.utils import (
     get_project_folder,
     set_project_path,
@@ -247,8 +247,7 @@ class Application(Adw.Application):
         action: Gio.SimpleAction,
         data: Optional[Any] = None,
     ) -> None:
-        dialog = DocumentationWindow(transient_for=self._window)
-        dialog.present()
+        present_documentation(self._window)
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()

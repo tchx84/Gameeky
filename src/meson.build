@@ -2,7 +2,7 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 gnome = import('gnome')
 
 dependency('libadwaita-1', version : '>= 1.4')
-dependency('webkitgtk-6.0', version : '>= 2.40')
+dependency('webkitgtk-6.0', version : '>= 2.40', required : get_option('webkit'))
 dependency('gstreamer-1.0', version : '>= 1.0')
 
 gnome.compile_resources('gameeky',
@@ -116,6 +116,7 @@ gameeky_sources = [
   'gameeky/common/vector.py',
   'gameeky/common/widgets/about_window.py',
   'gameeky/common/widgets/documentation_window.py',
+  'gameeky/common/widgets/documentation_wrapper.py',
   'gameeky/common/widgets/__init__.py',
   'gameeky/editor/definitions.py',
   'gameeky/editor/entity.py',
