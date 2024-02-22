@@ -148,6 +148,9 @@ class Game(GObject.GObject):
     def move(self, direction: Direction, time: int = 0) -> None:
         self.perform(Action.MOVE, direction, time)
 
+    def rotate(self, direction: Direction, time: int = 0) -> None:
+        self.perform(Action.ROTATE, direction, time)
+
     def take(self, time: int = 0) -> None:
         self.perform(Action.TAKE, time=time)
 
