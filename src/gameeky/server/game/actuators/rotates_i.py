@@ -18,7 +18,7 @@
 
 from .base import Actuator as BaseActuator
 
-from ....common.definitions import Direction
+from ....common.definitions import Action, Direction
 
 
 class Actuator(BaseActuator):
@@ -26,12 +26,17 @@ class Actuator(BaseActuator):
     interactable = True
     activatable = False
 
+    __sequence__ = {
+        Direction.NORTH: Direction.EAST,
+        Direction.EAST: Direction.SOUTH,
+        Direction.SOUTH: Direction.WEST,
+        Direction.WEST: Direction.NORTH,
+    }
+
     def tick(self) -> None:
         if self._interactee is None:
             return
 
-        directions = list(Direction)
-        index = directions.index(self._entity.direction)
-        self._entity.direction = directions[(index + 1) % len(directions)]
+        self._entity.perform(Action.ROTATE, self.__sequence__[self._entity.direction])
 
         super().tick()
