@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 
 from gi.repository import Gdk, Gtk, GLib
 
@@ -29,15 +29,19 @@ from ...common.definitions import Action, Direction
 
 
 class Keyboard(Gtk.EventControllerKey):
-    action_by_key = {
-        Gdk.KEY_Right: (Action.MOVE, Direction.EAST),
-        Gdk.KEY_Up: (Action.MOVE, Direction.NORTH),
-        Gdk.KEY_Left: (Action.MOVE, Direction.WEST),
-        Gdk.KEY_Down: (Action.MOVE, Direction.SOUTH),
-        Gdk.KEY_u: (Action.USE, 0),
-        Gdk.KEY_t: (Action.TAKE, 0),
-        Gdk.KEY_d: (Action.DROP, 0),
-        Gdk.KEY_i: (Action.INTERACT, 0),
+    action_by_combo = {
+        (Gdk.KEY_Right, 0): (Action.MOVE, Direction.EAST),
+        (Gdk.KEY_Up, 0): (Action.MOVE, Direction.NORTH),
+        (Gdk.KEY_Left, 0): (Action.MOVE, Direction.WEST),
+        (Gdk.KEY_Down, 0): (Action.MOVE, Direction.SOUTH),
+        (Gdk.KEY_u, 0): (Action.USE, 0),
+        (Gdk.KEY_t, 0): (Action.TAKE, 0),
+        (Gdk.KEY_d, 0): (Action.DROP, 0),
+        (Gdk.KEY_i, 0): (Action.INTERACT, 0),
+        (Gdk.KEY_Right, Gdk.ModifierType.CONTROL_MASK): (Action.ROTATE, Direction.EAST),
+        (Gdk.KEY_Up, Gdk.ModifierType.CONTROL_MASK): (Action.ROTATE, Direction.NORTH),
+        (Gdk.KEY_Left, Gdk.ModifierType.CONTROL_MASK): (Action.ROTATE, Direction.WEST),
+        (Gdk.KEY_Down, Gdk.ModifierType.CONTROL_MASK): (Action.ROTATE, Direction.SOUTH),
     }
 
     def __init__(
@@ -47,7 +51,7 @@ class Keyboard(Gtk.EventControllerKey):
         context: GLib.MainContext,
     ) -> None:
         super().__init__()
-        self._is_pressed_by_key: Dict[int, bool] = {}
+        self._is_pressed_by_combo: Dict[Tuple[int, int], bool] = {}
         self._registered_source_id: Optional[int] = None
         self._key_pressed_source_id: Optional[int] = None
         self._key_released_source_id: Optional[int] = None
@@ -80,14 +84,16 @@ class Keyboard(Gtk.EventControllerKey):
         code: int,
         state: Gdk.ModifierType,
     ) -> None:
-        if self._is_pressed_by_key.get(key) is True:
+        combo = (key, state)
+
+        if self._is_pressed_by_combo.get(combo) is True:
             return
 
-        action, value = self.action_by_key.get(key, (None, 0))
+        action, value = self.action_by_combo.get(combo, (None, 0))
         if action is None:
             return
 
-        self._is_pressed_by_key[key] = True
+        self._is_pressed_by_combo[combo] = True
         self._message(action, value)
 
     def __on_key_released(
@@ -97,15 +103,7 @@ class Keyboard(Gtk.EventControllerKey):
         code: int,
         state: Gdk.ModifierType,
     ) -> None:
-        action, _ = self.action_by_key.get(key, (None, None))
-        if action is None:
-            return
-
-        if self._is_pressed_by_key.get(key):
-            del self._is_pressed_by_key[key]
-        if self._is_pressed_by_key.keys():
-            return
-
+        self._is_pressed_by_combo = {}
         self._message(Action.IDLE, 0)
 
     def _message(self, action: Action, value: float) -> None:
@@ -113,7 +111,7 @@ class Keyboard(Gtk.EventControllerKey):
         add_idle_source(self._service.message, (action, value), self._context)
 
     def shutdown(self) -> None:
-        self._is_pressed_by_key = {}
+        self._is_pressed_by_combo = {}
 
         if self._key_pressed_source_id is not None:
             self.disconnect(self._key_pressed_source_id)
