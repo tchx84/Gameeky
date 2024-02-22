@@ -33,6 +33,13 @@ from ...common.utils import add_timeout_source, remove_source_id, get_time_milli
 
 
 class Cursor:
+    __sequence__ = {
+        Direction.NORTH: Direction.EAST,
+        Direction.EAST: Direction.SOUTH,
+        Direction.SOUTH: Direction.WEST,
+        Direction.WEST: Direction.NORTH,
+    }
+
     def __init__(self, widget: Gtk.Widget, model: Scene, service: Service) -> None:
         super().__init__()
         self._service = service
@@ -64,9 +71,12 @@ class Cursor:
         self._action: Optional[Action] = None
         self._direction: Optional[Direction] = None
 
-    def _find(self, position: Vector) -> Optional[Entity]:
+    def _find_player(self) -> Optional[Entity]:
+        if self._service.session is None:
+            return None
+
         for entity in self._model.entities:
-            if entity.position == position:
+            if entity.id == self._service.session.entity_id:
                 return entity
 
         return None
@@ -87,7 +97,7 @@ class Cursor:
         if self._target is None:
             return GLib.SOURCE_CONTINUE
 
-        if (player := self._find(self._model.anchor)) is None:
+        if (player := self._find_player()) is None:
             return GLib.SOURCE_CONTINUE
 
         x = (
@@ -167,7 +177,12 @@ class Cursor:
         self._popover.display(x, y)
 
     def __on_action_perfomed(self, popover: Gtk.Popover, action: Action) -> None:
-        self._service.message(action, 0)
+        value = 0
+
+        if action == Action.ROTATE and (player := self._find_player()):
+            value = self.__sequence__[player.direction]
+
+        self._service.message(action, value)
         self._target = None
 
     def shutdown(self) -> None:
