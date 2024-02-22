@@ -48,6 +48,7 @@ class Action(IntEnum):
     INTERACT = auto()
     EXHAUST = auto()
     DESTROY = auto()
+    ROTATE = auto()
 
 
 class Command(StrEnum):
