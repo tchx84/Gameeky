@@ -245,6 +245,7 @@ gameeky_sources = [
   'gameeky/server/game/handlers/__init__.py',
   'gameeky/server/game/handlers/interact.py',
   'gameeky/server/game/handlers/move.py',
+  'gameeky/server/game/handlers/rotate.py',
   'gameeky/server/game/handlers/take.py',
   'gameeky/server/game/handlers/use.py',
   'gameeky/server/game/__init__.py',
