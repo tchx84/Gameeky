@@ -71,6 +71,7 @@ from .handlers.interact import Handler as InteractHandler
 from .handlers.move import Handler as MoveHandler
 from .handlers.take import Handler as TakeHandler
 from .handlers.use import Handler as UseHandler
+from .handlers.rotate import Handler as RotateHandler
 
 from ...common.logger import logger
 from ...common.scanner import Description
@@ -100,6 +101,7 @@ class Entity(CommonEntity, GObject.GObject):
         Action.MOVE: MoveHandler,
         Action.TAKE: TakeHandler,
         Action.USE: UseHandler,
+        Action.ROTATE: RotateHandler,
     }
 
     __actuator_by_name__ = {
