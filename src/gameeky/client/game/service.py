@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from typing import Optional
+
 from gi.repository import GLib, GObject
 
 from ..network.tcp import Client as TCPClient
@@ -55,6 +57,7 @@ class Service(GObject.GObject):
         self._entity_type = entity_type
         self._sequence = 0
 
+        self._session: Optional[Session] = None
         self._session_manager = TCPClient(
             address=address,
             port=session_port,
@@ -110,6 +113,9 @@ class Service(GObject.GObject):
         logger.debug("Client.Service.shut")
 
     def message(self, action: Action, value: float) -> None:
+        if self._session is None:
+            return
+
         self._session_manager.send(
             Payload(
                 message=Message(
@@ -123,11 +129,21 @@ class Service(GObject.GObject):
         self._sequence += 1
 
     def request_scene(self) -> None:
+        if self._session is None:
+            return
+
         self._session_manager.send(
             Payload(scene_request=SceneRequest(self._session.id)).serialize()
         )
 
     def request_stats(self) -> None:
+        if self._session is None:
+            return
+
         self._session_manager.send(
             Payload(stats_request=StatsRequest(self._session.id)).serialize()
         )
+
+    @property
+    def session(self) -> Optional[Session]:
+        return self._session
