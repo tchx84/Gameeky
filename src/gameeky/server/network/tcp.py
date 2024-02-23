@@ -49,13 +49,17 @@ class Client(GObject.GObject):
         if self._server.cancellable.is_cancelled():
             return
 
-        self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
+        try:
+            self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
+        except Exception as e:
+            logger.error(e)
 
     def run(self) -> None:
         while not self._server.cancellable.is_cancelled():
             try:
                 data, _ = self._data_input_stream.read_line(None)
-            except:
+            except Exception as e:
+                logger.error(e)
                 break
 
             if not data:

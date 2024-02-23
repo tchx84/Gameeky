@@ -86,7 +86,10 @@ class Client(GObject.GObject):
         if self._cancellable.is_cancelled() is True:
             return
 
-        self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
+        try:
+            self._data_output_stream.put_string(data + DEFAULT_SEPARATOR)
+        except Exception as e:
+            logger.error(e)
 
     def shutdown(self) -> None:
         self._cancellable.cancel()
