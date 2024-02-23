@@ -1,3 +1,5 @@
+subdir('po')
+
 languages = [
   'en',
   'es',

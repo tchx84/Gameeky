@@ -1,29 +1,133 @@
 {
-    "name": "pandoc",
-    "buildsystem": "simple",
-    "build-commands": [
-        "mkdir -p /app/bin/",
-        "cp bin/pandoc /app/bin/pandoc"
-    ],
-    "sources": [
+    "name": "documentation",
+    "modules": [
         {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-amd64.tar.gz",
-            "sha256": "07635f6953201ee261bf90e821b8fe36c045e5a6fbae2ae6b1c2127715432942",
-            "only-arches": [
-                "x86_64"
+            "name": "pandoc",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/bin/",
+                "cp bin/pandoc /app/bin/pandoc"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-amd64.tar.gz",
+                    "sha256": "07635f6953201ee261bf90e821b8fe36c045e5a6fbae2ae6b1c2127715432942",
+                    "only-arches": [
+                        "x86_64"
+                    ]
+                },
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-arm64.tar.gz",
+                    "sha256": "3eae92420d3eee830ec121267bbf2e7f3a6c066aa58d599a9b769f50c4967c67",
+                    "only-arches": [
+                        "aarch64"
+                    ]
+                }
+            ],
+            "cleanup": [
+                "*"
             ]
         },
         {
-            "type": "archive",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-linux-arm64.tar.gz",
-            "sha256": "3eae92420d3eee830ec121267bbf2e7f3a6c066aa58d599a9b769f50c4967c67",
-            "only-arches": [
-                "aarch64"
+            "name": "perl-libs",
+            "buildsystem": "simple",
+            "build-options": {
+                "env": {
+                    "PERL5LIB": "/app/lib/perl5/site_perl"
+                }
+            },
+            "build-commands": [
+                "perl-libs/install.sh"
+            ],
+            "post-install": [
+                "chmod -Rf u+w /app/lib/perl5/site_perl"
+            ],
+            "cleanup": [
+                "*"
+            ],
+            "sources": [
+                {
+                    "dest": "perl-libs/Module-Build",
+                    "sha256": "66aeac6127418be5e471ead3744648c766bd01482825c5b66652675f2bc86a8f",
+                    "type": "archive",
+                    "url": "https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-0.4234.tar.gz"
+                },
+                {
+                    "dest": "perl-libs/ExtUtils-CChecker",
+                    "sha256": "117736677e37fc611f5b76374d7f952e1970eb80e1f6ad5150d516e7ae531bf5",
+                    "type": "archive",
+                    "url": "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/ExtUtils-CChecker-0.11.tar.gz"
+                },
+                {
+                    "dest": "perl-libs/XS-Parse-Keyword",
+                    "sha256": "b4e775becc8a5d9b52cb5d569b9d3230eea451c134735845e77f89fa6a6c23d8",
+                    "type": "archive",
+                    "url": "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/XS-Parse-Keyword-0.39.tar.gz"
+                },
+                {
+                    "dest": "perl-libs/Syntax-Keyword-Try",
+                    "sha256": "cc320719d3608daa9514743a43dac2be99cb8ccd989b1fefa285290cb1d59d8f",
+                    "type": "archive",
+                    "url": "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Syntax-Keyword-Try-0.29.tar.gz"
+                },
+                {
+                    "dest": "perl-libs/YAML-Tiny",
+                    "sha256": "7b38ca9f5d3ce24230a6b8bdc1f47f5b2db348e7f7f9666c26f5955636e33d6c",
+                    "type": "archive",
+                    "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-1.74.tar.gz"
+                },
+                {
+                    "commands": [
+                        "set -e",
+                        "function make_install {",
+                        "    mod_dir=$1",
+                        "    cd $mod_dir",
+                        "    if [ -f 'Makefile.PL' ]; then",
+                        "        perl Makefile.PL PREFIX=${FLATPAK_DEST} && make install PREFIX=${FLATPAK_DEST}",
+                        "    elif [ -f 'Build.PL' ]; then",
+                        "        perl Build.PL --prefix=${FLATPAK_DEST} && ./Build && ./Build install",
+                        "    else",
+                        "        echo 'No Makefile.PL or Build.PL found. Do not know how to install this module'",
+                        "        exit 1",
+                        "    fi",
+                        "}",
+                        "(make_install perl-libs/Module-Build)",
+                        "(make_install perl-libs/ExtUtils-CChecker)",
+                        "(make_install perl-libs/XS-Parse-Keyword)",
+                        "(make_install perl-libs/Syntax-Keyword-Try)",
+                        "(make_install perl-libs/YAML-Tiny)"
+                    ],
+                    "dest": "perl-libs",
+                    "dest-filename": "install.sh",
+                    "type": "script"
+                }
+            ]
+        },
+        {
+            "name": "po4a",
+            "buildsystem": "simple",
+            "build-options": {
+                "env": {
+                    "PERL5LIB": "/app/lib/perl5/site_perl"
+                }
+            },
+            "build-commands": [
+                "perl Build.PL --prefix=${FLATPAK_DEST}",
+                "./Build code",
+                "./Build install"
+            ],
+            "cleanup": [
+                "*"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/mquinson/po4a/releases/download/v0.70/po4a-0.70.tar.gz",
+                    "sha256": "9e27bdb12d8beaf840b2732def767d282d070c8e77e63a9baf807057411509b3"
+                }
             ]
         }
-    ],
-    "cleanup": [
-        "*"
     ]
 }
