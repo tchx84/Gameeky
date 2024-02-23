@@ -26,7 +26,7 @@
                             <child>
                               <object class="GtkImage">
                                 <property name="hexpand">True</property>
-                                <property name="icon-name">dev.tchx84.Gameeky-symbolic</property>
+                                <property name="icon-name">dev.tchx84.Gameeky</property>
                                 <property name="margin-bottom">25</property>
                                 <property name="pixel-size">128</property>
                                 <property name="vexpand">True</property>
@@ -71,7 +71,7 @@
                               <object class="GtkImage">
                                 <property name="halign">center</property>
                                 <property name="hexpand">True</property>
-                                <property name="icon-name">dev.tchx84.Gameeky-symbolic</property>
+                                <property name="icon-name">dev.tchx84.Gameeky</property>
                                 <property name="pixel-size">128</property>
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
@@ -87,6 +87,9 @@
                                 <property name="label" translatable="yes">Loading</property>
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
+                                <style>
+                                  <class name="title-1"/>
+                                </style>
                               </object>
                             </child>
                           </object>
@@ -126,7 +129,7 @@
                               <object class="GtkImage">
                                 <property name="halign">center</property>
                                 <property name="hexpand">True</property>
-                                <property name="icon-name">dev.tchx84.Gameeky-symbolic</property>
+                                <property name="icon-name">dev.tchx84.Gameeky</property>
                                 <property name="pixel-size">128</property>
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
@@ -142,6 +145,9 @@
                                 <property name="label" translatable="yes">Something went wrong</property>
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
+                                <style>
+                                  <class name="title-1"/>
+                                </style>
                               </object>
                             </child>
                           </object>
