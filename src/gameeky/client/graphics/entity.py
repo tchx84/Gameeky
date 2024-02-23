@@ -71,19 +71,25 @@ class Entity:
         default: Animation,
     ) -> None:
         self.type_id = type_id
-        self._default = default
-        self._animations: Dict[State, Dict[Direction, Animation]] = {}
+        self._animation_by_default = default
+        self._animation_by_state: Dict[State, Animation] = {}
+        self._animation_by_combo: Dict[Tuple[State, Direction], Animation] = {}
 
     def get_texture(self, entity: CommonEntity) -> Tuple[float, float, Gdk.Texture]:
-        if entity.state not in self._animations:
-            return self.get_default_texture()
-        if entity.direction not in self._animations[entity.state]:
-            return self.get_default_texture()
+        combo = (entity.state, entity.direction)
 
-        return self._animations[entity.state][entity.direction].get_frame()
+        if combo in self._animation_by_combo:
+            return self._animation_by_combo[combo].get_frame()
+        if entity.state in self._animation_by_state:
+            return self._animation_by_state[entity.state].get_frame()
+
+        return self.get_default_texture()
 
     def get_default_texture(self) -> Gdk.Texture:
-        return self._default.get_frame()
+        return self._animation_by_default.get_frame()
+
+    def add_animation_default(self, state: State, animation: Animation) -> None:
+        self._animation_by_state[state] = animation
 
     def add_animation(
         self,
@@ -91,10 +97,7 @@ class Entity:
         direction: Direction,
         animation: Animation,
     ) -> None:
-        if state not in self._animations:
-            self._animations[state] = {}
-
-        self._animations[state][direction] = animation
+        self._animation_by_combo[(state, direction)] = animation
 
 
 class EntityRegistry:
@@ -125,12 +128,20 @@ class EntityRegistry:
 
         for state in description.graphics.states:
             for direction in state.directions:
+                direction_name = direction.name.upper()
                 animation = cls.create_animation_from_description(direction.animation)
-                entity.add_animation(
-                    State[state.name.upper()],
-                    Direction[direction.name.upper()],
-                    animation,
-                )
+
+                if direction_name == "DEFAULT":
+                    entity.add_animation_default(
+                        State[state.name.upper()],
+                        animation,
+                    )
+                else:
+                    entity.add_animation(
+                        State[state.name.upper()],
+                        Direction[direction_name],
+                        animation,
+                    )
 
         cls.__entities__[entity.type_id] = entity
 
