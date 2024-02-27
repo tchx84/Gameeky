@@ -43,9 +43,11 @@ from ..common.widgets.about_window import present_about
 from ..common.widgets.documentation_wrapper import present_documentation
 from ..common.utils import (
     set_project_path,
+    get_project_path,
     get_project_folder,
     find_project_path,
     bytearray_to_string,
+    launch_path,
 )
 
 
@@ -170,6 +172,13 @@ class Application(Adw.Application):
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
+    def __on_browse(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        launch_path(get_project_path())
+
     def __on_documentation(
         self,
         action: Gio.SimpleAction,
@@ -243,6 +252,10 @@ class Application(Adw.Application):
         save_as_action = Gio.SimpleAction.new("save_as", None)
         save_as_action.connect("activate", self.__on_save_as)
         self.add_action(save_as_action)
+
+        browse_action = Gio.SimpleAction.new("browse", None)
+        browse_action.connect("activate", self.__on_browse)
+        self.add_action(browse_action)
 
         documentation_action = Gio.SimpleAction.new("documentation", None)
         documentation_action.connect("activate", self.__on_documentation)
