@@ -19,21 +19,22 @@
 import os
 import locale
 
-from gi.repository import Gio, Gtk, GLib
+from gi.repository import Gtk, GLib
 
+from ..utils import launch_path
 from ..config import pkgdatadir
 
 
 def present_documentation(window: Gtk.Window) -> None:
-    uri = GLib.Uri.build(
-        GLib.UriFlags.NONE, "file", None, None, -1, find_path(), None, None
-    ).to_string()
-
     try:
         from .documentation_window import DocumentationWindow
     except:
-        Gio.AppInfo.launch_default_for_uri(uri, None)
+        launch_path(find_path())
     else:
+        uri = GLib.Uri.build(
+            GLib.UriFlags.NONE, "file", None, None, -1, find_path(), None, None
+        ).to_string()
+
         dialog = DocumentationWindow(uri, transient_for=window)
         dialog.present()
 
