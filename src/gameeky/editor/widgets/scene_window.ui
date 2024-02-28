@@ -305,6 +305,10 @@
       <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>
     <item>
+      <attribute name="action">app.try</attribute>
+      <attribute name="label" translatable="yes">_Try It</attribute>
+    </item>
+    <item>
       <attribute name="action">app.edit</attribute>
       <attribute name="label" translatable="yes">_Settings</attribute>
     </item>
