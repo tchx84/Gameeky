@@ -49,6 +49,7 @@ from ..common.utils import (
     find_project_path,
     bytearray_to_string,
     launch_path,
+    launch_player,
 )
 
 
@@ -199,6 +200,21 @@ class Application(Adw.Application):
         self._scene_path = path
         self._pending_changes = False
 
+    def __on_try(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        if self._scene_path is None:
+            self.__on_save_as()
+        else:
+            self._do_save(self._scene_path)
+            self._try_scene()
+
+    def _try_scene(self) -> None:
+        if self._project_path is None:
+            return
+        if self._scene_path is None:
+            return
+
+        launch_player(self._project_path, self._scene_path)
+
     def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         present_about(self._window)
 
@@ -286,6 +302,10 @@ class Application(Adw.Application):
         save_as_action = Gio.SimpleAction.new("save_as", None)
         save_as_action.connect("activate", self.__on_save_as)
         self.add_action(save_as_action)
+
+        try_action = Gio.SimpleAction.new("try", None)
+        try_action.connect("activate", self.__on_try)
+        self.add_action(try_action)
 
         browse_action = Gio.SimpleAction.new("browse", None)
         browse_action.connect("activate", self.__on_browse)
