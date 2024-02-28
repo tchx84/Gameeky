@@ -20,7 +20,7 @@ import os
 
 from gi.repository import Gtk, GLib, GObject
 
-from ...common.utils import launch, quote, valid_file
+from ...common.utils import launch_player, launch_scene, valid_file
 from ...common.monitor import Monitor
 from ...common.scanner import Description
 from ...common.definitions import DEFAULT_SCENE
@@ -59,12 +59,6 @@ class ProjectRow(Gtk.FlowBoxChild):
     def _get_project_path(self, *path) -> str:
         return os.path.join(self.path, *path)
 
-    def _launch(self, command: str, filename: str) -> None:
-        launch(
-            command,
-            f"--project_path={quote(self._get_project_path())} {quote(self._get_project_path(filename))}",
-        )
-
     def _update_button(self) -> None:
         self.play.props.sensitive = valid_file(self._get_project_path(DEFAULT_SCENE))
 
@@ -73,11 +67,11 @@ class ProjectRow(Gtk.FlowBoxChild):
 
     @Gtk.Template.Callback("on_play_clicked")
     def __on_play_clicked(self, button: Gtk.Button) -> None:
-        self._launch("dev.tchx84.Gameeky.Player", DEFAULT_SCENE)
+        launch_player(self.path, self._get_project_path(DEFAULT_SCENE))
 
     @Gtk.Template.Callback("on_edit_clicked")
     def __on_edit_clicked(self, button: Gtk.Button) -> None:
-        self._launch("dev.tchx84.Gameeky.Scene", DEFAULT_SCENE)
+        launch_scene(self.path, self._get_project_path(DEFAULT_SCENE))
 
     @Gtk.Template.Callback("on_settings_clicked")
     def __on_settings_clicked(self, button: Gtk.Button) -> None:
