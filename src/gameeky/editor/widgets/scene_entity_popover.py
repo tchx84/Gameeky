@@ -23,7 +23,7 @@ from gi.repository import Gdk, Gtk, GObject
 
 from .entity_row import EntityRow
 
-from ...common.utils import launch, quote, get_project_path
+from ...common.utils import launch_entity, get_project_path
 
 
 class Operation(StrEnum):
@@ -55,18 +55,6 @@ class SceneEntityPopover(Gtk.Popover):
         self.edit.props.sensitive = sensitive
         self.delete.props.sensitive = sensitive
 
-    def _launch_editor(self, path="") -> None:
-        command = "dev.tchx84.Gameeky.Entity"
-        argument = f"--project_path={quote(get_project_path())} {quote(path)}".strip()
-
-        launch(command, argument)
-
-    def _launch_editor_with_path(self) -> None:
-        if self._entity is None:
-            return
-
-        self._launch_editor(self._entity.model.path)
-
     def _emit_deleted(self) -> None:
         if self._entity is None:
             return
@@ -78,9 +66,9 @@ class SceneEntityPopover(Gtk.Popover):
         operation = row.props.name
 
         if operation == Operation.ADD:
-            self._launch_editor()
-        elif operation == Operation.EDIT:
-            self._launch_editor_with_path()
+            launch_entity(get_project_path(), "")
+        elif operation == Operation.EDIT and self._entity is not None:
+            launch_entity(get_project_path(), self._entity.model.path)
         elif operation == Operation.DELETE:
             self._emit_deleted()
 
