@@ -313,10 +313,6 @@
       <attribute name="label" translatable="yes">_Settings</attribute>
     </item>
     <item>
-      <attribute name="action">app.browse</attribute>
-      <attribute name="label" translatable="yes">_Browse Files</attribute>
-    </item>
-    <item>
       <attribute name="action">app.documentation</attribute>
       <attribute name="label" translatable="yes">_Documentation</attribute>
     </item>
