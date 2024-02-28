@@ -181,7 +181,9 @@ def wait(milliseconds: int) -> None:
 
 
 def launch(command: str, arguments: str) -> None:
-    GLib.spawn_command_line_async(f"{GLib.find_program_in_path(command)} {arguments}")
+    GLib.spawn_command_line_async(
+        f"{GLib.find_program_in_path(command)} {arguments.strip()}"
+    )
 
 
 def launch_path(path: str) -> None:
@@ -190,6 +192,27 @@ def launch_path(path: str) -> None:
     ).to_string()
 
     Gio.AppInfo.launch_default_for_uri(uri, None)
+
+
+def launch_player(project_path: str, scene_path: str) -> None:
+    launch(
+        "dev.tchx84.Gameeky.Player",
+        f"--project_path={quote(project_path)} {quote(scene_path)}",
+    )
+
+
+def launch_scene(project_path: str, scene_path: str) -> None:
+    launch(
+        "dev.tchx84.Gameeky.Scene",
+        f"--project_path={quote(project_path)} {quote(scene_path)}",
+    )
+
+
+def launch_entity(project_path: str, entity_path: str) -> None:
+    launch(
+        "dev.tchx84.Gameeky.Entity",
+        f"--project_path={quote(project_path)} {quote(entity_path)}",
+    )
 
 
 def quote(string: str) -> str:
