@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name view.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="Window" parent="AdwApplicationWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkScrolledWindow">
+                <child>
+                  <object class="GtkTextView">
+                    <property name="buffer">
+                      <object class="GtkTextBuffer" id="source_buffer"/>
+                    </property>
+                    <property name="monospace">True</property>
+                    <property name="vexpand">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="height-request">250</property>
+                <child>
+                  <object class="GtkTextView">
+                    <property name="buffer">
+                      <object class="GtkTextBuffer" id="output_buffer"/>
+                    </property>
+                    <property name="editable">False</property>
+                    <property name="monospace">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle"/>
+            </property>
+            <child>
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkButton" id="execute_button">
+                    <property name="icon-name">media-playback-start-symbolic</property>
+                    <property name="tooltip-text">Execute</property>
+                    <signal name="clicked" handler="on_execute_clicked"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="stop_button">
+                    <property name="icon-name">media-playback-stop-symbolic</property>
+                    <property name="tooltip-text">Stop</property>
+                    <property name="visible">False</property>
+                    <signal name="clicked" handler="on_stop_clicked"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+  </template>
+</interface>

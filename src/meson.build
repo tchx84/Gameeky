@@ -57,6 +57,15 @@ configure_file(
 )
 
 configure_file(
+  input: 'gameeky/library/dev.tchx84.Gameeky.Coder.in',
+  output: 'dev.tchx84.Gameeky.Coder',
+  configuration: conf,
+  install: true,
+  install_dir: get_option('bindir'),
+  install_mode: 'r-xr--r--'
+)
+
+configure_file(
   input: 'gameeky/library/dev.tchx84.Gameeky.Exec.in',
   output: 'dev.tchx84.Gameeky.Exec',
   configuration: conf,
@@ -200,8 +209,11 @@ gameeky_sources = [
   'gameeky/launcher/widgets/project_row.py',
   'gameeky/launcher/widgets/project_settings.py',
   'gameeky/launcher/widgets/window.py',
+  'gameeky/library/coder.py',
   'gameeky/library/game.py',
   'gameeky/library/__init__.py',
+  'gameeky/library/widgets/__init__.py',
+  'gameeky/library/widgets/window.py',
   'gameeky/plugins/__init__.py',
   'gameeky/server/game/actuators/activates_i.py',
   'gameeky/server/game/actuators/activates.py',

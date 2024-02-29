@@ -43,10 +43,12 @@
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/library/widgets/window.ui</file>
     <file>gameeky/client/graphics/missing.png</file>
     <file>gameeky/client/graphics/lightmap.png</file>
     <file>gameeky/editor/style.css</file>
     <file>gameeky/player/style.css</file>
     <file>gameeky/launcher/style.css</file>
+    <file>gameeky/library/style.css</file>
   </gresource>
 </gresources>

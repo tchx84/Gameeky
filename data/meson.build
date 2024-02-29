@@ -34,6 +34,15 @@ entity_desktop_file = i18n.merge_file(
   install_dir: get_option('datadir') / 'applications'
 )
 
+entity_desktop_file = i18n.merge_file(
+        input: 'dev.tchx84.Gameeky.Coder.desktop.in',
+       output: 'dev.tchx84.Gameeky.Coder.desktop',
+         type: 'desktop',
+       po_dir: '../po',
+      install: true,
+  install_dir: get_option('datadir') / 'applications'
+)
+
 desktop_utils = find_program('desktop-file-validate', required: false)
 if desktop_utils.found()
   test('Validate desktop file', desktop_utils, args: [launcher_desktop_file])
