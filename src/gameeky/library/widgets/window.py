@@ -22,6 +22,7 @@ from gi.repository import Gio, GLib, Gtk, GObject, Adw
 
 from ...common.logger import logger
 from ...common.config import pkgdatadir
+from ...common.monitor import Monitor
 
 
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/library/widgets/window.ui")
@@ -37,6 +38,7 @@ class Window(Adw.ApplicationWindow):
     output_buffer = Gtk.Template.Child()
     execute_button = Gtk.Template.Child()
     stop_button = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     def __init__(self, *args, **kargs) -> None:
         super().__init__(*args, **kargs)
@@ -45,6 +47,8 @@ class Window(Adw.ApplicationWindow):
         self._handler_id = self.source_buffer.connect(
             "changed", self.__on_source_changed
         )
+
+        Monitor.default().connect("changed", self.__on_monitor_changed)
 
     @Gtk.Template.Callback("on_execute_clicked")
     def __on_execute_clicked(self, button: Gtk.Button) -> None:
@@ -154,6 +158,18 @@ class Window(Adw.ApplicationWindow):
         user_data: Optional[Any] = None,
     ) -> None:
         self.emit("changed")
+
+    def __on_monitor_changed(self, monitor: Monitor) -> None:
+        self.banner.props.revealed = True
+
+    @Gtk.Template.Callback("on_reload_clicked")
+    def __on_reload_clicked(
+        self,
+        banner: Adw.Banner,
+        user_data: Optional[Any] = None,
+    ) -> None:
+        self.emit("reload")
+        self.banner.props.revealed = False
 
     @property
     def source(self) -> str:

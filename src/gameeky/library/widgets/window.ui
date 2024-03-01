@@ -12,6 +12,13 @@
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
+              <object class="AdwBanner" id="banner">
+                <property name="button-label" translatable="yes">Reload</property>
+                <property name="title" translatable="yes">Source has been changed on disk</property>
+                <signal name="button-clicked" handler="on_reload_clicked"/>
+              </object>
+            </child>
+            <child>
               <object class="GtkScrolledWindow">
                 <child>
                   <object class="GtkTextView">

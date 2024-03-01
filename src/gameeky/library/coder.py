@@ -32,6 +32,7 @@ from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 from .widgets.window import Window
 
 from ..common.logger import logger
+from ..common.monitor import Monitor
 from ..common.utils import bytearray_to_string
 
 
@@ -46,6 +47,7 @@ class Application(Adw.Application):
 
         self._window: Optional[Window] = None
         self._source_path: Optional[str] = None
+        self._monitor = Monitor.default()
 
         self.add_main_option(
             GLib.OPTION_REMAINING,
@@ -61,7 +63,7 @@ class Application(Adw.Application):
             return
 
         self._window.source = ""
-        self._source_path = None
+        self.source_path = None
 
     def __on_open(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         default_filter = Gtk.FileFilter()
@@ -86,7 +88,7 @@ class Application(Adw.Application):
         else:
             path = file.get_path()
             self._window.source = self._do_load(path)
-            self._source_path = path
+            self.source_path = path
 
     def __on_save(self, *args) -> None:
         if self._source_path is None:
@@ -127,7 +129,15 @@ class Application(Adw.Application):
             flags=Gio.FileCreateFlags.REPLACE_DESTINATION,
             cancellable=None,
         )
-        self._source_path = path
+        self.source_path = path
+
+    def __on_reload(self, window: Window, data: Optional[Any] = None) -> None:
+        if self._window is None:
+            return
+        if self._source_path is None:
+            return
+
+        self._window.source = self._do_load(self._source_path)
 
     def _do_load(self, path: str) -> str:
         file = Gio.File.new_for_path(path)
@@ -143,8 +153,7 @@ class Application(Adw.Application):
 
         if (source_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
             source_path = bytearray_to_string(source_path[-1])
-
-            self._source_path = source_path
+            self.source_path = source_path
 
         self.activate()
         return 0
@@ -159,6 +168,7 @@ class Application(Adw.Application):
         )
 
         self._window = Window(application=self)
+        self._window.connect("reload", self.__on_reload)
         self._window.present()
 
         if self._source_path is not None:
@@ -184,7 +194,20 @@ class Application(Adw.Application):
         self.add_action(save_as_action)
 
     def do_shutdown(self) -> None:
+        self._monitor.shutdown()
         Adw.Application.do_shutdown(self)
+
+    @property
+    def source_path(self) -> Optional[str]:
+        return self._source_path
+
+    @source_path.setter
+    def source_path(self, path: Optional[str]) -> None:
+        self._monitor.shutdown()
+        self._source_path = path
+
+        if self._source_path is not None:
+            self._monitor.add(self._source_path)
 
 
 def main(version: str) -> None:
