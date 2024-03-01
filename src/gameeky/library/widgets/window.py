@@ -18,7 +18,7 @@
 
 from typing import Optional, Any
 
-from gi.repository import Gio, GLib, Gtk, Adw
+from gi.repository import Gio, GLib, Gtk, GObject, Adw
 
 from ...common.logger import logger
 from ...common.config import pkgdatadir
@@ -27,6 +27,11 @@ from ...common.config import pkgdatadir
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/library/widgets/window.ui")
 class Window(Adw.ApplicationWindow):
     __gtype_name__ = "Window"
+
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
 
     source_buffer = Gtk.Template.Child()
     output_buffer = Gtk.Template.Child()
@@ -37,6 +42,9 @@ class Window(Adw.ApplicationWindow):
         super().__init__(*args, **kargs)
         self._process: Optional[Gio.Subprocess] = None
         self._cancellable = Gio.Cancellable()
+        self._handler_id = self.source_buffer.connect(
+            "changed", self.__on_source_changed
+        )
 
     @Gtk.Template.Callback("on_execute_clicked")
     def __on_execute_clicked(self, button: Gtk.Button) -> None:
@@ -139,3 +147,20 @@ class Window(Adw.ApplicationWindow):
 
         self._cancellable.cancel()
         self._process.force_exit()
+
+    def __on_source_changed(
+        self,
+        buffer: Gtk.TextBuffer,
+        user_data: Optional[Any] = None,
+    ) -> None:
+        self.emit("changed")
+
+    @property
+    def source(self) -> str:
+        return self.source_buffer.props.text
+
+    @source.setter
+    def source(self, text: str) -> None:
+        self.source_buffer.handler_block(self._handler_id)
+        self.source_buffer.props.text = text
+        self.source_buffer.handler_unblock(self._handler_id)
