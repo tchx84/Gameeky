@@ -214,6 +214,7 @@ gameeky_sources = [
   'gameeky/library/utils.py',
   'gameeky/library/__init__.py',
   'gameeky/library/widgets/__init__.py',
+  'gameeky/library/widgets/session_settings_window.py',
   'gameeky/library/widgets/window.py',
   'gameeky/plugins/__init__.py',
   'gameeky/server/game/actuators/activates_i.py',

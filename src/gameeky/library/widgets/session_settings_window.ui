@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.16.0 -->
+<interface>
+  <!-- interface-name session_join_window.ui -->
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="SessionSettingsWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="AdwToastOverlay" id="toast">
+            <property name="child">
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="AdwClamp">
+                        <property name="child">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="valign">center</property>
+                            <child>
+                              <object class="AdwPreferencesGroup">
+                                <child>
+                                  <object class="AdwEntryRow" id="project">
+                                    <property name="hexpand">True</property>
+                                    <property name="title" translatable="yes">Project</property>
+                                    <child>
+                                      <object class="GtkButton">
+                                        <property name="halign">center</property>
+                                        <property name="icon-name">folder-open-symbolic</property>
+                                        <property name="valign">center</property>
+                                        <signal name="clicked" handler="on_project_clicked"/>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwEntryRow" id="address">
+                                    <property name="title" translatable="yes">Address</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwExpanderRow">
+                                    <property name="hexpand">True</property>
+                                    <property name="title" translatable="yes">Advanced</property>
+                                    <child>
+                                      <object class="AdwSpinRow" id="entity_type">
+                                        <property name="adjustment">
+                                          <object class="GtkAdjustment">
+                                            <property name="lower">1.0</property>
+                                            <property name="page-increment">1.0</property>
+                                            <property name="page-size">1.0</property>
+                                            <property name="step-increment">1.0</property>
+                                            <property name="upper">65536.0</property>
+                                            <property name="value">1.0</property>
+                                          </object>
+                                        </property>
+                                        <property name="title">Entity Type</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwSpinRow" id="session_port">
+                                        <property name="adjustment">
+                                          <object class="GtkAdjustment">
+                                            <property name="lower">1024.0</property>
+                                            <property name="step-increment">1.0</property>
+                                            <property name="upper">9999.0</property>
+                                            <property name="value">1024.0</property>
+                                          </object>
+                                        </property>
+                                        <property name="title" translatable="yes">Session Port</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Cancel</property>
+                <signal name="clicked" handler="on_cancel_clicked"/>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="label">Save</property>
+                <signal name="clicked" handler="on_save_clicked"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="dialog"/>
+        </style>
+      </object>
+    </property>
+    <property name="default-height">500</property>
+    <property name="default-width">700</property>
+    <property name="modal">True</property>
+    <property name="title">Session</property>
+  </template>
+</interface>
