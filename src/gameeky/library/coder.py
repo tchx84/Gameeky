@@ -29,12 +29,15 @@ from gettext import gettext as _
 
 from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
+from .utils import set_session_project
+
 from .widgets.window import Window
 from .widgets.session_settings_window import SessionSettingsWindow
 
 from ..common.logger import logger
 from ..common.monitor import Monitor
 from ..common.utils import bytearray_to_string
+from ..common.definitions import Command
 from ..common.widgets.confirmation_save_window import ConfirmationSaveWindow
 
 
@@ -51,6 +54,15 @@ class Application(Adw.Application):
         self._source_path: Optional[str] = None
         self._pending_changes = False
         self._monitor = Monitor.default()
+
+        self.add_main_option(
+            Command.PROJECT_PATH,
+            ord("d"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            "The absolute path to the project",
+            None,
+        )
 
         self.add_main_option(
             GLib.OPTION_REMAINING,
@@ -175,6 +187,9 @@ class Application(Adw.Application):
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
+
+        if (project_path := options.get(Command.PROJECT_PATH, None)) is not None:
+            set_session_project(project_path)
 
         if (source_path := options.get(GLib.OPTION_REMAINING, None)) is not None:
             source_path = bytearray_to_string(source_path[-1])
