@@ -211,6 +211,7 @@ gameeky_sources = [
   'gameeky/launcher/widgets/window.py',
   'gameeky/library/coder.py',
   'gameeky/library/game.py',
+  'gameeky/library/utils.py',
   'gameeky/library/__init__.py',
   'gameeky/library/widgets/__init__.py',
   'gameeky/library/widgets/window.py',
