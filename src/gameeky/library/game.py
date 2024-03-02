@@ -22,20 +22,20 @@ from typing import Optional
 
 from gi.repository import GLib, GObject
 
+from .utils import (
+    get_session_project,
+    get_session_entity_type,
+    get_session_address,
+    get_session_port,
+)
+
 from ..common.logger import logger
 from ..common.utils import wait, get_time_milliseconds, set_project_path
 from ..common.entity import Entity
 from ..common.scene import Scene
 from ..common.stats import Stats
 from ..common.session import Session
-from ..common.definitions import (
-    Action,
-    Direction,
-    EntityType,
-    TICK,
-    DEFAULT_ADDRESS,
-    DEFAULT_SESSION_PORT,
-)
+from ..common.definitions import Action, Direction, TICK
 
 from ..client.game.service import Service
 
@@ -47,12 +47,18 @@ class Game(GObject.GObject):
 
     def __init__(
         self,
-        project: str,
-        entity_type: int = EntityType.PLAYER,
-        address: str = DEFAULT_ADDRESS,
-        session_port: int = DEFAULT_SESSION_PORT,
+        project: Optional[str] = None,
+        entity_type: Optional[int] = None,
+        address: Optional[str] = None,
+        session_port: Optional[int] = None,
     ) -> None:
         super().__init__()
+
+        project = project if project else get_session_project()
+        entity_type = entity_type if entity_type else get_session_entity_type()
+        address = address if address else get_session_address()
+        session_port = session_port if session_port else get_session_port()
+
         self._project = os.path.expanduser(project)
         self._entity_type = entity_type
         self._address = address
