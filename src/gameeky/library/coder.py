@@ -30,6 +30,7 @@ from gettext import gettext as _
 from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
 from .widgets.window import Window
+from .widgets.session_settings_window import SessionSettingsWindow
 
 from ..common.logger import logger
 from ..common.monitor import Monitor
@@ -168,6 +169,10 @@ class Application(Adw.Application):
     def __on_discarded(self, dialog: ConfirmationSaveWindow) -> None:
         self.quit()
 
+    def __on_edit(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = SessionSettingsWindow(transient_for=self._window)
+        dialog.present()
+
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
@@ -214,6 +219,10 @@ class Application(Adw.Application):
         save_as_action = Gio.SimpleAction.new("save_as", None)
         save_as_action.connect("activate", self.__on_save_as)
         self.add_action(save_as_action)
+
+        edit_action = Gio.SimpleAction.new("edit", None)
+        edit_action.connect("activate", self.__on_edit)
+        self.add_action(edit_action)
 
     def do_shutdown(self) -> None:
         self._monitor.shutdown()

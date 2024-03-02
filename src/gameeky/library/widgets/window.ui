@@ -101,6 +101,10 @@
       <attribute name="action">app.save_as</attribute>
       <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>
+    <item>
+      <attribute name="action">app.edit</attribute>
+      <attribute name="label" translatable="yes">_Settings</attribute>
+    </item>
   </menu>
   <object class="GtkPopoverMenu" id="popover">
     <property name="menu-model">menu</property>
