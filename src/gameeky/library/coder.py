@@ -34,6 +34,7 @@ from .widgets.window import Window
 from ..common.logger import logger
 from ..common.monitor import Monitor
 from ..common.utils import bytearray_to_string
+from ..common.widgets.confirmation_save_window import ConfirmationSaveWindow
 
 
 class Application(Adw.Application):
@@ -47,6 +48,7 @@ class Application(Adw.Application):
 
         self._window: Optional[Window] = None
         self._source_path: Optional[str] = None
+        self._pending_changes = False
         self._monitor = Monitor.default()
 
         self.add_main_option(
@@ -130,6 +132,7 @@ class Application(Adw.Application):
             cancellable=None,
         )
         self.source_path = path
+        self._pending_changes = False
 
     def __on_reload(self, window: Window, data: Optional[Any] = None) -> None:
         if self._window is None:
@@ -147,6 +150,23 @@ class Application(Adw.Application):
             return ""
 
         return contents.decode()
+
+    def _on_changed(self, window: Window) -> None:
+        self._pending_changes = True
+
+    def __on_closed(self, window: Window) -> bool:
+        if not self._pending_changes:
+            return False
+
+        dialog = ConfirmationSaveWindow(transient_for=self._window)
+        dialog.connect("saved", self.__on_save)
+        dialog.connect("discarded", self.__on_discarded)
+        dialog.present()
+
+        return True
+
+    def __on_discarded(self, dialog: ConfirmationSaveWindow) -> None:
+        self.quit()
 
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
@@ -168,7 +188,9 @@ class Application(Adw.Application):
         )
 
         self._window = Window(application=self)
+        self._window.connect("changed", self._on_changed)
         self._window.connect("reload", self.__on_reload)
+        self._window.connect("close-request", self.__on_closed)
         self._window.present()
 
         if self._source_path is not None:
