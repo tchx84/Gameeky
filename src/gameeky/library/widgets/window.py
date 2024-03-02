@@ -20,6 +20,13 @@ from typing import Optional, Any
 
 from gi.repository import Gio, GLib, Gtk, GObject, Adw
 
+from ..utils import (
+    get_session_project,
+    get_session_entity_type,
+    get_session_address,
+    get_session_port,
+)
+
 from ...common.logger import logger
 from ...common.config import pkgdatadir
 from ...common.monitor import Monitor
@@ -85,6 +92,26 @@ class Window(Adw.ApplicationWindow):
         launcher.setenv(
             variable="PYTHONPATH",
             value=pkgdatadir,
+            overwrite=True,
+        )
+        launcher.setenv(
+            variable="SESSION_PROJECT",
+            value=get_session_project(),
+            overwrite=True,
+        )
+        launcher.setenv(
+            variable="SESSION_ENTITY_TYPE",
+            value=str(get_session_entity_type()),
+            overwrite=True,
+        )
+        launcher.setenv(
+            variable="SESSION_ADDRESS",
+            value=get_session_address(),
+            overwrite=True,
+        )
+        launcher.setenv(
+            variable="SESSION_PORT",
+            value=str(get_session_port()),
             overwrite=True,
         )
         launcher.set_flags(
