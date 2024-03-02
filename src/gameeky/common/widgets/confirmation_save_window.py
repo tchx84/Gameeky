@@ -19,7 +19,7 @@
 from gi.repository import Adw, Gtk, GObject
 
 
-@Gtk.Template(resource_path="/dev/tchx84/gameeky/editor/widgets/confirmation_save_window.ui")  # fmt: skip
+@Gtk.Template(resource_path="/dev/tchx84/gameeky/common/widgets/confirmation_save_window.ui")  # fmt: skip
 class ConfirmationSaveWindow(Adw.MessageDialog):
     __gtype_name__ = "ConfirmationSaveWindow"
 

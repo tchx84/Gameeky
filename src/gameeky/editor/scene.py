@@ -32,7 +32,6 @@ from .widgets.scene_window import SceneWindow
 from .widgets.scene_new_window import SceneNewWindow
 from .widgets.scene_open_window import SceneOpenWindow
 from .widgets.scene_edit_window import SceneEditWindow
-from .widgets.confirmation_save_window import ConfirmationSaveWindow
 from .models.scene import Scene as SceneModel
 from .models.scene_session import Session as SessionModel
 
@@ -42,6 +41,7 @@ from ..common.definitions import Command, Format
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
 from ..common.widgets.documentation_wrapper import present_documentation
+from ..common.widgets.confirmation_save_window import ConfirmationSaveWindow
 from ..common.utils import (
     set_project_path,
     get_project_folder,

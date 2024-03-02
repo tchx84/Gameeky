@@ -31,7 +31,6 @@ from gi.repository import Gio, Adw, Gdk, GLib, Gtk
 from .widgets.entity_window import EntityWindow
 from .widgets.entity_new_window import EntityNewWindow
 from .widgets.entity_open_window import EntityOpenWindow
-from .widgets.confirmation_save_window import ConfirmationSaveWindow
 from .models.entity import Entity as EntityModel
 from .models.entity_session import Session as SessionModel
 
@@ -41,6 +40,7 @@ from ..common.scanner import Description
 from ..common.monitor import Monitor
 from ..common.widgets.about_window import present_about
 from ..common.widgets.documentation_wrapper import present_documentation
+from ..common.widgets.confirmation_save_window import ConfirmationSaveWindow
 from ..common.utils import (
     set_project_path,
     get_project_path,
