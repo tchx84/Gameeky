@@ -2,9 +2,9 @@
 <!-- Created with Cambalache 0.16.0 -->
 <interface>
   <!-- interface-name view.ui -->
+  <requires lib="gio" version="2.0"/>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
-  <requires lib="gio" version="2.0"/>
   <template class="Window" parent="AdwApplicationWindow">
     <property name="content">
       <object class="AdwToolbarView">
@@ -12,37 +12,51 @@
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
-              <object class="AdwBanner" id="banner">
-                <property name="button-label" translatable="yes">Reload</property>
-                <property name="title" translatable="yes">Source has been changed on disk</property>
-                <signal name="button-clicked" handler="on_reload_clicked"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow">
-                <child>
-                  <object class="GtkTextView">
-                    <property name="buffer">
-                      <object class="GtkTextBuffer" id="source_buffer"/>
+              <object class="GtkPaned">
+                <property name="end-child">
+                  <object class="GtkScrolledWindow">
+                    <property name="child">
+                      <object class="GtkTextView">
+                        <property name="buffer">
+                          <object class="GtkTextBuffer" id="output_buffer"/>
+                        </property>
+                        <property name="editable">False</property>
+                        <property name="monospace">True</property>
+                      </object>
                     </property>
-                    <property name="monospace">True</property>
                     <property name="vexpand">True</property>
                   </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="height-request">250</property>
-                <child>
-                  <object class="GtkTextView">
-                    <property name="buffer">
-                      <object class="GtkTextBuffer" id="output_buffer"/>
-                    </property>
-                    <property name="editable">False</property>
-                    <property name="monospace">True</property>
+                </property>
+                <property name="orientation">vertical</property>
+                <property name="resize-end-child">False</property>
+                <property name="shrink-end-child">False</property>
+                <property name="start-child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <child>
+                      <object class="AdwBanner" id="banner">
+                        <property name="button-label" translatable="yes">Reload</property>
+                        <property name="title" translatable="yes">Source has been changed on disk</property>
+                        <signal name="button-clicked" handler="on_reload_clicked"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="child">
+                          <object class="GtkTextView">
+                            <property name="buffer">
+                              <object class="GtkTextBuffer" id="source_buffer"/>
+                            </property>
+                            <property name="monospace">True</property>
+                          </object>
+                        </property>
+                        <property name="vexpand">True</property>
+                      </object>
+                    </child>
                   </object>
-                </child>
+                </property>
+                <property name="vexpand">True</property>
               </object>
             </child>
           </object>
