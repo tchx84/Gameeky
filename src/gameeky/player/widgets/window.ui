@@ -187,6 +187,10 @@
       <attribute name="label" translatable="yes">_Join</attribute>
     </item>
     <item>
+      <attribute name="action">app.join_with_code</attribute>
+      <attribute name="label" translatable="yes">_Join With Code</attribute>
+    </item>
+    <item>
       <attribute name="action">app.save</attribute>
       <attribute name="label" translatable="yes">Save _As…</attribute>
     </item>

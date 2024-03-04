@@ -46,8 +46,10 @@ from ..common.widgets.documentation_wrapper import present_documentation
 from ..common.utils import (
     get_project_folder,
     set_project_path,
+    get_project_path,
     find_project_path,
     bytearray_to_string,
+    launch_coder,
 )
 from ..common.definitions import (
     Command,
@@ -114,6 +116,13 @@ class Application(Adw.Application):
         self._shutdown_guest()
         self._shutdown_host()
         self._start_guest()
+
+    def __on_join_with_code(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        launch_coder(get_project_path())
 
     def __on_reload(self, window: Window) -> None:
         self._monitor.shutdown()
@@ -295,6 +304,10 @@ class Application(Adw.Application):
         join_action = Gio.SimpleAction.new("join", None)
         join_action.connect("activate", self.__on_join)
         self.add_action(join_action)
+
+        join_with_code_action = Gio.SimpleAction.new("join_with_code", None)
+        join_with_code_action.connect("activate", self.__on_join_with_code)
+        self.add_action(join_with_code_action)
 
         save_action = Gio.SimpleAction.new("save", None)
         save_action.connect("activate", self.__on_save)
