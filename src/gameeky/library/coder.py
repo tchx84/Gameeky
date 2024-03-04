@@ -38,6 +38,8 @@ from ..common.logger import logger
 from ..common.monitor import Monitor
 from ..common.utils import bytearray_to_string
 from ..common.definitions import Command
+from ..common.widgets.about_window import present_about
+from ..common.widgets.documentation_wrapper import present_documentation
 from ..common.widgets.confirmation_save_window import ConfirmationSaveWindow
 
 
@@ -185,6 +187,16 @@ class Application(Adw.Application):
         dialog = SessionSettingsWindow(transient_for=self._window)
         dialog.present()
 
+    def __on_about(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        present_about(self._window)
+
+    def __on_documentation(
+        self,
+        action: Gio.SimpleAction,
+        data: Optional[Any] = None,
+    ) -> None:
+        present_documentation(self._window)
+
     def do_command_line(self, command_line: Gio.ApplicationCommandLine) -> int:
         options = command_line.get_options_dict().end().unpack()
 
@@ -238,6 +250,14 @@ class Application(Adw.Application):
         edit_action = Gio.SimpleAction.new("edit", None)
         edit_action.connect("activate", self.__on_edit)
         self.add_action(edit_action)
+
+        documentation_action = Gio.SimpleAction.new("documentation", None)
+        documentation_action.connect("activate", self.__on_documentation)
+        self.add_action(documentation_action)
+
+        about_action = Gio.SimpleAction.new("about", None)
+        about_action.connect("activate", self.__on_about)
+        self.add_action(about_action)
 
     def do_shutdown(self) -> None:
         self._monitor.shutdown()
