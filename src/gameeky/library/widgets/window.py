@@ -16,9 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import gi
+
+gi.require_version("GtkSource", "5")
+
 from typing import Optional, Any
 
-from gi.repository import Gio, GLib, Gtk, GObject, Adw
+from gi.repository import Gio, GLib, Gtk, GObject, GtkSource, Adw
+
+GtkSource.init()
 
 from ..utils import (
     get_session_project,
@@ -56,6 +62,11 @@ class Window(Adw.ApplicationWindow):
         )
 
         Monitor.default().connect("changed", self.__on_monitor_changed)
+
+        # XXX Figure out how to move this to GtkBuilder
+        self.source_buffer.props.language = (
+            GtkSource.LanguageManager.get_default().get_language("python3")
+        )
 
     @Gtk.Template.Callback("on_execute_clicked")
     def __on_execute_clicked(self, button: Gtk.Button) -> None:

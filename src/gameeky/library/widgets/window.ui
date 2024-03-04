@@ -44,11 +44,23 @@
                     <child>
                       <object class="GtkScrolledWindow">
                         <property name="child">
-                          <object class="GtkTextView">
+                          <object class="GtkSourceView" id="source_view">
                             <property name="buffer">
-                              <object class="GtkTextBuffer" id="source_buffer"/>
+                              <object class="GtkSourceBuffer" id="source_buffer">
+                                <property name="highlight-syntax">True</property>
+                                <property name="implicit-trailing-newline">True</property>
+                              </object>
                             </property>
                             <property name="monospace">True</property>
+                            <property name="auto-indent">True</property>
+                            <property name="highlight-current-line">True</property>
+                            <property name="indent-on-tab">True</property>
+                            <property name="indent-width">4</property>
+                            <property name="insert-spaces-instead-of-tabs">True</property>
+                            <property name="show-line-marks">True</property>
+                            <property name="show-line-numbers">True</property>
+                            <property name="smart-backspace">True</property>
+                            <property name="tab-width">4</property>
                           </object>
                         </property>
                         <property name="vexpand">True</property>
