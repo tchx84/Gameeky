@@ -215,6 +215,13 @@ def launch_entity(project_path: str, entity_path: str) -> None:
     )
 
 
+def launch_coder(project_path: str) -> None:
+    launch(
+        "dev.tchx84.Gameeky.Coder",
+        f"--project_path={quote(project_path)}",
+    )
+
+
 def quote(string: str) -> str:
     if not string:
         return string
