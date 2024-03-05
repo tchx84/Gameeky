@@ -16,6 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-__all__ = ["Game"]
+__all__ = ["Game", "State", "Direction", "Vector", "Entity", "Scene", "Stats"]
 
 from .game import Game
+
+from ..common.definitions import State, Direction
+from ..common.vector import Vector
+from ..common.entity import Entity
+from ..common.scene import Scene
+from ..common.stats import Stats
