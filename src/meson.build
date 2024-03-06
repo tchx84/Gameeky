@@ -208,6 +208,7 @@ gameeky_sources = [
   'gameeky/launcher/widgets/project_edit_window.py',
   'gameeky/launcher/widgets/project_new_window.py',
   'gameeky/launcher/widgets/project_row.py',
+  'gameeky/launcher/widgets/project_row_popover.py',
   'gameeky/launcher/widgets/project_settings.py',
   'gameeky/launcher/widgets/window.py',
   'gameeky/library/coder.py',
