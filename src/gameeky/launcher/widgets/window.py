@@ -60,7 +60,6 @@ class Window(Adw.ApplicationWindow):
         row.disconnect_by_func(self.__on_edit)
         row.disconnect_by_func(self.__on_copied)
         row.disconnect_by_func(self.__on_removed)
-        row.shutdown()
 
         self.content.remove(row)
 
