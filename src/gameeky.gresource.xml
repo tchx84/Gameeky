@@ -41,6 +41,7 @@
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_edit_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row_popover.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_settings.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/library/widgets/session_settings_window.ui</file>
