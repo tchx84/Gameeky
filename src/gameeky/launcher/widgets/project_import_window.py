@@ -18,7 +18,7 @@
 
 from pathlib import Path
 
-from gi.repository import Gtk, Gio, GLib, Adw
+from gi.repository import Gtk, Gio, GLib, GObject, Adw
 
 from ..models.project import Importer
 
@@ -30,6 +30,10 @@ from ...common.utils import get_projects_path, find_new_name
 @Gtk.Template(resource_path="/dev/tchx84/gameeky/launcher/widgets/project_import_window.ui")  # fmt: skip
 class ProjectImportWindow(Adw.Window):
     __gtype_name__ = "ProjectImportWindow"
+
+    __gsignals__ = {
+        "succeeded": (GObject.SignalFlags.RUN_LAST, None, ()),
+    }
 
     header = Gtk.Template.Child()
     stack = Gtk.Template.Child()
@@ -59,6 +63,9 @@ class ProjectImportWindow(Adw.Window):
         project_name = find_new_name(projects_path, Path(file.get_path()).stem)
         target = GLib.build_filenamev([projects_path, project_name])
 
+        # Ignore the following changes to the projects directory
+        self.props.transient_for.ignore()
+
         importer = Importer(file.get_path(), target)
         importer.connect("started", self.__on_importer_started)
         importer.connect("progressed", self.__on_importer_progressed)
@@ -77,6 +84,7 @@ class ProjectImportWindow(Adw.Window):
     def __on_importer_finished(self, importer: Importer) -> None:
         self.stack.props.visible_child_name = "finished"
         self.header.props.sensitive = True
+        self.emit("succeeded")
 
     def __on_importer_failed(self, importer: Importer) -> None:
         self.stack.props.visible_child_name = "failed"
