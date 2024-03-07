@@ -85,6 +85,7 @@ class Application(Adw.Application):
 
     def __on_import(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = ProjectImportWindow(transient_for=self._window)
+        dialog.connect("succeeded", self.__on_reload)
         dialog.present()
 
     def _setup_session(self) -> None:

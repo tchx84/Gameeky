@@ -138,3 +138,6 @@ class Window(Adw.ApplicationWindow):
         self.content.remove_all()
         self._ignore = False
         self.stack.set_visible_child_name("landing")
+
+    def ignore(self) -> None:
+        self._ignore = True
