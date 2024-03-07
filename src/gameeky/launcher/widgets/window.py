@@ -35,6 +35,7 @@ class Window(Adw.ApplicationWindow):
 
     __gsignals__ = {
         "reload": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "exported": (GObject.SignalFlags.RUN_LAST, None, (str,)),
     }
 
     banner = Gtk.Template.Child()
@@ -51,6 +52,7 @@ class Window(Adw.ApplicationWindow):
         row.connect("edited", self.__on_edit)
         row.connect("copied", self.__on_copied)
         row.connect("removed", self.__on_removed)
+        row.connect("exported", self.__on_exported)
         row.description = description
 
         self.content.append(row)
@@ -115,6 +117,9 @@ class Window(Adw.ApplicationWindow):
         path = Project.create(description)
 
         self._add(path, description)
+
+    def __on_exported(self, row: ProjectRow) -> None:
+        self.emit("exported", row.path)
 
     @Gtk.Template.Callback("on_reload_clicked")
     def __on_reload_clicked(self, button: Gtk.Button) -> None:

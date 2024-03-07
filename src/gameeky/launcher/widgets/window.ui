@@ -142,6 +142,10 @@
       <attribute name="label" translatable="yes">_New</attribute>
     </item>
     <item>
+      <attribute name="action">app.import</attribute>
+      <attribute name="label" translatable="yes">_Import</attribute>
+    </item>
+    <item>
       <attribute name="action">app.documentation</attribute>
       <attribute name="label" translatable="yes">_Documentation</attribute>
     </item>

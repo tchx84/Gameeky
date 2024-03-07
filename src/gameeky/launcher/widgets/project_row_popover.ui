@@ -62,6 +62,17 @@
             <property name="selectable">False</property>
           </object>
         </child>
+        <child>
+          <object class="GtkListBoxRow" id="export">
+            <property name="child">
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Export</property>
+                <property name="xalign">0.0</property>
+              </object>
+            </property>
+            <property name="selectable">False</property>
+          </object>
+        </child>
       </object>
     </property>
     <style>

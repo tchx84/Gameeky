@@ -40,6 +40,7 @@ class ProjectRowPopover(Gtk.Popover):
     settings = Gtk.Template.Child()
     copy = Gtk.Template.Child()
     delete = Gtk.Template.Child()
+    export = Gtk.Template.Child()
 
     def __init__(self, row: ProjectRow) -> None:
         super().__init__()
@@ -66,6 +67,8 @@ class ProjectRowPopover(Gtk.Popover):
             self.row.emit("copied")
         elif row == self.delete:
             self.row.emit("removed")
+        elif row == self.export:
+            self.row.emit("exported")
 
         self.popdown()
 
