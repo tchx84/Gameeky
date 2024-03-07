@@ -32,6 +32,7 @@ class ProjectRow(Gtk.FlowBoxChild):
         "edited": (GObject.SignalFlags.RUN_LAST, None, ()),
         "copied": (GObject.SignalFlags.RUN_LAST, None, ()),
         "removed": (GObject.SignalFlags.RUN_LAST, None, ()),
+        "exported": (GObject.SignalFlags.RUN_LAST, None, ()),
     }
 
     title = Gtk.Template.Child()

@@ -31,6 +31,8 @@ from gi.repository import GLib, Gio, Adw, Gdk, Gtk
 
 from .widgets.window import Window
 from .widgets.confirmation_create_window import ConfirmationCreateWindow
+from .widgets.project_export_window import ProjectExportWindow
+from .widgets.project_import_window import ProjectImportWindow
 from .models.session import Session
 from .models.service import Software
 
@@ -77,6 +79,14 @@ class Application(Adw.Application):
         self._window.reset()
         self._setup_session()
 
+    def __on_export(self, window: Window, source: str) -> None:
+        dialog = ProjectExportWindow(source, transient_for=self._window)
+        dialog.present()
+
+    def __on_import(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
+        dialog = ProjectImportWindow(transient_for=self._window)
+        dialog.present()
+
     def _setup_session(self) -> None:
         self._session = Session()
         self._session.connect("found", self.__on_found)
@@ -93,6 +103,7 @@ class Application(Adw.Application):
 
         self._window = Window(application=self)
         self._window.connect("reload", self.__on_reload)
+        self._window.connect("exported", self.__on_export)
         self._window.present()
 
         self._setup_session()
@@ -103,6 +114,10 @@ class Application(Adw.Application):
         new_action = Gio.SimpleAction.new("new", None)
         new_action.connect("activate", self.__on_new)
         self.add_action(new_action)
+
+        import_action = Gio.SimpleAction.new("import", None)
+        import_action.connect("activate", self.__on_import)
+        self.add_action(import_action)
 
         documentation_action = Gio.SimpleAction.new("documentation", None)
         documentation_action.connect("activate", self.__on_documentation)
