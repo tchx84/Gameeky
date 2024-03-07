@@ -34,6 +34,7 @@ DEFAULT_SEPARATOR = "\n"
 class Format(StrEnum):
     ENTITY = "entity"
     SCENE = "scene"
+    PROJECT = "project"
 
 
 DEFAULT_SCENE = f"scenes/default.{Format.SCENE}"
