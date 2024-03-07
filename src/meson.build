@@ -206,6 +206,8 @@ gameeky_sources = [
   'gameeky/launcher/widgets/confirmation_create_window.py',
   'gameeky/launcher/widgets/confirmation_window.py',
   'gameeky/launcher/widgets/project_edit_window.py',
+  'gameeky/launcher/widgets/project_export_window.py',
+  'gameeky/launcher/widgets/project_import_window.py',
   'gameeky/launcher/widgets/project_new_window.py',
   'gameeky/launcher/widgets/project_row.py',
   'gameeky/launcher/widgets/project_row_popover.py',
