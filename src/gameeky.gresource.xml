@@ -39,6 +39,8 @@
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/confirmation_create_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/confirmation_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_edit_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_export_window.ui</file>
+    <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_import_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_new_window.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row.ui</file>
     <file preprocess="xml-stripblanks">gameeky/launcher/widgets/project_row_popover.ui</file>
