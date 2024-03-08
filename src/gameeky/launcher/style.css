@@ -7,7 +7,10 @@
 .card {
     margin: 10px;
 }
-.card .labels,
+.card .labels {
+    padding: 5px;
+    background-color: @thumbnail_bg_color;
+}
 .card .buttons {
     margin: 5px;
 }
