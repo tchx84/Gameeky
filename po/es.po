@@ -531,13 +531,12 @@ msgstr "Por defecto"
 
 #: src/gameeky/launcher/widgets/project_export_window.py:47
 #: src/gameeky/library/coder.py:121
-#, fuzzy
 msgid "untitled"
-msgstr "Entidades"
+msgstr "intitulado"
 
 #: src/gameeky/library/coder.py:53
 msgid "Coder"
-msgstr ""
+msgstr "Codificador"
 
 #: src/gameeky/common/widgets/confirmation_save_window.ui:7
 msgid ""
@@ -1021,7 +1020,7 @@ msgstr "Guardar _Como…"
 
 #: src/gameeky/editor/widgets/entity_window.ui:137
 msgid "_Browse Files"
-msgstr ""
+msgstr "_Explorar Archivos"
 
 #: src/gameeky/editor/widgets/entity_window.ui:141
 #: src/gameeky/editor/widgets/scene_window.ui:317
@@ -1160,7 +1159,7 @@ msgstr "Entidades"
 
 #: src/gameeky/editor/widgets/scene_window.ui:309
 msgid "_Try It"
-msgstr ""
+msgstr "_Probar"
 
 #: src/gameeky/editor/widgets/scene_window.ui:313
 #: src/gameeky/library/widgets/window.ui:132
@@ -1200,15 +1199,16 @@ msgid ""
 "It's easier to create new projects from existing thematic packs. Browse "
 "GNOME Software for these Add-ons."
 msgstr ""
+"Es más fácil crear nuevos proyectos a partir de paquetes temáticos "
+"existentes. Explore GNOME Software para obtener estos complementos."
 
 #: src/gameeky/launcher/widgets/confirmation_create_window.ui:11
-#, fuzzy
 msgid "Create New Project?"
-msgstr "¿Eliminar proyecto?"
+msgstr "¿Crear nuevo proyecto?"
 
 #: src/gameeky/launcher/widgets/confirmation_create_window.ui:17
 msgid "Browse"
-msgstr ""
+msgstr "Explorar"
 
 #: src/gameeky/launcher/widgets/confirmation_window.ui:7
 msgid "Do you want to <b>permanently</b> delete this project?"
@@ -1220,16 +1220,16 @@ msgstr "¿Eliminar proyecto?"
 
 #: src/gameeky/launcher/widgets/project_export_window.ui:42
 msgid "Select the destination to export the project to"
-msgstr ""
+msgstr "Seleccione el destino para exportar el proyecto"
 
 #: src/gameeky/launcher/widgets/project_export_window.ui:53
 #: src/gameeky/launcher/widgets/project_import_window.ui:53
 msgid "Select"
-msgstr ""
+msgstr "Seleccionar"
 
 #: src/gameeky/launcher/widgets/project_export_window.ui:113
 msgid "Project successfully exported!"
-msgstr ""
+msgstr "¡Proyecto exportado exitosamente!"
 
 #: src/gameeky/launcher/widgets/project_export_window.ui:148
 #: src/gameeky/launcher/widgets/project_import_window.ui:148
@@ -1239,11 +1239,11 @@ msgstr "Algo salió mal"
 
 #: src/gameeky/launcher/widgets/project_import_window.ui:42
 msgid "Select the file to import the project from"
-msgstr ""
+msgstr "Seleccione el archivo para importar el proyecto"
 
 #: src/gameeky/launcher/widgets/project_import_window.ui:113
 msgid "Project successfully imported!"
-msgstr ""
+msgstr "¡Proyecto importado exitosamente!"
 
 #: src/gameeky/launcher/widgets/project_row_popover.ui:14
 #: src/gameeky/player/widgets/window.ui:53
@@ -1256,21 +1256,19 @@ msgstr "Configuración"
 
 #: src/gameeky/launcher/widgets/project_row_popover.ui:69
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: src/gameeky/launcher/widgets/project_row.ui:33
-#, fuzzy
 msgid "Options"
-msgstr "Acciones"
+msgstr "Opciones"
 
 #: src/gameeky/launcher/widgets/project_settings.ui:14
 msgid "Description"
 msgstr "Descripción"
 
 #: src/gameeky/launcher/widgets/window.ui:19
-#, fuzzy
 msgid "The projects have been changed on disk"
-msgstr "La escena ha sido cambiada en el disco"
+msgstr "Los proyectos han sido cambiados en el disco"
 
 #: src/gameeky/launcher/widgets/window.ui:48
 #: src/gameeky/player/widgets/window.ui:41
@@ -1283,7 +1281,7 @@ msgstr "Mis Proyectos"
 
 #: src/gameeky/launcher/widgets/window.ui:146
 msgid "_Import"
-msgstr ""
+msgstr "_Importar"
 
 #: src/gameeky/library/widgets/session_settings_window.ui:40
 #: src/gameeky/player/widgets/session_join_window.ui:40
@@ -1299,9 +1297,8 @@ msgstr "Avanzado"
 #: src/gameeky/library/widgets/session_settings_window.ui:59
 #: src/gameeky/player/widgets/session_join_window.ui:59
 #: src/gameeky/player/widgets/session_new_window.ui:85
-#, fuzzy
 msgid "Entity Type"
-msgstr "Entidad"
+msgstr "Tipo de Entidad"
 
 #: src/gameeky/library/widgets/session_settings_window.ui:72
 #: src/gameeky/player/widgets/session_join_window.ui:72
@@ -1310,14 +1307,12 @@ msgid "Session Port"
 msgstr "Puerto de Sesión"
 
 #: src/gameeky/library/widgets/session_settings_window.ui:118
-#, fuzzy
 msgid "Session"
-msgstr "Puerto de Sesión"
+msgstr "Sesión"
 
 #: src/gameeky/library/widgets/window.ui:40
-#, fuzzy
 msgid "Source has been changed on disk"
-msgstr "La escena ha sido cambiada en el disco"
+msgstr "El código fuente ha sido cambiado en el disco"
 
 #: src/gameeky/player/widgets/actions_popover.ui:14
 msgid "Take"
@@ -1353,44 +1348,39 @@ msgstr "Movimiento"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:16
 msgid "Move north"
-msgstr "Muévete al norte"
+msgstr "Moverse al norte"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:22
 msgid "Move east"
-msgstr "Muévete hacia el este"
+msgstr "Moverse al este"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:28
 msgid "Move south"
-msgstr "Muévete hacia el sur"
+msgstr "Moverse al sur"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:34
 msgid "Move west"
-msgstr "Muévete al oeste"
+msgstr "Moverse al oeste"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:41
-#, fuzzy
 msgid "Rotation"
-msgstr "Rotar"
+msgstr "Rotación"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:45
-#, fuzzy
 msgid "Rotate north"
-msgstr "Muévete al norte"
+msgstr "Girar hacia el norte"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:51
-#, fuzzy
 msgid "Rotate east"
-msgstr "Rotar"
+msgstr "Girar hacia el este"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:57
-#, fuzzy
 msgid "Rotate south"
-msgstr "Muévete hacia el sur"
+msgstr "Girar hacia el sur"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:63
-#, fuzzy
 msgid "Rotate west"
-msgstr "Rotar"
+msgstr "Girar hacia el oeste"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:70
 msgid "Actions"
@@ -1434,11 +1424,8 @@ msgstr "_Unirse"
 
 #: src/gameeky/player/widgets/window.ui:191
 msgid "_Join With Code"
-msgstr ""
+msgstr "Unirse Con _Código"
 
 #: src/gameeky/player/widgets/window.ui:199
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos de _Teclado"
-
-#~ msgid "Messages Port"
-#~ msgstr "Puerto de Mensajes"
