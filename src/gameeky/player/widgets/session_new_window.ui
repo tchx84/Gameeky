@@ -82,7 +82,7 @@
                                             <property name="value">1.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Entity Type</property>
+                                        <property name="title" translatable="yes">Entity Type</property>
                                       </object>
                                     </child>
                                     <child>

@@ -16,7 +16,7 @@
             <child>
               <object class="AdwBanner" id="banner">
                 <property name="button-label">Reload</property>
-                <property name="title">The projects have been changed on disk</property>
+                <property name="title" translatable="yes">The projects have been changed on disk</property>
                 <signal name="button-clicked" handler="on_reload_clicked"/>
               </object>
             </child>

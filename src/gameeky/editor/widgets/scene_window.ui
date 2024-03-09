@@ -110,7 +110,7 @@
                 </child>
               </object>
             </property>
-            <property name="title">Scene</property>
+            <property name="title" translatable="yes">Scene</property>
           </object>
         </property>
         <property name="sidebar">

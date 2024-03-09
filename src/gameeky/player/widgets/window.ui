@@ -50,7 +50,7 @@
                               <object class="GtkButton">
                                 <property name="action-name">app.new</property>
                                 <property name="halign">center</property>
-                                <property name="label">Play</property>
+                                <property name="label" translatable="yes">Play</property>
                                 <property name="valign">center</property>
                                 <style>
                                   <class name="pill"/>
