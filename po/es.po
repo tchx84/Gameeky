@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-05 15:53-0300\n"
+"POT-Creation-Date: 2024-03-09 11:57-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,19 +14,19 @@ msgstr ""
 
 #: data/dev.tchx84.Gameeky.desktop.in:3
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:6
-#: src/gameeky/launcher/launcher.py:46
+#: src/gameeky/launcher/launcher.py:50
 msgid "Gameeky"
 msgstr "Gameeky"
 
-#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:59
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:61
 msgid "Entity Editor"
 msgstr "Editor de Entidades"
 
-#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:69
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:71
 msgid "Player"
 msgstr "Jugador"
 
-#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:60
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:61
 msgid "Scene Editor"
 msgstr "Editor de Escena"
 
@@ -94,7 +94,7 @@ msgstr "Gameeky mostrando su lanzador de juegos"
 msgid "Martin Abente Lahaye"
 msgstr "Martín Abente Lahaye"
 
-#: src/gameeky/client/graphics/entity.py:111
+#: src/gameeky/client/graphics/entity.py:114
 #, python-format
 msgid "Missing entity type: %d"
 msgstr "Tipo de entidad faltante: %d"
@@ -111,7 +111,7 @@ msgstr "Proyecto equivocado"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: src/gameeky/common/utils.py:196
+#: src/gameeky/common/utils.py:234
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copia)"
@@ -529,6 +529,60 @@ msgstr "Mientras %s"
 msgid "By default"
 msgstr "Por defecto"
 
+#: src/gameeky/launcher/widgets/project_export_window.py:47
+#: src/gameeky/library/coder.py:121
+#, fuzzy
+msgid "untitled"
+msgstr "Entidades"
+
+#: src/gameeky/library/coder.py:53
+msgid "Coder"
+msgstr ""
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:7
+msgid ""
+"There are unsaved changes. Changes which are not saved will be permanently "
+"lost."
+msgstr ""
+"Hay cambios no guardados. Los cambios que no se guarden, se perderán "
+"permanentemente."
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:11
+msgid "Save Changes?"
+msgstr "¿Guardar Cambios?"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:15
+#: src/gameeky/editor/widgets/confirmation_window.ui:15
+#: src/gameeky/editor/widgets/entity_new_window.ui:59
+#: src/gameeky/editor/widgets/entity_open_window.ui:70
+#: src/gameeky/editor/widgets/scene_edit_window.ui:35
+#: src/gameeky/editor/widgets/scene_entity_window.ui:23
+#: src/gameeky/editor/widgets/scene_new_window.ui:35
+#: src/gameeky/editor/widgets/scene_open_window.ui:71
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:15
+#: src/gameeky/launcher/widgets/confirmation_window.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:35
+#: src/gameeky/launcher/widgets/project_new_window.ui:35
+#: src/gameeky/library/widgets/session_settings_window.ui:95
+#: src/gameeky/player/widgets/session_join_window.ui:95
+#: src/gameeky/player/widgets/session_new_window.ui:121
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:16
+msgid "Discard"
+msgstr "Descartar"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:17
+#: src/gameeky/editor/widgets/entity_window.ui:129
+#: src/gameeky/editor/widgets/scene_edit_window.ui:41
+#: src/gameeky/editor/widgets/scene_entity_window.ui:29
+#: src/gameeky/editor/widgets/scene_window.ui:301
+#: src/gameeky/launcher/widgets/project_edit_window.ui:41
+#: src/gameeky/library/widgets/window.ui:124
+msgid "Save"
+msgstr "Guardar"
+
 #: src/gameeky/editor/widgets/actuators_row.ui:12
 msgid "The actuators that will modify this entity behavior"
 msgstr "Los actuadores que modificarán el comportamiento de esta entidad"
@@ -539,7 +593,7 @@ msgstr "Actuadores"
 
 #: src/gameeky/editor/widgets/animation_row.ui:16
 #: src/gameeky/editor/widgets/sound_row.ui:16
-#: src/gameeky/launcher/widgets/project_row.ui:116
+#: src/gameeky/launcher/widgets/project_row_popover.ui:47
 msgid "Copy"
 msgstr "Copiar"
 
@@ -548,7 +602,7 @@ msgstr "Copiar"
 #: src/gameeky/editor/widgets/scene_entity_popover.ui:27
 #: src/gameeky/editor/widgets/sound_row.ui:25
 #: src/gameeky/launcher/widgets/confirmation_window.ui:16
-#: src/gameeky/launcher/widgets/project_row.ui:129
+#: src/gameeky/launcher/widgets/project_row_popover.ui:58
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -638,6 +692,7 @@ msgstr "Ángulo para rotar la imagen"
 
 #: src/gameeky/editor/widgets/animation_settings.ui:142
 #: src/gameeky/editor/widgets/scene_window.ui:219
+#: src/gameeky/player/widgets/actions_popover.ui:61
 msgid "Rotate"
 msgstr "Rotar"
 
@@ -714,47 +769,6 @@ msgstr ""
 msgid "Animations"
 msgstr "Animaciones"
 
-#: src/gameeky/editor/widgets/confirmation_save_window.ui:7
-msgid ""
-"There are unsaved changes. Changes which are not saved will be permanently "
-"lost."
-msgstr ""
-"Hay cambios no guardados. Los cambios que no se guarden, se perderán "
-"permanentemente."
-
-#: src/gameeky/editor/widgets/confirmation_save_window.ui:11
-msgid "Save Changes?"
-msgstr "¿Guardar Cambios?"
-
-#: src/gameeky/editor/widgets/confirmation_save_window.ui:15
-#: src/gameeky/editor/widgets/confirmation_window.ui:15
-#: src/gameeky/editor/widgets/entity_new_window.ui:59
-#: src/gameeky/editor/widgets/entity_open_window.ui:70
-#: src/gameeky/editor/widgets/scene_edit_window.ui:35
-#: src/gameeky/editor/widgets/scene_entity_window.ui:23
-#: src/gameeky/editor/widgets/scene_new_window.ui:35
-#: src/gameeky/editor/widgets/scene_open_window.ui:71
-#: src/gameeky/launcher/widgets/confirmation_window.ui:15
-#: src/gameeky/launcher/widgets/project_edit_window.ui:35
-#: src/gameeky/launcher/widgets/project_new_window.ui:35
-#: src/gameeky/player/widgets/session_join_window.ui:93
-#: src/gameeky/player/widgets/session_new_window.ui:119
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: src/gameeky/editor/widgets/confirmation_save_window.ui:16
-msgid "Discard"
-msgstr "Descartar"
-
-#: src/gameeky/editor/widgets/confirmation_save_window.ui:17
-#: src/gameeky/editor/widgets/entity_window.ui:129
-#: src/gameeky/editor/widgets/scene_edit_window.ui:41
-#: src/gameeky/editor/widgets/scene_entity_window.ui:29
-#: src/gameeky/editor/widgets/scene_window.ui:301
-#: src/gameeky/launcher/widgets/project_edit_window.ui:41
-msgid "Save"
-msgstr "Guardar"
-
 #: src/gameeky/editor/widgets/confirmation_window.ui:7
 msgid "Do you want to <b>permanently</b> delete this entity?"
 msgstr "¿Quieres eliminar <b>permanentemente</b> esta entidad?"
@@ -769,6 +783,7 @@ msgstr "¿Eliminar Entidad?"
 #: src/gameeky/editor/widgets/scene_settings.ui:15
 #: src/gameeky/launcher/widgets/project_edit_window.ui:58
 #: src/gameeky/launcher/widgets/project_new_window.ui:58
+#: src/gameeky/library/widgets/session_settings_window.ui:27
 #: src/gameeky/player/widgets/session_join_window.ui:27
 #: src/gameeky/player/widgets/session_new_window.ui:27
 msgid "Project"
@@ -776,9 +791,10 @@ msgstr "Proyecto"
 
 #: src/gameeky/editor/widgets/entity_new_window.ui:65
 #: src/gameeky/editor/widgets/scene_new_window.ui:41
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:16
 #: src/gameeky/launcher/widgets/project_new_window.ui:41
 #: src/gameeky/launcher/widgets/window.ui:59
-#: src/gameeky/player/widgets/session_new_window.ui:125
+#: src/gameeky/player/widgets/session_new_window.ui:127
 msgid "Create"
 msgstr "Crear"
 
@@ -968,8 +984,8 @@ msgid "Actuators have been changed on disk"
 msgstr "Los actuadores han sido cambiados en el disco"
 
 #: src/gameeky/editor/widgets/entity_window.ui:46
-#: src/gameeky/player/widgets/session_join_window.ui:116
-#: src/gameeky/player/widgets/session_new_window.ui:142
+#: src/gameeky/player/widgets/session_join_window.ui:118
+#: src/gameeky/player/widgets/session_new_window.ui:144
 msgid "Game"
 msgstr "Juego"
 
@@ -985,32 +1001,41 @@ msgstr "Sonidos"
 #: src/gameeky/editor/widgets/entity_window.ui:121
 #: src/gameeky/editor/widgets/scene_window.ui:293
 #: src/gameeky/launcher/widgets/window.ui:142
-#: src/gameeky/player/widgets/window.ui:177
+#: src/gameeky/library/widgets/window.ui:116
+#: src/gameeky/player/widgets/window.ui:183
 msgid "_New"
 msgstr "_Nuevo"
 
 #: src/gameeky/editor/widgets/entity_window.ui:125
 #: src/gameeky/editor/widgets/scene_window.ui:297
+#: src/gameeky/library/widgets/window.ui:120
 msgid "_Open"
 msgstr "_Abrir"
 
 #: src/gameeky/editor/widgets/entity_window.ui:133
 #: src/gameeky/editor/widgets/scene_window.ui:305
-#: src/gameeky/player/widgets/window.ui:185
+#: src/gameeky/library/widgets/window.ui:128
+#: src/gameeky/player/widgets/window.ui:195
 msgid "Save _As…"
 msgstr "Guardar _Como…"
 
 #: src/gameeky/editor/widgets/entity_window.ui:137
-#: src/gameeky/editor/widgets/scene_window.ui:313
-#: src/gameeky/launcher/widgets/window.ui:146
-#: src/gameeky/player/widgets/window.ui:193
-msgid "_Documentation"
-msgstr "_Documentación"
+msgid "_Browse Files"
+msgstr ""
 
 #: src/gameeky/editor/widgets/entity_window.ui:141
 #: src/gameeky/editor/widgets/scene_window.ui:317
 #: src/gameeky/launcher/widgets/window.ui:150
-#: src/gameeky/player/widgets/window.ui:197
+#: src/gameeky/library/widgets/window.ui:136
+#: src/gameeky/player/widgets/window.ui:203
+msgid "_Documentation"
+msgstr "_Documentación"
+
+#: src/gameeky/editor/widgets/entity_window.ui:145
+#: src/gameeky/editor/widgets/scene_window.ui:321
+#: src/gameeky/launcher/widgets/window.ui:154
+#: src/gameeky/library/widgets/window.ui:140
+#: src/gameeky/player/widgets/window.ui:207
 msgid "_About Gameeky"
 msgstr "Acerca de _Gameeky"
 
@@ -1042,12 +1067,13 @@ msgstr "Archivos"
 #: src/gameeky/editor/widgets/scene_new_window.ui:58
 #: src/gameeky/editor/widgets/scene_open_window.ui:42
 #: src/gameeky/editor/widgets/scene_open_window.ui:94
+#: src/gameeky/editor/widgets/scene_window.ui:113
 #: src/gameeky/player/widgets/session_new_window.ui:41
 msgid "Scene"
 msgstr "Escena"
 
 #: src/gameeky/editor/widgets/scene_entity_popover.ui:15
-#: src/gameeky/launcher/widgets/project_row.ui:90
+#: src/gameeky/launcher/widgets/project_row_popover.ui:25
 msgid "Edit"
 msgstr "Editar"
 
@@ -1080,6 +1106,7 @@ msgid "Height"
 msgstr "Alto"
 
 #: src/gameeky/editor/widgets/scene_window.ui:20
+#: src/gameeky/library/widgets/window.ui:39
 msgid "Reload"
 msgstr "Recargar"
 
@@ -1132,6 +1159,11 @@ msgid "Entities"
 msgstr "Entidades"
 
 #: src/gameeky/editor/widgets/scene_window.ui:309
+msgid "_Try It"
+msgstr ""
+
+#: src/gameeky/editor/widgets/scene_window.ui:313
+#: src/gameeky/library/widgets/window.ui:132
 msgid "_Settings"
 msgstr "_Configuración"
 
@@ -1163,6 +1195,21 @@ msgstr "Agrega sonidos para diferentes estados"
 msgid "Tileset"
 msgstr "Conjunto de mosaicos"
 
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:7
+msgid ""
+"It's easier to create new projects from existing thematic packs. Browse "
+"GNOME Software for these Add-ons."
+msgstr ""
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:11
+#, fuzzy
+msgid "Create New Project?"
+msgstr "¿Eliminar proyecto?"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:17
+msgid "Browse"
+msgstr ""
+
 #: src/gameeky/launcher/widgets/confirmation_window.ui:7
 msgid "Do you want to <b>permanently</b> delete this project?"
 msgstr "¿Quieres eliminar <b>permanentemente</b> este proyecto?"
@@ -1171,17 +1218,59 @@ msgstr "¿Quieres eliminar <b>permanentemente</b> este proyecto?"
 msgid "Delete Project?"
 msgstr "¿Eliminar proyecto?"
 
-#: src/gameeky/launcher/widgets/project_row.ui:77
+#: src/gameeky/launcher/widgets/project_export_window.ui:42
+msgid "Select the destination to export the project to"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:53
+#: src/gameeky/launcher/widgets/project_import_window.ui:53
+msgid "Select"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:113
+msgid "Project successfully exported!"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:148
+#: src/gameeky/launcher/widgets/project_import_window.ui:148
+#: src/gameeky/player/widgets/window.ui:145
+msgid "Something went wrong"
+msgstr "Algo salió mal"
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:42
+msgid "Select the file to import the project from"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:113
+msgid "Project successfully imported!"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:14
+#: src/gameeky/player/widgets/window.ui:53
 msgid "Play"
 msgstr "Jugar"
 
-#: src/gameeky/launcher/widgets/project_row.ui:103
+#: src/gameeky/launcher/widgets/project_row_popover.ui:36
 msgid "Settings"
 msgstr "Configuración"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:69
+msgid "Export"
+msgstr ""
+
+#: src/gameeky/launcher/widgets/project_row.ui:33
+#, fuzzy
+msgid "Options"
+msgstr "Acciones"
 
 #: src/gameeky/launcher/widgets/project_settings.ui:14
 msgid "Description"
 msgstr "Descripción"
+
+#: src/gameeky/launcher/widgets/window.ui:19
+#, fuzzy
+msgid "The projects have been changed on disk"
+msgstr "La escena ha sido cambiada en el disco"
 
 #: src/gameeky/launcher/widgets/window.ui:48
 #: src/gameeky/player/widgets/window.ui:41
@@ -1191,6 +1280,44 @@ msgstr "Bienvenido a Gameeky"
 #: src/gameeky/launcher/widgets/window.ui:89
 msgid "My Projects"
 msgstr "Mis Proyectos"
+
+#: src/gameeky/launcher/widgets/window.ui:146
+msgid "_Import"
+msgstr ""
+
+#: src/gameeky/library/widgets/session_settings_window.ui:40
+#: src/gameeky/player/widgets/session_join_window.ui:40
+msgid "Address"
+msgstr "Dirección"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:46
+#: src/gameeky/player/widgets/session_new_window.ui:72
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:59
+#: src/gameeky/player/widgets/session_join_window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:85
+#, fuzzy
+msgid "Entity Type"
+msgstr "Entidad"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:72
+#: src/gameeky/player/widgets/session_join_window.ui:72
+#: src/gameeky/player/widgets/session_new_window.ui:98
+msgid "Session Port"
+msgstr "Puerto de Sesión"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:118
+#, fuzzy
+msgid "Session"
+msgstr "Puerto de Sesión"
+
+#: src/gameeky/library/widgets/window.ui:40
+#, fuzzy
+msgid "Source has been changed on disk"
+msgstr "La escena ha sido cambiada en el disco"
 
 #: src/gameeky/player/widgets/actions_popover.ui:14
 msgid "Take"
@@ -1208,30 +1335,11 @@ msgstr "Soltar"
 msgid "Interact"
 msgstr "Interactuar"
 
-#: src/gameeky/player/widgets/actions_popover.ui:61
+#: src/gameeky/player/widgets/actions_popover.ui:72
 msgid "Stop"
 msgstr "Detener"
 
-#: src/gameeky/player/widgets/session_join_window.ui:40
-msgid "Address"
-msgstr "Dirección"
-
-#: src/gameeky/player/widgets/session_join_window.ui:46
-#: src/gameeky/player/widgets/session_new_window.ui:72
-msgid "Advanced"
-msgstr "Avanzado"
-
-#: src/gameeky/player/widgets/session_join_window.ui:57
-#: src/gameeky/player/widgets/session_new_window.ui:83
-msgid "Session Port"
-msgstr "Puerto de Sesión"
-
-#: src/gameeky/player/widgets/session_join_window.ui:70
-#: src/gameeky/player/widgets/session_new_window.ui:96
-msgid "Messages Port"
-msgstr "Puerto de Mensajes"
-
-#: src/gameeky/player/widgets/session_join_window.ui:99
+#: src/gameeky/player/widgets/session_join_window.ui:101
 msgid "Join"
 msgstr "Unirse"
 
@@ -1260,30 +1368,55 @@ msgid "Move west"
 msgstr "Muévete al oeste"
 
 #: src/gameeky/player/widgets/shortcuts_window.ui:41
+#, fuzzy
+msgid "Rotation"
+msgstr "Rotar"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:45
+#, fuzzy
+msgid "Rotate north"
+msgstr "Muévete al norte"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:51
+#, fuzzy
+msgid "Rotate east"
+msgstr "Rotar"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:57
+#, fuzzy
+msgid "Rotate south"
+msgstr "Muévete hacia el sur"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:63
+#, fuzzy
+msgid "Rotate west"
+msgstr "Rotar"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:70
 msgid "Actions"
 msgstr "Acciones"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:45
+#: src/gameeky/player/widgets/shortcuts_window.ui:74
 msgid "Take object"
 msgstr "Tomar objeto"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:51
+#: src/gameeky/player/widgets/shortcuts_window.ui:80
 msgid "Drop object"
 msgstr "Soltar objeto"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:57
+#: src/gameeky/player/widgets/shortcuts_window.ui:86
 msgid "Use object"
 msgstr "Usar objeto"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:63
+#: src/gameeky/player/widgets/shortcuts_window.ui:92
 msgid "Interact with object"
 msgstr "Interactuar con objeto"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:70
+#: src/gameeky/player/widgets/shortcuts_window.ui:99
 msgid "Dialogues"
 msgstr "Diálogos"
 
-#: src/gameeky/player/widgets/shortcuts_window.ui:74
+#: src/gameeky/player/widgets/shortcuts_window.ui:103
 msgid "Close dialog"
 msgstr "Cerrar diálogo"
 
@@ -1291,18 +1424,21 @@ msgstr "Cerrar diálogo"
 msgid "Loading"
 msgstr "Cargando"
 
-#: src/gameeky/player/widgets/window.ui:105
+#: src/gameeky/player/widgets/window.ui:108
 msgid "The scene has been changed on disk"
 msgstr "La escena ha sido cambiada en el disco"
 
-#: src/gameeky/player/widgets/window.ui:142
-msgid "Something went wrong"
-msgstr "Algo salió mal"
-
-#: src/gameeky/player/widgets/window.ui:181
+#: src/gameeky/player/widgets/window.ui:187
 msgid "_Join"
 msgstr "_Unirse"
 
-#: src/gameeky/player/widgets/window.ui:189
+#: src/gameeky/player/widgets/window.ui:191
+msgid "_Join With Code"
+msgstr ""
+
+#: src/gameeky/player/widgets/window.ui:199
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos de _Teclado"
+
+#~ msgid "Messages Port"
+#~ msgstr "Puerto de Mensajes"
