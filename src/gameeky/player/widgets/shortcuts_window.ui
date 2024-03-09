@@ -38,7 +38,7 @@
         </child>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="title">Rotation</property>
+            <property name="title" translatable="yes">Rotation</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Ctrl&gt;Up</property>

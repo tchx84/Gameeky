@@ -11,7 +11,7 @@
           <object class="GtkListBoxRow" id="play">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Play</property>
+                <property name="label" translatable="yes">Play</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -22,7 +22,7 @@
           <object class="GtkListBoxRow" id="edit">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Edit</property>
+                <property name="label" translatable="yes">Edit</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -33,7 +33,7 @@
           <object class="GtkListBoxRow" id="settings">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Settings</property>
+                <property name="label" translatable="yes">Settings</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -44,7 +44,7 @@
           <object class="GtkListBoxRow" id="copy">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Copy</property>
+                <property name="label" translatable="yes">Copy</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>
@@ -55,7 +55,7 @@
           <object class="GtkListBoxRow" id="delete">
             <property name="child">
               <object class="GtkLabel">
-                <property name="label">Delete</property>
+                <property name="label" translatable="yes">Delete</property>
                 <property name="xalign">0.0</property>
               </object>
             </property>

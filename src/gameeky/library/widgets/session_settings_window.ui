@@ -56,7 +56,7 @@
                                             <property name="value">1.0</property>
                                           </object>
                                         </property>
-                                        <property name="title">Entity Type</property>
+                                        <property name="title" translatable="yes">Entity Type</property>
                                       </object>
                                     </child>
                                     <child>
@@ -115,6 +115,6 @@
     <property name="default-height">500</property>
     <property name="default-width">700</property>
     <property name="modal">True</property>
-    <property name="title">Session</property>
+    <property name="title" translatable="yes">Session</property>
   </template>
 </interface>
