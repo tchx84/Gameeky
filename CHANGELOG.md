@@ -1,5 +1,23 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed entities aggressively spawning on the edges of the scene.
+* Fixed the LOGO-like API by exposing all public classes properly.
+* Added a new action to rotate the player.
+* Added a minimal integrated development environment for Python.
+* Added support for importing and exporting projects and facilitating sharing.
+* Added a shortcut to GNOME Software to discover thematic packs more easily.
+* Added an entity type selector when creating or joining sessions, e.g., to play as a tree.
+* Added support for default animations per state to reduce repetitive work.
+* Added a convenience menu option to browse the project files from the entity editor.
+* Added a convenience menu option to try a scene from the scene editor.
+* Changed to a popover to present project actions from the launcher.
+* Changed to GStreamer as the sound backend to make it easier to run on other platforms.
+* Changed to TCP only communications to resolve multiple issues.
+* Changed dependency on WebKit to be optional to make it easier to run on other platforms.
+* Changed to a new desktop icon by @jimmac and @bertob.
+
 ## [0.5.4] - 2024-02-09
 
 * Fixed broken link in Spanish documentation.
