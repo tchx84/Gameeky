@@ -7,6 +7,8 @@
     <property name="application-icon">dev.tchx84.Gameeky</property>
     <property name="application-name">Gameeky</property>
     <property name="copyright">© 2023-2024 Martín Abente Lahaye</property>
+    <property name="designers">Jakub Steiner
+Tobias Bernard</property>
     <property name="developer-name">Martín Abente Lahaye</property>
     <property name="developers">Martín Abente Lahaye</property>
     <property name="issue-url">https://github.com/tchx84/gameeky/issues</property>
