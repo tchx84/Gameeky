@@ -15,7 +15,7 @@
 7. [Cooperative game play](#cooperative-game-play)
 8. [The scene editor](#the-scene-editor)
 9. [The entity editor](#the-entity-editor)
-10. [LOGO-like code](#logo-like-code)
+10. [The code editor and LOGO-like code](#the-code-editor-and-logo-like-code)
 11. [Plugins](#plugins)
 
 ## Introduction
@@ -63,12 +63,13 @@ flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley
 
 ## Overview
 
-The Gameeky package provides four main components:
+The Gameeky package provides five main components:
 
 1. The launcher is the main component where all thematic packs and projects can be found and launched from.
 2. The player is where games can be played and joined.
 3. The scene editor is where scenes can be created and edited.
 4. The entity editor is where entities can be created and edited.
+5. The code editor is where the LOGO-like experience can be had.
 
 ## The launcher
 
@@ -77,8 +78,21 @@ The launcher serves as the Gameeky starting point. It provides an easy way to ma
 * Create new thematic packs and project from scratch.
 * Edit existing projects.
 * Remove existing projects.
+* Share projects.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png)
+
+### Sharing projects
+
+The launcher provides a simple way to share projects. To export a project, follow these steps:
+
+1. From the launcher, click on the *Options* button of the project and select the *Export* option.
+2. Follow the dialog instructions.
+
+To import a project, follow these steps:
+
+1. From the launcher, go to the menu and select the *Import* option.
+2. Follow the dialog instructions.
 
 ## The player
 
@@ -86,7 +100,7 @@ The player provides a visual representation of the game world and the means to i
 
 To start a game, click on the *Play* button of the project from the launcher. This will start the default scene for that project. Every thematic pack and project comes with a default scene. To play other scenes from the same project, follow these steps:
 
-1. From the launcher, click on the *Play* button of the project.
+1. From the launcher, click on the *Options* button of the project and select the *Play* option.
 2. From the player, go to the menu and select the *New* option.
 3. From the creation dialog, select the scene file and click on the *Create* button.
 
@@ -123,6 +137,7 @@ The user's character can perform multiple actions to interact with the game worl
 * *Use* to apply any effects that the entity being held might have. These effects affect the entities that are located right in font of the user's character, e.g., to chop some logs with an axe.
 * *Drop* to stop holding an entity, e.g., to stop moving it.
 * *Interact* to activate any behavior from an entity. To interact with another entity, the entity must be located right in front of the user's character, e.g., to activate a teleport or read from signs.
+* *Rotate* to rotate the user's character to another direction.
 * *Stop* to stop any action being performed and simply idle.
 
 ### Save files
@@ -138,13 +153,13 @@ Gameeky was designed from the ground up to create and share cooperative experien
 
 To start a cooperative game, follow these steps:
 
-1. From the launcher, click on the *Play* button from the project's card.
+1. From the launcher, click on the *Options* button of the project and select the *Play* option.
 2. From the player, go to the menu and select the *New* option.
 3. From the creation dialog, increase the number of participants and then click on the *Create* button.
 
 To join a cooperative game:
 
-1. From the launcher, click on the *Play* button from the same project's card.
+1. From the launcher, click on the *Options* button of the project and select the *Play* option.
 2. From the player, go to the menu and select the *Join* option.
 3. From the join dialog, specify the [IP address](https://flathub.org/apps/org.gabmus.whatip) of the user who started the cooperative game and click on the *Join* button.
 
@@ -152,15 +167,18 @@ To join a cooperative game:
 
 > 📝 **Note:** Custom scenes created from thematic packs don't need to be shared. The scene is automatically shared during game play, as long as all users share the same thematic pack.
 
+> 📝 **Note:** Users can join a session as any entity defined in the thematic pack, e.g., as a tree or a rock. To do this, expand the *Advance* section of the creation or join dialog and select a different *Entity Type*.
+
 ## The scene editor
 
 The scene editor lets users create and modify game worlds. It serves as the initial and simplest form of no-code creation experience in Gameeky.
 
 To edit an existing Scene, click on the *Edit* button of the project from the launcher. To create a new scene it's recommended to start off an existing project such as a thematic pack. Follow these steps to add a new Scene:
 
-1. From the launcher, click on the *Copy* button of the project. This step is **only** needed for thematic packs. Thematic packs can't be modified, so this creates an editable copy.
-2. From the launcher, click on the *Edit* button of the project.
-3. From the scene editor, go to the menu and select the *New* option.
+1. From the launcher, click on the *Options* button of the project and select the *Edit* option.
+2. From the scene editor, go to the menu and select the *New* option.
+
+> 📝 **Note:** Thematic packs can't be modified. Therefore, an editable copy must be created. From the thematic pack options menu, select the *Copy* option.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png)
 
@@ -181,6 +199,7 @@ The scene editing workflow resembles one of a painting tool. Entities are painte
 1. To add entities to the scene, select an entity from the left panel and place it on the scene by clicking on a tile in the grid.
 2. To remove entities from the scene, select the *Remove* tool from the left and then click on the entity tile in the grid.
 3. Although entities come with predefined properties and behaviors, particular entities in the scene can be customized. Select the *Edit* tool from the left panel and then click on the entity tile in the grid.
+4. To test the scene, go to the menu and select the *Try It* option.
 
 Additionally, the scene editor provides helpers to make things easier such as:
 
@@ -261,30 +280,30 @@ The entity creation workflow is similar to filling a form or a template. The mos
 For an improved experience, try the following tips and tricks:
 
 * When creating a new entity, always begin with setting the identifier number and then *Save* the Entity to disk. Keep the name suggested by the entity editor. This will make it easier to assign unique identifiers along the road.
+* When adding new assets, use the *Browse Files* option from the menu to quickly access the project's folder.
 * When creating a new animation, always leave both, the entity editor and the tileset viewer, open side by side. This will make it easier to set up the animation frames.
 * After creating an animation, click on the *Copy* button to add the next animation. This will make it easier to set up the next animation.
 
-## LOGO-like code
+## The code editor and LOGO-like code
 
 Having support for cooperative game play opens the door for cooperators that can be controlled with code. To achieve this, Gameeky provides a small library that enables users to control a single Entity using Python, in a LOGO-like experience.
+
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png)
 
 ### Workflow
 
 Follow these steps to start a cooperative game:
 
-1. From the launcher, click on the *Play* button of the project.
+1. From the launcher, click on the *Options* button of the project and select the *Play* option.
 2. From the player, go to the menu and select the *New* option.
 3. From the creation dialog, increased the number of participants and then click on the *Create* button.
 
-To join the game from code, these steps must be followed:
+To join the game with code, these steps must be followed:
 
-1. Write Python code that uses the Gameeky library, see examples below.
-2. Run that code from the terminal with the following command:
-
-```bash
-cd ~/path/to/my/file/
-flatpak --user run --filesystem=$PWD --command=dev.tchx84.Gameeky.Exec dev.tchx84.Gameeky sample.py
-```
+1. From the launcher, click on the *Options* button of the project and select the *Play* option.
+2. From the player, go to the menu and select the *Join With Code* option.
+3. Write Python code that uses the Gameeky library, see examples below.
+4. Click on the *Play* button.
 
 ### Examples
 
@@ -293,7 +312,7 @@ Join and leave a [game](../../../src/gameeky/library/game.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.quit()
 ```
@@ -301,10 +320,9 @@ game.quit()
 Perform [actions](../../../src/gameeky/common/definitions.py):
 
 ```python
-from gameeky.library import Game
-from gameeky.common.definitions import Direction
+from gameeky.library import Game, Direction
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -324,7 +342,7 @@ Inspect the position and basic properties of the user's character [entity](../..
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -338,7 +356,7 @@ Inspect the state of the [scene](../../../src/gameeky/common/scene.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -355,7 +373,7 @@ Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the user's 
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -368,7 +386,7 @@ game.quit()
 
 For an improved experience, try the following tips and tricks:
 
-* When testing code locally, leave both the player and the terminal open side by side. That way it will easier to see the code in action, literally.
+* When testing code locally, leave both the player and the code editor open side by side. That way it will easier to see the code in action, literally.
 
 ## Plugins
 
