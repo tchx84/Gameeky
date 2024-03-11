@@ -38,11 +38,18 @@
       <caption>Gameeky showing its game launcher</caption>
       <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png</image>
     </screenshot>
+    <screenshot>
+      <caption>Gameeky showing its code editor</caption>
+      <image>https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png</image>
+    </screenshot>
   </screenshots>
   <launchable type="desktop-id">dev.tchx84.Gameeky.desktop</launchable>
   <url type="homepage">https://github.com/tchx84/gameeky</url>
   <url type="bugtracker">https://github.com/tchx84/gameeky/issues</url>
   <developer_name>Martin Abente Lahaye</developer_name>
+  <developer id="dev.tchx84">
+    <name translatable="no">Martin Abente Lahaye</name>
+  </developer>
   <update_contact>martin.abente.lahaye@gmail.com</update_contact>
   <translation type="gettext">gameeky</translation>
   <releases>
