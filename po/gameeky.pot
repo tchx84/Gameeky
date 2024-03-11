@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 11:57-0300\n"
+"POT-Creation-Date: 2024-03-11 09:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,7 +89,11 @@ msgstr ""
 msgid "Gameeky showing its game launcher"
 msgstr ""
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:45
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:42
+msgid "Gameeky showing its code editor"
+msgstr ""
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:49
 msgid "Martin Abente Lahaye"
 msgstr ""
 
