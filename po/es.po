@@ -91,9 +91,8 @@ msgid "Gameeky showing its game launcher"
 msgstr "Gameeky mostrando su lanzador de juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:42
-#, fuzzy
 msgid "Gameeky showing its code editor"
-msgstr "Gameeky mostrando su editor de escenas"
+msgstr "Gameeky mostrando su editor de código"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:49
 msgid "Martin Abente Lahaye"
