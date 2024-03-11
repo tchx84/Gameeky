@@ -15,7 +15,7 @@
 7. [Juego cooperativo](#juego-cooperativo)
 8. [El editor de escenas](#el-editor-de-escenas)
 9. [El editor de entidades](#el-editor-de-entidades)
-10. [Código similar a LOGO](#código-similar-a-logo)
+10. [El editor de código y código similar a LOGO](#el-editor-de-código-y-código-similar-a-logo)
 11. [Complementos](#complementos)
 
 ## Introducción
@@ -63,12 +63,13 @@ flatpak --user install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley
 
 ## Descripción general
 
-Gameeky proporciona cuatro componentes principales:
+Gameeky proporciona cinco componentes principales:
 
 1. El lanzador es el componente principal donde se pueden encontrar y ejecutar todos los paquetes temáticos y proyectos.
 2. El reproductor es el lugar donde se puede jugar y unirse a juegos.
 3. El editor de escenas es donde se pueden crear y editar escenas.
 4. El editor de entidades es donde se pueden crear y editar entidades.
+5. El editor de código es donde se puede tener una experiencia similar a la de LOGO.
 
 ## El lanzador
 
@@ -77,8 +78,21 @@ El lanzador sirve como punto de partida de Gameeky. Proporciona una manera fáci
 * Crear nuevos paquetes temáticos y proyectos desde cero.
 * Editar proyectos existentes.
 * Eliminar proyectos existentes.
+* Compartir proyectos.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png)
+
+### Compartir proyectos
+
+El lanzador proporciona una forma sencilla de compartir proyectos. Para exportar un proyecto, siga estos pasos:
+
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Exportar*.
+2. Siga las instrucciones del diálogo.
+
+Para importar un proyecto, siga estos pasos:
+
+1. Desde el lanzador, vaya al menú y seleccione la opción *Importar*.
+2. Siga las instrucciones del diálogo.
 
 ## El reproductor
 
@@ -86,7 +100,7 @@ El reproductor proporciona una representación visual del mundo del juego y los 
 
 Para iniciar un juego, haga clic en el botón *Jugar* del proyecto desde el lanzador. Esto iniciará la escena predeterminada para ese proyecto. Cada paquete temático y proyecto viene con una escena predeterminada. Para jugar otras escenas del mismo proyecto, siga estos pasos:
 
-1. Desde el lanzador, haga clic en el botón *Jugar* del proyecto.
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
 3. Desde el cuadro de diálogo de creación, seleccione el archivo de escena y haga clic en el botón *Crear*.
 
@@ -123,6 +137,7 @@ El personaje del usuario puede realizar múltiples acciones para interactuar con
 * *Usar* para aplicar cualquier efecto que la entidad sostenida pueda tener. Estos efectos afectan a las entidades que se encuentran justo en la fuente del personaje del usuario, por ejemplo, para cortar algunos troncos con un hacha.
 * *Soltar* para dejar de sostener una entidad, por ejemplo, para dejar de moverla.
 * *Interactuar* para activar cualquier comportamiento de una entidad. Para interactuar con otra entidad, la misma debe estar ubicada justo en frente del personaje del usuario, por ejemplo, para activar un portal o leer letreros.
+* *Rotar* para rotar el personaje del usuario en otra dirección.
 * *Detener* para detener cualquier acción que se esté realizando y simplemente hacer nada.
 
 ### Guardar archivos
@@ -138,13 +153,13 @@ Gameeky fue diseñado desde cero para crear y compartir experiencias cooperativa
 
 Para iniciar un juego cooperativo, siga estos pasos:
 
-1. Desde el lanzador, haga clic en el botón *Jugar* de la tarjeta del proyecto.
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
 3. Desde el cuadro de diálogo de creación, aumente el número de participantes y luego haga clic en el botón *Crear*.
 
 Para unirse a un juego cooperativo:
 
-1. Desde el lanzador, haga clic en el botón *Jugar* de la tarjeta del mismo proyecto.
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Unirse*.
 3. En el cuadro de diálogo para unirse, especifique la [dirección IP](https://flathub.org/apps/org.gabmus.whatip) del usuario que inició el juego cooperativo y haga clic en el botón *Unirse*.
 
@@ -152,15 +167,18 @@ Para unirse a un juego cooperativo:
 
 > 📝 **Nótese:** No es necesario compartir las escenas personalizadas creadas a partir de paquetes temáticos. La escena se comparte automáticamente durante el juego, siempre que todos los usuarios compartan el mismo paquete temático.
 
+> 📝 **Nótese:** Los usuarios pueden unirse a una sesión como cualquier entidad definida en el paquete temático, por ejemplo, como un árbol o una roca. Para hacer esto, expanda la sección *Avanzado* del diálogo de creación y seleccione un *Tipo de Entidad* diferente.
+
 ## El editor de escenas
 
 El editor de escenas permite a los usuarios crear y modificar mundos del juego. Sirve como la experiecia inicial y más sencilla de creación sin código en Gameeky.
 
 Para editar una escena existente, haga clic en el botón *Editar* del proyecto desde el lanzador. Para crear una nueva escena, se recomienda comenzar con un proyecto existente, como un paquete temático. Siga estos pasos para agregar una nueva escena:
 
-1. Desde el lanzador, haga clic en el botón *Copiar* del proyecto. Este paso **solo** es necesario para los paquetes temáticos. Los paquetes temáticos no se pueden modificar, por lo que se crea una copia editable.
-2. Desde el lanzador, haga clic en el botón *Editar* del proyecto.
-3. Desde el editor de escenas, vaya al menú y seleccione la opción *Nuevo*.
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Editar*.
+2. Desde el editor de escenas, vaya al menú y seleccione la opción *Nuevo*.
+
+> 📝 **Nótese:** Los paquetes temáticos no se pueden modificar. Por lo tanto, se debe crear una copia editable. En el menú de opciones del paquete temático, seleccione la opción *Copiar*.
 
 ![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png)
 
@@ -181,6 +199,7 @@ El flujo de trabajo de edición de escenas se parece al de una herramienta de di
 1. Para agregar entidades a la escena, seleccione una entidad en el panel izquierdo y colóquela en la escena haciendo clic en un mosaico de la cuadrícula.
 2. Para eliminar entidades de la escena, seleccione la herramienta *Eliminar* de la izquierda y luego haga clic en el mosaico de la entidad en la cuadrícula.
 3. Aunque las entidades vienen con propiedades y comportamientos predefinidos, se pueden personalizar entidades particulares de la escena. Seleccione la herramienta *Editar* en el panel izquierdo y luego haga clic en el mosaico de entidad en la cuadrícula.
+4. Para probar la escena, vaya al menú y seleccione la opción *Probar*.
 
 Además, el editor de escenas proporciona ayudas para facilitar las cosas, como por ejemplo:
 
@@ -261,30 +280,30 @@ El flujo de trabajo de creación de entidades es similar a completar un formular
 Para una mejor experiencia, siga estos consejos y trucos:
 
 * Al crear una nueva entidad, comience siempre configurando el número de identificador y luego *Guarde* la entidad en el disco. Mantenga el nombre sugerido por el editor de entidades. Esto facilitará la asignación de identificadores únicos a la larga.
+* Al agregar nuevos recursos, use la opción *Explorar Archivos* del menú para acceder rápidamente a la carpeta del proyecto.
 * Al crear una nueva animación, deje siempre abiertos el editor de entidades y el visor de mosaicos, uno al lado del otro. Esto facilitará la configuración de los cuadros de animación.
 * Después de crear una animación, haga clic en el botón *Copiar* para agregar la siguiente animación. Esto facilitará la configuración de la siguiente animación.
 
-## Código similar a LOGO
+## El editor de código y código similar a LOGO
 
 Tener soporte para juegos cooperativos abre la puerta a cooperadores que pueden controlarse con código. Para lograr esto, Gameeky proporciona una pequeña biblioteca que permite a los usuarios controlar una única entidad usando Python, en una experiencia similar a LOGO.
+
+![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png)
 
 ### Flujo de trabajo
 
 Siga estos pasos para iniciar un juego cooperativo:
 
-1. Desde el lanzador, haga clic en el botón *Jugar* del proyecto.
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
 2. Desde el reproductor, vaya al menú y seleccione la opción *Nuevo*.
 3. Desde el cuadro de diálogo de creación, aumente el número de participantes y luego haga clic en el botón *Crear*.
 
-Para unirse al juego desde el código se deben seguir estos pasos:
+Para unirse al juego con código se deben seguir estos pasos:
 
-1. Escriba código Python que utilice la biblioteca Gameeky; consulte los ejemplos a continuación.
-2. Ejecute ese código desde la terminal con el siguiente comando:
-
-```bash
-cd ~/path/to/my/file/
-flatpak --user run --filesystem=$PWD --command=dev.tchx84.Gameeky.Exec dev.tchx84.Gameeky sample.py
-```
+1. Desde el lanzador, haga clic en el botón *Opciones* del proyecto y seleccione la opción *Jugar*.
+2. Desde el reproductor, vaya al menú y seleccione la opción *Unirse Con Código*.
+3. Escriba código Python que utilice la biblioteca Gameeky. Consulte los ejemplos a continuación.
+4. Haga clic en el botón *Jugar*.
 
 ### Ejemplos
 
@@ -293,7 +312,7 @@ Unirse y abandonar un [juego](../../../src/gameeky/library/game.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.quit()
 ```
@@ -301,10 +320,9 @@ game.quit()
 Realizar [acciones](../../../src/gameeky/common/definitions.py):
 
 ```python
-from gameeky.library import Game
-from gameeky.common.definitions import Direction
+from gameeky.library import Game, Direction
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -324,7 +342,7 @@ Inspeccionar la posición y las propiedades básicas del personaje del usuario [
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -338,7 +356,7 @@ Inspeccione el estado de la [escena](../../../src/gameeky/common/scene.py):
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -355,7 +373,7 @@ Inspeccionar las [estadísticas](../../../src/gameeky/common/stats.py) avanzadas
 ```python
 from gameeky.library import Game
 
-game = Game(project="~/Gameeky/project", address="127.0.0.1")
+game = Game()
 game.join()
 game.update()
 
@@ -368,7 +386,7 @@ game.quit()
 
 Para una mejor experiencia, siga estos consejos y trucos:
 
-* Cuando pruebe el código localmente, deje el reproductor y la terminal abiertos uno al lado del otro. De esa forma será más fácil ver el código en acción, literalmente.
+* Cuando pruebe el código localmente, deje el reproductor y el editor de código abiertos uno al lado del otro. De esa forma será más fácil ver el código en acción, literalmente.
 
 ## Complementos
 
