@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 11:57-0300\n"
+"POT-Creation-Date: 2024-03-11 09:40-0300\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,12 @@ msgstr "Gameeky mostrando su editor de entidades"
 msgid "Gameeky showing its game launcher"
 msgstr "Gameeky mostrando su lanzador de juegos"
 
-#: data/dev.tchx84.Gameeky.metainfo.xml.in:45
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:42
+#, fuzzy
+msgid "Gameeky showing its code editor"
+msgstr "Gameeky mostrando su editor de escenas"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:49
 msgid "Martin Abente Lahaye"
 msgstr "Martín Abente Lahaye"
 
