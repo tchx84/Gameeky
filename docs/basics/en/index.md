@@ -137,7 +137,7 @@ The user's character can perform multiple actions to interact with the game worl
 * *Use* to apply any effects that the entity being held might have. These effects affect the entities that are located right in font of the user's character, e.g., to chop some logs with an axe.
 * *Drop* to stop holding an entity, e.g., to stop moving it.
 * *Interact* to activate any behavior from an entity. To interact with another entity, the entity must be located right in front of the user's character, e.g., to activate a teleport or read from signs.
-* *Rotate* to rotate the user's character to another direction.
+* *Rotate* to change the direction of the user's character.
 * *Stop* to stop any action being performed and simply idle.
 
 ### Save files
