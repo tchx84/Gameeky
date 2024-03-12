@@ -137,7 +137,7 @@ El personaje del usuario puede realizar múltiples acciones para interactuar con
 * *Usar* para aplicar cualquier efecto que la entidad sostenida pueda tener. Estos efectos afectan a las entidades que se encuentran justo en la fuente del personaje del usuario, por ejemplo, para cortar algunos troncos con un hacha.
 * *Soltar* para dejar de sostener una entidad, por ejemplo, para dejar de moverla.
 * *Interactuar* para activar cualquier comportamiento de una entidad. Para interactuar con otra entidad, la misma debe estar ubicada justo en frente del personaje del usuario, por ejemplo, para activar un portal o leer letreros.
-* *Rotar* para rotar el personaje del usuario en otra dirección.
+* *Girar* para cambiar la dirección del personaje del usuario.
 * *Detener* para detener cualquier acción que se esté realizando y simplemente hacer nada.
 
 ### Guardar archivos
