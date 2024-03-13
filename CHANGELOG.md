@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.0] - 2024-03-13
 
 * Fixed entities aggressively spawning on the edges of the scene.
 * Fixed the LOGO-like API by exposing all public classes properly.
