@@ -24,6 +24,8 @@ gi.require_version("Gst", "1.0")
 
 from gi.repository import GLib, Gst, GObject
 
+Gst.init()
+
 from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
 from ...common.entity import Entity as CommonEntity
@@ -41,7 +43,6 @@ class Sound(GObject.GObject):
 
         self._path = path
 
-        Gst.init()
         self._playbin = Gst.ElementFactory.make("playbin", "player")
         self._playbin.set_property("uri", f"file://{path}")
 
