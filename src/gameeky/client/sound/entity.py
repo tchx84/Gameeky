@@ -44,7 +44,7 @@ class Sound(GObject.GObject):
         self._path = path
 
         self._playbin = Gst.ElementFactory.make("playbin", "player")
-        self._playbin.set_property("uri", f"file://{path}")
+        self._playbin.set_property("uri", GLib.filename_to_uri(path))
 
         bus = self._playbin.get_bus()
         bus.add_signal_watch()
