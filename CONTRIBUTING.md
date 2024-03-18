@@ -109,6 +109,19 @@ $ ninja install
 $ meson test
 ```
 
+## Windows support (experimental)
+
+To run on windows, install [msys2](msys2.org) and follow the instructions to set up a development environment. Once the setup is done, install the following dependencies:
+
+```bash
+$ pacman -Suy
+$ pacman -S git mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-python3 mingw-w64-ucrt-x86_64-python3-gobject mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-gstreamer mingw-w64-ucrt-x86_64-gst-plugins-good mingw-w64-ucrt-x86_64-gtksourceview5 mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-desktop-file-utils
+```
+
+Additionally, [download](https://pandoc.org/installing.html) and copy `pandoc.exe` to `msys2/usr/bin`.
+
+Lastly, make sure to copy gettext ITS files from `msys2/ucrt64/share/gettext/its` to `msys2/usr/share/gettext/its`.
+
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
