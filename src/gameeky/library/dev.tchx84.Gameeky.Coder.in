@@ -13,8 +13,11 @@ localedir = '@localedir@'
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-locale.bindtextdomain('gameeky', localedir)
-locale.textdomain('gameeky')
+try:
+    locale.bindtextdomain('gameeky', localedir)
+    locale.textdomain('gameeky')
+except:
+    pass
 
 gettext.bindtextdomain("gameeky", localedir)
 gettext.textdomain("gameeky")
