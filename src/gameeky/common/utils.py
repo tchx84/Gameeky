@@ -23,6 +23,8 @@ from typing import Callable, Optional, Tuple
 from gettext import gettext as _
 from gi.repository import GLib, Gio
 
+from .config import PYTHON, bindir
+
 
 def get_time_milliseconds() -> int:
     return int(GLib.get_monotonic_time() / 1000)
@@ -182,7 +184,7 @@ def wait(milliseconds: int) -> None:
 
 def launch(command: str, arguments: str) -> None:
     GLib.spawn_command_line_async(
-        f"{GLib.find_program_in_path(command)} {arguments.strip()}"
+        f"{quote(PYTHON)} {quote(os.path.join(bindir, command))} {arguments.strip()}"
     )
 
 
