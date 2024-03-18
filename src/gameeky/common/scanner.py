@@ -53,6 +53,11 @@ class Scanner(GObject.GObject):
 
     def scan(self) -> None:
         directory = Gio.File.new_for_path(self._path)
+
+        if not directory.query_exists():
+            self.emit("done")
+            return
+
         directory.enumerate_children_async(
             f"{Gio.FILE_ATTRIBUTE_STANDARD_TYPE},{Gio.FILE_ATTRIBUTE_STANDARD_NAME}",
             Gio.FileQueryInfoFlags.NONE,
