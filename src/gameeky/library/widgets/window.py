@@ -34,7 +34,7 @@ from ..utils import (
 )
 
 from ...common.logger import logger
-from ...common.config import pkgdatadir
+from ...common.config import pkgdatadir, PYTHON
 from ...common.monitor import Monitor
 
 
@@ -129,7 +129,7 @@ class Window(Adw.ApplicationWindow):
             Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_MERGE
         )
 
-        self._process = launcher.spawnv(["python", source.get_path()])
+        self._process = launcher.spawnv([PYTHON, source.get_path()])
         self._process.wait_async(
             cancellable=self._cancellable,
             callback=self.__on_finished,
