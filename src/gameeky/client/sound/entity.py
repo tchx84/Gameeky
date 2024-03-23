@@ -24,7 +24,7 @@ gi.require_version("Gst", "1.0")
 
 from gi.repository import GLib, Gst, GObject
 
-Gst.init()
+Gst.init(None)
 
 from ...common.definitions import State
 from ...common.utils import get_time_milliseconds
