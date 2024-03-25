@@ -6,11 +6,11 @@ set -eu
 # Enabled language codes
 LANGS="es"
 
-pot_creation_date=$(date +'%F %R%z')
-version=$(grep '<release ' ../../data/dev.tchx84.Gameeky.metainfo.xml.in | cut -d\" -f4)
-
 # Enter docs/po directory
 cd $(dirname $0)
+
+pot_creation_date=$(date +'%F %R%z')
+version=$(grep '<release ' ../../data/dev.tchx84.Gameeky.metainfo.xml.in | cut -d\" -f4)
 
 # Regenerate POT file
 md2po ../basics/en/index.md \
