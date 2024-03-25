@@ -57,4 +57,8 @@
   </releases>
   <content_rating type="oars-1.1"/>
   <provides>dev.tchx84.Gameeky.desktop</provides>
+  <branding>
+    <color type="primary" scheme_preference="light">#a0f4b2</color>
+    <color type="primary" scheme_preference="dark">#127e4c</color>
+  </branding>
 </component>
