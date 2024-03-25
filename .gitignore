@@ -4,3 +4,7 @@
 .coverage*
 *.cmb
 *.html
+
+# Ignore generated files for translated docs
+docs/basics/*
+!docs/basics/en/
