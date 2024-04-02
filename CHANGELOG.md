@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.1] - 2024-04-02
 
 * Added brand colors to the metainfo file.
 * Fixed several issues preventing Gameeky from running on other platforms.
