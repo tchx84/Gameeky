@@ -1,5 +1,10 @@
 # Changelog
 
+## [unreleased]
+
+* Added brand colors to the metainfo file.
+* Fixed several issues preventing Gameeky from running on other platforms.
+
 ## [0.6.0] - 2024-03-13
 
 * Fixed entities aggressively spawning on the edges of the scene.
