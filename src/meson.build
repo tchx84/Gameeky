@@ -16,7 +16,7 @@ gnome.compile_resources('gameeky',
 python = import('python')
 
 conf = configuration_data()
-conf.set('PYTHON', python.find_installation().path())
+conf.set('PYTHON', python.find_installation().full_path())
 conf.set('VERSION', meson.project_version())
 conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
