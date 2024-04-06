@@ -224,7 +224,7 @@ def quote(string: str) -> str:
     if not string:
         return string
     else:
-        return f"'{string}'"
+        return GLib.shell_quote(string)
 
 
 def find_new_name(directory: str, name: str) -> str:
