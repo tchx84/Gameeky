@@ -45,17 +45,17 @@ class Software:
 
     @classmethod
     def available(cls) -> bool:
-        proxy = Gio.DBusProxy.new_for_bus_sync(
-            Gio.BusType.SESSION,
-            Gio.DBusProxyFlags.NONE,
-            None,
-            "org.freedesktop.DBus",
-            "/org/freedesktop/DBus",
-            "org.freedesktop.DBus",
-            None,
-        )
-
         try:
+            proxy = Gio.DBusProxy.new_for_bus_sync(
+                Gio.BusType.SESSION,
+                Gio.DBusProxyFlags.NONE,
+                None,
+                "org.freedesktop.DBus",
+                "/org/freedesktop/DBus",
+                "org.freedesktop.DBus",
+                None,
+            )
+
             return cls.__service__ in proxy.ListActivatableNames()
         except Exception as e:
             logger.error(e)
