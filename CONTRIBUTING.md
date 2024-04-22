@@ -115,12 +115,24 @@ To run on windows, install [msys2](msys2.org) and follow the instructions to set
 
 ```bash
 $ pacman -Suy
-$ pacman -S git mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-python3 mingw-w64-ucrt-x86_64-python3-gobject mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-gstreamer mingw-w64-ucrt-x86_64-gst-plugins-good mingw-w64-ucrt-x86_64-gtksourceview5 mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-desktop-file-utils
+$ pacman -S git mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-python3 mingw-w64-ucrt-x86_64-python3-gobject mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-gstreamer mingw-w64-ucrt-x86_64-gst-plugins-good mingw-w64-ucrt-x86_64-gtksourceview5 mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-desktop-file-utils unzip
 ```
 
-Additionally, [download](https://pandoc.org/installing.html) and copy `pandoc.exe` to `msys2/usr/bin`.
 
-Lastly, make sure to copy gettext ITS files from `msys2/ucrt64/share/gettext/its` to `msys2/usr/share/gettext/its`.
+Now we download pandoc and copy it to `/usr/bin` by entering the msys2 terminal and typing the following commands
+```bash
+$ cd /tmp # Go to temporary directory
+$ wget https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-3.1.13-windows-x86_64.zip # Download pandoc zip
+$ unzip pandoc-3.1.13-windows-x86_64.zip # Unzip it
+$ cp pandoc-3.1.13/pandoc.exe /usr/bin # Copy it
+```
+
+
+Lastly, make sure to copy gettext ITS files from `/ucrt64/share/gettext/its` to `/usr/share/gettext/its`.
+```bash
+$ mkdir -p /usr/share/gettext/its # Create the directory if it does not exist
+$ cp /ucrt64/share/gettext/its/* /usr/share/gettext/its -rf # and copy the files
+```
 
 ## License
 
