@@ -1,0 +1,971 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024 Gameeky's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Gameeky package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gameeky\n"
+"Report-Msgid-Bugs-To: https://github.com/tchx84/gameeky/issues\n"
+"POT-Creation-Date: 2024-04-25 12:27-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "Documentation"
+msgstr ""
+
+msgid ""
+"⚠️ **Warning:** Gameeky is still in early stages of development and "
+"therefore things are subject to change."
+msgstr ""
+
+msgid ""
+"📝 **Note:** This document is not an exhaustive tutorial on everything "
+"Gameeky can do, but should provide enough directions to get started."
+msgstr ""
+
+msgid "Topics"
+msgstr ""
+
+msgid "[Introduction](#introduction)"
+msgstr ""
+
+msgid "[Installation](#installation)"
+msgstr ""
+
+msgid "[Thematic packs](#thematic-packs)"
+msgstr ""
+
+msgid "[Overview](#overview)"
+msgstr ""
+
+msgid "[The launcher](#the-launcher)"
+msgstr ""
+
+msgid "[The player](#the-player)"
+msgstr ""
+
+msgid "[Cooperative game play](#cooperative-game-play)"
+msgstr ""
+
+msgid "[The scene editor](#the-scene-editor)"
+msgstr ""
+
+msgid "[The entity editor](#the-entity-editor)"
+msgstr ""
+
+msgid ""
+"[The code editor and LOGO-like code](#the-code-editor-and-logo-like-code)"
+msgstr ""
+
+msgid "[Plugins](#plugins)"
+msgstr ""
+
+msgid "Introduction"
+msgstr ""
+
+msgid ""
+"[Gameeky](https://github.com/tchx84/gameeky) lets young learners and "
+"educators create and explore cooperative games and learning experiences. "
+"More specifically:"
+msgstr ""
+
+msgid "Play and explore games with friends."
+msgstr ""
+
+msgid "Create new games without writing any code."
+msgstr ""
+
+msgid "Tell stories through these games."
+msgstr ""
+
+msgid "Nurture artistic skills by designing game objects and creatures."
+msgstr ""
+
+msgid ""
+"Grasp the basics of programming using Python in a "
+"[LOGO](https://en.wikipedia.org/wiki/Logo_(programming_language))-like "
+"experience."
+msgstr ""
+
+msgid "Mature programming skills by extending games with Python plugins."
+msgstr ""
+
+msgid ""
+"📝 **Note:** This is a learning tool in the shape of a game engine. It's not "
+"a professional game engine. If you're looking for a tool to create "
+"professional video games, please consider the "
+"[Godot](https://godotengine.org) game engine."
+msgstr ""
+
+msgid "Installation"
+msgstr ""
+
+msgid ""
+"The recommended installation method is through the software center of the "
+"system, e.g., *GNOME Software*. Search for *Gameeky* and install it. "
+"Alternatively, it can also be installed from [Flathub](https://flathub.org)."
+" Similarly, search for *Gameeky* and follow the website instructions."
+msgstr ""
+
+msgid "Lastly, it can also be installed from the terminal:"
+msgstr ""
+
+msgid "Thematic packs"
+msgstr ""
+
+msgid ""
+"Gameeky provides packs of predefined building blocks for different "
+"interests, e.g., a farming role playing "
+"[game](https://github.com/tchx84/FreedomValley) set in a medieval fantasy "
+"world. A thematic pack contains:"
+msgstr ""
+
+msgid "Assets like tilesets, sprites and sounds."
+msgstr ""
+
+msgid ""
+"Entities created from these assets, with predefined properties and "
+"behaviors."
+msgstr ""
+
+msgid "Scenes created with those entities."
+msgstr ""
+
+msgid "Actuators that extend the predefined behaviors."
+msgstr ""
+
+msgid ""
+"These building blocks can be reused to create custom scenes, new games and "
+"many learning materials."
+msgstr ""
+
+msgid ""
+"The recommended installation method is through the software center of the "
+"system, e.g., *GNOME Software*. Thematic packs are offered as addons from "
+"the software center page. Alternatively, it can also be installed from "
+"[Flathub](https://flathub.org). Similarly, thematic packs are offered as "
+"addons from the website. Select the addon and follow the website "
+"instructions."
+msgstr ""
+
+msgid "Lastly, packs can also be installed from the terminal:"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "The Gameeky package provides five main components:"
+msgstr ""
+
+msgid ""
+"The launcher is the main component where all thematic packs and projects can"
+" be found and launched from."
+msgstr ""
+
+msgid "The player is where games can be played and joined."
+msgstr ""
+
+msgid "The scene editor is where scenes can be created and edited."
+msgstr ""
+
+msgid "The entity editor is where entities can be created and edited."
+msgstr ""
+
+msgid "The code editor is where the LOGO-like experience can be had."
+msgstr ""
+
+msgid "The launcher"
+msgstr ""
+
+msgid ""
+"The launcher serves as the Gameeky starting point. It provides an easy way "
+"to manage thematic packs installed as addons and projects located under the "
+"`~/Gameeky` directory. The manager supports all the basic management "
+"operations:"
+msgstr ""
+
+msgid "Create new thematic packs and project from scratch."
+msgstr ""
+
+msgid "Edit existing projects."
+msgstr ""
+
+msgid "Remove existing projects."
+msgstr ""
+
+msgid "Share projects."
+msgstr ""
+
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png)"
+msgstr ""
+
+msgid "Sharing projects"
+msgstr ""
+
+msgid ""
+"The launcher provides a simple way to share projects. To export a project, "
+"follow these steps:"
+msgstr ""
+
+msgid ""
+"From the launcher, click on the *Options* button of the project and select "
+"the *Export* option."
+msgstr ""
+
+msgid "Follow the dialog instructions."
+msgstr ""
+
+msgid "To import a project, follow these steps:"
+msgstr ""
+
+msgid "From the launcher, go to the menu and select the *Import* option."
+msgstr ""
+
+msgid "The player"
+msgstr ""
+
+msgid ""
+"The player provides a visual representation of the game world and the means "
+"to interact with that world."
+msgstr ""
+
+msgid ""
+"To start a game, click on the *Play* button of the project from the "
+"launcher. This will start the default scene for that project. Every thematic"
+" pack and project comes with a default scene. To play other scenes from the "
+"same project, follow these steps:"
+msgstr ""
+
+msgid ""
+"From the launcher, click on the *Options* button of the project and select "
+"the *Play* option."
+msgstr ""
+
+msgid "From the player, go to the menu and select the *New* option."
+msgstr ""
+
+msgid ""
+"From the creation dialog, select the scene file and click on the *Create* "
+"button."
+msgstr ""
+
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png)"
+msgstr ""
+
+msgid "In-game screen elements"
+msgstr ""
+
+msgid ""
+"Once in the game, the scene takes most of the screen but there are other "
+"elements as well."
+msgstr ""
+
+msgid ""
+"The [HUD](https://en.wikipedia.org/wiki/HUD_(video_games)) is an interface "
+"placed at the bottom center of the screen. This element is used to visualize"
+" the user's character stats. It's composed of the following parts:"
+msgstr ""
+
+msgid ""
+"A green bar that represents the user's character durability, e.g., to "
+"monitor the health of the character."
+msgstr ""
+
+msgid ""
+"A blue bar that represents the user's character stamina, e.g., to estimate "
+"how many actions can be performed by the character."
+msgstr ""
+
+msgid ""
+"An icon slot to display the entity that is currently being held by the "
+"user's character, e.g., to determine what tool the character is equipped "
+"with."
+msgstr ""
+
+msgid ""
+"Another element is the dialogue viewer. This viewer is placed at the bottom "
+"of the screen and it's used to display in-game dialogues, e.g., a message "
+"from a game character or the narrator. It's composed of the following parts:"
+msgstr ""
+
+msgid "A light blue section that contains the dialogue text."
+msgstr ""
+
+msgid "A button to close the dialogue."
+msgstr ""
+
+msgid "Controls"
+msgstr ""
+
+msgid ""
+"Once in the game, the user's character can be controlled with two methods:"
+msgstr ""
+
+msgid ""
+"Keyboard controls. To see the full list of key bindings, go the menu and "
+"select the *Keyboard Shortcuts* option."
+msgstr ""
+
+msgid ""
+"Mouse controls. To see the available actions, right-click on the game view "
+"and select an action from the menu. To move the user's character, click on "
+"the scene view and the user's character will move towards that direction."
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid ""
+"The user's character can perform multiple actions to interact with the game "
+"world:"
+msgstr ""
+
+msgid ""
+"*Move* to advance the user's character to one of four directions, e.g., to "
+"move the character to the *North*."
+msgstr ""
+
+msgid ""
+"*Take* to hold an entity from the scene. The entity must be directly in "
+"front of the user's character to be taken, e.g., to grab the entity and move"
+" that it later."
+msgstr ""
+
+msgid ""
+"*Use* to apply any effects that the entity being held might have. These "
+"effects affect the entities that are located right in font of the user's "
+"character, e.g., to chop some logs with an axe."
+msgstr ""
+
+msgid "*Drop* to stop holding an entity, e.g., to stop moving it."
+msgstr ""
+
+msgid ""
+"*Interact* to activate any behavior from an entity. To interact with another"
+" entity, the entity must be located right in front of the user's character, "
+"e.g., to activate a teleport or read from signs."
+msgstr ""
+
+msgid "*Rotate* to change the direction of the user's character."
+msgstr ""
+
+msgid "*Stop* to stop any action being performed and simply idle."
+msgstr ""
+
+msgid "Save files"
+msgstr ""
+
+msgid ""
+"The state of the game can be saved at any moment and restored later. Save "
+"files are full copies of the scene and therefore regular scene files."
+msgstr ""
+
+msgid ""
+"To save the state of the game, go to the menu and select the *Save As…* "
+"option."
+msgstr ""
+
+msgid ""
+"To restore the state of the game, follow the same steps described above to "
+"open an scene."
+msgstr ""
+
+msgid "Cooperative game play"
+msgstr ""
+
+msgid ""
+"Gameeky was designed from the ground up to create and share cooperative "
+"experiences. All the games created with it can be played cooperatively. "
+"There are no special requirements. Although there's no theoretical limit as "
+"for how many users can join a cooperative game, there are technical "
+"limitations. E.g., limited computing resources."
+msgstr ""
+
+msgid "To start a cooperative game, follow these steps:"
+msgstr ""
+
+msgid ""
+"From the creation dialog, increase the number of participants and then click"
+" on the *Create* button."
+msgstr ""
+
+msgid "To join a cooperative game:"
+msgstr ""
+
+msgid "From the player, go to the menu and select the *Join* option."
+msgstr ""
+
+msgid ""
+"From the join dialog, specify the [IP "
+"address](https://flathub.org/apps/org.gabmus.whatip) of the user who started"
+" the cooperative game and click on the *Join* button."
+msgstr ""
+
+msgid ""
+"📝 **Note:** All the users joining a cooperative game must have a copy of the"
+" same thematic pack or project."
+msgstr ""
+
+msgid ""
+"📝 **Note:** Custom scenes created from thematic packs don't need to be "
+"shared. The scene is automatically shared during game play, as long as all "
+"users share the same thematic pack."
+msgstr ""
+
+msgid ""
+"📝 **Note:** Users can join a session as any entity defined in the thematic "
+"pack, e.g., as a tree or a rock. To do this, expand the *Advance* section of"
+" the creation or join dialog and select a different *Entity Type*."
+msgstr ""
+
+msgid "The scene editor"
+msgstr ""
+
+msgid ""
+"The scene editor lets users create and modify game worlds. It serves as the "
+"initial and simplest form of no-code creation experience in Gameeky."
+msgstr ""
+
+msgid ""
+"To edit an existing Scene, click on the *Edit* button of the project from "
+"the launcher. To create a new scene it's recommended to start off an "
+"existing project such as a thematic pack. Follow these steps to add a new "
+"Scene:"
+msgstr ""
+
+msgid ""
+"From the launcher, click on the *Options* button of the project and select "
+"the *Edit* option."
+msgstr ""
+
+msgid "From the scene editor, go to the menu and select the *New* option."
+msgstr ""
+
+msgid ""
+"📝 **Note:** Thematic packs can't be modified. Therefore, an editable copy "
+"must be created. From the thematic pack options menu, select the *Copy* "
+"option."
+msgstr ""
+
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png)"
+msgstr ""
+
+msgid "Concepts"
+msgstr ""
+
+msgid ""
+"A scene is a collection of entities arranged in a tiles grid. The basic "
+"properties of a scene are:"
+msgstr ""
+
+msgid "A *Name* that must be unique among the scenes of the same project."
+msgstr ""
+
+msgid ""
+"The *Time* of the day in which the scene occurs. It can be *Day*, *Night* or"
+" *Dynamic*."
+msgstr ""
+
+msgid ""
+"If *Dynamic*, the *Duration* specifies the number of seconds that it takes "
+"to complete a full day and night cycle. Otherwise this property is ignored."
+msgstr ""
+
+msgid ""
+"The *Width* of the scene specifies the total number of tiles on the "
+"horizontal axis."
+msgstr ""
+
+msgid ""
+"The *Height* of the scene specifies the total number of tiles on the "
+"vertical axis."
+msgstr ""
+
+msgid "Workflow"
+msgstr ""
+
+msgid ""
+"The scene editing workflow resembles one of a painting tool. Entities are "
+"painted and removed to and from the scene. The basic steps to edit a scene "
+"are the following:"
+msgstr ""
+
+msgid ""
+"To add entities to the scene, select an entity from the left panel and place"
+" it on the scene by clicking on a tile in the grid."
+msgstr ""
+
+msgid ""
+"To remove entities from the scene, select the *Remove* tool from the left "
+"and then click on the entity tile in the grid."
+msgstr ""
+
+msgid ""
+"Although entities come with predefined properties and behaviors, particular "
+"entities in the scene can be customized. Select the *Edit* tool from the "
+"left panel and then click on the entity tile in the grid."
+msgstr ""
+
+msgid "To test the scene, go to the menu and select the *Try It* option."
+msgstr ""
+
+msgid ""
+"Additionally, the scene editor provides helpers to make things easier such "
+"as:"
+msgstr ""
+
+msgid ""
+"Drawing area selector to add or remove multiple entities at once, e.g., to "
+"quickly create the scene terrain."
+msgstr ""
+
+msgid ""
+"Layer selector to modify entities at a specific layer, e.g., to quickly "
+"modify the scene terrain."
+msgstr ""
+
+msgid ""
+"Time selector to visualize the scene during *Day* or *Night*, e.g., to "
+"inspect the light sources in the scene."
+msgstr ""
+
+msgid "Tips and tricks"
+msgstr ""
+
+msgid "For an improved experience, try the following tips and tricks:"
+msgstr ""
+
+msgid ""
+"When creating the basic terrain of the scene, use the layer selector and set"
+" it at *Layer 0*. This will reduce the unnecessary overlapping of terrain "
+"tiles and it will ease the editing workflow overall."
+msgstr ""
+
+msgid ""
+"When editing a scene, leave the player open on that scene. When changes to "
+"the scene are saved, the player will detect these changes and present an "
+"option to reload the scene with the new changes. This reduces the time "
+"switching between the scene editor and the player."
+msgstr ""
+
+msgid ""
+"When editing a scene, use the initial location setter tool from the left "
+"panel to place the user's character in a convenient location to inspect the "
+"changes."
+msgstr ""
+
+msgid "The entity editor"
+msgstr ""
+
+msgid ""
+"The entity editor lets users create and modify game objects and creatures. "
+"It provides a deeper no-code creation experience, as it requires "
+"understanding the underlying systems of Gameeky."
+msgstr ""
+
+msgid ""
+"Before creating a new entity from scratch, it's recommended to inspect "
+"existing entities from thematic packs. So, to inspect an existing entity "
+"follow these steps:"
+msgstr ""
+
+msgid "From the scene editor, right-click on an entity in the left panel."
+msgstr ""
+
+msgid "Select the *Edit* option from the menu."
+msgstr ""
+
+msgid "To create a new entity:"
+msgstr ""
+
+msgid "From the scene editor, right-click anywhere in the left panel."
+msgstr ""
+
+msgid "Select the *Add* option from the menu."
+msgstr ""
+
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png)"
+msgstr ""
+
+msgid ""
+"Entities represent everything that can exist in the game, e.g., the grass, "
+"the user's character, a light source, the background music and even the game"
+" logic. An entity is composed of three parts:"
+msgstr ""
+
+msgid "Game logic properties."
+msgstr ""
+
+msgid "Graphics."
+msgstr ""
+
+msgid "Sounds."
+msgstr ""
+
+msgid "Game logic properties"
+msgstr ""
+
+msgid ""
+"These properties determine how entities behave and interact with other "
+"entities, e.g., different combinations of these properties will determine "
+"whether an entity is acting as a static stone or a living foe."
+msgstr ""
+
+msgid ""
+"Although there are two dozen properties, a few of these require special "
+"attention here:"
+msgstr ""
+
+msgid ""
+"The *Identifier* must be unique among all the entities of the same project."
+msgstr ""
+
+msgid ""
+"An entity is always in one and a single *State*, e.g., *Idling*, *Moving*, "
+"*Destroyed*, etc. The state can change by performing different actions, by "
+"intrinsic or extrinsic means."
+msgstr ""
+
+msgid ""
+"An entity is always pointing to one and a single *Direction*. It can be "
+"*North*, *East*, *South* or *West*."
+msgstr ""
+
+msgid ""
+"An entity state can be changed intrinsically by *Actuators* that provide "
+"predefined logic, e.g., a *Roams* actuator will move the entity to random "
+"directions, and a *Destroys* actuator will flag the entity for removal from "
+"the scene when its durability reaches zero."
+msgstr ""
+
+msgid ""
+"All entity properties coexist in a single system and therefore behaviors can"
+" emerge from different combinations of these properties, e.g., the speed in "
+"which an entity can move is determined by its *Weight* and its *Strength*, "
+"while the total weight of an entity depends on the weight of the entity its "
+"holding, and so on."
+msgstr ""
+
+msgid ""
+"📝 **Note:** When creating a new thematic pack assume that the entity with "
+"identifier number *1* will be assigned to the user's character in the game."
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid ""
+"Entities are represented on the screen through 2D graphics, which can be "
+"static or animated."
+msgstr ""
+
+msgid ""
+"These graphics are assigned to specific combinations of state and direction,"
+" e.g., a specific animation will be rendered when an entity is *Moving* to "
+"the *West*, while another animation will be rendered when the same entity is"
+" *Idling* to the *South*."
+msgstr ""
+
+msgid ""
+"All entities must provide a *Default* graphic, e.g., to visualize it on the "
+"scene editor or debug plugins."
+msgstr ""
+
+msgid "Sounds"
+msgstr ""
+
+msgid ""
+"Similarly to graphics, entities can emit sounds when in specific states, "
+"e.g., footsteps sound is played when the entity is *Moving*. Directions "
+"don't matter here."
+msgstr ""
+
+msgid "There aren't *Default* sounds, as sounds are optional."
+msgstr ""
+
+msgid ""
+"The entity creation workflow is similar to filling a form or a template. The"
+" most basic entity is created with the following steps:"
+msgstr ""
+
+msgid ""
+"Under the *Game* tab, start setting the values from top to bottom. Note that"
+" all properties provide their own defaults. Only the identifier is "
+"mandatory. Setting a name is recommended so that it's easier to find the "
+"entity on the scene editor."
+msgstr ""
+
+msgid ""
+"Under the *Graphics* tab, click on the *Add* button to create the first and "
+"default animation. Leave both *State* and *Direction* to *Default*. Expand "
+"the *Details* section of the default animation to select an image. Click on "
+"the *View* button to inspect the selected image."
+msgstr ""
+
+msgid "Save the entity and use it from the scene editor."
+msgstr ""
+
+msgid ""
+"When creating a new entity, always begin with setting the identifier number "
+"and then *Save* the Entity to disk. Keep the name suggested by the entity "
+"editor. This will make it easier to assign unique identifiers along the "
+"road."
+msgstr ""
+
+msgid ""
+"When adding new assets, use the *Browse Files* option from the menu to "
+"quickly access the project's folder."
+msgstr ""
+
+msgid ""
+"When creating a new animation, always leave both, the entity editor and the "
+"tileset viewer, open side by side. This will make it easier to set up the "
+"animation frames."
+msgstr ""
+
+msgid ""
+"After creating an animation, click on the *Copy* button to add the next "
+"animation. This will make it easier to set up the next animation."
+msgstr ""
+
+msgid "The code editor and LOGO-like code"
+msgstr ""
+
+msgid ""
+"Having support for cooperative game play opens the door for cooperators that"
+" can be controlled with code. To achieve this, Gameeky provides a small "
+"library that enables users to control a single Entity using Python, in a "
+"LOGO-like experience."
+msgstr ""
+
+msgid ""
+"![](https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png)"
+msgstr ""
+
+msgid "Follow these steps to start a cooperative game:"
+msgstr ""
+
+msgid ""
+"From the creation dialog, increased the number of participants and then "
+"click on the *Create* button."
+msgstr ""
+
+msgid "To join the game with code, these steps must be followed:"
+msgstr ""
+
+msgid ""
+"From the player, go to the menu and select the *Join With Code* option."
+msgstr ""
+
+msgid "Write Python code that uses the Gameeky library, see examples below."
+msgstr ""
+
+msgid "Click on the *Play* button."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Join and leave a [game](../../../src/gameeky/library/game.py):"
+msgstr ""
+
+msgid "Perform [actions](../../../src/gameeky/common/definitions.py):"
+msgstr ""
+
+msgid ""
+"Inspect the position and basic properties of the user's character "
+"[entity](../../../src/gameeky/common/entity.py):"
+msgstr ""
+
+msgid ""
+"Inspect the state of the [scene](../../../src/gameeky/common/scene.py):"
+msgstr ""
+
+msgid ""
+"📝 **Note:** Cooperators can only see their immediate surroundings from the "
+"scene, not the full scene."
+msgstr ""
+
+msgid ""
+"Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the "
+"user's character entity:"
+msgstr ""
+
+msgid ""
+"When testing code locally, leave both the player and the code editor open "
+"side by side. That way it will easier to see the code in action, literally."
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid ""
+"Actuators can modify the behavior of an entity. A single entity can use "
+"multiple actuators to model more complex behaviors. Although there's a wide "
+"range of predefined actuators, the end result is limited when compared to "
+"actual code."
+msgstr ""
+
+msgid ""
+"Therefore, Gameeky provides support for user-created actuators to go beyond "
+"what the predefined actuators can do."
+msgstr ""
+
+msgid "There are three types of actuators:"
+msgstr ""
+
+msgid ""
+"Regular actuators enact on each tick of the scene, e.g., to "
+"[move](../../../src/gameeky/server/game/actuators/roams.py) the entity to a "
+"random location on each tick."
+msgstr ""
+
+msgid ""
+"Activatable actuators enact only in fixed time intervals or when explicitly "
+"activated by another entity, e.g., to "
+"[spawn](../../../src/gameeky/server/game/actuators/spawns.py) a new foe to "
+"the scene every five seconds."
+msgstr ""
+
+msgid ""
+"Interactable actuators enact when other entities interact with its entity, "
+"e.g., to [teleport](../../../src/gameeky/server/game/actuators/teleports.py)"
+" an entity to a different location when that entity interacts with a portal."
+msgstr ""
+
+msgid ""
+"All actuators use their own entity game properties to modify their behavior:"
+msgstr ""
+
+msgid ""
+"The *Target Name* and *Target Type* properties can be used to filter the "
+"entities affected by the actuator, e.g., to "
+"[target](../../../src/gameeky/server/game/actuators/aggroes.py) only certain"
+" entities types for aggression."
+msgstr ""
+
+msgid ""
+"The *Rate* property can be used in activatables to reduce the activation "
+"frequency, e.g., to "
+"[hatch](../../../src/gameeky/server/game/actuators/transmutes.py) an egg "
+"into a chicken after ten seconds."
+msgstr ""
+
+msgid ""
+"The *Radius* property can be used to determine the area of effect of an "
+"actuator, e.g., to "
+"[burn](../../../src/gameeky/server/game/actuators/affects.py) entities when "
+"stepping into a fire."
+msgstr ""
+
+msgid "To create a new actuator, follow the steps:"
+msgstr ""
+
+msgid "Open a new document in a text editor."
+msgstr ""
+
+msgid "Write an actuator class, see examples below."
+msgstr ""
+
+msgid ""
+"Save the new document to `~/Gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py`"
+msgstr ""
+
+msgid ""
+"From the entity editor, go under the *Game* tab to the actuators section."
+msgstr ""
+
+msgid ""
+"A new option called *ACTUATOR_NAME* will be displayed along with the "
+"predefined actuators."
+msgstr ""
+
+msgid "Select it and save the entity to disk."
+msgstr ""
+
+msgid ""
+"📝 **Note:** User-created actuators can also be accessed from the scene "
+"editor when customizing specific entities."
+msgstr ""
+
+msgid ""
+"A minimal [actuator](../../../src/gameeky/server/game/actuators/base.py) "
+"class:"
+msgstr ""
+
+msgid "Inspect the [entity](../../../src/gameeky/server/game/entity.py):"
+msgstr ""
+
+msgid "Perform an action on the entity:"
+msgstr ""
+
+msgid "Send a dialogue to the entity:"
+msgstr ""
+
+msgid "Inspect all the other entities sitting right in front of the entity:"
+msgstr ""
+
+msgid ""
+"Inspect all the other entities that share the same position as the entity:"
+msgstr ""
+
+msgid "Inspect all the other entities that surround the entity:"
+msgstr ""
+
+msgid ""
+"📝 **Note:** The *surroundings* method takes into account the *Radius* "
+"property of the entity."
+msgstr ""
+
+msgid ""
+"Inspect all entities in the "
+"[scene](../../../src/gameeky/server/game/scene.py), that are not static:"
+msgstr ""
+
+msgid "Inspect all entities that are controlled by users:"
+msgstr ""
+
+msgid "Create an actuator that enacts every five seconds:"
+msgstr ""
+
+msgid ""
+"📝 **Note:** The *ready* property takes into account the *Rate* property of "
+"the entity."
+msgstr ""
+
+msgid "Create an actuator that enacts only when interacted by users:"
+msgstr ""
+
+msgid ""
+"Fore more complex examples check Gameeky's predefined "
+"[actuators](../../../src/gameeky/server/game/actuators/) directory."
+msgstr ""
+
+msgid ""
+"A single actuator should not modify the whole scene. Iterating over all the "
+"entities in the scene is extremely costly and the performance will be "
+"severed, e.g., stick to *mutables* and *playables* only."
+msgstr ""
+
+msgid ""
+"It's preferred to write different actuators for different behaviors, e.g., "
+"avoid writing a single actuator that implements all of the custom behaviors."
+" This will make it easier to understand and reuse in the long run."
+msgstr ""
+
+msgid ""
+"Use only public methods and attributes, e.g., stick to methods like "
+"*obstacles* or *interactee*. These will make it less likely for the "
+"actuators to break in the future."
+msgstr ""
