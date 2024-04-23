@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="none" />
+  <style type="text/css">
+  :root {
+    --text-color: #2e3436;
+    --background-color: #f6f5f4;
+    --alt-background-color: #edeeef;
+    --link-color: #0d71de;
+    --blockquote-text-color: #747e85;
+    --blockquote-border-color: #d6d8da;
+    --header-border-color: #e1e2e4;
+    --hr-background-color: #d8dadd;
+    --table-tr-border-color: #bdc1c6;
+    --table-td-border-color: #d6d8da;
+    --kbd-text-color: #4e585e;
+    --kbd-background-color: #f1f1f1;
+    --kbd-border-color: #bdc1c6;
+    --kbd-shadow-color: #8c939a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color: #eeeeec;
+      --background-color: #353535;
+      --alt-background-color: #3a3a3a;
+      --link-color: #b5daff;
+      --blockquote-text-color: #a8a8a6;
+      --blockquote-border-color: #525252;
+      --header-border-color: #474747;
+      --hr-background-color: #505050;
+      --table-tr-border-color: #696969;
+      --table-td-border-color: #525252;
+      --kbd-text-color: #cececc;
+      --kbd-background-color: #3c3c3c;
+      --kbd-border-color: #696969;
+      --kbd-shadow-color: #979797;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: "Fira Sans", fira-sans, sans-serif, color-emoji;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 980px;
+    margin: auto;
+    padding: 0em 4em;
+  }
+
+  @media screen and (max-width: 799px) {
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      padding: 1em;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  a {
+    background-color: transparent;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  a:active,
+  a:hover {
+    outline-width: 0;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  img {
+    border-style: none;
+  }
+
+  hr {
+    box-sizing: content-box;
+    height: 0.25em;
+    padding: 0;
+    margin: 1.5em 0;
+    overflow: hidden;
+    background-color: var(--hr-background-color);
+    border: 0;
+  }
+
+  hr::before {
+    display: table;
+    content: "";
+  }
+
+  hr::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+  }
+
+  [type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0.625em;
+  }
+
+  blockquote {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  ol ol,
+  ul ol {
+    list-style-type: lower-roman;
+  }
+
+  ul ul ol,
+  ul ol ol,
+  ol ul ol,
+  ol ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: "Fira Mono", fira-mono, monospace, color-emoji;
+    font-size: 1em;
+    word-wrap: normal;
+  }
+
+  code {
+    border-radius: 0.1875em;
+    font-size: 0.85em;
+    padding: 0.2em 0.4em;
+    margin: 0;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.75em;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  .highlight {
+    margin-bottom: 1em;
+  }
+
+  .highlight pre {
+    margin-bottom: 0;
+    word-break: normal;
+  }
+
+  .highlight pre,
+  pre {
+    padding: 1em;
+    overflow: auto;
+    font-size: 0.85em;
+    line-height: 1.5;
+    background-color: var(--alt-background-color);
+    border-radius: 0.1875em;
+  }
+
+  pre code {
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+  }
+
+  .pl-0 {
+    padding-left: 0 !important;
+  }
+
+  .pl-1 {
+    padding-left: 0.25em !important;
+  }
+
+  .pl-2 {
+    padding-left: 0.5em !important;
+  }
+
+  .pl-3 {
+    padding-left: 1em !important;
+  }
+
+  .pl-4 {
+    padding-left: 1.5em !important;
+  }
+
+  .pl-5 {
+    padding-left: 2em !important;
+  }
+
+  .pl-6 {
+    padding-left: 2.5em !important;
+  }
+
+  .markdown-body::before {
+    display: table;
+    content: "";
+  }
+
+  .markdown-body::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .markdown-body>*:first-child {
+    margin-top: 0 !important;
+  }
+
+  .markdown-body>*:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .anchor {
+    float: left;
+    padding-right: 0.25em;
+    margin-left: -1.25em;
+    line-height: 1;
+  }
+
+  .anchor:focus {
+    outline: none;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  blockquote {
+    padding: 0 1em;
+    color: var(--blockquote-text-color);
+    border-left: 0.25em solid var(--blockquote-border-color);
+  }
+
+  blockquote>:first-child {
+    margin-top: 0;
+  }
+
+  blockquote>:last-child {
+    margin-bottom: 0;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 0.1875em 0.3125em;
+    font-size: 0.6875em;
+    line-height: 1;
+    color: var(--kbd-text-color);
+    vertical-align: middle;
+    background-color: var(--kbd-background-color);
+    border: solid 1px var(--kbd-border-color);
+    border-bottom-color: var(--kbd-shadow-color);
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 var(--kbd-shadow-color);;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h1:hover .anchor,
+  h2:hover .anchor,
+  h3:hover .anchor,
+  h4:hover .anchor,
+  h5:hover .anchor,
+  h6:hover .anchor {
+    text-decoration: none;
+  }
+
+  h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid var(--header-border-color);
+  }
+
+  h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--header-border-color);
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+    opacity: 0.67;
+  }
+
+  ul,
+  ol {
+    padding-left: 2em;
+  }
+
+  ul ul,
+  ul ol,
+  ol ol,
+  ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    overflow-wrap: break-word;
+  }
+
+  li>p {
+    margin-top: 1em;
+  }
+
+  li+li {
+    margin-top: 0.25em;
+  }
+
+  dl {
+    padding: 0;
+  }
+
+  dl dt {
+    padding: 0;
+    margin-top: 1em;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  dl dd {
+    padding: 0 1em;
+    margin-bottom: 1em;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+  }
+
+  table th {
+    font-weight: 600;
+  }
+
+  table th,
+  table td {
+    padding: 0.375em 0.8125em;
+    border: 1px solid var(--table-td-border-color);
+  }
+
+  table tr {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--table-tr-border-color);
+  }
+
+  table tr:nth-child(2n) {
+    background-color: var(--alt-background-color);
+  }
+
+  img {
+    max-width: 100%;
+    box-sizing: content-box;
+  }
+
+  img[align=right] {
+    padding-left: 1.25em;
+  }
+
+  img[align=left] {
+    padding-right: 1.25em;
+  }
+
+  .task-list-item {
+    list-style-type: none;
+  }
+
+  .task-list-item+.task-list-item {
+    margin-top: 0.1875em;
+  }
+
+  .task-list-item input {
+    margin: 0 0.2em 0.25em -1.6em;
+    vertical-align: middle;
+  }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="documentation">Documentation</h1>
+<blockquote>
+<p>⚠️ <strong>Warning:</strong> Gameeky is still in early stages of
+development and therefore things are subject to change.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Note:</strong> This document is not an exhaustive tutorial
+on everything Gameeky can do, but should provide enough directions to
+get started.</p>
+</blockquote>
+<h2 id="topics">Topics</h2>
+<ol type="1">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#thematic-packs">Thematic packs</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#the-launcher">The launcher</a></li>
+<li><a href="#the-player">The player</a></li>
+<li><a href="#cooperative-game-play">Cooperative game play</a></li>
+<li><a href="#the-scene-editor">The scene editor</a></li>
+<li><a href="#the-entity-editor">The entity editor</a></li>
+<li><a href="#the-code-editor-and-logo-like-code">The code editor and
+LOGO-like code</a></li>
+<li><a href="#plugins">Plugins</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p><a href="https://github.com/tchx84/gameeky">Gameeky</a> lets young
+learners and educators create and explore cooperative games and learning
+experiences. More specifically:</p>
+<ul>
+<li>Play and explore games with friends.</li>
+<li>Create new games without writing any code.</li>
+<li>Tell stories through these games.</li>
+<li>Nurture artistic skills by designing game objects and
+creatures.</li>
+<li>Grasp the basics of programming using Python in a <a
+href="https://en.wikipedia.org/wiki/Logo_(programming_language)">LOGO</a>-like
+experience.</li>
+<li>Mature programming skills by extending games with Python
+plugins.</li>
+</ul>
+<blockquote>
+<p>📝 <strong>Note:</strong> This is a learning tool in the shape of a
+game engine. It’s not a professional game engine. If you’re looking for
+a tool to create professional video games, please consider the <a
+href="https://godotengine.org">Godot</a> game engine.</p>
+</blockquote>
+<h2 id="installation">Installation</h2>
+<p>The recommended installation method is through the software center of
+the system, e.g., <em>GNOME Software</em>. Search for <em>Gameeky</em>
+and install it. Alternatively, it can also be installed from <a
+href="https://flathub.org">Flathub</a>. Similarly, search for
+<em>Gameeky</em> and follow the website instructions.</p>
+<p>Lastly, it can also be installed from the terminal:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> install flathub dev.tchx84.Gameeky</span></code></pre></div>
+<h2 id="thematic-packs">Thematic packs</h2>
+<p>Gameeky provides packs of predefined building blocks for different
+interests, e.g., a farming role playing <a
+href="https://github.com/tchx84/FreedomValley">game</a> set in a
+medieval fantasy world. A thematic pack contains:</p>
+<ul>
+<li>Assets like tilesets, sprites and sounds.</li>
+<li>Entities created from these assets, with predefined properties and
+behaviors.</li>
+<li>Scenes created with those entities.</li>
+<li>Actuators that extend the predefined behaviors.</li>
+</ul>
+<p>These building blocks can be reused to create custom scenes, new
+games and many learning materials.</p>
+<p>The recommended installation method is through the software center of
+the system, e.g., <em>GNOME Software</em>. Thematic packs are offered as
+addons from the software center page. Alternatively, it can also be
+installed from <a href="https://flathub.org">Flathub</a>. Similarly,
+thematic packs are offered as addons from the website. Select the addon
+and follow the website instructions.</p>
+<p>Lastly, packs can also be installed from the terminal:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> remote-ls flathub <span class="kw">|</span> <span class="fu">grep</span> dev.tchx84.Gameeky.ThematicPack</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley</span></code></pre></div>
+<h2 id="overview">Overview</h2>
+<p>The Gameeky package provides five main components:</p>
+<ol type="1">
+<li>The launcher is the main component where all thematic packs and
+projects can be found and launched from.</li>
+<li>The player is where games can be played and joined.</li>
+<li>The scene editor is where scenes can be created and edited.</li>
+<li>The entity editor is where entities can be created and edited.</li>
+<li>The code editor is where the LOGO-like experience can be had.</li>
+</ol>
+<h2 id="the-launcher">The launcher</h2>
+<p>The launcher serves as the Gameeky starting point. It provides an
+easy way to manage thematic packs installed as addons and projects
+located under the <code>~/Gameeky</code> directory. The manager supports
+all the basic management operations:</p>
+<ul>
+<li>Create new thematic packs and project from scratch.</li>
+<li>Edit existing projects.</li>
+<li>Remove existing projects.</li>
+<li>Share projects.</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png" /></p>
+<h3 id="sharing-projects">Sharing projects</h3>
+<p>The launcher provides a simple way to share projects. To export a
+project, follow these steps:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Export</em> option.</li>
+<li>Follow the dialog instructions.</li>
+</ol>
+<p>To import a project, follow these steps:</p>
+<ol type="1">
+<li>From the launcher, go to the menu and select the <em>Import</em>
+option.</li>
+<li>Follow the dialog instructions.</li>
+</ol>
+<h2 id="the-player">The player</h2>
+<p>The player provides a visual representation of the game world and the
+means to interact with that world.</p>
+<p>To start a game, click on the <em>Play</em> button of the project
+from the launcher. This will start the default scene for that project.
+Every thematic pack and project comes with a default scene. To play
+other scenes from the same project, follow these steps:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Play</em> option.</li>
+<li>From the player, go to the menu and select the <em>New</em>
+option.</li>
+<li>From the creation dialog, select the scene file and click on the
+<em>Create</em> button.</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png" /></p>
+<h3 id="in-game-screen-elements">In-game screen elements</h3>
+<p>Once in the game, the scene takes most of the screen but there are
+other elements as well.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/HUD_(video_games)">HUD</a>
+is an interface placed at the bottom center of the screen. This element
+is used to visualize the user’s character stats. It’s composed of the
+following parts:</p>
+<ul>
+<li>A green bar that represents the user’s character durability, e.g.,
+to monitor the health of the character.</li>
+<li>A blue bar that represents the user’s character stamina, e.g., to
+estimate how many actions can be performed by the character.</li>
+<li>An icon slot to display the entity that is currently being held by
+the user’s character, e.g., to determine what tool the character is
+equipped with.</li>
+</ul>
+<p>Another element is the dialogue viewer. This viewer is placed at the
+bottom of the screen and it’s used to display in-game dialogues, e.g., a
+message from a game character or the narrator. It’s composed of the
+following parts:</p>
+<ul>
+<li>A light blue section that contains the dialogue text.</li>
+<li>A button to close the dialogue.</li>
+</ul>
+<h3 id="controls">Controls</h3>
+<p>Once in the game, the user’s character can be controlled with two
+methods:</p>
+<ul>
+<li>Keyboard controls. To see the full list of key bindings, go the menu
+and select the <em>Keyboard Shortcuts</em> option.</li>
+<li>Mouse controls. To see the available actions, right-click on the
+game view and select an action from the menu. To move the user’s
+character, click on the scene view and the user’s character will move
+towards that direction.</li>
+</ul>
+<h3 id="actions">Actions</h3>
+<p>The user’s character can perform multiple actions to interact with
+the game world:</p>
+<ul>
+<li><em>Move</em> to advance the user’s character to one of four
+directions, e.g., to move the character to the <em>North</em>.</li>
+<li><em>Take</em> to hold an entity from the scene. The entity must be
+directly in front of the user’s character to be taken, e.g., to grab the
+entity and move that it later.</li>
+<li><em>Use</em> to apply any effects that the entity being held might
+have. These effects affect the entities that are located right in font
+of the user’s character, e.g., to chop some logs with an axe.</li>
+<li><em>Drop</em> to stop holding an entity, e.g., to stop moving
+it.</li>
+<li><em>Interact</em> to activate any behavior from an entity. To
+interact with another entity, the entity must be located right in front
+of the user’s character, e.g., to activate a teleport or read from
+signs.</li>
+<li><em>Rotate</em> to change the direction of the user’s
+character.</li>
+<li><em>Stop</em> to stop any action being performed and simply
+idle.</li>
+</ul>
+<h3 id="save-files">Save files</h3>
+<p>The state of the game can be saved at any moment and restored later.
+Save files are full copies of the scene and therefore regular scene
+files.</p>
+<ol type="1">
+<li>To save the state of the game, go to the menu and select the
+<em>Save As…</em> option.</li>
+<li>To restore the state of the game, follow the same steps described
+above to open an scene.</li>
+</ol>
+<h2 id="cooperative-game-play">Cooperative game play</h2>
+<p>Gameeky was designed from the ground up to create and share
+cooperative experiences. All the games created with it can be played
+cooperatively. There are no special requirements. Although there’s no
+theoretical limit as for how many users can join a cooperative game,
+there are technical limitations. E.g., limited computing resources.</p>
+<p>To start a cooperative game, follow these steps:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Play</em> option.</li>
+<li>From the player, go to the menu and select the <em>New</em>
+option.</li>
+<li>From the creation dialog, increase the number of participants and
+then click on the <em>Create</em> button.</li>
+</ol>
+<p>To join a cooperative game:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Play</em> option.</li>
+<li>From the player, go to the menu and select the <em>Join</em>
+option.</li>
+<li>From the join dialog, specify the <a
+href="https://flathub.org/apps/org.gabmus.whatip">IP address</a> of the
+user who started the cooperative game and click on the <em>Join</em>
+button.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Note:</strong> All the users joining a cooperative game
+must have a copy of the same thematic pack or project.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Note:</strong> Custom scenes created from thematic packs
+don’t need to be shared. The scene is automatically shared during game
+play, as long as all users share the same thematic pack.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Note:</strong> Users can join a session as any entity
+defined in the thematic pack, e.g., as a tree or a rock. To do this,
+expand the <em>Advance</em> section of the creation or join dialog and
+select a different <em>Entity Type</em>.</p>
+</blockquote>
+<h2 id="the-scene-editor">The scene editor</h2>
+<p>The scene editor lets users create and modify game worlds. It serves
+as the initial and simplest form of no-code creation experience in
+Gameeky.</p>
+<p>To edit an existing Scene, click on the <em>Edit</em> button of the
+project from the launcher. To create a new scene it’s recommended to
+start off an existing project such as a thematic pack. Follow these
+steps to add a new Scene:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Edit</em> option.</li>
+<li>From the scene editor, go to the menu and select the <em>New</em>
+option.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Note:</strong> Thematic packs can’t be modified.
+Therefore, an editable copy must be created. From the thematic pack
+options menu, select the <em>Copy</em> option.</p>
+</blockquote>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png" /></p>
+<h3 id="concepts">Concepts</h3>
+<p>A scene is a collection of entities arranged in a tiles grid. The
+basic properties of a scene are:</p>
+<ul>
+<li>A <em>Name</em> that must be unique among the scenes of the same
+project.</li>
+<li>The <em>Time</em> of the day in which the scene occurs. It can be
+<em>Day</em>, <em>Night</em> or <em>Dynamic</em>.</li>
+<li>If <em>Dynamic</em>, the <em>Duration</em> specifies the number of
+seconds that it takes to complete a full day and night cycle. Otherwise
+this property is ignored.</li>
+<li>The <em>Width</em> of the scene specifies the total number of tiles
+on the horizontal axis.</li>
+<li>The <em>Height</em> of the scene specifies the total number of tiles
+on the vertical axis.</li>
+</ul>
+<h3 id="workflow">Workflow</h3>
+<p>The scene editing workflow resembles one of a painting tool. Entities
+are painted and removed to and from the scene. The basic steps to edit a
+scene are the following:</p>
+<ol type="1">
+<li>To add entities to the scene, select an entity from the left panel
+and place it on the scene by clicking on a tile in the grid.</li>
+<li>To remove entities from the scene, select the <em>Remove</em> tool
+from the left and then click on the entity tile in the grid.</li>
+<li>Although entities come with predefined properties and behaviors,
+particular entities in the scene can be customized. Select the
+<em>Edit</em> tool from the left panel and then click on the entity tile
+in the grid.</li>
+<li>To test the scene, go to the menu and select the <em>Try It</em>
+option.</li>
+</ol>
+<p>Additionally, the scene editor provides helpers to make things easier
+such as:</p>
+<ul>
+<li>Drawing area selector to add or remove multiple entities at once,
+e.g., to quickly create the scene terrain.</li>
+<li>Layer selector to modify entities at a specific layer, e.g., to
+quickly modify the scene terrain.</li>
+<li>Time selector to visualize the scene during <em>Day</em> or
+<em>Night</em>, e.g., to inspect the light sources in the scene.</li>
+</ul>
+<h3 id="tips-and-tricks">Tips and tricks</h3>
+<p>For an improved experience, try the following tips and tricks:</p>
+<ul>
+<li>When creating the basic terrain of the scene, use the layer selector
+and set it at <em>Layer 0</em>. This will reduce the unnecessary
+overlapping of terrain tiles and it will ease the editing workflow
+overall.</li>
+<li>When editing a scene, leave the player open on that scene. When
+changes to the scene are saved, the player will detect these changes and
+present an option to reload the scene with the new changes. This reduces
+the time switching between the scene editor and the player.</li>
+<li>When editing a scene, use the initial location setter tool from the
+left panel to place the user’s character in a convenient location to
+inspect the changes.</li>
+</ul>
+<h2 id="the-entity-editor">The entity editor</h2>
+<p>The entity editor lets users create and modify game objects and
+creatures. It provides a deeper no-code creation experience, as it
+requires understanding the underlying systems of Gameeky.</p>
+<p>Before creating a new entity from scratch, it’s recommended to
+inspect existing entities from thematic packs. So, to inspect an
+existing entity follow these steps:</p>
+<ol type="1">
+<li>From the scene editor, right-click on an entity in the left
+panel.</li>
+<li>Select the <em>Edit</em> option from the menu.</li>
+</ol>
+<p>To create a new entity:</p>
+<ol type="1">
+<li>From the scene editor, right-click anywhere in the left panel.</li>
+<li>Select the <em>Add</em> option from the menu.</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png" /></p>
+<h3 id="concepts-1">Concepts</h3>
+<p>Entities represent everything that can exist in the game, e.g., the
+grass, the user’s character, a light source, the background music and
+even the game logic. An entity is composed of three parts:</p>
+<ol type="1">
+<li>Game logic properties.</li>
+<li>Graphics.</li>
+<li>Sounds.</li>
+</ol>
+<h4 id="game-logic-properties">Game logic properties</h4>
+<p>These properties determine how entities behave and interact with
+other entities, e.g., different combinations of these properties will
+determine whether an entity is acting as a static stone or a living
+foe.</p>
+<p>Although there are two dozen properties, a few of these require
+special attention here:</p>
+<ul>
+<li>The <em>Identifier</em> must be unique among all the entities of the
+same project.</li>
+<li>An entity is always in one and a single <em>State</em>, e.g.,
+<em>Idling</em>, <em>Moving</em>, <em>Destroyed</em>, etc. The state can
+change by performing different actions, by intrinsic or extrinsic
+means.</li>
+<li>An entity is always pointing to one and a single <em>Direction</em>.
+It can be <em>North</em>, <em>East</em>, <em>South</em> or
+<em>West</em>.</li>
+<li>An entity state can be changed intrinsically by <em>Actuators</em>
+that provide predefined logic, e.g., a <em>Roams</em> actuator will move
+the entity to random directions, and a <em>Destroys</em> actuator will
+flag the entity for removal from the scene when its durability reaches
+zero.</li>
+<li>All entity properties coexist in a single system and therefore
+behaviors can emerge from different combinations of these properties,
+e.g., the speed in which an entity can move is determined by its
+<em>Weight</em> and its <em>Strength</em>, while the total weight of an
+entity depends on the weight of the entity its holding, and so on.</li>
+</ul>
+<blockquote>
+<p>📝 <strong>Note:</strong> When creating a new thematic pack assume
+that the entity with identifier number <em>1</em> will be assigned to
+the user’s character in the game.</p>
+</blockquote>
+<h4 id="graphics">Graphics</h4>
+<p>Entities are represented on the screen through 2D graphics, which can
+be static or animated.</p>
+<p>These graphics are assigned to specific combinations of state and
+direction, e.g., a specific animation will be rendered when an entity is
+<em>Moving</em> to the <em>West</em>, while another animation will be
+rendered when the same entity is <em>Idling</em> to the
+<em>South</em>.</p>
+<p>All entities must provide a <em>Default</em> graphic, e.g., to
+visualize it on the scene editor or debug plugins.</p>
+<h4 id="sounds">Sounds</h4>
+<p>Similarly to graphics, entities can emit sounds when in specific
+states, e.g., footsteps sound is played when the entity is
+<em>Moving</em>. Directions don’t matter here.</p>
+<p>There aren’t <em>Default</em> sounds, as sounds are optional.</p>
+<h3 id="workflow-1">Workflow</h3>
+<p>The entity creation workflow is similar to filling a form or a
+template. The most basic entity is created with the following steps:</p>
+<ol type="1">
+<li>Under the <em>Game</em> tab, start setting the values from top to
+bottom. Note that all properties provide their own defaults. Only the
+identifier is mandatory. Setting a name is recommended so that it’s
+easier to find the entity on the scene editor.</li>
+<li>Under the <em>Graphics</em> tab, click on the <em>Add</em> button to
+create the first and default animation. Leave both <em>State</em> and
+<em>Direction</em> to <em>Default</em>. Expand the <em>Details</em>
+section of the default animation to select an image. Click on the
+<em>View</em> button to inspect the selected image.</li>
+<li>Save the entity and use it from the scene editor.</li>
+</ol>
+<h3 id="tips-and-tricks-1">Tips and tricks</h3>
+<p>For an improved experience, try the following tips and tricks:</p>
+<ul>
+<li>When creating a new entity, always begin with setting the identifier
+number and then <em>Save</em> the Entity to disk. Keep the name
+suggested by the entity editor. This will make it easier to assign
+unique identifiers along the road.</li>
+<li>When adding new assets, use the <em>Browse Files</em> option from
+the menu to quickly access the project’s folder.</li>
+<li>When creating a new animation, always leave both, the entity editor
+and the tileset viewer, open side by side. This will make it easier to
+set up the animation frames.</li>
+<li>After creating an animation, click on the <em>Copy</em> button to
+add the next animation. This will make it easier to set up the next
+animation.</li>
+</ul>
+<h2 id="the-code-editor-and-logo-like-code">The code editor and
+LOGO-like code</h2>
+<p>Having support for cooperative game play opens the door for
+cooperators that can be controlled with code. To achieve this, Gameeky
+provides a small library that enables users to control a single Entity
+using Python, in a LOGO-like experience.</p>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png" /></p>
+<h3 id="workflow-2">Workflow</h3>
+<p>Follow these steps to start a cooperative game:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Play</em> option.</li>
+<li>From the player, go to the menu and select the <em>New</em>
+option.</li>
+<li>From the creation dialog, increased the number of participants and
+then click on the <em>Create</em> button.</li>
+</ol>
+<p>To join the game with code, these steps must be followed:</p>
+<ol type="1">
+<li>From the launcher, click on the <em>Options</em> button of the
+project and select the <em>Play</em> option.</li>
+<li>From the player, go to the menu and select the <em>Join With
+Code</em> option.</li>
+<li>Write Python code that uses the Gameeky library, see examples
+below.</li>
+<li>Click on the <em>Play</em> button.</li>
+</ol>
+<h3 id="examples">Examples</h3>
+<p>Join and leave a <a
+href="../../../src/gameeky/library/game.py">game</a>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Perform <a
+href="../../../src/gameeky/common/definitions.py">actions</a>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game, Direction</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>game.idle(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>game.move(Direction.EAST, time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>game.move(Direction.WEST, time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>game.take(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>game.use(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>game.drop(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>game.interact(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Inspect the position and basic properties of the user’s character <a
+href="../../../src/gameeky/common/entity.py">entity</a>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(game.entity.position.x, game.entity.position.y)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Inspect the state of the <a
+href="../../../src/gameeky/common/scene.py">scene</a>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> entity <span class="kw">in</span> game.scene.entities:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(entity.position.x, entity.position.y)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Note:</strong> Cooperators can only see their immediate
+surroundings from the scene, not the full scene.</p>
+</blockquote>
+<p>Inspect the advance <a
+href="../../../src/gameeky/common/stats.py">stats</a> of the user’s
+character entity:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(game.stats.durability, game.stats.stamina, game.stats.held)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<h3 id="tips-and-tricks-2">Tips and tricks</h3>
+<p>For an improved experience, try the following tips and tricks:</p>
+<ul>
+<li>When testing code locally, leave both the player and the code editor
+open side by side. That way it will easier to see the code in action,
+literally.</li>
+</ul>
+<h2 id="plugins">Plugins</h2>
+<p>Actuators can modify the behavior of an entity. A single entity can
+use multiple actuators to model more complex behaviors. Although there’s
+a wide range of predefined actuators, the end result is limited when
+compared to actual code.</p>
+<p>Therefore, Gameeky provides support for user-created actuators to go
+beyond what the predefined actuators can do.</p>
+<h3 id="concepts-2">Concepts</h3>
+<p>There are three types of actuators:</p>
+<ol type="1">
+<li>Regular actuators enact on each tick of the scene, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/roams.py">move</a> the
+entity to a random location on each tick.</li>
+<li>Activatable actuators enact only in fixed time intervals or when
+explicitly activated by another entity, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/spawns.py">spawn</a> a
+new foe to the scene every five seconds.</li>
+<li>Interactable actuators enact when other entities interact with its
+entity, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/teleports.py">teleport</a>
+an entity to a different location when that entity interacts with a
+portal.</li>
+</ol>
+<p>All actuators use their own entity game properties to modify their
+behavior:</p>
+<ul>
+<li>The <em>Target Name</em> and <em>Target Type</em> properties can be
+used to filter the entities affected by the actuator, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/aggroes.py">target</a>
+only certain entities types for aggression.</li>
+<li>The <em>Rate</em> property can be used in activatables to reduce the
+activation frequency, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/transmutes.py">hatch</a>
+an egg into a chicken after ten seconds.</li>
+<li>The <em>Radius</em> property can be used to determine the area of
+effect of an actuator, e.g., to <a
+href="../../../src/gameeky/server/game/actuators/affects.py">burn</a>
+entities when stepping into a fire.</li>
+</ul>
+<h3 id="workflow-3">Workflow</h3>
+<p>To create a new actuator, follow the steps:</p>
+<ol type="1">
+<li>Open a new document in a text editor.</li>
+<li>Write an actuator class, see examples below.</li>
+<li>Save the new document to
+<code>~/Gameeky/PROJECT_NAME/actuators/ACTUATOR_NAME.py</code></li>
+<li>From the entity editor, go under the <em>Game</em> tab to the
+actuators section.</li>
+<li>A new option called <em>ACTUATOR_NAME</em> will be displayed along
+with the predefined actuators.</li>
+<li>Select it and save the entity to disk.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Note:</strong> User-created actuators can also be accessed
+from the scene editor when customizing specific entities.</p>
+</blockquote>
+<h3 id="examples-1">Examples</h3>
+<p>A minimal <a
+href="../../../src/gameeky/server/game/actuators/base.py">actuator</a>
+class:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
+<p>Inspect the <a
+href="../../../src/gameeky/server/game/entity.py">entity</a>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.entity.name)</span></code></pre></div>
+<p>Perform an action on the entity:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.common.definitions <span class="im">import</span> Action, Direction</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.entity.perform(Action.MOVE, Direction.SOUTH)</span></code></pre></div>
+<p>Send a dialogue to the entity:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.entity.tell(<span class="st">&quot;Hello...&quot;</span>)</span></code></pre></div>
+<p>Inspect all the other entities sitting right in front of the
+entity:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.obstacles:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspect all the other entities that share the same position as the
+entity:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.surfaces:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspect all the other entities that surround the entity:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.surroundings:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Note:</strong> The <em>surroundings</em> method takes into
+account the <em>Radius</em> property of the entity.</p>
+</blockquote>
+<p>Inspect all entities in the <a
+href="../../../src/gameeky/server/game/scene.py">scene</a>, that are not
+static:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.scene.mutables:</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspect all entities that are controlled by users:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.scene.playables:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Create an actuator that enacts every five seconds:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    activatable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.ready:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Activated...&quot;</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().tick()</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Note:</strong> The <em>ready</em> property takes into
+account the <em>Rate</em> property of the entity.</p>
+</blockquote>
+<p>Create an actuator that enacts only when interacted by users:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    interactable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> prepare(<span class="va">self</span>, interactee: <span class="st">&quot;Entity&quot;</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> interactee.playable <span class="kw">is</span> <span class="va">False</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">super</span>().prepare(interactee)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.interactee <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Interacted with </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_interactee<span class="sc">.</span>name<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().tick()</span></code></pre></div>
+<p>Fore more complex examples check Gameeky’s predefined <a
+href="../../../src/gameeky/server/game/actuators/">actuators</a>
+directory.</p>
+<h3 id="tips-and-tricks-3">Tips and tricks</h3>
+<p>For an improved experience, try the following tips and tricks:</p>
+<ul>
+<li>A single actuator should not modify the whole scene. Iterating over
+all the entities in the scene is extremely costly and the performance
+will be severed, e.g., stick to <em>mutables</em> and <em>playables</em>
+only.</li>
+<li>It’s preferred to write different actuators for different behaviors,
+e.g., avoid writing a single actuator that implements all of the custom
+behaviors. This will make it easier to understand and reuse in the long
+run.</li>
+<li>Use only public methods and attributes, e.g., stick to methods like
+<em>obstacles</em> or <em>interactee</em>. These will make it less
+likely for the actuators to break in the future.</li>
+</ul>
+</body>
+</html>
