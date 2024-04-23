@@ -111,13 +111,16 @@ $ meson test
 
 ## Windows support (experimental)
 
-To run on windows, install [msys2](msys2.org) and follow the instructions to set up a development environment. Once the setup is done, install the following dependencies:
+To run on windows, install [msys2](msys2.org) and follow the instructions to set up a development environment. Once the configuration is done, follow the instructions:
+
+### Install the dependencies
 
 ```bash
 $ pacman -Suy
-$ pacman -S git mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-python3 mingw-w64-ucrt-x86_64-python3-gobject mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-gstreamer mingw-w64-ucrt-x86_64-gst-plugins-good mingw-w64-ucrt-x86_64-gtksourceview5 mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-desktop-file-utils unzip
+$ pacman -S git mingw-w64-ucrt-x86_64-meson mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-python3 mingw-w64-ucrt-x86_64-python3-gobject mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-gstreamer mingw-w64-ucrt-x86_64-gst-plugins-good mingw-w64-ucrt-x86_64-gtksourceview5 mingw-w64-ucrt-x86_64-librsvg mingw-w64-ucrt-x86_64-desktop-file-utils unzip meson cmake
 ```
 
+### Install pandoc
 
 Now we download pandoc and copy it to `/usr/bin` by entering the msys2 terminal and typing the following commands
 ```bash
@@ -127,12 +130,15 @@ $ unzip pandoc-3.1.13-windows-x86_64.zip # Unzip it
 $ cp pandoc-3.1.13/pandoc.exe /usr/bin # Copy it
 ```
 
+### Copy gettext files
 
 Lastly, make sure to copy gettext ITS files from `/ucrt64/share/gettext/its` to `/usr/share/gettext/its`.
 ```bash
 $ mkdir -p /usr/share/gettext/its # Create the directory if it does not exist
 $ cp /ucrt64/share/gettext/its/* /usr/share/gettext/its -rf # and copy the files
 ```
+#### Note: in windows you have to disable the webkit by using `meson setup build -Dwebkit=disabled`
+
 
 ## License
 
