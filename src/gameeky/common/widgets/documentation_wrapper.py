@@ -31,9 +31,7 @@ def present_documentation(window: Gtk.Window) -> None:
     except:
         launch_path(find_path())
     else:
-        uri = GLib.Uri.build(
-            GLib.UriFlags.NONE, "file", None, None, -1, find_path(), None, None
-        ).to_string()
+        uri = GLib.filename_to_uri(find_path())
 
         dialog = DocumentationWindow(uri, transient_for=window)
         dialog.present()
