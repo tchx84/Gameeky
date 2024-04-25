@@ -134,7 +134,7 @@ The user's character can perform multiple actions to interact with the game worl
 
 * *Move* to advance the user's character to one of four directions, e.g., to move the character to the *North*.
 * *Take* to hold an entity from the scene. The entity must be directly in front of the user's character to be taken, e.g., to grab the entity and move that it later.
-* *Use* to apply any effects that the entity being held might have. These effects affect the entities that are located right in font of the user's character, e.g., to chop some logs with an axe.
+* *Use* to apply any effects that the entity being held might have. These effects affect the entities that are located right in front of the user's character, e.g., to chop some logs with an axe.
 * *Drop* to stop holding an entity, e.g., to stop moving it.
 * *Interact* to activate any behavior from an entity. To interact with another entity, the entity must be located right in front of the user's character, e.g., to activate a teleport or read from signs.
 * *Rotate* to change the direction of the user's character.
