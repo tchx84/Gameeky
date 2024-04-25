@@ -438,7 +438,7 @@ msgstr ""
 
 msgid ""
 "*Use* to apply any effects that the entity being held might have. These "
-"effects affect the entities that are located right in font of the user's "
+"effects affect the entities that are located right in front of the user's "
 "character, e.g., to chop some logs with an axe."
 msgstr ""
 "*Usar* para aplicar cualquier efecto que la entidad sostenida pueda tener. "
