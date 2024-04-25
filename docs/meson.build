@@ -1,8 +1,8 @@
 pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 
 docs = [
-  'basics/en/index.html',
-  'basics/es/index.html',
+  'basics/html/en/index.html',
+  'basics/html/es/index.html',
 ]
 
 install_data(
