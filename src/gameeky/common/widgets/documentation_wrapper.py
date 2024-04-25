@@ -40,7 +40,7 @@ def present_documentation(window: Gtk.Window) -> None:
 
 
 def build_path(language: str) -> str:
-    return os.path.join(pkgdatadir, "docs", "basics", language, "index.html")
+    return os.path.join(pkgdatadir, "docs", "basics", "html", language, "index.html")
 
 
 def find_path() -> str:
