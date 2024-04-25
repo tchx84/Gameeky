@@ -36,8 +36,12 @@ def build_html(
     destination_path: str,
     language: str,
 ):
+    target_directory_path = os.path.join(destination_path, language)
     source_path = os.path.join(sources_path, language, "index.md")
-    target_path = os.path.join(destination_path, language, "index.html")
+    target_path = os.path.join(target_directory_path, "index.html")
+
+    # Ensure target language directory exists
+    os.makedirs(target_directory_path, exist_ok=True)
 
     command = __command_template__ % (header_path, target_path, source_path)
 
