@@ -1,5 +1,10 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed more issues preventing Gameeky from running on other platforms by @melizeche.
+* Added Brazilian Portuguese translation by @rffontenelle.
+
 ## [0.6.1] - 2024-04-02
 
 * Added brand colors to the metainfo file.
