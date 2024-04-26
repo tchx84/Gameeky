@@ -19,7 +19,7 @@ More specifically:
 
 ## Use it
 
-Learn more about this project by reading the [beginner's guide](docs/basics/en/index.md).
+Learn more about this project by reading the [beginner's guide](docs/basics/src/en/index.md).
 
 ## Contribute
 
