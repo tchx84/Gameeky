@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.2] - 2024-04-30
 
 * Fixed more issues preventing Gameeky from running on other platforms by @melizeche.
 * Added Brazilian Portuguese translation by @rffontenelle.
