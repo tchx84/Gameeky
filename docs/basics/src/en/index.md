@@ -307,7 +307,7 @@ To join the game with code, these steps must be followed:
 
 ### Examples
 
-Join and leave a [game](../../../src/gameeky/library/game.py):
+Join and leave a [game](../../../../src/gameeky/library/game.py):
 
 ```python
 from gameeky.library import Game
@@ -317,7 +317,7 @@ game.join()
 game.quit()
 ```
 
-Perform [actions](../../../src/gameeky/common/definitions.py):
+Perform [actions](../../../../src/gameeky/common/definitions.py):
 
 ```python
 from gameeky.library import Game, Direction
@@ -337,7 +337,7 @@ game.interact(time=1000)
 game.quit()
 ```
 
-Inspect the position and basic properties of the user's character [entity](../../../src/gameeky/common/entity.py):
+Inspect the position and basic properties of the user's character [entity](../../../../src/gameeky/common/entity.py):
 
 ```python
 from gameeky.library import Game
@@ -351,7 +351,7 @@ print(game.entity.position.x, game.entity.position.y)
 game.quit()
 ```
 
-Inspect the state of the [scene](../../../src/gameeky/common/scene.py):
+Inspect the state of the [scene](../../../../src/gameeky/common/scene.py):
 
 ```python
 from gameeky.library import Game
@@ -368,7 +368,7 @@ game.quit()
 
 > 📝 **Note:** Cooperators can only see their immediate surroundings from the scene, not the full scene.
 
-Inspect the advance [stats](../../../src/gameeky/common/stats.py) of the user's character entity:
+Inspect the advance [stats](../../../../src/gameeky/common/stats.py) of the user's character entity:
 
 ```python
 from gameeky.library import Game
@@ -398,15 +398,15 @@ Therefore, Gameeky provides support for user-created actuators to go beyond what
 
 There are three types of actuators:
 
-1. Regular actuators enact on each tick of the scene, e.g., to [move](../../../src/gameeky/server/game/actuators/roams.py) the entity to a random location on each tick.
-2. Activatable actuators enact only in fixed time intervals or when explicitly activated by another entity, e.g., to [spawn](../../../src/gameeky/server/game/actuators/spawns.py) a new foe to the scene every five seconds.
-3. Interactable actuators enact when other entities interact with its entity, e.g., to [teleport](../../../src/gameeky/server/game/actuators/teleports.py) an entity to a different location when that entity interacts with a portal.
+1. Regular actuators enact on each tick of the scene, e.g., to [move](../../../../src/gameeky/server/game/actuators/roams.py) the entity to a random location on each tick.
+2. Activatable actuators enact only in fixed time intervals or when explicitly activated by another entity, e.g., to [spawn](../../../../src/gameeky/server/game/actuators/spawns.py) a new foe to the scene every five seconds.
+3. Interactable actuators enact when other entities interact with its entity, e.g., to [teleport](../../../../src/gameeky/server/game/actuators/teleports.py) an entity to a different location when that entity interacts with a portal.
 
 All actuators use their own entity game properties to modify their behavior:
 
-* The *Target Name* and *Target Type* properties can be used to filter the entities affected by the actuator, e.g., to [target](../../../src/gameeky/server/game/actuators/aggroes.py) only certain entities types for aggression.
-* The *Rate* property can be used in activatables to reduce the activation frequency, e.g., to [hatch](../../../src/gameeky/server/game/actuators/transmutes.py) an egg into a chicken after ten seconds.
-* The *Radius* property can be used to determine the area of effect of an actuator, e.g., to [burn](../../../src/gameeky/server/game/actuators/affects.py) entities when stepping into a fire.
+* The *Target Name* and *Target Type* properties can be used to filter the entities affected by the actuator, e.g., to [target](../../../../src/gameeky/server/game/actuators/aggroes.py) only certain entities types for aggression.
+* The *Rate* property can be used in activatables to reduce the activation frequency, e.g., to [hatch](../../../../src/gameeky/server/game/actuators/transmutes.py) an egg into a chicken after ten seconds.
+* The *Radius* property can be used to determine the area of effect of an actuator, e.g., to [burn](../../../../src/gameeky/server/game/actuators/affects.py) entities when stepping into a fire.
 
 ### Workflow
 
@@ -423,7 +423,7 @@ To create a new actuator, follow the steps:
 
 ### Examples
 
-A minimal [actuator](../../../src/gameeky/server/game/actuators/base.py) class:
+A minimal [actuator](../../../../src/gameeky/server/game/actuators/base.py) class:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -433,7 +433,7 @@ class Actuator(Plugin):
         pass
 ```
 
-Inspect the [entity](../../../src/gameeky/server/game/entity.py):
+Inspect the [entity](../../../../src/gameeky/server/game/entity.py):
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -499,7 +499,7 @@ class Actuator(Plugin):
 
 > 📝 **Note:** The *surroundings* method takes into account the *Radius* property of the entity.
 
-Inspect all entities in the [scene](../../../src/gameeky/server/game/scene.py), that are not static:
+Inspect all entities in the [scene](../../../../src/gameeky/server/game/scene.py), that are not static:
 
 ```python
 from gameeky.plugins import Actuator as Plugin
@@ -563,7 +563,7 @@ class Actuator(Plugin):
         super().tick()
 ```
 
-Fore more complex examples check Gameeky's predefined [actuators](../../../src/gameeky/server/game/actuators/) directory.
+Fore more complex examples check Gameeky's predefined [actuators](../../../../src/gameeky/server/game/actuators/) directory.
 
 ### Tips and tricks
 
