@@ -1098,7 +1098,7 @@ los ejemplos a continuación.</li>
 </ol>
 <h3 id="ejemplos">Ejemplos</h3>
 <p>Unirse y abandonar un <a
-href="../../../src/gameeky/library/game.py">juego</a>:</p>
+href="../../../../src/gameeky/library/game.py">juego</a>:</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1106,7 +1106,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
 <p>Realizar <a
-href="../../../src/gameeky/common/definitions.py">acciones</a>:</p>
+href="../../../../src/gameeky/common/definitions.py">acciones</a>:</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game, Direction</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1124,7 +1124,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
 <p>Inspeccionar la posición y las propiedades básicas del personaje del
-usuario <a href="../../../src/gameeky/common/entity.py">entidad</a>:</p>
+usuario <a
+href="../../../../src/gameeky/common/entity.py">entidad</a>:</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1136,7 +1137,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
 <p>Inspeccione el estado de la <a
-href="../../../src/gameeky/common/scene.py">escena</a>:</p>
+href="../../../../src/gameeky/common/scene.py">escena</a>:</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1153,8 +1154,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 entorno inmediato en la escena, no la escena completa.</p>
 </blockquote>
 <p>Inspeccionar las <a
-href="../../../src/gameeky/common/stats.py">estadísticas</a> avanzadas
-de la entidad del personaje del usuario:</p>
+href="../../../../src/gameeky/common/stats.py">estadísticas</a>
+avanzadas de la entidad del personaje del usuario:</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1186,16 +1187,16 @@ predefinidos.</p>
 <ol type="1">
 <li>Los actuadores regulares actúan en cada tic de la escena, por
 ejemplo, para <a
-href="../../../src/gameeky/server/game/actuators/roams.py">mover</a> la
-entidad a una ubicación aleatoria en cada tic.</li>
+href="../../../../src/gameeky/server/game/actuators/roams.py">mover</a>
+la entidad a una ubicación aleatoria en cada tic.</li>
 <li>Los actuadores activables actúan solo en intervalos de tiempo fijos
 o cuando son activados explícitamente por otra entidad, por ejemplo,
 para <a
-href="../../../src/gameeky/server/game/actuators/spawns.py">agregar</a>
+href="../../../../src/gameeky/server/game/actuators/spawns.py">agregar</a>
 un nuevo enemigo a la escena cada cinco segundos.</li>
 <li>Los actuadores interactuables actúan cuando otras entidades
 interactúan con su entidad, por ejemplo, para
-[teletransportar](../../../src/gameeky/server/game/actuators/teleports.py
+[teletransportar](../../../../src/gameeky/server/game/actuators/teleports.py
 una entidad a una ubicación diferente cuando esa entidad interactúa con
 un portal.</li>
 </ol>
@@ -1205,15 +1206,15 @@ para modificar su comportamiento:</p>
 <li>Las propiedades <em>Nombre de Destino</em> y <em>Tipo de
 Destino</em> se pueden utilizar para filtrar las entidades afectadas por
 el actuador, por ejemplo, <a
-href="../../../src/gameeky/server/game/actuators/%20aggroes.py">apuntar</a>
+href="../../../../src/gameeky/server/game/actuators/%20aggroes.py">apuntar</a>
 solo ciertos tipos de entidades para agresión.</li>
 <li>La propiedad <em>Tasa</em> se puede usar en activables para reducir
 la frecuencia de activación, por ejemplo, para <a
-href="../../../src/gameeky/server/game/actuators/transmutes.py">incubar</a>
+href="../../../../src/gameeky/server/game/actuators/transmutes.py">incubar</a>
 un huevo en un pollo después de diez segundos.</li>
 <li>La propiedad <em>Radio</em> se puede utilizar para determinar el
 área de efecto de un actuador, por ejemplo, para <a
-href="../../../src/gameeky/server/game/actuators/affects.py">quemar</a>
+href="../../../../src/gameeky/server/game/actuators/affects.py">quemar</a>
 entidades al entrar en un incendio.</li>
 </ul>
 <h3 id="flujo-de-trabajo-3">Flujo de trabajo</h3>
@@ -1237,7 +1238,7 @@ entidades específicas.</p>
 </blockquote>
 <h3 id="ejemplos-1">Ejemplos</h3>
 <p>Una clase <a
-href="../../../src/gameeky/server/game/actuators/base.py">actuador</a>
+href="../../../../src/gameeky/server/game/actuators/base.py">actuador</a>
 mínima:</p>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
@@ -1246,7 +1247,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
 <p>Inspeccionar la <a
-href="../../../src/gameeky/server/game/entity.py">entidad</a>:</p>
+href="../../../../src/gameeky/server/game/entity.py">entidad</a>:</p>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1299,8 +1300,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a h
 cuenta la propiedad <em>Radio</em> de la entidad.</p>
 </blockquote>
 <p>Inspeccionar todas las entidades en la <a
-href="../../../src/gameeky/server/game/scene.py">escena</a>, que no sean
-estáticas:</p>
+href="../../../../src/gameeky/server/game/scene.py">escena</a>, que no
+sean estáticas:</p>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1356,7 +1357,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a h
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().tick()</span></code></pre></div>
 <p>Para ver ejemplos más complejos, consulte el directorio <a
-href="../../../src/gameeky/server/game/actuators/">actuadores</a>
+href="../../../../src/gameeky/server/game/actuators/">actuadores</a>
 predefinidos de Gameeky.</p>
 <h3 id="consejos-y-trucos-3">Consejos y trucos</h3>
 <p>Para una mejor experiencia, siga estos consejos y trucos:</p>
