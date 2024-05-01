@@ -1152,7 +1152,7 @@ msgid ""
 msgstr ""
 "Los actuadores interactuables actúan cuando otras entidades interactúan con "
 "su entidad, por ejemplo, para [teletransportar](../../../../src/gameeky/server/"
-"game/actuators/teleports.py una entidad a una ubicación diferente cuando esa "
+"game/actuators/teleports.py) una entidad a una ubicación diferente cuando esa "
 "entidad interactúa con un portal."
 
 msgid ""
