@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.3] - 2024-05-01
 
 * Fixed broken references to the source code in the documentation.
 
