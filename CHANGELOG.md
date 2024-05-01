@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.4] - 2024-05-01
 
 * Fixed a typo in the Spanish translation of the documentation.
 
