@@ -1,5 +1,9 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed broken references to the source code in the documentation.
+
 ## [0.6.2] - 2024-04-30
 
 * Fixed more issues preventing Gameeky from running on other platforms by @melizeche.
