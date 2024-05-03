@@ -135,7 +135,7 @@ msgstr ""
 "O método de instalação recomendado é através da central de softwares do "
 "sistema como, por exemplo, o *GNOME Software*. Procure por *Gameeky* e "
 "instale-o. Alternativamente, ele também pode ser instalado a partir do "
-"[Flathub] (https://flathub.org). Da mesma forma, pesquise *Gameeky* e siga "
+"[Flathub](https://flathub.org). Da mesma forma, pesquise *Gameeky* e siga "
 "as instruções do site."
 
 msgid "Lastly, it can also be installed from the terminal:"
