@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="none" />
+  <style type="text/css">
+  :root {
+    --text-color: #2e3436;
+    --background-color: #f6f5f4;
+    --alt-background-color: #edeeef;
+    --link-color: #0d71de;
+    --blockquote-text-color: #747e85;
+    --blockquote-border-color: #d6d8da;
+    --header-border-color: #e1e2e4;
+    --hr-background-color: #d8dadd;
+    --table-tr-border-color: #bdc1c6;
+    --table-td-border-color: #d6d8da;
+    --kbd-text-color: #4e585e;
+    --kbd-background-color: #f1f1f1;
+    --kbd-border-color: #bdc1c6;
+    --kbd-shadow-color: #8c939a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-color: #eeeeec;
+      --background-color: #353535;
+      --alt-background-color: #3a3a3a;
+      --link-color: #b5daff;
+      --blockquote-text-color: #a8a8a6;
+      --blockquote-border-color: #525252;
+      --header-border-color: #474747;
+      --hr-background-color: #505050;
+      --table-tr-border-color: #696969;
+      --table-td-border-color: #525252;
+      --kbd-text-color: #cececc;
+      --kbd-background-color: #3c3c3c;
+      --kbd-border-color: #696969;
+      --kbd-shadow-color: #979797;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: "Fira Sans", fira-sans, sans-serif, color-emoji;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 980px;
+    margin: auto;
+    padding: 0em 4em;
+  }
+
+  @media screen and (max-width: 799px) {
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      padding: 1em;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  a {
+    background-color: transparent;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  a:active,
+  a:hover {
+    outline-width: 0;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  img {
+    border-style: none;
+  }
+
+  hr {
+    box-sizing: content-box;
+    height: 0.25em;
+    padding: 0;
+    margin: 1.5em 0;
+    overflow: hidden;
+    background-color: var(--hr-background-color);
+    border: 0;
+  }
+
+  hr::before {
+    display: table;
+    content: "";
+  }
+
+  hr::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+  }
+
+  [type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0.625em;
+  }
+
+  blockquote {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  ol ol,
+  ul ol {
+    list-style-type: lower-roman;
+  }
+
+  ul ul ol,
+  ul ol ol,
+  ol ul ol,
+  ol ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: "Fira Mono", fira-mono, monospace, color-emoji;
+    font-size: 1em;
+    word-wrap: normal;
+  }
+
+  code {
+    border-radius: 0.1875em;
+    font-size: 0.85em;
+    padding: 0.2em 0.4em;
+    margin: 0;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.75em;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  .highlight {
+    margin-bottom: 1em;
+  }
+
+  .highlight pre {
+    margin-bottom: 0;
+    word-break: normal;
+  }
+
+  .highlight pre,
+  pre {
+    padding: 1em;
+    overflow: auto;
+    font-size: 0.85em;
+    line-height: 1.5;
+    background-color: var(--alt-background-color);
+    border-radius: 0.1875em;
+  }
+
+  pre code {
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+  }
+
+  .pl-0 {
+    padding-left: 0 !important;
+  }
+
+  .pl-1 {
+    padding-left: 0.25em !important;
+  }
+
+  .pl-2 {
+    padding-left: 0.5em !important;
+  }
+
+  .pl-3 {
+    padding-left: 1em !important;
+  }
+
+  .pl-4 {
+    padding-left: 1.5em !important;
+  }
+
+  .pl-5 {
+    padding-left: 2em !important;
+  }
+
+  .pl-6 {
+    padding-left: 2.5em !important;
+  }
+
+  .markdown-body::before {
+    display: table;
+    content: "";
+  }
+
+  .markdown-body::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .markdown-body>*:first-child {
+    margin-top: 0 !important;
+  }
+
+  .markdown-body>*:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .anchor {
+    float: left;
+    padding-right: 0.25em;
+    margin-left: -1.25em;
+    line-height: 1;
+  }
+
+  .anchor:focus {
+    outline: none;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  blockquote {
+    padding: 0 1em;
+    color: var(--blockquote-text-color);
+    border-left: 0.25em solid var(--blockquote-border-color);
+  }
+
+  blockquote>:first-child {
+    margin-top: 0;
+  }
+
+  blockquote>:last-child {
+    margin-bottom: 0;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 0.1875em 0.3125em;
+    font-size: 0.6875em;
+    line-height: 1;
+    color: var(--kbd-text-color);
+    vertical-align: middle;
+    background-color: var(--kbd-background-color);
+    border: solid 1px var(--kbd-border-color);
+    border-bottom-color: var(--kbd-shadow-color);
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 var(--kbd-shadow-color);;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h1:hover .anchor,
+  h2:hover .anchor,
+  h3:hover .anchor,
+  h4:hover .anchor,
+  h5:hover .anchor,
+  h6:hover .anchor {
+    text-decoration: none;
+  }
+
+  h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid var(--header-border-color);
+  }
+
+  h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--header-border-color);
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-size: 0.85em;
+    opacity: 0.67;
+  }
+
+  ul,
+  ol {
+    padding-left: 2em;
+  }
+
+  ul ul,
+  ul ol,
+  ol ol,
+  ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    overflow-wrap: break-word;
+  }
+
+  li>p {
+    margin-top: 1em;
+  }
+
+  li+li {
+    margin-top: 0.25em;
+  }
+
+  dl {
+    padding: 0;
+  }
+
+  dl dt {
+    padding: 0;
+    margin-top: 1em;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  dl dd {
+    padding: 0 1em;
+    margin-bottom: 1em;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+  }
+
+  table th {
+    font-weight: 600;
+  }
+
+  table th,
+  table td {
+    padding: 0.375em 0.8125em;
+    border: 1px solid var(--table-td-border-color);
+  }
+
+  table tr {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--table-tr-border-color);
+  }
+
+  table tr:nth-child(2n) {
+    background-color: var(--alt-background-color);
+  }
+
+  img {
+    max-width: 100%;
+    box-sizing: content-box;
+  }
+
+  img[align=right] {
+    padding-left: 1.25em;
+  }
+
+  img[align=left] {
+    padding-right: 1.25em;
+  }
+
+  .task-list-item {
+    list-style-type: none;
+  }
+
+  .task-list-item+.task-list-item {
+    margin-top: 0.1875em;
+  }
+
+  .task-list-item input {
+    margin: 0 0.2em 0.25em -1.6em;
+    vertical-align: middle;
+  }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="documentatie">Documentatie</h1>
+<blockquote>
+<p>⚠️ <strong>Waarschuwing:</strong> Gameeky is nog volop in
+ontwikkeling. Alles wat je ziet kan nog veranderen.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Let op:</strong> dit document biedt geen uitleg tot in de
+puntjes, maar is louter bedoeld als snelstartgids.</p>
+</blockquote>
+<h2 id="onderwerpen">Onderwerpen</h2>
+<ol type="1">
+<li><a href="#introduction">Introductie</a></li>
+<li><a href="#installation">Installatie</a></li>
+<li><a href="#thematic-packs">Themapakketten</a></li>
+<li><a href="#overview">Overzicht</a></li>
+<li><a href="#the-launcher">De starter</a></li>
+<li><a href="#the-player">De speler</a></li>
+<li><a href="#cooperative-game-play">Samenwerking</a></li>
+<li><a href="#the-scene-editor">De scènebewerker</a></li>
+<li><a href="#the-entity-editor">De entiteitbewerker</a></li>
+<li><a href="#the-code-editor-and-logo-like-code">De codebewerker en
+LOGO-achtige code</a></li>
+<li><a href="#plugins">Plug-ins</a></li>
+</ol>
+<h2 id="introductie">Introductie</h2>
+<p>Met <a href="https://github.com/tchx84/gameeky">Gameeky</a> kunnen
+jonge enthousiastelingen en leraren op speelse wijze kennismaken met het
+bouwen van coöperatieve spellen. Meer bepaald:</p>
+<ul>
+<li>Speel en verken spellen met vrienden.</li>
+<li>Maak nieuwe spellen zonder programmeerkennis.</li>
+<li>Vertel verhalen.</li>
+<li>Ontdek je artistieke kant door objecten en figuren/wezens te
+maken.</li>
+<li>Leer de basis van programmeren met behulp van Python door middel van
+een <a
+href="https://nl.wikipedia.org/wiki/Logo_(programmeertaal)">LOGO</a>-achtige
+bouwwijze.</li>
+<li>Breid je programmeerkennis uit door spellen te voorzien van
+Python-plug-ins.</li>
+</ul>
+<blockquote>
+<p>📝 <strong>Let op:</strong> Gameeky is een leerprogramma in de vorm
+van een spelaandrijving. Als je op zoek bent naar een programma om
+professionele spellen te maken, kijk dan eens naar <a
+href="https://godotengine.org">Godot</a>.</p>
+</blockquote>
+<h2 id="installatie">Installatie</h2>
+<p>Wij raden aan om Gameeky te installeren met behulp van het
+softwarecentrum van je systeem, bijvoorbeeld <em>GNOME Software</em>.
+Zoek naar<em>Gameeky</em> en installeer het. Ook kun je Gameeky via <a
+href="https://flathub.org">Flathub</a> installeren. Zoek ook daar naar
+<em>Gameeky</em> en volg de installatie-instructies.</p>
+<p>De laatste methode, voor ervaren gebruikers, is via een
+terminalvenster:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> install flathub dev.tchx84.Gameeky</span></code></pre></div>
+<h2 id="themapakketten">Themapakketten</h2>
+<p>Gameeky bevat pakketten met bouwstenen, zodat er een breed scala aan
+spellen kan worden gemaakt. Een voorbeeld van zo’n spel is <a
+href="https://github.com/tchx84/FreedomValley">dit</a>, een middeleeuws
+fantasiespel waar alles draait om verzamelen. Elk themapakket bevat:</p>
+<ul>
+<li>Items, zoals tegelsets, personages en geluiden.</li>
+<li>Entiteiten gemaakt met deze items, met vooraf ingestelde
+eigenschappen en gedrag.</li>
+<li>Scènes gemaakt met deze entiteiten.</li>
+<li>Aanstichters die het gedrag aanpassen.</li>
+</ul>
+<p>Deze bouwstenen kunnen worden hergebruikt om eigen scènes, nieuwe
+spellen en leermateriaal te maken.</p>
+<p>Wij raden aan om themapakketten te installeren met behulp van het
+softwarecentrum van je systeem, bijvoorbeeld <em>GNOME Software</em>.
+Themapakketten worden hierin aangeboden als uitbreidingen. Ook kun je
+themapakketten via <a href="https://flathub.org">Flathub</a>
+installeren. Kies daar een uitbreiding en volg de
+installatie-instructies.</p>
+<p>De laatste methode, voor ervaren gebruikers, is via een
+terminalvenster:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> remote-ls flathub <span class="kw">|</span> <span class="fu">grep</span> dev.tchx84.Gameeky.ThematicPack</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> <span class="at">--user</span> install flathub dev.tchx84.Gameeky.ThematicPack.FreedomValley</span></code></pre></div>
+<h2 id="overzicht">Overzicht</h2>
+<p>Het Gameeky-pakket bestaat uit vijf hoofdonderdelen:</p>
+<ol type="1">
+<li>De starter is het hoofdonderdeel; hier vind je alle themapakketten
+en projecten.</li>
+<li>De speler is waar spellen gespeeld kunnen worden, al dan niet
+samen.</li>
+<li>De scènebewerker is waar scènes kunnen worden gemaakt en
+bewerkt.</li>
+<li>De entiteitbewerker is waar entiteiten kunnen worden gemaakt en
+bewerkt.</li>
+<li>De codebewerker biedt een manier met LOGO-achtige code te
+werken.</li>
+</ol>
+<h2 id="de-starter">De starter</h2>
+<p>De starter is het centrale startpunt van Gameeky. Vanuit de starter
+kun je themapakketten beheren en projecten laden uit de
+<code>~/Gameeky</code>-map. De beheerder ondersteunt alle
+basistaken:</p>
+<ul>
+<li>Maak nieuwe themapakketten en projecten vanaf nul.</li>
+<li>Bewerk bestaande projecten.</li>
+<li>Verwijder bestaande projecten.</li>
+<li>Deel projecten.</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/04.png" /></p>
+<h3 id="projecten-delen">Projecten delen</h3>
+<p>Via de starter kun je eenvoudig projecten delen. Exporteer een
+project door deze stappen te volgen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Exporteren’.</li>
+<li>Volg de instructies op het scherm.</li>
+</ol>
+<p>Importeer een project door deze stappen te volgen:</p>
+<ol type="1">
+<li>Ga naar de starter, open het menu en klik op ‘Importeren’.</li>
+<li>Volg de instructies op het scherm.</li>
+</ol>
+<h2 id="de-speler">De speler</h2>
+<p>De speler biedt een visuele representatie van de spelwereld en de
+manier waarop interactie met de wereld plaatsvindt.</p>
+<p>Klik in de starter op de speelknop naast een project om een spel te
+starten. Het spel begint bij de standaardscène. Ieder themapakket en
+project bevat een standaardscène. Als je andere scènes wilt spelen, volg
+dan deze stappen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Spelen’.</li>
+<li>Ga via de speler naar het menu en klik op ‘Nieuw’.</li>
+<li>Kies in het geopende venster een scènebestand en klik op
+‘Maken’.</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/02.png" /></p>
+<h3 id="spelementen">Spelementen</h3>
+<p>In het spel neemt de scène de meeste schermruimte in beslag, maar er
+zijn andere elementen die je kunt aanklikken.</p>
+<p>De <a href="HUD%20(computerspel)">HUD</a> is een onderdeel van de
+gebruikersomgeving en bevindt zich onderaan het scherm. Hierop worden de
+spelerstatistieken getoond. De HUD bestaat uit de volgende items:</p>
+<ul>
+<li>Een groene balk geeft aan hoeveel gezondheid de speler nog
+heeft.</li>
+<li>Een blauwe balk geeft aan hoeveel uithoudingsvermogen een speler nog
+heeft, bijvoorbeeld om acties te kunnen uitvoeren.</li>
+<li>Een leeg vakje (‘slot’) geeft aan welk item een speler bij zich
+draagt, bijvoorbeeld een wapen of gereedschap.</li>
+</ul>
+<p>Ook gesprekken worden onderaan getoond, bijvoorbeeld gesprekken met
+de verteller of een ander personage. Dit onderdeel bestaat uit de
+volgende items:</p>
+<ul>
+<li>Een lichtblauwe sectie die de gesproken tekst bevat.</li>
+<li>Een knop om het gesprek te beëindigen.</li>
+</ul>
+<h3 id="bediening">Bediening</h3>
+<p>In het spel kan het personage op twee manieren bestuurd worden:</p>
+<ul>
+<li>Met het toetsenbord. Bekijk alle toetsen via menu →
+Sneltoetsen.</li>
+<li>Met de muis. Bekijk alle acties door rechts te klikken in het spel.
+Klik met de linkermuisknop om de speler te verplaatsen naar de aanwezen
+plek.</li>
+</ul>
+<h3 id="acties">Acties</h3>
+<p>De speler kan meerdere acties uitvoeren in de spelwereld:</p>
+<ul>
+<li><em>Verplaatsen</em> om de speler in een van de vier windrichtingen
+te verplaatsen, bijvoorbeeld naar het <em>noorden</em>.</li>
+<li><em>Pakken</em> om een item op te pakken. Het item in kwestie moet
+binnen handbereik liggen.</li>
+<li><em>Gebruiken</em> om een item dat de speler bij zich draagt te
+gebruiken. Dit kan invloed hebben op andere items en personages in de
+nabijheid van de speler. Zo kun je bijvoorbeeld een boom omhakken met
+een bijl.</li>
+<li><em>Laten vallen</em> om een item dat de speler bij zich draagt te
+laten vallen.</li>
+<li><em>Interactie uitvoeren</em> om gedrag uit te voeren, bijvoorbeeld
+het lezen van een bord of het activeren van een teleportatiemachine. Het
+item in kwestie dient binnen handbereik te zijn.</li>
+<li><em>Draaien</em> om de looprichting van de speler te
+veranderen.</li>
+<li><em>Stoppen</em> om een actie stop te zetten en uit te rusten.</li>
+</ul>
+<h3 id="bestanden-opslaan">Bestanden opslaan</h3>
+<p>De huidige staat van een spel kan op ieder moment worden opgeslagen
+en hersteld. Deze bestanden zijn volledige kopieën en kunnen dus worden
+gespeeld als ieder ander scènebestand.</p>
+<ol type="1">
+<li>Ga hiervoor naar het menu en klik op <em>Opslaan als…</em>.</li>
+<li>Als je een spel wilt herstellen, volg dan de stappen hierboven om
+een scène te openen.</li>
+</ol>
+<h2 id="samenwerking">Samenwerking</h2>
+<p>Gameeky is ontworpen om samen te leren, maken en spelen. Alle spellen
+kunnen samen worden gespeeld en er zijn geen speciale vereisten. Ook is
+er geen beperking op het aantal gelijktijdige spelers, maar er kunnen
+wel technische beperkingen zijn, zoals het beschikbaar aantal
+computergeheugen.</p>
+<p>Speel samen een spel door deze stappen te volgen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Spelen’.</li>
+<li>Ga via de speler naar het menu en klik op ‘Nieuw’.</li>
+<li>Kies in het maakvensters het aantal spelers en klik op ‘Maken’.</li>
+</ol>
+<p>Meedoen aan een actief spel:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Spelen’.</li>
+<li>Kies een speler, ga naar het menu en klik op ‘Deelnemen’.</li>
+<li>Geef in het deelnamevenster het <a
+href="https://flathub.org/apps/org.gabmus.whatip">ip-adres</a> op van de
+speler die het spel gestart is en klik op ‘Deelnemen’.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Let op:</strong> alle deelnemers moeten beschikken over
+een kopie van het project en/of gebruikte themapakket.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Let op:</strong> scènes die gemaakt zijn op basis van een
+themapakket hoeven niet te worden gedeeld. Deze worden automatisch
+getoond tijdens het spelen, zolang beide spelers over het themapakket
+beschikken.</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>Let op:</strong> gebruikers kunnen deelnemen aan een
+sessie als welk personage uit het themapakket dan ook, bijvoorbeeld een
+boom of steen. Dit kan door de sectie ‘Geavanceerd’ van het maak- of
+deelnamevenster uit te klappen en een ander type te kiezen.</p>
+</blockquote>
+<h2 id="de-scènebewerker">De scènebewerker</h2>
+<p>Met behulp van de scènebewerker kunnen spelwerelden worden gemaakt en
+aangepast. Dit is de eenvoudigste manier om zonder programmeerkennis te
+werken in Gameeky.</p>
+<p>Een bestaande scène kan worden bewerkt door op de bewerkknop naast
+het project op de starter te klikken. Voor een nieuwe scène wordt
+aangeraden om met een ander project of themapakket te starten. Volg deze
+stappen om een scène toe te voegen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Bewerken’.</li>
+<li>Ga vanuit de bewerker naar het menu en klik op ‘Nieuw’.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Let op:</strong> themapakketten kunnen niet worden bewerkt
+zonder een bewerkbare kopie te maken. Ga naar het themapakket-optiesmenu
+en klik op ‘Kopiëren’.</p>
+</blockquote>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/01.png" /></p>
+<h3 id="concepten">Concepten</h3>
+<p>Een scène is een verzameling entiteiten op een tegelrooster. De
+basiskenmerken van een scène zijn:</p>
+<ul>
+<li>Een unieke <em>naam</em>: andere scènes binnen het project mogen
+niet dezelfde naam dragen.</li>
+<li>Het <em>tijdstip</em> waarop de scène plaatsvindt, bijvoorbeeld
+<em>dag</em>, <em>nacht</em> of <em>dynamisch</em>.</li>
+<li>Als je kiest voor <em>dynamisch</em>, dan kun je in de <em>duur</em>
+opgeven hoelang een dag- en nachtcyclus moet zijn.</li>
+<li>De <em>breedte</em> van de scène bepaalt het aantal tegels op de
+horizontale as.</li>
+<li>De <em>hoogte</em> van de scène bepaalt het aantal tegels op de
+verticale as.</li>
+</ul>
+<h3 id="werkwijze">Werkwijze</h3>
+<p>De werkwijze van het bewerken van scènes komt overeen met die van een
+tekenprogramma. Entiteiten worden in de scène geplaatst en weer
+verwijderd. De basis van het bewerken is als volgt:</p>
+<ol type="1">
+<li>Entiteiten toevoegen: klik op een entiteit op het linkerpaneel en
+plaats deze op de scène door op een tegel te klikken.</li>
+<li>Entiteiten verwijderen: klik op het verwijdergereedschap op het
+linkerpaneel en vervolgens op een entiteit op een van de tegels.</li>
+<li>Entiteiten hebben vaste eigenschappen en gedrag, maar sommige kunnen
+worden aangepast. Klik op het bewerkgereedschap op het linkerpaneel en
+vervolgens op een entiteit op een van de tegels.</li>
+<li>Probeer de scène uit door in het menu te kiezen voor de optie
+‘Uitproberen’.</li>
+</ol>
+<p>De scènebewerker bevat extra gereedschappen die dingen makkelijker
+maken, zoals:</p>
+<ul>
+<li>Selecteer gebieden om meerdere entiteiten tegelijk toe te voegen of
+te verwijderen.</li>
+<li>Selecteer lagen om entiteiten op een bepaalde laag te bewerken.</li>
+<li>Tijdkeuze om aan te geven of een scène overdag of ’s nachts
+plaatsvindt.</li>
+</ul>
+<h3 id="tips-en-trucs">Tips en trucs</h3>
+<p>Als je nóg meer uit Gameeky wilt halen, probeer dan eens de volgende
+tips en trucs:</p>
+<ul>
+<li>Tijdens het maken van het basisterrein van de scène, kun je met
+behulp van het laagselectiegereedschap de basis instellen als laag 0.
+Hiermee voorkom je onnodige overlap van terreintegels.</li>
+<li>Tijdens het bewerken van een scène kun je de speler loslaten op die
+scène. Na het opslaan van je aanpassingen, merkt de speler op dat er
+iets is aangepast en vraagt je om de scène te herladen. Hierdoor voorkom
+je onnodig schakelen tussen de scènebewerker en speler.</li>
+<li>Tijdens het bewerken van een scène kun je met behulp van het
+startlocatiegereedschap op het linkerpaneel de speler op een handige
+locatie neerzetten om zo alle aanpassingen te bestuderen.</li>
+</ul>
+<h2 id="de-entiteitbewerker">De entiteitbewerker</h2>
+<p>Met behulp van de entiteitbewerker kun je objecten en personages
+maken en bewerken. Hiervoor is geen programmeerkennis vereist, maar
+alleen een beetje kennis van hoe Gameeky werkt.</p>
+<p>Voordat je een entiteit vanaf nul maakt, kan het handig zijn om
+bestaande entiteiten uit themapakketten te bestuderen. Dit kan op de
+volgende manier:</p>
+<ol type="1">
+<li>Open de scènebewerker en rechtsklik op een entiteit op het
+linkerpaneel.</li>
+<li>Klik in het menu op de optie ‘Bewerken’.</li>
+</ol>
+<p>Nieuwe entiteit maken:</p>
+<ol type="1">
+<li>Open de scènebewerker en rechtsklik ergens op het linkerpaneel.</li>
+<li>Klik in het menu op de optie ‘Toevoegen’.</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/03.png" /></p>
+<h3 id="concepten-1">Concepten</h3>
+<p>Entiteiten zijn alle objecten en personages in het spel, bijvoorbeeld
+het gras, de speler, een lichtbron, de achtergrondmuziek en zelfs het
+spelmechanisme. Een entiteit bestaat uit drie onderdelen:</p>
+<ol type="1">
+<li>Het spelmechanisme.</li>
+<li>Grafische onderdelen..</li>
+<li>Geluiden.</li>
+</ol>
+<h4 id="spelmechanisme">Spelmechanisme</h4>
+<p>Deze eigenschappen bepalen hoe entiteiten zich gedragen en omgaan met
+andere, bijvoorbeeld verschillende combinaties om een entiteit een steen
+of vijand te laten zijn.</p>
+<p>Er zijn meer dan 20 mogelijkheden, maar een paar vereisen extra
+aandacht:</p>
+<ul>
+<li>De <em>identificatie</em> moet uniek zijn. Er mogen dus geen andere
+entiteiten met dezelfde identificatie zijn.</li>
+<li>Een entiteit bevindt zich altijd in een bepaalde <em>status</em>,
+bijvoorbeeld <em>uitrusten</em>, <em>bewegen</em>, <em>vernietigd</em>,
+etc. De status kan worden aangepast door het uitvoeren van acties.</li>
+<li>Een entiteit is altijd op één windrichting georiënteerd:
+<em>noord</em>, <em>oost</em>, <em>zuid</em> of <em>west</em>.</li>
+<li>De status van een entiteit kan worden aangepast door
+<em>aanstichters</em> die een bepaalde logica volgen, bijvoorbeeld om
+een entiteit in een bepaalde of willekeurige richting te verplaatsen.
+Een <em>vernietigende</em> aanstichter kan de entiteit doen
+verwijderen.</li>
+<li>Alle eigenschappen worden binnen het systeem bewaard en kunnen dus
+worden gecombineerd. Zo kan de snelheid van een entiteit worden bepaald
+op basis van <em>gewicht</em> en <em>sterkte</em>, terwijl het
+totaalgewicht kan worden berekend op basis van het object dat wordt
+vastgehouden.</li>
+</ul>
+<blockquote>
+<p>📝 <strong>Let op:</strong> tijdens het maken van een themapakket
+moet je bij entiteit nummer <em>1</em> altijd uitgaan van de speler.</p>
+</blockquote>
+<h4 id="grafische-onderdelen">Grafische onderdelen</h4>
+<p>Entiteiten worden op het scherm getoond als grafische onderdelen in
+2D. Dit kunnen vaste of bewegende entiteiten zijn.</p>
+<p>De grafische onderdelen worden toegekend op basis van bepaalde
+combinaties, meer bepaald de omstandigheden en windrichting. Zo kan een
+bepaalde animatie getoond worden bij het naar het <em>westen
+bewegen</em> en een andere bij het <em>uitrusten</em> in de richting van
+het <em>zuiden</em>.</p>
+<p>Alle entiteiten moeten over een <em>standaard</em>onderdeel
+beschikken om te worden getoond in de scènebewerker en
+foutopsporingsmodule.</p>
+<h4 id="geluiden">Geluiden</h4>
+<p>Net als grafische onderdelen kunnen entiteiten onder bepaalde
+omstandigheden geluid maken, bijvoorbeeld voetstappen tijdens het lopen.
+De windrichting maakt hierbij niet uit.</p>
+<p>Er zijn echter geen <em>standaard</em>geluiden, omdat geluiden
+optioneel zijn.</p>
+<h3 id="werkwijze-1">Werkwijze</h3>
+<p>De werkwijze voor het maken van een entiteit is vergelijkbaar met het
+invullen van een formulier of sjabloon. Met behulp van de volgende
+stappen maak je een algemene entiteit:</p>
+<ol type="1">
+<li>Klik op het tabblad ‘Spel’ en vul alle waarden van boven naar onder
+in. Alle eigenschappen hebben hun eigen standaardwaarden; alleen de
+identificatie is blanco, maar moet wel worden ingevuld. Hierdoor kun je
+de entiteit makkelijk terugvinden in de scènebewerker.</li>
+<li>Klik op het tabblad ‘Grafische onderdelen’ en vervolgens op de knop
+‘Toevoegen’. Laat de <em>status</em> en <em>richting</em> op ‘Standaard’
+staan. Klap de detailsectie uit om een afbeelding te kiezen. Klik op
+‘Bekijken’ om de gekozen afbeelding te controleren.</li>
+<li>Bewaar de entiteit en gebruik deze in de scènebewerker.</li>
+</ol>
+<h3 id="tips-en-trucs-1">Tips en trucs</h3>
+<p>Als je nóg meer uit Gameeky wilt halen, probeer dan eens de volgende
+tips en trucs:</p>
+<ul>
+<li>Begin bij het maken van een nieuwe entiteit altijd met het
+identificatienummer. Sla je werk vervolgens op. Houd de naam aan die
+door de bewerker wordt voorgesteld, zodat het makkelijker is om unieke
+namen aan te houden.</li>
+<li>Voeg nieuwe elementen toe door in het menu te klikken op ‘Bestanden
+verkennen’. Met die optie open je de projectmap.</li>
+<li>Houd tijdens het maken van een animatie zowel de entiteitbewerker
+als de tegelsetweergave geopend. Zo kun je de animatieframes makkelijker
+instellen.</li>
+<li>Klik na het maken van de animatie op de knop ‘Kopiëren’ om de
+volgende animatie toe te voegen.</li>
+</ul>
+<h2 id="de-codebewerker-en-logo-achtige-code">De codebewerker en
+LOGO-achtige code</h2>
+<p>Door ondersteuning voor samen spelen kun je meerdere personages
+bedienen met de code. Hiervoor biedt Gameeky een bibliotheek die
+gebruikers in staat stelt om een entiteit te bedienen met behulp van de
+programmeertaal Python, op een LOGO-achtige manier.</p>
+<p><img
+src="https://raw.githubusercontent.com/tchx84/Gameeky/main/data/screenshots/en/05.png" /></p>
+<h3 id="werkwijze-2">Werkwijze</h3>
+<p>Speel samen een spel door deze stappen te volgen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Spelen’.</li>
+<li>Ga via de speler naar het menu en klik op ‘Nieuw’.</li>
+<li>Kies in het maakvensters het aantal spelers en klik op ‘Maken’.</li>
+</ol>
+<p>Speel samen een spel met behulp van de code door deze stappen te
+volgen:</p>
+<ol type="1">
+<li>Klik in de starter op de optiesknop van het project en kies
+‘Spelen’.</li>
+<li>Kies een speler, ga naar het menu en klik op ‘Deelnemen met
+code’.</li>
+<li>Schrijf Python-code die gebruikmaakt van de Gameeky-bibliotheek.
+Hieronder vind je enkele voorbeelden.</li>
+<li>Klik op de knop ‘Spelen’.</li>
+</ol>
+<h3 id="voorbeelden">Voorbeelden</h3>
+<p>Meedoen aan en verlaten van een <a
+href="../../../../src/gameeky/library/game.py">spel</a>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Uitvoeren van <a
+href="../../../../src/gameeky/common/definitions.py">acties</a>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game, Direction</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>game.idle(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>game.move(Direction.EAST, time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>game.move(Direction.WEST, time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>game.take(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>game.use(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>game.drop(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>game.interact(time<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Inspecteer de locatie en basiseigenschappen van het
+gebruikerspersonage <a
+href="../../../../src/gameeky/common/entity.py">(entiteit)</a>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(game.entity.position.x, game.entity.position.y)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<p>Inspecteer de status van de <a
+href="../../../../src/gameeky/common/scene.py">scène</a>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> entity <span class="kw">in</span> game.scene.entities:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(entity.position.x, entity.position.y)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Let op:</strong> samenspelers kunnen alléén hun nabij
+omgeving verkennen en niet de volledige scène.</p>
+</blockquote>
+<p>Inspecteer de <a
+href="../../../../src/gameeky/common/stats.py">statistieken</a> van de
+speler (entiteit):</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.library <span class="im">import</span> Game</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>game <span class="op">=</span> Game()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>game.join()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>game.update()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(game.stats.durability, game.stats.stamina, game.stats.held)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>game.quit()</span></code></pre></div>
+<h3 id="tips-en-trucs-2">Tips en trucs</h3>
+<p>Als je nóg meer uit Gameeky wilt halen, probeer dan eens de volgende
+tips en trucs:</p>
+<ul>
+<li>Als je code uitprobeert, laat dan zowel de speler- als codebewerker
+openstaan, zodat je goed kunt zien wat er gebeurt.</li>
+</ul>
+<h2 id="plug-ins">Plug-ins</h2>
+<p>Aanstichters kunnen het gedrag van een entiteit aanpassen. Een
+entiteit kan meerdere aanstichters gebruiken om complexer gedrag te
+vertonen. Er zijn vele aanstichtingen mogelijk, maar het resultaat is
+uiteindelijk beperkt ten opzichte van de code.</p>
+<p>Daarom biedt Gameeky een manier om meer te doen met aanstichters dan
+wat er standaard mogelijk is.</p>
+<h3 id="concepten-2">Concepten</h3>
+<p>Er zijn drie typen aanstichters:</p>
+<ol type="1">
+<li>Gewone aanstichters die iets doen bij elke beweging in de scène,
+bijv., om de entiteit te <a
+href="../../../../src/gameeky/server/game/actuators/roams.py">verplaatsen</a>
+naar een willekeurige locatie.</li>
+<li>Activeerbare aanstichters reageren alleen binnen bepaalde
+tijdspannen of indien expliciet geactiveerd door een andere entiteit,
+bijv. om iedere vijf seconden een vijand te laten <a
+href="../../../../src/gameeky/server/game/actuators/spawns.py">opduiken</a>.</li>
+<li>Aanstichters met interactie werken alleen als andere entiteiten een
+interactie met ze hebben, bijv. om een entiteit te <a
+href="../../../../src/gameeky/server/game/actuators/teleports.py">teleporteren</a>
+naar een locatie zodra de entiteit contact maakt met het portaal.</li>
+</ol>
+<p>Alle aanstichters beschikken over hun eigen speleigenschappen om het
+gedrag te kunnen aanpassen:</p>
+<ul>
+<li>De <em>doelnaam</em> en het <em>doeltype</em> kunnen worden gebruikt
+om entiteiten te filteren op basis van de aanstichter, bijvoorbeeld om
+bepaalde entiteiten als <a
+href="../../../../src/gameeky/server/game/actuators/aggroes.py">doelwit</a>
+te kiezen bij agressieve bewegingen.</li>
+<li>De <em>frequentie</em> kan worden gebruikt om de activatiefrequentie
+te verlagen, bijv. om een ei na tien seconden te laten <a
+href="../../../../src/gameeky/server/game/actuators/transmutes.py">uitkomen</a>.</li>
+<li>De <em>straal</em> kan worden gebruikt om de omvang van het effect
+te bepalen, bijv. om entiteiten te <a
+href="../../../../src/gameeky/server/game/actuators/affects.py">verbranden</a>
+zodra ze op vuur stappen.</li>
+</ul>
+<h3 id="werkwijze-3">Werkwijze</h3>
+<p>Maak een nieuwe entiteit aan door deze stappen te volgen:</p>
+<ol type="1">
+<li>Op een nieuw document in een tekstbewerker.</li>
+<li>Schrijf een aanstichter‘klasse’. Hieronder vind je enkele
+voorbeelden.</li>
+<li>Bewaar het document in
+<code>~/Gameeky/PROJECTNAAM/actuators/NAAM_VAN_AANSTICHTER.py</code></li>
+<li>Ga in de entiteitbewerker naar het tabblad ‘Spel’ en klik op de
+sectie ‘Aanstichters’.</li>
+<li>Nu verschijnt er een nieuwe optie genaamd
+<em>NAAM_VAN_AANSTICHTER</em> bij de rest.</li>
+<li>Selecteer de aanstichter en bewaar deze op de schijf.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>Opmerking:</strong> zelfgemaakte aanstichters kunnen
+eveneens worden bekeken vanuit de scènebewerker tijdens het aanpassen
+van specifieke entiteiten.</p>
+</blockquote>
+<h3 id="voorbeelden-1">Voorbeelden</h3>
+<p>Een minimale <a
+href="../../../../src/gameeky/server/game/actuators/base.py">aanstichterklasse</a>:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
+<p>Inspecteer de <a
+href="../../../../src/gameeky/server/game/entity.py">entiteit</a>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.entity.name)</span></code></pre></div>
+<p>Voer een actie uit op de entiteit:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.common.definitions <span class="im">import</span> Action, Direction</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.entity.perform(Action.MOVE, Direction.SOUTH)</span></code></pre></div>
+<p>Verstuur tekst naar de entiteit:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.entity.tell(<span class="st">&quot;Hello...&quot;</span>)</span></code></pre></div>
+<p>Inspecteer alle entiteiten die voor de neus van de huidige entiteit
+staan:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.obstacles:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspecteer alle entiteiten die dezelfde locatie als de huidige
+entiteit hebben:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.surfaces:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspecteer alle entiteiten in de nabije omgeving van de huidige
+entiteit:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.surroundings:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Let op:</strong> de controle van <em>nabije
+entiteiten</em> houdt ook rekening met de <em>straal</em> van de
+entiteit in kwestie.</p>
+</blockquote>
+<p>Inspecteer alle entiteiten in de <a
+href="../../../../src/gameeky/server/game/scene.py">scène</a> die niet
+statisch zijn:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.scene.mutables:</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Inspecteer alle entiteiten die door gebruikers bediend worden:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> entity <span class="kw">in</span> <span class="va">self</span>.entity.scene.playables:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(entity.name)</span></code></pre></div>
+<p>Maak een aanstichter die elke vijf seconden een actie uitvoert:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    activatable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.ready:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Activated...&quot;</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().tick()</span></code></pre></div>
+<blockquote>
+<p>📝 <strong>Let op:</strong> de eigenschap <em>klaar</em> houdt ook
+rekening met de <em>straal</em> van de entiteit in kwestie.</p>
+</blockquote>
+<p>Maak een aanstichter die alleen een actie uitvoert als er interactie
+plaatsvindt:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gameeky.plugins <span class="im">import</span> Actuator <span class="im">as</span> Plugin</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Actuator(Plugin):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    interactable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> prepare(<span class="va">self</span>, interactee: <span class="st">&quot;Entity&quot;</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> interactee.playable <span class="kw">is</span> <span class="va">False</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">super</span>().prepare(interactee)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tick(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.interactee <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Interacted with </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_interactee<span class="sc">.</span>name<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().tick()</span></code></pre></div>
+<p>Complexere voorbeelden zijn te vinden in de <a
+href="../../../../src/gameeky/server/game/actuators/">aanstichtermap</a>
+van Gameeky.</p>
+<h3 id="tips-en-trucs-3">Tips en trucs</h3>
+<p>Als je nóg meer uit Gameeky wilt halen, probeer dan eens de volgende
+tips en trucs:</p>
+<ul>
+<li>Eén aanstichter zou niet de hele scène moeten kunnen aanpassen. Dit
+zou ten koste gaan van de prestaties. Houd hier dus rekening mee.</li>
+<li>De voorkeur gaat uit naar het schrijven van verschillende
+aanstichters voor verschillend gedrag, dus maak niet één aanstichter die
+alles kan uitvoeren. Dit maakt het ook makkelijker om de code te
+begrijpen en opnieuw te gebruiken.</li>
+<li>Gebruik alleen openbare methoden en attributen, bijv.
+<em>obstakels</em> of <em>interactie</em>. Zo voorkom je dat
+aanstichters in de toekomst niet meer werken.</li>
+</ul>
+</body>
+</html>
