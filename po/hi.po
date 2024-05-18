@@ -1,0 +1,1424 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gameeky package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gameeky\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-11 09:40-0300\n"
+"PO-Revision-Date: 2024-05-17 13:51+0530\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/dev.tchx84.Gameeky.desktop.in:3
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:6
+#: src/gameeky/launcher/launcher.py:50
+msgid "Gameeky"
+msgstr "Gameeky"
+
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:61
+msgid "Entity Editor"
+msgstr "तत्त्व संपादक"
+
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:71
+msgid "Player"
+msgstr "प्लेयर"
+
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:61
+msgid "Scene Editor"
+msgstr "दृश्य संपादक"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:7
+msgid "Play, create and learn"
+msgstr "खेलें, बनाएं और सीखें"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:9
+msgid ""
+"Gameeky lets young learners and educators create and explore cooperative "
+"games and learning experiences."
+msgstr ""
+"Gameeky युवा शिक्षार्थियों और शिक्षकों को सहकारी खेल और सीखने के अनुभव बनाने और तलाशने "
+"की सुविधा देता है।"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:12
+msgid "More specifically:"
+msgstr "अधिक विशेषतः:"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:16
+msgid "Play and explore games with friends"
+msgstr "दोस्तों के साथ गेम खेलें और अन्वेषण करें"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:17
+msgid "Create new games without writing any code"
+msgstr "बिना कोई कोड लिखे नए गेम बनाएं"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:18
+msgid "Tell stories through these games"
+msgstr "इन खेलों के माध्यम से कहानियां बताएं"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:19
+msgid "Nurture artistic skills by designing game objects and creatures"
+msgstr "खेल की वस्तुओं और प्राणियों का अभिकल्प बनाके कलात्मक कौशल का पोषण करें"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:20
+msgid "Grasp the basics of programming using Python in a LOGO-like experience"
+msgstr "LOGO जैसे अनुभव में Python का उपयोग करके प्रोग्रामिंग की मूल बातें समझें"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:21
+msgid "Mature programming skills by extending games with Python plugins"
+msgstr "Python प्लगइन्स के साथ गेम का विस्तार करके परिपक्व प्रोग्रामिंग कौशल"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:26
+msgid "Gameeky showing its scene editor"
+msgstr "Gameeky अपना दृश्य संपादक दिखा रहा है"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:30
+msgid "Gameeky showing its game player"
+msgstr "Gameeky अपना गेम प्लेयर दिखा रहा है"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:34
+msgid "Gameeky showing its entity editor"
+msgstr "Gameeky अपना तत्त्व संपादक दिखा रहा है"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:38
+msgid "Gameeky showing its game launcher"
+msgstr "Gameeky अपना गेम लॉन्चर दिखा रहा है"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:42
+msgid "Gameeky showing its code editor"
+msgstr "Gameeky अपना कोड संपादक दिखा रहा है"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:49
+msgid "Martin Abente Lahaye"
+msgstr "Martin Abente Lahaye"
+
+#: src/gameeky/client/graphics/entity.py:114
+#, python-format
+msgid "Missing entity type: %d"
+msgstr "गुम तत्त्व प्रकार: %d"
+
+#: src/gameeky/common/errors.py:31
+msgid "Wrong client version"
+msgstr "गलत क्लाइंट संस्करण"
+
+#: src/gameeky/common/errors.py:33
+msgid "Wrong project"
+msgstr "गलत परियोजना"
+
+#: src/gameeky/common/errors.py:35
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: src/gameeky/common/utils.py:234
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (कॉपी)"
+
+#: src/gameeky/editor/models/actuator_row.py:33
+msgid "Activates"
+msgstr "सक्रिय"
+
+#: src/gameeky/editor/models/actuator_row.py:34
+msgid "Activates on interaction"
+msgstr "सहभागिता पर सक्रिय होता है"
+
+#: src/gameeky/editor/models/actuator_row.py:35
+msgid "Affects"
+msgstr "प्रभाव"
+
+#: src/gameeky/editor/models/actuator_row.py:36
+msgid "Affects on interaction"
+msgstr "सहभागिता पर प्रभाव पड़ता है"
+
+#: src/gameeky/editor/models/actuator_row.py:37
+msgid "Affects on use"
+msgstr "उपयोग पर प्रभाव पड़ता है"
+
+#: src/gameeky/editor/models/actuator_row.py:38
+msgid "Aggroes"
+msgstr "आक्रामकता"
+
+#: src/gameeky/editor/models/actuator_row.py:39
+msgid "Collapses"
+msgstr "ढहना"
+
+#: src/gameeky/editor/models/actuator_row.py:40
+msgid "Collapses over time"
+msgstr "समय के साथ ढह जाता है"
+
+#: src/gameeky/editor/models/actuator_row.py:41
+msgid "Destroys"
+msgstr "नष्ट"
+
+#: src/gameeky/editor/models/actuator_row.py:42
+msgid "Destroys on interaction"
+msgstr "सहभागिता पर नष्ट हो जाता है"
+
+#: src/gameeky/editor/models/actuator_row.py:43
+msgid "Deteriorates"
+msgstr "बिगड़ना"
+
+#: src/gameeky/editor/models/actuator_row.py:44
+msgid "Drops"
+msgstr "गिरना"
+
+#: src/gameeky/editor/models/actuator_row.py:45
+msgid "Exhausts"
+msgstr "थकना"
+
+#: src/gameeky/editor/models/actuator_row.py:46
+msgid "Follows"
+msgstr "अनुसरण"
+
+#: src/gameeky/editor/models/actuator_row.py:47
+msgid "Interacts"
+msgstr "सहभागिता"
+
+#: src/gameeky/editor/models/actuator_row.py:48
+msgid "Propulses"
+msgstr "प्रणोदन"
+
+#: src/gameeky/editor/models/actuator_row.py:49
+msgid "Requires"
+msgstr "आवश्यक"
+
+#: src/gameeky/editor/models/actuator_row.py:50
+msgid "Roams"
+msgstr "घूमना"
+
+#: src/gameeky/editor/models/actuator_row.py:51
+msgid "Rotates on interaction"
+msgstr "सहभागिता पर घूमना"
+
+#: src/gameeky/editor/models/actuator_row.py:52
+msgid "Says"
+msgstr "कहना"
+
+#: src/gameeky/editor/models/actuator_row.py:53
+msgid "Says on interaction"
+msgstr "सहभागिता पर कहना"
+
+#: src/gameeky/editor/models/actuator_row.py:54
+msgid "Spawns"
+msgstr "पैदा"
+
+#: src/gameeky/editor/models/actuator_row.py:55
+msgid "Takes"
+msgstr "लेना"
+
+#: src/gameeky/editor/models/actuator_row.py:56
+msgid "Targets"
+msgstr "लक्ष्य"
+
+#: src/gameeky/editor/models/actuator_row.py:57
+msgid "Teleports"
+msgstr "टेलीपोर्ट"
+
+#: src/gameeky/editor/models/actuator_row.py:58
+msgid "Teleports on interaction"
+msgstr "सहभागिता पर टेलीपोर्ट"
+
+#: src/gameeky/editor/models/actuator_row.py:59
+msgid "Transmutes"
+msgstr "परिणत करना"
+
+#: src/gameeky/editor/models/actuator_row.py:60
+msgid "Triggers"
+msgstr "ट्रिगर"
+
+#: src/gameeky/editor/models/actuator_row.py:61
+msgid "Triggers on interaction"
+msgstr "सहभागिता पर ट्रिगर करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:62
+msgid "Uses"
+msgstr "उपयोग"
+
+#: src/gameeky/editor/models/actuator_row.py:66
+msgid "Activates entities that reached its position"
+msgstr "उन तत्वों को सक्रिय करता है जो अपने स्थान तक पहुंच गई"
+
+#: src/gameeky/editor/models/actuator_row.py:67
+msgid "Activates entities that reached its position, when it's interacted with"
+msgstr ""
+"जब इसके साथ सहभागिता की जाती है, तो उन तत्वों को सक्रिय करता है जो अपने स्थान तक पहुंच "
+"जाती हैं"
+
+#: src/gameeky/editor/models/actuator_row.py:68
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities"
+msgstr ""
+"आस-पास की (त्रिज्या) तत्वों के आंकड़ों (स्थायित्व, सहनशक्ति और ताकत) को प्रभावित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:69
+msgid "Affects the stats (Durability, Stamina and Strength) of its interactees"
+msgstr "अपने सहभागियों के आंकड़ों (स्थायित्व, सहनशक्ति और ताकत) को प्रभावित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:70
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities, when it's used"
+msgstr ""
+"जब इसका उपयोग किया जाता है तो यह आस-पास की (त्रिज्या) तत्वों के आंकड़ों (स्थायित्व, "
+"सहनशक्ति और ताकत) को प्रभावित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:71
+msgid "Targets nearby (Radius) entities (Target Type)"
+msgstr "निकटवर्ती लक्ष्य (त्रिज्या) तत्त्व (लक्ष्य प्रकार)"
+
+#: src/gameeky/editor/models/actuator_row.py:72
+msgid "Performs a DESTROY action, when entities are nearby (Radius)"
+msgstr "जब तत्त्व नजदीक होती हैं तो नष्ट करने की कार्रवाई करता है (त्रिज्या)"
+
+#: src/gameeky/editor/models/actuator_row.py:73
+msgid "Performs a DESTROY action on a fixed interval (Rate)"
+msgstr "एक निश्चित अंतराल पर नष्ट करने की कार्रवाई करता है (दर)"
+
+#: src/gameeky/editor/models/actuator_row.py:74
+msgid "Performs a DESTROY action, when its durability reaches zero"
+msgstr "जब इसका स्थायित्व शून्य तक पहुंच जाता है, तो यह नष्ट करने की कार्रवाई करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:75
+msgid "Performs a DESTROY action, when it's interacted with"
+msgstr "जब इसके साथ सहभागिता की जाती है, तो यह एक नष्ट करने की कार्रवाई करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:76
+msgid "Reduces its durability over time"
+msgstr "समय के साथ इसका स्थायित्व कम हो जाता है"
+
+#: src/gameeky/editor/models/actuator_row.py:77
+msgid "Adds entities (Target Type) to the scene, when it's destroyed"
+msgstr "दृश्य के नष्ट हो जाने पर उसमें तत्वों (लक्ष्य प्रकार) को जोड़ता है"
+
+#: src/gameeky/editor/models/actuator_row.py:78
+msgid "Performs EXHAUST actions, when its stamina reaches zero"
+msgstr "जब इसकी सहनशक्ति शून्य तक पहुंच जाती है, तो यह थकावट वाली कार्रवाई करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:79
+msgid "Performs MOVE actions to its target's (Target Name) direction"
+msgstr "अपने लक्ष्य (लक्ष्य नाम) की दिशा में चलने की कार्रवाइयां निष्पादित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:80
+msgid "Performs INTERACT actions on entities (Target Type)"
+msgstr "तत्वों पर सहभागिता कार्रवाइयां करता है (लक्ष्य प्रकार)"
+
+#: src/gameeky/editor/models/actuator_row.py:81
+msgid "Performs MOVE actions to its current direction"
+msgstr "अपनी वर्तमान दिशा में चलने की कार्रवाइयां करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:82
+msgid ""
+"Activates its target (Target Name), when its requirement (Target Type) "
+"reached its position"
+msgstr ""
+"अपने लक्ष्य (लक्ष्य नाम) को तब सक्रिय करता है, जब उसकी आवश्यकता (लक्ष्य प्रकार) उसकी "
+"स्थान तक पहुंच जाती है"
+
+#: src/gameeky/editor/models/actuator_row.py:83
+msgid "Performs MOVE actions to random directions"
+msgstr "यादृच्छिक दिशाओं में चलने की कार्रवाइयां निष्पादित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:84
+msgid "Changes its direction, when it's interacted with"
+msgstr "जब इसके साथ सहभागिता की जाती है तो वह अपनी दिशा बदल लेता है"
+
+#: src/gameeky/editor/models/actuator_row.py:85
+msgid "Sends its dialogue to nearby (Radius) entities"
+msgstr "अपना संवाद निकटवर्ती (त्रिज्या) तत्वों को भेजता है"
+
+#: src/gameeky/editor/models/actuator_row.py:86
+msgid "Sends its dialogue to its interactees"
+msgstr "अपना संवाद अपने सहभागियों को भेजता है"
+
+#: src/gameeky/editor/models/actuator_row.py:87
+msgid "Adds entities (Target Type) to the scene on a fixed interval (Rate)"
+msgstr "एक निश्चित अंतराल (दर) पर दृश्य में तत्वों (लक्ष्य प्रकार) को जोड़ता है"
+
+#: src/gameeky/editor/models/actuator_row.py:88
+msgid "Performs TAKE actions on usable entities"
+msgstr "प्रयोग-योग्य तत्वों पर लेने की कार्रवाइयां करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:89
+msgid "Targets its target's target, when it reached its target's position"
+msgstr ""
+"अपने लक्ष्य के लक्ष्य पर तब निशाना साधता है, जब वह अपने लक्ष्य की स्थान पर पहुंच जाता है"
+
+#: src/gameeky/editor/models/actuator_row.py:90
+msgid ""
+"Teleports nearby (Radius) entities to its target's (Target Name) position"
+msgstr "निकटवर्ती (त्रिज्या) तत्वों को उसके लक्ष्य (लक्ष्य नाम) के स्थान पर टेलीपोर्ट करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:91
+msgid "Teleports its interactees to its target's (Target Name) position"
+msgstr "अपने सहभागियों को अपने लक्ष्य (लक्ष्य नाम) के स्थान पर टेलीपोर्ट करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:92
+msgid "Replaces itself by an entity (Target Type) on a fixed interval (Rate)"
+msgstr ""
+"एक निश्चित अंतराल (दर) पर स्वयं को एक तत्त्व (लक्ष्य प्रकार) द्वारा प्रतिस्थापित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:93
+msgid "Activates its target (Target Name), when entities are nearby (Radius)"
+msgstr "अपने लक्ष्य (लक्ष्य नाम) को सक्रिय करता है, जब तत्त्व पास में होती हैं (त्रिज्या)"
+
+#: src/gameeky/editor/models/actuator_row.py:94
+msgid "Activates its target (Target Name), when it's interacted with"
+msgstr ""
+"जब इसके साथ सहभागिता की जाती है तो यह अपने लक्ष्य (लक्ष्य नाम) को सक्रिय कर देता है"
+
+#: src/gameeky/editor/models/actuator_row.py:95
+msgid ""
+"Performs USE actions on entities (Target Type), when holding a usable entity"
+msgstr ""
+"प्रयोग-योग्य तत्त्व को धारण करते समय, तत्वों (लक्ष्य प्रकार) पर उपयोग करने की कार्रवाई "
+"निष्पादित करता है"
+
+#: src/gameeky/editor/models/actuator_row.py:107
+msgid "Performs custom behaviors"
+msgstr "तदनुकूल व्यवहार निष्पादित करता है"
+
+#: src/gameeky/editor/models/area_row.py:28
+msgid "1x1"
+msgstr "1x1"
+
+#: src/gameeky/editor/models/area_row.py:29
+msgid "3x3"
+msgstr "3x3"
+
+#: src/gameeky/editor/models/area_row.py:30
+msgid "5x5"
+msgstr "5x5"
+
+#: src/gameeky/editor/models/area_row.py:31
+msgid "7x7"
+msgstr "7x7"
+
+#: src/gameeky/editor/models/area_row.py:32
+msgid "9x9"
+msgstr "9x9"
+
+#: src/gameeky/editor/models/base_row.py:46
+msgid "Default"
+msgstr "तयशुदा"
+
+#: src/gameeky/editor/models/daytime_row.py:28
+msgid "Dynamic"
+msgstr "गतिशील"
+
+#: src/gameeky/editor/models/daytime_row.py:29
+msgid "Day"
+msgstr "दिन"
+
+#: src/gameeky/editor/models/daytime_row.py:30
+msgid "Night"
+msgstr "रात"
+
+#: src/gameeky/editor/models/direction_row.py:28
+msgid "East"
+msgstr "पूर्व"
+
+#: src/gameeky/editor/models/direction_row.py:29
+msgid "North"
+msgstr "उत्तर"
+
+#: src/gameeky/editor/models/direction_row.py:30
+msgid "South"
+msgstr "दक्षिण"
+
+#: src/gameeky/editor/models/direction_row.py:31
+msgid "West"
+msgstr "पश्चिम"
+
+#: src/gameeky/editor/models/layer_row.py:28
+msgid "Layer 0"
+msgstr "परत 0"
+
+#: src/gameeky/editor/models/layer_row.py:29
+msgid "Layer 1"
+msgstr "परत 1"
+
+#: src/gameeky/editor/models/layer_row.py:30
+msgid "Layer 2"
+msgstr "परत 2"
+
+#: src/gameeky/editor/models/layer_row.py:31
+msgid "Layer 3"
+msgstr "परत 3"
+
+#: src/gameeky/editor/models/layer_row.py:32
+msgid "Layer 4"
+msgstr "परत 4"
+
+#: src/gameeky/editor/models/layer_row.py:33
+msgid "Layer 5"
+msgstr "परत 5"
+
+#: src/gameeky/editor/models/layer_row.py:34
+msgid "Layer 6"
+msgstr "परत 6"
+
+#: src/gameeky/editor/models/layer_row.py:35
+msgid "Layer 7"
+msgstr "परत 7"
+
+#: src/gameeky/editor/models/layer_row.py:36
+msgid "All layers"
+msgstr "सभी परतें"
+
+#: src/gameeky/editor/models/state_row.py:28
+msgid "Destroyed"
+msgstr "नष्ट"
+
+#: src/gameeky/editor/models/state_row.py:29
+msgid "Destroying"
+msgstr "नष्ट कर रहे हैं"
+
+#: src/gameeky/editor/models/state_row.py:30
+msgid "Dropping"
+msgstr "गिरा रहे हैं"
+
+#: src/gameeky/editor/models/state_row.py:31
+msgid "Exhausted"
+msgstr "थकावट"
+
+#: src/gameeky/editor/models/state_row.py:32
+msgid "Held"
+msgstr "पकड़ा"
+
+#: src/gameeky/editor/models/state_row.py:33
+msgid "Idling"
+msgstr "निष्क्रिय"
+
+#: src/gameeky/editor/models/state_row.py:34
+msgid "Interacting"
+msgstr "सहभागिता"
+
+#: src/gameeky/editor/models/state_row.py:35
+msgid "Moving"
+msgstr "चल रही है"
+
+#: src/gameeky/editor/models/state_row.py:36
+msgid "Taking"
+msgstr "ले रहा है"
+
+#: src/gameeky/editor/models/state_row.py:37
+msgid "Using"
+msgstr "उपयोग कर रहे हैं"
+
+#: src/gameeky/editor/widgets/animation_row.py:63
+#: src/gameeky/editor/widgets/sound_row.py:63
+#, python-format
+msgid "While %s"
+msgstr "जबकि %s"
+
+#: src/gameeky/editor/widgets/animation_row.py:68
+msgid "By default"
+msgstr "तयशुदा रूप से"
+
+#: src/gameeky/launcher/widgets/project_export_window.py:47
+#: src/gameeky/library/coder.py:121
+msgid "untitled"
+msgstr "शीर्षकहीन"
+
+#: src/gameeky/library/coder.py:53
+msgid "Coder"
+msgstr "कोडर"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:7
+msgid ""
+"There are unsaved changes. Changes which are not saved will be permanently "
+"lost."
+msgstr "सहेजे न गए परिवर्तन हैं। जो परिवर्तन सहेजे नहीं गए वे स्थायी रूप से नष्ट हो जाएंगे।"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:11
+msgid "Save Changes?"
+msgstr "परिवर्तन सहेजें?"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:15
+#: src/gameeky/editor/widgets/confirmation_window.ui:15
+#: src/gameeky/editor/widgets/entity_new_window.ui:59
+#: src/gameeky/editor/widgets/entity_open_window.ui:70
+#: src/gameeky/editor/widgets/scene_edit_window.ui:35
+#: src/gameeky/editor/widgets/scene_entity_window.ui:23
+#: src/gameeky/editor/widgets/scene_new_window.ui:35
+#: src/gameeky/editor/widgets/scene_open_window.ui:71
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:15
+#: src/gameeky/launcher/widgets/confirmation_window.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:35
+#: src/gameeky/launcher/widgets/project_new_window.ui:35
+#: src/gameeky/library/widgets/session_settings_window.ui:95
+#: src/gameeky/player/widgets/session_join_window.ui:95
+#: src/gameeky/player/widgets/session_new_window.ui:121
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:16
+msgid "Discard"
+msgstr "त्यागें"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:17
+#: src/gameeky/editor/widgets/entity_window.ui:129
+#: src/gameeky/editor/widgets/scene_edit_window.ui:41
+#: src/gameeky/editor/widgets/scene_entity_window.ui:29
+#: src/gameeky/editor/widgets/scene_window.ui:301
+#: src/gameeky/launcher/widgets/project_edit_window.ui:41
+#: src/gameeky/library/widgets/window.ui:124
+msgid "Save"
+msgstr "सहेजें"
+
+#: src/gameeky/editor/widgets/actuators_row.ui:12
+msgid "The actuators that will modify this entity behavior"
+msgstr "प्रवर्तक जो इस तत्त्व व्यवहार को संशोधित करेंगे"
+
+#: src/gameeky/editor/widgets/actuators_row.ui:13
+msgid "Actuators"
+msgstr "प्रवर्तक"
+
+#: src/gameeky/editor/widgets/animation_row.ui:16
+#: src/gameeky/editor/widgets/sound_row.ui:16
+#: src/gameeky/launcher/widgets/project_row_popover.ui:47
+msgid "Copy"
+msgstr "कॉपी करें"
+
+#: src/gameeky/editor/widgets/animation_row.ui:25
+#: src/gameeky/editor/widgets/confirmation_window.ui:16
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
+#: src/gameeky/editor/widgets/sound_row.ui:25
+#: src/gameeky/launcher/widgets/confirmation_window.ui:16
+#: src/gameeky/launcher/widgets/project_row_popover.ui:58
+msgid "Delete"
+msgstr "मिटाएं"
+
+#: src/gameeky/editor/widgets/animation_row.ui:32
+msgid "Animation"
+msgstr "एनिमेशन"
+
+#: src/gameeky/editor/widgets/animation_row.ui:35
+#: src/gameeky/editor/widgets/entity_settings.ui:183
+#: src/gameeky/editor/widgets/sound_row.ui:35
+msgid "State"
+msgstr "अवस्था"
+
+#: src/gameeky/editor/widgets/animation_row.ui:40
+#: src/gameeky/editor/widgets/entity_settings.ui:189
+msgid "Direction"
+msgstr "दिशा"
+
+#: src/gameeky/editor/widgets/animation_row.ui:45
+#: src/gameeky/editor/widgets/sound_row.ui:40
+msgid "Details"
+msgstr "विवरण"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:15
+#: src/gameeky/editor/widgets/sound_settings.ui:11
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:35
+msgid "Tileset File"
+msgstr "टाइलसेट फाइल"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:44
+#: src/gameeky/editor/widgets/entity_open_window.ui:76
+#: src/gameeky/editor/widgets/scene_open_window.ui:77
+msgid "Open"
+msgstr "खोलें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:56
+msgid "View"
+msgstr "देखें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:78
+msgid "Number of tileset columns"
+msgstr "टाइलसेट स्तंभों की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:79
+msgid "Columns"
+msgstr "स्तंभ"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:92
+msgid "Number of tileset rows"
+msgstr "टाइलसेट पंक्तियों की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:93
+msgid "Rows"
+msgstr "पंक्तियां"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:104
+msgid "Number of the first frame to include in the animation"
+msgstr "एनिमेशन में शामिल किए जाने वाले पहले फ़्रेम की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:105
+msgid "First Frame"
+msgstr "पहला फ़्रेम"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:116
+msgid "Number of the last frame to include in the animation"
+msgstr "एनीमेशन में शामिल करने के लिए अंतिम फ़्रेम की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:117
+msgid "Last Frame"
+msgstr "अंतिम फ़्रेम"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:129
+msgid "Number of seconds the complete animation should last"
+msgstr "संपूर्ण एनीमेशन कितने सेकंड तक चलना चाहिए"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:130
+#: src/gameeky/editor/widgets/scene_settings.ui:47
+msgid "Duration"
+msgstr "अवधि"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:141
+msgid "Angle to rotate the image"
+msgstr "छवि को घुमाने का कोण"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:142
+#: src/gameeky/editor/widgets/scene_window.ui:219
+#: src/gameeky/player/widgets/actions_popover.ui:61
+msgid "Rotate"
+msgstr "घुमाएं"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:156
+msgid "Number of tiles to include on the x-axis"
+msgstr "X-अक्ष पर शामिल करने के लिए टाइलों की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:157
+msgid "Tiles X"
+msgstr "X टाइलें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:170
+msgid "Number of tiles to include on the y-axis"
+msgstr "Y-अक्ष पर शामिल करने के लिए टाइलों की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:171
+msgid "Tiles Y"
+msgstr "Y टाइलें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:185
+msgid "How many times larger this image should be on the x-axis"
+msgstr "यह छवि X-अक्ष पर कितनी गुना बड़ी होनी चाहिए"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:186
+msgid "Scale X"
+msgstr "X पैमाना"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:200
+msgid "How many times larger this image should be on the y-axis"
+msgstr "यह छवि Y-अक्ष पर कितनी गुना बड़ी होनी चाहिए"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:201
+msgid "Scale Y"
+msgstr "Y पैमाना"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:212
+msgid "Number of pixels to remove on the x-axis"
+msgstr "X-अक्ष पर हटाने के लिए पिक्सल की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:213
+msgid "Crop X"
+msgstr "X काटें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:224
+msgid "Number of pixels to remove on the y-axis"
+msgstr "Y-अक्ष पर हटाने के लिए पिक्सल की संख्या"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:225
+msgid "Crop Y"
+msgstr "Y काटें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:230
+msgid "Whether to flip the image on the x-axis"
+msgstr "क्या छवि को X-अक्ष पर पलटना है"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:231
+msgid "Flip X"
+msgstr "X पलटें"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:236
+msgid "Whether to flip the image on the y-axis"
+msgstr "क्या छवि को Y-अक्ष पर पलटना है"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:237
+msgid "Flip Y"
+msgstr "Y पलटें"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:11
+msgid "Add animations for different states and directions combinations"
+msgstr "विभिन्न अवस्थाओं और दिशाओं के संयोजन के लिए एनिमेशन जोड़ें"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:20
+msgid "Animations"
+msgstr "एनिमेशन"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this entity?"
+msgstr "क्या आप इस तत्त्व को <b>स्थायी रूप से</b> मिटाना चाहते हैं?"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:11
+msgid "Delete Entity?"
+msgstr "तत्त्व मिटाएं?"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:26
+#: src/gameeky/editor/widgets/entity_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_settings.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:58
+#: src/gameeky/launcher/widgets/project_new_window.ui:58
+#: src/gameeky/library/widgets/session_settings_window.ui:27
+#: src/gameeky/player/widgets/session_join_window.ui:27
+#: src/gameeky/player/widgets/session_new_window.ui:27
+msgid "Project"
+msgstr "परियोजना"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:65
+#: src/gameeky/editor/widgets/scene_new_window.ui:41
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:16
+#: src/gameeky/launcher/widgets/project_new_window.ui:41
+#: src/gameeky/launcher/widgets/window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:127
+msgid "Create"
+msgstr "बनाएं"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:82
+#: src/gameeky/editor/widgets/entity_open_window.ui:41
+#: src/gameeky/editor/widgets/entity_open_window.ui:93
+#: src/gameeky/editor/widgets/scene_entity_window.ui:46
+msgid "Entity"
+msgstr "तत्त्व"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:12
+msgid "These values are the basic statistics of this entity"
+msgstr "ये मान इस तत्त्व के बुनियादी आंकड़े हैं"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:13
+msgid "Stats"
+msgstr "आंकड़े"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:22
+msgid "How much action this entity can perform"
+msgstr "यह तत्त्व कितनी कार्रवाई कर सकती है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:23
+msgid "Stamina"
+msgstr "सहनशक्ति"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:34
+msgid "How much wear or damage this entity can sustain"
+msgstr "यह तत्त्व कितना घिसाव या क्षति सहन कर सकती है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:35
+msgid "Durability"
+msgstr "स्थायित्व"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:46
+msgid "How heavy this entity is"
+msgstr "यह तत्त्व कितना भारी है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:47
+msgid "Weight"
+msgstr "वजन"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:58
+msgid "How much weight or damage this entity can lift or apply"
+msgstr "यह तत्त्व कितना वजन या क्षति उठा सकती है या लगा सकती है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:59
+msgid "Strength"
+msgstr "ताकत"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:66
+msgid "These values modify basic statistics"
+msgstr "ये मान बुनियादी आंकड़े को संशोधित करते हैं"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:67
+msgid "Modifiers"
+msgstr "संशोधक"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:77
+msgid "Affects recovery times, cool downs and delays"
+msgstr "पुनर्प्राप्ति समय को प्रभावित करता है, ठंडा करता है और विलंब करता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:78
+msgid "Recovery"
+msgstr "पुनर्प्राप्ति"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:90
+msgid "Affects the speed of other entities traversing through this entity"
+msgstr "इस तत्त्व से गुजरने वाली अन्य तत्वों की गति को प्रभावित करता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:91
+msgid "Density"
+msgstr "घनत्व"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:98
+msgid "These values determine how this entity behaves"
+msgstr "ये मान निर्धारित करते हैं कि यह तत्त्व कैसे व्यवहार करेगी"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:99
+msgid "Behaviors"
+msgstr "व्यवहार"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:102
+#: src/gameeky/editor/widgets/scene_settings.ui:10
+#: src/gameeky/launcher/widgets/project_settings.ui:9
+msgid "Name"
+msgstr "नाम"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:107
+msgid "Target Name"
+msgstr "लक्ष्य नाम"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:112
+msgid "Dialogue"
+msgstr "संवाद"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:123
+msgid "The identifier of another entity"
+msgstr "किसी अन्य तत्त्व का पहचानकर्ता"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:124
+msgid "Target Type"
+msgstr "लक्ष्य प्रकार"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:135
+msgid "The maximum area that an actuator can have an effect"
+msgstr "वह अधिकतम क्षेत्र जिस पर प्रवर्तक प्रभाव डाल सकता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:136
+msgid "Radius"
+msgstr "त्रिज्या"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:147
+msgid "How often an actuator can be triggered"
+msgstr "प्रवर्तक को कितनी बार चालू किया जा सकता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:148
+msgid "Rate"
+msgstr "दर"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:158
+msgid "These values affect how the entity looks on screen"
+msgstr "ये मान प्रभावित करते हैं कि तत्त्व स्क्रीन पर कैसी दिखती है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:159
+msgid "Visibility"
+msgstr "दृश्यता"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:163
+msgid "Whether this entity is visible at all"
+msgstr "क्या यह तत्त्व बिल्कुल दिखाई दे रही है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:164
+msgid "Visible"
+msgstr "दृश्यमान"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:176
+msgid "The amount of light this entity can emit"
+msgstr "यह तत्त्व कितनी मात्रा में प्रकाश उत्सर्जित कर सकती है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:177
+msgid "Luminance"
+msgstr "दीप्ति"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:182
+msgid "The initial state"
+msgstr "प्रारंभिक अवस्था"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:188
+msgid "The initial direction"
+msgstr "प्रारंभिक दिशा"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:196
+msgid "These values are used to determine specific conditions"
+msgstr "इन मानों का उपयोग विशिष्ट स्थितियों को निर्धारित करने के लिए किया जाता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:197
+msgid "Conditions"
+msgstr "शर्तें"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:200
+msgid "Whether this entity can be removed from the scene"
+msgstr "क्या इस तत्त्व को दृश्य से हटाया जा सकता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:201
+msgid "Removable"
+msgstr "हटाने-योग्य"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:206
+msgid "Whether this entity can be taken and moved by another entity"
+msgstr "क्या इस तत्त्व को किसी अन्य तत्त्व द्वारा लिया और स्थानांतरित किया जा सकता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:207
+msgid "Takeable"
+msgstr "लेने-योग्य"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:212
+msgid "Whether this entity can be used as tool"
+msgstr "क्या इस तत्त्व का उपयोग उपकरण के रूप में किया जा सकता है"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:213
+msgid "Usable"
+msgstr "प्रयोग-योग्य"
+
+#: src/gameeky/editor/widgets/entity_window.ui:17
+msgid "Actuators have been changed on disk"
+msgstr "डिस्क पर प्रवर्तक बदल दिए गए हैं"
+
+#: src/gameeky/editor/widgets/entity_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:118
+#: src/gameeky/player/widgets/session_new_window.ui:144
+msgid "Game"
+msgstr "खेल"
+
+#: src/gameeky/editor/widgets/entity_window.ui:69
+msgid "Graphics"
+msgstr "चित्रोपमा"
+
+#: src/gameeky/editor/widgets/entity_window.ui:90
+#: src/gameeky/editor/widgets/sounds_settings.ui:20
+msgid "Sounds"
+msgstr "ध्वनियां"
+
+#: src/gameeky/editor/widgets/entity_window.ui:121
+#: src/gameeky/editor/widgets/scene_window.ui:293
+#: src/gameeky/launcher/widgets/window.ui:142
+#: src/gameeky/library/widgets/window.ui:116
+#: src/gameeky/player/widgets/window.ui:183
+msgid "_New"
+msgstr "नया (_N)"
+
+#: src/gameeky/editor/widgets/entity_window.ui:125
+#: src/gameeky/editor/widgets/scene_window.ui:297
+#: src/gameeky/library/widgets/window.ui:120
+msgid "_Open"
+msgstr "खोलें (_O)"
+
+#: src/gameeky/editor/widgets/entity_window.ui:133
+#: src/gameeky/editor/widgets/scene_window.ui:305
+#: src/gameeky/library/widgets/window.ui:128
+#: src/gameeky/player/widgets/window.ui:195
+msgid "Save _As…"
+msgstr "ऐसे सहेजें (_A)…"
+
+#: src/gameeky/editor/widgets/entity_window.ui:137
+msgid "_Browse Files"
+msgstr "फाइलें ब्राउज़ करें (_B)"
+
+#: src/gameeky/editor/widgets/entity_window.ui:141
+#: src/gameeky/editor/widgets/scene_window.ui:317
+#: src/gameeky/launcher/widgets/window.ui:150
+#: src/gameeky/library/widgets/window.ui:136
+#: src/gameeky/player/widgets/window.ui:203
+msgid "_Documentation"
+msgstr "दस्तावेज़ीकरण (_D)"
+
+#: src/gameeky/editor/widgets/entity_window.ui:145
+#: src/gameeky/editor/widgets/scene_window.ui:321
+#: src/gameeky/launcher/widgets/window.ui:154
+#: src/gameeky/library/widgets/window.ui:140
+#: src/gameeky/player/widgets/window.ui:207
+msgid "_About Gameeky"
+msgstr "Gameeky के बारे में (_A)"
+
+#: src/gameeky/editor/widgets/global_settings.ui:8
+msgid "These values must be unique among all entities"
+msgstr "ये मान सभी तत्वों के बीच अद्वितीय होने चाहिए"
+
+#: src/gameeky/editor/widgets/global_settings.ui:9
+msgid "Global"
+msgstr "वैश्विक"
+
+#: src/gameeky/editor/widgets/global_settings.ui:20
+msgid "Unique identifier for this entity"
+msgstr "इस तत्त्व के लिए विशिष्ट पहचानकर्ता"
+
+#: src/gameeky/editor/widgets/global_settings.ui:21
+msgid "Identifier"
+msgstr "पहचानकर्ता"
+
+#: src/gameeky/editor/widgets/paths_row.ui:12
+msgid "Sound files to be played in sequence"
+msgstr "ध्वनि फाइलें क्रम से चलायी जाएंगी"
+
+#: src/gameeky/editor/widgets/paths_row.ui:13
+msgid "Files"
+msgstr "फाइलें"
+
+#: src/gameeky/editor/widgets/scene_edit_window.ui:58
+#: src/gameeky/editor/widgets/scene_new_window.ui:58
+#: src/gameeky/editor/widgets/scene_open_window.ui:42
+#: src/gameeky/editor/widgets/scene_open_window.ui:94
+#: src/gameeky/editor/widgets/scene_window.ui:113
+#: src/gameeky/player/widgets/session_new_window.ui:41
+msgid "Scene"
+msgstr "दृश्य"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:15
+#: src/gameeky/launcher/widgets/project_row_popover.ui:25
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:39
+msgid "Add"
+msgstr "जोड़ें"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:32
+msgid "Time"
+msgstr "समय"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:46
+msgid "The number of seconds a full day lasts"
+msgstr "एक पूरा दिन जितने सेकंड चलता है"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:61
+msgid "The number of horizontal tiles"
+msgstr "क्षैतिज टाइलों की संख्या"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:62
+msgid "Width"
+msgstr "चौड़ाई"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:75
+msgid "The number of vertical tiles"
+msgstr "ऊर्ध्वाधर टाइलों की संख्या"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:76
+msgid "Height"
+msgstr "ऊंचाई"
+
+#: src/gameeky/editor/widgets/scene_window.ui:20
+#: src/gameeky/library/widgets/window.ui:39
+msgid "Reload"
+msgstr "पुनः लोड करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:21
+msgid "Entities have been changed on disk"
+msgstr "डिस्क पर तत्वों को बदल दिया गया"
+
+#: src/gameeky/editor/widgets/scene_window.ui:72
+msgid "Select working layer"
+msgstr "कार्यशील परत का चयन करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:86
+msgid "Zoom in"
+msgstr "जूम इन"
+
+#: src/gameeky/editor/widgets/scene_window.ui:93
+msgid "Zoom out"
+msgstr "जूम आउट"
+
+#: src/gameeky/editor/widgets/scene_window.ui:101
+msgid "Set time of the day"
+msgstr "दिन का समय निर्धारित करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:203
+msgid "Add to the scene"
+msgstr "दृश्य में जोड़ें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:211
+msgid "Remove from the scene"
+msgstr "दृश्य से हटाएं"
+
+#: src/gameeky/editor/widgets/scene_window.ui:227
+msgid "Override properties"
+msgstr "गुणों को अधिलेखित करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:235
+msgid "Set starting location"
+msgstr "आरंभिक स्थान निर्धारित करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:254
+msgid "Show grid"
+msgstr "ग्रिड दिखाएं"
+
+#: src/gameeky/editor/widgets/scene_window.ui:260
+msgid "Set drawing area"
+msgstr "रेखांकन क्षेत्र निर्धारित करें"
+
+#: src/gameeky/editor/widgets/scene_window.ui:272
+msgid "Entities"
+msgstr "तत्त्व"
+
+#: src/gameeky/editor/widgets/scene_window.ui:309
+msgid "_Try It"
+msgstr "इसे अजमाएं (_T)"
+
+#: src/gameeky/editor/widgets/scene_window.ui:313
+#: src/gameeky/library/widgets/window.ui:132
+msgid "_Settings"
+msgstr "सेटिंग्स (_S)"
+
+#: src/gameeky/editor/widgets/sound_row.ui:32
+msgid "Sound"
+msgstr "ध्वनि"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:29
+msgid "Number of seconds to elapse in-between sounds in the sequence"
+msgstr "अनुक्रम में ध्वनियों के बीच व्यतीत होने वाले सेकंड की संख्या"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:30
+msgid "Delay"
+msgstr "विलंब"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:42
+msgid "Maximum number of seconds to keep playing this sound"
+msgstr "इस ध्वनि को बजाते रहने के लिए अधिकतम सेकंड"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:43
+msgid "Timeout"
+msgstr "समयबाह्य"
+
+#: src/gameeky/editor/widgets/sounds_settings.ui:11
+msgid "Add sounds for different states"
+msgstr "विभिन्न अवस्थाओं के लिए ध्वनियां जोड़ें"
+
+#: src/gameeky/editor/widgets/tileset_window.ui:51
+msgid "Tileset"
+msgstr "टाइलसेट"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:7
+msgid ""
+"It's easier to create new projects from existing thematic packs. Browse "
+"GNOME Software for these Add-ons."
+msgstr ""
+"मौजूदा थीम समूहों से नई परियोजनाएं बनाना आसान है। इन ऐड-ऑन के लिए GNOME सॉफ्टवेयर "
+"ब्राउज़ करें।"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:11
+msgid "Create New Project?"
+msgstr "नई परियोजना बनाएं?"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:17
+msgid "Browse"
+msgstr "ब्राउज़"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this project?"
+msgstr "क्या आप इस प्रोजेक्ट को <b>परियोजना</b> मिटाना चाहते हैं?"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:11
+msgid "Delete Project?"
+msgstr "परियोजना मिटाएं?"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:42
+msgid "Select the destination to export the project to"
+msgstr "परियोजना को निर्यात करने के लिए गंतव्य का चयन करें"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:53
+#: src/gameeky/launcher/widgets/project_import_window.ui:53
+msgid "Select"
+msgstr "चुनें"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:113
+msgid "Project successfully exported!"
+msgstr "परियोजना सफलतापूर्वक निर्यात की गई!"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:148
+#: src/gameeky/launcher/widgets/project_import_window.ui:148
+#: src/gameeky/player/widgets/window.ui:145
+msgid "Something went wrong"
+msgstr "कुछ त्रुटि हुई है"
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:42
+msgid "Select the file to import the project from"
+msgstr "परियोजना को आयात करने के लिए फाइल का चयन करें"
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:113
+msgid "Project successfully imported!"
+msgstr "परियोजना को सफलतापूर्वक आयात किया गया!"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:14
+#: src/gameeky/player/widgets/window.ui:53
+msgid "Play"
+msgstr "खेलें"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:36
+msgid "Settings"
+msgstr "सेटिंग"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:69
+msgid "Export"
+msgstr "निर्यात"
+
+#: src/gameeky/launcher/widgets/project_row.ui:33
+msgid "Options"
+msgstr "विकल्प"
+
+#: src/gameeky/launcher/widgets/project_settings.ui:14
+msgid "Description"
+msgstr "विवरण"
+
+#: src/gameeky/launcher/widgets/window.ui:19
+msgid "The projects have been changed on disk"
+msgstr "डिस्क पर परियोजना बदल दी गई"
+
+#: src/gameeky/launcher/widgets/window.ui:48
+#: src/gameeky/player/widgets/window.ui:41
+msgid "Welcome to Gameeky"
+msgstr "Gameeky में आपका स्वागत है"
+
+#: src/gameeky/launcher/widgets/window.ui:89
+msgid "My Projects"
+msgstr "मेरी परियोजनाएं"
+
+#: src/gameeky/launcher/widgets/window.ui:146
+msgid "_Import"
+msgstr "आयात (_I)"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:40
+#: src/gameeky/player/widgets/session_join_window.ui:40
+msgid "Address"
+msgstr "पता"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:46
+#: src/gameeky/player/widgets/session_new_window.ui:72
+msgid "Advanced"
+msgstr "उन्नत"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:59
+#: src/gameeky/player/widgets/session_join_window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:85
+msgid "Entity Type"
+msgstr "तत्त्व प्रकार"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:72
+#: src/gameeky/player/widgets/session_join_window.ui:72
+#: src/gameeky/player/widgets/session_new_window.ui:98
+msgid "Session Port"
+msgstr "सत्र पोर्ट"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:118
+msgid "Session"
+msgstr "सत्र"
+
+#: src/gameeky/library/widgets/window.ui:40
+msgid "Source has been changed on disk"
+msgstr "स्रोत डिस्क पर बदल दिया गया है"
+
+#: src/gameeky/player/widgets/actions_popover.ui:14
+msgid "Take"
+msgstr "लें"
+
+#: src/gameeky/player/widgets/actions_popover.ui:26
+msgid "Use"
+msgstr "उपयोग"
+
+#: src/gameeky/player/widgets/actions_popover.ui:38
+msgid "Drop"
+msgstr "छोडें"
+
+#: src/gameeky/player/widgets/actions_popover.ui:50
+msgid "Interact"
+msgstr "सहभागिता"
+
+#: src/gameeky/player/widgets/actions_popover.ui:72
+msgid "Stop"
+msgstr "रोकें"
+
+#: src/gameeky/player/widgets/session_join_window.ui:101
+msgid "Join"
+msgstr "जुड़ें"
+
+#: src/gameeky/player/widgets/session_new_window.ui:65
+msgid "Players"
+msgstr "खिलाड़ी"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:12
+msgid "Movement"
+msgstr "चलायें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:16
+msgid "Move north"
+msgstr "उत्तर की ओर चलें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:22
+msgid "Move east"
+msgstr "पूर्व की ओर चलें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:28
+msgid "Move south"
+msgstr "दक्षिण की ओर चलें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:34
+msgid "Move west"
+msgstr "पश्चिम की ओर चलें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:41
+msgid "Rotation"
+msgstr "घूर्णन"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:45
+msgid "Rotate north"
+msgstr "उत्तर की ओर घूमें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:51
+msgid "Rotate east"
+msgstr "पूर्व की ओर घूमें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:57
+msgid "Rotate south"
+msgstr "दक्षिण की ओर घूमें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:63
+msgid "Rotate west"
+msgstr "पश्चिम की ओर घूमें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:70
+msgid "Actions"
+msgstr "कार्रवाइयां"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:74
+msgid "Take object"
+msgstr "वस्तु लें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:80
+msgid "Drop object"
+msgstr "वस्तु छोडें"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:86
+msgid "Use object"
+msgstr "वस्तु का उपयोग"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:92
+msgid "Interact with object"
+msgstr "वस्तु के साथ सहभागिता"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:99
+msgid "Dialogues"
+msgstr "संवाद"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:103
+msgid "Close dialog"
+msgstr "संवाद बंद करें"
+
+#: src/gameeky/player/widgets/window.ui:87
+msgid "Loading"
+msgstr "लोड हो रहा है"
+
+#: src/gameeky/player/widgets/window.ui:108
+msgid "The scene has been changed on disk"
+msgstr "डिस्क पर दृश्य बदल दिया गया है"
+
+#: src/gameeky/player/widgets/window.ui:187
+msgid "_Join"
+msgstr "जुड़ें (_J)"
+
+#: src/gameeky/player/widgets/window.ui:191
+msgid "_Join With Code"
+msgstr "कोड के साथ जुड़ें (_J)"
+
+#: src/gameeky/player/widgets/window.ui:199
+msgid "_Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट (_K)"
