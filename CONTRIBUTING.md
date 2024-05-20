@@ -62,36 +62,9 @@ All the user interfaces were built with [Cambalache](https://flathub.org/apps/ar
 
 ## Adding new translations
 
-Gameeky requires that both the user interface and the beginner's guide are translated. To translate the user interface to a new language, run these commands on the terminal:
+Gameeky requires that both the user interface and the beginner's guide are translated. To translate the user interface to a new language, see [po/README.md](po/README.md).
 
-```bash
-# Fedora requirements
-$ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel
-
-$ cd Gameeky
-$ echo "es" >> po/LINGUAS # e.g adding Spanish translation
-
-$ meson setup _translate
-$ cd _translate
-$ ninja gameeky-pot
-$ ninja gameeky-update-po
-
-# Edit the newly created po/es.po
-# Commit the changes
-```
-
-To translate the beginner's guide, follow these steps:
-
-```bash
-$ cd Gameeky
-
-$ mkdir docs/basics/es
-$ touch docs/basics/es/index.md
-
-# Edit the newly created index.md file and write a translated version of docs/basics/en/index.md
-# Add the language code to docs/meson.build
-# Commit the changes and create a Pull Request
-```
+To translate the beginner's guide, see [docs/README.md](docs/README.md).
 
 ## Testing your changes
 
