@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: https://github.com/tchx84/gameeky/issues\n"
 "POT-Creation-Date: 2024-04-30 21:46-0400\n"
-"PO-Revision-Date: 2024-05-18 23:27+0530\n"
+"PO-Revision-Date: 2024-05-20 20:33+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -39,38 +39,38 @@ msgid "Topics"
 msgstr "विषय"
 
 msgid "[Introduction](#introduction)"
-msgstr "[परिचय](#introduction)"
+msgstr "[परिचय](#परिचय)"
 
 msgid "[Installation](#installation)"
-msgstr "[स्थापना](#installation)"
+msgstr "[स्थापना](#स्थापना)"
 
 msgid "[Thematic packs](#thematic-packs)"
-msgstr "[थीम समूह](#thematic-packs)"
+msgstr "[थीम समूह](#थीम-समूह)"
 
 msgid "[Overview](#overview)"
-msgstr "[अवलोकन](#overview)"
+msgstr "[अवलोकन](#अवलोकन)"
 
 msgid "[The launcher](#the-launcher)"
-msgstr "[लॉन्चर](#the-launcher)"
+msgstr "[लॉन्चर](#लॉन्चर)"
 
 msgid "[The player](#the-player)"
-msgstr "[प्लेयर](#the-player)"
+msgstr "[प्लेयर](#प्लेयर)"
 
 msgid "[Cooperative game play](#cooperative-game-play)"
-msgstr "[सहयोगात्मक गेमप्ले](#cooperative-game-play)"
+msgstr "[सहयोगात्मक गेमप्ले](#सहयोगात्मक-गेमप्ले)"
 
 msgid "[The scene editor](#the-scene-editor)"
-msgstr "[दृश्य संपादक](#the-scene-editor)"
+msgstr "[दृश्य संपादक](#दृश्य-संपादक)"
 
 msgid "[The entity editor](#the-entity-editor)"
-msgstr "[तत्व संपादक](#the-entity-editor)"
+msgstr "[तत्व संपादक](#तत्व-संपादक)"
 
 msgid ""
 "[The code editor and LOGO-like code](#the-code-editor-and-logo-like-code)"
-msgstr "[कोड संपादक और LOGO-जैसा कोड](#the-code-editor-and-logo-like-code)"
+msgstr "[कोड संपादक और LOGO-जैसा कोड](#कोड-संपादक-और-LOGO-जैसा-कोड)"
 
 msgid "[Plugins](#plugins)"
-msgstr "[प्लग-इन](#plugins)"
+msgstr "[प्लग-इन](#प्लग-इन)"
 
 msgid "Introduction"
 msgstr "परिचय"
@@ -1003,7 +1003,7 @@ msgstr ""
 "छोड़ दें। इस तरह से कोड को क्रियान्वित होते देखना आसान हो जाएगा।"
 
 msgid "Plugins"
-msgstr "प्लगइन"
+msgstr "प्लग-इन"
 
 msgid ""
 "Actuators can modify the behavior of an entity. A single entity can use "
