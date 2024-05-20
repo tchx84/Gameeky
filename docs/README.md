@@ -3,7 +3,7 @@
 ## Requirements
 
 ```bash
-$ sudo dnf install pandoc
+$ sudo dnf install md4c pandoc python3-devel
 $ pip install --user mdpo
 ```
 
