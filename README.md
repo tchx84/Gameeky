@@ -17,6 +17,10 @@ More specifically:
 * Grasp the basics of programming using Python in a LOGO-like experience
 * Mature programming skills by extending games with Python plugins
 
+## Get it
+
+[<img width="240" src="https://flathub.org/assets/badges/flathub-badge-i-en.svg">](https://flathub.org/apps/dev.tchx84.Gameeky)
+
 ## Use it
 
 Learn more about this project by reading the [beginner's guide](docs/basics/src/en/index.md).
