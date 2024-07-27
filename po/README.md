@@ -21,4 +21,4 @@ $ ninja gameeky-update-po
 # Commit the changes
 ```
 
-> 📝 **Note:** Gameeky requires that both the user interface and the beginner's guide are translated. Please check [doc/README.md](../doc/README.md).
+> 📝 **Note:** Gameeky requires that both the user interface and the beginner's guide are translated. Please check [docs/README.md](../docs/README.md).
