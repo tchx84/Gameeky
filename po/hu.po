@@ -1,0 +1,1435 @@
+# Hungarian translations for gameeky package.
+# Copyright (C) 2024 THE gameeky'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gameeky package.
+# Dévényi Benedek <rdbende@proton.me>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gameeky\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-11 09:40-0300\n"
+"PO-Revision-Date: 2024-07-20 13:31+0200\n"
+"Last-Translator: Dévényi Benedek <rdbende@proton.me>\n"
+"Language-Team: Hungarian\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/dev.tchx84.Gameeky.desktop.in:3
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:6
+#: src/gameeky/launcher/launcher.py:50
+msgid "Gameeky"
+msgstr "Gameeky"
+
+#: data/dev.tchx84.Gameeky.Entity.desktop.in:3 src/gameeky/editor/entity.py:61
+msgid "Entity Editor"
+msgstr "Egységszerkesztő"
+
+#: data/dev.tchx84.Gameeky.Player.desktop.in:3 src/gameeky/player/player.py:71
+msgid "Player"
+msgstr "Játékos"
+
+#: data/dev.tchx84.Gameeky.Scene.desktop.in:3 src/gameeky/editor/scene.py:61
+msgid "Scene Editor"
+msgstr "Jelenetszerkesztő"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:7
+msgid "Play, create and learn"
+msgstr "Játssz, alkoss és tanulj"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:9
+msgid ""
+"Gameeky lets young learners and educators create and explore cooperative "
+"games and learning experiences."
+msgstr ""
+"A Gameekyvel fiatal tanulók és tanáraik kooperatív játékokat hozhatnak létre "
+"és fedezhetnek fel, miközben hasznos új tapasztalatokkal gazdagodnak."
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:12
+msgid "More specifically:"
+msgstr "Hogy pontosak legyünk:"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:16
+msgid "Play and explore games with friends"
+msgstr "Játssz és fedezz fel játékokat a barátaiddal"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:17
+msgid "Create new games without writing any code"
+msgstr "Készíts játékokat kódolás nélkül"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:18
+msgid "Tell stories through these games"
+msgstr "Mesélj történeteket játékaidon keresztül"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:19
+msgid "Nurture artistic skills by designing game objects and creatures"
+msgstr "Ápold művészi készségeid játéktárgyak és lények tervezésével"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:20
+msgid "Grasp the basics of programming using Python in a LOGO-like experience"
+msgstr "Sajátítsd el a Python programozás alapjait LOGO-szerű környezetben"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:21
+msgid "Mature programming skills by extending games with Python plugins"
+msgstr ""
+"Fejleszd programozási ismereteid a játékok Python kiegészítőkkel való "
+"bővítésével"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:26
+msgid "Gameeky showing its scene editor"
+msgstr "A Gameeky jelenetszerkesztője"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:30
+msgid "Gameeky showing its game player"
+msgstr "A Gameeky játékszerkesztője"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:34
+msgid "Gameeky showing its entity editor"
+msgstr "A Gameeky egységszerkesztője"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:38
+msgid "Gameeky showing its game launcher"
+msgstr "A Gameeky játékindítója"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:42
+msgid "Gameeky showing its code editor"
+msgstr "A Gameeky kódszerkesztője"
+
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:49
+msgid "Martin Abente Lahaye"
+msgstr "Martin Abente Lahaye"
+
+#: src/gameeky/client/graphics/entity.py:114
+#, python-format
+msgid "Missing entity type: %d"
+msgstr "Hiányzó egység típus: %d"
+
+#: src/gameeky/common/errors.py:31
+msgid "Wrong client version"
+msgstr "Helytelen kliens verzió"
+
+#: src/gameeky/common/errors.py:33
+msgid "Wrong project"
+msgstr "Rossz projekt"
+
+#: src/gameeky/common/errors.py:35
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: src/gameeky/common/utils.py:234
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (másolat)"
+
+#: src/gameeky/editor/models/actuator_row.py:33
+msgid "Activates"
+msgstr "Működtet"
+
+#: src/gameeky/editor/models/actuator_row.py:34
+msgid "Activates on interaction"
+msgstr "Működtet kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:35
+msgid "Affects"
+msgstr "Befolyásol"
+
+#: src/gameeky/editor/models/actuator_row.py:36
+msgid "Affects on interaction"
+msgstr "Befolyásol kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:37
+msgid "Affects on use"
+msgstr "Befolyásol használatkor"
+
+#: src/gameeky/editor/models/actuator_row.py:38
+msgid "Aggroes"
+msgstr "Célba vesz"
+
+#: src/gameeky/editor/models/actuator_row.py:39
+msgid "Collapses"
+msgstr "Összeesik"
+
+#: src/gameeky/editor/models/actuator_row.py:40
+msgid "Collapses over time"
+msgstr "Összeesik az idő során"
+
+#: src/gameeky/editor/models/actuator_row.py:41
+msgid "Destroys"
+msgstr "Elpusztít"
+
+#: src/gameeky/editor/models/actuator_row.py:42
+msgid "Destroys on interaction"
+msgstr "Elpusztít kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:43
+msgid "Deteriorates"
+msgstr "Gyengül"
+
+#: src/gameeky/editor/models/actuator_row.py:44
+msgid "Drops"
+msgstr "Leesik"
+
+#: src/gameeky/editor/models/actuator_row.py:45
+msgid "Exhausts"
+msgstr "Kifogyaszt"
+
+#: src/gameeky/editor/models/actuator_row.py:46
+msgid "Follows"
+msgstr "Követ"
+
+#: src/gameeky/editor/models/actuator_row.py:47
+msgid "Interacts"
+msgstr "Kölcsönhatásba lép"
+
+#: src/gameeky/editor/models/actuator_row.py:48
+msgid "Propulses"
+msgstr "Elmozdul"
+
+#: src/gameeky/editor/models/actuator_row.py:49
+msgid "Requires"
+msgstr "Igényel"
+
+#: src/gameeky/editor/models/actuator_row.py:50
+msgid "Roams"
+msgstr "Kószál"
+
+#: src/gameeky/editor/models/actuator_row.py:51
+msgid "Rotates on interaction"
+msgstr "Elfordul kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:52
+msgid "Says"
+msgstr "Mond"
+
+#: src/gameeky/editor/models/actuator_row.py:53
+msgid "Says on interaction"
+msgstr "Mond kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:54
+msgid "Spawns"
+msgstr "Létrehoz"
+
+#: src/gameeky/editor/models/actuator_row.py:55
+msgid "Takes"
+msgstr "Felvesz"
+
+#: src/gameeky/editor/models/actuator_row.py:56
+msgid "Targets"
+msgstr "Célt vált"
+
+#: src/gameeky/editor/models/actuator_row.py:57
+msgid "Teleports"
+msgstr "Teleportál"
+
+#: src/gameeky/editor/models/actuator_row.py:58
+msgid "Teleports on interaction"
+msgstr "Teleportál kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:59
+msgid "Transmutes"
+msgstr "Átalakít"
+
+#: src/gameeky/editor/models/actuator_row.py:60
+msgid "Triggers"
+msgstr "Beindít"
+
+#: src/gameeky/editor/models/actuator_row.py:61
+msgid "Triggers on interaction"
+msgstr "Beindít kölcsönhatáskor"
+
+#: src/gameeky/editor/models/actuator_row.py:62
+msgid "Uses"
+msgstr "Használ"
+
+#: src/gameeky/editor/models/actuator_row.py:66
+msgid "Activates entities that reached its position"
+msgstr "Működésbe hozza a pozícióját elért egységeket"
+
+#: src/gameeky/editor/models/actuator_row.py:67
+msgid "Activates entities that reached its position, when it's interacted with"
+msgstr ""
+"Működésbe hozza a pozícióját elért, vele kölcsönhatásba lépett egységeket"
+
+#: src/gameeky/editor/models/actuator_row.py:68
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities"
+msgstr ""
+"Befolyásolja az adatait (Tartósság, Kitartás és Erő) a közeli (Sugár) "
+"egységeknek"
+
+#: src/gameeky/editor/models/actuator_row.py:69
+msgid "Affects the stats (Durability, Stamina and Strength) of its interactees"
+msgstr "Befolyásolja az adatait (Tartósság, Kitartás és Erő) a kölcsönhatóinak"
+
+#: src/gameeky/editor/models/actuator_row.py:70
+msgid ""
+"Affects the stats (Durability, Stamina and Strength) of nearby (Radius) "
+"entities, when it's used"
+msgstr ""
+"Befolyásolja az adatait (Tartósság, Kitartás és Erő) a közeli (Sugár) "
+"egységeknek, amikor felhasználják"
+
+#: src/gameeky/editor/models/actuator_row.py:71
+msgid "Targets nearby (Radius) entities (Target Type)"
+msgstr "Megcéloz közeli (Sugár) egységeket (Cél típus)"
+
+#: src/gameeky/editor/models/actuator_row.py:72
+msgid "Performs a DESTROY action, when entities are nearby (Radius)"
+msgstr ""
+"Végrehajt egy ELPUSZTÍT műveletet, amikor egy egység a közelbe (Sugár) ér"
+
+#: src/gameeky/editor/models/actuator_row.py:73
+msgid "Performs a DESTROY action on a fixed interval (Rate)"
+msgstr "Végrehajt egy ELPUSZTÍT műveletet bizonyos időközönként (Gyakoriság)"
+
+#: src/gameeky/editor/models/actuator_row.py:74
+msgid "Performs a DESTROY action, when its durability reaches zero"
+msgstr "Végrehajt egy ELPUSZTÍT műveletet, amikor a tartóssága eléri a nullát"
+
+#: src/gameeky/editor/models/actuator_row.py:75
+msgid "Performs a DESTROY action, when it's interacted with"
+msgstr "Végrehajt egy ELPUSZTÍT műveletet, amikor kölcsönhatásba lépnek vele"
+
+#: src/gameeky/editor/models/actuator_row.py:76
+msgid "Reduces its durability over time"
+msgstr "Csökkenti a tartósságát az idő során"
+
+#: src/gameeky/editor/models/actuator_row.py:77
+msgid "Adds entities (Target Type) to the scene, when it's destroyed"
+msgstr "Új egységeket (Cél típus) ad a jelenethez, amikor elpusztul"
+
+#: src/gameeky/editor/models/actuator_row.py:78
+msgid "Performs EXHAUST actions, when its stamina reaches zero"
+msgstr "Végrehajt egy KIFOGYASZT műveletet, amikor a kitartása eléri a nullát"
+
+#: src/gameeky/editor/models/actuator_row.py:79
+msgid "Performs MOVE actions to its target's (Target Name) direction"
+msgstr "Végrehajt egy MOZOG műveletet a célja (Célpont neve) irányába"
+
+#: src/gameeky/editor/models/actuator_row.py:80
+msgid "Performs INTERACT actions on entities (Target Type)"
+msgstr "Végrehajt egy KÖLCSÖNHATÁS műveletet a cél egységén (Cél típus)"
+
+#: src/gameeky/editor/models/actuator_row.py:81
+msgid "Performs MOVE actions to its current direction"
+msgstr "Végrehajt egy MOZOG műveletet az aktuális irányába"
+
+#: src/gameeky/editor/models/actuator_row.py:82
+msgid ""
+"Activates its target (Target Name), when its requirement (Target Type) "
+"reached its position"
+msgstr ""
+"Működésbe hozza a célját (Célpont neve), amikor az igényelt egység (Cél "
+"típus) eléri a pozícióját"
+
+#: src/gameeky/editor/models/actuator_row.py:83
+msgid "Performs MOVE actions to random directions"
+msgstr "Végrehajt egy MOZOG műveletet véletlenszerű irányába"
+
+#: src/gameeky/editor/models/actuator_row.py:84
+msgid "Changes its direction, when it's interacted with"
+msgstr "Megváltoztatja az irányát amikor kölcsönhatásba lépnek vele"
+
+#: src/gameeky/editor/models/actuator_row.py:85
+msgid "Sends its dialogue to nearby (Radius) entities"
+msgstr "Elküldi párbeszédét a közeli (Sugár) egységeknek"
+
+#: src/gameeky/editor/models/actuator_row.py:86
+msgid "Sends its dialogue to its interactees"
+msgstr "Elküldi párbeszédét a kölcsönhatójának"
+
+#: src/gameeky/editor/models/actuator_row.py:87
+msgid "Adds entities (Target Type) to the scene on a fixed interval (Rate)"
+msgstr ""
+"Új egységeket (Cél típus) ad a jelenethez bizonyos időközönként (Gyakoriság)"
+
+#: src/gameeky/editor/models/actuator_row.py:88
+msgid "Performs TAKE actions on usable entities"
+msgstr "Végrehajt egy FELVESZ műveletet használható egységeken"
+
+#: src/gameeky/editor/models/actuator_row.py:89
+msgid "Targets its target's target, when it reached its target's position"
+msgstr "Megváltoztatja a célját a korábbi célja céljára, amikor elérte azt"
+
+#: src/gameeky/editor/models/actuator_row.py:90
+msgid ""
+"Teleports nearby (Radius) entities to its target's (Target Name) position"
+msgstr ""
+"Elteleportálja a közeli (Sugár) egységeket a célja (Célpont neve) pozíciójába"
+
+#: src/gameeky/editor/models/actuator_row.py:91
+msgid "Teleports its interactees to its target's (Target Name) position"
+msgstr ""
+"Elteleportálja a kölcsönható egységeket a célja (Célpont neve) pozíciójába"
+
+#: src/gameeky/editor/models/actuator_row.py:92
+msgid "Replaces itself by an entity (Target Type) on a fixed interval (Rate)"
+msgstr ""
+"Lecseréli saját magát egy másik egységre (Cél típus) bizonyos időközönként "
+"(Gyakoriság)"
+
+#: src/gameeky/editor/models/actuator_row.py:93
+msgid "Activates its target (Target Name), when entities are nearby (Radius)"
+msgstr ""
+"Működésbe hozza a célját (Célpont neve), amikor egy egység a közelbe (Sugár) "
+"ér"
+
+#: src/gameeky/editor/models/actuator_row.py:94
+msgid "Activates its target (Target Name), when it's interacted with"
+msgstr ""
+"Működésbe hozza a célját (Célpont neve), amikor kölcsönhatásba lépnek vele"
+
+#: src/gameeky/editor/models/actuator_row.py:95
+msgid ""
+"Performs USE actions on entities (Target Type), when holding a usable entity"
+msgstr ""
+"Végrehajt egy HASZNÁL műveletet az egységen (Cél típus), ha használható "
+"egységet tart"
+
+#: src/gameeky/editor/models/actuator_row.py:107
+msgid "Performs custom behaviors"
+msgstr "Egyedi viselkedést végez"
+
+#: src/gameeky/editor/models/area_row.py:28
+msgid "1x1"
+msgstr "1x1"
+
+#: src/gameeky/editor/models/area_row.py:29
+msgid "3x3"
+msgstr "3x3"
+
+#: src/gameeky/editor/models/area_row.py:30
+msgid "5x5"
+msgstr "5x5"
+
+#: src/gameeky/editor/models/area_row.py:31
+msgid "7x7"
+msgstr "7x7"
+
+#: src/gameeky/editor/models/area_row.py:32
+msgid "9x9"
+msgstr "9x9"
+
+#: src/gameeky/editor/models/base_row.py:46
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: src/gameeky/editor/models/daytime_row.py:28
+msgid "Dynamic"
+msgstr "Változó"
+
+#: src/gameeky/editor/models/daytime_row.py:29
+msgid "Day"
+msgstr "Nappal"
+
+#: src/gameeky/editor/models/daytime_row.py:30
+msgid "Night"
+msgstr "Éjszaka"
+
+#: src/gameeky/editor/models/direction_row.py:28
+msgid "East"
+msgstr "Kelet"
+
+#: src/gameeky/editor/models/direction_row.py:29
+msgid "North"
+msgstr "Észak"
+
+#: src/gameeky/editor/models/direction_row.py:30
+msgid "South"
+msgstr "Dél"
+
+#: src/gameeky/editor/models/direction_row.py:31
+msgid "West"
+msgstr "Nyugat"
+
+#: src/gameeky/editor/models/layer_row.py:28
+msgid "Layer 0"
+msgstr "Réteg 0"
+
+#: src/gameeky/editor/models/layer_row.py:29
+msgid "Layer 1"
+msgstr "Réteg 1"
+
+#: src/gameeky/editor/models/layer_row.py:30
+msgid "Layer 2"
+msgstr "Réteg 2"
+
+#: src/gameeky/editor/models/layer_row.py:31
+msgid "Layer 3"
+msgstr "Réteg 3"
+
+#: src/gameeky/editor/models/layer_row.py:32
+msgid "Layer 4"
+msgstr "Réteg 4"
+
+#: src/gameeky/editor/models/layer_row.py:33
+msgid "Layer 5"
+msgstr "Réteg 5"
+
+#: src/gameeky/editor/models/layer_row.py:34
+msgid "Layer 6"
+msgstr "Réteg 6"
+
+#: src/gameeky/editor/models/layer_row.py:35
+msgid "Layer 7"
+msgstr "Réteg 7"
+
+#: src/gameeky/editor/models/layer_row.py:36
+msgid "All layers"
+msgstr "Minden réteg"
+
+#: src/gameeky/editor/models/state_row.py:28
+msgid "Destroyed"
+msgstr "Elpusztítva"
+
+#: src/gameeky/editor/models/state_row.py:29
+msgid "Destroying"
+msgstr "Elpusztít"
+
+#: src/gameeky/editor/models/state_row.py:30
+msgid "Dropping"
+msgstr "Elejt"
+
+#: src/gameeky/editor/models/state_row.py:31
+msgid "Exhausted"
+msgstr "Kimerít"
+
+#: src/gameeky/editor/models/state_row.py:32
+msgid "Held"
+msgstr "Tartva"
+
+#: src/gameeky/editor/models/state_row.py:33
+msgid "Idling"
+msgstr "Tétlen"
+
+#: src/gameeky/editor/models/state_row.py:34
+msgid "Interacting"
+msgstr "Kölcsönhatásban van"
+
+#: src/gameeky/editor/models/state_row.py:35
+msgid "Moving"
+msgstr "Mozog"
+
+#: src/gameeky/editor/models/state_row.py:36
+msgid "Taking"
+msgstr "Felvesz"
+
+#: src/gameeky/editor/models/state_row.py:37
+msgid "Using"
+msgstr "Használ"
+
+#: src/gameeky/editor/widgets/animation_row.py:63
+#: src/gameeky/editor/widgets/sound_row.py:63
+#, python-format
+msgid "While %s"
+msgstr "Amikor %s"
+
+#: src/gameeky/editor/widgets/animation_row.py:68
+msgid "By default"
+msgstr "Alapállapotban"
+
+#: src/gameeky/launcher/widgets/project_export_window.py:47
+#: src/gameeky/library/coder.py:121
+msgid "untitled"
+msgstr "névtelen"
+
+#: src/gameeky/library/coder.py:53
+msgid "Coder"
+msgstr "Programozó"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:7
+msgid ""
+"There are unsaved changes. Changes which are not saved will be permanently "
+"lost."
+msgstr ""
+"Mentetlen változtatások vannak. Az el nem mentett változtatások véglegesen "
+"el fognak veszni."
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:11
+msgid "Save Changes?"
+msgstr "Mented a változtatásokat?"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:15
+#: src/gameeky/editor/widgets/confirmation_window.ui:15
+#: src/gameeky/editor/widgets/entity_new_window.ui:59
+#: src/gameeky/editor/widgets/entity_open_window.ui:70
+#: src/gameeky/editor/widgets/scene_edit_window.ui:35
+#: src/gameeky/editor/widgets/scene_entity_window.ui:23
+#: src/gameeky/editor/widgets/scene_new_window.ui:35
+#: src/gameeky/editor/widgets/scene_open_window.ui:71
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:15
+#: src/gameeky/launcher/widgets/confirmation_window.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:35
+#: src/gameeky/launcher/widgets/project_new_window.ui:35
+#: src/gameeky/library/widgets/session_settings_window.ui:95
+#: src/gameeky/player/widgets/session_join_window.ui:95
+#: src/gameeky/player/widgets/session_new_window.ui:121
+msgid "Cancel"
+msgstr "Mégse"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:16
+msgid "Discard"
+msgstr "Elvetés"
+
+#: src/gameeky/common/widgets/confirmation_save_window.ui:17
+#: src/gameeky/editor/widgets/entity_window.ui:129
+#: src/gameeky/editor/widgets/scene_edit_window.ui:41
+#: src/gameeky/editor/widgets/scene_entity_window.ui:29
+#: src/gameeky/editor/widgets/scene_window.ui:301
+#: src/gameeky/launcher/widgets/project_edit_window.ui:41
+#: src/gameeky/library/widgets/window.ui:124
+msgid "Save"
+msgstr "Mentés"
+
+#: src/gameeky/editor/widgets/actuators_row.ui:12
+msgid "The actuators that will modify this entity behavior"
+msgstr "A működtetők, amelyek befolyásolják az egység viselkedését "
+
+#: src/gameeky/editor/widgets/actuators_row.ui:13
+msgid "Actuators"
+msgstr "Működtetők"
+
+#: src/gameeky/editor/widgets/animation_row.ui:16
+#: src/gameeky/editor/widgets/sound_row.ui:16
+#: src/gameeky/launcher/widgets/project_row_popover.ui:47
+msgid "Copy"
+msgstr "Másolás"
+
+#: src/gameeky/editor/widgets/animation_row.ui:25
+#: src/gameeky/editor/widgets/confirmation_window.ui:16
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:27
+#: src/gameeky/editor/widgets/sound_row.ui:25
+#: src/gameeky/launcher/widgets/confirmation_window.ui:16
+#: src/gameeky/launcher/widgets/project_row_popover.ui:58
+msgid "Delete"
+msgstr "Törlés"
+
+#: src/gameeky/editor/widgets/animation_row.ui:32
+msgid "Animation"
+msgstr "Animáció"
+
+#: src/gameeky/editor/widgets/animation_row.ui:35
+#: src/gameeky/editor/widgets/entity_settings.ui:183
+#: src/gameeky/editor/widgets/sound_row.ui:35
+msgid "State"
+msgstr "Állapot"
+
+#: src/gameeky/editor/widgets/animation_row.ui:40
+#: src/gameeky/editor/widgets/entity_settings.ui:189
+msgid "Direction"
+msgstr "Irány"
+
+#: src/gameeky/editor/widgets/animation_row.ui:45
+#: src/gameeky/editor/widgets/sound_row.ui:40
+msgid "Details"
+msgstr "Részletek"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:15
+#: src/gameeky/editor/widgets/sound_settings.ui:11
+msgid "Preview"
+msgstr "Előnézet"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:35
+msgid "Tileset File"
+msgstr "Csempekészlet-fájl"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:44
+#: src/gameeky/editor/widgets/entity_open_window.ui:76
+#: src/gameeky/editor/widgets/scene_open_window.ui:77
+msgid "Open"
+msgstr "Megnyitás"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:56
+msgid "View"
+msgstr "Megtekintés"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:78
+msgid "Number of tileset columns"
+msgstr "Oszlopok száma a csempekészletben"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:79
+msgid "Columns"
+msgstr "Oszlopok"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:92
+msgid "Number of tileset rows"
+msgstr "Sorok száma a csempekészletben"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:93
+msgid "Rows"
+msgstr "Sorok"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:104
+msgid "Number of the first frame to include in the animation"
+msgstr "Az első megjelenítendő képkocka száma"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:105
+msgid "First Frame"
+msgstr "Első képkocka"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:116
+msgid "Number of the last frame to include in the animation"
+msgstr "Az utolsó megjelenítendő képkocka száma"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:117
+msgid "Last Frame"
+msgstr "Utolsó képkocka"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:129
+msgid "Number of seconds the complete animation should last"
+msgstr "A teljes animáció hossza másodpercekben"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:130
+#: src/gameeky/editor/widgets/scene_settings.ui:47
+msgid "Duration"
+msgstr "Időtartam"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:141
+msgid "Angle to rotate the image"
+msgstr "Kép elforgatásának szöge"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:142
+#: src/gameeky/editor/widgets/scene_window.ui:219
+#: src/gameeky/player/widgets/actions_popover.ui:61
+msgid "Rotate"
+msgstr "Elforgatás"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:156
+msgid "Number of tiles to include on the x-axis"
+msgstr "Csempék száma az x tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:157
+msgid "Tiles X"
+msgstr "X csempék"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:170
+msgid "Number of tiles to include on the y-axis"
+msgstr "Csempék száma az y tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:171
+msgid "Tiles Y"
+msgstr "Y csempék"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:185
+msgid "How many times larger this image should be on the x-axis"
+msgstr "Hányszor legyen nagyobb ez a kép az x tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:186
+msgid "Scale X"
+msgstr "X méret"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:200
+msgid "How many times larger this image should be on the y-axis"
+msgstr "Hányszor legyen nagyobb ez a kép az y tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:201
+msgid "Scale Y"
+msgstr "Y méret"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:212
+msgid "Number of pixels to remove on the x-axis"
+msgstr "Levágandó képpontok száma az x tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:213
+msgid "Crop X"
+msgstr "X vágás"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:224
+msgid "Number of pixels to remove on the y-axis"
+msgstr "Levágandó képpontok száma az y tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:225
+msgid "Crop Y"
+msgstr "Y vágás"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:230
+msgid "Whether to flip the image on the x-axis"
+msgstr "Legyen-e tükrözve a kép az x tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:231
+msgid "Flip X"
+msgstr "X tükrözés"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:236
+msgid "Whether to flip the image on the y-axis"
+msgstr "Legyen-e tükrözve a kép az y tengelyen"
+
+#: src/gameeky/editor/widgets/animation_settings.ui:237
+msgid "Flip Y"
+msgstr "Y tükrözés"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:11
+msgid "Add animations for different states and directions combinations"
+msgstr "Animációk hozzáadása a különböző állapotok és irányok kombinációihoz"
+
+#: src/gameeky/editor/widgets/animations_settings.ui:20
+msgid "Animations"
+msgstr "Animációk"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this entity?"
+msgstr "Valóban <b>véglegesen</b> törölni szeretnéd ezt az egységet?"
+
+#: src/gameeky/editor/widgets/confirmation_window.ui:11
+msgid "Delete Entity?"
+msgstr "Törlöd az egységet?"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:26
+#: src/gameeky/editor/widgets/entity_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_open_window.ui:27
+#: src/gameeky/editor/widgets/scene_settings.ui:15
+#: src/gameeky/launcher/widgets/project_edit_window.ui:58
+#: src/gameeky/launcher/widgets/project_new_window.ui:58
+#: src/gameeky/library/widgets/session_settings_window.ui:27
+#: src/gameeky/player/widgets/session_join_window.ui:27
+#: src/gameeky/player/widgets/session_new_window.ui:27
+msgid "Project"
+msgstr "Projekt"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:65
+#: src/gameeky/editor/widgets/scene_new_window.ui:41
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:16
+#: src/gameeky/launcher/widgets/project_new_window.ui:41
+#: src/gameeky/launcher/widgets/window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:127
+msgid "Create"
+msgstr "Létrehozás"
+
+#: src/gameeky/editor/widgets/entity_new_window.ui:82
+#: src/gameeky/editor/widgets/entity_open_window.ui:41
+#: src/gameeky/editor/widgets/entity_open_window.ui:93
+#: src/gameeky/editor/widgets/scene_entity_window.ui:46
+msgid "Entity"
+msgstr "Egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:12
+msgid "These values are the basic statistics of this entity"
+msgstr "Ezek az értékek az egység főbb adatai"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:13
+msgid "Stats"
+msgstr "Adatok"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:22
+msgid "How much action this entity can perform"
+msgstr "Mennyi műveletre képes ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:23
+msgid "Stamina"
+msgstr "Kitartás"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:34
+msgid "How much wear or damage this entity can sustain"
+msgstr "Mennyi kopást vagy sérülést bír el ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:35
+msgid "Durability"
+msgstr "Tartósság"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:46
+msgid "How heavy this entity is"
+msgstr "Milyen nehéz ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:47
+msgid "Weight"
+msgstr "Súly"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:58
+msgid "How much weight or damage this entity can lift or apply"
+msgstr "Mekkora súlyt tud felemelni, vagy kárt okozni ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:59
+msgid "Strength"
+msgstr "Erő"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:66
+msgid "These values modify basic statistics"
+msgstr "Ezek az értékek befolyásolják az egység főbb adatait"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:67
+msgid "Modifiers"
+msgstr "Befolyásolók"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:77
+msgid "Affects recovery times, cool downs and delays"
+msgstr "Befolyásolja a felépülési időt, a lehűlést és várakozási időt"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:78
+msgid "Recovery"
+msgstr "Felépülés"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:90
+msgid "Affects the speed of other entities traversing through this entity"
+msgstr ""
+"Befolyásolja más egységek sebességét, amikor ezen az egységen mennek "
+"keresztül"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:91
+msgid "Density"
+msgstr "Sűrűség"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:98
+msgid "These values determine how this entity behaves"
+msgstr "Ezek az adatok meghatározzák, hogyan viselkedik az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:99
+msgid "Behaviors"
+msgstr "Viselkedés"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:102
+#: src/gameeky/editor/widgets/scene_settings.ui:10
+#: src/gameeky/launcher/widgets/project_settings.ui:9
+msgid "Name"
+msgstr "Név"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:107
+msgid "Target Name"
+msgstr "Célpont neve"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:112
+msgid "Dialogue"
+msgstr "Párbeszéd"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:123
+msgid "The identifier of another entity"
+msgstr "Egy másik egység azonosítója"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:124
+msgid "Target Type"
+msgstr "Cél típus"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:135
+msgid "The maximum area that an actuator can have an effect"
+msgstr "A maximális terület, amelyre egy működtető hatást gyakorolhat"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:136
+msgid "Radius"
+msgstr "Sugár"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:147
+msgid "How often an actuator can be triggered"
+msgstr "Milyen gyakran induljon be egy működtető"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:148
+msgid "Rate"
+msgstr "Gyakoriság"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:158
+msgid "These values affect how the entity looks on screen"
+msgstr "Ezek az értékek befolyásolják, hogyan jelenik meg ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:159
+msgid "Visibility"
+msgstr "Láthatóság"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:163
+msgid "Whether this entity is visible at all"
+msgstr "Látható-e egyáltalán ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:164
+msgid "Visible"
+msgstr "Látható"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:176
+msgid "The amount of light this entity can emit"
+msgstr "Mennyi fényt tud kibocsátani ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:177
+msgid "Luminance"
+msgstr "Fényesség"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:182
+msgid "The initial state"
+msgstr "Kezdeti állapot"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:188
+msgid "The initial direction"
+msgstr "Kezdeti irány"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:196
+msgid "These values are used to determine specific conditions"
+msgstr "Ezek az értékek különböző feltételek meghatározására szolgálnak"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:197
+msgid "Conditions"
+msgstr "Feltételek"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:200
+msgid "Whether this entity can be removed from the scene"
+msgstr "Eltávolítható-e a jelenetből ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:201
+msgid "Removable"
+msgstr "Eltávolítható"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:206
+msgid "Whether this entity can be taken and moved by another entity"
+msgstr "Felvehető és mozgatható-e ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:207
+msgid "Takeable"
+msgstr "Felvehető"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:212
+msgid "Whether this entity can be used as tool"
+msgstr "Használható-e eszközként ez az egység"
+
+#: src/gameeky/editor/widgets/entity_settings.ui:213
+msgid "Usable"
+msgstr "Használható"
+
+#: src/gameeky/editor/widgets/entity_window.ui:17
+msgid "Actuators have been changed on disk"
+msgstr "A működtetők megváltoztak a lemezen"
+
+#: src/gameeky/editor/widgets/entity_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:118
+#: src/gameeky/player/widgets/session_new_window.ui:144
+msgid "Game"
+msgstr "Játék"
+
+#: src/gameeky/editor/widgets/entity_window.ui:69
+msgid "Graphics"
+msgstr "Grafika"
+
+#: src/gameeky/editor/widgets/entity_window.ui:90
+#: src/gameeky/editor/widgets/sounds_settings.ui:20
+msgid "Sounds"
+msgstr "Hangok"
+
+#: src/gameeky/editor/widgets/entity_window.ui:121
+#: src/gameeky/editor/widgets/scene_window.ui:293
+#: src/gameeky/launcher/widgets/window.ui:142
+#: src/gameeky/library/widgets/window.ui:116
+#: src/gameeky/player/widgets/window.ui:183
+msgid "_New"
+msgstr "_Létrehozás"
+
+#: src/gameeky/editor/widgets/entity_window.ui:125
+#: src/gameeky/editor/widgets/scene_window.ui:297
+#: src/gameeky/library/widgets/window.ui:120
+msgid "_Open"
+msgstr "_Megnyitás"
+
+#: src/gameeky/editor/widgets/entity_window.ui:133
+#: src/gameeky/editor/widgets/scene_window.ui:305
+#: src/gameeky/library/widgets/window.ui:128
+#: src/gameeky/player/widgets/window.ui:195
+msgid "Save _As…"
+msgstr "Mentés má_sként"
+
+#: src/gameeky/editor/widgets/entity_window.ui:137
+msgid "_Browse Files"
+msgstr "_Fájlok tallózása"
+
+#: src/gameeky/editor/widgets/entity_window.ui:141
+#: src/gameeky/editor/widgets/scene_window.ui:317
+#: src/gameeky/launcher/widgets/window.ui:150
+#: src/gameeky/library/widgets/window.ui:136
+#: src/gameeky/player/widgets/window.ui:203
+msgid "_Documentation"
+msgstr "_Dokumentáció"
+
+#: src/gameeky/editor/widgets/entity_window.ui:145
+#: src/gameeky/editor/widgets/scene_window.ui:321
+#: src/gameeky/launcher/widgets/window.ui:154
+#: src/gameeky/library/widgets/window.ui:140
+#: src/gameeky/player/widgets/window.ui:207
+msgid "_About Gameeky"
+msgstr "A Gameeky _névjegye"
+
+#: src/gameeky/editor/widgets/global_settings.ui:8
+msgid "These values must be unique among all entities"
+msgstr "Ezek az értékek egyediek kell legyenek minden egység között"
+
+#: src/gameeky/editor/widgets/global_settings.ui:9
+msgid "Global"
+msgstr "Általános"
+
+#: src/gameeky/editor/widgets/global_settings.ui:20
+msgid "Unique identifier for this entity"
+msgstr "Az egység egyedi azonosítója"
+
+#: src/gameeky/editor/widgets/global_settings.ui:21
+msgid "Identifier"
+msgstr "Azonosító"
+
+#: src/gameeky/editor/widgets/paths_row.ui:12
+msgid "Sound files to be played in sequence"
+msgstr "Sorban lejátszandó hangfájlok"
+
+#: src/gameeky/editor/widgets/paths_row.ui:13
+msgid "Files"
+msgstr "Fájlok"
+
+#: src/gameeky/editor/widgets/scene_edit_window.ui:58
+#: src/gameeky/editor/widgets/scene_new_window.ui:58
+#: src/gameeky/editor/widgets/scene_open_window.ui:42
+#: src/gameeky/editor/widgets/scene_open_window.ui:94
+#: src/gameeky/editor/widgets/scene_window.ui:113
+#: src/gameeky/player/widgets/session_new_window.ui:41
+msgid "Scene"
+msgstr "Jelenet"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:15
+#: src/gameeky/launcher/widgets/project_row_popover.ui:25
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: src/gameeky/editor/widgets/scene_entity_popover.ui:39
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:32
+msgid "Time"
+msgstr "Idő"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:46
+msgid "The number of seconds a full day lasts"
+msgstr "A teljes nap hossza másodpercekben"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:61
+msgid "The number of horizontal tiles"
+msgstr "Csempék száma vízszintes irányban"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:62
+msgid "Width"
+msgstr "Szélesség"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:75
+msgid "The number of vertical tiles"
+msgstr "Csempék száma függőleges irányban"
+
+#: src/gameeky/editor/widgets/scene_settings.ui:76
+msgid "Height"
+msgstr "Magasság"
+
+#: src/gameeky/editor/widgets/scene_window.ui:20
+#: src/gameeky/library/widgets/window.ui:39
+msgid "Reload"
+msgstr "Újratöltés"
+
+#: src/gameeky/editor/widgets/scene_window.ui:21
+msgid "Entities have been changed on disk"
+msgstr "Az egységek megváltoztak a lemezen"
+
+#: src/gameeky/editor/widgets/scene_window.ui:72
+msgid "Select working layer"
+msgstr "Réteg kiválasztása"
+
+#: src/gameeky/editor/widgets/scene_window.ui:86
+msgid "Zoom in"
+msgstr "Nagyítás"
+
+#: src/gameeky/editor/widgets/scene_window.ui:93
+msgid "Zoom out"
+msgstr "Kicsinyítés"
+
+#: src/gameeky/editor/widgets/scene_window.ui:101
+msgid "Set time of the day"
+msgstr "Napszak beállítása"
+
+#: src/gameeky/editor/widgets/scene_window.ui:203
+msgid "Add to the scene"
+msgstr "Hozzáadás a jelenethez"
+
+#: src/gameeky/editor/widgets/scene_window.ui:211
+msgid "Remove from the scene"
+msgstr "Eltávolítás a jelenetből"
+
+#: src/gameeky/editor/widgets/scene_window.ui:227
+msgid "Override properties"
+msgstr "Tulajdonságok felülírása"
+
+#: src/gameeky/editor/widgets/scene_window.ui:235
+msgid "Set starting location"
+msgstr "Kezdőpozíció beállítása"
+
+#: src/gameeky/editor/widgets/scene_window.ui:254
+msgid "Show grid"
+msgstr "Rácsvonalak megjelenítése"
+
+#: src/gameeky/editor/widgets/scene_window.ui:260
+msgid "Set drawing area"
+msgstr "Rajzolási terület megadása"
+
+#: src/gameeky/editor/widgets/scene_window.ui:272
+msgid "Entities"
+msgstr "Egységek"
+
+#: src/gameeky/editor/widgets/scene_window.ui:309
+msgid "_Try It"
+msgstr "_Kipróbálás"
+
+#: src/gameeky/editor/widgets/scene_window.ui:313
+#: src/gameeky/library/widgets/window.ui:132
+msgid "_Settings"
+msgstr "_Beállítások"
+
+#: src/gameeky/editor/widgets/sound_row.ui:32
+msgid "Sound"
+msgstr "Hang"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:29
+msgid "Number of seconds to elapse in-between sounds in the sequence"
+msgstr "A hangok között eltelt másodpercek"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:30
+msgid "Delay"
+msgstr "Késleltetés"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:42
+msgid "Maximum number of seconds to keep playing this sound"
+msgstr "A hang lejátszásának maximum időtartama másodpercekben"
+
+#: src/gameeky/editor/widgets/sound_settings.ui:43
+msgid "Timeout"
+msgstr "Időkorlát"
+
+#: src/gameeky/editor/widgets/sounds_settings.ui:11
+msgid "Add sounds for different states"
+msgstr "Hangok hozzáadása a különböző állapotokhoz"
+
+#: src/gameeky/editor/widgets/tileset_window.ui:51
+msgid "Tileset"
+msgstr "Csempekészlet"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:7
+msgid ""
+"It's easier to create new projects from existing thematic packs. Browse "
+"GNOME Software for these Add-ons."
+msgstr ""
+"Egyszerűbben hozhatsz létre új projekteket már meglévő tematikus "
+"csomagokból. Keresd ezeket a kiegészítőket a GNOME Szoftverben."
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:11
+msgid "Create New Project?"
+msgstr "Létrehozol egy új projektet?"
+
+#: src/gameeky/launcher/widgets/confirmation_create_window.ui:17
+msgid "Browse"
+msgstr "Tallózás"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:7
+msgid "Do you want to <b>permanently</b> delete this project?"
+msgstr "Valóban <b>véglegesen</b> törölni szeretnéd ezt a projektet?"
+
+#: src/gameeky/launcher/widgets/confirmation_window.ui:11
+msgid "Delete Project?"
+msgstr "Törlöd a projektet?"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:42
+msgid "Select the destination to export the project to"
+msgstr "Válaszd ki, hova szeretnéd exportálni a projektet"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:53
+#: src/gameeky/launcher/widgets/project_import_window.ui:53
+msgid "Select"
+msgstr "Kiválasztás"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:113
+msgid "Project successfully exported!"
+msgstr "Projekt sikeresen exportálva!"
+
+#: src/gameeky/launcher/widgets/project_export_window.ui:148
+#: src/gameeky/launcher/widgets/project_import_window.ui:148
+#: src/gameeky/player/widgets/window.ui:145
+msgid "Something went wrong"
+msgstr "Valami elromlott"
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:42
+msgid "Select the file to import the project from"
+msgstr "Válaszd ki a fájlt, amiből importálni szeretnéd a projektet"
+
+#: src/gameeky/launcher/widgets/project_import_window.ui:113
+msgid "Project successfully imported!"
+msgstr "Projekt sikeresen importálva!"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:14
+#: src/gameeky/player/widgets/window.ui:53
+msgid "Play"
+msgstr "Játszás"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:36
+msgid "Settings"
+msgstr "Beállítások"
+
+#: src/gameeky/launcher/widgets/project_row_popover.ui:69
+msgid "Export"
+msgstr "Exportálás"
+
+#: src/gameeky/launcher/widgets/project_row.ui:33
+msgid "Options"
+msgstr "Műveletek"
+
+#: src/gameeky/launcher/widgets/project_settings.ui:14
+msgid "Description"
+msgstr "Leírás"
+
+#: src/gameeky/launcher/widgets/window.ui:19
+msgid "The projects have been changed on disk"
+msgstr "A projekt megváltozott a lemezen"
+
+#: src/gameeky/launcher/widgets/window.ui:48
+#: src/gameeky/player/widgets/window.ui:41
+msgid "Welcome to Gameeky"
+msgstr "Üdv a Gameekyben!"
+
+#: src/gameeky/launcher/widgets/window.ui:89
+msgid "My Projects"
+msgstr "Projektjeim"
+
+#: src/gameeky/launcher/widgets/window.ui:146
+msgid "_Import"
+msgstr "_Importálás"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:40
+#: src/gameeky/player/widgets/session_join_window.ui:40
+msgid "Address"
+msgstr "Cím"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:46
+#: src/gameeky/player/widgets/session_join_window.ui:46
+#: src/gameeky/player/widgets/session_new_window.ui:72
+msgid "Advanced"
+msgstr "Haladó"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:59
+#: src/gameeky/player/widgets/session_join_window.ui:59
+#: src/gameeky/player/widgets/session_new_window.ui:85
+msgid "Entity Type"
+msgstr "Saját egység típusa"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:72
+#: src/gameeky/player/widgets/session_join_window.ui:72
+#: src/gameeky/player/widgets/session_new_window.ui:98
+msgid "Session Port"
+msgstr "Port"
+
+#: src/gameeky/library/widgets/session_settings_window.ui:118
+msgid "Session"
+msgstr "Menet"
+
+#: src/gameeky/library/widgets/window.ui:40
+msgid "Source has been changed on disk"
+msgstr "A forrás megváltozott a lemezen"
+
+#: src/gameeky/player/widgets/actions_popover.ui:14
+msgid "Take"
+msgstr "Felvétel"
+
+#: src/gameeky/player/widgets/actions_popover.ui:26
+msgid "Use"
+msgstr "Használat"
+
+#: src/gameeky/player/widgets/actions_popover.ui:38
+msgid "Drop"
+msgstr "Elejtés"
+
+#: src/gameeky/player/widgets/actions_popover.ui:50
+msgid "Interact"
+msgstr "Kölcsönhatásba lép"
+
+#: src/gameeky/player/widgets/actions_popover.ui:72
+msgid "Stop"
+msgstr "Megállítás"
+
+#: src/gameeky/player/widgets/session_join_window.ui:101
+msgid "Join"
+msgstr "Csatlakozás"
+
+#: src/gameeky/player/widgets/session_new_window.ui:65
+msgid "Players"
+msgstr "Játékosok"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:12
+msgid "Movement"
+msgstr "Mozgás"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:16
+msgid "Move north"
+msgstr "Lépés északnak"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:22
+msgid "Move east"
+msgstr "Lépés keletnek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:28
+msgid "Move south"
+msgstr "Lépés délnek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:34
+msgid "Move west"
+msgstr "Lépés nyugatnak"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:41
+msgid "Rotation"
+msgstr "Fordulás"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:45
+msgid "Rotate north"
+msgstr "Fordulás északnak"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:51
+msgid "Rotate east"
+msgstr "Fordulás keletnek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:57
+msgid "Rotate south"
+msgstr "Fordulás délnek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:63
+msgid "Rotate west"
+msgstr "Fordulás nyugatnak"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:70
+msgid "Actions"
+msgstr "Műveletek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:74
+msgid "Take object"
+msgstr "Tárgy felvétele"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:80
+msgid "Drop object"
+msgstr "Tárgy elejtése"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:86
+msgid "Use object"
+msgstr "Tárgy használata"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:92
+msgid "Interact with object"
+msgstr "Kölcsönhatás a tárggyal"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:99
+msgid "Dialogues"
+msgstr "Párbeszédek"
+
+#: src/gameeky/player/widgets/shortcuts_window.ui:103
+msgid "Close dialog"
+msgstr "Párbeszéd bezárása"
+
+#: src/gameeky/player/widgets/window.ui:87
+msgid "Loading"
+msgstr "Betöltés"
+
+#: src/gameeky/player/widgets/window.ui:108
+msgid "The scene has been changed on disk"
+msgstr "A jelenet megváltozott a lemezen"
+
+#: src/gameeky/player/widgets/window.ui:187
+msgid "_Join"
+msgstr "_Csatlakozás"
+
+#: src/gameeky/player/widgets/window.ui:191
+msgid "_Join With Code"
+msgstr "Csatlakozás _kóddal"
+
+#: src/gameeky/player/widgets/window.ui:199
+msgid "_Keyboard Shortcuts"
+msgstr "_Gyorsbillentyűk"
