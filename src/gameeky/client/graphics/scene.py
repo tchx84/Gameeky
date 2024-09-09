@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import math
+
 from typing import Optional
 from gi.repository import Gtk, GLib, Gdk, Gsk, Graphene
 
@@ -118,14 +120,14 @@ class Scene(Gtk.Widget):
             screen_x = (entity.position.x - self._model.anchor.x) * tile_width
             screen_y = (entity.position.y - self._model.anchor.y) * tile_height
 
-            rect_width = tile_width * scale_x
-            rect_height = tile_height * scale_y
+            rect_width = math.ceil(tile_width * scale_x)
+            rect_height = math.ceil(tile_height * scale_y)
 
             offset_x = (screen_width / 2) - (rect_width / 2)
             offset_y = (screen_height / 2) + (tile_height / 2) - rect_height
 
-            rect_x = screen_x + offset_x
-            rect_y = screen_y + offset_y
+            rect_x = math.floor(screen_x + offset_x)
+            rect_y = math.floor(screen_y + offset_y)
 
             entity_rect = Graphene.Rect()
             entity_rect.init(rect_x, rect_y, rect_width, rect_height)
