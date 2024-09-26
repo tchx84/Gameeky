@@ -75,27 +75,24 @@ msgstr ""
 "Mejora tus habilidades de programación ampliando juegos con plugins de Python"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:26
-#, fuzzy
 msgid "Scene editor"
-msgstr "Editor de Escena"
+msgstr "Editor de escena"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:30
 msgid "Game player"
-msgstr ""
+msgstr "Reproductor de juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:34
-#, fuzzy
 msgid "Entity editor"
-msgstr "Editor de Entidades"
+msgstr "Editor de entidades"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:38
 msgid "Game launcher"
-msgstr ""
+msgstr "Lanzador de juegos"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:42
-#, fuzzy
 msgid "Code editor"
-msgstr "Codificador"
+msgstr "Editor de código"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:49
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:51
@@ -1437,18 +1434,3 @@ msgstr "Unirse Con _Código"
 #: src/gameeky/player/widgets/window.ui:199
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos de _Teclado"
-
-#~ msgid "Gameeky showing its scene editor"
-#~ msgstr "Gameeky mostrando su editor de escenas"
-
-#~ msgid "Gameeky showing its game player"
-#~ msgstr "Gameeky mostrando su reproductor de juegos"
-
-#~ msgid "Gameeky showing its entity editor"
-#~ msgstr "Gameeky mostrando su editor de entidades"
-
-#~ msgid "Gameeky showing its game launcher"
-#~ msgstr "Gameeky mostrando su lanzador de juegos"
-
-#~ msgid "Gameeky showing its code editor"
-#~ msgstr "Gameeky mostrando su editor de código"
