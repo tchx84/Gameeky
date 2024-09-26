@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gameeky\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 09:40-0300\n"
+"POT-Creation-Date: 2024-09-26 17:54-0400\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,26 +75,30 @@ msgstr ""
 "Mejora tus habilidades de programación ampliando juegos con plugins de Python"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:26
-msgid "Gameeky showing its scene editor"
-msgstr "Gameeky mostrando su editor de escenas"
+#, fuzzy
+msgid "Scene editor"
+msgstr "Editor de Escena"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:30
-msgid "Gameeky showing its game player"
-msgstr "Gameeky mostrando su reproductor de juegos"
+msgid "Game player"
+msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:34
-msgid "Gameeky showing its entity editor"
-msgstr "Gameeky mostrando su editor de entidades"
+#, fuzzy
+msgid "Entity editor"
+msgstr "Editor de Entidades"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:38
-msgid "Gameeky showing its game launcher"
-msgstr "Gameeky mostrando su lanzador de juegos"
+msgid "Game launcher"
+msgstr ""
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:42
-msgid "Gameeky showing its code editor"
-msgstr "Gameeky mostrando su editor de código"
+#, fuzzy
+msgid "Code editor"
+msgstr "Codificador"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:49
+#: data/dev.tchx84.Gameeky.metainfo.xml.in:51
 msgid "Martin Abente Lahaye"
 msgstr "Martín Abente Lahaye"
 
@@ -115,7 +119,7 @@ msgstr "Proyecto equivocado"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: src/gameeky/common/utils.py:234
+#: src/gameeky/common/utils.py:232
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copia)"
@@ -1433,3 +1437,18 @@ msgstr "Unirse Con _Código"
 #: src/gameeky/player/widgets/window.ui:199
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos de _Teclado"
+
+#~ msgid "Gameeky showing its scene editor"
+#~ msgstr "Gameeky mostrando su editor de escenas"
+
+#~ msgid "Gameeky showing its game player"
+#~ msgstr "Gameeky mostrando su reproductor de juegos"
+
+#~ msgid "Gameeky showing its entity editor"
+#~ msgstr "Gameeky mostrando su editor de entidades"
+
+#~ msgid "Gameeky showing its game launcher"
+#~ msgstr "Gameeky mostrando su lanzador de juegos"
+
+#~ msgid "Gameeky showing its code editor"
+#~ msgstr "Gameeky mostrando su editor de código"
