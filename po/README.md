@@ -3,7 +3,7 @@
 ## Requirements
 
 ```bash
-$ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel
+$ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel gstreamer1-devel gtksourceview5-devel
 ```
 
 ## Steps
