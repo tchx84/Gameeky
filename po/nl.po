@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-26 17:54-0400\n"
-"PO-Revision-Date: 2024-05-09 13:19+0200\n"
+"PO-Revision-Date: 2024-09-28 19:50+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -80,27 +80,24 @@ msgstr ""
 "Breid je programmeerkennis uit door spellen te voorzien van Python-plug-ins."
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:26
-#, fuzzy
 msgid "Scene editor"
 msgstr "Scènebewerker"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:30
 msgid "Game player"
-msgstr ""
+msgstr "Spel spelen"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:34
-#, fuzzy
 msgid "Entity editor"
 msgstr "Itembewerker"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:38
 msgid "Game launcher"
-msgstr ""
+msgstr "Spelstarter"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:42
-#, fuzzy
 msgid "Code editor"
-msgstr "Programmeur"
+msgstr "Broncodebewerker"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:49
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:51
