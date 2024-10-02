@@ -2,9 +2,11 @@
 
 ## [unreleased]
 
+* Fixed pixel misalignment with new GSK renderers.
 * Fixed Brazilian Portuguese translation.
 * Added Dutch translation by @Vistaus.
 * Added Hindi translation by @Scrambled777.
+* Changed to GNOME 47 runtime for stability.
 
 ## [0.6.4] - 2024-05-01
 
