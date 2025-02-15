@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.6.5] - 2025-02-15
 
 * Fixed pixel misalignment with new GSK renderers.
 * Fixed Brazilian Portuguese translation.

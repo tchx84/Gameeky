@@ -18,7 +18,7 @@ Rafael Fontenelle</property>
     <property name="translator-credits">Patricia Escauriza Butterworth
 Heimen Stoffels
 Scrambled777</property>
-    <property name="version">0.6.4</property>
+    <property name="version">0.6.5</property>
     <property name="website">https://github.com/tchx84/gameeky</property>
   </object>
 </interface>
