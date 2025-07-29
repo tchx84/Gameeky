@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: true
       - name: Build
-        uses: andyholmes/flatter@main
+        uses: andyholmes/flatter@v1.0.0
         with:
           files: dev.tchx84.Gameeky.json
           run-tests: true
