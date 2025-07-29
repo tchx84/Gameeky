@@ -187,6 +187,7 @@ class Entity(CommonEntity, GObject.GObject):
         self._max_stamina = stamina
         self._default_density = density
         self._default_visible = self.visible
+        self._default_state = self.state
         self._playable = playable
 
         self._scene = scene
@@ -276,12 +277,9 @@ class Entity(CommonEntity, GObject.GObject):
                 except Exception as e:
                     logger.error(e)
 
-    def drop(self, state: Optional[State] = None) -> None:
+    def drop(self) -> None:
         if self.held is None:
             return
-
-        if state is not None:
-            self.held.state = state
 
         self.held.secure()
         self.held.restore()
@@ -321,6 +319,7 @@ class Entity(CommonEntity, GObject.GObject):
     def restore(self) -> None:
         self.visible = self._default_visible
         self.density = self._default_density
+        self.state = self._default_state
 
     def targets(self, entity: "Entity") -> bool:
         # If no particular target then it could target any entity
