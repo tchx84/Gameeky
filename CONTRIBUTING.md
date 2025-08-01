@@ -72,7 +72,7 @@ This project comes with automated tests that you can run, even before you submit
 
 ```bash
 # Fedora requirements
-$ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel
+$ sudo dnf install meson desktop-file-utils appstream python3-black python3-pyflakes python3-mypy python3-pytest python3-pytest-timeout python3-gobject gtk4-devel libadwaita-devel webkitgtk6.0-devel gstreamer1-devel gtksourceview5-devel
 
 $ cd Gameeky
 $ meson setup _test --prefix $PWD/usr
