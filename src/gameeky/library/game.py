@@ -173,6 +173,9 @@ class Game(GObject.GObject):
     def update(self) -> None:
         wait(int(TICK))
 
+    def debug(self, *args) -> None:
+        print(*args, flush=True)
+
     @property
     def entity(self) -> Optional[Entity]:
         return self._entity
