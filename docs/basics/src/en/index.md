@@ -382,6 +382,24 @@ print(game.stats.durability, game.stats.stamina, game.stats.held)
 game.quit()
 ```
 
+Detect possible obstacles in front of the user's character:
+
+```python
+from gameeky.library import Game, Direction
+
+game = Game()
+game.join()
+game.update()
+
+game.rotate(Direction.WEST, time=1000)
+print(game.obstacle)
+
+for obstacle in game.obstacles:
+    print(obstacle)
+
+game.quit()
+```
+
 ### Tips and tricks
 
 For an improved experience, try the following tips and tricks:
