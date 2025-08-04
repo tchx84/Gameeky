@@ -182,13 +182,16 @@ class Window(Adw.ApplicationWindow):
         self.execute_button.props.visible = True
         self.stop_button.props.visible = False
 
-    @Gtk.Template.Callback("on_stop_clicked")
-    def __on_stop_clicked(self, button: Gtk.Button) -> None:
+    def _stop(self) -> None:
         if self._process is None:
             return
 
         self._cancellable.cancel()
         self._process.force_exit()
+
+    @Gtk.Template.Callback("on_stop_clicked")
+    def __on_stop_clicked(self, button: Gtk.Button) -> None:
+        self._stop()
 
     def __on_source_changed(
         self,
@@ -218,3 +221,7 @@ class Window(Adw.ApplicationWindow):
         self.source_buffer.handler_block(self._handler_id)
         self.source_buffer.props.text = text
         self.source_buffer.handler_unblock(self._handler_id)
+
+    def do_close_request(self) -> bool:
+        self._stop()
+        return False
