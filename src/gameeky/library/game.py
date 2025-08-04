@@ -144,7 +144,11 @@ class Game(GObject.GObject):
         if self._service is None:
             return
 
-        logger.debug(Action(action).name.lower())
+        if action in [Action.MOVE, Action.ROTATE]:
+            logger.debug(f"{Action(action).name} to {Direction(int(value)).name}")
+        else:
+            logger.debug(f"{Action(action).name}")
+
         self._service.message(action, value)
 
         wait(time)
