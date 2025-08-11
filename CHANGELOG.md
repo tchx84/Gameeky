@@ -1,5 +1,15 @@
 # Changelog
 
+## [unreleased]
+
+* Fixed various game-crashing issues with cooperators.
+* Fixed not removing cooperators when Python editor is closed.
+* Fixed editor's output not snapping to the bottom.
+* Fixed missing dependencies in various documentation instructions.
+* Added more debugging information and tools to the Python API.
+* Added new Python API to detect obstacles more easily.
+* Changed to GNOME 48 runtime for stability.
+
 ## [0.6.5] - 2025-02-15
 
 * Fixed pixel misalignment with new GSK renderers.
