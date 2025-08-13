@@ -1095,10 +1095,8 @@ msgstr ""
 "Inspeccionar las [estadísticas](../../../../src/gameeky/common/stats.py) "
 "avanzadas de la entidad del personaje del usuario:"
 
-#, fuzzy
-#| msgid "*Rotate* to change the direction of the user's character."
 msgid "Detect possible obstacles in front of the user's character:"
-msgstr "*Girar* para cambiar la dirección del personaje del usuario."
+msgstr "Detectar posibles obstáculos frente al personaje del usuario:"
 
 msgid ""
 "When testing code locally, leave both the player and the code editor open "
