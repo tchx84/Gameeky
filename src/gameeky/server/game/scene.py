@@ -138,6 +138,7 @@ class Scene:
     def remove(self, entity_id: int) -> None:
         entity = self._entity_by_id[entity_id]
         entity.drop()
+        entity.fall()
 
         del self._entity_by_id[entity_id]
         self._partition.remove(entity)

@@ -6,7 +6,7 @@
   <object class="AdwAboutWindow" id="AboutWindow">
     <property name="application-icon">dev.tchx84.Gameeky</property>
     <property name="application-name">Gameeky</property>
-    <property name="copyright">© 2023-2024 Martín Abente Lahaye</property>
+    <property name="copyright">© 2023-2025 Martín Abente Lahaye</property>
     <property name="designers">Jakub Steiner
 Tobias Bernard</property>
     <property name="developer-name">Martín Abente Lahaye</property>
@@ -18,7 +18,7 @@ Rafael Fontenelle</property>
     <property name="translator-credits">Patricia Escauriza Butterworth
 Heimen Stoffels
 Scrambled777</property>
-    <property name="version">0.6.4</property>
+    <property name="version">0.6.5</property>
     <property name="website">https://github.com/tchx84/gameeky</property>
   </object>
 </interface>

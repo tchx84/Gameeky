@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2024 Gameeky's COPYRIGHT HOLDER
+# Copyright (C) 2025 Gameeky's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Gameeky package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gameeky\n"
 "Report-Msgid-Bugs-To: https://github.com/tchx84/gameeky/issues\n"
-"POT-Creation-Date: 2024-04-30 21:46-0400\n"
+"POT-Creation-Date: 2025-08-13 19:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -800,6 +800,9 @@ msgstr ""
 msgid ""
 "Inspect the advance [stats](../../../../src/gameeky/common/stats.py) of the "
 "user's character entity:"
+msgstr ""
+
+msgid "Detect possible obstacles in front of the user's character:"
 msgstr ""
 
 msgid ""

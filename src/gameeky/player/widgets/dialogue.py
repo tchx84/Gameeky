@@ -49,7 +49,7 @@ class Dialogue(Gtk.Box):
         return self._model
 
     @model.setter
-    def model(self, model: DialogueModel) -> None:
+    def model(self, model: Optional[DialogueModel]) -> None:
         self.props.visible = False
 
         if self._model is not None and self._updated_source_id is not None:

@@ -78,25 +78,22 @@ msgid "Mature programming skills by extending games with Python plugins"
 msgstr "Python प्लगइन्स के साथ गेम का विस्तार करके परिपक्व प्रोग्रामिंग कौशल"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:26
-#, fuzzy
 msgid "Scene editor"
 msgstr "दृश्य संपादक"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:30
 msgid "Game player"
-msgstr ""
+msgstr "गेम प्लेयर"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:34
-#, fuzzy
 msgid "Entity editor"
 msgstr "तत्त्व संपादक"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:38
 msgid "Game launcher"
-msgstr ""
+msgstr "गेम लॉन्चर"
 
 #: data/dev.tchx84.Gameeky.metainfo.xml.in:42
-#, fuzzy
 msgid "Code editor"
 msgstr "कोडर"
 
@@ -1426,18 +1423,3 @@ msgstr "कोड के साथ जुड़ें (_J)"
 #: src/gameeky/player/widgets/window.ui:199
 msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
-
-#~ msgid "Gameeky showing its scene editor"
-#~ msgstr "Gameeky अपना दृश्य संपादक दिखा रहा है"
-
-#~ msgid "Gameeky showing its game player"
-#~ msgstr "Gameeky अपना गेम प्लेयर दिखा रहा है"
-
-#~ msgid "Gameeky showing its entity editor"
-#~ msgstr "Gameeky अपना तत्त्व संपादक दिखा रहा है"
-
-#~ msgid "Gameeky showing its game launcher"
-#~ msgstr "Gameeky अपना गेम लॉन्चर दिखा रहा है"
-
-#~ msgid "Gameeky showing its code editor"
-#~ msgstr "Gameeky अपना कोड संपादक दिखा रहा है"

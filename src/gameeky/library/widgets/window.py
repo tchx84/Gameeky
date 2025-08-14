@@ -49,6 +49,7 @@ class Window(Adw.ApplicationWindow):
 
     source_buffer = Gtk.Template.Child()
     output_buffer = Gtk.Template.Child()
+    output_view = Gtk.Template.Child()
     execute_button = Gtk.Template.Child()
     stop_button = Gtk.Template.Child()
     banner = Gtk.Template.Child()
@@ -59,6 +60,9 @@ class Window(Adw.ApplicationWindow):
         self._cancellable = Gio.Cancellable()
         self._handler_id = self.source_buffer.connect(
             "changed", self.__on_source_changed
+        )
+        self._output_mark = self.output_buffer.create_mark(
+            None, self.output_buffer.get_end_iter(), False
         )
 
         Monitor.default().connect("changed", self.__on_monitor_changed)
@@ -176,19 +180,23 @@ class Window(Adw.ApplicationWindow):
             self._restore_ui()
         else:
             self.output_buffer.insert_at_cursor(data.decode("UTF-8") + "\n")
+            self.output_view.scroll_to_mark(self._output_mark, 0.0, False, 0.0, 0.0)
             self._queue_read(stream)
 
     def _restore_ui(self) -> None:
         self.execute_button.props.visible = True
         self.stop_button.props.visible = False
 
-    @Gtk.Template.Callback("on_stop_clicked")
-    def __on_stop_clicked(self, button: Gtk.Button) -> None:
+    def _stop(self) -> None:
         if self._process is None:
             return
 
         self._cancellable.cancel()
         self._process.force_exit()
+
+    @Gtk.Template.Callback("on_stop_clicked")
+    def __on_stop_clicked(self, button: Gtk.Button) -> None:
+        self._stop()
 
     def __on_source_changed(
         self,
@@ -218,3 +226,7 @@ class Window(Adw.ApplicationWindow):
         self.source_buffer.handler_block(self._handler_id)
         self.source_buffer.props.text = text
         self.source_buffer.handler_unblock(self._handler_id)
+
+    def do_close_request(self) -> bool:
+        self._stop()
+        return False

@@ -40,7 +40,7 @@ class Handler(BaseHandler):
         self.finish()
 
     def finish(self) -> None:
-        self._entity.drop(State.IDLING)
+        self._entity.drop()
         self._entity.perform(Action.IDLE)
 
         super().finish()

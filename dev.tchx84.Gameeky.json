@@ -1,7 +1,7 @@
 {
     "app-id": "dev.tchx84.Gameeky",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "47",
+    "runtime-version": "48",
     "sdk": "org.gnome.Sdk",
     "separate-locales": false,
     "command": "dev.tchx84.Gameeky.Launcher",

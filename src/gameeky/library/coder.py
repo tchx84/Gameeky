@@ -181,7 +181,11 @@ class Application(Adw.Application):
         return True
 
     def __on_discarded(self, dialog: ConfirmationSaveWindow) -> None:
-        self.quit()
+        if self._window is None:
+            return
+
+        self._pending_changes = False
+        self._window.close()
 
     def __on_edit(self, action: Gio.SimpleAction, data: Optional[Any] = None) -> None:
         dialog = SessionSettingsWindow(transient_for=self._window)

@@ -17,8 +17,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import math
 
-from typing import Optional
+from typing import Optional, List
 
 from gi.repository import GLib, GObject
 
@@ -35,7 +36,7 @@ from ..common.entity import Entity
 from ..common.scene import Scene
 from ..common.stats import Stats
 from ..common.session import Session
-from ..common.definitions import Action, Direction, TICK
+from ..common.definitions import Action, Direction, State, TICK
 
 from ..client.game.service import Service
 
@@ -143,7 +144,11 @@ class Game(GObject.GObject):
         if self._service is None:
             return
 
-        logger.debug(Action(action).name.lower())
+        if action in [Action.MOVE, Action.ROTATE]:
+            logger.debug(f"{Action(action).name} to {Direction(int(value)).name}")
+        else:
+            logger.debug(f"{Action(action).name}")
+
         self._service.message(action, value)
 
         wait(time)
@@ -172,6 +177,9 @@ class Game(GObject.GObject):
     def update(self) -> None:
         wait(int(TICK))
 
+    def debug(self, *args) -> None:
+        print(*args, flush=True)
+
     @property
     def entity(self) -> Optional[Entity]:
         return self._entity
@@ -183,3 +191,45 @@ class Game(GObject.GObject):
     @property
     def stats(self) -> Optional[Stats]:
         return self._stats
+
+    @property
+    def obstacle(self) -> Optional[Entity]:
+        if obstacles := self.obstacles:
+            return obstacles[-1]
+
+        return None
+
+    @property
+    def obstacles(self) -> List[Entity]:
+        entities: List[Entity] = []
+
+        if self.entity is None or self.scene is None:
+            return entities
+
+        target = self.entity.position.copy()
+        target.x = math.floor(target.x)
+        target.y = math.floor(target.y)
+
+        if self.entity.direction == Direction.NORTH:
+            target.y -= 1
+        elif self.entity.direction == Direction.SOUTH:
+            target.y += 1
+        elif self.entity.direction == Direction.WEST:
+            target.x -= 1
+        elif self.entity.direction == Direction.EAST:
+            target.x += 1
+
+        for entity in self.scene.entities:
+            if entity.visible is False:
+                continue
+            if entity.state == State.HELD:
+                continue
+            if math.floor(entity.position.x) != target.x:
+                continue
+            if math.floor(entity.position.y) != target.y:
+                continue
+            entities.append(entity)
+
+        entities.sort(key=lambda e: e.position.z)
+
+        return entities

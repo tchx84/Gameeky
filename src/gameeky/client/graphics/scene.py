@@ -103,6 +103,7 @@ class Scene(Gtk.Widget):
 
         snapshot.push_clip(clip)
 
+        pixel_center = 0.5
         tile_width = screen_width / self._model.width
         tile_height = screen_height / self._model.height
 
@@ -120,8 +121,8 @@ class Scene(Gtk.Widget):
             screen_x = (entity.position.x - self._model.anchor.x) * tile_width
             screen_y = (entity.position.y - self._model.anchor.y) * tile_height
 
-            rect_width = math.ceil(tile_width * scale_x)
-            rect_height = math.ceil(tile_height * scale_y)
+            rect_width = math.ceil(tile_width * scale_x) + pixel_center
+            rect_height = math.ceil(tile_height * scale_y) + pixel_center
 
             offset_x = (screen_width / 2) - (rect_width / 2)
             offset_y = (screen_height / 2) + (tile_height / 2) - rect_height
