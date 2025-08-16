@@ -31,7 +31,7 @@ Everyone is welcome to contribute to this project, please read these [instructio
 
 ## Copyright
 
-© 2024 [Martín Abente Lahaye](https://tchx84.dev)
+© 2023-2025 [Martín Abente Lahaye](https://tchx84.dev)
 
 ## Disclaimer
 
