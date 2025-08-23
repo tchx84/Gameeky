@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [0.7.0] - 2025-08-23
 
 * Fixed various game-crashing issues with cooperators.
 * Fixed not removing cooperators when Python editor is closed.
