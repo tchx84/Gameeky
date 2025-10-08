@@ -86,14 +86,14 @@ $ meson test
 Most of the dependencies can be installed via [brew](https://brew.sh)
 ```bash
 cd Gameeky
-brew install meson pkg-config libadwaita cmake gtksourceview5 desktop-file-utils gstreamer
-meson setup _test --prefix=$PWD/dist -Dwebkit=disabled
-cd _test
+brew install meson pkg-config libadwaita cmake gtksourceview5 desktop-file-utils gstreamer adwaita-icon-theme
+meson setup _build --prefix=~/.local -Dwebkit=disabled
+cd _build
 ninja install
 cd ..
-GSK_RENDERER=gl ./dist/bin/dev.tchx84.Gameeky.Launcher
+GSK_RENDERER=gl ~/.local/bin/dev.tchx84.Gameeky.Launcher
 ```
-For more detailed instructions check [this guide](https://gist.github.com/melizeche/dbc99e0bff54581767c1df0cd6d10a29)
+For more detailed instructions check [this guide](./docs/experimental/macOS/README.md)
 
 
 ## Windows support (experimental)
