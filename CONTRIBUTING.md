@@ -82,9 +82,23 @@ $ ninja install
 $ meson test
 ```
 
+## MacOS support (experimental)
+Most of the dependencies can be installed via [brew](https://brew.sh)
+```bash
+cd Gameeky
+brew install meson pkg-config libadwaita cmake gtksourceview5 desktop-file-utils gstreamer adwaita-icon-theme
+meson setup _build --prefix=~/.local -Dwebkit=disabled
+cd _build
+ninja install
+cd ..
+GSK_RENDERER=gl ~/.local/bin/dev.tchx84.Gameeky.Launcher
+```
+For more detailed instructions check [this guide](./docs/experimental/macOS/README.md)
+
+
 ## Windows support (experimental)
 
-To run on windows, install [msys2](msys2.org) and follow the instructions to set up a development environment. Once the setup is done, install the following dependencies:
+To run on windows, install [msys2](https://msys2.org) and follow the instructions to set up a development environment. Once the setup is done, install the following dependencies:
 
 ```bash
 $ pacman -Suy
