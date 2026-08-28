@@ -1,5 +1,5 @@
 {
-    "app-id": "dev.tchx84.Gameeky",
+    "app-id": "dev.tchx84.Gameeky.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "50",
     "sdk": "org.gnome.Sdk",
