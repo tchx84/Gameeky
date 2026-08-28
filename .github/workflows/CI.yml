@@ -1,21 +1,19 @@
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
 name: CI
 jobs:
   testing:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/andyholmes/flatter/gnome:48
+      image: ghcr.io/tchx84/test-gnome-flatpak-app-action:v50
       options: --privileged
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-      - name: Build
-        uses: andyholmes/flatter@v1.0.0
-        with:
-          files: dev.tchx84.Gameeky.json
-          run-tests: true
+    - uses: actions/checkout@v6
+    - uses: tchx84/test-gnome-flatpak-app-action@v50
+      with:
+        manifest: dev.tchx84.Gameeky.json
