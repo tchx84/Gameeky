@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.7.1] - unreleased
+## [0.7.1] - 2026-08-29
 
 * Added experimental instructions for macOS by @melizeche.
 * Changed to test-gnome-flatpak-app-action to run tests in CI.
