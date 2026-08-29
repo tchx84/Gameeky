@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.1] - unreleased
+
+* Added experimental instructions for macOS by @melizeche.
+* Changed to test-gnome-flatpak-app-action to run tests in CI.
+* Changed to GNOME 50 runtime for stability.
+
 ## [0.7.0] - 2025-08-23
 
 * Fixed various game-crashing issues with cooperators.
